@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==========================================================================
+   Synax ERP landing (/erp) design system
+   --------------------------------------------------------------------------
+   Additive only. Every token is namespaced `erp-` and every custom selector is
+   scoped under `.erp-root`, so nothing here can reach another route.
+   Palette is taken from the live Synax marketing tokens (--mk-brand #0b6cff,
+   --mk-brand-accent #00b2a9) and the cyan arrow in the Synax wordmark.
+   ========================================================================== */
+
+@theme {
+  /* Brand */
+  --color-erp-brand: #0b6cff;
+  --color-erp-brand-dark: #0a4fc5;
+  --color-erp-brand-mid: #3d88ff;
+  --color-erp-brand-soft: #dce9ff;
+  --color-erp-accent: #00b2a9;
+  --color-erp-sky: #38bdf8;
+
+  /* Ink */
+  --color-erp-ink: #0f172a;
+  --color-erp-heading: #1e293b;
+  --color-erp-body: #334155;
+  --color-erp-soft: #64748b;
+
+  /* Surfaces */
+  --color-erp-surface: #ffffff;
+  --color-erp-surface-2: #f8fbff;
+  --color-erp-surface-3: #f1f6ff;
+  --color-erp-navy: #061021;
+  --color-erp-navy-2: #0b1b33;
+  --color-erp-navy-3: #13294b;
+
+  /* Lines — the live site's --mk-border scale */
+  --color-erp-line: rgba(148, 163, 184, 0.22);
+  --color-erp-line-strong: rgba(148, 163, 184, 0.35);
+  --color-erp-line-dark: rgba(148, 183, 236, 0.16);
+
+  /* Radii */
+  --radius-erp-sm: 8px;
+  --radius-erp-md: 12px;
+  --radius-erp-lg: 18px;
+  --radius-erp-xl: 26px;
+
+  /* Elevation */
+  --shadow-erp-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-erp-md: 0 14px 32px rgba(15, 23, 42, 0.1);
+  --shadow-erp-lg: 0 30px 70px rgba(15, 23, 42, 0.18);
+  --shadow-erp-brand: 0 10px 24px rgba(11, 108, 255, 0.3);
+
+  /* Motion */
+  --ease-erp: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Quint-out: travels fast, then settles rather than stopping dead. */
+  --ease-erp-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-erp-rise: erp-rise 0.7s var(--ease-erp) both;
+}
+
+/* --- Hero card marquee ----------------------------------------------------
+   Columns of cards drift upward forever, each column offset so the group reads
+   as a stagger. The track holds its cards twice and travels exactly -50%, so
+   the loop is seamless. Cards carry their spacing as margin rather than flex
+   `gap`, because N duplicated items have 2N-1 gaps and -50% would not land on
+   a card boundary. If this keyframe fails to load the cards simply sit still. */
+
+@keyframes erp-marquee-up {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.erp-root .erp-marquee {
+  /* Duration is set per column so the two drift at different speeds — the
+     parallax is what stops it reading as one mechanical conveyor. */
+  animation: erp-marquee-up 22s linear infinite;
+  will-change: transform;
+}
+
+/* A slow bob layered on each card. It animates the individual `translate`
+   property, not `transform`, so it composes with the column's transform
+   instead of fighting it. */
+@keyframes erp-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+.erp-root .erp-marquee-card {
+  animation: erp-float 7s ease-in-out infinite;
+}
+
+/* Pause on hover or keyboard focus so the moving text can be read. */
+.erp-root .erp-marquee-mask:hover .erp-marquee,
+.erp-root .erp-marquee-mask:focus-within .erp-marquee {
+  animation-play-state: paused;
+}
+
+.erp-root .erp-marquee-mask {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-root .erp-marquee,
+  .erp-root .erp-marquee-card {
+    animation: none;
+  }
+}
+
+@keyframes erp-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Page scope ----------------------------------------------------------- */
+
+/* The scrolling element is <html>, so in-page anchor scrolling has to be set
+   there. `:has()` keeps it to pages that actually render .erp-root, leaving
+   every other route on the browser default. */
+:root:has(.erp-root) {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:has(.erp-root) {
+    scroll-behavior: auto;
+  }
+}
+
+.erp-root {
+  /* Fluid type scale: no awkward wraps at 320px, no oversized heads at 1440px.
+     The h1 cap is also bounded by viewport height, so on a short laptop screen
+     — where the browser's own chrome has already eaten the vertical budget —
+     the headline eases back instead of pushing the hero below the fold. Tall
+     screens are unaffected: 8vh exceeds 3.75rem from roughly 750px up. */
+  --erp-h1: clamp(2rem, 1.15rem + 4.2vw, min(3.75rem, 8vh));
+  --erp-h2: clamp(1.625rem, 1.1rem + 2.4vw, 2.75rem);
+  --erp-h3: clamp(1.125rem, 0.98rem + 0.7vw, 1.375rem);
+  --erp-lead: clamp(1rem, 0.94rem + 0.3vw, 1.1875rem);
+
+  /* Redefining Tailwind's font keys here re-points every `font-sans` and
+     `font-mono` utility inside this page without touching any other route.
+     Families mirror the live Synax site: Sora for UI, Space Grotesk for
+     headings, and the system mono stack (it loads no mono webfont). */
+  --font-sans: var(--font-erp-sans), system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-erp-display), var(--font-erp-sans), system-ui,
+    sans-serif;
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  color: var(--color-erp-body);
+  font-family: var(--font-sans);
+  /* Guards against any single wide child forcing a horizontal scrollbar. */
+  overflow-x: clip;
+}
+
+/* Headings take the display face, matching the live site where every h1–h3 is
+   Space Grotesk. Weight and tracking stay with the components so an explicit
+   utility there is never silently overridden. */
+.erp-root :is(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+}
+
+.erp-root ::selection {
+  background: var(--color-erp-brand);
+  color: #fff;
+}
+
+.erp-root :focus-visible {
+  outline: 2px solid var(--color-erp-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.erp-root .erp-on-dark :focus-visible {
+  outline-color: var(--color-erp-sky);
+}
+
+/* --- Scroll reveal -------------------------------------------------------- */
+/* SSR renders the hidden state so there is no flash; the <noscript> block in
+   the layout restores visibility when JS never runs. */
+
+.erp-root .erp-reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition:
+    opacity 0.6s var(--ease-erp),
+    transform 0.6s var(--ease-erp);
+  transition-delay: var(--erp-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.erp-root .erp-reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* The rotating hero headline carries its own opacity/transform inline — see
+   the comment in animated-headline.tsx for why it does not live here. */
+
+/* --- Decorative surfaces -------------------------------------------------- */
+
+.erp-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(148, 183, 236, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 183, 236, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.erp-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(100, 116, 139, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(100, 116, 139, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 20%, transparent 85%);
+}
+
+/* --- Interaction ---------------------------------------------------------- */
+/* Hover affordances are additive; every card is also a real link or button so
+   touch devices get the same destination without a hover state. */
+
+.erp-root .erp-card {
+  transition:
+    transform 0.3s var(--ease-erp),
+    box-shadow 0.3s var(--ease-erp),
+    border-color 0.3s var(--ease-erp);
+}
+
+@media (hover: hover) {
+  .erp-root .erp-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.erp-root .erp-card:focus-within {
+  border-color: var(--color-erp-brand-mid);
+}
+
+/* --- Reduced motion ------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-root *,
+  .erp-root *::before,
+  .erp-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .erp-root .erp-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .erp-root .erp-card:hover {
+    transform: none;
+  }
+}
