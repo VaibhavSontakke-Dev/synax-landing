@@ -1,5 +1,6 @@
 import { BusinessGoals } from "./_components/business-goals";
 import { Customers } from "./_components/customers";
+import { CustomerStories } from "./_components/customer-stories";
 import { DemoCta } from "./_components/demo-cta";
 import { Hero } from "./_components/hero";
 import { IndustryCards } from "./_components/industry-cards";
@@ -7,11 +8,13 @@ import { Industries } from "./_components/industries";
 import { Integrations } from "./_components/integrations";
 import { Modules } from "./_components/modules";
 import { PlatformBenefits } from "./_components/platform-benefits";
+import { PurposeBuilt } from "./_components/purpose-built";
 import { Rollout } from "./_components/rollout";
 import { Showcase } from "./_components/showcase";
 import { SiteFooter } from "./_components/site-footer";
 import { SiteHeader } from "./_components/site-header";
 import { Technology } from "./_components/technology";
+import { WhyChoose } from "./_components/why-choose";
 import { Workflow } from "./_components/workflow";
 
 /**
@@ -32,20 +35,24 @@ export default function ErpLandingPage() {
       <main id="main" className="flex-1">
         <Hero />
         <IndustryCards />
-        <BusinessGoals />
+        <WhyChoose />
+        {/* <CustomerStories /> */}
+        {/* <PurposeBuilt /> */}
+        {/* <BusinessGoals /> */}
         <PlatformBenefits />
-        <Modules />
+         {/* <Modules /> */}
         <Industries />
-        <Technology />
-        <Showcase />
-        <Workflow />
+         <Technology />
+        {/* <Showcase /> */}
+        {/* <Workflow /> */}
         <Customers />
         <Integrations />
-        <Rollout />
+        {/* <Rollout /> */}
         <DemoCta />
-      </main>
-
-      <SiteFooter />
+        
+        </main>
+        <SiteFooter />
+        
     </>
   );
 }

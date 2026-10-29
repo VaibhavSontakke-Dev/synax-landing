@@ -49,12 +49,7 @@ export function SiteFooter() {
               services, with quality gates and AS9100D QMS controls attached at
               critical workflow checkpoints.
             </p>
-            <a
-              href="#demo"
-              className="mt-6 inline-flex h-11 items-center justify-center rounded-erp-md bg-erp-brand px-5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-erp-brand-mid"
-            >
-              Book a Demo
-            </a>
+           
           </div>
 
           <div className="grid gap-8 sm:grid-cols-3">

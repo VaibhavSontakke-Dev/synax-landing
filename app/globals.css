@@ -302,4 +302,17 @@ body {
   .erp-root .erp-card:hover {
     transform: none;
   }
+  
+  /* Industry cards reduced motion */
+  .erp-root .industry-card *,
+  .erp-root .industry-card img {
+    transition: none !important;
+  }
+  
+  .erp-root .industry-card:hover .industry-hidden-content,
+  .erp-root .industry-card:focus-within .industry-hidden-content {
+    max-height: 300px !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
 }
