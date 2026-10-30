@@ -10,6 +10,7 @@ import { Modules } from "./_components/modules";
 import { WhyChoose2 } from "./_components/whyChoose2";
 import { PurposeBuilt } from "./_components/purpose-built";
 import { Rollout } from "./_components/rollout";
+import { DashboardShowcase } from "./_components/dashboard-showcase";
 import { Showcase } from "./_components/showcase";
 import { SiteFooter } from "./_components/site-footer";
 import { SiteHeader } from "./_components/site-header";
@@ -48,6 +49,7 @@ export default function ErpLandingPage() {
          {/* tanmay  */}
          <Technology />
         <Showcase />
+        <DashboardShowcase />
         <Workflow />
         <Customers />
         <Testimonials />

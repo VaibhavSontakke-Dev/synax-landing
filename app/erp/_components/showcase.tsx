@@ -44,7 +44,7 @@ const ROWS = [
 
 export function Showcase() {
   return (
-    <Section id="showcase" tone="tint">
+    <Section id="showcase" tone="light">
       <Container>
         <div className="space-y-16 lg:space-y-24">
           {ROWS.map((row, index) => {

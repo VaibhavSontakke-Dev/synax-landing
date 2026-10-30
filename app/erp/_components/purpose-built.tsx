@@ -64,7 +64,7 @@ export function PurposeBuilt() {
   const activeContent = FEATURES.find((f) => f.id === activeFeature) || FEATURES[0];
 
   return (
-    <section className="bg-erp-surface-2 py-16 sm:py-20 lg:py-28">
+    <section className="bg-erp-surface py-16 sm:py-20 lg:py-28">
       <Container>
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">

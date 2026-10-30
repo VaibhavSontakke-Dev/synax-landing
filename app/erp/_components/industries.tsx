@@ -32,11 +32,12 @@ const ACCENTS = {
 
 export function Industries() {
   return (
-    <Section id="industries" tone="tint">
+    <Section id="industries" tone="dark">
 
       <Container className="relative">
         <Reveal>
           <SectionHeading
+            tone="dark"
             eyebrow="Industry solutions"
             title="Three industries, one operating model"
             lead="Synax ships the workflows each sector actually runs on — not a generic ERP with an industry label bolted to the front."
@@ -97,7 +98,7 @@ export function Industries() {
                     </ul>
 
                     <div className="mt-6 pt-1">
-                      <TextLink href="#demo">
+                      <TextLink href="#demo" tone="dark">
                         Talk to the {industry.title} team
                       </TextLink>
                     </div>

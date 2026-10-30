@@ -5,10 +5,11 @@ import { Container, Section, SectionHeading } from "./ui";
 
 export function Technology() {
   return (
-    <Section id="technology" tone="tint">
+    <Section id="technology" tone="dark">
       <Container className="relative">
         <Reveal>
           <SectionHeading
+            tone="dark"
             eyebrow="Technology"
             title="A platform shaped by how the work actually runs"
             lead="Architecture decisions that matter on a shop floor: who can see what, who works from which screen, and how a deployment grows without a rebuild."
