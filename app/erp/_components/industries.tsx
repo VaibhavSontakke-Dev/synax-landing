@@ -33,7 +33,6 @@ const ACCENTS = {
 export function Industries() {
   return (
     <Section id="industries" tone="tint">
-      <div className="absolute inset-0 erp-grid-light" aria-hidden />
 
       <Container className="relative">
         <Reveal>

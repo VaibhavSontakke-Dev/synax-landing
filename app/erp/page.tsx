@@ -14,6 +14,7 @@ import { Showcase } from "./_components/showcase";
 import { SiteFooter } from "./_components/site-footer";
 import { SiteHeader } from "./_components/site-header";
 import { Technology } from "./_components/technology";
+import { Testimonials } from "./_components/testimonials";
 import { WhyChoose } from "./_components/why-choose";
 import { Workflow } from "./_components/workflow";
 
@@ -42,10 +43,14 @@ export default function ErpLandingPage() {
         {/* <BusinessGoals /> */}
         {/* <WhyChoose2 /> */}
          <Modules />
+
+
+         {/* tanmay  */}
          <Technology />
         <Showcase />
         <Workflow />
         <Customers />
+        <Testimonials />
         <Integrations />
         {/* <Rollout /> */}
         <Contactus />

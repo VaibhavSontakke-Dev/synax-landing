@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { NAV } from "../_data/content";
 import { ChevronIcon } from "./icons";
-import { SynaxLogo } from "./logo";
 import { Button, Container } from "./ui";
 
 /**
@@ -111,7 +110,7 @@ export function SiteHeader() {
             className="shrink-0 rounded-erp-sm transition-opacity hover:opacity-80"
             aria-label="Synax by Senwell — back to top"
           >
-            <SynaxLogo className="h-8 w-auto lg:h-9" />
+            <img src="https://synax.senwellgroup.com/assets/logo/synax_logo.png" alt="Synax" className="h-8 w-auto lg:h-9" />
           </a>
 
           {/* ---------------- Desktop navigation ---------------- */}
@@ -261,7 +260,7 @@ export function SiteHeader() {
           }`}
         >
           <div className="flex h-16 shrink-0 items-center justify-between border-b border-erp-line px-5">
-            <SynaxLogo className="h-8 w-auto" />
+            <img src="https://synax.senwellgroup.com/assets/logo/synax_logo.png" alt="Synax" className="h-8 w-auto" />
             <button
               ref={drawerCloseRef}
               type="button"

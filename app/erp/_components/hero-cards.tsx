@@ -426,8 +426,8 @@ export function HeroCards() {
   return (
     <div className="erp-marquee-mask relative mx-auto h-[21rem] w-full max-w-[26rem] overflow-hidden sm:h-[26rem] lg:h-[30rem] lg:max-w-none">
       <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
-        <Column cards={COLUMN_A} duration="22s" offset="0s" />
         <Column cards={COLUMN_B} duration="98s" offset="-11s" isColumnB />
+        <Column cards={COLUMN_A} duration="22s" offset="0s" />
       </div>
     </div>
   );

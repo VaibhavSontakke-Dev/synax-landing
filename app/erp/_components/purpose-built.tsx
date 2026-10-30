@@ -19,8 +19,7 @@ const FEATURES: Feature[] = [
     title: "Modern User Interface",
     description:
       "An intuitive, responsive interface designed for both developers and business users, with clean layouts, consistent patterns, and seamless navigation across all devices.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    imageUrl: "/images/modern-ui.png",
   },
   {
     id: "ai-ml",
@@ -65,7 +64,7 @@ export function PurposeBuilt() {
   const activeContent = FEATURES.find((f) => f.id === activeFeature) || FEATURES[0];
 
   return (
-    <section className="bg-erp-surface-1 py-16 sm:py-20 lg:py-28">
+    <section className="bg-erp-surface-2 py-16 sm:py-20 lg:py-28">
       <Container>
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">

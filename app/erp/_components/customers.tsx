@@ -12,7 +12,7 @@ import { Container, Section, SectionHeading, TextLink } from "./ui";
  */
 export function Customers() {
   return (
-    <Section id="customers">
+    <Section id="customers" tone="tint">
       <Container>
         <Reveal>
           <SectionHeading

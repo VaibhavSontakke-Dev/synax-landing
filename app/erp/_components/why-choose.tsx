@@ -17,6 +17,18 @@ type TabContent = {
 
 const TABS: TabContent[] = [
   {
+    id: "ai",
+    label: "AI & ML Automation",
+    question: "Ready to eliminate repetitive work?",
+    description:
+      "Automate routine workflows, uncover meaningful business insights, and make smarter decisions with AI-powered capabilities that help your team save time and improve productivity.",
+    cta: "Discover AI Capabilities",
+    ctaLink:
+      "https://www.acumatica.com/cloud-erp-software/artificial-intelligence/",
+    imageUrl:
+      "https://www.acumatica.com/media/2026/02/ai-powered-automation.png?width=850&fit=cover&format=auto",
+  },
+  {
     id: "usability",
     label: "Effortless Experience",
     question: "Looking for a simpler way to manage your business?",
@@ -37,18 +49,6 @@ const TABS: TabContent[] = [
     ctaLink: "https://www.acumatica.com/cloud-erp-software/security",
     imageUrl:
       "https://www.acumatica.com/media/2026/02/secure-and-reliable.png?width=850&fit=cover&format=auto",
-  },
-  {
-    id: "ai",
-    label: "AI & ML Automation",
-    question: "Ready to eliminate repetitive work?",
-    description:
-      "Automate routine workflows, uncover meaningful business insights, and make smarter decisions with AI-powered capabilities that help your team save time and improve productivity.",
-    cta: "Discover AI Capabilities",
-    ctaLink:
-      "https://www.acumatica.com/cloud-erp-software/artificial-intelligence/",
-    imageUrl:
-      "https://www.acumatica.com/media/2026/02/ai-powered-automation.png?width=850&fit=cover&format=auto",
   },
   {
     id: "trust",

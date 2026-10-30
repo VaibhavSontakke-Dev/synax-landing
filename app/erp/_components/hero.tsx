@@ -30,8 +30,7 @@ function Rise({
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-erp-navy erp-on-dark">
-      {/* Depth: blueprint grid, then two soft brand lights. */}
-      <div className="absolute inset-0 erp-grid-dark" aria-hidden />
+      {/* Depth: two soft brand lights. */}
       <div
         className="pointer-events-none absolute -top-40 -right-32 size-[34rem] rounded-full opacity-60 blur-[110px]"
         style={{ background: "radial-gradient(circle, #0b6cff 0%, transparent 70%)" }}
@@ -47,7 +46,7 @@ export function Hero() {
         {/* Vertical padding tracks viewport height rather than sitting at a
             fixed 112px, so the hero keeps its proportions on a tall monitor but
             stops pushing the CTAs past the fold on a laptop. */}
-        <div className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:gap-14 lg:py-[clamp(2.25rem,6vh,5.5rem)]">
+        <div className="grid items-center gap-10 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:gap-14 lg:py-[clamp(1.5rem,4vh,3.5rem)]">
           {/* ------------------------- Copy ------------------------- */}
           <div className="max-w-xl">
             <Rise delay={0}>
@@ -111,7 +110,7 @@ export function Hero() {
           </dl>
         </Rise>
 
-        <div className="h-10 sm:h-14 lg:h-16" />
+        <div className="h-4 sm:h-6 lg:h-8" />
       </Container>
     </section>
   );

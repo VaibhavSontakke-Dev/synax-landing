@@ -1,4 +1,3 @@
-import { SynaxLogo } from "./logo";
 import { Container } from "./ui";
 
 /**
@@ -43,7 +42,7 @@ export function SiteFooter() {
       <Container>
         <div className="grid gap-10 py-14 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)] lg:gap-16 lg:py-16">
           <div className="max-w-sm">
-            <SynaxLogo className="h-9 w-auto" tone="light" />
+            <img src="https://synax.senwellgroup.com/assets/logo/synax_logo.png" alt="Synax" className="h-9 w-auto" />
             <p className="mt-5 text-[0.875rem] leading-relaxed text-slate-400">
               An ERP for aerospace and defense precision manufacturing and IT
               services, with quality gates and AS9100D QMS controls attached at

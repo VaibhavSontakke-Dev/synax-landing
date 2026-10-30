@@ -640,3 +640,55 @@ export type IconName =
   | "device"
   | "bolt"
   | "plug";
+
+/* -------------------------------------------------------------------------- */
+/* Testimonials — Client success stories                                      */
+/* -------------------------------------------------------------------------- */
+
+export type Testimonial = {
+  id: string;
+  quote: string;
+  rating: number;
+  clientName: string;
+  designation: string;
+  company: string;
+};
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: "testimonial-1",
+    quote:
+      "Synax transformed our manufacturing operations. We went from spreadsheet chaos to real-time visibility across all production lines. The quality gates alone have saved us countless audit hours.",
+    rating: 5,
+    clientName: "Rajesh Kumar",
+    designation: "Operations Director",
+    company: "Precision Manufacturing Co.",
+  },
+  {
+    id: "testimonial-2",
+    quote:
+      "The implementation was seamless. Our team was productive within days, not months. The operator panel is intuitive, and our floor workers actually prefer it to the old system.",
+    rating: 5,
+    clientName: "Sarah Mitchell",
+    designation: "Plant Manager",
+    company: "Advanced Aerospace Solutions",
+  },
+  {
+    id: "testimonial-3",
+    quote:
+      "AS9100D compliance used to be a nightmare. Now it's built into our workflow. Every record is automatically captured, and audits are a breeze. This is a game-changer for regulated manufacturing.",
+    rating: 5,
+    clientName: "Michael Chen",
+    designation: "Quality Assurance Lead",
+    company: "Defense Systems Inc.",
+  },
+  {
+    id: "testimonial-4",
+    quote:
+      "We manage multiple production facilities across different regions. Synax's multi-tenant architecture gives us complete isolation while maintaining unified reporting. Exactly what we needed.",
+    rating: 5,
+    clientName: "Emma Rodriguez",
+    designation: "Chief Operations Officer",
+    company: "Global Manufacturing Group",
+  },
+];
