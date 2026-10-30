@@ -38,8 +38,11 @@ const COLUMNS = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-erp-line-dark bg-erp-navy-2 erp-on-dark">
-      <Container>
+    <footer className="relative overflow-hidden border-t border-erp-line-dark bg-erp-navy-2 erp-on-dark">
+      {/* Subtle square grid texture */}
+      <div className="pointer-events-none absolute inset-0 erp-grid-dark" aria-hidden />
+
+      <Container className="relative">
         <div className="grid gap-10 py-14 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)] lg:gap-16 lg:py-16">
           <div className="max-w-sm">
             <img src="https://synax.senwellgroup.com/assets/logo/synax_logo.png" alt="Synax" className="h-9 w-auto" />

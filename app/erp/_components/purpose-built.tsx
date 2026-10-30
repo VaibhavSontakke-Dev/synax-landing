@@ -61,31 +61,33 @@ const FEATURES: Feature[] = [
 
 export function PurposeBuilt() {
   const [activeFeature, setActiveFeature] = useState<string>("modern-ui");
-  const activeContent = FEATURES.find((f) => f.id === activeFeature) || FEATURES[0];
 
   return (
-    <section className="bg-erp-surface py-16 sm:py-20 lg:py-28">
-      <Container>
+    <section className="relative overflow-hidden bg-erp-surface py-7 sm:py-9 lg:py-10">
+      {/* Subtle square grid texture */}
+      <div className="pointer-events-none absolute inset-0 erp-grid-light" aria-hidden />
+
+      <Container className="relative">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-[1.625rem] font-medium leading-[1.15] text-erp-ink sm:text-[1.75rem] lg:text-[1.875rem]">
+            <h2 className="text-[1.5rem] font-medium leading-[1.15] text-erp-ink sm:text-[1.625rem] lg:text-[1.75rem]">
               Purpose-Built for Developers and Business Users
             </h2>
           </div>
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="mt-5 grid grid-cols-1 items-stretch gap-5 sm:mt-6 lg:mt-7 lg:grid-cols-2 lg:gap-8">
             {/* Left Column - Feature List */}
-            <div className="space-y-1">
+            <div className="flex flex-col justify-between space-y-1 sm:space-y-1.5">
               {FEATURES.map((feature) => (
                 <button
                   key={feature.id}
                   onClick={() => setActiveFeature(feature.id)}
                   onMouseEnter={() => setActiveFeature(feature.id)}
-                  className={`w-full text-left rounded-erp-md p-4 transition-all duration-300 ease-erp border border-transparent ${
+                  className={`w-full text-left rounded-erp-md px-3.5 py-2.5 sm:px-4 sm:py-3 transition-all duration-300 ease-erp border border-transparent ${
                     activeFeature === feature.id
-                      ? "border-erp-brand bg-erp-brand/5 text-erp-brand"
+                      ? "border-erp-brand bg-erp-brand/8 text-erp-brand"
                       : "text-erp-body hover:border-erp-line hover:bg-erp-surface-2 hover:text-erp-ink"
                   }`}
                 >
@@ -97,7 +99,7 @@ export function PurposeBuilt() {
                           : "bg-erp-line"
                       }`}
                     />
-                    <span className="text-[0.9375rem] font-semibold">
+                    <span className="text-xs sm:text-[0.875rem] font-semibold">
                       {feature.label}
                     </span>
                   </div>
@@ -106,30 +108,28 @@ export function PurposeBuilt() {
             </div>
 
             {/* Right Column - Content Panel */}
-            {/* Grid-stacked rather than absolutely positioned, so the column
-                grows to the tallest panel instead of letting it spill out. */}
             <div className="grid">
               {FEATURES.map((feature) => (
                 <div
                   key={feature.id}
-                  className={`col-start-1 row-start-1 transition-all duration-500 ease-erp ${
+                  className={`col-start-1 row-start-1 flex flex-col transition-all duration-500 ease-erp ${
                     activeFeature === feature.id
                       ? "opacity-100 translate-y-0 pointer-events-auto"
                       : "opacity-0 -translate-y-4 pointer-events-none"
                   }`}
                 >
-                  <div className="erp-card-surface flex h-full flex-col overflow-hidden rounded-erp-xl border border-erp-line shadow-erp-sm">
-                    <div className="p-6 sm:p-8 lg:p-10 flex-1">
-                      <h3 className="text-[1.125rem] font-medium leading-snug text-erp-ink sm:text-[1.25rem] lg:text-[1.375rem]">
+                  <div className="erp-card-surface flex h-full flex-col justify-between overflow-hidden rounded-erp-xl border border-erp-line p-4 shadow-erp-sm sm:p-5 lg:p-6">
+                    <div className="mb-3">
+                      <h3 className="text-[1.125rem] font-medium leading-snug text-erp-ink sm:text-[1.25rem]">
                         {feature.title}
                       </h3>
-                      <p className="mt-4 text-[length:var(--erp-lead)] leading-relaxed text-erp-body">
+                      <p className="mt-1.5 text-xs leading-relaxed text-erp-body sm:text-[0.875rem]">
                         {feature.description}
                       </p>
                     </div>
                     
                     {/* Image at bottom of panel */}
-                    <div className="relative h-48 overflow-hidden border-t border-erp-line sm:h-56">
+                    <div className="relative h-32 overflow-hidden rounded-erp-md border border-erp-line/70 sm:h-36 lg:h-40">
                       <img
                         src={feature.imageUrl}
                         alt={`Visual representation of ${feature.title}`}

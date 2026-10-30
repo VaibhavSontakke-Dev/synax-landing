@@ -14,7 +14,6 @@ type TabContent = {
   imageUrl: string;
 };
 
-
 const TABS: TabContent[] = [
   {
     id: "ai",
@@ -74,17 +73,15 @@ const TABS: TabContent[] = [
   },
 ];
 
-
 export function WhyChoose() {
   const [activeTab, setActiveTab] = useState<string>("usability");
-  const activeContent = TABS.find((tab) => tab.id === activeTab) || TABS[0];
 
   return (
-    <Section id="platform-benefits" tone="tint">
+    <Section id="platform-benefits" tone="tint" className="!py-8 sm:!py-10 lg:!py-11">
       <Container>
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-[1.625rem] font-medium leading-[1.15] text-erp-ink sm:text-[1.75rem] lg:text-[1.875rem]">
+            <h2 className="text-[1.5rem] font-medium leading-[1.15] text-erp-ink sm:text-[1.625rem] lg:text-[1.75rem]">
               Why choose Synax Cloud Enterprise Resource Planning (ERP)?
             </h2>
           </div>
@@ -93,7 +90,7 @@ export function WhyChoose() {
         {/* Tab Navigation */}
         <Reveal delay={100}>
           <div
-            className="mt-10 flex flex-nowrap justify-start gap-0 overflow-x-auto pb-2 sm:justify-center sm:gap-0 sm:overflow-visible lg:gap-1"
+            className="mt-5 flex flex-nowrap justify-start gap-0 overflow-x-auto pb-1.5 sm:mt-6 sm:justify-center sm:overflow-visible lg:gap-1"
             role="tablist"
             aria-label="Why choose Acumatica features"
           >
@@ -105,7 +102,7 @@ export function WhyChoose() {
                 aria-selected={activeTab === tab.id}
                 aria-controls={`panel-${tab.id}`}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative whitespace-nowrap px-4 py-3 text-[0.875rem] font-semibold transition-all duration-300 ease-erp sm:px-5 sm:text-[0.9375rem] ${
+                className={`relative whitespace-nowrap px-3.5 py-2 text-xs font-semibold transition-all duration-300 ease-erp sm:px-4 sm:py-2.5 sm:text-[0.875rem] ${
                   activeTab === tab.id
                     ? "text-erp-brand bg-erp-brand/8 rounded-erp-md"
                     : "text-erp-body hover:text-erp-ink"
@@ -126,10 +123,7 @@ export function WhyChoose() {
         </Reveal>
 
         {/* Content Panel */}
-        {/* Panels share one grid cell instead of being absolutely positioned.
-            Absolute children contribute no height, so the old fixed min-h let
-            a taller panel spill over the next section on narrow screens. */}
-        <div className="mt-8 grid">
+        <div className="mt-5 grid sm:mt-6">
           {TABS.map((tab) => (
             <div
               key={tab.id}
@@ -142,17 +136,17 @@ export function WhyChoose() {
                   : "opacity-0 -translate-y-4 pointer-events-none"
               }`}
             >
-              <div className="erp-card-surface overflow-hidden rounded-erp-xl border border-erp-line p-6 shadow-erp-sm sm:p-8 lg:p-10">
-                <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+              <div className="erp-card-surface overflow-hidden rounded-erp-xl border border-erp-line p-5 shadow-erp-sm sm:p-6 lg:p-7">
+                <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-8">
                   {/* Left Column - Text Content */}
                   <div>
-                    <h3 className="text-[1.125rem] font-medium leading-snug text-erp-ink sm:text-[1.25rem] lg:text-[1.375rem]">
+                    <h3 className="text-[1.125rem] font-medium leading-snug text-erp-ink sm:text-[1.25rem]">
                       {tab.question}
                     </h3>
-                    <p className="mt-4 text-[length:var(--erp-lead)] leading-relaxed text-erp-body">
+                    <p className="mt-2 text-xs leading-relaxed text-erp-body sm:mt-2.5 sm:text-[0.875rem]">
                       {tab.description}
                     </p>
-                    <div className="mt-6">
+                    <div className="mt-4 sm:mt-5">
                       <Button
                         href={tab.ctaLink}
                         size="md"
@@ -164,8 +158,8 @@ export function WhyChoose() {
                     </div>
                   </div>
 
-                  {/* Right Column - Image */}
-                  <div className="relative h-64 overflow-hidden rounded-erp-lg sm:h-72 lg:h-80">
+                  {/* Right Column - Controlled Image Aspect */}
+                  <div className="relative h-44 overflow-hidden rounded-erp-lg sm:h-52 lg:h-60">
                     <img
                       src={tab.imageUrl}
                       alt={`Visual representation of ${tab.label}`}

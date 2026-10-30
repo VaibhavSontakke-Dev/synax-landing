@@ -30,6 +30,9 @@ function Rise({
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-erp-navy erp-on-dark">
+      {/* Subtle square grid texture */}
+      <div className="pointer-events-none absolute inset-0 erp-grid-dark" aria-hidden />
+
       {/* Depth: two soft brand lights. */}
       <div
         className="pointer-events-none absolute -top-40 -right-32 size-[34rem] rounded-full opacity-60 blur-[110px]"

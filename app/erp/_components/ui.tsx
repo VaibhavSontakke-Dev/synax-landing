@@ -24,11 +24,13 @@ export function Section({
   id,
   className = "",
   tone = "light",
+  withGrid = true,
 }: {
   children: React.ReactNode;
   id?: string;
   className?: string;
   tone?: "light" | "tint" | "dark";
+  withGrid?: boolean;
 }) {
   const tones = {
     light: "bg-erp-surface",
@@ -36,11 +38,19 @@ export function Section({
     dark: "bg-erp-navy text-white erp-on-dark",
   };
 
+  const gridClass = tone === "dark" ? "erp-grid-dark" : "erp-grid-light";
+
   return (
     <section
       id={id}
-      className={`relative scroll-mt-20 py-16 sm:py-20 lg:py-28 ${tones[tone]} ${className}`}
+      className={`relative scroll-mt-20 overflow-hidden py-16 sm:py-20 lg:py-28 ${tones[tone]} ${className}`}
     >
+      {withGrid ? (
+        <div
+          className={`pointer-events-none absolute inset-0 ${gridClass}`}
+          aria-hidden
+        />
+      ) : null}
       {children}
     </section>
   );

@@ -1,5 +1,5 @@
 import { BusinessGoals } from "./_components/business-goals";
-import { Customers } from "./_components/customers";
+import { ClientMarquee } from "./_components/client-marquee";
 import { CustomerStories } from "./_components/customer-stories";
 import { Contactus } from "./_components/contactus";
 import { Hero } from "./_components/hero";
@@ -37,29 +37,27 @@ export default function ErpLandingPage() {
       <main id="main" className="flex-1">
         <Hero />
         <IndustryCards />
+        <DashboardShowcase />
+
         <WhyChoose />
         <Industries />
         {/* <CustomerStories /> */}
         <PurposeBuilt />
         {/* <BusinessGoals /> */}
         {/* <WhyChoose2 /> */}
-         <Modules />
+        {/* <Modules /> */}
 
-
-         {/* tanmay  */}
-         <Technology />
+        {/* tanmay */}
+        <Technology />
         <Showcase />
-        <DashboardShowcase />
         <Workflow />
-        <Customers />
+        <ClientMarquee />
         <Testimonials />
         <Integrations />
         {/* <Rollout /> */}
         <Contactus />
-        
-        </main>
-        <SiteFooter />
-        
+      </main>
+      <SiteFooter />
     </>
   );
 }

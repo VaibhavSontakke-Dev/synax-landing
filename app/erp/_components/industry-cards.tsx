@@ -40,10 +40,8 @@ const INDUSTRY_CARDS: IndustryCard[] = [
 ];
 
 function IndustryCard({ card }: { card: IndustryCard }) {
-  const external = card.learnMoreHref.startsWith("http") || card.learnMoreHref.startsWith("/");
-  
   return (
-    <div className="group industry-card relative flex-1 min-w-0 h-[420px] overflow-hidden rounded-[16px] isolate transition-all duration-300 ease-erp focus-within:shadow-erp-md hover:shadow-erp-md hover:-translate-y-1">
+    <div className="group industry-card relative flex-1 min-w-0 h-[310px] sm:h-[325px] lg:h-[335px] overflow-hidden rounded-[16px] isolate transition-all duration-300 ease-erp focus-within:shadow-erp-md hover:shadow-erp-md hover:-translate-y-1">
       <a
         href={card.learnMoreHref}
         {...(card.learnMoreHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -59,20 +57,20 @@ function IndustryCard({ card }: { card: IndustryCard }) {
       />
       
       {/* Gradient overlay */}
-      <div className="industry-overlay absolute inset-0 z-1 bg-gradient-to-t from-erp-navy/75 via-erp-navy/5 to-transparent transition-all duration-500 ease-erp group-hover:bg-gradient-to-t group-hover:from-erp-navy/95 group-hover:via-erp-navy/35 group-hover:to-transparent group-focus-within:bg-gradient-to-t group-focus-within:from-erp-navy/95 group-focus-within:via-erp-navy/35 group-focus-within:to-transparent" />
+      <div className="industry-overlay absolute inset-0 z-1 bg-gradient-to-t from-erp-navy/80 via-erp-navy/15 to-transparent transition-all duration-500 ease-erp group-hover:bg-gradient-to-t group-hover:from-erp-navy/95 group-hover:via-erp-navy/40 group-hover:to-transparent group-focus-within:bg-gradient-to-t group-focus-within:from-erp-navy/95 group-focus-within:via-erp-navy/40 group-focus-within:to-transparent" />
       
       {/* Card content */}
-      <div className="industry-card-content absolute inset-0 z-2 flex flex-col justify-end p-6 text-white">
-        <span className="block mb-0 text-[1.5rem] font-bold leading-[1.2] transition-margin duration-400 ease-erp group-hover:mb-3 group-focus-within:mb-3">
+      <div className="industry-card-content absolute inset-0 z-2 flex flex-col justify-end p-5 sm:p-6 text-white">
+        <span className="block mb-0 text-[1.25rem] sm:text-[1.375rem] font-bold leading-[1.2] transition-margin duration-400 ease-erp group-hover:mb-2 group-focus-within:mb-2">
           {card.title}
         </span>
         
         {/* Hidden content that slides up */}
-        <div className="industry-hidden-content block max-h-0 opacity-0 overflow-hidden translate-y-[18px] transition-all duration-500 ease-erp group-hover:max-h-[300px] group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:max-h-[300px] group-focus-within:opacity-100 group-focus-within:translate-y-0">
-          <p className="my-3 text-[0.9375rem] leading-relaxed text-white/95">
+        <div className="industry-hidden-content block max-h-0 opacity-0 overflow-hidden translate-y-[14px] transition-all duration-500 ease-erp group-hover:max-h-[300px] group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:max-h-[300px] group-focus-within:opacity-100 group-focus-within:translate-y-0">
+          <p className="my-2 text-[0.875rem] leading-relaxed text-white/95 sm:my-2.5">
             {card.description}
           </p>
-          <div className="industry-cta-button inline-flex items-center gap-2 text-[#CDFF33] hover:text-white transition-colors font-semibold text-[0.9375rem]">
+          <div className="industry-cta-button inline-flex items-center gap-2 text-[#CDFF33] hover:text-white transition-colors font-semibold text-[0.875rem]">
             Learn More →
           </div>
         </div>
@@ -83,22 +81,22 @@ function IndustryCard({ card }: { card: IndustryCard }) {
 
 export function IndustryCards() {
   return (
-    <section className="bg-erp-surface py-16 sm:py-20 lg:py-28">
+    <section className="bg-erp-surface py-7 sm:py-9 lg:py-10">
       <Container>
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-[1.625rem] font-medium leading-[1.15] text-erp-ink sm:text-[1.75rem] lg:text-[1.875rem]">
+            <h2 className="text-[1.5rem] font-medium leading-[1.15] text-erp-ink sm:text-[1.625rem] lg:text-[1.75rem]">
               All-in-one Cloud ERP software
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-[length:var(--erp-lead)] leading-relaxed text-erp-body text-pretty">
+            <p className="mx-auto mt-2 max-w-2xl text-[0.9375rem] leading-relaxed text-erp-body text-pretty sm:text-base sm:mt-2.5">
               Best-in-class business and industry-specific solutions that can be easily tailored to meet the needs of your growing company
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[27px]">
-            {INDUSTRY_CARDS.map((card, index) => (
+          <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-7 lg:grid-cols-3 lg:gap-6">
+            {INDUSTRY_CARDS.map((card) => (
               <div key={card.id} className="h-full">
                 <IndustryCard card={card} />
               </div>
