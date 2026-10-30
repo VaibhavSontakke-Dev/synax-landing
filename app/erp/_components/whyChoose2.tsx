@@ -12,7 +12,7 @@ import { Container, Section, SectionHeading } from "./ui";
  * arrow/Home/End navigation, and a panel wired to its tab both ways. The list
  * is vertical from `lg` and a horizontally scrollable strip below it.
  */
-export function PlatformBenefits() {
+export function WhyChoose2() {
   const [active, setActive] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const last = PLATFORM_BENEFITS.length - 1;

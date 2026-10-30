@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Container, Button } from "./ui";
+import { Container, Button, Section } from "./ui";
 import { Reveal } from "./reveal";
 
 type TabContent = {
@@ -40,7 +40,7 @@ const TABS: TabContent[] = [
   },
   {
     id: "ai",
-    label: "AI & Automation",
+    label: "AI & ML Automation",
     question: "Ready to eliminate repetitive work?",
     description:
       "Automate routine workflows, uncover meaningful business insights, and make smarter decisions with AI-powered capabilities that help your team save time and improve productivity.",
@@ -80,7 +80,7 @@ export function WhyChoose() {
   const activeContent = TABS.find((tab) => tab.id === activeTab) || TABS[0];
 
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-28">
+    <Section id="platform-benefits" tone="tint">
       <Container>
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
@@ -107,17 +107,17 @@ export function WhyChoose() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`relative whitespace-nowrap px-4 py-3 text-[0.875rem] font-semibold transition-all duration-300 ease-erp sm:px-5 sm:text-[0.9375rem] ${
                   activeTab === tab.id
-                    ? "text-erp-brand"
+                    ? "text-erp-brand bg-erp-brand/8 rounded-erp-md"
                     : "text-erp-body hover:text-erp-ink"
                 }`}
               >
                 {tab.label}
                 {/* Active tab indicator */}
                 <span
-                  className={`absolute bottom-0 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full transition-all duration-300 ease-erp ${
+                  className={`absolute bottom-0 left-1/2 h-1 w-8 -translate-x-1/2 rounded-full transition-all duration-300 ease-erp bg-gradient-to-r from-erp-brand to-erp-accent ${
                     activeTab === tab.id
-                      ? "bg-erp-brand opacity-100"
-                      : "bg-transparent opacity-0"
+                      ? "opacity-100 shadow-[0_0_12px_rgba(11,108,255,0.4)]"
+                      : "opacity-0"
                   }`}
                 />
               </button>
@@ -126,20 +126,23 @@ export function WhyChoose() {
         </Reveal>
 
         {/* Content Panel */}
-        <div className="relative mt-8 min-h-[400px] sm:min-h-[450px] lg:min-h-[500px]">
+        {/* Panels share one grid cell instead of being absolutely positioned.
+            Absolute children contribute no height, so the old fixed min-h let
+            a taller panel spill over the next section on narrow screens. */}
+        <div className="mt-8 grid">
           {TABS.map((tab) => (
             <div
               key={tab.id}
               role="tabpanel"
               id={`panel-${tab.id}`}
               aria-labelledby={`tab-${tab.id}`}
-              className={`absolute inset-0 transition-all duration-500 ease-erp ${
+              className={`col-start-1 row-start-1 transition-all duration-500 ease-erp ${
                 activeTab === tab.id
                   ? "opacity-100 translate-y-0 pointer-events-auto"
                   : "opacity-0 -translate-y-4 pointer-events-none"
               }`}
             >
-              <div className="overflow-hidden rounded-erp-xl border border-erp-line bg-erp-surface-2 shadow-erp-sm p-6 sm:p-8 lg:p-10">
+              <div className="erp-card-surface overflow-hidden rounded-erp-xl border border-erp-line p-6 shadow-erp-sm sm:p-8 lg:p-10">
                 <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
                   {/* Left Column - Text Content */}
                   <div>
@@ -176,6 +179,6 @@ export function WhyChoose() {
           ))}
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

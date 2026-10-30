@@ -87,7 +87,7 @@ export function Showcase() {
                   delay={120}
                   className={flipped ? "lg:order-1" : undefined}
                 >
-                  <div className="erp-card group relative">
+                  <div className="erp-card erp-card-surface group relative overflow-hidden rounded-erp-xl border border-erp-line hover:border-erp-brand/20 hover:shadow-erp-lg">
                     <div
                       className="pointer-events-none absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-erp-brand/12 to-erp-accent/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
                       aria-hidden

@@ -263,13 +263,19 @@ body {
 
 /* --- Interaction ---------------------------------------------------------- */
 /* Hover affordances are additive; every card is also a real link or button so
-   touch devices get the same destination without a hover state. */
+   touch devices get the same destination without a hover state.
+
+   This is the ONLY place the card lift is defined. Do not add
+   `hover:-translate-y-*` to a .erp-card in a component: Tailwind v4 emits that
+   as the `translate` property while this rule uses `transform`, so the two
+   compose and that card lifts twice as far as every other card. */
 
 .erp-root .erp-card {
   transition:
     transform 0.3s var(--ease-erp),
     box-shadow 0.3s var(--ease-erp),
-    border-color 0.3s var(--ease-erp);
+    border-color 0.3s var(--ease-erp),
+    background-color 0.3s var(--ease-erp);
 }
 
 @media (hover: hover) {
@@ -280,6 +286,15 @@ body {
 
 .erp-root .erp-card:focus-within {
   border-color: var(--color-erp-brand-mid);
+}
+
+.erp-root .erp-card:focus-visible {
+  outline: 2px solid var(--color-erp-brand);
+  outline-offset: 2px;
+}
+
+.erp-root .erp-on-dark .erp-card:focus-visible {
+  outline-color: var(--color-erp-sky);
 }
 
 /* --- Reduced motion ------------------------------------------------------- */
@@ -314,5 +329,124 @@ body {
     max-height: 300px !important;
     opacity: 1 !important;
     transform: translateY(0) !important;
+  }
+}
+
+
+/* --- Enhanced animations and transitions --------------------------------- */
+
+/* Icon rotation animation */
+@keyframes iconRotate {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.1);
+  }
+}
+
+/* Subtle pulse animation */
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Card entrance animation */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced focus states for accessibility */
+.erp-root button:focus-visible,
+.erp-root a:focus-visible,
+.erp-root input:focus-visible,
+.erp-root textarea:focus-visible {
+  outline: 2px solid var(--color-erp-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.erp-root .erp-on-dark button:focus-visible,
+.erp-root .erp-on-dark a:focus-visible,
+.erp-root .erp-on-dark input:focus-visible,
+.erp-root .erp-on-dark textarea:focus-visible {
+  outline-color: var(--color-erp-sky);
+}
+
+/* --- Interactive elements -------------------------------------------------
+   One definition each. This section previously declared `.erp-card`, the
+   focus outlines and the a/button transition two or three times over; the
+   later copies silently won, which is what made card styling unpredictable.
+
+   Three rules were removed outright rather than merged:
+
+   1. `.erp-card p, span, h3, h4 { color: inherit }` — unlayered, so it beat
+      every Tailwind text-colour utility inside a card. text-erp-ink,
+      text-erp-body and text-erp-soft all collapsed to one inherited grey,
+      flattening the type hierarchy and lowering heading contrast.
+   2. `.erp-card h3, h4 { margin-top: 0 }` and `.erp-card p { margin: 0 }` —
+      same problem: they cancelled the `mt-4` / `mt-2` spacing utilities that
+      every card relies on for its internal rhythm.
+   3. `.erp-card::before` — an overlay that was never given a background and
+      never animated to anything. Dead weight on every card.                  */
+
+/* Narrowed from `transition: all`, which also animated layout properties. */
+.erp-root :is(button, a, input, textarea) {
+  transition:
+    color 0.25s var(--ease-erp),
+    background-color 0.25s var(--ease-erp),
+    border-color 0.25s var(--ease-erp),
+    box-shadow 0.25s var(--ease-erp),
+    opacity 0.25s var(--ease-erp);
+}
+
+.erp-root :is(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--color-erp-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.erp-root .erp-on-dark :is(a, button, input, textarea):focus-visible {
+  outline-color: var(--color-erp-sky);
+}
+
+/* --- Shared card surface ---------------------------------------------------
+   The canonical fill for an elevated card on a light section. Defined once so
+   components stop re-typing the gradient — which is how industries, modules,
+   why-choose, purpose-built and customers drifted into four different fills.
+
+   These set the fill only. Border colour deliberately stays on the component
+   as `border-erp-line`, because an unlayered border-color here would beat the
+   `hover:border-*` utilities and freeze every card's border on hover. */
+
+.erp-root .erp-card-surface {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-erp-surface),
+    var(--color-erp-surface-2)
+  );
+}
+
+/* A flat inset panel, for secondary blocks that sit inside a section rather
+   than floating above it. */
+.erp-root .erp-panel-surface {
+  background-color: var(--color-erp-surface-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-root .erp-card:hover,
+  .erp-root :is(a, button):hover {
+    transform: none;
   }
 }

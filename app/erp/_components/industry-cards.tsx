@@ -17,7 +17,7 @@ const INDUSTRY_CARDS: IndustryCard[] = [
       "Connect your entire production lifecycle and automate quote-to-cash with a single, adaptable platform built to support multi-modal discrete and process manufacturing.",
     imageUrl:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    learnMoreHref: "#industry-manufacturing",
+    learnMoreHref: "/cloud-erp-software/manufacturing-management/#solutions",
   },
   {
     id: "defense-aerospace-management",
@@ -40,13 +40,13 @@ const INDUSTRY_CARDS: IndustryCard[] = [
 ];
 
 function IndustryCard({ card }: { card: IndustryCard }) {
-  const external = card.learnMoreHref.startsWith("http");
+  const external = card.learnMoreHref.startsWith("http") || card.learnMoreHref.startsWith("/");
   
   return (
-    <div className="group industry-card relative flex-1 min-w-0 h-[420px] overflow-hidden rounded-[16px] isolate transition-all duration-300 ease-erp focus-within:shadow-erp-md hover:shadow-erp-md">
+    <div className="group industry-card relative flex-1 min-w-0 h-[420px] overflow-hidden rounded-[16px] isolate transition-all duration-300 ease-erp focus-within:shadow-erp-md hover:shadow-erp-md hover:-translate-y-1">
       <a
         href={card.learnMoreHref}
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...(card.learnMoreHref.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className="absolute inset-0 z-10"
         aria-label={`Learn more about ${card.title}`}
       />
@@ -63,16 +63,16 @@ function IndustryCard({ card }: { card: IndustryCard }) {
       
       {/* Card content */}
       <div className="industry-card-content absolute inset-0 z-2 flex flex-col justify-end p-6 text-white">
-        <span className="block mb-0 text-[1.3125rem] font-semibold leading-[1.3] transition-margin duration-400 ease-erp group-hover:mb-2 group-focus-within:mb-2">
+        <span className="block mb-0 text-[1.5rem] font-bold leading-[1.2] transition-margin duration-400 ease-erp group-hover:mb-3 group-focus-within:mb-3">
           {card.title}
         </span>
         
         {/* Hidden content that slides up */}
         <div className="industry-hidden-content block max-h-0 opacity-0 overflow-hidden translate-y-[18px] transition-all duration-500 ease-erp group-hover:max-h-[300px] group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:max-h-[300px] group-focus-within:opacity-100 group-focus-within:translate-y-0">
-          <p className="my-2.5 text-[0.875rem] leading-relaxed text-white/90">
+          <p className="my-3 text-[0.9375rem] leading-relaxed text-white/95">
             {card.description}
           </p>
-          <div className="industry-cta-button inline-flex items-center gap-2 text-erp-brand-soft hover:text-white transition-colors font-semibold">
+          <div className="industry-cta-button inline-flex items-center gap-2 text-[#CDFF33] hover:text-white transition-colors font-semibold text-[0.9375rem]">
             Learn More →
           </div>
         </div>

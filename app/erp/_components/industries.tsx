@@ -61,7 +61,7 @@ export function Industries() {
                 }`}
               >
                 <article
-                  className={`erp-card group flex h-full flex-col overflow-hidden rounded-erp-xl border border-erp-line bg-white hover:shadow-erp-lg ${accent.hover}`}
+                  className={`erp-card erp-card-surface group flex h-full flex-col overflow-hidden rounded-erp-xl border border-erp-line hover:border-erp-brand/40 hover:shadow-erp-lg ${accent.hover}`}
                 >
                   <div className={`h-1 bg-gradient-to-r ${accent.bar}`} />
 

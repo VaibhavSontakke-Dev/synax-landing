@@ -5,7 +5,7 @@ import { Chip, Container, Eyebrow, Section, SectionHeading, TextLink } from "./u
 
 export function Modules() {
   return (
-    <Section id="modules">
+    <Section id="modules" tone="tint">
       <Container>
         <Reveal>
           <SectionHeading
@@ -17,7 +17,7 @@ export function Modules() {
 
         {/* ------------------- Shared services ------------------- */}
         <Reveal delay={80} className="mt-12 lg:mt-14">
-          <div className="overflow-hidden rounded-erp-xl border border-erp-line bg-gradient-to-br from-erp-surface-3 to-erp-surface-2 p-6 lg:p-8">
+          <div className="erp-card-surface overflow-hidden rounded-erp-xl border border-erp-line p-6 lg:p-8">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.45fr)] lg:items-center lg:gap-10">
               <div>
                 <span className="inline-flex size-12 items-center justify-center rounded-erp-md bg-white text-erp-brand shadow-erp-sm">
@@ -60,7 +60,9 @@ export function Modules() {
             <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {stack.groups.map((group, index) => (
                 <Reveal key={group.id} delay={index * 80}>
-                  <article className="erp-card group flex h-full flex-col rounded-erp-lg border border-erp-line bg-white p-5 hover:border-erp-brand/35 hover:shadow-erp-md lg:p-6">
+                  {/* Border width stays fixed on hover — growing it shifted the
+                      card's text sideways, which the lift already covers. */}
+                  <article className="erp-card erp-card-surface group flex h-full flex-col rounded-erp-lg border border-l-4 border-erp-line border-l-erp-brand p-5 hover:border-erp-brand/35 hover:shadow-erp-md lg:p-6">
                     <span className="inline-flex size-10 items-center justify-center rounded-erp-sm bg-erp-surface-3 text-erp-brand transition-colors duration-300 group-hover:bg-erp-brand group-hover:text-white">
                       <ModuleIcon name={group.icon} className="size-5" />
                     </span>
@@ -94,7 +96,7 @@ export function Modules() {
         ))}
 
         <Reveal delay={60}>
-          <div className="mt-10 flex flex-col items-start gap-3 rounded-erp-lg border border-erp-line bg-erp-surface-2 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="erp-panel-surface mt-10 flex flex-col items-start gap-3 rounded-erp-lg border border-erp-line p-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[0.9375rem] text-erp-body">
               Adoption is phased — enable one stack, then the next, with
               governance at each step.

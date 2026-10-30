@@ -1,13 +1,13 @@
 import { BusinessGoals } from "./_components/business-goals";
 import { Customers } from "./_components/customers";
 import { CustomerStories } from "./_components/customer-stories";
-import { DemoCta } from "./_components/demo-cta";
+import { Contactus } from "./_components/contactus";
 import { Hero } from "./_components/hero";
 import { IndustryCards } from "./_components/industry-cards";
 import { Industries } from "./_components/industries";
 import { Integrations } from "./_components/integrations";
 import { Modules } from "./_components/modules";
-import { PlatformBenefits } from "./_components/platform-benefits";
+import { WhyChoose2 } from "./_components/whyChoose2";
 import { PurposeBuilt } from "./_components/purpose-built";
 import { Rollout } from "./_components/rollout";
 import { Showcase } from "./_components/showcase";
@@ -36,19 +36,19 @@ export default function ErpLandingPage() {
         <Hero />
         <IndustryCards />
         <WhyChoose />
-        {/* <CustomerStories /> */}
-        {/* <PurposeBuilt /> */}
-        {/* <BusinessGoals /> */}
-        <PlatformBenefits />
-         {/* <Modules /> */}
         <Industries />
+        {/* <CustomerStories /> */}
+        <PurposeBuilt />
+        {/* <BusinessGoals /> */}
+        {/* <WhyChoose2 /> */}
+         <Modules />
          <Technology />
-        {/* <Showcase /> */}
-        {/* <Workflow /> */}
+        <Showcase />
+        <Workflow />
         <Customers />
         <Integrations />
         {/* <Rollout /> */}
-        <DemoCta />
+        <Contactus />
         
         </main>
         <SiteFooter />

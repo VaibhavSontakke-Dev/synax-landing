@@ -103,7 +103,11 @@ export function SiteHeader() {
       <Container>
         <div className="flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
           <a
-            href="#top"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="shrink-0 rounded-erp-sm transition-opacity hover:opacity-80"
             aria-label="Synax by Senwell — back to top"
           >

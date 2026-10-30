@@ -45,7 +45,7 @@ const PROOF = [
   "Tenant-isolated workspace from day one",
 ];
 
-export function DemoCta() {
+export function Contactus() {
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [submitted, setSubmitted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -160,10 +160,10 @@ export function DemoCta() {
                         autoComplete: field.autoComplete,
                         "aria-invalid": error ? true : undefined,
                         "aria-describedby": describedBy,
-                        className: `w-full rounded-erp-md border bg-erp-navy/60 px-3.5 py-2.5 text-[0.9375rem] text-white placeholder:text-slate-500 transition-colors duration-200 ${
+                        className: `w-full rounded-erp-md border bg-erp-navy/60 px-3.5 py-2.5 text-[0.9375rem] text-white placeholder:text-slate-500 transition-all duration-300 ease-erp focus:outline-none focus:-translate-y-0.5 ${
                           error
-                            ? "border-red-400/70"
-                            : "border-erp-line-dark hover:border-erp-sky/40 focus:border-erp-sky"
+                            ? "border-red-400/70 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(244,63,94,0.2)]"
+                            : "border-erp-line-dark hover:border-erp-sky/40 focus:border-erp-sky focus:shadow-[0_0_0_3px_rgba(56,189,248,0.2)]"
                         }`,
                       };
 
@@ -197,7 +197,7 @@ export function DemoCta() {
 
                   <button
                     type="submit"
-                    className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-erp-md bg-erp-brand px-6 text-[0.9375rem] font-semibold text-white shadow-erp-brand transition-all duration-300 ease-erp hover:bg-erp-brand-mid hover:shadow-[0_14px_32px_rgba(11,108,255,0.38)]"
+                    className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-erp-md bg-erp-brand px-6 text-[0.9375rem] font-semibold text-white shadow-erp-brand transition-all duration-300 ease-erp hover:bg-erp-brand-dark hover:shadow-[0_20px_48px_rgba(11,108,255,0.45)] hover:-translate-y-0.5 active:translate-y-0 active:shadow-erp-brand"
                   >
                     Request a demo
                   </button>

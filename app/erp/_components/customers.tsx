@@ -29,7 +29,11 @@ export function Customers() {
             {CLIENTS.map((client) => (
               <li
                 key={client}
-                className="group flex min-h-24 items-center justify-center bg-white px-4 py-6 text-center transition-colors duration-300 hover:bg-erp-surface-2"
+                /* Plain white cells: the gap-px grid shows erp-line through as
+                   dividers, so a tinted fill made this block read as a
+                   different kind of surface from every other card. Scaling is
+                   gone too — on a 1px-gap grid it overlapped the neighbour. */
+                className="group flex min-h-24 items-center justify-center bg-white px-4 py-6 text-center transition-colors duration-300 ease-erp hover:bg-erp-surface-3"
               >
                 <span className="text-[0.9375rem] font-semibold tracking-tight text-erp-soft transition-colors duration-300 group-hover:text-erp-ink">
                   {client}
@@ -50,7 +54,7 @@ export function Customers() {
           <dl className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {IMPACT_STATS.map((stat, index) => (
               <Reveal key={stat.value} delay={index * 70} className="h-full">
-                <div className="erp-card group relative h-full overflow-hidden rounded-erp-lg border border-erp-line bg-white p-6 hover:border-erp-brand/35 hover:shadow-erp-md">
+                <div className="erp-card erp-card-surface group relative h-full overflow-hidden rounded-erp-lg border border-erp-line p-6 hover:border-erp-brand/35 hover:shadow-erp-md">
                   <div
                     className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-erp-brand to-erp-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                     aria-hidden
@@ -58,7 +62,7 @@ export function Customers() {
                   <dt className="font-mono text-[0.5625rem] tracking-[0.14em] text-erp-soft uppercase">
                     {stat.label}
                   </dt>
-                  <dd className="mt-3 bg-gradient-to-br from-erp-brand to-erp-accent bg-clip-text text-3xl leading-none font-semibold text-transparent sm:text-4xl">
+                  <dd className="mt-3 bg-gradient-to-br from-erp-brand to-erp-accent bg-clip-text text-3xl leading-none font-semibold text-transparent sm:text-4xl transition-transform duration-300 group-hover:scale-105">
                     {stat.value}
                   </dd>
                   <dd className="mt-3 text-[0.8125rem] leading-snug text-erp-body">

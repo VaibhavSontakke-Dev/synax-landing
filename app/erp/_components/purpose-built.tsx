@@ -65,7 +65,7 @@ export function PurposeBuilt() {
   const activeContent = FEATURES.find((f) => f.id === activeFeature) || FEATURES[0];
 
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-28">
+    <section className="bg-erp-surface-1 py-16 sm:py-20 lg:py-28">
       <Container>
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
@@ -107,17 +107,19 @@ export function PurposeBuilt() {
             </div>
 
             {/* Right Column - Content Panel */}
-            <div className="relative min-h-[400px] sm:min-h-[450px]">
+            {/* Grid-stacked rather than absolutely positioned, so the column
+                grows to the tallest panel instead of letting it spill out. */}
+            <div className="grid">
               {FEATURES.map((feature) => (
                 <div
                   key={feature.id}
-                  className={`absolute inset-0 transition-all duration-500 ease-erp ${
+                  className={`col-start-1 row-start-1 transition-all duration-500 ease-erp ${
                     activeFeature === feature.id
                       ? "opacity-100 translate-y-0 pointer-events-auto"
                       : "opacity-0 -translate-y-4 pointer-events-none"
                   }`}
                 >
-                  <div className="overflow-hidden rounded-erp-xl border border-erp-line bg-erp-surface-2 shadow-erp-sm h-full flex flex-col">
+                  <div className="erp-card-surface flex h-full flex-col overflow-hidden rounded-erp-xl border border-erp-line shadow-erp-sm">
                     <div className="p-6 sm:p-8 lg:p-10 flex-1">
                       <h3 className="text-[1.125rem] font-medium leading-snug text-erp-ink sm:text-[1.25rem] lg:text-[1.375rem]">
                         {feature.title}

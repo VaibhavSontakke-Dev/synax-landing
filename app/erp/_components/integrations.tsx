@@ -31,9 +31,9 @@ export function Integrations() {
                 key={point.title}
                 delay={index * 70}
                 as="li"
-                className="erp-card h-full rounded-erp-lg border border-erp-line bg-white p-5 hover:border-erp-accent/40 hover:shadow-erp-md"
+                className="erp-card erp-card-surface group h-full rounded-erp-lg border border-erp-line p-5 hover:border-erp-accent/40 hover:shadow-erp-md"
               >
-                <span className="inline-flex size-10 items-center justify-center rounded-erp-sm bg-teal-50 text-erp-accent">
+                <span className="inline-flex size-10 items-center justify-center rounded-erp-sm bg-teal-50 text-erp-accent transition-colors duration-300 group-hover:bg-erp-accent group-hover:text-white">
                   <ModuleIcon name={point.icon} className="size-5" />
                 </span>
                 <h3 className="mt-4 text-[0.9375rem] font-semibold text-erp-ink">
