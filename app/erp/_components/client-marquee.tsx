@@ -3,13 +3,24 @@ import { Reveal } from "./reveal";
 const LOGO_SEQUENCE = [
   {
     name: "Senwell Exports",
+    url: "https://senwellexports.com/",
     src: "https://senwellexports.com/static/media/SenwellLogo.524bb520c09926753630.png",
     alt: "Senwell Exports",
     imgClass:
       "h-9 sm:h-11 md:h-12 lg:h-[48px] max-w-[125px] sm:max-w-[145px] md:max-w-[160px]",
   },
   {
+    name: "Exxon Info",
+    url: "https://exxoninfo.com/",
+    src: "https://exxoninfo.com/favicon.ico",
+    alt: "Exxon Info",
+    isExxon: true,
+    imgClass:
+      "h-8 sm:h-10 md:h-11 lg:h-[44px]",
+  },
+  {
     name: "Stacwell",
+    url: "https://stacwell.com/",
     src: "https://stacwell.com/_next/image?url=%2FstacwellLogo.webp&w=256&q=75",
     alt: "Stacwell",
     imgClass:
@@ -17,6 +28,7 @@ const LOGO_SEQUENCE = [
   },
   {
     name: "Stacem",
+    url: "https://www.stacem.com/",
     src: "https://www.stacem.com/wp-content/themes/themeb17/img/logo-stacem.svg",
     alt: "Stacem",
     imgClass:
@@ -98,36 +110,74 @@ export function ClientMarquee() {
           {/* Track 1 */}
           <div className="animate-client-marquee" aria-label="Client logos">
             {MARQUEE_ITEMS.map((item, index) => (
-              <div
+              <a
                 key={`track1-${index}-${item.name}`}
-                className="flex h-20 w-[145px] shrink-0 items-center justify-center border-r border-slate-200/70 px-4 sm:h-24 sm:w-[190px] sm:px-6 md:w-[220px] lg:h-28 lg:w-[260px] lg:px-8"
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Visit ${item.name}`}
+                className="flex h-20 w-[145px] shrink-0 items-center justify-center border-r border-slate-200/70 px-4 sm:h-24 sm:w-[190px] sm:px-6 md:w-[220px] lg:h-28 lg:w-[260px] lg:px-8 group"
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className={`w-auto object-contain transition-transform duration-300 hover:scale-105 ${item.imgClass}`}
-                  loading="lazy"
-                  draggable={false}
-                />
-              </div>
+                {item.isExxon ? (
+                  <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-6 h-6 object-contain"
+                      loading="lazy"
+                      draggable={false}
+                    />
+                    <span className="font-extrabold text-[#0a1128] tracking-tight text-sm sm:text-base md:text-lg whitespace-nowrap">
+                      EXXON <span className="text-[#0b6cff]">INFO</span>
+                    </span>
+                  </div>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${item.imgClass}`}
+                    loading="lazy"
+                    draggable={false}
+                  />
+                )}
+              </a>
             ))}
           </div>
 
           {/* Track 2 (Identical duplicate for 100% seamless infinite loop) */}
           <div className="animate-client-marquee" aria-hidden="true">
             {MARQUEE_ITEMS.map((item, index) => (
-              <div
+              <a
                 key={`track2-${index}-${item.name}`}
-                className="flex h-20 w-[145px] shrink-0 items-center justify-center border-r border-slate-200/70 px-4 sm:h-24 sm:w-[190px] sm:px-6 md:w-[220px] lg:h-28 lg:w-[260px] lg:px-8"
+                href={item.url}
+                tabIndex={-1}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-20 w-[145px] shrink-0 items-center justify-center border-r border-slate-200/70 px-4 sm:h-24 sm:w-[190px] sm:px-6 md:w-[220px] lg:h-28 lg:w-[260px] lg:px-8 group"
               >
-                <img
-                  src={item.src}
-                  alt=""
-                  className={`w-auto object-contain transition-transform duration-300 hover:scale-105 ${item.imgClass}`}
-                  loading="lazy"
-                  draggable={false}
-                />
-              </div>
+                {item.isExxon ? (
+                  <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105">
+                    <img
+                      src={item.src}
+                      alt=""
+                      className="w-6 h-6 object-contain"
+                      loading="lazy"
+                      draggable={false}
+                    />
+                    <span className="font-extrabold text-[#0a1128] tracking-tight text-sm sm:text-base md:text-lg whitespace-nowrap">
+                      EXXON <span className="text-[#0b6cff]">INFO</span>
+                    </span>
+                  </div>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt=""
+                    className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${item.imgClass}`}
+                    loading="lazy"
+                    draggable={false}
+                  />
+                )}
+              </a>
             ))}
           </div>
         </div>
