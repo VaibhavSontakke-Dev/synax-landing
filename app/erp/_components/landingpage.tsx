@@ -101,7 +101,7 @@ export interface FormDataState {
 const PRODUCT_DATA: Record<Exclude<PageView, "home">, ProductMeta> = {
   precision: {
     id: "precision",
-    title: "Synax ERP — Precision Manufacturing",
+    title: "Precision Manufacturing",
     badge: "CNC IoT & Shop Floor Dispatch",
     subtitle: "Real-time Machine Telemetry, Tool Life Cycle & Dynamic Capacity Loading",
     accentColor: "emerald",
@@ -204,7 +204,7 @@ const PRODUCT_DATA: Record<Exclude<PageView, "home">, ProductMeta> = {
   },
   aerospace: {
     id: "aerospace",
-    title: "Synax ERP — Aerospace & Defence",
+    title: "Aerospace & Defence",
     badge: "AS9100 Rev D • ITAR • NADCAP",
     subtitle: "Zero-Defect Traceability, AS9102 FAIR Generator & Defense Vault",
     accentColor: "blue",
@@ -307,7 +307,7 @@ const PRODUCT_DATA: Record<Exclude<PageView, "home">, ProductMeta> = {
   },
   hrms: {
     id: "hrms",
-    title: "Synax HRMS Platform",
+    title: "HRMS Platform",
     badge: "Enterprise HCM & Biometric IoT",
     subtitle: "Automated Global Payroll, Biometric Turnstiles & OKR Appraisals",
     accentColor: "sky",
@@ -410,7 +410,7 @@ const PRODUCT_DATA: Record<Exclude<PageView, "home">, ProductMeta> = {
   },
   staffing: {
     id: "staffing",
-    title: "Synax IT Staffing VMS",
+    title: "IT Staffing VMS",
     badge: "AI Talent Bench & VMS Suite",
     subtitle: "AI Semantic Resume Matching, Bench Utilization & SOW Billing",
     accentColor: "indigo",
@@ -907,7 +907,7 @@ export default function Landingpage() {
             </button>
             <button
               onClick={() => openModal()}
-              className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-semibold text-xs transition-all shadow-sm hover:shadow-md flex items-center gap-1.5"
+              className="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs transition-all shadow-sm hover:shadow-md flex items-center gap-1.5"
             >
               <span>Schedule Live Demo</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -1803,12 +1803,12 @@ function HomeView({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* CARD 1: PRECISION MANUFACTURING */}
-          <div className="bg-white rounded-3xl border border-slate-200 hover:border-emerald-300 transition-all duration-200 shadow-sm hover:shadow-xl p-7 flex flex-col justify-between group">
+          <div className="bg-white rounded-xl border border-slate-200 hover:border-emerald-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="p-3 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
+                <div className="p-1 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
                   <Factory className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
@@ -1825,9 +1825,9 @@ function HomeView({
                 </p>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              {/* <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
                 {PRODUCT_DATA.precision.description}
-              </p>
+              </p> */}
 
               <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between text-xs">
                 <span className="text-emerald-900 font-medium">Standard CNC OEE Uplift</span>
@@ -1849,7 +1849,7 @@ function HomeView({
             <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
               <button
                 onClick={() => setCurrentPage("precision")}
-                className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-emerald-600 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                className="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
                 <span>Explore Precision ERP</span>
                 <ChevronRight className="w-4 h-4" />
@@ -1864,10 +1864,10 @@ function HomeView({
           </div>
 
           {/* CARD 2: AEROSPACE & DEFENCE */}
-          <div className="bg-white rounded-3xl border border-slate-200 hover:border-blue-300 transition-all duration-200 shadow-sm hover:shadow-xl p-7 flex flex-col justify-between group">
+          <div className="bg-white rounded-xl border border-slate-200 hover:border-blue-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="p-3 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100">
+                <div className="p-1 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
@@ -1884,9 +1884,9 @@ function HomeView({
                 </p>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              {/* <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
                 {PRODUCT_DATA.aerospace.description}
-              </p>
+              </p> */}
 
               <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-xs">
                 <span className="text-blue-900 font-medium">AS9102 FAIR Verification Rate</span>
@@ -1908,7 +1908,7 @@ function HomeView({
             <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
               <button
                 onClick={() => setCurrentPage("aerospace")}
-                className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
                 <span>Explore Aerospace ERP</span>
                 <ChevronRight className="w-4 h-4" />
@@ -1923,10 +1923,10 @@ function HomeView({
           </div>
 
           {/* CARD 3: SYNAX HRMS PLATFORM */}
-          <div className="bg-white rounded-3xl border border-slate-200 hover:border-sky-300 transition-all duration-200 shadow-sm hover:shadow-xl p-7 flex flex-col justify-between group">
+          <div className="bg-white rounded-xl border border-slate-200 hover:border-sky-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="p-3 rounded-2xl bg-sky-50 text-sky-600 border border-sky-100">
+                <div className="p-1 rounded-2xl bg-sky-50 text-sky-600 border border-sky-100">
                   <Building2 className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
@@ -1943,9 +1943,9 @@ function HomeView({
                 </p>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              {/* <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
                 {PRODUCT_DATA.hrms.description}
-              </p>
+              </p> */}
 
               <div className="p-3 rounded-xl bg-sky-50/70 border border-sky-100 flex items-center justify-between text-xs">
                 <span className="text-sky-900 font-medium">Monthly Payroll Run Speed</span>
@@ -1967,7 +1967,7 @@ function HomeView({
             <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
               <button
                 onClick={() => setCurrentPage("hrms")}
-                className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-sky-600 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                className="flex-1 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
                 <span>Explore HRMS Platform</span>
                 <ChevronRight className="w-4 h-4" />
@@ -1982,10 +1982,10 @@ function HomeView({
           </div>
 
           {/* CARD 4: SYNAX IT STAFFING VMS */}
-          <div className="bg-white rounded-3xl border border-slate-200 hover:border-indigo-300 transition-all duration-200 shadow-sm hover:shadow-xl p-7 flex flex-col justify-between group">
+          <div className="bg-white rounded-xl border border-slate-200 hover:border-indigo-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="p-3 rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100">
+                <div className="p-1 rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100">
                   <Users className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
@@ -2002,9 +2002,9 @@ function HomeView({
                 </p>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              {/* <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
                 {PRODUCT_DATA.staffing.description}
-              </p>
+              </p> */}
 
               <div className="p-3 rounded-xl bg-indigo-50/70 border border-indigo-100 flex items-center justify-between text-xs">
                 <span className="text-indigo-900 font-medium">Average Time-to-Placement</span>
@@ -2026,7 +2026,7 @@ function HomeView({
             <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
               <button
                 onClick={() => setCurrentPage("staffing")}
-                className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                className="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
                 <span>Explore Staffing VMS</span>
                 <ChevronRight className="w-4 h-4" />
@@ -2708,7 +2708,7 @@ function HomeView({
             </div>
             <button
               onClick={() => openModal("Architecture Consultation")}
-              className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors shrink-0 shadow-md cursor-pointer flex items-center gap-2"
+              className="px-6 py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs transition-colors shrink-0 shadow-md cursor-pointer flex items-center gap-2"
             >
               <span>Explore Platform Synergy</span>
               <ArrowRight className="w-4 h-4" />
@@ -2883,7 +2883,7 @@ function HomeView({
             <p className="text-xs text-slate-500">Synax AI is included in every enterprise plan — no extra setup, no third-party integrations.</p>
             <button
               onClick={() => openModal("Synax AI Enterprise Assistant")}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-lg cursor-pointer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs transition-all shadow-lg cursor-pointer"
             >
               <Bot className="w-4 h-4" />
               <span>See Synax AI in Your Demo</span>
@@ -3718,13 +3718,13 @@ function HomeView({
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => openModal()}
-              className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl text-xs transition-all shadow-lg hover:shadow-xl cursor-pointer"
+              className="w-full sm:w-auto px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs transition-all shadow-lg hover:shadow-xl cursor-pointer"
             >
               Schedule Solution Architecture Consultation &rarr;
             </button>
             <button
               onClick={() => setCurrentPage("precision")}
-              className="w-full sm:w-auto px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold rounded-xl text-xs border border-slate-800 transition-colors cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs border border-indigo-700 transition-colors cursor-pointer"
             >
               Explore Precision Manufacturing
             </button>
