@@ -1130,7 +1130,7 @@ export default function Landingpage() {
       {/* =========================================================================
          GLOBAL SENWELL GROUP FOOTER
          ========================================================================= */}
-      <footer className="bg-slate-200 text-slate-400 text-xs py-16 border-t border-slate-50">
+      <footer className="bg-slate-900 text-slate-400 text-xs py-16 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-14">
             {/* Col 1: Brand Info */}
@@ -1145,13 +1145,13 @@ export default function Landingpage() {
                   className="h-8 sm:h-9 w-auto object-contain hover:opacity-90 transition-opacity"
                 />
               </div>
-              <p className="text-slate-900 text-xs leading-relaxed max-w-sm">
+              <p className="text-slate-300 text-xs leading-relaxed max-w-sm">
                 Industry-focused enterprise software ecosystem architected by{" "}
-                <strong className="text-slate-900">Senwell Group</strong>. Delivering
+                <strong className="text-white">Senwell Group</strong>. Delivering
                 precision-calibrated cloud platforms for CNC manufacturing, aerospace & defense
                 traceability, workforce HRMS intelligence, and IT staffing VMS.
               </p>
-              <div className="flex items-center gap-3 pt-1 text-[11px] text-slate-900 font-mono">
+              <div className="flex items-center gap-3 pt-1 text-[11px] text-slate-400 font-mono">
                 <span>synax.senwellgroup.com</span>
                 <span>•</span>
                 <span>Global HQ: Senwell Industrial Park</span>
@@ -1160,7 +1160,7 @@ export default function Landingpage() {
 
             {/* Col 2: The 4 Enterprise Suites */}
             <div>
-              <div className="font-bold text-slate-950 mb-4 text-xs uppercase tracking-wider">
+              <div className="font-bold text-slate-100 mb-4 text-xs uppercase tracking-wider">
                 Enterprise Suites (4)
               </div>
               <ul className="space-y-2.5">
@@ -1201,7 +1201,7 @@ export default function Landingpage() {
 
             {/* Col 3: Senwell Group */}
             <div>
-              <div className="font-bold text-slate-950 mb-4 text-xs uppercase tracking-wider">
+              <div className="font-bold text-slate-100 mb-4 text-xs uppercase tracking-wider">
                 Senwell Group
               </div>
               <ul className="space-y-2.5">
@@ -1654,6 +1654,12 @@ function HomeView({
     return () => clearInterval(interval);
   }, []);
 
+  const activeHeroLabel = HERO_LABELS[heroLabelIndex];
+  const isPrecisionIndustry = /precision|manufacturing/i.test(activeHeroLabel);
+  const isAerospace = /aerospace|defen[cs]e/i.test(activeHeroLabel);
+  const isHrms = /hrms|workforce/i.test(activeHeroLabel);
+  const isStaffing = /staffing|vms/i.test(activeHeroLabel);
+
   return (
     <main>
       {/* =========================================================================
@@ -1681,13 +1687,13 @@ function HomeView({
 
             {/* Main Headline */}
             <h4 className="text-2xl sm:text-4xl xl:text-[3.1rem] font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-              The Unified Operating Platform for
+              <span className="block">Built by Manufacturers, for Manufacturers</span>
               <span className="block h-[1.2em] overflow-hidden mt-1">
                 <span
                   className="bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-500 bg-clip-text text-transparent block transition-all duration-300"
                   style={{ opacity: heroVisible ? 1 : 0, transform: heroVisible ? "translateY(0)" : "translateY(10px)" }}
                 >
-                  {HERO_LABELS[heroLabelIndex]}
+                  {activeHeroLabel}
                 </span>
               </span>
             </h4>
@@ -1721,18 +1727,39 @@ function HomeView({
 
             {/* Compliance & Standards Badges */}
             <div className="pt-3 flex items-center justify-center lg:justify-start gap-5 sm:gap-7 text-xs text-slate-500 font-semibold flex-wrap">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" /> AS9100 Rev D
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Lock className="w-4 h-4 text-blue-500 shrink-0" /> ITAR / EAR Vault
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Award className="w-4 h-4 text-indigo-500 shrink-0" /> ISO 9001:2015
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-amber-500 shrink-0" /> CNC Machine IoT
-              </span>
+              {isAerospace && (
+                <>
+                  <span className="flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" /> AS9100 Rev D
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Lock className="w-4 h-4 text-blue-500 shrink-0" /> ITAR / EAR Vault
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Award className="w-4 h-4 text-indigo-500 shrink-0" /> ISO 9001:2015
+                  </span>
+                </>
+              )}
+              {isPrecisionIndustry && (
+                <>
+                  <span className="flex items-center gap-1.5">
+                    <Award className="w-4 h-4 text-indigo-500 shrink-0" /> ISO 9001:2015
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Zap className="w-4 h-4 text-amber-500 shrink-0" /> CNC Machine IoT
+                  </span>
+                </>
+              )}
+              {isHrms && (
+                <span className="flex items-center gap-1.5">
+                  <Activity className="w-4 h-4 text-emerald-500 shrink-0" /> Biometric Workforce Sync
+                </span>
+              )}
+              {isStaffing && (
+                <span className="flex items-center gap-1.5">
+                  <UserCheck className="w-4 h-4 text-blue-500 shrink-0" /> AI Candidate Matching
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -2984,12 +3011,12 @@ function HomeView({
 
 
        {/* Interactive Platform Console */}
-          <section className="pt-10 pb-16 md:pt-16 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+          <section className="pt-8 pb-10 md:pt-10 md:pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-6 space-y-3">
               <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3.5 py-1 rounded-full border border-blue-100">
                 Live Platform Preview
               </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
                 See Synax in Action
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
@@ -3054,7 +3081,7 @@ function HomeView({
               </div>
 
               {/* 16:9 Aspect Ratio Display Viewport */}
-              <div className="aspect-[16/9] min-h-[440px] sm:min-h-0 w-full bg-white rounded-b-2xl border border-slate-200 border-t-0 p-4 sm:p-7 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+              <div className="w-full bg-white rounded-b-2xl border border-slate-200 border-t-0 p-3 sm:p-5 shadow-2xl relative overflow-hidden flex flex-col justify-between xl:aspect-[2/1]">
                 {/* -------------------------------------------------------------
                   TAB 1: PRECISION MANUFACTURING SIMULATION
                   ------------------------------------------------------------- */}
@@ -3667,7 +3694,7 @@ function HomeView({
                 Manufacturing Pedigree
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                Built by Manufacturers, for Manufacturers
+                Industrial Heritage. Purpose-Built Software.
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Synax was not engineered in a generic software incubator. It was born out of{" "}
@@ -3702,15 +3729,15 @@ function HomeView({
       {/* =========================================================================
          BOTTOM EXECUTIVE CTA SECTION
          ========================================================================= */}
-      <section className="py-20 bg-slate-100 text-black relative overflow-hidden">
+      <section className="relative overflow-hidden border-y border-slate-200 bg-white py-20 text-slate-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
-          <span className="text-[11px] font-bold text-blue-400 uppercase tracking-widest bg-blue-200 px-3 py-1 rounded-full border border-blue-800">
+          <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-blue-700">
             Senwell Group Enterprise Software
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-black tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Ready to Calibrate Your Operations with Synax?
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Join tier-1 precision manufacturers, defense machine shops, and fast-scaling IT
             enterprises that trust Synax for compliance, velocity, and zero-defect execution.
           </p>
@@ -3718,13 +3745,13 @@ function HomeView({
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => openModal()}
-              className="w-full sm:w-auto px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs transition-all shadow-lg hover:shadow-xl cursor-pointer"
+              className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-xs transition-all shadow-lg hover:shadow-xl cursor-pointer"
             >
               Schedule Solution Architecture Consultation &rarr;
             </button>
             <button
               onClick={() => setCurrentPage("precision")}
-              className="w-full sm:w-auto px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs border border-indigo-700 transition-colors cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-xl text-xs border border-slate-300 transition-colors cursor-pointer"
             >
               Explore Precision Manufacturing
             </button>

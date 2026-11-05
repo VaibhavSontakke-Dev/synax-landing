@@ -38,7 +38,7 @@ const COLUMNS = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-erp-line-dark bg-erp-navy-2 erp-on-dark">
+    <footer className="relative overflow-hidden border-t border-slate-800 bg-slate-900 erp-on-dark">
       {/* Subtle square grid texture */}
       <div className="pointer-events-none absolute inset-0 erp-grid-dark" aria-hidden />
 
