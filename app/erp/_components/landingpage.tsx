@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   ShieldCheck,
   Cpu,
@@ -18,7 +18,6 @@ import {
   Menu,
   Award,
   Sparkles,
-  Check,
   ChevronLeft,
   Server,
   Activity,
@@ -39,10 +38,13 @@ import {
   Plane,
   Play,
   CheckCircle,
+  Check,
   MessageSquare,
   Bot,
   Send,
 } from "lucide-react";
+import { Modules } from "./modules";
+import { Rollout } from "./rollout";
 
 /* =========================================================================
    TYPE DEFINITIONS
@@ -102,103 +104,103 @@ const PRODUCT_DATA: Record<Exclude<PageView, "home">, ProductMeta> = {
   precision: {
     id: "precision",
     title: "Precision Manufacturing",
-    badge: "CNC IoT & Shop Floor Dispatch",
-    subtitle: "Real-time Machine Telemetry, Tool Life Cycle & Dynamic Capacity Loading",
+    badge: "Precision & Job-Work ERP",
+    subtitle: "Customer Material, Route Cards & Machine-to-Invoice Control",
     accentColor: "emerald",
     accentBg: "bg-emerald-50",
     accentText: "text-emerald-600",
     accentBorder: "border-emerald-200",
     icon: Factory,
     description:
-      "Purpose-built for high-mix CNC machine shops, multi-axis machining facilities, and precision tooling operations. Unify live spindle telemetry, real-time OEE optimization, predictive tool wear alerts, and dynamic capacity scheduling into a single pane of glass.",
-    heroStat: { label: "CNC OEE Benchmark", value: "94.8%" },
+      "Built for precision and job-work machine shops, Synax connects customer orders and supplied-material challans to route cards, machine-confirmed production, inspection, dispatch, and invoicing. Track each customer's material through consumption, returns, and scrap.",
+    heroStat: { label: "Production Flow", value: "Spindle to Invoice" },
     highlights: [
-      "Direct CNC Machine IoT Integration (Fanuc, Siemens, Heidenhain, Mazatrol)",
-      "Real-time Spindle RPM, Feed Rate & Dynamic Workstation Dispatch",
-      "Predictive Cutting Tool Wear Tracking & Automated Pre-set Offsets",
-      "Job Traveler Barcoding with Live Stage-by-Stage Scrap Analysis",
+      "Link customer purchase orders, inward challans, and material ID ranges",
+      "Track customer material balances, consumption, returns, and scrap",
+      "Capture machine cycle counts, alarms, and downtime against route cards",
+      "Connect inspection, COC, dispatch, GST invoices, and Tally vouchers",
     ],
     moduleSection: {
-      kicker: "Manufacturing",
-      subtitle: "Planning, material, and quality workflows",
+      kicker: "Precision & Job-Work",
+      subtitle: "Trace every order from customer material receipt through dispatch",
       groups: [
         {
           id: "planning-execution",
-          title: "Planning & Execution",
+          title: "Route Cards & Production",
           description:
-            "Plan jobs and execute production with live operator and machine coordination.",
+            "Release production from customer orders and confirm each operation against its route card.",
           items: [
-            "Machine Loading Plan Board",
-            "Operator Panel & Login",
-            "Job Scheduling Calendar",
-            "Job Schedule List",
-            "Execution Reports",
+            "Customer PO Lines & Revisions",
+            "BOM and Operation Routing",
+            "Route Card or Barcode Job Start",
+            "Machine Counts, Alarms & Downtime",
+            "Operator-Confirmed Count Variances",
           ],
         },
         {
           id: "material-procurement",
-          title: "Material & Procurement",
+          title: "Customer Material & Stores",
           description:
-            "Control material flow from entry to stock-out with traceable procurement.",
+            "Keep customer-owned stock distinct and traceable from inward challan through consumption, return, or scrap.",
           items: [
-            "Material Entry Audit",
-            "Material History",
-            "Stock Out Management",
-            "Vendor PO & Internal PO",
-            "Bill of Materials",
+            "Inward Challans & Material ID Ranges",
+            "Customer Material Balances",
+            "Material Issued to Production",
+            "Returns & Scrap Records",
+            "Purchase, Receipt & Stock Ledger",
           ],
         },
         {
           id: "quality-compliance",
-          title: "Quality & Compliance",
+          title: "Inspection & Dispatch",
           description:
-            "Structured quality workflows for audits, traceability, and corrective actions.",
+            "Carry machining and inspection history through certification, packing, and invoicing.",
           items: [
-            "NCR / CAPA",
-            "FAIR Manager",
-            "Calibration Dashboard",
-            "Genealogy Trace",
-            "Dispatch Release Controls",
+            "Receiving & Final Inspection",
+            "Stage Buy-Offs & FAIR Register",
+            "Certificate of Conformance",
+            "Packing & Delivery Challans",
+            "GST Invoice, E-Way Bill & Tally Bridge",
           ],
         },
       ],
     },
     capabilities: [
       {
-        title: "Dynamic Capacity & Machine Loading",
+        title: "Customer Material Traceability",
         description:
-          "Automatically balance queue times across 3-axis, 5-axis, and EDM cells based on cycle times and operator skill matrix.",
-        metric: "+32% Floor Velocity",
+          "Tie supplied material to its customer, PO line, inward challan, material IDs, production usage, returns, and scrap records.",
+        metric: "Customer-level balances",
       },
       {
-        title: "Predictive Tool Wear & Life Management",
+        title: "Machine-Confirmed Production",
         description:
-          "Track cutting hours per insert and endmill. Prevent catastrophic tool breakage with automated tool swap alerts.",
-        metric: "0.08% Part Scrap",
+          "Use CNC cycle counts, alarms, and downtime to support production confirmation, with operators reviewing count variances.",
+        metric: "Live job counts",
       },
       {
-        title: "Live Shop Floor Kiosk Dispatch",
+        title: "Route Cards & Stage Buy-Offs",
         description:
-          "Paperless digital travelers with live step sign-offs, drawing revisions, and CAD/CAM setup sheets directly at the machine console.",
-        metric: "100% Paperless Floor",
+          "Start jobs by route-card number or barcode, then keep operation status and stage approvals tied to the production record.",
+        metric: "Operation-level tracking",
       },
       {
-        title: "Raw Metal & Billet Inventory Tracking",
+        title: "Inspection & Certificate of Conformance",
         description:
-          "Trace every bar stock, billet, and plate back to its mill heat cert with precise remnant nesting and scrap salvage.",
-        metric: "Full Lot Genealogy",
+          "Carry inspection results and the machining record into the FAIR register and certificate issued with the finished part.",
+        metric: "Part-level history",
       },
       {
-        title: "Automated Operator Shift Timecards",
+        title: "Spindle-to-Invoice Dispatch",
         description:
-          "Connect job cycle start/stop times directly to operator timecards for accurate actual-vs-standard labor cost accounting.",
-        metric: "Accurate Job Costing",
+          "Connect production completion to packing, customer invoice, delivery challan, GST e-invoice, and e-way bill workflows.",
+        metric: "Connected dispatch flow",
       },
       {
-        title: "Preventive Machine Maintenance (TPM)",
+        title: "Tally Accounting Bridge",
         description:
-          "Automated maintenance schedules triggered by actual machine run hours, coolant refractometer tests, and spindle vibration sensor limits.",
-        metric: "99.4% Uptime",
+          "Manage purchasing, stores, production, and dispatch in Synax while sending accounting vouchers to Tally.",
+        metric: "Keep books in Tally",
       },
     ],
   },
@@ -573,6 +575,14 @@ export default function Landingpage() {
     setTourVideoModalOpen(true);
   };
 
+  const navigateToHomeSection = (sectionId: string) => {
+    setCurrentPage("home");
+    setMobileMenuOpen(false);
+    setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+  };
+
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormSubmitted(true);
@@ -671,16 +681,15 @@ export default function Landingpage() {
             {/* Products Mega Dropdown */}
             <div className="relative group py-4">
               <button className="flex items-center gap-1 hover:text-blue-600 transition-colors py-1">
-                Products (4)
+                Products (6)
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" />
               </button>
 
               <div className="absolute top-full -left-12 w-96 bg-white/98 backdrop-blur-xl border border-slate-200 rounded-2xl p-3 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200">
                 <div className="text-[10px] font-bold text-slate-400 px-3 py-1.5 uppercase tracking-wider">
-                  Enterprise Solutions (4)
+                  Primary Business ERPs
                 </div>
 
-                {/* 1. Precision Manufacturing */}
                 <button
                   onClick={() => setCurrentPage("precision")}
                   className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
@@ -692,35 +701,34 @@ export default function Landingpage() {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-slate-900 group-hover/item:text-emerald-600">
-                      Precision Manufacturing ERP
+                      Manufacturing ERP
                     </div>
                     <div className="text-[11px] text-slate-500">
-                      CNC IoT Telemetry, Tool Life & OEE
+                      Planning, procurement, shop-floor, quality & costing
                     </div>
                   </div>
                 </button>
 
-                {/* 2. Aerospace & Defence */}
                 <button
-                  onClick={() => setCurrentPage("aerospace")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "aerospace" ? "bg-blue-50/60" : ""
-                  }`}
+                  onClick={() => navigateToHomeSection("stack-it")}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
                 >
                   <div className="p-2 rounded-lg bg-blue-50 text-blue-600 border border-blue-100">
-                    <ShieldCheck className="w-4 h-4" />
+                    <Briefcase className="w-4 h-4" />
                   </div>
                   <div>
                     <div className="text-xs font-bold text-slate-900 group-hover/item:text-blue-600">
-                      Aerospace & Defence ERP
+                      IT Services & Project ERP
                     </div>
                     <div className="text-[11px] text-slate-500">
-                      AS9100 Rev D, ITAR Vault & AS9102 FAIRs
+                      Projects, SOWs, resources, timesheets & billing
                     </div>
                   </div>
                 </button>
 
-                {/* 3. HRMS Platform */}
+                <div className="mt-1 border-t border-slate-100 px-3 pt-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  Standalone & Add-On Products
+                </div>
                 <button
                   onClick={() => setCurrentPage("hrms")}
                   className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
@@ -732,15 +740,14 @@ export default function Landingpage() {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-slate-900 group-hover/item:text-sky-600">
-                      Synax HRMS Platform
+                      HRMS
                     </div>
                     <div className="text-[11px] text-slate-500">
-                      Biometric IoT Sync, Break Passes & Payroll
+                      Employee lifecycle, attendance, payroll & performance
                     </div>
                   </div>
                 </button>
 
-                {/* 4. IT Staffing VMS */}
                 <button
                   onClick={() => setCurrentPage("staffing")}
                   className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
@@ -752,10 +759,44 @@ export default function Landingpage() {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-slate-900 group-hover/item:text-indigo-600">
-                      Synax IT Staffing VMS
+                      Staffing & Resource Management
                     </div>
                     <div className="text-[11px] text-slate-500">
-                      AI Talent Bench, SOW Billing & Placement
+                      Customer needs, candidates, interviews & deployments
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => navigateToHomeSection("stack-manufacturing")}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
+                >
+                  <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100">
+                    <Activity className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-emerald-600">
+                       Shop Floor & Machine Monitoring
+                    </div>
+                    <div className="text-[11px] text-slate-500">
+                      Scheduling, job cards, live machines & downtime
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => navigateToHomeSection("synax-ai")}
+                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
+                >
+                  <div className="p-2 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-100">
+                    <Bot className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-indigo-600">
+                      AI & Business Intelligence
+                    </div>
+                    <div className="text-[11px] text-slate-500">
+                      AI assistance, agents, analytics & reports
                     </div>
                   </div>
                 </button>
@@ -907,7 +948,7 @@ export default function Landingpage() {
             </button>
             <button
               onClick={() => openModal()}
-              className="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs transition-all shadow-sm hover:shadow-md flex items-center gap-1.5"
+              className="px-4 py-2 rounded-xl bg-blue-900 hover:bg-blue-800 text-white font-semibold text-xs transition-all shadow-sm hover:shadow-md flex items-center gap-1.5"
             >
               <span>Schedule Live Demo</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -939,43 +980,66 @@ export default function Landingpage() {
 
             <div className="pl-3 border-l-2 border-blue-500 space-y-2 py-1">
               <div className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">
-                Enterprise Products
+                Primary Business ERPs
               </div>
               <button
                 onClick={() => {
                   setCurrentPage("precision");
                   setMobileMenuOpen(false);
                 }}
-                className="block text-left text-xs font-semibold text-emerald-600 py-1"
+                className="block w-full py-1 text-left"
               >
-                1. Precision Manufacturing ERP
+                <span className="block text-xs font-semibold text-emerald-700">Synax Manufacturing ERP</span>
+                <span className="block text-[10px] text-slate-500">Planning, shop-floor, quality & costing</span>
               </button>
               <button
                 onClick={() => {
-                  setCurrentPage("aerospace");
-                  setMobileMenuOpen(false);
+                  navigateToHomeSection("stack-it");
                 }}
-                className="block text-left text-xs font-semibold text-blue-600 py-1"
+                className="block w-full py-1 text-left"
               >
-                2. Aerospace & Defence ERP
+                <span className="block text-xs font-semibold text-blue-700">Synax IT Services & Project ERP</span>
+                <span className="block text-[10px] text-slate-500">Projects, SOWs, resources & billing</span>
               </button>
+            </div>
+
+            <div className="pl-3 border-l-2 border-emerald-500 space-y-2 py-1">
+              <div className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">
+                Standalone & Add-On Products
+              </div>
               <button
                 onClick={() => {
                   setCurrentPage("hrms");
                   setMobileMenuOpen(false);
                 }}
-                className="block text-left text-xs font-semibold text-sky-600 py-1"
+                className="block w-full py-1 text-left"
               >
-                3. Synax HRMS Platform
+                <span className="block text-xs font-semibold text-sky-700">Synax HRMS</span>
+                <span className="block text-[10px] text-slate-500">Employee lifecycle, attendance & payroll</span>
               </button>
               <button
                 onClick={() => {
                   setCurrentPage("staffing");
                   setMobileMenuOpen(false);
                 }}
-                className="block text-left text-xs font-semibold text-indigo-600 py-1"
+                className="block w-full py-1 text-left"
               >
-                4. Synax IT Staffing VMS
+                <span className="block text-xs font-semibold text-indigo-700">Synax Staffing & Resource Management</span>
+                <span className="block text-[10px] text-slate-500">Candidates, interviews & deployments</span>
+              </button>
+              <button
+                onClick={() => navigateToHomeSection("stack-manufacturing")}
+                className="block w-full py-1 text-left"
+              >
+                <span className="block text-xs font-semibold text-emerald-700">Synax Shop Floor & Machine Monitoring</span>
+                <span className="block text-[10px] text-slate-500">Job cards, machines & downtime</span>
+              </button>
+              <button
+                onClick={() => navigateToHomeSection("synax-ai")}
+                className="block w-full py-1 text-left"
+              >
+                <span className="block text-xs font-semibold text-blue-700">Synax AI & Business Intelligence</span>
+                <span className="block text-[10px] text-slate-500">AI agents, analytics & reports</span>
               </button>
             </div>
 
@@ -1642,6 +1706,16 @@ function HomeView({
   const [solutionFilter, setSolutionFilter] = useState<string>("precision");
   const [heroLabelIndex, setHeroLabelIndex] = useState(0);
   const [heroVisible, setHeroVisible] = useState(true);
+  const productCarouselRef = useRef<HTMLDivElement>(null);
+  const [productCarouselProgress, setProductCarouselProgress] = useState(0);
+  const [productCarouselEdges, setProductCarouselEdges] = useState({
+    canScrollPrevious: false,
+    canScrollNext: true,
+  });
+
+  const scrollToHomeSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -1659,6 +1733,35 @@ function HomeView({
   const isAerospace = /aerospace|defen[cs]e/i.test(activeHeroLabel);
   const isHrms = /hrms|workforce/i.test(activeHeroLabel);
   const isStaffing = /staffing|vms/i.test(activeHeroLabel);
+
+  const scrollProductCarousel = (direction: -1 | 1) => {
+    const track = productCarouselRef.current;
+    const firstSlide = track?.firstElementChild;
+    if (!track || !(firstSlide instanceof HTMLElement)) return;
+
+    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
+    track.scrollBy({
+      left: direction * (firstSlide.getBoundingClientRect().width + gap),
+      behavior: "smooth",
+    });
+  };
+
+  const handleProductCarouselScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, scrollWidth, clientWidth } = event.currentTarget;
+    const maxScroll = Math.max(scrollWidth - clientWidth, 0);
+    setProductCarouselProgress(maxScroll === 0 ? 0 : scrollLeft / maxScroll);
+    setProductCarouselEdges({
+      canScrollPrevious: scrollLeft > 1,
+      canScrollNext: scrollLeft < maxScroll - 1,
+    });
+  };
+
+  const handleProductCarouselKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollProductCarousel(event.key === "ArrowRight" ? 1 : -1);
+    }
+  };
 
   return (
     <main>
@@ -1712,7 +1815,7 @@ function HomeView({
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
               <button
                 onClick={() => openModal()}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-semibold text-xs shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-blue-900 hover:bg-blue-800   text-white font-semibold text-xs shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Schedule Free 30-Min Consultation</span>
                 <ArrowRight className="w-4 h-4" />
@@ -1781,7 +1884,8 @@ function HomeView({
             {/* Dashboard image scaling out past the right boundary */}
             <div className="w-[125%] xl:w-[130%] 2xl:w-[135%] shrink-0 -mr-[25%] xl:-mr-[30%] 2xl:-mr-[35%]">
               <img
-                src="/images/synax-dashboard.png"
+                // src="/images/synax-dashboard.png"
+                src="/images/home.png"
                 alt="Synax Enterprise ERP Command Dashboard"
                 className="block w-full h-auto max-h-[86vh] object-cover object-left shadow-[-20px_25px_60px_-15px_rgba(15,23,42,0.4)] rounded-l-2xl xl:rounded-l-3xl border-y border-l border-slate-200/90 pointer-events-auto transition-transform duration-500 hover:scale-[1.01]"
                 loading="eager"
@@ -1801,7 +1905,8 @@ function HomeView({
             />
             <div className="overflow-hidden rounded-2xl border border-slate-200/90 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.3)] bg-white p-1">
               <img
-                src="/images/synax-dashboard.png"
+                src="/images/home.png"
+                // src="/images/synax-dashboard.png"
                 alt="Synax Enterprise ERP Command Dashboard"
                 className="w-full h-auto object-contain block rounded-xl"
                 loading="eager"
@@ -1822,33 +1927,77 @@ function HomeView({
             Market-Ready Platforms
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900">
-            Connect, manage, and grow every part of your business with multiple powerful solutions in one unified platform
+            Six connected products for manufacturing and IT operations
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto">
-            Choose individual modules to solve critical bottlenecks or deploy the unified suite for
-            unbroken visibility from talent sourcing to the finished aerospace assembly.
+            Two core ERPs anchor the portfolio, with HRMS, staffing, shop-floor monitoring, and AI
+            available as standalone solutions or integrated capabilities, depending on packaging.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mb-4 flex items-center justify-end gap-3">
+          <span className="text-xs font-medium text-slate-500">6 products</span>
+          <div
+            className="h-1 w-16 overflow-hidden rounded-full bg-slate-200 sm:w-24"
+            role="progressbar"
+            aria-label="Product carousel position"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(productCarouselProgress * 100)}
+          >
+            <div
+              className="h-full rounded-full bg-blue-600 transition-[width] duration-200"
+              style={{ width: `${Math.max(12, productCarouselProgress * 100)}%` }}
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => scrollProductCarousel(-1)}
+            disabled={!productCarouselEdges.canScrollPrevious}
+            className="flex size-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Previous products"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollProductCarousel(1)}
+            disabled={!productCarouselEdges.canScrollNext}
+            className="flex size-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Next products"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+        </div>
+
+        <div
+          id="product-cards"
+          ref={productCarouselRef}
+          className="grid auto-cols-[84%] grid-flow-col grid-rows-[minmax(32rem,auto)] items-stretch snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:auto-cols-[47%] lg:auto-cols-[22%]"
+          role="region"
+          aria-label="Product offerings"
+          tabIndex={0}
+          onScroll={handleProductCarouselScroll}
+          onKeyDown={handleProductCarouselKeyDown}
+        >
           {/* CARD 1: PRECISION MANUFACTURING */}
-          <div className="bg-white rounded-xl border border-slate-200 hover:border-emerald-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
+          <div data-product-slide className="flex h-full min-w-0 shrink-0 basis-[84%] snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-emerald-300 hover:shadow-xl group sm:basis-[47%] lg:basis-[22%]">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="p-1 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
                   <Factory className="w-6 h-6" />
                 </div>
                 <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                  {PRODUCT_DATA.precision.badge}
+                  Core ERP
                 </span>
               </div>
 
               <div>
-                <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-emerald-600 transition-colors">
-                  {PRODUCT_DATA.precision.title}
+                <h3 className="min-h-[4.25rem] text-lg font-extrabold leading-tight text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  Manufacturing ERP
                 </h3>
-                <p className="text-xs text-slate-500 font-medium mt-1">
-                  {PRODUCT_DATA.precision.subtitle}
+                <p className="mt-1 min-h-[2rem] line-clamp-2 text-xs font-medium text-slate-500">
+                  Customer material, route cards, and machine-to-invoice control.
                 </p>
               </div>
 
@@ -1857,17 +2006,22 @@ function HomeView({
               </p> */}
 
               <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between text-xs">
-                <span className="text-emerald-900 font-medium">Standard CNC OEE Uplift</span>
+                <span className="text-emerald-900 font-medium">{PRODUCT_DATA.precision.heroStat.label}</span>
                 <span className="font-extrabold text-emerald-700">
                   {PRODUCT_DATA.precision.heroStat.value}
                 </span>
               </div>
 
               <ul className="space-y-2 pt-1 text-xs text-slate-700">
-                {PRODUCT_DATA.precision.highlights.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
+                {[
+                  "POs, challans & material ID ranges",
+                  "Material balances, use, returns & scrap",
+                  "Machine counts & downtime on route cards",
+                  "Inspection, COC, dispatch & Tally",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>{item}</span>
+                    <span className="line-clamp-2">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -1878,11 +2032,11 @@ function HomeView({
                 onClick={() => setCurrentPage("precision")}
                 className="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
-                <span>Explore Precision ERP</span>
+                <span>Explore</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
               <button
-                onClick={() => openModal(PRODUCT_DATA.precision.title)}
+                onClick={() => openModal("Manufacturing ERP")}
                 className="px-4 py-3 rounded-xl bg-emerald-50 text-emerald-700 font-semibold text-xs hover:bg-emerald-100 transition-colors border border-emerald-200 cursor-pointer"
               >
                 Demo
@@ -1890,24 +2044,24 @@ function HomeView({
             </div>
           </div>
 
-          {/* CARD 2: AEROSPACE & DEFENCE */}
-          <div className="bg-white rounded-xl border border-slate-200 hover:border-blue-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
+          {/* CARD 2: IT SERVICES & PROJECT ERP */}
+          <div data-product-slide className="flex h-full min-w-0 shrink-0 basis-[84%] snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-emerald-300 hover:shadow-xl group sm:basis-[47%] lg:basis-[22%]">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="p-1 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100">
-                  <ShieldCheck className="w-6 h-6" />
+                <div className="p-1 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-100">
+                  <Briefcase className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                  {PRODUCT_DATA.aerospace.badge}
+                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                  Core ERP
                 </span>
               </div>
 
               <div>
-                <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors">
-                  {PRODUCT_DATA.aerospace.title}
+                <h3 className="min-h-[4.25rem] text-lg font-extrabold leading-tight text-slate-900 group-hover:text-emerald-600 transition-colors">
+                  IT Services & Project ERP
                 </h3>
-                <p className="text-xs text-slate-500 font-medium mt-1">
-                  {PRODUCT_DATA.aerospace.subtitle}
+                <p className="mt-1 min-h-[2rem] line-clamp-2 text-xs font-medium text-slate-500">
+                  Manage project delivery and profitability across IT service teams.
                 </p>
               </div>
 
@@ -1915,18 +2069,23 @@ function HomeView({
                 {PRODUCT_DATA.aerospace.description}
               </p> */}
 
-              <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-xs">
-                <span className="text-blue-900 font-medium">AS9102 FAIR Verification Rate</span>
-                <span className="font-extrabold text-blue-700">
-                  {PRODUCT_DATA.aerospace.heroStat.value}
+              <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between text-xs">
+                <span className="text-emerald-900 font-medium">Business Lifecycle</span>
+                <span className="font-extrabold text-emerald-700">
+                  Project to Billing
                 </span>
               </div>
 
               <ul className="space-y-2 pt-1 text-xs text-slate-700">
-                {PRODUCT_DATA.aerospace.highlights.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                    <span>{item}</span>
+                {[
+                  "Project and work tracking with customer requirements",
+                  "SOWs, resource allocation, and staffing",
+                  "Timesheets, work logs, and development costs",
+                  "Project billing and profitability",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span className="line-clamp-2">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -1934,15 +2093,15 @@ function HomeView({
 
             <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
               <button
-                onClick={() => setCurrentPage("aerospace")}
-                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                onClick={() => scrollToHomeSection("stack-it")}
+                className="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
-                <span>Explore Aerospace ERP</span>
+                <span>Explore</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
               <button
-                onClick={() => openModal(PRODUCT_DATA.aerospace.title)}
-                className="px-4 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold text-xs hover:bg-blue-100 transition-colors border border-blue-200 cursor-pointer"
+                onClick={() => openModal("IT Services & Project ERP")}
+                className="px-4 py-3 rounded-xl bg-emerald-50 text-emerald-700 font-semibold text-xs hover:bg-emerald-100 transition-colors border border-emerald-200 cursor-pointer"
               >
                 Demo
               </button>
@@ -1950,23 +2109,23 @@ function HomeView({
           </div>
 
           {/* CARD 3: SYNAX HRMS PLATFORM */}
-          <div className="bg-white rounded-xl border border-slate-200 hover:border-sky-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
+          <div data-product-slide className="flex h-full min-w-0 shrink-0 basis-[84%] snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-xl group sm:basis-[47%] lg:basis-[22%]">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="p-1 rounded-2xl bg-sky-50 text-sky-600 border border-sky-100">
+                <div className="p-1 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100">
                   <Building2 className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-200">
-                  {PRODUCT_DATA.hrms.badge}
+                <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                  Standalone or Integrated Solution
                 </span>
               </div>
 
               <div>
-                <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-sky-600 transition-colors">
-                  {PRODUCT_DATA.hrms.title}
+                <h3 className="min-h-[4.25rem] text-lg font-extrabold leading-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+                  HRMS
                 </h3>
-                <p className="text-xs text-slate-500 font-medium mt-1">
-                  {PRODUCT_DATA.hrms.subtitle}
+                <p className="mt-1 min-h-[2rem] line-clamp-2 text-xs font-medium text-slate-500">
+                  Employee operations and workforce administration.
                 </p>
               </div>
 
@@ -1974,18 +2133,23 @@ function HomeView({
                 {PRODUCT_DATA.hrms.description}
               </p> */}
 
-              <div className="p-3 rounded-xl bg-sky-50/70 border border-sky-100 flex items-center justify-between text-xs">
-                <span className="text-sky-900 font-medium">Monthly Payroll Run Speed</span>
-                <span className="font-extrabold text-sky-700">
+              <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-xs">
+                <span className="text-blue-900 font-medium">Monthly Payroll Run Speed</span>
+                <span className="font-extrabold text-blue-700">
                   {PRODUCT_DATA.hrms.heroStat.value}
                 </span>
               </div>
 
               <ul className="space-y-2 pt-1 text-xs text-slate-700">
-                {PRODUCT_DATA.hrms.highlights.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
-                    <span>{item}</span>
+                {[
+                  "Employee lifecycle, recruitment, and offboarding",
+                  "Attendance, leave, payroll, and compliance",
+                  "Daily Work Management (DWM)",
+                  "Performance management",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <span className="line-clamp-2">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -1994,14 +2158,14 @@ function HomeView({
             <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
               <button
                 onClick={() => setCurrentPage("hrms")}
-                className="flex-1 py-3 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
-                <span>Explore HRMS Platform</span>
+                <span>Explore</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => openModal(PRODUCT_DATA.hrms.title)}
-                className="px-4 py-3 rounded-xl bg-sky-50 text-sky-700 font-semibold text-xs hover:bg-sky-100 transition-colors border border-sky-200 cursor-pointer"
+                className="px-4 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold text-xs hover:bg-blue-100 transition-colors border border-blue-200 cursor-pointer"
               >
                 Demo
               </button>
@@ -2009,23 +2173,23 @@ function HomeView({
           </div>
 
           {/* CARD 4: SYNAX IT STAFFING VMS */}
-          <div className="bg-white rounded-xl border border-slate-200 hover:border-indigo-300 transition-all duration-200 shadow-sm hover:shadow-xl p-4 flex flex-col justify-between group">
+          <div data-product-slide className="flex h-full min-w-0 shrink-0 basis-[84%] snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-xl group sm:basis-[47%] lg:basis-[22%]">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="p-1 rounded-2xl bg-indigo-50 text-indigo-600 border border-indigo-100">
+                <div className="p-1 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100">
                   <Users className="w-6 h-6" />
                 </div>
-                <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200">
-                  {PRODUCT_DATA.staffing.badge}
+                <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                  Product Solution
                 </span>
               </div>
 
               <div>
-                <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                  {PRODUCT_DATA.staffing.title}
+                <h3 className="min-h-[4.25rem] text-lg font-extrabold leading-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+                  Staffing & Resource Management
                 </h3>
-                <p className="text-xs text-slate-500 font-medium mt-1">
-                  {PRODUCT_DATA.staffing.subtitle}
+                <p className="mt-1 min-h-[2rem] line-clamp-2 text-xs font-medium text-slate-500">
+                  Source, deploy, and manage customer staffing requirements.
                 </p>
               </div>
 
@@ -2033,18 +2197,21 @@ function HomeView({
                 {PRODUCT_DATA.staffing.description}
               </p> */}
 
-              <div className="p-3 rounded-xl bg-indigo-50/70 border border-indigo-100 flex items-center justify-between text-xs">
-                <span className="text-indigo-900 font-medium">Average Time-to-Placement</span>
-                <span className="font-extrabold text-indigo-700">
-                  {PRODUCT_DATA.staffing.heroStat.value}
-                </span>
+              <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-xs">
+                <span className="text-blue-900 font-medium">Product Focus</span>
+                <span className="font-extrabold text-blue-700">Talent Deployment</span>
               </div>
 
               <ul className="space-y-2 pt-1 text-xs text-slate-700">
-                {PRODUCT_DATA.staffing.highlights.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
-                    <span>{item}</span>
+                {[
+                  "Customer requirements and candidate management",
+                  "Interviews, offers, and onboarding",
+                  "Deployments and resource performance",
+                  "Replacements and approvals",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <span className="line-clamp-2">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -2053,14 +2220,130 @@ function HomeView({
             <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
               <button
                 onClick={() => setCurrentPage("staffing")}
-                className="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
               >
-                <span>Explore Staffing VMS</span>
+                <span>Explore</span>
                 <ChevronRight className="w-4 h-4" />
               </button>
               <button
-                onClick={() => openModal(PRODUCT_DATA.staffing.title)}
-                className="px-4 py-3 rounded-xl bg-indigo-50 text-indigo-700 font-semibold text-xs hover:bg-indigo-100 transition-colors border border-indigo-200 cursor-pointer"
+                onClick={() => openModal("Staffing & Resource Management")}
+                className="px-4 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold text-xs hover:bg-blue-100 transition-colors border border-blue-200 cursor-pointer"
+              >
+                Demo
+              </button>
+            </div>
+          </div>
+
+          {/* CARD 5: SHOP FLOOR & MACHINE MONITORING */}
+          <div data-product-slide className="flex h-full min-w-0 shrink-0 basis-[84%] snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-xl group sm:basis-[47%] lg:basis-[22%]">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="p-1 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100">
+                  <Activity className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                  Product Solution
+                </span>
+              </div>
+
+              <div>
+                <h3 className="min-h-[4.25rem] text-lg font-extrabold leading-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+                  Shop Floor & Machine Monitoring
+                </h3>
+                <p className="mt-1 min-h-[2rem] line-clamp-2 text-xs font-medium text-slate-500">
+                  Production execution and machine operations management.
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-xs">
+                <span className="text-blue-900 font-medium">Product Focus</span>
+                <span className="font-extrabold text-blue-700">Machine Execution</span>
+              </div>
+
+              <ul className="space-y-2 pt-1 text-xs text-slate-700">
+                {[
+                  "Machine scheduling and load charts",
+                  "Operator job cards and live machine monitoring",
+                  "Downtime and alarm visibility",
+                  "Production tracking and machine utilization",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <span className="line-clamp-2">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
+              <button
+                onClick={() => scrollToHomeSection("stack-manufacturing")}
+                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+              >
+                <span>Explore</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => openModal("Shop Floor & Machine Monitoring")}
+                className="px-4 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold text-xs hover:bg-blue-100 transition-colors border border-blue-200 cursor-pointer"
+              >
+                Demo
+              </button>
+            </div>
+          </div>
+
+          {/* CARD 6: AI & BUSINESS INTELLIGENCE */}
+          <div data-product-slide className="flex h-full min-w-0 shrink-0 basis-[84%] snap-start flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-blue-300 hover:shadow-xl group sm:basis-[47%] lg:basis-[22%]">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="p-1 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100">
+                  <Bot className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                  Product Solution
+                </span>
+              </div>
+
+              <div>
+                <h3 className="min-h-[4.25rem] text-lg font-extrabold leading-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+                  AI & Business Intelligence
+                </h3>
+                <p className="mt-1 min-h-[2rem] line-clamp-2 text-xs font-medium text-slate-500">
+                  Intelligent assistance and insights for business operations.
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-xs">
+                <span className="text-blue-900 font-medium">Product Focus</span>
+                <span className="font-extrabold text-blue-700">Insights & Assistance</span>
+              </div>
+
+              <ul className="space-y-2 pt-1 text-xs text-slate-700">
+                {[
+                  "AI-powered assistance and Synax Agents",
+                  "Operational analytics and business dashboards",
+                  "Reports across business workflows",
+                  "Performance insights for informed decisions",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <span className="line-clamp-2">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-6 border-t border-slate-100 mt-6 flex items-center gap-3">
+              <button
+                onClick={() => scrollToHomeSection("synax-ai")}
+                className="flex-1 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+              >
+                <span>Explore</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => openModal("AI & Business Intelligence")}
+                className="px-4 py-3 rounded-xl bg-blue-50 text-blue-700 font-semibold text-xs hover:bg-blue-100 transition-colors border border-blue-200 cursor-pointer"
               >
                 Demo
               </button>
@@ -2068,6 +2351,8 @@ function HomeView({
           </div>
         </div>
       </section>
+
+      {/* <Modules /> */}
 
       {/* =========================================================================
          Solutions by Industry / Business Need
@@ -2151,17 +2436,17 @@ function HomeView({
                       <Factory className="w-5 h-5" />
                     </div>
                     <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100 uppercase tracking-wider">
-                      CNC Fleet & Shop Floor
+                      Precision & Job-Work
                     </span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
                     Precision Manufacturing
                   </h3>
                   <div className="text-xs font-semibold text-emerald-700 bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100/80">
-                    Powered by Synax ERP — Precision Manufacturing
+                    Powered by Synax Precision & Job-Work ERP
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Designed for multi-axis CNC machine shops, tooling facilities, and discrete manufacturing cells requiring real-time spindle intelligence and dynamic dispatch.
+                    Track customer-supplied material by challan, PO line, and material ID, then carry each job through route-card operations, machine-confirmed quantities, inspection, and dispatch.
                   </p>
                   <div className="pt-2 flex flex-wrap gap-2">
                     <button
@@ -2189,7 +2474,7 @@ function HomeView({
                         <span>The Business Challenge</span>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed">
-                        Unplanned machine downtime, unmeasured OEE (often under 65%), unexpected tool breakage causing scrapped high-value billets, and chaotic paper routing between CAD/CAM stations and CNC mills.
+                        Customer-owned material, production status, inspection records, and dispatch paperwork often sit in separate sheets, making consumption and invoiced quantities difficult to reconcile.
                       </p>
                     </div>
 
@@ -2200,7 +2485,7 @@ function HomeView({
                         <span>How Synax Solves It</span>
                       </div>
                       <p className="text-xs text-slate-600 leading-relaxed">
-                        Direct IoT controller sync (Fanuc, Siemens, Mazatrol), predictive tool wear alerts, dynamic capacity load balancing across 3-axis/5-axis cells, and paperless digital travelers.
+                        Link customer POs and material challans to route cards, machine-reported counts with operator-approved variances, stage buy-offs, COC records, and GST dispatch, with vouchers bridged to Tally.
                       </p>
                     </div>
                   </div>
@@ -2208,32 +2493,32 @@ function HomeView({
                   {/* Measurable ROI & Capabilities */}
                   <div className="pt-2 flex flex-wrap items-center gap-3">
                     <span className="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 text-xs font-bold">
-                      Impact: +32% Machine OEE
+                      Customer Material by ID
                     </span>
                     <span className="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100">
-                      Scrap: &lt; 0.08% Rate
+                      Machine-Confirmed Production
                     </span>
                     <span className="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100">
-                      100% Paperless Floor
+                      Spindle-to-Invoice Workflow
                     </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700 pt-1">
                     <div className="flex items-center gap-2">
                       <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>Live Spindle RPM & Vibration Telemetry</span>
+                      <span>Customer Challans, PO Lines & Material IDs</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>Automatic Tool Pre-set Offsets & Alarms</span>
+                      <span>Machine Counts, Alarms & Operator Variance Sign-Off</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>Raw Ingot Heat Cert Mill Traceability</span>
+                      <span>Route Cards, Stage Buy-Offs & COC Records</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>Work Order Gantt Schedule Optimization</span>
+                      <span>GST Dispatch Documents & Tally Voucher Bridge</span>
                     </div>
                   </div>
                 </div>
@@ -2542,6 +2827,8 @@ function HomeView({
           )}
         </div>
       </section>
+
+      <Rollout />
 
       {/* =========================================================================
          THE LARGER PURPOSE BEHIND THE SYNAX ECOSYSTEM
@@ -3843,7 +4130,7 @@ function ProductDetailView({ meta, setCurrentPage, openModal, openTourModal }: P
             <span
               className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${meta.accentBg} ${meta.accentText} ${meta.accentBorder}`}
             >
-              BENCHMARK: {meta.heroStat.value}
+              {meta.heroStat.label}: {meta.heroStat.value}
             </span>
           </div>
 

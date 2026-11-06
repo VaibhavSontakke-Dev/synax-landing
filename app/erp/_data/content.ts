@@ -437,7 +437,7 @@ export type ModuleStack = {
 
 export const COMMON_SERVICES: ModuleGroup = {
   id: "common",
-  title: "Common Services",
+  title: "Shared Services",
   description: "Shared services available across IT and Manufacturing.",
   icon: "layers",
   items: [
@@ -505,50 +505,50 @@ export const MODULE_STACKS: ModuleStack[] = [
   {
     id: "stack-manufacturing",
     kicker: "Manufacturing",
-    title: "Planning, material and quality workflows",
+    title: "Job-work from customer order to dispatch",
     description:
-      "The production side of the platform, from the plan board down to the record that releases a part.",
+      "Link customer material, route-card production, inspection, and dispatch records in one traceable workflow.",
     groups: [
       {
         id: "planning-execution",
-        title: "Planning & Execution",
+        title: "Route Cards & Production",
         description:
-          "Plan jobs and execute production with live operator and machine coordination.",
+          "Release work from customer orders and track each operation through machine and operator confirmation.",
         icon: "machine",
         items: [
-          "Machine Loading Plan Board",
-          "Operator Panel & Login",
-          "Job Scheduling Calendar",
-          "Job Schedule List",
-          "Execution Reports",
+          "Customer PO Lines & Revisions",
+          "BOM and Operation Routing",
+          "Route Card or Barcode Job Start",
+          "Machine Counts, Alarms & Downtime",
+          "Operator-Confirmed Count Variances",
         ],
       },
       {
         id: "material-procurement",
-        title: "Material & Procurement",
+        title: "Customer Material & Stores",
         description:
-          "Control material flow from entry to stock-out with traceable procurement.",
+          "Track customer-owned material from inward challan through production use, return, or scrap.",
         icon: "box",
         items: [
-          "Material Entry Audit",
-          "Material History",
-          "Stock Out Management",
-          "Vendor PO & Internal PO",
-          "Bill of Materials",
+          "Inward Challans & Material ID Ranges",
+          "Customer Material Balances",
+          "Material Issued to Production",
+          "Returns & Scrap Records",
+          "Purchase, Receipt & Stock Ledger",
         ],
       },
       {
         id: "quality-compliance",
-        title: "Quality & Compliance",
+        title: "Inspection & Dispatch",
         description:
-          "Structured quality workflows for audits, traceability, and corrective actions.",
+          "Carry inspection and machining records through certification, packing, and invoicing.",
         icon: "shield",
         items: [
-          "NCR / CAPA",
-          "FAIR Manager",
-          "Calibration Dashboard",
-          "Genealogy Trace",
-          "Dispatch Release Controls",
+          "Receiving & Final Inspection",
+          "Stage Buy-Offs & FAIR Register",
+          "Certificate of Conformance",
+          "Packing & Delivery Challans",
+          "GST Invoice, E-Way Bill & Tally Bridge",
         ],
       },
     ],
@@ -604,24 +604,60 @@ export const CLIENTS = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/* Rollout — the three phases published on the live site                      */
+/* Rollout — structured phases adapted from the public rollout guide          */
 /* -------------------------------------------------------------------------- */
 
 export const ROLLOUT = [
   {
     step: "01",
-    title: "Map",
-    copy: "Model business units, roles and workflow ownership for each department.",
+    title: "Discovery & Mapping",
+    timing: "Week 1",
+    copy: "Map departments, process owners, current tools, Day 1 workflows, and role-based access.",
   },
   {
     step: "02",
-    title: "Activate",
-    copy: "Enable modules in phased releases with governance and operational safeguards.",
+    title: "Configuration & Data Setup",
+    timing: "Week 2",
+    copy: "Configure modules and approvals, then prepare employee, customer, vendor, project, and inventory records.",
   },
   {
     step: "03",
-    title: "Scale",
-    copy: "Track outcomes, tighten bottlenecks and extend automation where impact is highest.",
+    title: "Pilot Launch",
+    timing: "Week 3",
+    copy: "Pilot with one team or plant cell, resolve blockers, and train managers and process champions.",
+  },
+  {
+    step: "04",
+    title: "Full Rollout & Optimization",
+    timing: "Week 4+",
+    copy: "Expand in phases, review adoption and compliance, then automate repeat approvals after stabilization.",
+  },
+];
+
+export const ROLLOUT_CHECKLIST = [
+  "Name a rollout owner and department champions",
+  "Prepare employee, customer, vendor, and project master data",
+  "Document approval, attendance, and task-update procedures",
+  "Set success measures for turnaround, SLA adherence, and throughput",
+  "Schedule manager training and the first 14 days of hypercare",
+];
+
+export const ROLLOUT_ROLES = [
+  {
+    title: "Rollout Owner",
+    description: "Owns the schedule, accountability, and escalations.",
+  },
+  {
+    title: "Department Champion",
+    description: "Coordinates team onboarding, training, and process adoption.",
+  },
+  {
+    title: "System Admin",
+    description: "Configures modules, permissions, and quality checks.",
+  },
+  {
+    title: "Leadership Sponsor",
+    description: "Aligns decisions, policy, and adoption across the organization.",
   },
 ];
 

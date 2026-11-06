@@ -42,7 +42,7 @@ export function Modules() {
 
         {/* ------------------- Per-industry stacks ------------------- */}
         {MODULE_STACKS.map((stack) => (
-          <div key={stack.id} className="mt-12 lg:mt-16">
+          <div key={stack.id} id={stack.id} className="mt-12 scroll-mt-24 lg:mt-16">
             <Reveal>
               <div className="flex flex-col gap-3 border-t border-erp-line pt-8 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
                 <div className="max-w-2xl">

@@ -40,7 +40,7 @@ export function WhyChoose2() {
 
   return (
     <Section id="platform-benefits" tone="tint">
-      <div className="absolute inset-0 erp-grid-light" aria-hidden />
+      <div className="absolute inset-0" aria-hidden />
 
       <Container className="relative">
         <Reveal>

@@ -130,7 +130,8 @@ export function DashboardShowcase() {
               {/* Dashboard image canvas - Medium size, native aspect ratio preserved */}
               <div className="relative w-full bg-erp-navy-2">
                 <img
-                  src="/images/synax-dashboard.png"
+                  src="/images/home.png"
+                  // src="/images/synax-dashboard.png"
                   alt="Synax ERP unified dashboard — centralized business management, real-time insights, and operational workflows"
                   width={1376}
                   height={768}
