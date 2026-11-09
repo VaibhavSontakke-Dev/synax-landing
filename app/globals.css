@@ -36,12 +36,14 @@ body {
 
 @theme {
   /* Brand */
-  --color-erp-brand: #0b6cff;
-  --color-erp-brand-dark: #0a4fc5;
-  --color-erp-brand-mid: #3d88ff;
-  --color-erp-brand-soft: #dce9ff;
+  /* Brand = the "Schedule a Demo" navy (Tailwind blue-900). The old vivid blue
+     (#0b6cff family) was retired site-wide; secondary accent is orange. */
+  --color-erp-brand: #1e3a8a;
+  --color-erp-brand-dark: #172554;
+  --color-erp-brand-mid: #1e40af;
+  --color-erp-brand-soft: #e2e8f0;
   --color-erp-accent: #00b2a9;
-  --color-erp-sky: #38bdf8;
+  --color-erp-sky: #fdba74; /* light accent used on dark surfaces (orange-300) */
 
   /* Ink */
   --color-erp-ink: #0f172a;
@@ -72,7 +74,7 @@ body {
   --shadow-erp-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
   --shadow-erp-md: 0 14px 32px rgba(15, 23, 42, 0.1);
   --shadow-erp-lg: 0 30px 70px rgba(15, 23, 42, 0.18);
-  --shadow-erp-brand: 0 10px 24px rgba(11, 108, 255, 0.3);
+  --shadow-erp-brand: 0 10px 24px rgba(30, 58, 138, 0.3);
 
   /* Motion */
   --ease-erp: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -448,5 +450,51 @@ body {
   .erp-root .erp-card:hover,
   .erp-root :is(a, button):hover {
     transform: none;
+  }
+}
+
+/* ==========================================================================
+   Synax landing hero (`synax-hero-*`)
+   --------------------------------------------------------------------------
+   Deliberately NOT scoped to `.erp-root`: the landing page also renders at `/`
+   under the root layout, which has no `.erp-root` wrapper. Every selector is
+   namespaced `synax-hero-` so nothing here can reach another section.
+   Only transform / opacity are animated (compositor-only).
+   ========================================================================== */
+
+@keyframes synax-hero-enter-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The hero hub (dashboard + product cards) rises in once. */
+.synax-hero-visual {
+  animation: synax-hero-enter-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+/* The hero connector fades in each time the active product changes. */
+@keyframes synax-hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.synax-hero-fade {
+  animation: synax-hero-fade 0.45s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .synax-hero-visual,
+  .synax-hero-fade {
+    animation: none;
   }
 }

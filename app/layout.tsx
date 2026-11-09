@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  openGraph: {
+    title: "Synax by Senwell | Precision Manufacturing, Aerospace & Defence, HRMS & IT Staffing",
+    description:
+      "Unified enterprise cloud suite by Senwell Group for CNC precision manufacturing, aerospace & defence traceability, biometric HRMS, and IT staffing VMS.",
+    type: "website",
+    siteName: "Synax by Senwell",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
