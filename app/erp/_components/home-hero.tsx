@@ -18,7 +18,7 @@ import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, 
  *  - It steps through the products every few seconds until the visitor hovers, focuses or taps one;
  *    it never auto-advances for `prefers-reduced-motion`.
  *
- * `region` values are measured on `hero-dashboard-light.webp` — re-measure them if the screenshot is
+ * `region` values are measured on `hero-dashboard-light.webp` (the original; the page shows its 80%-width copy `hero-dashboard-fit.webp`, same fractions) — re-measure them if the screenshot is
  * replaced. The state lives here (not in `HomeView`), so only this component re-renders.
  */
 
@@ -31,7 +31,9 @@ const CYCLE_MS = 2800;
  * sides (`object-cover`). `region` values are fractions of the FULL screenshot, so they are re-mapped onto the visible part.
  */
 const NATIVE_RATIO = 1918 / 917;
-const FRAME_RATIO = NATIVE_RATIO; // = no crop; use a smaller number to make it taller (crops the sides)
+// The displayed image (hero-dashboard-fit.webp) is the screenshot squeezed to 80% width, so nothing is cropped and the
+// region fractions are unchanged. Make this smaller than NATIVE_RATIO only if you also crop the image with object-cover.
+const FRAME_RATIO = NATIVE_RATIO;
 const VISIBLE_W = FRAME_RATIO / NATIVE_RATIO;
 const CROP_X = (1 - VISIBLE_W) / 2;
 const mapX = (x: number) => Math.min(1, Math.max(0, (x - CROP_X) / VISIBLE_W));
@@ -295,7 +297,7 @@ export function Hero({
             on lg+, so the whole stage (and the CTAs below it) fits the first screen. */}
         <div
           ref={stageRef}
-          className="synax-hero-visual relative order-1 mx-auto grid w-full gap-4 lg:max-w-[calc(47vh*2.1+2*var(--g)+3rem)] lg:grid-cols-[var(--g)_minmax(0,1fr)_var(--g)] lg:grid-rows-3 lg:gap-x-5 lg:gap-y-2 lg:[--g:9.5rem] xl:[--g:11.5rem]"
+          className="synax-hero-visual relative order-1 mx-auto grid w-full gap-4 lg:max-w-[calc(37.6vh*2.1+2*var(--g)+3rem)] lg:grid-cols-[var(--g)_minmax(0,1fr)_var(--g)] lg:grid-rows-3 lg:gap-x-5 lg:gap-y-2 lg:[--g:9.5rem] xl:[--g:11.5rem]"
         >
           {/* Connector (lg+): from the active card to its module */}
           <svg
@@ -323,13 +325,13 @@ export function Hero({
             <div className="relative rounded-2xl border border-slate-200 bg-white p-1.5 shadow-[0_22px_44px_-20px_rgba(11,27,51,0.42)]">
               <div ref={imageRef} className="relative overflow-hidden rounded-xl ring-1 ring-slate-900/5">
                 <Image
-                  src="/images/hero-dashboard-light.webp"
+                  src="/images/hero-dashboard-fit.webp"
                   alt="Synax Enterprise ERP Command Dashboard"
-                  width={1918}
+                  width={1534}
                   height={917}
                   priority
                   sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 50vw, 100vw"
-                  className="block aspect-[1918/917] w-full object-cover"
+                  className="block aspect-[1534/917] w-full object-cover"
                   draggable={false}
                 />
                 {/* Spotlight on the active module */}

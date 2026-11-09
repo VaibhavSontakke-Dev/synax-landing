@@ -55,6 +55,10 @@ Commit subject: `Hero v5: dashboard first and largest, product pills beneath, sm
   `lg:clamp(2rem,5vh,3rem)`, `font-black`) with a hand-drawn orange underline under "Every Operation" (inline SVG, `aria-hidden`).
 - **Card heights fit their content**: on lg+ each card is `self-center` in its grid row instead of stretching to a third of
   the dashboard height (the connector still aims at the card centre).
+- **Narrower dashboard (−20%, same height, nothing cropped)**: stage max width factor `47vh` → `37.6vh`; the page now uses
+  a new image `public/images/hero-dashboard-fit.webp` (1534×917 = the original squeezed to 80% width with sharp, `fit:
+  'fill'`), shown at `aspect-[1534/917]`, `FRAME_RATIO = NATIVE_RATIO` (no crop). Text/icons are ~20% narrower. Side cards
+  unchanged. To undo: `47vh`, src `hero-dashboard-light.webp` 1918×917, `aspect-[1918/917]`.
 - **Dashboard shape**: a 19:10 crop (taller) cut the sidebar and "My Work" edges and looked broken, so the screenshot is
   back to its full native ratio (`aspect-[1918/917]`, nothing cropped). `FRAME_RATIO` in `home-hero.tsx` is the one knob:
   a smaller number is taller but crops the sides; `mapX()` keeps the spotlight/connector aligned either way.
