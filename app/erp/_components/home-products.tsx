@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Activity, Bot, Briefcase, Building2, Check, ChevronLeft, ChevronRight, Factory, Users } from "lucide-react";
 import { SectionTag } from "./section-tag";
+import { hrefFor, type ProductKey } from "../_data/products";
 
 /**
  * "Market-Ready Platforms" — the six-product carousel.
@@ -40,8 +42,6 @@ const TONES: Record<Tone, { bar: string; tile: string; chipTile: string; tag: st
   },
 };
 
-type ExplorePage = "precision" | "hrms" | "staffing";
-
 interface Product {
   title: string;
   shortLabel: string;
@@ -52,9 +52,8 @@ interface Product {
   statLabel: string;
   statValue: string;
   bullets: string[];
-  /** Either a product page or an on-page section. */
-  page?: ExplorePage;
-  section?: string;
+  /** The product's own page: /products/<slug>. */
+  key: ProductKey;
   demoName: string;
 }
 
@@ -74,7 +73,7 @@ const PRODUCTS: Product[] = [
       "Machine counts & downtime on route cards",
       "Inspection, COC, dispatch & Tally",
     ],
-    page: "precision",
+    key: "precision",
     demoName: "Manufacturing ERP",
   },
   {
@@ -92,7 +91,7 @@ const PRODUCTS: Product[] = [
       "Timesheets, work logs, and development costs",
       "Project billing and profitability",
     ],
-    section: "stack-it",
+    key: "it",
     demoName: "IT Services & Project ERP",
   },
   {
@@ -110,8 +109,8 @@ const PRODUCTS: Product[] = [
       "Daily Work Management (DWM)",
       "Performance management",
     ],
-    page: "hrms",
-    demoName: "HRMS Platform",
+    key: "hrms",
+    demoName: "HRMS",
   },
   {
     title: "Staffing & Resource Management",
@@ -128,7 +127,7 @@ const PRODUCTS: Product[] = [
       "Deployments and resource performance",
       "Replacements and approvals",
     ],
-    page: "staffing",
+    key: "staffing",
     demoName: "Staffing & Resource Management",
   },
   {
@@ -146,7 +145,7 @@ const PRODUCTS: Product[] = [
       "Downtime and alarm visibility",
       "Production tracking and machine utilization",
     ],
-    section: "stack-manufacturing",
+    key: "shopfloor",
     demoName: "Shop Floor & Machine Monitoring",
   },
   {
@@ -164,20 +163,12 @@ const PRODUCTS: Product[] = [
       "Reports across business workflows",
       "Performance insights for informed decisions",
     ],
-    section: "synax-ai",
+    key: "ai",
     demoName: "AI & Business Intelligence",
   },
 ];
 
-export function Products({
-  setCurrentPage,
-  scrollToSection,
-  openModal,
-}: {
-  setCurrentPage: (page: ExplorePage) => void;
-  scrollToSection: (sectionId: string) => void;
-  openModal: (productName?: string) => void;
-}) {
+export function Products({ openModal }: { openModal: (productName?: string) => void }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -218,13 +209,8 @@ export function Products({
     }
   };
 
-  const explore = (p: Product) => {
-    if (p.page) setCurrentPage(p.page);
-    else if (p.section) scrollToSection(p.section);
-  };
-
   return (
-    <section id="products" aria-labelledby="products-heading" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <section id="products" aria-labelledby="products-heading" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="mb-8 space-y-3 text-center">
         <SectionTag>Market-Ready Platforms</SectionTag>
@@ -350,14 +336,14 @@ export function Products({
               </ul>
 
               <div className="mt-auto flex items-center gap-2 border-t border-slate-100 pt-4">
-                <button
-                  type="button"
-                  onClick={() => explore(p)}
-                  className="flex flex-1 cursor-pointer items-center justify-center gap-1 rounded-lg border-2 border-orange-500 bg-transparent px-3 py-[10px] text-xs font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                <Link
+                  href={hrefFor(p.key)}
+                  aria-label={`Explore ${p.title}`}
+                  className="flex flex-1 items-center justify-center gap-1 rounded-lg border-2 border-orange-500 bg-transparent px-3 py-[10px] text-xs font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                 >
                   <span>Explore</span>
                   <ChevronRight className="size-4" aria-hidden="true" />
-                </button>
+                </Link>
                 <button
                   type="button"
                   onClick={() => openModal(p.demoName)}

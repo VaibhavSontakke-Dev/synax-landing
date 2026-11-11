@@ -9,12 +9,13 @@ import {
   Clock,
   Cpu,
   FileCheck,
-  Lock,
   MoveRight,
+  Receipt,
   Scale,
   Users,
 } from "lucide-react";
 import { SectionTag } from "./section-tag";
+import { BENCHMARK, type BenchmarkIcon } from "../_data/benchmark";
 
 /**
  * "Market Benchmark" — why industry leaders migrate to Synax.
@@ -24,64 +25,28 @@ import { SectionTag } from "./section-tag";
  * and the two alternatives beneath, and a navy call-to-action card in the sixth slot. Every string is
  * the original section's; the leading "✓" glyphs became icons.
  *
- * NOTE: the competitor claims (e.g. "12 to 18 Months of consulting", "Severe compliance breach risk")
- * and the named vendors (SAP/Oracle) are the original text — have them reviewed before launch, and
- * only keep the bar lengths if the figures can be substantiated.
+ * NOTE: the alternatives describe typical setups, not named products. Synax's own rollout line follows the live
+ * portal ("module by module within a few weeks"); the bar lengths are illustrative, not measurements.
  */
 
-interface Dimension {
-  title: string;
-  Icon: LucideIcon;
-  synax: string;
-  legacy: string;
-  point: string;
-}
-
-const LEGACY = "Legacy ERPs (SAP/Oracle)";
+const LEGACY = "Legacy ERP suites";
 const POINT = "Disconnected Point Tools";
 
-const DIMENSIONS: Dimension[] = [
-  {
-    title: "CNC Machine IoT Telemetry",
-    Icon: Cpu,
-    synax: "Native Fanuc/Siemens/Mazatrol",
-    legacy: "Requires expensive third-party SCADA",
-    point: "Manual paper whiteboard logging",
-  },
-  {
-    title: "AS9102 FAIR Document Builder",
-    Icon: FileCheck,
-    synax: "Automated CMM direct feed",
-    legacy: "Manual paperwork entry & reassembly",
-    point: "Vulnerable Excel spreadsheets",
-  },
-  {
-    title: "Biometric IoT & Shift Break Passes",
-    Icon: Clock,
-    synax: "Hardware synchronized in real time",
-    legacy: "Separate HCM module with sync lags",
-    point: "Isolated punch cards / buddy punching",
-  },
-  {
-    title: "Integrated IT Staffing VMS & Bench",
-    Icon: Users,
-    synax: "Built-in AI Semantic Talent Engine",
-    legacy: "Unconnected external ATS silos",
-    point: "Scattered email resumes & PDFs",
-  },
-  {
-    title: "ITAR / EAR Defense Vault",
-    Icon: Lock,
-    synax: "Cryptographic RBAC Vault Native",
-    legacy: "Complex on-prem add-on servers",
-    point: "Severe compliance breach risk",
-  },
-];
+const BENCHMARK_ICONS: Record<BenchmarkIcon, LucideIcon> = {
+  cpu: Cpu,
+  filecheck: FileCheck,
+  clock: Clock,
+  users: Users,
+  receipt: Receipt,
+};
+
+// Rows live in _data/benchmark.ts (shared with the /why-synax page).
+const DIMENSIONS = BENCHMARK.map((d) => ({ ...d, Icon: BENCHMARK_ICONS[d.icon] }));
 
 /** Bar lengths are illustrative (a share of the track), not measurements. */
 const TIMELINE = [
-  { name: "Synax Unified Suite", value: "4 to 8 Weeks (Turnkey Rollout)", width: "12%", kind: "synax" },
-  { name: LEGACY, value: "12 to 18 Months of consulting", width: "64%", kind: "legacy" },
+  { name: "Synax Unified Suite", value: "Live module by module in a few weeks", width: "12%", kind: "synax" },
+  { name: LEGACY, value: "A long, consultant-led project", width: "64%", kind: "legacy" },
   { name: POINT, value: "Endless patchworks & API breaks", width: "46%", kind: "point" },
 ] as const;
 
@@ -120,7 +85,7 @@ export function Comparison({
     <section
       id="comparison"
       aria-labelledby="comparison-heading"
-      className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
+      className="relative mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8"
     >
       {/* Header */}
       <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">

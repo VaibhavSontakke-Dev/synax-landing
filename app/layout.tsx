@@ -13,16 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Synax | Precision Manufacturing, Aerospace & Defence, HRMS & IT Staffing",
+  title: "Synax by Senwell | The ERP for Precision & Job-Work Manufacturers",
   description:
-    "Unified enterprise cloud suite by Senwell Group for CNC precision manufacturing, AS9100 Rev D & ITAR aerospace compliance, biometric HRMS, and IT staffing VMS.",
+    "From the machine spindle to the GST invoice in one workspace, with AI that chases your exceptions. Manufacturing ERP, IT services and projects, HRMS, staffing, shop-floor monitoring and AI. Free for SMEs under 50 employees.",
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Synax by Senwell | Precision Manufacturing, Aerospace & Defence, HRMS & IT Staffing",
+    title: "Synax by Senwell | The ERP for Precision & Job-Work Manufacturers",
     description:
-      "Unified enterprise cloud suite by Senwell Group for CNC precision manufacturing, aerospace & defence traceability, biometric HRMS, and IT staffing VMS.",
+      "From the machine spindle to the GST invoice in one workspace, with AI that chases your exceptions. Free for SMEs under 50 employees.",
     type: "website",
     siteName: "Synax by Senwell",
   },

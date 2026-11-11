@@ -281,9 +281,9 @@ export const IMPACT_STATS = [
     detail: "Attached at critical workflow checkpoints",
   },
   {
-    value: "99.9%",
-    label: "Platform availability",
-    detail: "Across tenant workspaces",
+    value: "Tally",
+    label: "Works with Tally",
+    detail: "Vouchers bridge across; keep your books where they are",
   },
   {
     value: "Multi-tenant",
@@ -341,9 +341,9 @@ export const HERO_PROOF = [
     detail: "QMS linked to each important process checkpoint",
   },
   {
-    label: "Availability",
-    value: "99.9%",
-    detail: "Platform availability",
+    label: "Accounts",
+    value: "Tally",
+    detail: "Vouchers bridge across to Tally",
   },
   {
     label: "Architecture",

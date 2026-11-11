@@ -1,9 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { AlertCircle, ArrowDown, ArrowRight, Building2, Check, Factory, Plane, Users } from "lucide-react";
 import { SectionTag } from "./section-tag";
+import { hrefFor, routeFor } from "../_data/products";
+import { SOLUTIONS, type SolutionKey } from "../_data/solutions";
 
 /**
  * "Sector & Challenge Alignment" — solutions by industry / business need.
@@ -16,127 +19,25 @@ import { SectionTag } from "./section-tag";
  * The selected sector now lives here instead of in HomeView (which re-rendered the whole page).
  */
 
-type SectorPage = "precision" | "aerospace" | "hrms" | "staffing";
+const ICONS: Record<SolutionKey, LucideIcon> = {
+  precision: Factory,
+  aerospace: Plane,
+  hrms: Building2,
+  staffing: Users,
+};
 
-interface Sector {
-  group: "By industry" | "By business need";
-  title: string;
-  short: string;
-  Icon: LucideIcon;
-  /** Same colours the Products menu uses for this product. */
-  tile: string;
-  tag: string;
-  poweredBy: string;
-  description: string;
-  challenge: string;
-  solution: string;
-  capabilities: string[];
-  page: SectorPage;
-  demoName: string;
-}
+/** Same colours the Products menu uses for each product. */
+const TILES: Record<SolutionKey, string> = {
+  precision: "bg-emerald-50 text-emerald-600",
+  aerospace: "bg-slate-100 text-blue-900",
+  hrms: "bg-slate-100 text-blue-900",
+  staffing: "bg-orange-50 text-orange-700",
+};
 
-const SECTORS: Sector[] = [
-  {
-    group: "By industry",
-    title: "Precision Manufacturing",
-    short: "Precision and job-work",
-    Icon: Factory,
-    tile: "bg-emerald-50 text-emerald-600",
-    tag: "Precision & Job-Work",
-    poweredBy: "Synax Precision & Job-Work ERP",
-    description:
-      "Track customer-supplied material by challan, PO line, and material ID, then carry each job through route-card operations, machine-confirmed quantities, inspection, and dispatch.",
-    challenge:
-      "Customer-owned material, production status, inspection records, and dispatch paperwork often sit in separate sheets, making consumption and invoiced quantities difficult to reconcile.",
-    solution:
-      "Link customer POs and material challans to route cards, machine-reported counts with operator-approved variances, stage buy-offs, COC records, and GST dispatch, with vouchers bridged to Tally.",
-    capabilities: [
-      "Customer Challans, PO Lines & Material IDs",
-      "Machine Counts, Alarms & Operator Variance Sign-Off",
-      "Route Cards, Stage Buy-Offs & COC Records",
-      "GST Dispatch Documents & Tally Voucher Bridge",
-    ],
-    page: "precision",
-    demoName: "Synax ERP — Precision Manufacturing",
-  },
-  {
-    group: "By industry",
-    title: "Aerospace & Defence",
-    short: "AS9100 Rev D and ITAR",
-    Icon: Plane,
-    tile: "bg-slate-100 text-blue-900",
-    tag: "AS9100 Rev D & ITAR",
-    poweredBy: "Synax ERP — Aerospace & Defence",
-    description:
-      "Built specifically for flight-critical component suppliers, defense machine shops, and NADCAP certified chemical processors requiring zero-defect assurance.",
-    challenge:
-      "Strict AS9100D compliance audits requiring weeks of manual paper reassembly; ITAR/EAR defense data spill risks; manual First Article Inspection Reports (FAIRs) that delay shipping.",
-    solution:
-      "Air-gapped cryptographic ITAR vault with RBAC, direct Zeiss/Hexagon CMM coordinate inspection integration, automated AS9102 FAIR builder, and 360° MTR lot genealogy.",
-    capabilities: [
-      "Digital AS9102 FAIR (Form 1, 2, 3) Generator",
-      "Role-Based ITAR / EAR Cryptographic Vault",
-      "Serialized Lot & Heat Genealogy Matrix",
-      "Integrated NCR / CAPA 8D Quality Gateways",
-    ],
-    page: "aerospace",
-    demoName: "Synax ERP — Aerospace & Defence",
-  },
-  {
-    group: "By business need",
-    title: "Human Resource Management",
-    short: "Workforce and HCM",
-    Icon: Building2,
-    tile: "bg-slate-100 text-blue-900",
-    tag: "Workforce & HCM",
-    poweredBy: "Synax HRMS Platform",
-    description:
-      "Designed for high-intensity industrial plants, multi-facility manufacturing enterprises, and shift-based engineering teams.",
-    challenge:
-      "Buddy punching, unaccounted plant floor break passes leaving active machining lines unattended, and multi-day manual payroll calculations with complex shift differential and tax errors.",
-    solution:
-      "Direct biometric hardware sync (ZKTeco/Suprema), live break-pass gatekeeper with floor overstay alerts, 1-click multi-tax payroll calculation under 60 seconds, and 360° OKR reviews.",
-    capabilities: [
-      "Biometric Turnstile Hardware IoT Sync",
-      "Plant Shift Break-Pass Monitor & Gatekeeper",
-      "Automated Multi-Tax & Statutory PF/ESI Engine",
-      "360° OKRs & Operator Skill Certification Matrix",
-    ],
-    page: "hrms",
-    demoName: "Synax HRMS Platform",
-  },
-  {
-    group: "By business need",
-    title: "IT Staffing & Workforce Management",
-    short: "AI sourcing and VMS",
-    Icon: Users,
-    tile: "bg-orange-50 text-orange-700",
-    tag: "AI Sourcing & VMS",
-    poweredBy: "Synax IT Staffing VMS",
-    description:
-      "Built for enterprise staffing agencies, technical consulting networks, and contingent workforce providers managing complex client SOWs.",
-    challenge:
-      "Weeks-long recruiting cycles, expensive technical consultants sitting idle on unbillable bench time, multi-vendor communication friction, and disputed timesheets and client invoices.",
-    solution:
-      "AI semantic resume parser with code benchmarks, real-time candidate bench allocation with 30-day roll-off forecasts, tiered VMS supplier workflows, and automated SOW invoicing.",
-    capabilities: [
-      "AI Semantic Match & Technical Skill Graph",
-      "Candidate Bench Allocation & Roll-Off Predictor",
-      "End-to-End Enterprise VMS Supplier Portal",
-      "Automated Client Timecard & Milestone Invoicing",
-    ],
-    page: "staffing",
-    demoName: "Synax IT Staffing VMS",
-  },
-];
+// Copy lives in _data/solutions.ts (shared with the /solutions page).
+const SECTORS = SOLUTIONS.map((s) => ({ ...s, Icon: ICONS[s.key], tile: TILES[s.key], page: s.key }));
 
-export function Sectors({
-  setCurrentPage,
-  openModal,
-}: {
-  setCurrentPage: (page: SectorPage) => void;
-  openModal: (productName?: string) => void;
-}) {
+export function Sectors({ openModal }: { openModal: (productName?: string) => void }) {
   const [active, setActive] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const sector = SECTORS[active];
@@ -163,7 +64,7 @@ export function Sectors({
     <section
       id="solutions"
       aria-labelledby="solutions-heading"
-      className="mx-auto max-w-7xl border-t border-slate-200/80 px-4 py-20 sm:px-6 lg:px-8"
+      className="mx-auto max-w-7xl scroll-mt-20 border-t border-slate-200/80 px-4 py-20 sm:px-6 lg:px-8"
     >
       {/* Header */}
       <div className="mx-auto mb-10 max-w-3xl space-y-3 text-center">
@@ -240,7 +141,7 @@ export function Sectors({
           <div className="flex flex-wrap items-center justify-between gap-2">
             <span className={`rounded-md px-2.5 py-1 text-[11px] font-semibold ${sector.tile}`}>{sector.tag}</span>
             <span className="text-xs text-slate-500">
-              Powered by <strong className="font-semibold text-slate-900">{sector.poweredBy}</strong>
+              Powered by <strong className="font-semibold text-slate-900">{routeFor(sector.key).name}</strong>
             </span>
           </div>
 
@@ -300,14 +201,13 @@ export function Sectors({
             >
               Book Demo
             </button>
-            <button
-              type="button"
-              onClick={() => setCurrentPage(sector.page)}
-              className="flex cursor-pointer items-center gap-1.5 rounded-lg border-2 border-orange-500 bg-transparent px-4 py-[10px] text-xs font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            <Link
+              href={hrefFor(sector.page)}
+              className="flex items-center gap-1.5 rounded-lg border-2 border-orange-500 bg-transparent px-4 py-[10px] text-xs font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
             >
               <span>Explore this solution</span>
               <ArrowRight className="size-3.5" aria-hidden="true" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

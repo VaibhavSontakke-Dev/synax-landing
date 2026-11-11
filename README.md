@@ -22,7 +22,167 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
-### Pending (next commit) — Landing audit fixes
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — /why-synax redesigned (light blue, less white space)
+Commit subject: `Redesign /why-synax: sky-blue hero, jump bar, flow rail, tabbed reasons, pricing beside FAQ`
+- `app/why-synax/page.tsx` rewritten to the approved concept, in **light sky blue instead of near-black**: sky-blue gradient hero (headline with an orange stroke under "Synax", the two buttons, and a 2x2 proof board: Free for SMEs under 50, Tally, GST, AS9100D); a sticky jump bar (Pillars, Flow, Reasons, Compare, Pricing, FAQ); three pillar cards with coloured top edges; the six-step spindle-to-invoice flow as one connected rail on a sky-50 band; the five reasons as **tabs** (`_components/reason-tabs.tsx`, arrow-key navigation) instead of five tall rows; the comparison table (cards on phones); a sky-blue pricing card (sticky on desktop) beside the full 7-question FAQ; a heritage strip of group companies; and a light-blue closing call to action.
+- `site-page.tsx`: `CtaBand` gets `tone="light"` (used here; the other pages keep the navy band), and `Block` anchors use `scroll-mt-32` so headings clear the header and the jump bar.
+- **Removed from this page** (as in the approved concept): the "fits your stack" block (integration points and tech highlights) and the rollout phases; the rollout is still on /solutions and the tech highlights on /security.
+- Verified: `tsc`, `eslint`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — Live Platform Preview: new viewport (photo panel + dashboard)
+Commit subject: `Live Platform Preview: photo panel beside a dashboard with flow timeline and AI proposal`
+- **The window bar and the four product tabs above the viewport are unchanged** (dots, URL, Manufacturing ERP / Aerospace & Defence / HRMS / Staffing).
+- New `_components/console-viewport.tsx` replaces the old viewport in `landingpage.tsx`. Left: a clear photo panel (`next/image`, 300px on desktop, a banner on phones) with a live chip and a dark caption bar. Right, on a light panel: kicker + title + an orange-outline simulate button + "Full page" link; four stat tiles with sparklines; a flow timeline (done = navy tick, current = light orange, upcoming = dashed, progress line); a "needs attention" list with Late / Review / Ready chips; and a "Synax AI proposes" card whose **Approve** button turns it green ("Recorded in the event history"). Per-tab data is the `DATA` object at the top of the file; photos: `precision.png`, `aerospace.png`, `hrms.jpg`, `IT-staffing.jpg`.
+- All figures are sample data and labelled so. Removed with the old viewport: the CNC / FAIR / punch / match simulators and their state in `Landingpage` / `HomeView`, the "< 52 Sec" payroll tile, and `console-extras.tsx` (from the previous step, never committed).
+- Verified: `tsc`, `eslint`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — /solutions: redesigned solution cards
+Commit subject: `Vary the solution card layouts on /solutions`
+- `app/solutions/page.tsx`: the section under the hero has its own heading ("Solutions in detail") and the four solutions no longer repeat one card. Layout: the first is a **wide card** (story panel on the left: tinted, big number, icon, title, description, delivered-by and buttons; problem -> arrow -> answer and 2x2 capability tiles on the right), the middle two are **compact cards** side by side (header band, then everything stacked, footer bar), and the last is a **wide card mirrored** (story panel on the right). Cards fade in on scroll (staggered for the pair) and lift their shadow on hover. Card parts are small components in the same file (`Challenge`, `Answer`, `Capabilities`, `WideCard`, `CompactCard`), so another layout is a few lines.
+- Content is unchanged (`_data/solutions.ts`). Cards are now `h3` under a new `h2`. Jump links from the hero still work.
+- Verified: `tsc`, `eslint`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — Header active state + five industry pages
+Commit subject: `Header shows the current page; add dedicated industry pages`
+- **Header active state** (`_components/site-nav.tsx`, rewritten): the page you are on is bold navy with an orange underline in the bar
+  (Overview, Solutions, Why Synax, Security & Trust), has `aria-current="page"`, and gets a tinted row with a "Here" tag inside the Products
+  and Industries dropdowns. The Products / Industries triggers are marked too when you are on one of their pages (`/products*`,
+  `/solutions/<slug>`). The mobile menu uses an orange left bar + bold. "Compare all products" is marked on `/products`. Trailing
+  slashes are ignored.
+- **Marker colour and motion**: the orange is light (a `#fdba74` to `#fed7aa` underline, light-orange "Here" tag, orange-300 mobile bar), and it
+  animates: the underline draws in from the left whenever a link becomes current, the tag pops in, the mobile row slides in. Keyframes
+  `synax-nav-draw / -pop / -slide` and classes `.synax-nav-active / -here / -slide` are at the end of `app/globals.css`; all off for
+  `prefers-reduced-motion`. To change the colour or speed, edit that block.
+- **Industry pages**: `/solutions/<slug>` for every item in the Industries menu, from `_data/industries.ts` (`INDUSTRY_PAGES`):
+  `aerospace-defence` (same URL as before), `precision-cnc-machining`, `it-services-staffing`, `automotive-heavy-industrial`,
+  `plant-workforce-hcm`. Before, only aerospace had a page (a generic product template) and the others pointed at a product page or a
+  home anchor. Statically generated, unknown slugs 404, each with its own title, description and canonical.
+- **Template** (`_components/industry-page.tsx`): hero with an "At a glance" card (built for, delivered by), the challenges, the flow that
+  answers them (6-step spindle-to-invoice, Plan-Execute-Inspect-Release, or an industry-specific flow with module chips), the modules
+  behind it, the products (first = "Start here"), proof where it exists (Senwell group companies on the automotive page), the matching
+  FAQ questions from the portal, the other industries, and a CTA. Icons come from `industry-icons.ts`.
+- **Content**: flows, FAQ and module groups come from the portal data and product data. The "challenge" cards are written in plain
+  language from the earlier solution copy and the portal's wording; **please review them**. Nothing about certifications or numbers was
+  added. The automotive menu line "Multi-plant polymers, stamping & Senwell heritage" and the IT line "AI matching" were dropped (the
+  portal does not say them).
+- `/solutions` has a new "A dedicated page for your industry" block linking all five. `app/solutions/aerospace-defence/page.tsx` was
+  removed (the dynamic route serves the same URL).
+- Verified: `tsc`, `eslint` (0 errors), `next build` (24 pages). The current page is already marked (`aria-current`) in the prerendered HTML of the menu items; the colours were not checked in a browser. Rollback: `git revert` the commit.
+
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — Align the home page and product data with the live portal
+Commit subject: `Align home page, nav, footer and product copy with the live portal`
+- **Why**: the live portal (`_data/live.ts`) does not claim a 99.99% SLA, 256-bit AES, an ITAR vault, NADCAP, ISO 9001, CMMC, "Quality
+  Certified" badges, Zeiss/Hexagon CMM sync, or a "4 to 8 weeks vs 12 to 18 months" timeline. Those were removed or replaced with what it
+  does say. AS9100D QMS controls (in the portal's own metadata), FAIR register, COC, Tally, GST e-invoice/e-way bill, FOCAS and
+  approval-first AI are kept.
+- **Home page** (`landingpage.tsx`): Security section is now the portal's "Security & control" (4 controls + link to /security);
+  Senwell section tiles show group companies running on Synax instead of AS9100D/ITAR/ISO/99.99% badges; closing CTA is "See your own
+  shop floor in Synax"; Synax AI card no longer mentions ITAR logs; console preview labels (ITAR/NADCAP/Cryptographic/3.5x/Zeiss/ZKTeco)
+  reworded (the preview numbers are still sample data).
+- **Purpose section**, **footer** (chips: AS9100D QMS controls, GST e-invoice & e-way bill, Works with Tally, DPDP Act 2023 privacy
+  policy), **header banner/menu**, and **site metadata** (`app/layout.tsx`, `app/erp/layout.tsx`: "The ERP for precision and job-work
+  manufacturers", free for SMEs under 50).
+- **Comparison** (home + /why-synax): "Legacy ERPs (SAP/Oracle)" → "Legacy ERP suites"; the timeline bar now says "Live module by module
+  in a few weeks" (portal wording) vs "A long, consultant-led project"; rows rewritten to portal-backed capabilities (OEM/FOCAS, FAIR
+  register & COC, Tally & GST); the ITAR vault row is gone.
+- **Product data**: Aerospace, HRMS and Staffing entries rewritten (their unverified metrics — "100% first article accuracy", "3.8 days
+  to placement", "4.9/5 employee rating", "99.9% punch accuracy" — and capability lists are gone). **Fixed a copy-paste bug**: the HRMS
+  and Staffing pages were showing the *IT Services* module groups (Project Delivery etc.); they now have their own groups.
+  `solutions.ts` aerospace/HRMS/staffing rewritten the same way. `content.ts`: "99.9% platform availability" tiles replaced by Tally.
+- **Left alone (hidden or unchanged)**: the home testimonial (hidden by `SHOW_TESTIMONIALS = false`; it still says "AS9100D and ITAR
+  compliance…"), `TESTIMONIALS` in `content.ts`, the HRMS/Staffing home-card stats ("< 60 Sec" payroll run), and the ~20 unused legacy
+  components. Re-add any removed claim only after the owner confirms it.
+- Verified: `tsc`, `eslint` (0 errors), `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — Portal data pass: new pages use the live Synax portal's own content
+Commit subject: `Use live portal copy on /security, /why-synax and the Shop Floor and AI pages`
+- **Source**: `https://synax.senwellgroup.com/landing` is an Angular app (the HTML is just "Loading Synax"), so the copy was read from
+  its published bundle (`9004.*.js`, the landing chunk) and the page metadata on 2026-11-11. It is stored in `app/erp/_data/live.ts`
+  (positioning, trust chips, three pillars, spindle-to-invoice flow, security controls, pricing, FAQ, module directory, clients,
+  compliance statements). Update that file when the portal changes.
+- **What the portal says** (and the old Next.js pages did not): "The ERP for precision and job-work manufacturers", GST e-invoice /
+  e-way bill, works with Tally (vouchers bridge), ITC-04 pack, FOCAS/OEM machine connection, AI agents only propose / maker-checker,
+  **free for SMEs under 50 employees** (per-seat plans above that, module add-ons), onboarding "a few weeks" with Excel import.
+- **/security rewritten** from the portal's "Security & control" section (isolated workspaces, server-checked postings, audit history,
+  role-based access with two-step sign-in), the AI-approval FAQ answer, and the privacy/terms pages (Senwell Group Private Limited,
+  DPDP Act 2023). **Removed because the portal does not say it**: 99.9% availability, "encryption in transit and at rest", "monitored
+  24/7", ISO 9001, CMMC, ITAR/EAR vault. Compliance block = AS9100D QMS controls, GST e-invoice/e-way bill, ITC-04, DPDP.
+- **/why-synax**: hero uses the portal's headline and trust chips (replacing the 99.9% tile set); new sections "Built around how a
+  machine shop actually works" (3 pillars), "Spindle to invoice" (6-step flow), Pricing and FAQ (7 questions, native `<details>`).
+- **Shop Floor & Machine Monitoring** and **AI & Business Intelligence** pages: descriptions and module groups now use the portal's
+  wording (OEM/FOCAS connection, barcode job start, OEE per job; agents only propose, maker-checker, event history).
+- **Not changed (needs a decision)** — home page claims the live portal does not make: "99.99% SLA", "256-bit AES", "ITAR Vault",
+  "NADCAP", "AS9100D Quality Certified", "ISO 9001 / ITAR Ready" badges, "99.9%" in `content.ts` (`IMPACT_STATS`, `HERO_PROOF`), the
+  "4 to 8 weeks vs 12 to 18 months" bars, SAP/Oracle names, and positioning ("Aerospace, HRMS & IT Staffing" vs the portal's "precision
+  and job-work manufacturers"). Note the portal's own route metadata still says "ERP for Aerospace, Defense & IT Services" while its
+  landing page and SEO tags say "Smart ERP for SMEs in IT & Manufacturing" — the portal is not consistent either.
+- Files: new `_data/live.ts`; changed `security/page.tsx`, `why-synax/page.tsx`, `_components/site-page.tsx` (`Faq`), `_data/products.ts`.
+- Verified: `tsc`, `eslint`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — Solutions, Why Synax and Security & Trust pages
+Commit subject: `Add /solutions, /why-synax and /security pages`
+- **/solutions** (`app/solutions/page.tsx`): one deep-dive card per solution (Precision Manufacturing, Aerospace & Defence, HRMS,
+  IT Staffing): challenge → how Synax solves it → capabilities → the product that delivers it, with demo / explore buttons; then the
+  Plan-Execute-Inspect-Release workflow and the four-phase rollout + "before onboarding" checklist. `/solutions/aerospace-defence`
+  is unchanged.
+- **/why-synax** (`app/why-synax/page.tsx`): key facts, the five reasons (from `PLATFORM_BENEFITS`), a comparison table
+  (cards on phones) from `_data/benchmark.ts`, "fits your stack" (integration points + tech highlights), the rollout, and the
+  Senwell heritage. **Left out on purpose**: the "4 to 8 weeks vs 12 to 18 months" timeline and the SAP/Oracle names (the table says
+  "Legacy ERP suites" / "Disconnected point tools"); the home page section still has them.
+- **/security** (`app/security/page.tsx`): six controls in plain language (tenant isolation, access control, audit trails, data
+  protection, availability, integrations), compliance alignment (AS9100D, ITAR/EAR, ISO 9001:2015, CMMC 2.0, worded as "supports", not
+  "certified"), a shared-responsibility split, and a "bring your security questionnaire" CTA (demo form option "Security & Trust
+  Review"). **Review before launch** — every line comes from existing site copy, but these were removed because nothing in the repo
+  backs them: "256-bit AES", "tamper-proof keys", "99.99% guaranteed SLA", "air-gapped" (the published figure is 99.9%). The home page
+  security and Senwell sections still say 99.99%; the CMMC sentence is a plain-language gloss of "CMMC 2.0 practice support".
+- **Shared data** so the home page and the new pages cannot drift: `_data/solutions.ts` (read by `home-sectors.tsx` and
+  `/solutions`), `_data/benchmark.ts` (read by `home-comparison.tsx` and `/why-synax`). The sector panel's "Powered by" label now shows
+  the current product name (e.g. "Staffing & Resource Management" instead of "IT Staffing VMS"). Demo-form product names fixed so
+  "HRMS" and the sector buttons pre-select correctly.
+- **Navigation**: header (desktop + mobile) and footer now link to `/solutions`, `/why-synax`, `/security` instead of home-page anchors.
+  Shared page parts: `_components/site-page.tsx` (hero, section block, CTA band); layouts `app/why-synax/layout.tsx`,
+  `app/security/layout.tsx` (same shell as the other routes).
+- Verified: `tsc`, `eslint` (0 errors), `next build` (all routes prerendered). Not checked in a browser.
+- Rollback: `git revert` the commit.
+
+### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — Real routes per product + shared page frame
+Commit subject: `Routes: /products/<slug> per product, /solutions, shared shell, deep-link fixes`
+- **New URLs** (registry: `app/erp/_data/products.ts` → `PRODUCT_ROUTES`; change a slug there and every link follows):
+  `/products` (overview), `/products/manufacturing-erp`, `/products/it-services-project-erp`, `/products/hrms`,
+  `/products/staffing-resource-management`, `/products/shop-floor-machine-monitoring`,
+  `/products/ai-business-intelligence`, and `/solutions/aerospace-defence`. They are statically generated
+  (`app/products/[slug]/page.tsx` uses `generateStaticParams`; unknown slugs 404), each with its own title,
+  description and canonical URL.
+- **Before**: Manufacturing, HRMS, Staffing and Aerospace were in-page views switched by `useState` (no URL, no back
+  button, not indexable); IT Services, Shop Floor and AI only scrolled to home sections. All of that state is gone.
+- **Content**: `PRODUCT_DATA` moved unchanged from `landingpage.tsx` to `_data/products.ts`; `it`, `shopfloor`, `ai` are
+  new, drafted from the home product cards and module stacks (**please review the wording**). The old per-capability metrics
+  ("98.4% match accuracy" etc.) are not shown on the new pages (unverified numbers).
+- **One page template**: `_components/product-page.tsx` (server component) in the navy/orange system with `SectionTag`,
+  green/navy/orange product tones (`route-tone.ts`), `DemoButton` / `TourButton` (`demo-buttons.tsx`).
+- **Shared frame**: `_components/erp-shell.tsx` = `.erp-root` + fonts + banner/header (`site-nav.tsx`) + footer
+  (`home-footer.tsx`) + demo/tour modals (`demo-provider.tsx`, `useDemo()`). Used by the layouts of `/erp`, `/products`,
+  `/solutions`, `/cloud-erp-software` and by `app/page.tsx`, so `/` now matches `/erp` (it used to render without the
+  Synax fonts/scope). Header/footer/cards/"Full Page" buttons are real `<Link>`s. The product dropdown now says
+  "Compare all products" → `/products`.
+- **`/erp#comparison` fix**: `landingpage.tsx` scrolled to the top on mount (a `[currentPage]` effect), which overrode any
+  `#hash`; that effect is gone with the state. Home sections (`comparison`, `products`, `solutions`, `purpose`, `synax-ai`,
+  `security`, `senwell`) got `scroll-mt-20` so the sticky header no longer covers their headings.
+- **`/cloud-erp-software/manufacturing-management`**: was a copy of another vendor's page (their brochure/video hotlinks, "Why
+  Acumatica", "Coming soon" blocks, old blue). Now renders the Synax Manufacturing ERP page with canonical
+  `/products/manufacturing-erp`.
+- **Other changes**: demo form product list = the six products + aerospace + full suite; the tour modal's fake player (status
+  bar, "1080p 60FPS", progress bar) is replaced by an honest "recorded tour is being prepared – book a live walkthrough";
+  footer year is a constant (`COPYRIGHT_YEAR`) because `new Date()` fails prerendering under Cache Components.
+- Files: new `_data/products.ts`, `erp-shell.tsx`, `site-nav.tsx`, `demo-provider.tsx`, `demo-buttons.tsx`, `product-page.tsx`,
+  `route-tone.ts`, `app/products/{layout,page,[slug]/page}.tsx`, `app/solutions/{layout,aerospace-defence/page}.tsx`,
+  `app/cloud-erp-software/layout.tsx`; changed `landingpage.tsx` (1.1k lines → header/footer/modals/detail views removed),
+  `home-footer.tsx`, `home-products.tsx`, `home-sectors.tsx`, `home-comparison.tsx`, `home-purpose.tsx`, `erp/layout.tsx`,
+  `app/page.tsx`, `cloud-erp-software/manufacturing-management/page.tsx`. `site-header.tsx` / `site-footer.tsx` are now unused.
+- Verified: `tsc`, `eslint` (0 errors) and `next build` (all 8 routes prerendered). Not checked in a browser.
+- Rollback: `git revert` the commit. After pulling it, delete `.next` once (route and CSS-token caches).
+
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Landing audit fixes
 Commit subject: `Landing audit fixes: lead intake, a11y, honest proof, hero perf`
 - **Demo form now delivers leads**: new route `app/api/demo-request/route.ts` (validation,
   honeypot, forwards to `DEMO_REQUEST_WEBHOOK_URL`). Success copy changed from
@@ -43,7 +203,7 @@ Commit subject: `Landing audit fixes: lead intake, a11y, honest proof, hero perf
   `app/api/demo-request/route.ts` (new), `public/images/home.webp` (new), `README.md`.
 - Rollback: `git revert` the commit; `home.png` is untouched, so reverting restores the old hero.
 
-### Pending (next commit) — Hero v5: image-first spotlight hero
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Hero v5: image-first spotlight hero
 Commit subject: `Hero v5: dashboard first and largest, product pills beneath, smaller text, no eyebrow tag`
 - Rewrites `app/erp/_components/home-hero.tsx` (same `<Hero …/>` props). Supersedes every earlier hero entry — none of
   those versions were committed.
@@ -84,7 +244,7 @@ Commit subject: `Hero v5: dashboard first and largest, product pills beneath, sm
   `public/images`: `hero-factory.webp`, `home.webp`.
 - Files: `home-hero.tsx`, `README.md`. Rollback: `git revert` (earlier hero versions were never committed).
 
-### Pending (next commit) — Market-Ready Platforms redesign (`home-products.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Market-Ready Platforms redesign (`home-products.tsx`)
 Commit subject: `Products: menu-coloured icons, navy Explore / orange-outline Demo buttons, quick picks`
 - New component `app/erp/_components/home-products.tsx`, rendered as `<Products setCurrentPage=…
   scrollToSection=… openModal=… />` in place of the inline `<section id="products">` (same id,
@@ -103,7 +263,7 @@ Commit subject: `Products: menu-coloured icons, navy Explore / orange-outline De
   unused `useRef`/`ChevronRight` imports removed); `README.md`. Rollback: `git revert` (pre-change copy
   in the system temp folder as `landingpage.before-products.tsx`).
 
-### Pending (next commit) — One section tag everywhere (`section-tag.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — One section tag everywhere (`section-tag.tsx`)
 Commit subject: `Consistency: single SectionTag component for every section kicker`
 - Section kickers had drifted into four styles (blue-on-grey pills of three sizes, a plain blue label, a
   white dotted pill in the hero, the orange rule-flanked tag). New `app/erp/_components/section-tag.tsx`
@@ -122,7 +282,7 @@ Commit subject: `Consistency: single SectionTag component for every section kick
   `home-comparison.tsx`, `home-purpose.tsx`, `home-footer.tsx`, `rollout.tsx`, `README.md`. Rollback:
   `git revert` (pre-change copies of the eight edited files are in the system temp folder under `before-tags`).
 
-### Pending (next commit) — Market Benchmark comparison redesign v2 — bento (`home-comparison.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Market Benchmark comparison redesign v2 — bento (`home-comparison.tsx`)
 Commit subject: `Comparison: timeline bars, Synax-first dimension cards, navy CTA card`
 - New component `app/erp/_components/home-comparison.tsx`, rendered as
   `<Comparison onBookDemo=… onSeeProducts=… />` in place of the inline `<section id="comparison">` (same id,
@@ -147,7 +307,7 @@ Commit subject: `Comparison: timeline bars, Synax-first dimension cards, navy CT
 - Files: `home-comparison.tsx` (new), `landingpage.tsx` (section replaced), `README.md`. Rollback: `git revert`
   (pre-change copy in the system temp folder as `landingpage.before-comparison.tsx`).
 
-### Pending (next commit) — Sector & Challenge Alignment redesign (`home-sectors.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Sector & Challenge Alignment redesign (`home-sectors.tsx`)
 Commit subject: `Sectors: grouped sector list with one challenge-to-solution panel`
 - New component `app/erp/_components/home-sectors.tsx`, rendered as `<Sectors setCurrentPage=… openModal=… />`
   in place of the inline `<section id="solutions">` (same id and header copy; same Explore/Demo
@@ -173,13 +333,13 @@ Commit subject: `Sectors: grouped sector list with one challenge-to-solution pan
   `AlertCircle` import removed); `README.md`. Rollback: `git revert` (pre-change copy in the system temp
   folder as `landingpage.before-sectors.tsx`).
 
-### Pending (next commit) — Products buttons flipped
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Products buttons flipped
 - In the Market-Ready Platforms cards (`home-products.tsx`) the button styles were flipped:
   **Demo** is now the solid navy button (`bg-blue-900`, white text) and **Explore** is the 2px orange
   outline. Sizes/order are unchanged (Explore stays the wide one). This supersedes the button colours in
   the "Market-Ready Platforms redesign" entry below.
 
-### Pending (next commit) — Synax AI section: softer chat colours
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Synax AI section: softer chat colours
 Commit subject: `Synax AI: soften chat colours, replace off-palette purple CTA`
 - In the "Your Enterprise, Answered Instantly" section (`landingpage.tsx`, `#synax-ai`) the solid
   orange chat colours were too bold. Now: user bubbles `bg-orange-400/15` + `border-orange-300/25`
@@ -190,7 +350,7 @@ Commit subject: `Synax AI: soften chat colours, replace off-palette purple CTA`
   change); it is now a light button (`bg-white text-blue-900`, `hover:bg-orange-50`).
 - Copy unchanged. Files: `landingpage.tsx`, `README.md`. Rollback: `git revert`.
 
-### Pending (next commit) — Ecosystem Purpose redesign (`home-purpose.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Ecosystem Purpose redesign (`home-purpose.tsx`)
 Commit subject: `Purpose: chequerboard pillars with central hub, read-more toggle, lighter closing banner`
 - Implements the approved mock-up as a new component, `app/erp/_components/home-purpose.tsx`,
   rendered as `<Purpose onExplore={() => openModal("Architecture Consultation")} />` in place of the
@@ -209,7 +369,7 @@ Commit subject: `Purpose: chequerboard pillars with central hub, read-more toggl
   imports removed); `README.md`. Rollback: `git revert` (a pre-change copy was kept in the system
   temp folder as `landingpage.before-purpose.tsx`).
 
-### Pending (next commit) — Rollout blueprint redesign (`rollout.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Rollout blueprint redesign (`rollout.tsx`)
 Commit subject: `Rollout: connected timeline, go-live emphasis, checklist and owner tiles`
 - Implements the approved mock-up. **Copy and data are unchanged** (`ROLLOUT`, `ROLLOUT_CHECKLIST`,
   `ROLLOUT_ROLES` in `_data/content.ts`); only presentation changed.
@@ -225,7 +385,7 @@ Commit subject: `Rollout: connected timeline, go-live emphasis, checklist and ow
 - Files: `app/erp/_components/rollout.tsx` (rewritten), `landingpage.tsx` (one-line prop),
   `README.md`. Rollback: `git revert`.
 
-### Pending (next commit) — New footer (`home-footer.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — New footer (`home-footer.tsx`)
 Commit subject: `Footer: new component with CTA card, six-product nav, compliance chips, legal bar`
 - Old footer (inline in `landingpage.tsx`): flat 5-column text lists, copy still describing "CNC
   manufacturing, aerospace & defense… IT staffing VMS", an "Enterprise Suites (4)" list that no
@@ -251,7 +411,7 @@ Commit subject: `Footer: new component with CTA card, six-product nav, complianc
   removed); `README.md`. Rollback: `git revert` (pre-change copy also kept in the system temp folder
   as `landingpage.before-footer.tsx`).
 
-### Pending (next commit) — Hero structure refactor (`home-hero.tsx`)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Hero structure refactor (`home-hero.tsx`)
 Diagnosed and fixed in the same commit as the hero work below:
 - **Whole home page re-rendered every 2.8s**: the rotating product name's state lived in
   `HomeView` (~2,600 lines), so each rotation re-rendered all of it twice. Now isolated in
@@ -285,7 +445,7 @@ Diagnosed and fixed in the same commit as the hero work below:
 - Rollback: `git revert` the commit (copies of the pre-refactor files were also kept in the
   system temp folder as `landingpage.before-hero-refactor.tsx` / `globals.before-hero-refactor.css`).
 
-### Pending (next commit) — Hero redesign (reference-style, industry-neutral)
+### Committed (`latest ommit` 14997fd / `latest` 42619bc) — Hero redesign (reference-style, industry-neutral)
 Commit subject: `Hero: reference-style redesign, industry-neutral copy, tilted floating dashboard`
 - **Left column** (restyled to the reference): accent-bar eyebrow ("Unified Business Suite
   Founded & Developed by Senwell Group"); headline "One Platform for Every Operation" with the

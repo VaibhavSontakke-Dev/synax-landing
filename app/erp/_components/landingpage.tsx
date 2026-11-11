@@ -4,515 +4,34 @@ import React, { useState, useEffect } from "react";
 import {
   ShieldCheck,
   Users,
-  Building2,
   ArrowRight,
-  CheckCircle2,
   BarChart3,
-  Lock,
-  Layers,
-  X,
-  ChevronDown,
-  Menu,
-  ChevronLeft,
-  Server,
-  Activity,
-  FileCheck,
-  Calendar,
-  Clock,
-  Briefcase,
-  ArrowUpRight,
-  Shield,
   Factory,
-  Gauge,
-  Workflow,
-  Target,
-  Settings,
-  Plane,
-  Play,
-  CheckCircle,
-  Check,
   MessageSquare,
   Bot,
   Send,
 } from "lucide-react";
-import { Modules } from "./modules";
 import { Rollout } from "./rollout";
 import { Hero } from "./home-hero";
-import { Footer } from "./home-footer";
 import { Purpose } from "./home-purpose";
 import { Products } from "./home-products";
 import { Sectors } from "./home-sectors";
 import { Comparison } from "./home-comparison";
+import Link from "next/link";
+import { ConsoleViewport } from "./console-viewport";
 import { SectionTag } from "./section-tag";
+import { useDemo } from "./demo-provider";
+import { hrefFor } from "../_data/products";
+import { LIVE_CLIENTS, LIVE_SECURITY } from "../_data/live";
+import { ModuleIcon } from "./icons";
 
 /* =========================================================================
-   TYPE DEFINITIONS
+   TYPES
    ========================================================================= */
 
-export type PageView = "home" | "precision" | "aerospace" | "staffing" | "hrms";
+/** Tabs of the live console preview. */
+type PreviewTab = "precision" | "aerospace" | "hrms" | "staffing";
 
-export interface ModuleGroup {
-  id: string;
-  title: string;
-  description: string;
-  items: string[];
-}
-
-export interface ModuleSection {
-  kicker: string;
-  subtitle: string;
-  groups: ModuleGroup[];
-}
-
-export interface ProductMeta {
-  id: PageView;
-  title: string;
-  badge: string;
-  subtitle: string;
-  accentColor: string;
-  accentBg: string;
-  accentText: string;
-  accentBorder: string;
-  icon: React.ElementType;
-  description: string;
-  heroStat: { label: string; value: string };
-  highlights: string[];
-  moduleSection?: ModuleSection;
-  capabilities: {
-    title: string;
-    description: string;
-    metric?: string;
-  }[];
-}
-
-export interface FormDataState {
-  fullName: string;
-  email: string;
-  company: string;
-  phone: string;
-  product: string;
-  floorSize: string;
-  message: string;
-}
-
-/* =========================================================================
-   PRODUCT DATA CONFIGURATION (4 FLAGSHIP ENTERPRISE MODULES)
-   ========================================================================= */
-
-const PRODUCT_DATA: Record<Exclude<PageView, "home">, ProductMeta> = {
-  precision: {
-    id: "precision",
-    title: "Precision Manufacturing",
-    badge: "Precision & Job-Work ERP",
-    subtitle: "Customer Material, Route Cards & Machine-to-Invoice Control",
-    accentColor: "emerald",
-    accentBg: "bg-emerald-50",
-    accentText: "text-emerald-600",
-    accentBorder: "border-emerald-200",
-    icon: Factory,
-    description:
-      "Built for precision and job-work machine shops, Synax connects customer orders and supplied-material challans to route cards, machine-confirmed production, inspection, dispatch, and invoicing. Track each customer's material through consumption, returns, and scrap.",
-    heroStat: { label: "Production Flow", value: "Spindle to Invoice" },
-    highlights: [
-      "Link customer purchase orders, inward challans, and material ID ranges",
-      "Track customer material balances, consumption, returns, and scrap",
-      "Capture machine cycle counts, alarms, and downtime against route cards",
-      "Connect inspection, COC, dispatch, GST invoices, and Tally vouchers",
-    ],
-    moduleSection: {
-      kicker: "Precision & Job-Work",
-      subtitle: "Trace every order from customer material receipt through dispatch",
-      groups: [
-        {
-          id: "planning-execution",
-          title: "Route Cards & Production",
-          description:
-            "Release production from customer orders and confirm each operation against its route card.",
-          items: [
-            "Customer PO Lines & Revisions",
-            "BOM and Operation Routing",
-            "Route Card or Barcode Job Start",
-            "Machine Counts, Alarms & Downtime",
-            "Operator-Confirmed Count Variances",
-          ],
-        },
-        {
-          id: "material-procurement",
-          title: "Customer Material & Stores",
-          description:
-            "Keep customer-owned stock distinct and traceable from inward challan through consumption, return, or scrap.",
-          items: [
-            "Inward Challans & Material ID Ranges",
-            "Customer Material Balances",
-            "Material Issued to Production",
-            "Returns & Scrap Records",
-            "Purchase, Receipt & Stock Ledger",
-          ],
-        },
-        {
-          id: "quality-compliance",
-          title: "Inspection & Dispatch",
-          description:
-            "Carry machining and inspection history through certification, packing, and invoicing.",
-          items: [
-            "Receiving & Final Inspection",
-            "Stage Buy-Offs & FAIR Register",
-            "Certificate of Conformance",
-            "Packing & Delivery Challans",
-            "GST Invoice, E-Way Bill & Tally Bridge",
-          ],
-        },
-      ],
-    },
-    capabilities: [
-      {
-        title: "Customer Material Traceability",
-        description:
-          "Tie supplied material to its customer, PO line, inward challan, material IDs, production usage, returns, and scrap records.",
-        metric: "Customer-level balances",
-      },
-      {
-        title: "Machine-Confirmed Production",
-        description:
-          "Use CNC cycle counts, alarms, and downtime to support production confirmation, with operators reviewing count variances.",
-        metric: "Live job counts",
-      },
-      {
-        title: "Route Cards & Stage Buy-Offs",
-        description:
-          "Start jobs by route-card number or barcode, then keep operation status and stage approvals tied to the production record.",
-        metric: "Operation-level tracking",
-      },
-      {
-        title: "Inspection & Certificate of Conformance",
-        description:
-          "Carry inspection results and the machining record into the FAIR register and certificate issued with the finished part.",
-        metric: "Part-level history",
-      },
-      {
-        title: "Spindle-to-Invoice Dispatch",
-        description:
-          "Connect production completion to packing, customer invoice, delivery challan, GST e-invoice, and e-way bill workflows.",
-        metric: "Connected dispatch flow",
-      },
-      {
-        title: "Tally Accounting Bridge",
-        description:
-          "Manage purchasing, stores, production, and dispatch in Synax while sending accounting vouchers to Tally.",
-        metric: "Keep books in Tally",
-      },
-    ],
-  },
-  aerospace: {
-    id: "aerospace",
-    title: "Aerospace & Defence",
-    badge: "AS9100 Rev D • ITAR • NADCAP",
-    subtitle: "Zero-Defect Traceability, AS9102 FAIR Generator & Defense Vault",
-    accentColor: "blue",
-    accentBg: "bg-slate-100",
-    accentText: "text-blue-900",
-    accentBorder: "border-slate-300",
-    icon: ShieldCheck,
-    description:
-      "Mission-critical enterprise software designed specifically for Tier 1 & Tier 2 aerospace component manufacturers, defense contractors, and flight-critical subassembly suppliers requiring airtight ITAR/EAR compliance and zero-defect QA gates.",
-    heroStat: { label: "First Article Accuracy", value: "100%" },
-    highlights: [
-      "AS9100 Rev D, NADCAP & CMMC Level 2 Compliance Architecture",
-      "360° Material Heat Lot, Serial Number & Sub-tier Plating Genealogy",
-      "Automated CMM Quality Gateways & Digital AS9102 FAIR Document Builder",
-      "Cryptographically Enforced ITAR / EAR Defense Data Vault with RBAC",
-    ],
-    moduleSection: {
-      kicker: "Aerospace & Defence",
-      subtitle: "AS9100D, zero-defect traceability, and compliance workflows",
-      groups: [
-        {
-          id: "planning-execution",
-          title: "Planning & Execution",
-          description:
-            "Plan jobs and execute production with live operator and machine coordination.",
-          items: [
-            "Machine Loading Plan Board",
-            "Operator Panel & Login",
-            "Job Scheduling Calendar",
-            "Job Schedule List",
-            "Execution Reports",
-          ],
-        },
-        {
-          id: "material-procurement",
-          title: "Material & Procurement",
-          description:
-            "Control material flow from entry to stock-out with traceable procurement.",
-          items: [
-            "Material Entry Audit",
-            "Material History",
-            "Stock Out Management",
-            "Vendor PO & Internal PO",
-            "Bill of Materials",
-          ],
-        },
-        {
-          id: "quality-compliance",
-          title: "Quality & Compliance",
-          description:
-            "Structured quality workflows for audits, traceability, and corrective actions.",
-          items: [
-            "NCR / CAPA",
-            "FAIR Manager",
-            "Calibration Dashboard",
-            "Genealogy Trace",
-            "Dispatch Release Controls",
-          ],
-        },
-      ],
-    },
-    capabilities: [
-      {
-        title: "Automated AS9102 FAIR Builder",
-        description:
-          "Generate Form 1, Form 2, and Form 3 First Article Inspection Reports directly from CMM Zeiss/Hexagon measurement feeds.",
-        metric: "10x Faster FAIR Release",
-      },
-      {
-        title: "Unbroken Lot & Heat Genealogy",
-        description:
-          "Single-click backward and forward traceability from raw titanium/inconel ingot mill test reports (MTR) to delivered flight components.",
-        metric: "Instant Audit Readiness",
-      },
-      {
-        title: "Integrated NCR & CAPA Gateways",
-        description:
-          "Hold parts automatically at any machining or inspection stage upon out-of-spec readings. Enforce root cause 8D investigations.",
-        metric: "Zero Escaped Defects",
-      },
-      {
-        title: "ITAR / EAR Export Security Vault",
-        description:
-          "Role-based access control (RBAC) ensuring technical data packages, drawings, and CAD models are isolated to authorized defense personnel only.",
-        metric: "CMMC Level 2 Ready",
-      },
-      {
-        title: "Sub-tier Special Process Tracking",
-        description:
-          "Manage NADCAP certified external processors for heat treating, anodizing, NDT testing, and passivating with certificate verification.",
-        metric: "Full Vendor Compliance",
-      },
-      {
-        title: "Gauge & Equipment Calibration Matrix",
-        description:
-          "Prevent tool usage on the shop floor if micrometer, height gauge, or CMM probe calibration has expired. Fully NIST traceable.",
-        metric: "100% Calibrated Tools",
-      },
-    ],
-  },
-  hrms: {
-    id: "hrms",
-    title: "HRMS Platform",
-    badge: "Enterprise HCM & Biometric IoT",
-    subtitle: "Automated Global Payroll, Biometric Turnstiles & OKR Appraisals",
-    accentColor: "sky",
-    accentBg: "bg-slate-100",
-    accentText: "text-blue-900",
-    accentBorder: "border-slate-300",
-    icon: Building2,
-    description:
-      "Modern human capital management engineered for high-precision workforce operations. Bridge the shop floor and corporate offices with biometric turnstile hardware sync, plant shift break-pass monitoring, multi-region automated tax payroll, and continuous OKR evaluations.",
-    heroStat: { label: "Payroll Calculation Time", value: "< 60 Sec" },
-    highlights: [
-      "Real-time Biometric Hardware IoT Sync & Smart Turnstile Gateways",
-      "Plant Shift Break-Pass Monitor with Floor Overstay Alerts",
-      "1-Click Multi-Tax Automated Payroll & Statutory Compliance Engine",
-      "360° OKR Performance Appraisals & Technical Skill Matrix Reviews",
-    ],
-    moduleSection: {
-      kicker: "IT Services",
-      subtitle: "Delivery, people, and service workflows",
-      groups: [
-        {
-          id: "project-delivery",
-          title: "Project Delivery",
-          description:
-            "Execution-focused tools for planning, tracking, and delivery visibility.",
-          items: [
-            "Project List & Project Add",
-            "Daily Meetings",
-            "Activity Tracker",
-            "PM / PC Dashboards",
-            "Project Billing Tracker",
-          ],
-        },
-        {
-          id: "people-operations",
-          title: "People Operations",
-          description:
-            "Everything needed to run teams, attendance, and payroll operations smoothly.",
-          items: [
-            "Employee Management",
-            "Attendance & OT Approval",
-            "Budget Planner",
-            "Payroll",
-            "Break Pass Management",
-          ],
-        },
-        {
-          id: "communication-service",
-          title: "Communication & Service",
-          description:
-            "Collaboration, support, and customer communication modules in one place.",
-          items: [
-            "Team Chat",
-            "Video Calls",
-            "Support Tickets",
-            "Public Meetings",
-            "Company Visitor Management",
-          ],
-        },
-      ],
-    },
-    capabilities: [
-      {
-        title: "Biometric Hardware IoT Integration",
-        description:
-          "Direct plug-and-play sync with ZKTeco, Suprema, and RFID turnstile hardware. Eliminate buddy punching and manual timesheet reconciliation.",
-        metric: "99.9% Punch Accuracy",
-      },
-      {
-        title: "Shop Floor Break-Pass Gatekeeper",
-        description:
-          "Monitor plant operator tea, lunch, and smoke break passes in real time. Maintain optimal safety coverage on active machining lines.",
-        metric: "Zero Unplanned Idle Time",
-      },
-      {
-        title: "Automated Multi-Tax Payroll Engine",
-        description:
-          "Calculate complex shift differentials, overtime, statutory PF/ESI/TDS withholdings, and dispatch digital payslips in under 60 seconds.",
-        metric: "100% Tax Compliant",
-      },
-      {
-        title: "Mobile Employee Self-Service (ESS)",
-        description:
-          "Intuitive mobile and web portal for leave requests, punch regularization, tax investment proofs, and peer appreciation.",
-        metric: "4.9/5 Employee Rating",
-      },
-      {
-        title: "Technical Skill Matrix & Certifications",
-        description:
-          "Track mandatory aerospace welding, CNC programming, and safety certifications. Receive automated alerts 60 days before expiration.",
-        metric: "Zero Expired Licenses",
-      },
-      {
-        title: "Continuous 360° OKR Appraisals",
-        description:
-          "Align individual engineering milestones with plant output targets using objective Key Performance Indicators and peer evaluations.",
-        metric: "Data-Driven Bonuses",
-      },
-    ],
-  },
-  staffing: {
-    id: "staffing",
-    title: "IT Staffing VMS",
-    badge: "AI Talent Bench & VMS Suite",
-    subtitle: "AI Semantic Resume Matching, Bench Utilization & SOW Billing",
-    accentColor: "indigo",
-    accentBg: "bg-orange-50",
-    accentText: "text-orange-700",
-    accentBorder: "border-orange-300",
-    icon: Users,
-    description:
-      "Accelerate IT talent supply chains and contingent workforce management. Empower recruiting agencies and enterprise staffing organizations with AI candidate matching, real-time bench utilization tracking, multi-vendor VMS workflows, and automated contractor billing.",
-    heroStat: { label: "Avg Time-to-Placement", value: "3.8 Days" },
-    highlights: [
-      "AI Semantic Resume Parser & Technical Code Benchmark Evaluator",
-      "Real-time Candidate Bench Utilization & Re-deployment Dashboard",
-      "Enterprise Vendor Management System (VMS) with Tiered Supplier SLAs",
-      "Automated Client Timecard Approvals & Multi-Currency SOW Invoicing",
-    ],
-    moduleSection: {
-      kicker: "IT Services",
-      subtitle: "Delivery, people, and service workflows",
-      groups: [
-        {
-          id: "project-delivery",
-          title: "Project Delivery",
-          description:
-            "Execution-focused tools for planning, tracking, and delivery visibility.",
-          items: [
-            "Project List & Project Add",
-            "Daily Meetings",
-            "Activity Tracker",
-            "PM / PC Dashboards",
-            "Project Billing Tracker",
-          ],
-        },
-        {
-          id: "people-operations",
-          title: "People Operations",
-          description:
-            "Everything needed to run teams, attendance, and payroll operations smoothly.",
-          items: [
-            "Employee Management",
-            "Attendance & OT Approval",
-            "Budget Planner",
-            "Payroll",
-            "Break Pass Management",
-          ],
-        },
-        {
-          id: "communication-service",
-          title: "Communication & Service",
-          description:
-            "Collaboration, support, and customer communication modules in one place.",
-          items: [
-            "Team Chat",
-            "Video Calls",
-            "Support Tickets",
-            "Public Meetings",
-            "Company Visitor Management",
-          ],
-        },
-      ],
-    },
-    capabilities: [
-      {
-        title: "AI Semantic Match & Skill Graph",
-        description:
-          "Parse technical resumes instantly, mapping candidate capabilities, frameworks, and domain expertise against open client requisitions.",
-        metric: "98.4% Match Accuracy",
-      },
-      {
-        title: "Bench Utilization & Allocation Hub",
-        description:
-          "Keep high-cost technical resources continuously billable. Predict project roll-offs 30 days in advance to pre-book future client SOWs.",
-        metric: "+28% Bench Profitability",
-      },
-      {
-        title: "End-to-End Vendor Management (VMS)",
-        description:
-          "Manage tier-1, tier-2 staffing agency partners with automated candidate submission portals, rate card compliance, and interview tracking.",
-        metric: "18+ Partners Synced",
-      },
-      {
-        title: "Automated SOW Timesheet Approvals",
-        description:
-          "Collect weekly contractor hours, route for dual manager approval, and generate client-ready invoices with zero accounting friction.",
-        metric: "100% Billing Accuracy",
-      },
-      {
-        title: "Candidate Onboarding & Background Checks",
-        description:
-          "Automate NDA sign-offs, I-9 verification, technical background screening, and client equipment provisioning checklists.",
-        metric: "48-Hour Onboarding",
-      },
-      {
-        title: "Gross Margin & Real-Time Analytics",
-        description:
-          "Monitor bill rates, pay rates, gross margins, and consultant turnover across accounts, projects, and geographic regions.",
-        metric: "Transparent Margins",
-      },
-    ],
-  },
-};
 
 /* =========================================================================
    MAIN COMPONENT
@@ -526,54 +45,18 @@ const PRODUCT_DATA: Record<Exclude<PageView, "home">, ProductMeta> = {
  */
 const SHOW_TESTIMONIALS = false;
 
+/**
+ * The home page body. The header, footer, demo/tour modals and page frame now come from
+ * <ErpShell> (shared with the product routes); each product has its own route under /products.
+ */
 export default function Landingpage() {
-  const [currentPage, setCurrentPage] = useState<PageView>("home");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openDemo, openTour, modalOpen } = useDemo();
   // The mobile sticky CTA only appears once the hero's own buttons have scrolled away,
   // so it never covers them.
   const [showStickyCta, setShowStickyCta] = useState(false);
-  const [demoModalOpen, setDemoModalOpen] = useState(false);
-  const [tourVideoModalOpen, setTourVideoModalOpen] = useState(false);
-  const [tourVideoTitle, setTourVideoTitle] = useState<string>("Synax Precision ERP Product Tour");
-  const [selectedProduct, setSelectedProduct] = useState<string>(
-    "Synax ERP — Precision Manufacturing"
-  );
 
   // Interactive Live Console Preview Tab in Hero
-  const [previewTab, setPreviewTab] = useState<Exclude<PageView, "home">>("precision");
-
-  // Console Simulator Interactive States
-  const [precisionOee, setPrecisionOee] = useState(94.8);
-  const [precisionScrap, setPrecisionScrap] = useState(0.08);
-  const [precisionToolLife, setPrecisionToolLife] = useState(86);
-
-  const [aeroFairPassed, setAeroFairPassed] = useState(true);
-  const [aeroToleranceOffset, setAeroToleranceOffset] = useState("+0.0012 mm");
-
-  const [hrmsPunches, setHrmsPunches] = useState(428);
-  const [hrmsSyncPulse, setHrmsSyncPulse] = useState(false);
-
-  const [staffingMatchScore, setStaffingMatchScore] = useState(98.6);
-  const [staffingBenchCount, setStaffingBenchCount] = useState(142);
-
-  // Form State
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formSubmitting, setFormSubmitting] = useState(false);
-  const [formError, setFormError] = useState("");
-  const [formData, setFormData] = useState<FormDataState>({
-    fullName: "",
-    email: "",
-    company: "",
-    phone: "",
-    product: "Synax ERP — Precision Manufacturing",
-    floorSize: "50 - 250 Employees",
-    message: "",
-  });
-
-  // Scroll to top on page transition
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage]);
+  const [previewTab, setPreviewTab] = useState<PreviewTab>("precision");
 
   useEffect(() => {
     const onScroll = () => setShowStickyCta(window.scrollY > 720);
@@ -582,1039 +65,29 @@ export default function Landingpage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Escape closes whichever modal is open.
-  useEffect(() => {
-    if (!demoModalOpen && !tourVideoModalOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== "Escape") return;
-      setDemoModalOpen(false);
-      setTourVideoModalOpen(false);
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [demoModalOpen, tourVideoModalOpen]);
-
-  const openModal = (prodName = "Synax Unified Enterprise Suite") => {
-    setSelectedProduct(prodName);
-    setFormData((prev) => ({ ...prev, product: prodName }));
-    setFormSubmitted(false);
-    setFormError("");
-    setDemoModalOpen(true);
-  };
-
-  const openTourModal = (title = "Synax Precision ERP Product Tour") => {
-    setTourVideoTitle(title);
-    setTourVideoModalOpen(true);
-  };
-
-  const navigateToHomeSection = (sectionId: string) => {
-    setCurrentPage("home");
-    setMobileMenuOpen(false);
-    setTimeout(() => {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-    }, 50);
-  };
-
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (formSubmitting) return;
-    setFormError("");
-    setFormSubmitting(true);
-    try {
-      // `website` is a honeypot field hidden from real users.
-      const website = new FormData(e.currentTarget).get("website");
-      const res = await fetch("/api/demo-request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, website }),
-      });
-      if (!res.ok) {
-        const data = (await res.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(data?.error || "Something went wrong. Please try again.");
-      }
-      setFormSubmitted(true);
-    } catch (err) {
-      setFormError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-    } finally {
-      setFormSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Interactive Console Simulator Triggers
-  const simulatePrecisionOptim = () => {
-    setPrecisionOee(96.4);
-    setPrecisionScrap(0.05);
-    setPrecisionToolLife(98);
-  };
-
-  const simulateFairCheck = () => {
-    setAeroFairPassed(true);
-    setAeroToleranceOffset("+0.0004 mm (Nominal)");
-  };
-
-  const simulateBiometricSync = () => {
-    setHrmsSyncPulse(true);
-    setHrmsPunches((prev) => prev + 1);
-    setTimeout(() => setHrmsSyncPulse(false), 1200);
-  };
-
-  const simulateAiCandidateMatch = () => {
-    setStaffingMatchScore(99.2);
-    setStaffingBenchCount(146);
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50/70 text-slate-800 font-sans antialiased selection:bg-blue-900 selection:text-white">
-      {/* =========================================================================
-         TOP ANNOUNCEMENT BANNER
-         ========================================================================= */}
-      <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950 text-white text-[11px] py-2 px-4 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2 truncate">
-            <span className="bg-orange-700 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full text-white">
-              Enterprise Ecosystem
-            </span>
-            <span className="text-slate-300 font-medium hidden sm:inline">
-              Engineered by Senwell Group for Precision Manufacturing, Aerospace, HRMS & IT Staffing
-            </span>
-            <span className="text-slate-300 font-medium sm:hidden">
-              Senwell Group Enterprise Software Ecosystem
-            </span>
-          </div>
-          <div className="flex items-center gap-4 text-slate-400 font-mono text-[10px] shrink-0">
-            <span className="hidden md:inline-flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> AS9100 Rev D-aligned workflows
-            </span>
-            <a
-              href="#senwell"
-              className="text-orange-300 hover:text-orange-200 font-semibold underline underline-offset-2 transition-colors"
-            >
-              Senwell Pedigree &rarr;
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* =========================================================================
-         HEADER / NAVIGATION
-         ========================================================================= */}
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Logo Brand */}
-          <button
-            type="button"
-            onClick={() => setCurrentPage("home")}
-            aria-label="Synax by Senwell — home"
-            className="cursor-pointer flex items-center group py-1 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900"
-          >
-            <img
-              src="/images/synax_logo.png"
-              alt=""
-              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-            />
-          </button>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-600">
-            <button
-              onClick={() => setCurrentPage("home")}
-              className={`transition-colors hover:text-blue-900 ${
-                currentPage === "home" ? "text-blue-900 font-bold" : ""
-              }`}
-            >
-              Overview
-            </button>
-
-            {/* Products Mega Dropdown */}
-            <div className="relative group py-4">
-              <button
-                type="button"
-                aria-haspopup="true"
-                className="flex items-center gap-1 hover:text-blue-900 transition-colors py-1"
-              >
-                Products (6)
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" />
-              </button>
-
-              <div className="absolute top-full -left-12 w-96 bg-white/98 backdrop-blur-xl border border-slate-200 rounded-2xl p-3 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200">
-                <div className="text-[10px] font-bold text-slate-400 px-3 py-1.5 uppercase tracking-wider">
-                  Primary Business ERPs
-                </div>
-
-                <button
-                  onClick={() => setCurrentPage("precision")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "precision" ? "bg-emerald-50/60" : ""
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100">
-                    <Factory className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-emerald-600">
-                      Manufacturing ERP
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Planning, procurement, shop-floor, quality & costing
-                    </div>
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => navigateToHomeSection("stack-it")}
-                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
-                >
-                  <div className="p-2 rounded-lg bg-slate-100 text-blue-900 border border-slate-200">
-                    <Briefcase className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-blue-900">
-                      IT Services & Project ERP
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Projects, SOWs, resources, timesheets & billing
-                    </div>
-                  </div>
-                </button>
-
-                <div className="mt-1 border-t border-slate-100 px-3 pt-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  Standalone & Add-On Products
-                </div>
-                <button
-                  onClick={() => setCurrentPage("hrms")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "hrms" ? "bg-slate-100/60" : ""
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-slate-100 text-blue-900 border border-slate-200">
-                    <Building2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-blue-900">
-                      HRMS
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Employee lifecycle, attendance, payroll & performance
-                    </div>
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => setCurrentPage("staffing")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "staffing" ? "bg-orange-50/60" : ""
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-orange-50 text-orange-700 border border-orange-200">
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-orange-700">
-                      Staffing & Resource Management
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Customer needs, candidates, interviews & deployments
-                    </div>
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => navigateToHomeSection("stack-manufacturing")}
-                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
-                >
-                  <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100">
-                    <Activity className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-emerald-600">
-                       Shop Floor & Machine Monitoring
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Scheduling, job cards, live machines & downtime
-                    </div>
-                  </div>
-                </button>
-
-                <button
-                  onClick={() => navigateToHomeSection("synax-ai")}
-                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
-                >
-                  <div className="p-2 rounded-lg bg-orange-50 text-orange-700 border border-orange-200">
-                    <Bot className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-orange-700">
-                      AI & Business Intelligence
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      AI assistance, agents, analytics & reports
-                    </div>
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            {/* Industries Dropdown */}
-            <div className="relative group py-4">
-              <button className="flex items-center gap-1 hover:text-blue-900 transition-colors py-1">
-                Industries
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-200" />
-              </button>
-
-              <div className="absolute top-full -left-16 w-[410px] bg-white/98 backdrop-blur-xl border border-slate-200 rounded-2xl p-3 shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200">
-                <div className="text-[10px] font-bold text-slate-400 px-3 py-1.5 uppercase tracking-wider">
-                  Target Industry Sectors
-                </div>
-
-                {/* 1. Aerospace & Defence */}
-                <button
-                  onClick={() => setCurrentPage("aerospace")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "aerospace" ? "bg-slate-100/60" : ""
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-slate-100 text-blue-900 border border-slate-200">
-                    <Plane className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-blue-900">
-                      Aerospace & Defence
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      AS9100 Rev D, ITAR Vault & AS9102 FAIRs
-                    </div>
-                  </div>
-                </button>
-
-                {/* 2. Precision Manufacturing */}
-                <button
-                  onClick={() => setCurrentPage("precision")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "precision" ? "bg-emerald-50/60" : ""
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100">
-                    <Factory className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-emerald-600">
-                      Precision CNC Machining & Tooling
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Multi-axis CNC IoT, tool life & capacity dispatch
-                    </div>
-                  </div>
-                </button>
-
-                {/* 3. IT Services & Staffing */}
-                <button
-                  onClick={() => setCurrentPage("staffing")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "staffing" ? "bg-orange-50/60" : ""
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-orange-50 text-orange-700 border border-orange-200">
-                    <Users className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-orange-700">
-                      IT Services & Talent Staffing
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Consultant bench, AI matching & SOW timecards
-                    </div>
-                  </div>
-                </button>
-
-                {/* 4. Automotive & Industrial Engineering */}
-                <button
-                  onClick={() => {
-                    setCurrentPage("home");
-                    setTimeout(() => {
-                      const el = document.getElementById("senwell");
-                      if (el) el.scrollIntoView({ behavior: "smooth" });
-                    }, 50);
-                  }}
-                  className="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item"
-                >
-                  <div className="p-2 rounded-lg bg-amber-50 text-amber-600 border border-amber-100">
-                    <Layers className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-amber-600">
-                      Automotive & Heavy Industrial
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Multi-plant polymers, stamping & Senwell heritage
-                    </div>
-                  </div>
-                </button>
-
-                {/* 5. Plant Workforce & HCM */}
-                <button
-                  onClick={() => setCurrentPage("hrms")}
-                  className={`w-full text-left p-2.5 rounded-xl hover:bg-slate-50 transition-colors flex items-center gap-3 group/item ${
-                    currentPage === "hrms" ? "bg-slate-100/60" : ""
-                  }`}
-                >
-                  <div className="p-2 rounded-lg bg-slate-100 text-blue-900 border border-slate-200">
-                    <Building2 className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold text-slate-900 group-hover/item:text-blue-900">
-                      Plant Workforce & Multi-Facility HCM
-                    </div>
-                    <div className="text-[11px] text-slate-500">
-                      Biometric turnstile IoT & automated shift payroll
-                    </div>
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            {/* <a href="#ecosystem" className="hover:text-blue-900 transition-colors">
-              Ecosystem Loop
-            </a>
-            <a href="#senwell" className="hover:text-blue-900 transition-colors">
-              Senwell Group
-            </a> */}
-            <a href="#solutions" className="hover:text-blue-900 transition-colors">
-              Solutions
-            </a>
-            <a href="#comparison" className="hover:text-blue-900 transition-colors">
-              Why Synax
-            </a>
-            <a href="#security" className="hover:text-blue-900 transition-colors">
-              Security & Trust
-            </a>
-          </nav>
-
-          {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button
-              onClick={() => openModal("Product Exploration Call")}
-              className="text-xs font-semibold text-slate-700 hover:text-blue-900 px-3 py-2 transition-colors"
-            >
-              Contact Sales
-            </button>
-            <button
-              onClick={() => openModal()}
-              className="px-4 py-2 rounded-xl bg-blue-900 hover:bg-blue-800 text-white font-semibold text-xs transition-all shadow-sm hover:shadow-md flex items-center gap-1.5"
-            >
-              <span>Schedule Live Demo</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors"
-            aria-label="Toggle mobile menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-slate-200 px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-150 shadow-xl">
-            <button
-              onClick={() => {
-                setCurrentPage("home");
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left text-sm font-bold text-slate-900 py-1"
-            >
-              Overview
-            </button>
-
-            <div className="pl-3 border-l-2 border-blue-900 space-y-2 py-1">
-              <div className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">
-                Primary Business ERPs
-              </div>
-              <button
-                onClick={() => {
-                  setCurrentPage("precision");
-                  setMobileMenuOpen(false);
-                }}
-                className="block w-full py-1 text-left"
-              >
-                <span className="block text-xs font-semibold text-emerald-700">Synax Manufacturing ERP</span>
-                <span className="block text-[10px] text-slate-500">Planning, shop-floor, quality & costing</span>
-              </button>
-              <button
-                onClick={() => {
-                  navigateToHomeSection("stack-it");
-                }}
-                className="block w-full py-1 text-left"
-              >
-                <span className="block text-xs font-semibold text-blue-900">Synax IT Services & Project ERP</span>
-                <span className="block text-[10px] text-slate-500">Projects, SOWs, resources & billing</span>
-              </button>
-            </div>
-
-            <div className="pl-3 border-l-2 border-emerald-500 space-y-2 py-1">
-              <div className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">
-                Standalone & Add-On Products
-              </div>
-              <button
-                onClick={() => {
-                  setCurrentPage("hrms");
-                  setMobileMenuOpen(false);
-                }}
-                className="block w-full py-1 text-left"
-              >
-                <span className="block text-xs font-semibold text-blue-900">Synax HRMS</span>
-                <span className="block text-[10px] text-slate-500">Employee lifecycle, attendance & payroll</span>
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentPage("staffing");
-                  setMobileMenuOpen(false);
-                }}
-                className="block w-full py-1 text-left"
-              >
-                <span className="block text-xs font-semibold text-orange-700">Synax Staffing & Resource Management</span>
-                <span className="block text-[10px] text-slate-500">Candidates, interviews & deployments</span>
-              </button>
-              <button
-                onClick={() => navigateToHomeSection("stack-manufacturing")}
-                className="block w-full py-1 text-left"
-              >
-                <span className="block text-xs font-semibold text-emerald-700">Synax Shop Floor & Machine Monitoring</span>
-                <span className="block text-[10px] text-slate-500">Job cards, machines & downtime</span>
-              </button>
-              <button
-                onClick={() => navigateToHomeSection("synax-ai")}
-                className="block w-full py-1 text-left"
-              >
-                <span className="block text-xs font-semibold text-blue-900">Synax AI & Business Intelligence</span>
-                <span className="block text-[10px] text-slate-500">AI agents, analytics & reports</span>
-              </button>
-            </div>
-
-            <div className="pl-3 border-l-2 border-emerald-500 space-y-2 py-1">
-              <div className="text-[11px] text-slate-400 font-bold uppercase tracking-wider">
-                Industry Sectors
-              </div>
-              <button
-                onClick={() => {
-                  setCurrentPage("aerospace");
-                  setMobileMenuOpen(false);
-                }}
-                className="block text-left text-xs font-semibold text-blue-900 py-1"
-              >
-                Aerospace & Defence
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentPage("precision");
-                  setMobileMenuOpen(false);
-                }}
-                className="block text-left text-xs font-semibold text-emerald-600 py-1"
-              >
-                Precision CNC Machining
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentPage("staffing");
-                  setMobileMenuOpen(false);
-                }}
-                className="block text-left text-xs font-semibold text-orange-700 py-1"
-              >
-                IT Services & Staffing
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentPage("hrms");
-                  setMobileMenuOpen(false);
-                }}
-                className="block text-left text-xs font-semibold text-blue-900 py-1"
-              >
-                Plant Workforce & HCM
-              </button>
-            </div>
-
-            <div className="pt-2 border-t border-slate-100 space-y-2 text-xs font-medium text-slate-700">
-              <a
-                href="#solutions"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-1 text-slate-600 hover:text-blue-900"
-              >
-                Solutions by Need
-              </a>
-              <a
-                href="#ecosystem"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-1 text-slate-600 hover:text-blue-900"
-              >
-                Connected Ecosystem
-              </a>
-              <a
-                href="#senwell"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-1 text-slate-600 hover:text-blue-900"
-              >
-                Senwell Group Pedigree
-              </a>
-              <a
-                href="#comparison"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-1 text-slate-600 hover:text-blue-900"
-              >
-                Platform Comparison
-              </a>
-            </div>
-
-            <button
-              onClick={() => {
-                openModal();
-                setMobileMenuOpen(false);
-              }}
-              className="w-full mt-2 py-3 bg-blue-900 text-white font-semibold text-xs rounded-xl shadow-md"
-            >
-              Book Executive Demo
-            </button>
-          </div>
-        )}
-      </header>
-
-      {/* =========================================================================
-         VIEW ROUTING: 'home' | 'precision' | 'aerospace' | 'hrms' | 'staffing'
-         ========================================================================= */}
-      {currentPage === "home" && (
-        <HomeView
-          setCurrentPage={setCurrentPage}
-          openModal={openModal}
-          openTourModal={openTourModal}
-          previewTab={previewTab}
-          setPreviewTab={setPreviewTab}
-          // Interactive Console Props
-          precisionOee={precisionOee}
-          precisionScrap={precisionScrap}
-          precisionToolLife={precisionToolLife}
-          simulatePrecisionOptim={simulatePrecisionOptim}
-          aeroFairPassed={aeroFairPassed}
-          aeroToleranceOffset={aeroToleranceOffset}
-          simulateFairCheck={simulateFairCheck}
-          hrmsPunches={hrmsPunches}
-          hrmsSyncPulse={hrmsSyncPulse}
-          simulateBiometricSync={simulateBiometricSync}
-          staffingMatchScore={staffingMatchScore}
-          staffingBenchCount={staffingBenchCount}
-          simulateAiCandidateMatch={simulateAiCandidateMatch}
-        />
-      )}
-
-      {currentPage === "precision" && (
-        <ProductDetailView
-          meta={PRODUCT_DATA.precision}
-          setCurrentPage={setCurrentPage}
-          openModal={openModal}
-          openTourModal={openTourModal}
-        />
-      )}
-
-      {currentPage === "aerospace" && (
-        <ProductDetailView
-          meta={PRODUCT_DATA.aerospace}
-          setCurrentPage={setCurrentPage}
-          openModal={openModal}
-          openTourModal={openTourModal}
-        />
-      )}
-
-      {currentPage === "hrms" && (
-        <ProductDetailView
-          meta={PRODUCT_DATA.hrms}
-          setCurrentPage={setCurrentPage}
-          openModal={openModal}
-          openTourModal={openTourModal}
-        />
-      )}
-
-      {currentPage === "staffing" && (
-        <ProductDetailView
-          meta={PRODUCT_DATA.staffing}
-          setCurrentPage={setCurrentPage}
-          openModal={openModal}
-          openTourModal={openTourModal}
-        />
-      )}
-
-      {/* FOOTER: see home-footer.tsx */}
-      <Footer
-        setCurrentPage={setCurrentPage}
-        goToSection={navigateToHomeSection}
-        onScheduleDemo={() => openModal()}
-        onWatchOverview={() => openTourModal("Synax Platform Overview")}
+    <>
+      <HomeView
+        openModal={openDemo}
+        openTourModal={openTour}
+        previewTab={previewTab}
+        setPreviewTab={setPreviewTab}
       />
 
       {/* Sticky mobile CTA: keeps the primary conversion action in reach below the hero. */}
-      {showStickyCta && !demoModalOpen && !tourVideoModalOpen && (
-        <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur border-t border-slate-200 px-4 py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))]">
+      {showStickyCta && !modalOpen && (
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-4 py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
           <button
             type="button"
-            onClick={() => openModal()}
-            className="w-full py-3 rounded-xl bg-blue-900 hover:bg-blue-800 text-white font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer"
+            onClick={() => openDemo()}
+            className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-blue-900 py-3 text-sm font-semibold text-white hover:bg-blue-800"
           >
             <span>Schedule a Demo</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="size-4" />
           </button>
         </div>
       )}
-
-      {/* =========================================================================
-         ENTERPRISE DEMO MODAL
-         ========================================================================= */}
-      {demoModalOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setDemoModalOpen(false);
-          }}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="demo-modal-title"
-            className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full p-6 sm:p-8 relative animate-in fade-in zoom-in-95 duration-150 max-h-[92vh] overflow-y-auto">
-            <button
-              onClick={() => setDemoModalOpen(false)}
-              className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {formSubmitted ? (
-              <div className="text-center py-8 space-y-4">
-                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto border border-emerald-200 shadow-sm">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 id="demo-modal-title" className="text-2xl font-bold text-slate-900">
-                  Request Received
-                </h3>
-                <p className="text-sm text-slate-600 max-w-sm mx-auto leading-relaxed" role="status">
-                  Thank you, <strong>{formData.fullName}</strong>. Our team will contact you at{" "}
-                  <strong>{formData.email}</strong> to arrange a tailored demonstration for{" "}
-                  <strong className="text-blue-900">{formData.product}</strong>.
-                </p>
-                <div className="pt-2">
-                  <button
-                    onClick={() => setDemoModalOpen(false)}
-                    className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-semibold hover:bg-blue-800 transition-colors shadow-sm"
-                  >
-                    Return to Platform
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <div className="mb-5">
-                  <SectionTag lines="start">Senwell Group Architecture Consultation</SectionTag>
-                  <h3
-                    id="demo-modal-title"
-                    className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2"
-                  >
-                    Request Executive Demo
-                  </h3>
-                  <p className="text-sm text-slate-600 mt-1">
-                    Connect with an industrial systems engineer to evaluate workflows for your
-                    organization.
-                  </p>
-                </div>
-
-                <form onSubmit={handleFormSubmit} className="space-y-3.5 text-left">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label htmlFor="demo-fullName" className="block text-xs font-semibold text-slate-700 mb-1">
-                        Full Name *
-                      </label>
-                      <input
-                        id="demo-fullName"
-                        autoComplete="name"
-                        type="text"
-                        required
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleInputChange}
-                        placeholder="e.g. Marcus Vance"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-slate-50/50"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="demo-email" className="block text-xs font-semibold text-slate-700 mb-1">
-                        Work Email *
-                      </label>
-                      <input
-                        id="demo-email"
-                        autoComplete="email"
-                        type="email"
-                        required
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="m.vance@company.com"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-slate-50/50"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label htmlFor="demo-company" className="block text-xs font-semibold text-slate-700 mb-1">
-                        Company Name *
-                      </label>
-                      <input
-                        id="demo-company"
-                        autoComplete="organization"
-                        type="text"
-                        required
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        placeholder="Aerospace Machining Ltd."
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-slate-50/50"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="demo-phone" className="block text-xs font-semibold text-slate-700 mb-1">
-                        Phone Number
-                      </label>
-                      <input
-                        id="demo-phone"
-                        autoComplete="tel"
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        placeholder="+1 (555) 019-2834"
-                        className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-slate-50/50"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="demo-product" className="block text-xs font-semibold text-slate-700 mb-1">
-                      Primary Suite of Interest *
-                    </label>
-                    <select
-                      id="demo-product"
-                      name="product"
-                      value={formData.product}
-                      onChange={handleInputChange}
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 bg-white"
-                    >
-                      <option value="Synax ERP — Precision Manufacturing">
-                        Synax ERP — Precision Manufacturing
-                      </option>
-                      <option value="Synax ERP — Aerospace & Defence">
-                        Synax ERP — Aerospace & Defence
-                      </option>
-                      <option value="Synax HRMS Platform">Synax HRMS Platform</option>
-                      <option value="Synax IT Staffing VMS">Synax IT Staffing VMS</option>
-                      <option value="Full Synax Unified Enterprise Suite">
-                        Full Synax Unified Enterprise Suite (All 4)
-                      </option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="demo-floorSize" className="block text-xs font-semibold text-slate-700 mb-1">
-                      Facility / Headcount Scale
-                    </label>
-                    <select
-                      id="demo-floorSize"
-                      name="floorSize"
-                      value={formData.floorSize}
-                      onChange={handleInputChange}
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 bg-white"
-                    >
-                      <option value="1 - 50 Employees (1 Plant)">1 - 50 Employees (1 Plant)</option>
-                      <option value="50 - 250 Employees (1-3 Plants)">
-                        50 - 250 Employees (1-3 Plants)
-                      </option>
-                      <option value="250 - 1,000 Employees (Multi-facility)">
-                        250 - 1,000 Employees (Multi-facility)
-                      </option>
-                      <option value="1,000+ Enterprise Tier">1,000+ Enterprise Tier</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="demo-message" className="block text-xs font-semibold text-slate-700 mb-1">
-                      Operational Requirements & Timeline
-                    </label>
-                    <textarea
-                      id="demo-message"
-                      rows={2}
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Notes on current ERP (SAP, JobBOSS, spreadsheets), AS9100 audit target, or CNC machines..."
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-slate-50/50"
-                    />
-                  </div>
-
-                  {/* Honeypot: hidden from users and assistive tech; bots fill it. */}
-                  <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
-                    <label htmlFor="demo-website">Website</label>
-                    <input id="demo-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-                  </div>
-
-                  {formError && (
-                    <p role="alert" className="text-xs font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                      {formError}
-                    </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={formSubmitting}
-                    className="w-full py-3 bg-blue-900 hover:bg-blue-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-all shadow-md mt-1 cursor-pointer"
-                  >
-                    {formSubmitting ? "Sending…" : "Request Architecture Demo"}
-                  </button>
-                  <p className="text-xs text-center text-slate-500">
-                    We use your details only to arrange your demo.
-                  </p>
-                </form>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* =========================================================================
-         PRODUCT TOUR DEMO VIDEO MODAL
-         ========================================================================= */}
-      {tourVideoModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden relative animate-in fade-in zoom-in-95 duration-150">
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/60">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                  <Play className="w-4 h-4 fill-emerald-400" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-white tracking-wide">
-                    {tourVideoTitle}
-                  </h3>
-                  <p className="text-[11px] text-slate-400">
-                    Interactive Walkthrough & Guided Architecture Tour
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => setTourVideoModalOpen(false)}
-                className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
-                aria-label="Close video tour modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Video Player / Interactive Interactive Tour Showcase */}
-            <div className="relative aspect-video w-full bg-slate-950 flex flex-col items-center justify-center p-6 text-center overflow-hidden group">
-              {/* Animated subtle grid background */}
-              <div
-                className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(#10b981 1px, transparent 1px), radial-gradient(#0ea5e9 1px, transparent 1px)",
-                  backgroundSize: "24px 24px",
-                  backgroundPosition: "0 0, 12px 12px",
-                }}
-              />
-
-              {/* Mock Video Player Screen with UI overlay */}
-              <div className="relative z-10 max-w-2xl w-full bg-slate-900/90 rounded-2xl border border-slate-800/80 p-6 sm:p-8 backdrop-blur-sm shadow-2xl space-y-5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Live Product Tour • Guided Architecture Preview
-                </div>
-
-                <div className="space-y-2">
-                  <h4 className="text-lg sm:text-xl font-bold text-white">
-                    Experience {tourVideoTitle} in Action
-                  </h4>
-                  <p className="text-xs text-slate-400 leading-relaxed max-w-lg mx-auto">
-                    Interactive demonstration of core platform modules, live workflows, telemetry feeds, and automated enterprise controls.
-                  </p>
-                </div>
-
-                {/* Simulated Tour Video Stage / Player Controls */}
-                <div className="bg-slate-950/80 rounded-xl p-4 border border-slate-800 text-left space-y-3">
-                  <div className="flex items-center justify-between text-[11px] text-slate-400">
-                    <span className="flex items-center gap-1.5 font-mono text-emerald-400">
-                      <CheckCircle className="w-3.5 h-3.5" />
-                      SYSTEM STATUS: ACTIVE PREVIEW
-                    </span>
-                    <span className="font-mono">1080p 60FPS</span>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
-                    <div className="p-2 rounded bg-slate-900 border border-slate-800">
-                      <div className="text-slate-400">System Pipeline</div>
-                      <div className="font-bold text-white mt-0.5">Live Telemetry</div>
-                    </div>
-                    <div className="p-2 rounded bg-slate-900 border border-slate-800">
-                      <div className="text-slate-400">Operational Flow</div>
-                      <div className="font-bold text-white mt-0.5">End-to-End Tracking</div>
-                    </div>
-                    <div className="p-2 rounded bg-slate-900 border border-slate-800">
-                      <div className="text-slate-400">Governance & Release</div>
-                      <div className="font-bold text-white mt-0.5">Enterprise Compliance</div>
-                    </div>
-                  </div>
-
-                  {/* Progress bar simulation */}
-                  <div className="space-y-1 pt-1">
-                    <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                      <div className="bg-gradient-to-r from-emerald-500 to-blue-900 h-full w-2/3 rounded-full" />
-                    </div>
-                    <div className="flex justify-between text-[10px] text-slate-500 font-mono">
-                      <span>02:14</span>
-                      <span>03:45</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                  <button
-                    onClick={() => {
-                      setTourVideoModalOpen(false);
-                      openModal(tourVideoTitle.replace(" Tour", "").replace(" Demo Video", ""));
-                    }}
-                    className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs transition-colors shadow-lg cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <span>Schedule 1-on-1 Guided Deep Dive</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                  <button
-                    onClick={() => setTourVideoModalOpen(false)}
-                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-colors border border-slate-700 cursor-pointer"
-                  >
-                    Close Preview
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
 
@@ -1623,51 +96,18 @@ export default function Landingpage() {
    ========================================================================= */
 
 interface HomeViewProps {
-  setCurrentPage: (page: PageView) => void;
   openModal: (prodName?: string) => void;
   openTourModal: (title?: string) => void;
-  previewTab: Exclude<PageView, "home">;
-  setPreviewTab: (tab: Exclude<PageView, "home">) => void;
-  // Interactive Console Simulator Props
-  precisionOee: number;
-  precisionScrap: number;
-  precisionToolLife: number;
-  simulatePrecisionOptim: () => void;
-  aeroFairPassed: boolean;
-  aeroToleranceOffset: string;
-  simulateFairCheck: () => void;
-  hrmsPunches: number;
-  hrmsSyncPulse: boolean;
-  simulateBiometricSync: () => void;
-  staffingMatchScore: number;
-  staffingBenchCount: number;
-  simulateAiCandidateMatch: () => void;
+  previewTab: PreviewTab;
+  setPreviewTab: (tab: PreviewTab) => void;
 }
 
 function HomeView({
-  setCurrentPage,
   openModal,
   openTourModal,
   previewTab,
   setPreviewTab,
-  precisionOee,
-  precisionScrap,
-  precisionToolLife,
-  simulatePrecisionOptim,
-  aeroFairPassed,
-  aeroToleranceOffset,
-  simulateFairCheck,
-  hrmsPunches,
-  hrmsSyncPulse,
-  simulateBiometricSync,
-  staffingMatchScore,
-  staffingBenchCount,
-  simulateAiCandidateMatch,
 }: HomeViewProps) {
-  const scrollToHomeSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <main>
       {/* HERO: see home-hero.tsx */}
@@ -1680,18 +120,14 @@ function HomeView({
       {/* =========================================================================
          Product Ecosystem
          ========================================================================= */}
-      <Products
-        setCurrentPage={setCurrentPage}
-        scrollToSection={scrollToHomeSection}
-        openModal={openModal}
-      />
+      <Products openModal={openModal} />
 
       {/* <Modules /> */}
 
       {/* =========================================================================
          Solutions by Industry / Business Need
          ========================================================================= */}
-      <Sectors setCurrentPage={setCurrentPage} openModal={openModal} />
+      <Sectors openModal={openModal} />
 
       <Rollout onTalk={() => openModal()} />
 
@@ -1703,7 +139,7 @@ function HomeView({
       {/* =========================================================================
          SYNAX AI — INTELLIGENT ENTERPRISE ASSISTANT
          ========================================================================= */}
-      <section id="synax-ai" className="py-20 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
+      <section id="synax-ai" className="scroll-mt-20 py-20 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
         {/* Ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
@@ -1749,7 +185,7 @@ function HomeView({
                   icon: <ShieldCheck className="w-4 h-4" />,
                   color: "text-orange-200 bg-orange-400/10 border-orange-400/20",
                   title: "Compliance & Audit Readiness",
-                  desc: "Instantly surface AS9100D audit trails, FAIR document status, ITAR access logs, and calibration expiry alerts on demand.",
+                  desc: "Surface FAIR register status, certificates of conformance, shop-floor quality exceptions and calibration expiry alerts on demand. Agents propose; an approver decides.",
                 },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.07] transition-colors">
@@ -1876,7 +312,7 @@ function HomeView({
       {/* =========================================================================
           WHY SYNAX
          ========================================================================= */}
-      <Comparison onBookDemo={() => openModal()} onSeeProducts={() => scrollToHomeSection("products")} />
+      <Comparison onBookDemo={() => openModal()} onSeeProducts={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} />
 
 
        {/* Interactive Platform Console */}
@@ -1887,7 +323,7 @@ function HomeView({
                 See Synax in Action
               </h2>
               <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-                Interact with live telemetry feeds, compliance dashboards, and AI-powered workflows across all four enterprise modules.
+                Switch between products to see how each one reads: where the work is in its flow, what needs attention, and the records behind it. Figures shown are sample data.
               </p>
             </div>
             <div>
@@ -1912,7 +348,7 @@ function HomeView({
                         : "text-slate-400 hover:text-white"
                     }`}
                   >
-                    Precision ERP
+                    Manufacturing ERP
                   </button>
                   <button
                     onClick={() => setPreviewTab("aerospace")}
@@ -1922,7 +358,7 @@ function HomeView({
                         : "text-slate-400 hover:text-white"
                     }`}
                   >
-                    Aerospace ERP
+                    Aerospace &amp; Defence
                   </button>
                   <button
                     onClick={() => setPreviewTab("hrms")}
@@ -1932,7 +368,7 @@ function HomeView({
                         : "text-slate-400 hover:text-white"
                     }`}
                   >
-                    Synax HRMS
+                    HRMS
                   </button>
                   <button
                     onClick={() => setPreviewTab("staffing")}
@@ -1942,352 +378,12 @@ function HomeView({
                         : "text-slate-400 hover:text-white"
                     }`}
                   >
-                    IT Staffing VMS
+                    Staffing
                   </button>
                 </div>
               </div>
 
-              {/* 16:9 Aspect Ratio Display Viewport */}
-              <div className="w-full bg-white rounded-b-2xl border border-slate-200 border-t-0 p-3 sm:p-5 shadow-2xl relative overflow-hidden flex flex-col justify-between xl:aspect-[2/1]">
-                {/* -------------------------------------------------------------
-                  TAB 1: PRECISION MANUFACTURING SIMULATION
-                  ------------------------------------------------------------- */}
-                {previewTab === "precision" && (
-                  <div className="h-full flex flex-col justify-between space-y-4 animate-in fade-in duration-200">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">
-                          Live Telemetry • CNC Machine IoT Feed
-                        </span>
-                        <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
-                          5-Axis Machine Loading, Spindle Telemetry & Capacity Dispatch
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={simulatePrecisionOptim}
-                          className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 font-semibold text-[11px] hover:bg-emerald-100 border border-emerald-200 cursor-pointer"
-                        >
-                          Simulate Tool Swap &rarr;
-                        </button>
-                        <button
-                          onClick={() => setCurrentPage("precision")}
-                          className="text-xs text-emerald-700 hover:underline flex items-center gap-1 font-bold"
-                        >
-                          <span>Full Page</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Shop OEE Index</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          {precisionOee}%
-                        </div>
-                        <div className="text-[10px] text-emerald-600 font-semibold mt-0.5 flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                          Mazak 5-Axis #01 Active
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Scrap / Defect Rate</div>
-                        <div className="text-base sm:text-lg font-extrabold text-emerald-700 mt-0.5">
-                          {precisionScrap}%
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">Target: &lt; 0.25%</div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Endmill Tool Life</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          {precisionToolLife}% Rem.
-                        </div>
-                        <div className="text-[10px] text-blue-900 font-semibold mt-0.5">
-                          Carbide 12mm 4-Flute
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Work Order Queue</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          Job #PM-8092
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">48 / 50 Pcs Complete</div>
-                      </div>
-                    </div>
-
-                    <div className="p-3 bg-slate-900 text-white rounded-xl text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-sm">
-                      <div className="flex items-center gap-2">
-                        <Factory className="w-4 h-4 text-emerald-400 shrink-0" />
-                        <span>
-                          Material Heat #882-X9 Titanium Ingot attached to Job Traveler #PM-8092
-                        </span>
-                      </div>
-                      <span className="font-mono text-[11px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
-                        CAD/CAM SYNCED
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* -------------------------------------------------------------
-                  TAB 2: AEROSPACE & DEFENCE SIMULATION
-                  ------------------------------------------------------------- */}
-                {previewTab === "aerospace" && (
-                  <div className="h-full flex flex-col justify-between space-y-4 animate-in fade-in duration-200">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-900 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                          AS9100 Rev D & ITAR Enforced
-                        </span>
-                        <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
-                          AS9102 FAIR Generator & CMM Quality Verification Gate
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={simulateFairCheck}
-                          className="px-2.5 py-1 rounded-lg bg-slate-100 text-blue-900 font-semibold text-[11px] hover:bg-slate-200 border border-slate-300 cursor-pointer"
-                        >
-                          Trigger CMM Scan &rarr;
-                        </button>
-                        <button
-                          onClick={() => setCurrentPage("aerospace")}
-                          className="text-xs text-blue-900 hover:underline flex items-center gap-1 font-bold"
-                        >
-                          <span>Full Page</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">AS9102 FAIR Form 3</div>
-                        <div className="text-base sm:text-lg font-extrabold text-blue-900 mt-0.5">
-                          {aeroFairPassed ? "100% Passed" : "Pending"}
-                        </div>
-                        <div className="text-[10px] text-emerald-600 font-semibold mt-0.5">
-                          Zeiss CMM Verified
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Bore Tolerance Offset</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          {aeroToleranceOffset}
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">Limit: ±0.0050 mm</div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">ITAR Access Control</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          Active Vault
-                        </div>
-                        <div className="text-[10px] text-blue-900 font-semibold mt-0.5">
-                          US-Person RBAC Locked
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">NADCAP Plating Spec</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          MIL-A-8625
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">Cert #ND-9921 Linked</div>
-                      </div>
-                    </div>
-
-                    <div className="p-3 bg-slate-900 text-white rounded-xl text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-sm">
-                      <div className="flex items-center gap-2">
-                        <Lock className="w-4 h-4 text-orange-300 shrink-0" />
-                        <span>
-                          Aerospace Defense Cryptographic Traveler: Subassembly #AD-9041 ready for final
-                          release
-                        </span>
-                      </div>
-                      <span className="font-mono text-[11px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-800">
-                        ZERO DEFECTS
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* -------------------------------------------------------------
-                  TAB 3: HRMS PLATFORM SIMULATION
-                  ------------------------------------------------------------- */}
-                {previewTab === "hrms" && (
-                  <div className="h-full flex flex-col justify-between space-y-4 animate-in fade-in duration-200">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-blue-900 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                          Global HCM • Biometric IoT Gateway
-                        </span>
-                        <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
-                          Biometric Turnstile Hardware Sync & Plant Break-Pass Monitor
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={simulateBiometricSync}
-                          className="px-2.5 py-1 rounded-lg bg-slate-100 text-blue-900 font-semibold text-[11px] hover:bg-slate-200 border border-slate-300 cursor-pointer"
-                        >
-                          Punch Simulator &rarr;
-                        </button>
-                        <button
-                          onClick={() => setCurrentPage("hrms")}
-                          className="text-xs text-blue-900 hover:underline flex items-center gap-1 font-bold"
-                        >
-                          <span>Full Page</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Biometric Punches</div>
-                        <div
-                          className={`text-base sm:text-lg font-extrabold text-slate-900 mt-0.5 transition-all ${
-                            hrmsSyncPulse ? "text-blue-900 scale-105" : ""
-                          }`}
-                        >
-                          {hrmsPunches} On-Floor
-                        </div>
-                        <div className="text-[10px] text-emerald-600 font-semibold mt-0.5 flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                          ZKTeco Turnstile Online
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Plant Break Passes</div>
-                        <div className="text-base sm:text-lg font-extrabold text-blue-900 mt-0.5">
-                          12 Active
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">Shift Alpha Nominal</div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Monthly Payroll Run</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          &lt; 52 Sec
-                        </div>
-                        <div className="text-[10px] text-emerald-600 font-semibold mt-0.5">
-                          Tax & PF Automated
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Skill Cert Matrix</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          100% Verified
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">0 Expired Licenses</div>
-                      </div>
-                    </div>
-
-                    <div className="p-3 bg-slate-900 text-white rounded-xl text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-sm">
-                      <div className="flex items-center gap-2">
-                        <Building2 className="w-4 h-4 text-orange-300 shrink-0" />
-                        <span>
-                          Plant Shift Attendance synced directly with CNC Operator Labor Accounting
-                        </span>
-                      </div>
-                      <span className="font-mono text-[11px] text-slate-300 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">
-                        REAL-TIME SYNC
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* -------------------------------------------------------------
-                  TAB 4: IT STAFFING VMS SIMULATION
-                  ------------------------------------------------------------- */}
-                {previewTab === "staffing" && (
-                  <div className="h-full flex flex-col justify-between space-y-4 animate-in fade-in duration-200">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-orange-700 bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200">
-                          AI Sourcing & Vendor Management
-                        </span>
-                        <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-1">
-                          AI Talent Semantic Parser & Bench Utilization Portal
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={simulateAiCandidateMatch}
-                          className="px-2.5 py-1 rounded-lg bg-orange-50 text-orange-700 font-semibold text-[11px] hover:bg-orange-100 border border-orange-300 cursor-pointer"
-                        >
-                          Run Semantic AI Match &rarr;
-                        </button>
-                        <button
-                          onClick={() => setCurrentPage("staffing")}
-                          className="text-xs text-orange-700 hover:underline flex items-center gap-1 font-bold"
-                        >
-                          <span>Full Page</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Candidate Bench</div>
-                        <div className="text-base sm:text-lg font-extrabold text-orange-700 mt-0.5">
-                          {staffingBenchCount} Techs
-                        </div>
-                        <div className="text-[10px] text-emerald-600 font-semibold mt-0.5">
-                          Ready for Deployment
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">AI Match Score</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          {staffingMatchScore}%
-                        </div>
-                        <div className="text-[10px] text-orange-700 font-semibold mt-0.5">
-                          Senior Avionics Dev
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">Avg Placement Time</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          3.8 Days
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">3.5x Market Speed</div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                        <div className="text-[11px] text-slate-500 font-medium">SOW Client Billing</div>
-                        <div className="text-base sm:text-lg font-extrabold text-slate-900 mt-0.5">
-                          100% Auto
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">18 VMS Vendors Synced</div>
-                      </div>
-                    </div>
-
-                    <div className="p-3 bg-slate-900 text-white rounded-xl text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-sm">
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-orange-300 shrink-0" />
-                        <span>
-                          Client Requisition #CR-402 matched with 3 certified defense systems engineers
-                        </span>
-                      </div>
-                      <span className="font-mono text-[11px] text-orange-300 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-700">
-                        AI PIPELINE ARMED
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <ConsoleViewport tab={previewTab} />
             </div>
           </section>
 
@@ -2493,63 +589,38 @@ function HomeView({
       {/* =========================================================================
          SECURITY & ARCHITECTURE PILLARS
          ========================================================================= */}
-      <section id="security" className="py-18 bg-white border-y border-slate-200">
+      <section id="security" className="scroll-mt-20 py-18 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
-            <SectionTag>Zero-Trust Architecture</SectionTag>
-            <h2 className="text-2xl font-extrabold text-slate-900">
-              Enterprise Security & Scalability
-            </h2>
+            <SectionTag>Security &amp; control</SectionTag>
+            <h2 className="text-2xl font-extrabold text-slate-900">Audit-ready by design, not by report.</h2>
             <p className="text-xs text-slate-600">
-              Built to withstand stringent defense audits, data sovereignty regulations, and 24/7
-              manufacturing uptimes.
+              Each company runs in its own workspace, and every material change leaves a record.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-              <Lock className="w-6 h-6 text-blue-900" />
-              <h3 className="text-sm font-bold text-slate-900">256-bit AES Encryption</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Complete data encryption at rest and in transit with isolated cloud multi-tenancy and
-                tamper-proof keys.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-              <Server className="w-6 h-6 text-orange-700" />
-              <h3 className="text-sm font-bold text-slate-900">Open REST & Webhook APIs</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Direct integration with CAD/CAM packages, CMM inspection arms, SAP, and biometric
-                IoT hardware.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-              <Activity className="w-6 h-6 text-emerald-600" />
-              <h3 className="text-sm font-bold text-slate-900">99.99% Guaranteed SLA</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Multi-region fault-tolerant infrastructure monitored 24/7 by Senwell Group systems
-                engineers.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-              <FileCheck className="w-6 h-6 text-blue-900" />
-              <h3 className="text-sm font-bold text-slate-900">Cryptographic Audit Trails</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Immutable, timestamped logs capturing drawing approvals, shop floor overrides, and
-                payroll authorizations.
-              </p>
-            </div>
+            {LIVE_SECURITY.map((item) => (
+              <div key={item.title} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
+                <ModuleIcon name={item.icon} className="w-6 h-6 text-blue-900" />
+                <h3 className="text-sm font-bold text-slate-900">{item.title}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{item.copy}</p>
+              </div>
+            ))}
           </div>
+
+          <p className="mt-8 text-center">
+            <Link href="/security" className="text-xs font-bold text-blue-900 hover:underline">
+              Read more about security &amp; trust &rarr;
+            </Link>
+          </p>
         </div>
       </section>
 
          {/* =========================================================================
          SENWELL GROUP PARENTAGE & HERITAGE
          ========================================================================= */}
-      <section id="senwell" className="py-16 bg-white border-y border-slate-200">
+      <section id="senwell" className="scroll-mt-20 py-16 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="space-y-3 text-center lg:text-left max-w-xl">
@@ -2566,22 +637,12 @@ function HomeView({
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 w-full lg:w-auto">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
-                <div className="text-base sm:text-lg font-extrabold text-slate-900">AS9100D</div>
-                <div className="text-[10px] text-slate-500 font-medium mt-1">Quality Certified</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
-                <div className="text-base sm:text-lg font-extrabold text-slate-900">ITAR Ready</div>
-                <div className="text-[10px] text-slate-500 font-medium mt-1">Defense Vault</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
-                <div className="text-base sm:text-lg font-extrabold text-slate-900">ISO 9001</div>
-                <div className="text-[10px] text-slate-500 font-medium mt-1">Global Standard</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
-                <div className="text-base sm:text-lg font-extrabold text-slate-900">99.99%</div>
-                <div className="text-[10px] text-slate-500 font-medium mt-1">Enterprise SLA</div>
-              </div>
+              {LIVE_CLIENTS.slice(1).map((name) => (
+                <div key={name} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
+                  <div className="text-sm sm:text-base font-extrabold text-slate-900">{name}</div>
+                  <div className="text-[10px] text-slate-500 font-medium mt-1">Running on Synax</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -2594,11 +655,10 @@ function HomeView({
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <SectionTag>Senwell Group Enterprise Software</SectionTag>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Ready to Calibrate Your Operations with Synax?
+            See your own shop floor in Synax.
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Join tier-1 precision manufacturers, defense machine shops, and fast-scaling IT
-            enterprises that trust Synax for compliance, velocity, and zero-defect execution.
+            A 30-minute walkthrough with your parts, your challans and your machines.
           </p>
 
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -2608,252 +668,15 @@ function HomeView({
             >
               Schedule Solution Architecture Consultation &rarr;
             </button>
-            <button
-              onClick={() => setCurrentPage("precision")}
+            <Link
+              href={hrefFor("precision")}
               className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-xl text-xs border border-slate-300 transition-colors cursor-pointer"
             >
               Explore Precision Manufacturing
-            </button>
+            </Link>
           </div>
         </div>
       </section>
     </main>
-  );
-}
-
-/* =========================================================================
-   2. REUSABLE PRODUCT DETAIL VIEW (FOR ALL 4 MODULES)
-   ========================================================================= */
-
-interface ProductDetailViewProps {
-  meta: ProductMeta;
-  setCurrentPage: (page: PageView) => void;
-  openModal: (prodName?: string) => void;
-  openTourModal: (title?: string) => void;
-}
-
-function ProductDetailView({ meta, setCurrentPage, openModal, openTourModal }: ProductDetailViewProps) {
-  const IconComponent = meta.icon;
-
-  return (
-    <div className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-14 animate-in fade-in duration-200">
-      {/* Top Breadcrumb Nav */}
-      <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-        <button
-          onClick={() => setCurrentPage("home")}
-          className="flex items-center gap-1.5 text-xs font-bold text-blue-900 hover:underline cursor-pointer"
-        >
-          <ChevronLeft className="w-4 h-4" />
-          <span>Back to Synax Enterprise Overview</span>
-        </button>
-        <span className="text-[11px] font-mono text-slate-400">
-          synax.senwellgroup.com/{meta.id}
-        </span>
-      </div>
-
-      {/* Hero Header */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div className="space-y-4">
-          <div className="inline-flex items-center gap-2">
-            <span
-              className={`text-xs font-bold px-3 py-1 rounded-full border ${meta.accentBg} ${meta.accentText} ${meta.accentBorder}`}
-            >
-              {meta.badge}
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
-            {meta.title}
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-            {meta.description}
-          </p>
-
-          <div className="pt-2 flex flex-wrap gap-3">
-            <button
-              onClick={() => openTourModal(`${meta.title} Tour`)}
-              className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <Play className="w-4 h-4 fill-white" />
-              <span>Take Tour</span>
-            </button>
-            <button
-              onClick={() => openModal(meta.title)}
-              className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-blue-800 text-white font-semibold text-xs shadow-md transition-all flex items-center gap-2 cursor-pointer"
-            >
-              <span>Schedule {meta.title.split("—")[1] || "Platform"} Demo</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-            <button
-              onClick={() => openModal(meta.title)}
-              className="px-5 py-3 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold text-xs hover:bg-slate-50 transition-colors cursor-pointer"
-            >
-              Download Tech Spec
-            </button>
-          </div>
-        </div>
-
-        {/* 16:9 Aspect Ratio Media Viewport */}
-        <div className="aspect-[16/9] bg-white rounded-2xl border border-slate-200 p-6 shadow-xl flex flex-col justify-between relative overflow-hidden group">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div className="flex items-center gap-2">
-              <IconComponent className={`w-5 h-5 ${meta.accentText}`} />
-              <span className="text-xs font-bold text-slate-900">Live Operating Module</span>
-            </div>
-            <span
-              className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${meta.accentBg} ${meta.accentText} ${meta.accentBorder}`}
-            >
-              {meta.heroStat.label}: {meta.heroStat.value}
-            </span>
-          </div>
-
-          <div className="space-y-2.5 my-auto">
-            {meta.highlights.slice(0, 3).map((item, idx) => (
-              <div
-                key={idx}
-                className="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-xs"
-              >
-                <span className="text-slate-600 truncate mr-2">{item}</span>
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-              </div>
-            ))}
-          </div>
-
-          <div className="text-[11px] text-slate-500 border-t border-slate-100 pt-2.5 flex items-center justify-between">
-            <span>Senwell Group Certified Architecture</span>
-            <button
-              onClick={() => openTourModal(`${meta.title} Tour`)}
-              className="inline-flex items-center gap-1 font-semibold text-emerald-600 hover:text-emerald-700 transition-colors cursor-pointer"
-            >
-              <Play className="w-3 h-3 fill-emerald-600" />
-              <span>Watch Demo Video</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Feature Deep Dive Grid / Core Modules & Capabilities */}
-      <div className="space-y-8 pt-6">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold">
-            {meta.moduleSection?.kicker ? meta.moduleSection.kicker : "Platform Architecture"}
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-            Core Modules & Capabilities
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500">
-            {meta.moduleSection?.subtitle || "Engineered to streamline daily operations and pass rigorous compliance reviews."}
-          </p>
-          {/* <div className="pt-1 flex items-center justify-center">
-            <button
-              onClick={() => openTourModal(`${meta.title} Tour`)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-md transition-all cursor-pointer"
-            >
-              <Play className="w-4 h-4 fill-white" />
-              <span>Take Tour</span>
-            </button>
-          </div> */}
-        </div>
-
-        {meta.moduleSection ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {meta.moduleSection.groups.map((group) => (
-              <div
-                key={group.id}
-                className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-                    <div className={`p-2 rounded-xl ${meta.accentBg} ${meta.accentText}`}>
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-slate-900">{group.title}</h3>
-                      <p className="text-[11px] text-slate-400">Core Subsystem</p>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {group.description}
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                      Workflows & Capabilities
-                    </span>
-                    <ul className="space-y-2">
-                      {group.items.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                          <Check className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                          <span className="font-medium">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-6 mt-6 border-t border-slate-100">
-                  <button
-                    onClick={() => openTourModal(`${group.title} Demo Video`)}
-                    className="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 border border-slate-200 hover:border-emerald-200 text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    <span>Watch {group.title} Demo</span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {meta.capabilities.map((cap, i) => (
-              <div
-                key={i}
-                className="bg-white p-6 rounded-2xl border border-slate-200 space-y-2.5 shadow-xs hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-center justify-between">
-                  <div
-                    className={`w-7 h-7 rounded-lg ${meta.accentBg} ${meta.accentText} flex items-center justify-center font-bold text-xs`}
-                  >
-                    {i + 1}
-                  </div>
-                  {cap.metric && (
-                    <span className="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
-                      {cap.metric}
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-sm font-bold text-slate-900">{cap.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{cap.description}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Dedicated View CTA Banner */}
-      <div className="p-8 rounded-3xl bg-slate-950 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
-        <div className="space-y-1 text-center md:text-left">
-          <h3 className="text-xl font-bold">Schedule a Demonstration of {meta.title}</h3>
-          <p className="text-xs text-slate-400">
-            Speak directly with a Senwell Group systems engineer to assess plant integration.
-          </p>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-3">
-          {/* <button
-            onClick={() => openTourModal(`${meta.title} Product Tour`)}
-            className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors shrink-0 shadow-md cursor-pointer flex items-center gap-2"
-          >
-            <Play className="w-3.5 h-3.5 fill-white" />
-            <span>Take Tour</span>
-          </button> */}
-          <button
-            onClick={() => openModal(meta.title)}
-            className="px-6 py-3 rounded-xl bg-blue-900 hover:bg-blue-800 text-white font-semibold text-xs transition-colors shrink-0 shadow-md cursor-pointer"
-          >
-            Book Technical Walkthrough
-          </button>
-        </div>
-      </div>
-    </div>
   );
 }

@@ -40,8 +40,8 @@ const PILLARS: Pillar[] = [
     tag: "Precision & Compliance",
     title: "Industry-Focused Solutions",
     subtitle: "Domain-native workflows instead of generic ERP workarounds",
-    body: "We reject one-size-fits-all software. Every module in Synax is calibrated for the exact operational realities of high-stakes industries — from AS9100 Rev D audit readiness and ITAR defense data vaulting in aerospace, to multi-axis CNC machine loading and First Article Inspection Reports (AS9102 FAIR) on precision shop floors.",
-    chips: ["AS9100D & ITAR Native", "Zeiss/Hexagon CMM Sync"],
+    body: "We reject one-size-fits-all software. Synax is built around how a machine shop actually works: customer-supplied material tracked by challan and Material ID, route cards confirmed from the machine, AS9100D QMS controls at the quality checkpoints, and First Article Inspection records in the same flow.",
+    chips: ["AS9100D QMS Controls", "FAIR Register & COC"],
     tone: "navy",
   },
   {
@@ -66,9 +66,9 @@ const PILLARS: Pillar[] = [
     Icon: Cpu,
     tag: "Modern Tech Architecture",
     title: "Technology-Driven Transformation",
-    subtitle: "Cloud-native scale, IoT sensor telematics & immutable security",
-    body: "Replacing clunky legacy on-premise architectures with modern, cloud-native engineering. Synax combines edge CNC machine connectivity, CMM inspection interfaces, automated cryptographic audit trails, and bank-grade 256-bit AES encryption to deliver resilient, continuous digital transformation.",
-    chips: ["Direct CNC IoT Machine Data", "256-bit AES & Immutable Logs"],
+    subtitle: "Cloud-native scale, machine connectivity & audit-ready security",
+    body: "Replacing clunky legacy on-premise architectures with modern, cloud-native engineering. Synax connects CNC machines through the OEM connection or open FOCAS, runs every company in its own isolated workspace, checks postings on the server, and keeps an audit history of material changes.",
+    chips: ["CNC Machine Data (OEM / FOCAS)", "Audit History & Isolated Workspaces"],
     tone: "navy",
   },
 ];
@@ -164,7 +164,7 @@ export function Purpose({ onExplore }: { onExplore: () => void }) {
     <section
       id="purpose"
       aria-labelledby="purpose-heading"
-      className="border-t border-slate-200/80 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/70 py-20"
+      className="scroll-mt-20 border-t border-slate-200/80 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/70 py-20"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -221,7 +221,7 @@ export function Purpose({ onExplore }: { onExplore: () => void }) {
             </h3>
             <p className="text-sm leading-relaxed text-slate-600">
               Every tier of Synax works in synchrony: from hiring and biometric clock-in to CNC
-              machining and AS9100 aerospace release.
+              machining and AS9100D-controlled release.
             </p>
           </div>
           <button

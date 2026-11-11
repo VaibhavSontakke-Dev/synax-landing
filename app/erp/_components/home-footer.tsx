@@ -17,7 +17,10 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+import Link from "next/link";
 import { SectionTag } from "./section-tag";
+import { useDemo } from "./demo-provider";
+import { hrefFor, type ProductKey } from "../_data/products";
 
 /**
  * Landing-page footer.
@@ -28,32 +31,29 @@ import { SectionTag } from "./section-tag";
  * palette and product icon tiles as the header menu and the hero.
  */
 
-type FooterPage = "home" | "precision" | "hrms" | "staffing";
-
 interface FooterProduct {
   label: string;
   Icon: LucideIcon;
   /** Dark-surface variant of the colours the Products menu uses for this product. */
   tile: string;
-  page?: Exclude<FooterPage, "home">;
-  section?: string;
+  key: ProductKey;
 }
 
 // Same destinations as the header's Products menu.
 const PRODUCTS: FooterProduct[] = [
-  { label: "Manufacturing ERP", Icon: Factory, tile: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20", page: "precision" },
-  { label: "IT Services & Project ERP", Icon: Briefcase, tile: "bg-white/5 text-slate-200 border-white/10", section: "stack-it" },
-  { label: "HRMS", Icon: Building2, tile: "bg-white/5 text-slate-200 border-white/10", page: "hrms" },
-  { label: "Staffing & Resource Management", Icon: Users, tile: "bg-orange-400/10 text-orange-300 border-orange-400/20", page: "staffing" },
-  { label: "Shop Floor & Machine Monitoring", Icon: Activity, tile: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20", section: "stack-manufacturing" },
-  { label: "AI & Business Intelligence", Icon: Bot, tile: "bg-orange-400/10 text-orange-300 border-orange-400/20", section: "synax-ai" },
+  { label: "Manufacturing ERP", Icon: Factory, tile: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20", key: "precision" },
+  { label: "IT Services & Project ERP", Icon: Briefcase, tile: "bg-white/5 text-slate-200 border-white/10", key: "it" },
+  { label: "HRMS", Icon: Building2, tile: "bg-white/5 text-slate-200 border-white/10", key: "hrms" },
+  { label: "Staffing & Resource Management", Icon: Users, tile: "bg-orange-400/10 text-orange-300 border-orange-400/20", key: "staffing" },
+  { label: "Shop Floor & Machine Monitoring", Icon: Activity, tile: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20", key: "shopfloor" },
+  { label: "AI & Business Intelligence", Icon: Bot, tile: "bg-orange-400/10 text-orange-300 border-orange-400/20", key: "ai" },
 ];
 
 const PLATFORM_LINKS = [
-  { label: "Solutions", section: "solutions" },
-  { label: "Why Synax", section: "comparison" },
-  { label: "Synax AI", section: "synax-ai" },
-  { label: "Security & Trust", section: "security" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "Why Synax", href: "/why-synax" },
+  { label: "Synax AI", href: hrefFor("ai") },
+  { label: "Security & Trust", href: "/security" },
 ];
 
 const GROUP_LINKS = [
@@ -63,32 +63,24 @@ const GROUP_LINKS = [
 ];
 
 const COMPLIANCE = [
-  { Icon: ShieldCheck, label: "Supports AS9100 Rev D QMS" },
-  { Icon: Lock, label: "ITAR / EAR access controls" },
-  { Icon: CheckCircle2, label: "ISO 9001:2015 workflows" },
-  { Icon: Award, label: "CMMC 2.0 practice support" },
+  { Icon: ShieldCheck, label: "AS9100D QMS controls" },
+  { Icon: CheckCircle2, label: "GST e-invoice & e-way bill" },
+  { Icon: Award, label: "Works with Tally" },
+  { Icon: Lock, label: "DPDP Act, 2023 privacy policy" },
 ];
+
+/** A fixed year: new Date() cannot be read while prerendering a client component. Update each January. */
+const COPYRIGHT_YEAR = 2026;
 
 const linkClass =
   "rounded-sm text-sm text-slate-300 transition-colors hover:text-orange-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300";
 
 const columnHeading = "mb-4 text-xs font-bold tracking-[0.14em] text-orange-300 uppercase";
 
-export function Footer({
-  setCurrentPage,
-  goToSection,
-  onScheduleDemo,
-  onWatchOverview,
-}: {
-  setCurrentPage: (page: FooterPage) => void;
-  goToSection: (sectionId: string) => void;
-  onScheduleDemo: () => void;
-  onWatchOverview: () => void;
-}) {
-  const openProduct = (p: FooterProduct) => {
-    if (p.page) setCurrentPage(p.page);
-    else if (p.section) goToSection(p.section);
-  };
+export function Footer() {
+  const { openDemo, openTour } = useDemo();
+  const onScheduleDemo = () => openDemo();
+  const onWatchOverview = () => openTour("Synax Platform Overview");
 
   return (
     <footer className="relative isolate overflow-hidden bg-slate-950 text-slate-300">
@@ -141,15 +133,14 @@ export function Footer({
         <div className="mt-14 grid gap-10 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <button
-              type="button"
-              onClick={() => setCurrentPage("home")}
+            <Link
+              href="/erp"
               aria-label="Synax by Senwell — home"
-              className="inline-block cursor-pointer rounded-lg bg-white px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
+              className="inline-block rounded-lg bg-white px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/synax_logo.png" alt="" className="h-8 w-auto object-contain" />
-            </button>
+            </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-300">
               Synax is a unified business suite by <strong className="text-white">Senwell Group</strong>: manufacturing,
               IT services and projects, HRMS, staffing, shop-floor monitoring and AI in one connected,
@@ -182,10 +173,9 @@ export function Footer({
             <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
               {PRODUCTS.map((p) => (
                 <li key={p.label}>
-                  <button
-                    type="button"
-                    onClick={() => openProduct(p)}
-                    className="group flex w-full cursor-pointer items-center gap-3 rounded-md text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
+                  <Link
+                    href={hrefFor(p.key)}
+                    className="group flex w-full items-center gap-3 rounded-md text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
                   >
                     <span className={`flex size-8 shrink-0 items-center justify-center rounded-lg border ${p.tile}`}>
                       <p.Icon className="size-4" aria-hidden="true" />
@@ -193,7 +183,7 @@ export function Footer({
                     <span className="text-sm leading-snug text-slate-300 transition-colors group-hover:text-orange-300">
                       {p.label}
                     </span>
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -204,10 +194,10 @@ export function Footer({
             <h3 className={columnHeading}>Platform</h3>
             <ul className="space-y-3">
               {PLATFORM_LINKS.map((l) => (
-                <li key={l.section}>
-                  <button type="button" onClick={() => goToSection(l.section)} className={`${linkClass} cursor-pointer text-left`}>
+                <li key={l.label}>
+                  <Link href={l.href} className={linkClass}>
                     {l.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -218,9 +208,9 @@ export function Footer({
             <h3 className={columnHeading}>Senwell Group</h3>
             <ul className="space-y-3">
               <li>
-                <button type="button" onClick={() => goToSection("senwell")} className={`${linkClass} cursor-pointer text-left`}>
+                <Link href="/erp#senwell" className={linkClass}>
                   About Senwell
-                </button>
+                </Link>
               </li>
               {GROUP_LINKS.map((l) => (
                 <li key={l.label}>
@@ -258,7 +248,7 @@ export function Footer({
 
         {/* 4. Legal bar */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-400 sm:flex-row">
-          <p>© {new Date().getFullYear()} Synax by Senwell Group. All rights reserved.</p>
+          <p>© {COPYRIGHT_YEAR} Synax by Senwell Group. All rights reserved.</p>
           <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <a
               href="https://synax.senwellgroup.com/privacy"
@@ -276,13 +266,12 @@ export function Footer({
             >
               Terms of Service
             </a>
-            <button
-              type="button"
-              onClick={() => goToSection("security")}
-              className="cursor-pointer rounded-sm transition-colors hover:text-orange-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
+            <Link
+              href="/security"
+              className="rounded-sm transition-colors hover:text-orange-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
             >
               Security
-            </button>
+            </Link>
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
