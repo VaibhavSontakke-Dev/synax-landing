@@ -140,7 +140,7 @@ export const INDUSTRY_PAGES: IndustryPage[] = [
     products: ["it", "staffing", "hrms"],
     modulesFrom: "it",
     faq: [Q_ONBOARD, Q_AI],
-    demoName: "IT Services & Project ERP",
+    demoName: "Work & Delivery Management",
   },
   {
     slug: "automotive-heavy-industrial",

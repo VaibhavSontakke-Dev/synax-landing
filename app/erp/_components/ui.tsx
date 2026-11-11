@@ -25,12 +25,15 @@ export function Section({
   className = "",
   tone = "light",
   withGrid = true,
+  compact = false,
 }: {
   children: React.ReactNode;
   id?: string;
   className?: string;
   tone?: "light" | "tint" | "dark";
   withGrid?: boolean;
+  /** Less vertical padding (used on the home page). */
+  compact?: boolean;
 }) {
   const tones = {
     light: "bg-erp-surface",
@@ -43,7 +46,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`relative scroll-mt-20 overflow-hidden py-16 sm:py-20 lg:py-28 ${tones[tone]} ${className}`}
+      className={`relative scroll-mt-20 overflow-hidden ${compact ? "py-8 sm:py-10 lg:py-12" : "py-16 sm:py-20 lg:py-28"} ${tones[tone]} ${className}`}
     >
       {withGrid ? (
         <div

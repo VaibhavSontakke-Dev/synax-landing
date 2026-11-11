@@ -37,7 +37,7 @@ const TILES: Record<SolutionKey, string> = {
 // Copy lives in _data/solutions.ts (shared with the /solutions page).
 const SECTORS = SOLUTIONS.map((s) => ({ ...s, Icon: ICONS[s.key], tile: TILES[s.key], page: s.key }));
 
-export function Sectors({ openModal }: { openModal: (productName?: string) => void }) {
+export function Sectors() {
   const [active, setActive] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const sector = SECTORS[active];
@@ -64,7 +64,7 @@ export function Sectors({ openModal }: { openModal: (productName?: string) => vo
     <section
       id="solutions"
       aria-labelledby="solutions-heading"
-      className="mx-auto max-w-7xl scroll-mt-20 border-t border-slate-200/80 px-4 py-20 sm:px-6 lg:px-8"
+      className="mx-auto max-w-7xl scroll-mt-20 border-t border-slate-200/80 px-4 py-10 sm:px-6 sm:py-12 lg:px-8"
     >
       {/* Header */}
       <div className="mx-auto mb-10 max-w-3xl space-y-3 text-center">
@@ -194,13 +194,6 @@ export function Sectors({ openModal }: { openModal: (productName?: string) => vo
 
           {/* Actions */}
           <div className="mt-6 flex flex-wrap gap-3 border-t border-slate-100 pt-5">
-            <button
-              type="button"
-              onClick={() => openModal(sector.demoName)}
-              className="cursor-pointer rounded-lg bg-blue-900 px-5 py-3 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-            >
-              Book Demo
-            </button>
             <Link
               href={hrefFor(sector.page)}
               className="flex items-center gap-1.5 rounded-lg border-2 border-orange-500 bg-transparent px-4 py-[10px] text-xs font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
@@ -214,14 +207,13 @@ export function Sectors({ openModal }: { openModal: (productName?: string) => vo
 
       <p className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-500">
         Your sector is not listed?
-        <button
-          type="button"
-          onClick={() => openModal()}
-          className="inline-flex cursor-pointer items-center gap-1 rounded-sm border-b-2 border-orange-400 font-semibold text-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+        <Link
+          href="/solutions"
+          className="inline-flex items-center gap-1 rounded-sm border-b-2 border-orange-400 font-semibold text-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
         >
-          Talk to us about your process
+          See every solution in detail
           <ArrowRight className="size-3.5 text-orange-500" aria-hidden="true" />
-        </button>
+        </Link>
       </p>
     </section>
   );

@@ -18,7 +18,7 @@ import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, 
  *  - It steps through the products every few seconds until the visitor hovers, focuses or taps one;
  *    it never auto-advances for `prefers-reduced-motion`.
  *
- * `region` values are measured on `hero-dashboard-light.webp` (the original; the page shows its 80%-width copy `hero-dashboard-fit.webp`, same fractions) — re-measure them if the screenshot is
+ * `region` values are measured on `hero-dashboard-overview.webp` (the page shows its squeezed copy `hero-dashboard-overview-fit.webp`, same fractions) — re-measure them if the screenshot is
  * replaced. The state lives here (not in `HomeView`), so only this component re-renders.
  */
 
@@ -27,12 +27,11 @@ const HERO_MIN_HEIGHT = "lg:min-h-[calc(100svh-6.25rem)]";
 const CYCLE_MS = 2800;
 
 /**
- * The screenshot is shown a little taller than its native shape (1918×917 ≈ 2.09:1) by cropping an equal strip off both
- * sides (`object-cover`). `region` values are fractions of the FULL screenshot, so they are re-mapped onto the visible part.
+ * The displayed image is `hero-dashboard-overview-fit.webp` (1748x1045): the full screenshot squeezed ~12.6% in width so the
+ * stage keeps its 1.67:1 shape, with nothing cropped. `region` values are fractions of the screenshot (measured on
+ * `hero-dashboard-overview.webp`, 2000x1045; a uniform squeeze keeps them valid) — re-measure them if the screenshot changes.
  */
-const NATIVE_RATIO = 1918 / 917;
-// The displayed image (hero-dashboard-fit.webp) is the screenshot squeezed to 80% width, so nothing is cropped and the
-// region fractions are unchanged. Make this smaller than NATIVE_RATIO only if you also crop the image with object-cover.
+const NATIVE_RATIO = 1748 / 1045;
 const FRAME_RATIO = NATIVE_RATIO;
 const VISIBLE_W = FRAME_RATIO / NATIVE_RATIO;
 const CROP_X = (1 - VISIBLE_W) / 2;
@@ -58,18 +57,18 @@ const HERO_PRODUCTS: HeroProduct[] = [
     desc: "Planning, procurement, shop-floor, quality & costing",
     Icon: Factory,
     tile: "bg-emerald-50 text-emerald-600",
-    side: "left",
-    slot: 2,
-    region: [0.17, 0.535, 0.47, 0.72],
+    side: "right",
+    slot: 1,
+    region: [0.369, 0.446, 0.586, 0.595],
   },
   {
-    label: "IT Services & Project ERP",
-    desc: "Projects, SOWs, resources, timesheets & billing",
+    label: "Work & Delivery Management",
+    desc: "Work tracker, projects, timesheets & billing",
     Icon: Briefcase,
     tile: "bg-slate-100 text-blue-900",
     side: "left",
-    slot: 1,
-    region: [0.17, 0.33, 0.47, 0.52],
+    slot: 0,
+    region: [0.006, 0.16, 0.134, 0.2],
   },
   {
     label: "HRMS",
@@ -77,8 +76,8 @@ const HERO_PRODUCTS: HeroProduct[] = [
     Icon: Building2,
     tile: "bg-slate-100 text-blue-900",
     side: "right",
-    slot: 1,
-    region: [0.48, 0.33, 0.78, 0.52],
+    slot: 2,
+    region: [0.591, 0.606, 0.807, 0.758],
   },
   {
     label: "Staffing & Resource Management",
@@ -86,8 +85,8 @@ const HERO_PRODUCTS: HeroProduct[] = [
     Icon: Users,
     tile: "bg-orange-50 text-orange-700",
     side: "left",
-    slot: 0,
-    region: [0.01, 0.31, 0.155, 0.36],
+    slot: 1,
+    region: [0.006, 0.236, 0.134, 0.278],
   },
   {
     label: "Shop Floor & Machine Monitoring",
@@ -95,24 +94,24 @@ const HERO_PRODUCTS: HeroProduct[] = [
     Icon: Activity,
     tile: "bg-emerald-50 text-emerald-600",
     side: "right",
-    slot: 2,
-    region: [0.48, 0.535, 0.78, 0.72],
+    slot: 0,
+    region: [0.369, 0.286, 0.586, 0.436],
   },
   {
     label: "AI & Business Intelligence",
     desc: "AI assistance, agents, analytics & reports",
     Icon: Bot,
     tile: "bg-orange-50 text-orange-700",
-    side: "right",
-    slot: 0,
-    region: [0.79, 0.185, 0.99, 0.355],
+    side: "left",
+    slot: 2,
+    region: [0.146, 0.286, 0.363, 0.436],
   },
 ];
 
 const HERO_TICKS = [
-  "Role-based access and audit trail",
-  "Real-time operational visibility",
-  "AI-assisted insights and automation",
+  "AI that proposes, you approve",
+  "Live machine monitoring (OEM or FOCAS)",
+  "Tally and GST built in",
 ];
 
 // Literal class names so Tailwind can see them.
@@ -325,13 +324,13 @@ export function Hero({
             <div className="relative rounded-2xl border border-slate-200 bg-white p-1.5 shadow-[0_22px_44px_-20px_rgba(11,27,51,0.42)]">
               <div ref={imageRef} className="relative overflow-hidden rounded-xl ring-1 ring-slate-900/5">
                 <Image
-                  src="/images/hero-dashboard-fit.webp"
+                  src="/images/hero-dashboard-overview-fit.webp"
                   alt="Synax Enterprise ERP Command Dashboard"
-                  width={1534}
-                  height={917}
+                  width={1748}
+                  height={1045}
                   priority
                   sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 50vw, 100vw"
-                  className="block aspect-[1534/917] w-full object-cover"
+                  className="block aspect-[1748/1045] w-full object-cover"
                   draggable={false}
                 />
                 {/* Spotlight on the active module */}

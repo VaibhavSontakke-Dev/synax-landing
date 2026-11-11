@@ -19,9 +19,11 @@ import { Sectors } from "./home-sectors";
 import { Comparison } from "./home-comparison";
 import Link from "next/link";
 import { ConsoleViewport } from "./console-viewport";
+import { Usp } from "./home-usp";
+import { DemoButton, TourButton } from "./demo-buttons";
+import { hrefFor } from "../_data/products";
 import { SectionTag } from "./section-tag";
 import { useDemo } from "./demo-provider";
-import { hrefFor } from "../_data/products";
 import { LIVE_CLIENTS, LIVE_SECURITY } from "../_data/live";
 import { ModuleIcon } from "./icons";
 
@@ -116,30 +118,33 @@ function HomeView({
         onWatchOverview={() => openTourModal("Synax Platform Overview")}
       />
 
+      {/* USP: AI, live machines, Tally and GST */}
+      <Usp />
+
 
       {/* =========================================================================
          Product Ecosystem
          ========================================================================= */}
-      <Products openModal={openModal} />
+      <Products />
 
       {/* <Modules /> */}
 
       {/* =========================================================================
          Solutions by Industry / Business Need
          ========================================================================= */}
-      <Sectors openModal={openModal} />
+      <Sectors />
 
-      <Rollout onTalk={() => openModal()} />
+      <Rollout />
 
       {/* =========================================================================
          THE LARGER PURPOSE BEHIND THE SYNAX ECOSYSTEM
          ========================================================================= */}
-      <Purpose onExplore={() => openModal("Architecture Consultation")} />
+      <Purpose />
 
       {/* =========================================================================
          SYNAX AI — INTELLIGENT ENTERPRISE ASSISTANT
          ========================================================================= */}
-      <section id="synax-ai" className="scroll-mt-20 py-20 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
+      <section id="synax-ai" className="scroll-mt-20 py-10 sm:py-12 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
         {/* Ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
@@ -297,14 +302,14 @@ function HomeView({
           {/* Bottom CTA */}
           <div className="mt-14 text-center space-y-4">
             <p className="text-xs text-slate-500">Synax AI is included in every enterprise plan — no extra setup, no third-party integrations.</p>
-            <button
-              onClick={() => openModal("Synax AI Enterprise Assistant")}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-orange-50 text-blue-900 font-semibold text-xs transition-all shadow-lg cursor-pointer"
+            <Link
+              href={hrefFor("ai")}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-orange-50 text-blue-900 font-semibold text-xs transition-all shadow-lg"
             >
               <Bot className="w-4 h-4" />
-              <span>See Synax AI in Your Demo</span>
+              <span>Explore AI &amp; Business Intelligence</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -312,11 +317,11 @@ function HomeView({
       {/* =========================================================================
           WHY SYNAX
          ========================================================================= */}
-      <Comparison onBookDemo={() => openModal()} onSeeProducts={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} />
+      <Comparison onSeeProducts={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} />
 
 
        {/* Interactive Platform Console */}
-          <section className="pt-8 pb-10 md:pt-10 md:pb-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <section className="pt-6 pb-8 md:pt-8 md:pb-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-6 space-y-3">
               <SectionTag>Live Platform Preview</SectionTag>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
@@ -392,7 +397,7 @@ function HomeView({
          CUSTOMER VOICES & VERIFIED TESTIMONIALS (4 DOMAINS)
          ========================================================================= */}
       {SHOW_TESTIMONIALS && (
-      <section className="py-20 bg-slate-50 border-t border-slate-200">
+      <section className="py-12 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
             <SectionTag>Operational Proof</SectionTag>
@@ -493,7 +498,7 @@ function HomeView({
       {/* =========================================================================
          TRUSTED ENTERPRISE CLIENTS & ECOSYSTEM PARTNERS
          ========================================================================= */}
-      <section className="py-14 sm:py-16 bg-white border-t border-slate-200">
+      <section className="py-10 sm:py-12 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10 space-y-2">
             <SectionTag>Running on Synax</SectionTag>
@@ -589,7 +594,7 @@ function HomeView({
       {/* =========================================================================
          SECURITY & ARCHITECTURE PILLARS
          ========================================================================= */}
-      <section id="security" className="scroll-mt-20 py-18 bg-white border-y border-slate-200">
+      <section id="security" className="scroll-mt-20 py-10 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
             <SectionTag>Security &amp; control</SectionTag>
@@ -620,7 +625,7 @@ function HomeView({
          {/* =========================================================================
          SENWELL GROUP PARENTAGE & HERITAGE
          ========================================================================= */}
-      <section id="senwell" className="scroll-mt-20 py-16 bg-white border-y border-slate-200">
+      <section id="senwell" className="scroll-mt-20 py-10 bg-white border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="space-y-3 text-center lg:text-left max-w-xl">
@@ -651,7 +656,7 @@ function HomeView({
       {/* =========================================================================
          BOTTOM EXECUTIVE CTA SECTION
          ========================================================================= */}
-      <section className="relative overflow-hidden border-y border-slate-200 bg-white py-20 text-slate-900">
+      <section className="relative overflow-hidden border-y border-slate-200 bg-white py-10 text-slate-900 sm:py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <SectionTag>Senwell Group Enterprise Software</SectionTag>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
@@ -662,18 +667,8 @@ function HomeView({
           </p>
 
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => openModal()}
-              className="w-full sm:w-auto px-8 py-3.5 bg-blue-900 hover:bg-blue-800 text-white font-semibold rounded-xl text-xs transition-all shadow-lg hover:shadow-xl cursor-pointer"
-            >
-              Schedule Solution Architecture Consultation &rarr;
-            </button>
-            <Link
-              href={hrefFor("precision")}
-              className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-xl text-xs border border-slate-300 transition-colors cursor-pointer"
-            >
-              Explore Precision Manufacturing
-            </Link>
+            <DemoButton />
+            <TourButton title="Synax Platform Overview" />
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@ import { ErpShell } from "./_components/erp-shell";
 export const metadata: Metadata = {
   title: "Synax ERP | Precision & Job-Work Manufacturing, IT Services, HRMS",
   description:
-    "ERP for precision and job-work manufacturers, with IT services and projects, HRMS, staffing, shop-floor monitoring and AI in one connected workspace. Quality gates and AS9100D QMS controls at critical workflow checkpoints.",
+    "ERP for precision and job-work manufacturers, with work and delivery management, HRMS, staffing, shop-floor monitoring and AI in one connected workspace. Quality gates and AS9100D QMS controls at critical workflow checkpoints.",
   openGraph: {
     title: "Synax ERP — From the spindle to the GST invoice",
     description:

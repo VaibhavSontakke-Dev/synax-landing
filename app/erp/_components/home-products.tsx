@@ -77,22 +77,22 @@ const PRODUCTS: Product[] = [
     demoName: "Manufacturing ERP",
   },
   {
-    title: "IT Services & Project ERP",
-    shortLabel: "IT Services",
+    title: "Work & Delivery Management",
+    shortLabel: "Work & Delivery",
     Icon: Briefcase,
     tone: "navy",
-    tag: "Core ERP",
-    tagline: "Manage project delivery and profitability across IT service teams.",
+    tag: "Core Product",
+    tagline: "Run service delivery from task to invoice in one workspace.",
     statLabel: "Business Lifecycle",
-    statValue: "Project to Billing",
+    statValue: "Work to Billing",
     bullets: [
-      "Project and work tracking with customer requirements",
-      "SOWs, resource allocation, and staffing",
+      "Work Tracker with daily activity and meetings",
+      "Projects with customer requirements and SOWs",
       "Timesheets, work logs, and development costs",
       "Project billing and profitability",
     ],
     key: "it",
-    demoName: "IT Services & Project ERP",
+    demoName: "Work & Delivery Management",
   },
   {
     title: "HRMS",
@@ -168,7 +168,7 @@ const PRODUCTS: Product[] = [
   },
 ];
 
-export function Products({ openModal }: { openModal: (productName?: string) => void }) {
+export function Products() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -210,7 +210,7 @@ export function Products({ openModal }: { openModal: (productName?: string) => v
   };
 
   return (
-    <section id="products" aria-labelledby="products-heading" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
+    <section id="products" aria-labelledby="products-heading" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
       {/* Header */}
       <div className="mb-8 space-y-3 text-center">
         <SectionTag>Market-Ready Platforms</SectionTag>
@@ -344,13 +344,6 @@ export function Products({ openModal }: { openModal: (productName?: string) => v
                   <span>Explore</span>
                   <ChevronRight className="size-4" aria-hidden="true" />
                 </Link>
-                <button
-                  type="button"
-                  onClick={() => openModal(p.demoName)}
-                  className="cursor-pointer rounded-lg bg-blue-900 px-5 py-3 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-                >
-                  Demo
-                </button>
               </div>
             </article>
           );

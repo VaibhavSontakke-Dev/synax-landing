@@ -27,10 +27,9 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
         tag={page.tag}
         title={page.title}
         lead={page.lead}
-        product={page.demoName}
         tourTitle={`${page.name} Tour`}
         aside={
-          <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm sm:p-6">
+          <div className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
               <span className={`flex size-10 items-center justify-center rounded-xl border ${tone.tile}`}>
                 <Icon className="size-5" aria-hidden="true" />
@@ -201,8 +200,8 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
 
       {/* Other industries */}
       <section aria-labelledby="other-heading" className="border-y border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 id="other-heading" className="mb-8 text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <h2 id="other-heading" className="mb-6 text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
             Other industries
           </h2>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -232,10 +231,10 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
       </section>
 
       <CtaBand
+        tourTitle={`${page.name} Tour`}
         title="See Synax on your own process"
         text="A short walkthrough with a Senwell Group systems engineer, using your own parts, people and processes."
         product={page.demoName}
-        tourTitle={`${page.name} Tour`}
       />
     </main>
   );

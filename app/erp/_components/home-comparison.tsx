@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
-  ArrowRight,
   Calendar,
   CircleCheck,
   Clock,
@@ -12,7 +11,7 @@ import {
   MoveRight,
   Receipt,
   Scale,
-  Users,
+  Sparkles,
 } from "lucide-react";
 import { SectionTag } from "./section-tag";
 import { BENCHMARK, type BenchmarkIcon } from "../_data/benchmark";
@@ -36,7 +35,7 @@ const BENCHMARK_ICONS: Record<BenchmarkIcon, LucideIcon> = {
   cpu: Cpu,
   filecheck: FileCheck,
   clock: Clock,
-  users: Users,
+  sparkles: Sparkles,
   receipt: Receipt,
 };
 
@@ -50,13 +49,7 @@ const TIMELINE = [
   { name: POINT, value: "Endless patchworks & API breaks", width: "46%", kind: "point" },
 ] as const;
 
-export function Comparison({
-  onBookDemo,
-  onSeeProducts,
-}: {
-  onBookDemo: () => void;
-  onSeeProducts: () => void;
-}) {
+export function Comparison({ onSeeProducts }: { onSeeProducts: () => void }) {
   const timelineRef = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
 
@@ -85,10 +78,10 @@ export function Comparison({
     <section
       id="comparison"
       aria-labelledby="comparison-heading"
-      className="relative mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8"
+      className="relative mx-auto max-w-7xl scroll-mt-20 px-4 py-10 sm:px-6 sm:py-12 lg:px-8"
     >
       {/* Header */}
-      <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
+      <div className="mx-auto mb-8 max-w-2xl space-y-3 text-center">
         <SectionTag>Market Benchmark</SectionTag>
         <h2
           id="comparison-heading"
@@ -191,14 +184,6 @@ export function Comparison({
             </p>
           </div>
           <div className="flex flex-col gap-2.5">
-            <button
-              type="button"
-              onClick={onBookDemo}
-              className="flex cursor-pointer items-center justify-center gap-1.5 rounded-lg bg-white px-4 py-3 text-xs font-semibold text-blue-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
-            >
-              <span>Book Demo</span>
-              <ArrowRight className="size-3.5" aria-hidden="true" />
-            </button>
             <button
               type="button"
               onClick={onSeeProducts}

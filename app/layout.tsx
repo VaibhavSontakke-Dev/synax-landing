@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Synax by Senwell | The ERP for Precision & Job-Work Manufacturers",
   description:
-    "From the machine spindle to the GST invoice in one workspace, with AI that chases your exceptions. Manufacturing ERP, IT services and projects, HRMS, staffing, shop-floor monitoring and AI. Free for SMEs under 50 employees.",
+    "From the machine spindle to the GST invoice in one workspace, with AI that chases your exceptions. Manufacturing ERP, work and delivery management, HRMS, staffing, shop-floor monitoring and AI. Free for SMEs under 50 employees.",
   icons: {
     icon: "/favicon.ico",
   },

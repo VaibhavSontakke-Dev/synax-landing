@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { PRODUCT_DATA, PRODUCT_ROUTES, hrefFor } from "../erp/_data/products";
-import { DemoButton, TourButton } from "../erp/_components/demo-buttons";
+import { TourButton } from "../erp/_components/demo-buttons";
 import { SectionTag } from "../erp/_components/section-tag";
 import { TONE } from "../erp/_components/route-tone";
 
 export const metadata: Metadata = {
   title: "Products | Synax by Senwell",
   description:
-    "Six Synax products: Manufacturing ERP, IT Services & Project ERP, HRMS, Staffing & Resource Management, Shop Floor & Machine Monitoring, and AI & Business Intelligence.",
+    "Six Synax products: Manufacturing ERP, Work & Delivery Management, HRMS, Staffing & Resource Management, Shop Floor & Machine Monitoring, and AI & Business Intelligence.",
   alternates: { canonical: "/products" },
 };
 
@@ -17,27 +17,26 @@ export const metadata: Metadata = {
 export default function ProductsIndexPage() {
   return (
     <main className="pb-6">
-      <section className="border-b border-slate-200 bg-white" aria-labelledby="products-index-heading">
-        <div className="mx-auto max-w-7xl px-4 py-12 text-center sm:px-6 lg:px-8 lg:py-16">
+      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white" aria-labelledby="products-index-heading">
+        <div className="mx-auto max-w-7xl px-4 py-8 text-center sm:px-6 lg:px-8 lg:py-10">
           <SectionTag>Market-Ready Platforms</SectionTag>
           <h1
             id="products-index-heading"
-            className="mx-auto mt-3 max-w-3xl text-3xl leading-tight font-extrabold tracking-tight text-slate-900 sm:text-5xl"
+            className="mx-auto mt-3 max-w-3xl text-3xl leading-tight font-extrabold tracking-tight text-blue-900 sm:text-5xl"
           >
             Six products. One platform.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-700 sm:text-base">
             Start with the product your business needs today. They are built to work together, so adding the
             next one does not mean starting over.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <DemoButton />
             <TourButton title="Synax Platform Overview" />
           </div>
         </div>
       </section>
 
-      <section aria-label="All products" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+      <section aria-label="All products" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {PRODUCT_ROUTES.map((r) => {
             const meta = PRODUCT_DATA[r.key];

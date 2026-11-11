@@ -13,9 +13,10 @@ import {
   LIVE_PRICING,
 } from "../erp/_data/live";
 import { Block, Breadcrumb, CtaBand, Faq } from "../erp/_components/site-page";
-import { DemoButton, TourButton } from "../erp/_components/demo-buttons";
+import { TourButton } from "../erp/_components/demo-buttons";
 import { SectionTag } from "../erp/_components/section-tag";
 import { ReasonTabs } from "../erp/_components/reason-tabs";
+import { JumpBar } from "../erp/_components/jump-bar";
 import { ModuleIcon } from "../erp/_components/icons";
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 /** Benchmark row icon -> the module icon set used elsewhere on the site. */
-const ROW_ICON = { cpu: "machine", filecheck: "badge", clock: "device", users: "people", receipt: "box" } as const;
+const ROW_ICON = { cpu: "machine", filecheck: "badge", clock: "device", sparkles: "bolt", receipt: "box" } as const;
 
 const LEGACY = "Legacy ERP suites";
 const POINT = "Disconnected point tools";
@@ -59,7 +60,7 @@ export default function WhySynaxPage() {
     <main className="pb-6">
       {/* Hero */}
       <section aria-labelledby="page-heading" className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
           <Breadcrumb items={[{ label: "Why Synax" }]} />
           <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
             <div>
@@ -86,7 +87,6 @@ export default function WhySynaxPage() {
                 {LIVE_POSITIONING.headline} {LIVE_POSITIONING.sub}
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <DemoButton />
                 <TourButton title="Synax Platform Overview" />
               </div>
               <ul className="mt-5 flex flex-wrap gap-2" aria-label="Highlights">
@@ -110,21 +110,8 @@ export default function WhySynaxPage() {
         </div>
       </section>
 
-      {/* Jump bar */}
-      <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-        <ul className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
-          {JUMP.map((j) => (
-            <li key={j.id} className="shrink-0">
-              <a
-                href={`#${j.id}`}
-                className="block rounded-full border border-slate-200 px-3.5 py-1 text-xs font-semibold text-slate-600 transition-colors hover:border-sky-300 hover:bg-sky-50 hover:text-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-              >
-                {j.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {/* Jump bar: the current section is navy */}
+      <JumpBar items={JUMP} />
 
       {/* Pillars */}
       <Block
@@ -157,7 +144,7 @@ export default function WhySynaxPage() {
 
       {/* Flow rail */}
       <section id="flow" aria-labelledby="flow-heading" className="scroll-mt-32 border-y border-sky-200 bg-sky-50">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-14">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <SectionTag lines="start">Spindle to invoice</SectionTag>
@@ -286,7 +273,7 @@ export default function WhySynaxPage() {
       </Block>
 
       {/* Pricing + FAQ */}
-      <section aria-label="Pricing and questions" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+      <section aria-label="Pricing and questions" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-10">
           <div
             id="pricing"
@@ -313,7 +300,7 @@ export default function WhySynaxPage() {
 
       {/* Heritage */}
       <section aria-labelledby="heritage-heading" className="border-y border-sky-200 bg-sky-50">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="max-w-md">
             <SectionTag lines="start">Manufacturing pedigree</SectionTag>
             <h2 id="heritage-heading" className="mt-2 text-xl font-extrabold tracking-tight text-blue-900 sm:text-2xl">
@@ -335,9 +322,9 @@ export default function WhySynaxPage() {
 
       <CtaBand
         tone="light"
+        tourTitle="Synax Platform Overview"
         title="See why it works on your own process"
         text="A short walkthrough with a Senwell Group systems engineer, using your workflows rather than a canned demo."
-        tourTitle="Synax Platform Overview"
       />
     </main>
   );

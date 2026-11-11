@@ -3,7 +3,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
-  ArrowRight,
   ArrowUp,
   ArrowUpRight,
   Award,
@@ -13,12 +12,10 @@ import {
   CheckCircle2,
   Factory,
   Lock,
-  Play,
   ShieldCheck,
   Users,
 } from "lucide-react";
 import Link from "next/link";
-import { SectionTag } from "./section-tag";
 import { useDemo } from "./demo-provider";
 import { hrefFor, type ProductKey } from "../_data/products";
 
@@ -42,7 +39,7 @@ interface FooterProduct {
 // Same destinations as the header's Products menu.
 const PRODUCTS: FooterProduct[] = [
   { label: "Manufacturing ERP", Icon: Factory, tile: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20", key: "precision" },
-  { label: "IT Services & Project ERP", Icon: Briefcase, tile: "bg-white/5 text-slate-200 border-white/10", key: "it" },
+  { label: "Work & Delivery Management", Icon: Briefcase, tile: "bg-white/5 text-slate-200 border-white/10", key: "it" },
   { label: "HRMS", Icon: Building2, tile: "bg-white/5 text-slate-200 border-white/10", key: "hrms" },
   { label: "Staffing & Resource Management", Icon: Users, tile: "bg-orange-400/10 text-orange-300 border-orange-400/20", key: "staffing" },
   { label: "Shop Floor & Machine Monitoring", Icon: Activity, tile: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20", key: "shopfloor" },
@@ -78,9 +75,8 @@ const linkClass =
 const columnHeading = "mb-4 text-xs font-bold tracking-[0.14em] text-orange-300 uppercase";
 
 export function Footer() {
-  const { openDemo, openTour } = useDemo();
+  const { openDemo } = useDemo();
   const onScheduleDemo = () => openDemo();
-  const onWatchOverview = () => openTour("Synax Platform Overview");
 
   return (
     <footer className="relative isolate overflow-hidden bg-slate-950 text-slate-300">
@@ -92,45 +88,9 @@ export function Footer() {
         <div className="absolute inset-0 [background-image:radial-gradient(rgba(148,163,184,0.12)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,#000,transparent_70%)]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 pt-14 pb-24 sm:px-6 lg:px-8 lg:pb-8">
-        {/* 1. Closing CTA */}
-        <section
-          aria-labelledby="footer-cta-title"
-          className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 p-7 shadow-2xl md:flex-row md:items-center md:p-10"
-        >
-          <div className="max-w-xl">
-            <SectionTag tone="dark" lines="start">Get started</SectionTag>
-            <h2 id="footer-cta-title" className="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-              See all six Synax products working together
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-slate-300">
-              A 30-minute walkthrough of the modules that matter to your business.
-            </p>
-          </div>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <button
-              type="button"
-              onClick={onScheduleDemo}
-              className="flex cursor-pointer items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-semibold text-blue-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
-            >
-              <span>Schedule a Demo</span>
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              onClick={onWatchOverview}
-              className="flex cursor-pointer items-center justify-center gap-2.5 rounded-md border-2 border-orange-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-orange-500/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
-            >
-              <span className="flex size-6 items-center justify-center rounded-full bg-white/15 text-slate-200" aria-hidden="true">
-                <Play className="size-3 fill-current" />
-              </span>
-              <span>Watch overview</span>
-            </button>
-          </div>
-        </section>
-
+      <div className="mx-auto max-w-7xl px-4 pt-10 pb-24 sm:px-6 lg:px-8 lg:pb-6">
         {/* 2. Link grid */}
-        <div className="mt-14 grid gap-10 lg:grid-cols-12">
+        <div className="grid gap-10 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
             <Link
@@ -143,7 +103,7 @@ export function Footer() {
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-300">
               Synax is a unified business suite by <strong className="text-white">Senwell Group</strong>: manufacturing,
-              IT services and projects, HRMS, staffing, shop-floor monitoring and AI in one connected,
+              work and delivery management, HRMS, staffing, shop-floor monitoring and AI in one connected,
               audit-ready platform.
             </p>
             <dl className="mt-5 space-y-2 text-sm">
@@ -231,7 +191,7 @@ export function Footer() {
         </div>
 
         {/* 3. Compliance alignment */}
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 lg:flex-row lg:items-center">
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 lg:flex-row lg:items-center">
           <p className="shrink-0 text-xs font-bold tracking-[0.14em] text-slate-400 uppercase">Compliance alignment</p>
           <ul className="flex flex-wrap gap-2">
             {COMPLIANCE.map(({ Icon, label }) => (
@@ -247,7 +207,7 @@ export function Footer() {
         </div>
 
         {/* 4. Legal bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-400 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-5 text-xs text-slate-400 sm:flex-row">
           <p>© {COPYRIGHT_YEAR} Synax by Senwell Group. All rights reserved.</p>
           <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <a

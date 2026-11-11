@@ -4,7 +4,7 @@
  * launch and keep them generic (no vendor names).
  */
 
-export type BenchmarkIcon = "cpu" | "filecheck" | "clock" | "users" | "receipt";
+export type BenchmarkIcon = "cpu" | "filecheck" | "clock" | "sparkles" | "receipt";
 
 export interface BenchmarkRow {
   title: string;
@@ -16,7 +16,7 @@ export interface BenchmarkRow {
 
 export const BENCHMARK: BenchmarkRow[] = [
   {
-    title: "CNC Machine IoT Telemetry",
+    title: "Live Machine Monitoring (IoT)",
     icon: "cpu",
     synax: "OEM connection or open FOCAS, no separate MES",
     legacy: "Needs a separate MES or integrator",
@@ -37,11 +37,11 @@ export const BENCHMARK: BenchmarkRow[] = [
     point: "Isolated punch cards / buddy punching",
   },
   {
-    title: "Staffing & Resource Management",
-    icon: "users",
-    synax: "Candidates to deployments in the same workspace",
-    legacy: "Unconnected external ATS silos",
-    point: "Scattered email resumes & PDFs",
+    title: "AI Assistant That Acts",
+    icon: "sparkles",
+    synax: "Agents propose, an approver decides",
+    legacy: "Reports only; nothing proposes the fix",
+    point: "Chasing challans and payments by email",
   },
   {
     title: "Tally & GST (e-invoice, e-way bill)",

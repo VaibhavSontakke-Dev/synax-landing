@@ -149,7 +149,7 @@ export function SiteNav() {
                 <ChevronDown className="size-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true" />
               </button>
               <div className={`${MENU_PANEL} w-96`}>
-                <MenuLabel>Primary Business ERPs</MenuLabel>
+                <MenuLabel>Core Business Products</MenuLabel>
                 {PRODUCT_ROUTES.slice(0, 2).map((r) => (
                   <MenuItem
                     key={r.key}
@@ -222,17 +222,10 @@ export function SiteNav() {
           <div className="hidden items-center gap-3 lg:flex">
             <button
               type="button"
-              onClick={() => openDemo("Full Synax Unified Enterprise Suite")}
-              className="cursor-pointer px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:text-blue-900"
-            >
-              Contact Sales
-            </button>
-            <button
-              type="button"
               onClick={() => openDemo()}
               className="flex cursor-pointer items-center gap-1.5 rounded-xl bg-blue-900 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-blue-800 hover:shadow-md"
             >
-              <span>Schedule Live Demo</span>
+              <span>Schedule a Demo</span>
               <ArrowRight className="size-3.5" aria-hidden="true" />
             </button>
           </div>
@@ -259,7 +252,7 @@ export function SiteNav() {
             </MobileLink>
 
             <div className="space-y-1 border-l-2 border-blue-900 py-1 pl-3">
-              <div className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">Primary Business ERPs</div>
+              <div className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">Core Business Products</div>
               {PRODUCT_ROUTES.slice(0, 2).map((r) => (
                 <MobileLink key={r.key} href={productHref(r)} active={isActive(productHref(r))} onClick={close} className="py-1">
                   <span className={`block text-xs font-semibold ${TONE[r.tone].text}`}>Synax {r.name}</span>
@@ -314,7 +307,7 @@ export function SiteNav() {
               }}
               className="mt-2 w-full cursor-pointer rounded-xl bg-blue-900 py-3 text-xs font-semibold text-white shadow-md"
             >
-              Book Executive Demo
+              Schedule a Demo
             </button>
           </div>
         )}

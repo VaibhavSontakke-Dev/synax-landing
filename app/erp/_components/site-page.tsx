@@ -15,7 +15,7 @@ export interface Crumb {
 
 export function Breadcrumb({ items }: { items: Crumb[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
+    <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
       <Link href="/erp" className="hover:text-blue-900 hover:underline">
         Synax
       </Link>
@@ -42,36 +42,36 @@ export function PageHero({
   tag,
   title,
   lead,
-  product,
   tourTitle,
   aside,
+  calm = false,
 }: {
   crumbs: Crumb[];
   tag: string;
   title: string;
   lead: string;
-  /** Pre-selects this product in the demo form. */
-  product?: string;
+  /** Title shown in the "Watch overview" tour modal. (Heroes carry only this button; "Schedule a Demo" lives in the header and the closing band.) */
   tourTitle: string;
   /** Optional right-hand card. */
   aside?: React.ReactNode;
+  /** Softer type: a semibold dusky-gray headline instead of the bold navy one. */
+  calm?: boolean;
 }) {
   return (
-    <section className="border-b border-slate-200 bg-white" aria-labelledby="page-heading">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white" aria-labelledby="page-heading">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
         <Breadcrumb items={crumbs} />
         <div className={aside ? "grid items-center gap-10 lg:grid-cols-2 lg:gap-14" : "max-w-3xl"}>
           <div>
             <SectionTag lines="start">{tag}</SectionTag>
             <h1
               id="page-heading"
-              className="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+              className={`mt-3 text-3xl leading-tight tracking-tight sm:text-4xl lg:text-5xl ${calm ? "font-semibold text-slate-700" : "font-extrabold text-blue-900"}`}
             >
               {title}
             </h1>
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{lead}</p>
+            <p className={`mt-4 max-w-xl text-sm leading-relaxed sm:text-base ${calm ? "text-slate-500" : "text-slate-700"}`}>{lead}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <DemoButton product={product} />
               <TourButton title={tourTitle} />
             </div>
           </div>
@@ -90,6 +90,8 @@ export function Block({
   lead,
   tone = "plain",
   align = "center",
+  calm = false,
+  compact = false,
   children,
 }: {
   id?: string;
@@ -98,6 +100,10 @@ export function Block({
   lead?: string;
   tone?: "plain" | "white";
   align?: "center" | "start";
+  /** Softer type: semibold dusky-gray heading and a lighter lead. */
+  calm?: boolean;
+  /** Less vertical space above, below and between the heading and the content. */
+  compact?: boolean;
   children: React.ReactNode;
 }) {
   const headingId = id ? `${id}-heading` : undefined;
@@ -107,13 +113,16 @@ export function Block({
       aria-labelledby={headingId}
       className={`scroll-mt-32 ${tone === "white" ? "border-y border-slate-200 bg-white" : ""}`}
     >
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className={`mb-10 max-w-2xl space-y-3 ${align === "center" ? "mx-auto text-center" : ""}`}>
+      <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${compact ? "py-8 lg:py-10" : "py-10 lg:py-12"}`}>
+        <div className={`max-w-2xl space-y-2 ${compact ? "mb-5" : "mb-7 space-y-3"} ${align === "center" ? "mx-auto text-center" : ""}`}>
           <SectionTag lines={align === "center" ? "both" : "start"}>{tag}</SectionTag>
-          <h2 id={headingId} className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          <h2
+            id={headingId}
+            className={`tracking-tight sm:text-4xl ${compact ? "text-2xl sm:text-3xl" : "text-2xl"} ${calm ? "font-semibold text-slate-700" : "font-extrabold text-slate-900"}`}
+          >
             {title}
           </h2>
-          {lead ? <p className="text-sm leading-relaxed text-slate-600 sm:text-base">{lead}</p> : null}
+          {lead ? <p className={`text-sm leading-relaxed sm:text-base ${calm ? "text-slate-500" : "text-slate-600"}`}>{lead}</p> : null}
         </div>
         {children}
       </div>
@@ -154,7 +163,7 @@ export function CtaBand({
 }) {
   const light = tone === "light";
   return (
-    <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div
         className={`flex flex-col items-start justify-between gap-6 rounded-3xl border p-7 shadow-xl md:flex-row md:items-center md:p-10 ${
           light

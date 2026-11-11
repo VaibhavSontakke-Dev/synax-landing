@@ -42,9 +42,9 @@ function timingLabel(timing: string, index: number) {
   return timing;
 }
 
-export function Rollout({ onTalk }: { onTalk?: () => void }) {
+export function Rollout() {
   return (
-    <Section id="rollout" tone="tint">
+    <Section id="rollout" tone="tint" compact>
       <Container>
         <Reveal>
           <div className="text-center">
@@ -127,24 +127,6 @@ export function Rollout({ onTalk }: { onTalk?: () => void }) {
                 process complexity and data readiness.
               </span>
             </p>
-            {onTalk ? (
-              <button
-                type="button"
-                onClick={onTalk}
-                className="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-lg bg-erp-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-erp-brand-mid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-              >
-                Talk through your phases
-                <ArrowRight className="size-4" aria-hidden />
-              </button>
-            ) : (
-              <a
-                href="#demo"
-                className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-erp-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-erp-brand-mid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
-              >
-                Talk through your phases
-                <ArrowRight className="size-4" aria-hidden />
-              </a>
-            )}
           </div>
         </Reveal>
 

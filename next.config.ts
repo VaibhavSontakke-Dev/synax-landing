@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
     agentFeedback: true,
   },
   cacheComponents: true,
+  async redirects() {
+    return [
+      {
+        // Renamed from "IT Services & Project ERP".
+        source: "/products/it-services-project-erp",
+        destination: "/products/work-delivery-management",
+        permanent: true,
+      },
+    ];
+  },
   partialPrefetching: true,
   turbopack: {
     rules: {

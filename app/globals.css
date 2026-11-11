@@ -568,3 +568,61 @@ body {
     animation: none;
   }
 }
+
+/* --- Home USP section ------------------------------------------------------
+   Floating cards drift, the AI highlight pulses, a scan line runs over the machine view and a dot travels along
+   the machine-to-ledger line. All of it is off for prefers-reduced-motion. */
+@keyframes synax-usp-float {
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes synax-usp-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(249, 115, 22, 0);
+  }
+}
+
+@keyframes synax-usp-scan {
+  0% {
+    top: 4%;
+  }
+  100% {
+    top: 96%;
+  }
+}
+
+@keyframes synax-usp-flow {
+  to {
+    left: calc(90% - 13px);
+  }
+}
+
+.synax-usp-float {
+  animation: synax-usp-float 6s ease-in-out infinite;
+}
+
+.synax-usp-ring {
+  animation: synax-usp-ring 2s ease-out infinite;
+}
+
+.synax-usp-scan {
+  animation: synax-usp-scan 3.2s linear infinite;
+}
+
+.synax-usp-flow {
+  animation: synax-usp-flow 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .synax-usp-float,
+  .synax-usp-ring,
+  .synax-usp-scan,
+  .synax-usp-flow {
+    animation: none;
+  }
+}

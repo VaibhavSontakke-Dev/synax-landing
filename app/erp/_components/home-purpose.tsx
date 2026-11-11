@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -159,16 +160,16 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
   );
 }
 
-export function Purpose({ onExplore }: { onExplore: () => void }) {
+export function Purpose() {
   return (
     <section
       id="purpose"
       aria-labelledby="purpose-heading"
-      className="scroll-mt-20 border-t border-slate-200/80 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/70 py-20"
+      className="scroll-mt-20 border-t border-slate-200/80 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/70 py-10 sm:py-12"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        <div className="mx-auto mb-8 max-w-3xl text-center">
           <SectionTag>The Ecosystem Purpose</SectionTag>
           <h2
             id="purpose-heading"
@@ -224,14 +225,13 @@ export function Purpose({ onExplore }: { onExplore: () => void }) {
               machining and AS9100D-controlled release.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={onExplore}
-            className="flex shrink-0 cursor-pointer items-center gap-2 rounded-lg bg-blue-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+          <Link
+            href="/why-synax"
+            className="flex shrink-0 items-center gap-2 rounded-lg border-2 border-orange-500 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
           >
-            <span>Explore Platform Synergy</span>
+            <span>See why teams choose Synax</span>
             <ArrowRight className="size-4" aria-hidden="true" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -22,6 +22,74 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Site-wide spacing: less white space
+Commit subject: `Tighten vertical spacing across every page`
+- **Rule of thumb (desktop)**: standard section padding 80-112px -> 40-48px, hero padding 56px -> 40px, heading-to-content gap 40px -> 28px, breadcrumb gap 32px -> 20px, closing band 64px -> 40px; mobile sections 32-40px. Compact sections (/security) 32-40px.
+- **Shared**: `Block`, `PageHero`, `CtaBand`, `Breadcrumb` in `site-page.tsx` (affects /solutions, /why-synax, /security and the industry pages); product pages (`product-page.tsx`); industry pages; `/products`, `/solutions`, `/why-synax`, `/security` custom sections; footer (top padding 56px -> 40px, bars 48/32px -> 32/24px).
+- **Home**: USP section, Market-Ready Platforms, Sectors, Benchmark, Purpose, Synax AI, the live preview, security, Senwell and the closing section now use ~40-48px; Rollout (`Section compact` in `ui.tsx`) 112px -> 48px. The earlier smaller pass in the USP entry is superseded by these numbers.
+- If a section now feels tight, raise its `py-*` one step (e.g. `py-10` -> `py-12`); the new values are listed in this entry only as a range because they differ per section.
+- Verified: `tsc`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Pending (next commit) — Home: USP section after the hero (AI, live machines, Tally and GST)
+Commit subject: `Home: add the USP section after the hero and use the USPs in the hero and comparison`
+- **New section** `_components/home-usp.tsx` (`<Usp/>`, placed right after `<Hero/>` in `landingpage.tsx`): tag "What sets Synax apart", headline "Built in, not bolted on: AI, live machines, Tally and GST", chips, then three numbered story rows with a dashed rail: **1 AI that acts** (home screenshot with a pulsing ring on the Synax AI tile; a floating "Synax AI proposes" card with a working Approve button), **2 Live machine monitoring** (scan line over the machine view; floating machine board with ticking counters and a tool-life alarm; "FOCAS connected"), **3 Tally and GST** (Finance & Billing crop; floating invoice card whose chips light up: Approved, IRN generated, E-way bill, Tally voucher; "Voucher sent to Tally"). Frames tilt on desktop and level on hover; floating cards stack under the frame on phones. Ends with a navy machine-to-ledger flow band with a travelling dot. Copy is the portal wording (`_data/live.ts`); no demo button (links to the AI, Shop Floor and Manufacturing pages). Animations (`synax-usp-*` in `globals.css`) and the timers stop for reduced motion.
+- **Images**: `usp-machines.webp` (from `synax-dashboard.png`, an AI-generated **illustration** with garbled small text; replace with a real machine-board capture) and `usp-billing.webp` (crop of the Finance & Billing card from the cleaned home screenshot; replace with a real invoice / e-invoice capture). The AI row uses `hero-dashboard-overview.webp`.
+- **Spacing pass** (home page): vertical padding trimmed so sections no longer leave large white gaps: the USP section (py 80px -> 56px on desktop, row gaps 64px -> 48px), Market-Ready Platforms, Sector & Challenge Alignment, Market Benchmark, Ecosystem Purpose, Synax AI and the closing section (py 80px -> 56 / 64px), headings gaps 48px -> 32px in Benchmark and Purpose, and the Rollout blueprint via a new `compact` option on the shared `Section` (`ui.tsx`: 112px -> 64px on desktop). Change the numbers back if any section now feels tight.
+- **Hero**: the three tick lines under the buttons are now the USPs (AI that proposes, you approve; live machine monitoring via OEM or FOCAS; Tally and GST built in).
+- **Comparison** (home and /why-synax): the staffing row is replaced by "AI Assistant That Acts" and the machine row is titled "Live Machine Monitoring (IoT)" (keeps the bento at five cards).
+- Not done: the Watch overview video (needs a recording). Card figures (counts, M-01 etc., INV-2201) are sample data. "Most plants stitch these together from separate tools" is positioning copy, not a measured claim.
+- Verified: `tsc`, `eslint`, `next build`. Not checked in a browser (tilt, floating card positions and the AI highlight position in particular). Rollback: `git revert` the commit.
+
+### Pending (next commit) — Product renamed: Work & Delivery Management
+Commit subject: `Rename IT Services & Project ERP to Work & Delivery Management`
+- **Why**: it is not a project-ERP; it is the services side of the workspace (work tracker, projects, timesheets, billing, team and support tools) next to Manufacturing ERP. The old name made it read like a project-management add-on.
+- **New name and copy**: *Work & Delivery Management* (short: Work & Delivery). Tagline "Plan the work, track the hours, bill what you deliver"; menu line "Work tracker, projects, timesheets & billing"; stat "Work to Billing"; four highlights; three module groups (Work & Projects, Time & Billing, Teams & Support) in `PRODUCT_DATA.it` and `PRODUCT_ROUTES` (`_data/products.ts`).
+- **URL**: `/products/work-delivery-management`. The old `/products/it-services-project-erp` is a permanent redirect (`redirects()` in `next.config.ts`).
+- **Updated**: home product carousel card, hero card, footer product list and brand blurb, demo-form option and industry-page demo name (both derive from the route name), products index and site metadata descriptions. The header/footer group label "Primary Business ERPs" is now "Core Business Products" and the card tag "Core ERP" is now "Core Product".
+- **Not changed**: the "IT Services & Talent Staffing" **industry** page (it is an industry, not a product) and old README history entries. Please confirm that timesheets and billing are live in the product; they are on the earlier module list but not on the portal's current landing page.
+- Verified: `tsc`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Pending (next commit) — New home hero image (no personal info)
+Commit subject: `Home hero: new dashboard screenshot with personal details replaced`
+- New screenshot of the Synax home screen (the Senwell Exports workspace) cleaned of personal and customer details with a script: "Anoop" -> "Synax" in the greeting, the company/tenant line "Senwell Exports / SERouteCards" -> "Synax Workspace / Demo tenant" (top-left and under the greeting), the signed-in user "Anoop Mishra" and email -> "Synax Demo" / "Demo workspace" ("Super Admin" kept), the customer name "Celsior" in Today -> "Team", and both Senwell logo tiles -> the Synax logo. Nothing else was changed (the "Precision People Performance" banner text is part of the photo and was left).
+- Files: `public/images/hero-dashboard-overview.webp` (2000x1045 master) and `hero-dashboard-overview-fit.webp` (1748x1045, the full image squeezed ~12.6% in width so the stage keeps its 1.67:1 shape; this is what the page shows). `home-hero.tsx` now uses it, and the product -> module spotlight regions were re-measured for the new layout: Manufacturing ERP -> Purchase & SCM, Shop Floor -> Planning & Production, HRMS -> People, AI & BI -> Overview, IT Services -> sidebar Projects, Staffing -> sidebar Staffing (cards: left = IT, Staffing, AI; right = Shop Floor, Manufacturing, HRMS).
+- The older screenshots (`hero-dashboard-light.webp`, `hero-dashboard-fit.webp`, `home.webp`/`home.png`) are no longer used by the app and still contain the old names; they remain in git history.
+- Verified: `tsc`, `eslint`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Pending (next commit) — /solutions: new sections instead of repeating the home page
+Commit subject: `Solutions page: where to start, coverage matrix, module directory and go-live FAQ`
+- **Why**: the "Solutions in detail" cards (challenge -> answer -> capabilities per solution) said the same thing as the home page's Sector & Challenge Alignment. They are gone.
+- **New, from the live portal** ("Start with what hurts most. Add the rest when you are ready."): (1) **Four starting points**: for each solution the pain, the modules to **start with** (numbered) and what to **add next** (dashed chips), plus the portal's "Who is Synax built for?" answer and "module by module within a few weeks"; (2) a **coverage matrix** (solutions x the portal's eight module areas: core / optional / not typical); (3) the portal's own **module directory** by area, each card saying which solutions it is core to; (4) a **getting-started FAQ** (onboarding, Tally, GST, machines, pricing) from the portal. The rollout block was dropped because it duplicated the home page's Rollout blueprint; the industry pages block and the Plan-Execute-Inspect-Release workflow stay.
+- The hero now says "Start with what hurts most..." and its side card jumps to the four starting points. New data: `_data/solution-paths.ts` (module names come from `LIVE_MODULES` and the staffing product highlights; **coverage is typical use, my judgement - please review**).
+- Verified: `tsc`, `eslint`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Pending (next commit) — /security and /solutions follow the /why-synax type and colours
+Commit subject: `Security and solutions pages: same fonts and colours as /why-synax; tighter spacing`
+- **Same look as /why-synax**: bold navy hero headline, extrabold slate-900 section headings, bold slate-900 card titles, slate-600 / slate-700 body copy, navy fact values, orange tags and outlines, sky-blue bands and sky closing band (`CtaBand tone="light"`, now also on /solutions). The softer dusky-gray type tried earlier on /security was replaced by this; `PageHero calm` and `Block calm` still exist in `site-page.tsx` but are not used.
+- **Kept on /security**: the tighter spacing (`Block compact`), compliance and responsibility side by side, the slim privacy strip, the jump bar, hero fact icons and the "What happens to every posting" rail.
+- Verified: `tsc`, `eslint`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Pending (next commit) — /why-synax jump bar shows the current section
+Commit subject: `Jump bar on /why-synax: active chip is navy and follows the scroll`
+- New `_components/jump-bar.tsx` (client) replaces the static chips: the chip for the section being read is navy with white text (the first, "Pillars", is active from the top of the page), the others stay outlined. It follows the scroll (the last section whose top has passed ~150px under the sticky header + bar; the last chip at the very bottom), activates on click right away (scroll updates paused ~0.9s so the smooth scroll does not flicker), keeps the active chip visible in the sideways-scrolling row on phones, and sets `aria-current`.
+- Reusable: `<JumpBar items={[{ id, label }]} />`; the section ids must exist on the page.
+- Verified: `tsc`, `eslint`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Pending (next commit) — Sky-blue hero background on every page except the home page
+Commit subject: `Use the /why-synax hero background on all other page heroes`
+- The `/why-synax` hero look (`border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white`, navy headline, slate-700 lead) now also applies to the heroes of /products, product pages, /solutions, industry pages and /security (`PageHero` in `site-page.tsx`, `product-page.tsx`, `products/page.tsx`). The home page hero is unchanged. The hero side cards (solutions jump list, security facts, industry at-a-glance, product highlights) are white with a sky border to match.
+- Verified: `tsc`, `eslint`. Not checked in a browser. Rollback: `git revert` the commit.
+
+### Pending (next commit) — Button policy: Watch overview kept, Schedule a Demo not repeated
+Commit subject: `Keep Watch overview in hero and closing band; stop repeating Schedule a Demo`
+- **Policy (agreed)**: *Watch overview* stays in the **hero and the closing band of every page** (home hero and closing section, product, industry, /products, /solutions, /why-synax, /security). *Schedule a Demo* appears only in the always-visible **header**, the **hero** and **one closing block**; no demo buttons inside cards or sections.
+- **Update**: the heroes of every page except the home page now carry only *Watch overview*; *Schedule a Demo* stays in the header, the home hero and the closing band of each page. (`PageHero` no longer takes `product`; /products, product pages, /why-synax, /solutions, industry pages and /security changed.)
+- **Header**: one "Schedule a Demo" (desktop and mobile); the duplicate "Contact Sales" button is gone (it stays as a footer link). The mobile sticky bar on the home page stays, because the header button is hidden on phones.
+- **Footer**: the separate closing card is gone, because every page now ends with its own closing band (demo + Watch overview).
+- **Removed demo buttons** (each opened the same form): the six per-card Demo buttons in Market-Ready Platforms, Book Demo in the sector panel, the rollout and comparison buttons, the "Talk to us about your process" button (now a link to /solutions), the four Book a demo buttons on /solutions, and the Ecosystem Purpose button (now a link to /why-synax). The Synax AI section button is now a link to the AI product page.
+- **Code**: `PageHero` and `CtaBand` (`site-page.tsx`) take `tourTitle` again and show both buttons; `Products`, `Sectors`, `Rollout` and `Comparison` lose their demo props; industry pages use Watch overview in the hero (no extra Explore link).
+- Verified: `tsc`, `eslint`, `next build`. Not checked in a browser. Rollback: `git revert` the commit.
+
 ### Committed (`Add product, industry and content routes; shared page frame; portal-aligned copy`) — /why-synax redesigned (light blue, less white space)
 Commit subject: `Redesign /why-synax: sky-blue hero, jump bar, flow rail, tabbed reasons, pricing beside FAQ`
 - `app/why-synax/page.tsx` rewritten to the approved concept, in **light sky blue instead of near-black**: sky-blue gradient hero (headline with an orange stroke under "Synax", the two buttons, and a 2x2 proof board: Free for SMEs under 50, Tally, GST, AS9100D); a sticky jump bar (Pillars, Flow, Reasons, Compare, Pricing, FAQ); three pillar cards with coloured top edges; the six-step spindle-to-invoice flow as one connected rail on a sky-50 band; the five reasons as **tabs** (`_components/reason-tabs.tsx`, arrow-key navigation) instead of five tall rows; the comparison table (cards on phones); a sky-blue pricing card (sticky on desktop) beside the full 7-question FAQ; a heritage strip of group companies; and a light-blue closing call to action.

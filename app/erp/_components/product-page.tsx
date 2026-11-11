@@ -23,9 +23,9 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
   return (
     <main className="pb-6">
       {/* Hero */}
-      <section className="border-b border-slate-200 bg-white" aria-labelledby="product-heading">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-1.5 text-xs text-slate-500">
+      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white" aria-labelledby="product-heading">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+          <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-slate-500">
             <Link href="/erp" className="hover:text-blue-900 hover:underline">
               Synax
             </Link>
@@ -48,21 +48,20 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
               <SectionTag lines="start">{meta.badge}</SectionTag>
               <h1
                 id="product-heading"
-                className="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl"
+                className="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-blue-900 sm:text-4xl lg:text-5xl"
               >
                 {route.name}
               </h1>
               <p className="mt-2 text-base font-semibold text-slate-700">{meta.subtitle}</p>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">{meta.description}</p>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base">{meta.description}</p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <DemoButton product={route.name} />
                 <TourButton title={`${route.name} Tour`} />
               </div>
             </div>
 
             {/* Highlights card */}
-            <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm sm:p-6">
+            <div className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6">
               <div className="flex items-center justify-between gap-3 border-b border-slate-200 pb-4">
                 <div className="flex items-center gap-3">
                   <span className={`flex size-10 items-center justify-center rounded-xl border ${tone.tile}`}>
@@ -89,8 +88,8 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
 
       {/* Modules */}
       {meta.moduleSection ? (
-        <section id="modules" aria-labelledby="modules-heading" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <div className="mx-auto mb-10 max-w-2xl space-y-3 text-center">
+        <section id="modules" aria-labelledby="modules-heading" className="mx-auto max-w-7xl scroll-mt-24 px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+          <div className="mx-auto mb-7 max-w-2xl space-y-3 text-center">
             <SectionTag>{meta.moduleSection.kicker}</SectionTag>
             <h2 id="modules-heading" className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
               Core modules &amp; capabilities
@@ -127,8 +126,8 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
 
       {/* Other products */}
       <section aria-labelledby="more-heading" className="border-y border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="mb-8 space-y-3 text-center">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="mb-6 space-y-3 text-center">
             <SectionTag>One connected platform</SectionTag>
             <h2 id="more-heading" className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
               {isProduct ? "The rest of the Synax suite" : "Products behind this solution"}
@@ -161,7 +160,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
       </section>
 
       {/* Closing CTA */}
-      <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 p-7 shadow-2xl md:flex-row md:items-center md:p-10">
           <div className="max-w-xl">
             <SectionTag tone="dark" lines="start">
