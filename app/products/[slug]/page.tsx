@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ProductPage } from "../../erp/_components/product-page";
-import { PRODUCT_ROUTES, routeBySlug } from "../../erp/_data/products";
+import { AiBiPage } from "../../erp/_components/product-pages/ai-bi";
+import { HrmsPage } from "../../erp/_components/product-pages/hrms";
+import { ManufacturingErpPage } from "../../erp/_components/product-pages/manufacturing-erp";
+import { ShopFloorPage } from "../../erp/_components/product-pages/shop-floor";
+import { StaffingPage } from "../../erp/_components/product-pages/staffing";
+import { WorkDeliveryPage } from "../../erp/_components/product-pages/work-delivery";
+import { PRODUCT_ROUTES, routeBySlug, type ProductKey } from "../../erp/_data/products";
+
+/** Each product has its own page layout (see erp/_components/product-pages). */
+const PAGES: Partial<Record<ProductKey, () => React.ReactElement>> = {
+  precision: ManufacturingErpPage,
+  it: WorkDeliveryPage,
+  hrms: HrmsPage,
+  staffing: StaffingPage,
+  shopfloor: ShopFloorPage,
+  ai: AiBiPage,
+};
 
 /** One page per product, from the registry in `_data/products.ts`: /products/<slug>. */
 export function generateStaticParams() {
@@ -23,6 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ProductRoutePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const route = routeBySlug("/products", slug);
-  if (!route) notFound();
-  return <ProductPage productKey={route.key} />;
+  const Page = route ? PAGES[route.key] : undefined;
+  if (!Page) notFound();
+  return <Page />;
 }

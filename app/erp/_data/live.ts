@@ -185,3 +185,44 @@ export const LIVE_COMPLIANCE = [
     how: "Senwell Group Private Limited publishes a privacy policy describing how personal data in Synax is collected, used and protected under the Digital Personal Data Protection Act, 2023.",
   },
 ];
+
+/** The portal's rollout guide (/rollout): four phases, with the points it lists under each. */
+export const LIVE_ROLLOUT = [
+  {
+    week: "Week 1",
+    title: "Discovery & mapping",
+    points: [
+      "Map departments, process owners and current tools",
+      "Define the must-have workflows for Day 1 go-live",
+      "Finalize the role matrix and access boundaries",
+    ],
+  },
+  {
+    week: "Week 2",
+    title: "Configuration & data setup",
+    points: [
+      "Configure modules by domain: IT, HR, finance, manufacturing",
+      "Import core records: employees, projects, customers, vendors, inventory",
+      "Set approval chains and notification rules",
+    ],
+  },
+  {
+    week: "Week 3",
+    title: "Pilot launch",
+    points: [
+      "Run one controlled team or plant-cell pilot",
+      "Track blockers daily and close priority process gaps",
+      "Train managers and process champions using real workflows",
+    ],
+  },
+  {
+    week: "Week 4+",
+    title: "Full rollout & optimization",
+    points: [
+      "Expand to all target teams with phased onboarding batches",
+      "Monitor adoption KPIs and compliance metrics weekly",
+      "Automate repeat approvals and reporting after stabilization",
+    ],
+  },
+];
+export const LIVE_ROLLOUT_NOTE = "Start with your highest-impact team first, then expand in 1-2 week waves.";

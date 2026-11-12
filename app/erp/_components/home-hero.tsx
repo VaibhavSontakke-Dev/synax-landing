@@ -156,7 +156,7 @@ function ActiveProductName({ active }: { active: number }) {
 }
 
 /** Dot grid, soft light-orange glow and a navy / light-orange base line. Purely decorative. */
-function HeroBackdrop() {
+export function HeroBackdrop() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
       <div className="absolute inset-0 [background-image:radial-gradient(rgba(30,58,138,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000_35%,transparent_80%)]" />

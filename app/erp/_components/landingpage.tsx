@@ -333,24 +333,24 @@ function HomeView({
             </div>
             <div>
               {/* Viewport Control Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-slate-900 text-slate-300 px-4 py-2.5 rounded-t-2xl border border-slate-800 gap-2.5 text-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-slate-200 text-slate-600 px-4 py-2.5 rounded-t-2xl border border-slate-300 gap-2.5 text-xs">
                 <div className="flex items-center gap-2.5">
                   <span className="w-3 h-3 rounded-full bg-rose-500" />
                   <span className="w-3 h-3 rounded-full bg-amber-500" />
                   <span className="w-3 h-3 rounded-full bg-emerald-500" />
-                  <span className="ml-2 font-mono text-[11px] text-slate-400">
+                  <span className="ml-2 font-mono text-[11px] text-slate-500">
                     synax.senwellgroup.com/console/{previewTab}
                   </span>
                 </div>
 
                 {/* Switchable 4 Product Tabs */}
-                <div className="flex flex-wrap gap-1 bg-slate-800/90 p-1 rounded-xl">
+                <div className="flex flex-wrap gap-1 bg-slate-300/60 p-1 rounded-xl">
                   <button
                     onClick={() => setPreviewTab("precision")}
                     className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
                       previewTab === "precision"
                         ? "bg-emerald-600 text-white shadow-xs"
-                        : "text-slate-400 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
                     Manufacturing ERP
@@ -360,7 +360,7 @@ function HomeView({
                     className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
                       previewTab === "aerospace"
                         ? "bg-blue-900 text-white shadow-xs"
-                        : "text-slate-400 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
                     Aerospace &amp; Defence
@@ -370,7 +370,7 @@ function HomeView({
                     className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
                       previewTab === "hrms"
                         ? "bg-blue-900 text-white shadow-xs"
-                        : "text-slate-400 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
                     HRMS
@@ -380,7 +380,7 @@ function HomeView({
                     className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
                       previewTab === "staffing"
                         ? "bg-orange-700 text-white shadow-xs"
-                        : "text-slate-400 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
                     Staffing

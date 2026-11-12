@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Activity, AlertTriangle, ArrowRight, BookOpen, CircleCheck, Plug, Receipt, Sparkles, ZoomIn } from "lucide-react";
+import { Activity, AlertTriangle, ArrowRight, BookOpen, Check, CircleCheck, Plug, Receipt, Sparkles, ZoomIn } from "lucide-react";
 import { SectionTag } from "./section-tag";
+import { HeroBackdrop } from "./home-hero";
 import { hrefFor } from "../_data/products";
 
 /**
@@ -19,7 +20,7 @@ const FRAME_RIGHT = "lg:[transform:perspective(1600px)_rotateY(6deg)_rotateX(2de
 const FLOAT =
   "synax-usp-float z-20 mt-3 rounded-2xl border border-slate-200 bg-white p-3 text-[13px] leading-snug shadow-[0_22px_40px_-18px_rgba(30,58,138,0.55)] lg:absolute lg:mt-0";
 const LINK =
-  "inline-flex items-center gap-2 rounded-lg border-2 border-orange-500 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
+  "inline-flex items-center gap-2 rounded-lg border-2 border-orange-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -35,8 +36,8 @@ function useReducedMotion() {
 
 function LiveDot({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600">
-      <span className="size-2 animate-pulse rounded-full bg-emerald-500 motion-reduce:animate-none" aria-hidden="true" />
+    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-900">
+      <span className="size-2 animate-pulse rounded-full bg-blue-900/50 motion-reduce:animate-none" aria-hidden="true" />
       {children}
     </span>
   );
@@ -49,11 +50,12 @@ function Frame({ url, tilt, children }: { url: string; tilt: "left" | "right"; c
         tilt === "left" ? FRAME_LEFT : FRAME_RIGHT
       }`}
     >
-      <div className="flex items-center gap-1.5 rounded-t-2xl border-b border-slate-200 bg-slate-50 px-3.5 py-2.5" aria-hidden="true">
-        <span className="size-2.5 rounded-full bg-rose-500" />
-        <span className="size-2.5 rounded-full bg-amber-500" />
-        <span className="size-2.5 rounded-full bg-emerald-500" />
-        <span className="ml-2 truncate font-mono text-xs text-slate-500">{url}</span>
+      {/* Same title bar as the "See Synax in Action" viewport on the home page. */}
+      <div className="flex items-center gap-2.5 rounded-t-2xl border-b border-slate-300 bg-slate-200 px-4 py-2.5 text-xs text-slate-600" aria-hidden="true">
+        <span className="size-3 rounded-full bg-rose-500" />
+        <span className="size-3 rounded-full bg-amber-500" />
+        <span className="size-3 rounded-full bg-emerald-500" />
+        <span className="ml-2 truncate font-mono text-[11px] text-slate-500">{url}</span>
       </div>
       {children}
     </div>
@@ -73,7 +75,7 @@ function Row({
 }) {
   return (
     <article
-      className={`relative mb-10 grid items-center gap-8 last:mb-8 lg:gap-10 ${
+      className={`relative mb-14 grid items-center gap-8 last:mb-12 lg:mb-20 lg:gap-12 lg:last:mb-14 ${
         reverse ? "lg:grid-cols-[7fr_5fr]" : "lg:grid-cols-[5fr_7fr]"
       }`}
     >
@@ -108,7 +110,7 @@ function UspText({
 }) {
   return (
     <>
-      <div className="flex items-center gap-2.5 text-xs font-bold tracking-wider text-slate-500 uppercase">
+      <div className="flex items-center gap-2.5 text-xs font-bold tracking-wider text-blue-900 uppercase">
         {tile}
         {label}
       </div>
@@ -117,7 +119,7 @@ function UspText({
       <ul className="mt-4 mb-6 grid gap-2.5">
         {points.map((p) => (
           <li key={p} className="flex gap-2.5 text-sm text-slate-700">
-            <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-orange-500" aria-hidden="true" />
+            <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-orange-400" aria-hidden="true" />
             {p}
           </li>
         ))}
@@ -149,7 +151,7 @@ function AiLens() {
         }}
       >
         <span
-          className="absolute rounded-md border-2 border-orange-500"
+          className="absolute rounded-md border-2 border-orange-400"
           style={{ left: "49.8%", top: "61.7%", width: "47%", height: "30.9%" }}
         />
       </div>
@@ -168,7 +170,7 @@ function AiRow() {
       text={
         <UspText
           tile={
-            <span className="flex size-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-orange-700">
+            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-blue-900">
               <Sparkles className="size-5" aria-hidden="true" />
             </span>
           }
@@ -198,7 +200,7 @@ function AiRow() {
                 className="block h-auto w-full"
               />
               <span
-                className="synax-usp-ring pointer-events-none absolute rounded-[10px] border-[3px] border-orange-500"
+                className="synax-usp-ring pointer-events-none absolute rounded-[10px] border-[3px] border-orange-400"
                 style={{ left: "25.4%", top: "37.8%", width: "10.2%", height: "4.6%" }}
                 aria-hidden="true"
               />
@@ -212,7 +214,7 @@ function AiRow() {
           <div className={`${FLOAT} lg:-right-6 lg:-bottom-7 lg:w-[19rem]`} aria-live="polite">
             {approved ? (
               <>
-                <p className="flex items-center gap-1.5 font-bold text-emerald-700">
+                <p className="flex items-center gap-1.5 font-bold text-blue-900">
                   <CircleCheck className="size-4" aria-hidden="true" /> Approved by you
                 </p>
                 <p className="mt-1 text-xs text-slate-600">2 reminders drafted. Recorded in the event history.</p>
@@ -273,12 +275,12 @@ function MachineBoard() {
             </b>
           </div>
           <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-200">
-            <div className="h-full rounded-full bg-emerald-600 transition-[width] duration-500" style={{ width: `${(m.count / m.max) * 100}%` }} />
+            <div className="h-full rounded-full bg-blue-900/40 transition-[width] duration-500" style={{ width: `${(m.count / m.max) * 100}%` }} />
           </div>
         </div>
       ))}
-      <p className="mt-2 flex items-center gap-1.5 rounded-lg border border-orange-200 bg-orange-50 px-2.5 py-1.5 text-xs text-orange-800">
-        <AlertTriangle className="size-3.5" aria-hidden="true" /> M-03 Alarm · tool life
+      <p className="mt-2 flex items-center gap-1.5 rounded-lg border border-orange-200 bg-orange-50 px-2.5 py-1.5 text-xs text-slate-700">
+        <AlertTriangle className="size-3.5 text-orange-400" aria-hidden="true" /> M-03 Alarm · tool life
       </p>
     </div>
   );
@@ -292,7 +294,7 @@ function MachinesRow() {
       text={
         <UspText
           tile={
-            <span className="flex size-10 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-600">
+            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-blue-900">
               <Activity className="size-5" aria-hidden="true" />
             </span>
           }
@@ -314,7 +316,7 @@ function MachinesRow() {
           <Frame url="synax.senwellgroup.com/machines" tilt="right">
             <div className="relative overflow-hidden rounded-b-2xl leading-[0]">
               <span
-                className="synax-usp-scan pointer-events-none absolute inset-x-0 z-10 h-[3px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent"
+                className="synax-usp-scan pointer-events-none absolute inset-x-0 z-10 h-[3px] bg-gradient-to-r from-transparent via-blue-900/40 to-transparent"
                 aria-hidden="true"
               />
               <Image
@@ -339,9 +341,26 @@ function MachinesRow() {
 }
 
 /* ---- 3. Tally and GST ---- */
-const CHAIN = ["Approved", "IRN generated", "E-way bill", "Tally voucher"];
+const CHAIN = [
+  { title: "Invoice approved", note: "By an approver with the right role" },
+  { title: "IRN generated", note: "Through your GST suvidha provider" },
+  { title: "E-way bill", note: "In the same flow" },
+  { title: "Voucher to Tally", note: "Your accountant changes nothing" },
+];
+const LINES = [
+  ["Machined housing", "120 nos", "84,000"],
+  ["Shaft, ground", "200 nos", "52,000"],
+  ["Bracket, drilled", "80 nos", "18,400"],
+];
+/** A small QR-style block (decorative). */
+const QR = ["1110101", "1000110", "1011011", "0101101", "1101001", "0011110", "1010111"];
 
-function InvoiceCard() {
+/**
+ * A crisp, built-in picture of the invoice flow: a sample tax invoice on the left (its IRN block lights up once the IRN
+ * is generated) and the four steps that follow approval on the right. Sample data only; the steps cycle for visitors and
+ * all show as done for reduced motion.
+ */
+function InvoiceMock() {
   const reduced = useReducedMotion();
   const [step, setStep] = useState(0);
   useEffect(() => {
@@ -350,27 +369,79 @@ function InvoiceCard() {
     return () => clearInterval(id);
   }, [reduced]);
   const done = reduced ? CHAIN.length : step;
+  const irn = done >= 2;
+
   return (
-    <div className={`${FLOAT} lg:top-5 lg:-right-6 lg:w-[19rem]`}>
-      <div className="flex items-center justify-between font-bold text-slate-900">
-        <span>Invoice INV-2201</span>
-        <span className="text-xs font-normal text-slate-500">sample</span>
+    <div className="grid gap-5 rounded-b-2xl bg-gradient-to-br from-slate-50 via-white to-sky-50 p-5 pl-8 sm:grid-cols-[1.45fr_1fr] sm:p-6 sm:pl-12 lg:pb-9">
+      <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-[0_12px_28px_-18px_rgba(30,58,138,0.55)]">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <p className="text-[11px] font-bold tracking-wider text-blue-900 uppercase">Tax invoice</p>
+            <p className="text-base font-extrabold text-slate-900">INV-2201</p>
+          </div>
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold text-slate-500">Sample</span>
+        </div>
+        <p className="mt-2 text-xs text-slate-500">
+          Billed to <span className="font-semibold text-slate-700">Sample customer</span>
+        </p>
+
+        <div className="mt-3 divide-y divide-slate-100 border-y border-slate-100 text-xs">
+          {LINES.map(([name, qty, amount]) => (
+            <div key={name} className="grid grid-cols-[1fr_auto_auto] items-center gap-3 py-1.5">
+              <span className="truncate font-medium text-slate-800">{name}</span>
+              <span className="text-slate-500">{qty}</span>
+              <span className="w-14 text-right font-semibold text-slate-800">{amount}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 flex items-center justify-between text-xs text-slate-500">
+          <span>GST</span>
+          <span className="font-semibold text-slate-700">27,792</span>
+        </div>
+        <div className="mt-1 flex items-center justify-between rounded-lg bg-blue-900 px-3 py-1.5 text-xs font-bold text-white">
+          <span>Total</span>
+          <span>1,82,192</span>
+        </div>
+
+        <div className={`mt-3 flex items-center gap-3 transition-opacity duration-500 ${irn ? "opacity-100" : "opacity-35"}`}>
+          <div className="grid shrink-0 grid-cols-7 gap-px rounded-sm bg-white p-1 ring-1 ring-slate-200" aria-hidden="true">
+            {QR.join("").split("").map((c, i) => (
+              <span key={i} className={`size-[5px] ${c === "1" ? "bg-blue-900" : "bg-transparent"}`} />
+            ))}
+          </div>
+          <p className="text-[11px] leading-snug text-slate-500">
+            <span className="block font-bold text-slate-700">IRN</span>
+            {irn ? "Generated on approval" : "Generated once approved"}
+          </p>
+        </div>
       </div>
-      <ol className="mt-2.5 flex flex-wrap gap-1.5" aria-label="What happens next">
-        {CHAIN.map((c, i) => (
-          <li
-            key={c}
-            className={`rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors duration-500 ${
-              i < done ? "border-blue-900 bg-blue-900 text-white" : "border-slate-200 bg-slate-50 text-slate-600"
-            }`}
-          >
-            {c}
-          </li>
-        ))}
+
+      <ol className="relative flex flex-col justify-center gap-5" aria-label="What happens after approval">
+        {CHAIN.map((c, i) => {
+          const on = i < done;
+          return (
+            <li key={c.title} className="relative flex gap-3">
+              {i < CHAIN.length - 1 ? (
+                <span
+                  aria-hidden="true"
+                  className={`absolute top-7 left-[13px] h-[calc(100%-0.25rem)] w-0.5 transition-colors duration-500 ${i < done - 1 ? "bg-blue-900/40" : "bg-slate-200"}`}
+                />
+              ) : null}
+              <span
+                className={`relative z-10 flex size-7 shrink-0 items-center justify-center rounded-full border-2 text-[11px] font-bold transition-colors duration-500 ${
+                  on ? "border-blue-900 bg-blue-900 text-white" : "border-slate-300 bg-white text-slate-400"
+                }`}
+              >
+                {on ? <Check className="size-3.5" aria-hidden="true" /> : i + 1}
+              </span>
+              <div className="min-w-0">
+                <p className={`text-[13px] font-bold ${on ? "text-slate-900" : "text-slate-500"}`}>{c.title}</p>
+                <p className="text-[11px] leading-snug text-slate-500">{c.note}</p>
+              </div>
+            </li>
+          );
+        })}
       </ol>
-      <p className="mt-2.5 flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs">
-        <Plug className="size-3.5 text-blue-900" aria-hidden="true" /> ClearTax or Masters India connected
-      </p>
     </div>
   );
 }
@@ -402,19 +473,14 @@ function BillingRow() {
       visual={
         <>
           <Frame url="synax.senwellgroup.com/invoice" tilt="left">
-            <div className="rounded-b-2xl bg-slate-100 p-4 pb-16 leading-[0]">
-              <Image
-                src="/images/usp-billing.webp"
-                alt="The Finance and Billing module: customer invoices, debit notes and invoice templates"
-                width={892}
-                height={336}
-                sizes="(min-width: 1024px) 640px, 100vw"
-                className="block h-auto w-full rounded-xl shadow-[0_8px_20px_-12px_#1e3a8a]"
-              />
-            </div>
+            <InvoiceMock />
           </Frame>
-          <InvoiceCard />
-          <div className={`${FLOAT} lg:-bottom-5 lg:-left-5`} style={{ animationDelay: "0.8s" }}>
+          <div className={`${FLOAT} lg:-top-5 lg:-right-5`} style={{ animationDelay: "0.3s" }}>
+            <p className="flex items-center gap-1.5 text-xs font-bold text-blue-900">
+              <Plug className="size-3.5" aria-hidden="true" /> ClearTax or Masters India connected
+            </p>
+          </div>
+          <div className={`${FLOAT} lg:-bottom-6 lg:-left-5`} style={{ animationDelay: "0.8s" }}>
             <p className="flex items-center gap-1.5 font-bold text-blue-900">
               <BookOpen className="size-4" aria-hidden="true" /> Voucher sent to Tally
             </p>
@@ -434,16 +500,15 @@ export function Usp() {
     <section
       id="usp"
       aria-labelledby="usp-heading"
-      className="relative scroll-mt-20 overflow-hidden border-y border-sky-100 bg-gradient-to-b from-sky-50 via-white to-white"
+      className="relative isolate scroll-mt-20 overflow-hidden"
     >
-      <div className="pointer-events-none absolute -top-24 -left-20 size-[26rem] rounded-full bg-sky-100/70 blur-3xl" aria-hidden="true" />
-      <div className="pointer-events-none absolute top-1/3 -right-24 size-[24rem] rounded-full bg-orange-50 blur-3xl" aria-hidden="true" />
+      <HeroBackdrop />
 
       <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
         <div className="mx-auto max-w-3xl text-center">
           <SectionTag>What sets Synax apart (USP)</SectionTag>
-          <h2 id="usp-heading" className="mt-3 text-3xl leading-[1.12] font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            Built in, not bolted on: <span className="text-orange-600">AI</span>, live machines, <span className="text-orange-600">Tally</span> and GST
+          <h2 id="usp-heading" className="mt-3 text-2xl leading-[1.15] font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+            Built in, not bolted on: <span className="text-blue-900">AI</span>, live machines, <span className="text-blue-900">Tally</span> and GST
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
             Most plants stitch these together from separate tools. In Synax they share one record, from the spindle to the GST invoice.

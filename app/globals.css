@@ -580,10 +580,10 @@ body {
 
 @keyframes synax-usp-ring {
   0% {
-    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.55);
+    box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.5);
   }
   100% {
-    box-shadow: 0 0 0 16px rgba(249, 115, 22, 0);
+    box-shadow: 0 0 0 16px rgba(251, 146, 60, 0);
   }
 }
 
@@ -645,6 +645,47 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .synax-hero-lens {
+    animation: none;
+  }
+}
+
+/* Product pages: a dashed line that travels along a connector, and a soft pulse for an alarm dot. Off for reduced motion. */
+@keyframes synax-prod-dash-x {
+  to {
+    background-position: 14px 0;
+  }
+}
+
+@keyframes synax-prod-dash-y {
+  to {
+    background-position: 0 14px;
+  }
+}
+
+@keyframes synax-prod-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.synax-prod-dash-x {
+  background-image: repeating-linear-gradient(90deg, currentColor 0 7px, transparent 7px 14px);
+  animation: synax-prod-dash-x 1s linear infinite;
+}
+
+.synax-prod-dash-y {
+  background-image: repeating-linear-gradient(180deg, currentColor 0 7px, transparent 7px 14px);
+  animation: synax-prod-dash-y 1s linear infinite;
+}
+
+.synax-prod-pulse {
+  animation: synax-prod-pulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .synax-prod-dash-x,
+  .synax-prod-dash-y,
+  .synax-prod-pulse {
     animation: none;
   }
 }
