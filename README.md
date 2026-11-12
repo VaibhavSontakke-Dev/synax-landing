@@ -22,6 +22,14 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Why Synax and Security & Trust: same layout as Solutions
+Commit subject: `Why Synax, Security: rebuild on the Solutions page layout`
+- **What**: `/why-synax` and `/security` now follow `/solutions`: `PageHero` with a white "at a glance" card on the right (icon-tile rows, like "Pick your starting point"), a sky-50 band of cards with a coloured top border, then centred `Block` sections alternating plain/white, a `Faq`, and the light `CtaBand`. The sticky jump bar stays on both.
+- **Why Synax**: custom hero replaced by `PageHero` (facts moved into the card); pillars are Solutions-style cards (icon tile, orange callout, "What you get" checks); the flow rail became six numbered cards; comparison table header and icon tiles match the Solutions table; pricing is a centred sky band; FAQ and heritage are standard blocks. Copy unchanged.
+- **Security**: facts card in the hero; the six controls are Solutions-style cards ("What it does" callout, "In practice" checks); the four-step posting flow is numbered cards; compliance, shared responsibility and privacy & terms are separate centred blocks. Copy unchanged.
+- **Files**: `app/why-synax/page.tsx`, `app/security/page.tsx`.
+- **Rollback**: revert the commit (or `git checkout <previous-hash> -- app/why-synax/page.tsx app/security/page.tsx`).
+
 ### Pending (next commit) — Hero: magnifier (zoom lens) for the spotlighted module
 Commit subject: `Hero: add a magnifier pop-out so the spotlighted module is readable`
 - **Problem**: the screenshot is shown at ~700px wide, so the text of the highlighted module was too small to read, and the image cannot simply be made bigger.
