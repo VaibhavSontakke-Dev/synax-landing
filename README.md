@@ -22,6 +22,15 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Hero: magnifier (zoom lens) for the spotlighted module
+Commit subject: `Hero: add a magnifier pop-out so the spotlighted module is readable`
+- **Problem**: the screenshot is shown at ~700px wide, so the text of the highlighted module was too small to read, and the image cannot simply be made bigger.
+- **Fix** (`home-hero.tsx`, lg+ only): next to the spotlight, a **lens** shows the same module enlarged (~1.7-2x) from the full-size master `hero-dashboard-overview.webp` (2000px, so it stays sharp), with an orange border, a shadow and a name tag (Purchase & SCM, Planning & Production, People, Overview, Projects, Staffing). It grows out of the spotlight each time the active product changes (`synax-hero-lens` in `globals.css`; off for reduced motion). Hidden below lg, where the product cards carry the information.
+- **Placement** (per product, `lens` in `HERO_PRODUCTS`: `crop`, `at`, `z`): right of the spotlight for Manufacturing ERP, Shop Floor, IT Services and Staffing; above it for HRMS; below it for AI & BI. It may poke up to 14px past the image edge; the zoom shrinks automatically if it would not fit. Its size and position are computed from the displayed image in the same measurement code as the connector (`ResizeObserver`).
+- **Connector**: right-hand cards (Manufacturing ERP, Shop Floor, HRMS) now end on the lens edge instead of the small spotlight, so the dashed line no longer crosses other modules. Left-hand cards still end on the spotlight.
+- Verified: `tsc`, `next build`. **Not checked in a browser** - please look at each of the six products (lens position, overlap with neighbouring modules, connector end) and tell me what to nudge (zoom `z`, `at`, or `crop`).
+- Rollback: `git revert` the commit.
+
 ### Pending (next commit) — Site-wide spacing: less white space
 Commit subject: `Tighten vertical spacing across every page`
 - **Rule of thumb (desktop)**: standard section padding 80-112px -> 40-48px, hero padding 56px -> 40px, heading-to-content gap 40px -> 28px, breadcrumb gap 32px -> 20px, closing band 64px -> 40px; mobile sections 32-40px. Compact sections (/security) 32-40px.

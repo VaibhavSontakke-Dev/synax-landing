@@ -33,6 +33,12 @@ const CYCLE_MS = 2800;
  */
 const NATIVE_RATIO = 1748 / 1045;
 const FRAME_RATIO = NATIVE_RATIO;
+
+/** Size of the full screenshot the lens crops from (`hero-dashboard-overview.webp`). */
+const MASTER_W = 2000;
+const MASTER_H = 1045;
+/** How far the lens may poke out past the image edge, in px. */
+const POKE = 14;
 const VISIBLE_W = FRAME_RATIO / NATIVE_RATIO;
 const CROP_X = (1 - VISIBLE_W) / 2;
 const mapX = (x: number) => Math.min(1, Math.max(0, (x - CROP_X) / VISIBLE_W));
@@ -48,6 +54,11 @@ interface HeroProduct {
   slot: 0 | 1 | 2;
   /** Module on the screenshot this product maps to: [x0, y0, x1, y1] as fractions. */
   region: [number, number, number, number];
+  /**
+   * Magnified pop-out of the module (lg+): which part of the full-size screenshot to show (`crop`, fractions), where to
+   * put it relative to the spotlight, and the zoom. The zoom shrinks if the lens would not fit.
+   */
+  lens: { name: string; crop: [number, number, number, number]; at: "right" | "below" | "above"; z: number };
 }
 
 // Listed in cycle order.
@@ -60,6 +71,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 1,
     region: [0.369, 0.446, 0.586, 0.595],
+    lens: { name: "Purchase & SCM", crop: [0.369, 0.446, 0.586, 0.595], at: "right", z: 2 },
   },
   {
     label: "Work & Delivery Management",
@@ -69,6 +81,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "left",
     slot: 0,
     region: [0.006, 0.16, 0.134, 0.2],
+    lens: { name: "Projects", crop: [0.006, 0.13, 0.2, 0.235], at: "right", z: 2 },
   },
   {
     label: "HRMS",
@@ -78,6 +91,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 2,
     region: [0.591, 0.606, 0.807, 0.758],
+    lens: { name: "People", crop: [0.591, 0.606, 0.807, 0.758], at: "above", z: 2 },
   },
   {
     label: "Staffing & Resource Management",
@@ -87,6 +101,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "left",
     slot: 1,
     region: [0.006, 0.236, 0.134, 0.278],
+    lens: { name: "Staffing", crop: [0.006, 0.205, 0.2, 0.31], at: "right", z: 2 },
   },
   {
     label: "Shop Floor & Machine Monitoring",
@@ -96,6 +111,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 0,
     region: [0.369, 0.286, 0.586, 0.436],
+    lens: { name: "Planning & Production", crop: [0.369, 0.286, 0.586, 0.436], at: "right", z: 2 },
   },
   {
     label: "AI & Business Intelligence",
@@ -105,6 +121,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "left",
     slot: 2,
     region: [0.146, 0.286, 0.363, 0.436],
+    lens: { name: "Overview", crop: [0.146, 0.286, 0.363, 0.436], at: "below", z: 2 },
   },
 ];
 
@@ -160,6 +177,8 @@ export function Hero({
 
   const stageRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const lensRef = useRef<HTMLDivElement>(null);
   const chipRefs = useRef<(HTMLLIElement | null)[]>([]);
   const pathRef = useRef<SVGPathElement>(null);
   const dotRef = useRef<SVGCircleElement>(null);
@@ -194,8 +213,55 @@ export function Hero({
       const left = p.side === "left";
       const ax = (left ? c.right : c.left) - s.left;
       const ay = c.top + c.height / 2 - s.top;
-      const tx = i.left - s.left + (left ? x0 : x1) * i.width;
-      const ty = i.top - s.top + ((y0 + y1) / 2) * i.height;
+      let tx = i.left - s.left + (left ? x0 : x1) * i.width;
+      let ty = i.top - s.top + ((y0 + y1) / 2) * i.height;
+
+      // Magnified pop-out of the active module, sized from the displayed image so it stays sharp at any width.
+      const lensEl = lensRef.current;
+      const frame = frameRef.current;
+      if (lensEl && frame) {
+        const f = frame.getBoundingClientRect();
+        const W = i.width;
+        const H = i.height;
+        const sy = H / MASTER_H; // screen px per screenshot px
+        const [cx0, cy0, cx1, cy1] = p.lens.crop;
+        const cw = (cx1 - cx0) * MASTER_W;
+        const ch = (cy1 - cy0) * MASTER_H;
+        const spotL = x0 * W;
+        const spotR = x1 * W;
+        const spotT = y0 * H;
+        const spotB = y1 * H;
+        const room = p.lens.at === "right" ? W + POKE - (spotR + 10) : W + POKE;
+        const z = Math.min(p.lens.z, room / (cw * sy));
+        const w = cw * sy * z;
+        const h = ch * sy * z;
+        let lx: number;
+        let ly: number;
+        if (p.lens.at === "right") {
+          lx = spotR + 10;
+          ly = (spotT + spotB) / 2 - h / 2;
+        } else if (p.lens.at === "below") {
+          lx = Math.min(spotL, W + POKE - w);
+          ly = spotB + 8;
+        } else {
+          lx = W + POKE - w;
+          ly = spotT - 8 - h;
+        }
+        ly = Math.max(-6, Math.min(ly, H - h + 10));
+        const ox = i.left - (f.left + frame.clientLeft);
+        const oy = i.top - (f.top + frame.clientTop);
+        lensEl.style.left = `${ox + lx}px`;
+        lensEl.style.top = `${oy + ly}px`;
+        lensEl.style.width = `${w}px`;
+        lensEl.style.height = `${h}px`;
+        lensEl.style.backgroundSize = `${MASTER_W * sy * z}px ${MASTER_H * sy * z}px`;
+        lensEl.style.backgroundPosition = `${-cx0 * MASTER_W * sy * z}px ${-cy0 * MASTER_H * sy * z}px`;
+        if (!left) {
+          // Right-hand cards connect to the lens (its right edge), so the line does not cross other modules.
+          tx = i.left - s.left + lx + w;
+          ty = i.top - s.top + ly + h / 2;
+        }
+      }
       const d = (tx - ax) / 2;
 
       path.setAttribute("d", `M${ax} ${ay} C${ax + d} ${ay} ${tx - d} ${ty} ${tx} ${ty}`);
@@ -321,7 +387,10 @@ export function Hero({
             <div className="absolute inset-x-5 top-6 bottom-[18px] rounded-2xl border border-blue-900/20 bg-blue-900/[0.07]" aria-hidden="true" />
             <div className="absolute inset-x-10 -bottom-1 h-4 rounded-[50%] bg-slate-900/10 blur-md" aria-hidden="true" />
 
-            <div className="relative rounded-2xl border border-slate-200 bg-white p-1.5 shadow-[0_22px_44px_-20px_rgba(11,27,51,0.42)]">
+            <div
+              ref={frameRef}
+              className="relative rounded-2xl border border-slate-200 bg-white p-1.5 shadow-[0_22px_44px_-20px_rgba(11,27,51,0.42)]"
+            >
               <div ref={imageRef} className="relative overflow-hidden rounded-xl ring-1 ring-slate-900/5">
                 <Image
                   src="/images/hero-dashboard-overview-fit.webp"
@@ -344,6 +413,19 @@ export function Hero({
                     height: `${(ry1 - ry0) * 100}%`,
                   }}
                 />
+              </div>
+
+              {/* Magnifier (lg+): the active module, enlarged from the full-size screenshot so its text is readable */}
+              <div
+                key={active}
+                ref={lensRef}
+                aria-hidden="true"
+                className="synax-hero-lens pointer-events-none absolute z-20 hidden overflow-hidden rounded-xl border-2 border-orange-400 bg-white bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)] lg:block"
+                style={{ backgroundImage: "url(/images/hero-dashboard-overview.webp)" }}
+              >
+                <span className="absolute top-0 left-0 rounded-br-lg bg-orange-400 px-2 py-0.5 text-[11px] leading-tight font-bold text-white">
+                  {HERO_PRODUCTS[active].lens.name}
+                </span>
               </div>
             </div>
           </div>
