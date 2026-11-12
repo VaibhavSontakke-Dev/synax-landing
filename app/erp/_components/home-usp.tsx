@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Activity, AlertTriangle, ArrowRight, BookOpen, CircleCheck, Plug, Receipt, Sparkles } from "lucide-react";
+import { Activity, AlertTriangle, ArrowRight, BookOpen, CircleCheck, Plug, Receipt, Sparkles, ZoomIn } from "lucide-react";
 import { SectionTag } from "./section-tag";
 import { hrefFor } from "../_data/products";
 
@@ -131,6 +131,35 @@ function UspText({
 }
 
 /* ---- 1. AI ---- */
+
+/**
+ * Magnifier for the Synax AI tile: the Overview card of the full-size screenshot (x 14.6-36.3%, y 28.6-43.6%), enlarged
+ * about 2.3x and placed just below the ring, with a small pointer up to it. Sized in percentages of the image, so it
+ * scales with the frame. The picture is a CSS background of the 2000px master, so it stays sharp.
+ */
+function AiLens() {
+  return (
+    <div className="pointer-events-none absolute z-10 aspect-[434/156] w-[40%]" style={{ left: "14.6%", top: "48%" }} aria-hidden="true">
+      <div
+        className="absolute inset-0 overflow-hidden rounded-xl border-2 border-orange-400 bg-white bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)]"
+        style={{
+          backgroundImage: "url(/images/hero-dashboard-overview.webp)",
+          backgroundSize: "460.8% auto",
+          backgroundPosition: "18.65% 33.6%",
+        }}
+      >
+        <span
+          className="absolute rounded-md border-2 border-orange-500"
+          style={{ left: "49.8%", top: "61.7%", width: "47%", height: "30.9%" }}
+        />
+      </div>
+      <span className="absolute -top-[7px] left-[39.75%] size-3 -translate-x-1/2 rotate-45 border-t-2 border-l-2 border-orange-400 bg-white" />
+      <span className="absolute -top-2.5 -left-2.5 flex size-6 items-center justify-center rounded-full bg-orange-400 text-white shadow-sm ring-2 ring-white">
+        <ZoomIn className="size-3.5" />
+      </span>
+    </div>
+  );
+}
 function AiRow() {
   const [approved, setApproved] = useState(false);
   return (
@@ -173,6 +202,7 @@ function AiRow() {
                 style={{ left: "25.4%", top: "37.8%", width: "10.2%", height: "4.6%" }}
                 aria-hidden="true"
               />
+              <AiLens />
             </div>
           </Frame>
           <div className={`${FLOAT} lg:top-[18%] lg:-left-5`} style={{ animationDelay: "0.4s" }}>
