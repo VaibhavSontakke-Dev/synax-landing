@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, Play, Users } from "lucide-react";
+import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, Play, Users, ZoomIn } from "lucide-react";
 
 /**
  * Landing-page hero: the real dashboard is the focus, and the six products point at it.
@@ -39,6 +39,8 @@ const MASTER_W = 2000;
 const MASTER_H = 1045;
 /** How far the lens may poke out past the image edge, in px. */
 const POKE = 14;
+/** Every lens is this fraction of the displayed image width (less if there is no room), so all of them look alike. */
+const LENS_W = 0.43;
 const VISIBLE_W = FRAME_RATIO / NATIVE_RATIO;
 const CROP_X = (1 - VISIBLE_W) / 2;
 const mapX = (x: number) => Math.min(1, Math.max(0, (x - CROP_X) / VISIBLE_W));
@@ -55,10 +57,10 @@ interface HeroProduct {
   /** Module on the screenshot this product maps to: [x0, y0, x1, y1] as fractions. */
   region: [number, number, number, number];
   /**
-   * Magnified pop-out of the module (lg+): which part of the full-size screenshot to show (`crop`, fractions), where to
-   * put it relative to the spotlight, and the zoom. The zoom shrinks if the lens would not fit.
+   * Magnified pop-out of the module (lg+): which part of the full-size screenshot to show (`crop`, fractions) and where
+   * to put it relative to the spotlight. Every lens has the same width (`LENS_W`), so the zoom follows from the crop.
    */
-  lens: { name: string; crop: [number, number, number, number]; at: "right" | "below" | "above"; z: number };
+  lens: { crop: [number, number, number, number]; at: "right" | "below" | "above" };
 }
 
 // Listed in cycle order.
@@ -71,7 +73,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 1,
     region: [0.369, 0.446, 0.586, 0.595],
-    lens: { name: "Purchase & SCM", crop: [0.369, 0.446, 0.586, 0.595], at: "right", z: 2 },
+    lens: { crop: [0.369, 0.446, 0.586, 0.595], at: "right" },
   },
   {
     label: "Work & Delivery Management",
@@ -81,7 +83,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "left",
     slot: 0,
     region: [0.006, 0.16, 0.134, 0.2],
-    lens: { name: "Projects", crop: [0.006, 0.13, 0.2, 0.235], at: "right", z: 2 },
+    lens: { crop: [0.006, 0.13, 0.2, 0.235], at: "right" },
   },
   {
     label: "HRMS",
@@ -91,7 +93,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 2,
     region: [0.591, 0.606, 0.807, 0.758],
-    lens: { name: "People", crop: [0.591, 0.606, 0.807, 0.758], at: "above", z: 2 },
+    lens: { crop: [0.591, 0.606, 0.807, 0.758], at: "above" },
   },
   {
     label: "Staffing & Resource Management",
@@ -101,7 +103,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "left",
     slot: 1,
     region: [0.006, 0.236, 0.134, 0.278],
-    lens: { name: "Staffing", crop: [0.006, 0.205, 0.2, 0.31], at: "right", z: 2 },
+    lens: { crop: [0.006, 0.205, 0.2, 0.31], at: "right" },
   },
   {
     label: "Shop Floor & Machine Monitoring",
@@ -111,7 +113,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 0,
     region: [0.369, 0.286, 0.586, 0.436],
-    lens: { name: "Planning & Production", crop: [0.369, 0.286, 0.586, 0.436], at: "right", z: 2 },
+    lens: { crop: [0.369, 0.286, 0.586, 0.436], at: "right" },
   },
   {
     label: "AI & Business Intelligence",
@@ -121,7 +123,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "left",
     slot: 2,
     region: [0.146, 0.286, 0.363, 0.436],
-    lens: { name: "Overview", crop: [0.146, 0.286, 0.363, 0.436], at: "below", z: 2 },
+    lens: { crop: [0.146, 0.286, 0.363, 0.436], at: "below" },
   },
 ];
 
@@ -232,8 +234,8 @@ export function Hero({
         const spotT = y0 * H;
         const spotB = y1 * H;
         const room = p.lens.at === "right" ? W + POKE - (spotR + 10) : W + POKE;
-        const z = Math.min(p.lens.z, room / (cw * sy));
-        const w = cw * sy * z;
+        const w = Math.min(LENS_W * W, room);
+        const z = w / (cw * sy);
         const h = ch * sy * z;
         let lx: number;
         let ly: number;
@@ -254,8 +256,11 @@ export function Hero({
         lensEl.style.top = `${oy + ly}px`;
         lensEl.style.width = `${w}px`;
         lensEl.style.height = `${h}px`;
-        lensEl.style.backgroundSize = `${MASTER_W * sy * z}px ${MASTER_H * sy * z}px`;
-        lensEl.style.backgroundPosition = `${-cx0 * MASTER_W * sy * z}px ${-cy0 * MASTER_H * sy * z}px`;
+        const pic = lensEl.firstElementChild as HTMLElement | null;
+        if (pic) {
+          pic.style.backgroundSize = `${MASTER_W * sy * z}px ${MASTER_H * sy * z}px`;
+          pic.style.backgroundPosition = `${-cx0 * MASTER_W * sy * z}px ${-cy0 * MASTER_H * sy * z}px`;
+        }
         if (!left) {
           // Right-hand cards connect to the lens (its right edge), so the line does not cross other modules.
           tx = i.left - s.left + lx + w;
@@ -420,11 +425,14 @@ export function Hero({
                 key={active}
                 ref={lensRef}
                 aria-hidden="true"
-                className="synax-hero-lens pointer-events-none absolute z-20 hidden overflow-hidden rounded-xl border-2 border-orange-400 bg-white bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)] lg:block"
-                style={{ backgroundImage: "url(/images/hero-dashboard-overview.webp)" }}
+                className="synax-hero-lens pointer-events-none absolute z-20 hidden lg:block"
               >
-                <span className="absolute top-0 left-0 rounded-br-lg bg-orange-400 px-2 py-0.5 text-[11px] leading-tight font-bold text-white">
-                  {HERO_PRODUCTS[active].lens.name}
+                <div
+                  className="absolute inset-0 overflow-hidden rounded-xl border-2 border-orange-400 bg-white bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)]"
+                  style={{ backgroundImage: "url(/images/hero-dashboard-overview.webp)" }}
+                />
+                <span className="absolute -top-2.5 -left-2.5 flex size-6 items-center justify-center rounded-full bg-orange-400 text-white shadow-sm ring-2 ring-white">
+                  <ZoomIn className="size-3.5" />
                 </span>
               </div>
             </div>
