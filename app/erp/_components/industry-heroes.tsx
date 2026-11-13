@@ -61,7 +61,7 @@ function FlightDeckHero({ page }: { page: IndustryPage }) {
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden bg-blue-950 text-white">
       <Image
-        src="/images/aerospace.png"
+        src="/images/aerospace.webp"
         alt="A business jet, a fighter and an unmanned aircraft in flight"
         fill
         priority
@@ -141,10 +141,9 @@ function DrawingHero({ page }: { page: IndustryPage }) {
         aria-hidden="true"
       >
         <Image
-          src="/images/precision.png"
+          src="/images/precision.webp"
           alt=""
           fill
-          priority
           sizes="60vw"
           quality={75}
           className="object-cover object-[55%_50%]"
@@ -186,7 +185,7 @@ function DrawingHero({ page }: { page: IndustryPage }) {
         {/* Small screens: the photo sits below the copy with the callouts as chips */}
         <div className="mt-6 lg:hidden">
           <div className="relative h-48 overflow-hidden rounded-2xl border border-slate-200 bg-blue-900">
-            <Image src="/images/precision.png" alt="A CNC spindle machining a metal part" fill sizes="100vw" quality={70} className="object-cover" />
+            <Image src="/images/precision.webp" alt="A CNC spindle machining a metal part" fill sizes="100vw" quality={70} className="object-cover" />
           </div>
           <ul className="mt-3 flex flex-wrap gap-2">
             {DRAWING_CALLOUTS.map((c) => (
@@ -217,7 +216,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
         className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 opacity-40 [mask-image:linear-gradient(to_right,transparent,#000_65%)] lg:block"
         aria-hidden="true"
       >
-        <Image src="/images/modern-ui.png" alt="" fill sizes="50vw" quality={70} className="object-cover object-[50%_35%]" />
+        <Image src="/images/modern-ui.webp" alt="" fill sizes="50vw" quality={70} className="object-cover object-[50%_35%]" />
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgba(30,58,138,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" aria-hidden="true" />
 
@@ -277,7 +276,7 @@ function PosterHero({ page }: { page: IndustryPage }) {
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden bg-blue-950 text-white">
       <Image
-        src="/images/hrms.jpg"
+        src="/images/assembly-line.webp"
         alt="Vehicle bodies moving along an assembly line"
         fill
         priority
@@ -378,7 +377,7 @@ function RosterHero({ page }: { page: IndustryPage }) {
           <div className="overflow-hidden rounded-3xl border border-slate-300 bg-white shadow-lg">
             <div className="relative h-36 bg-blue-900 sm:h-40">
               <Image
-                src="/images/IT-staffing.jpg"
+                src="/images/robot-floor.webp"
                 alt="Robotic arms working on a plant floor"
                 fill
                 priority

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, Menu, ShieldCheck, X } from "lucide-react";
@@ -125,12 +126,13 @@ export function SiteNav() {
             aria-label="Synax by Senwell — home"
             className="group flex items-center rounded-md py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-900"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/SYNAX_PRO.svg"
+            <Image
+              src="/images/synax-pro.webp"
               alt=""
-              width={2048}
-              height={682}
+              width={480}
+              height={160}
+              priority
+              sizes="(min-width: 640px) 144px, 132px"
               className="-my-3 h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] sm:h-12"
             />
           </Link>

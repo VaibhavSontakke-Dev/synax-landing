@@ -367,7 +367,7 @@ export function TourPlayer({ tour, onBook }: { tour: Tour; onBook: () => void })
         <div className="absolute top-0 left-0 origin-top-left" style={{ width: STAGE_W, height: STAGE_H, transform: `scale(${scale})` }}>
           <div className="synax-ov-glow pointer-events-none absolute -top-28 right-10 size-[26rem] rounded-full bg-orange-300/10 blur-3xl" aria-hidden="true" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/synax-pro-light.png" alt="" width={900} height={247} className="absolute top-5 left-7 h-6 w-auto opacity-90" />
+          <img src="/images/synax-pro-light.webp" alt="" width={480} height={132} className="absolute top-5 left-7 h-6 w-auto opacity-90" />
           {tour.tag ? (
             <span className="absolute top-5 right-7 rounded-full border border-white/25 px-3 py-1 text-xs font-semibold tracking-wide text-slate-200">{tour.tag}</span>
           ) : null}

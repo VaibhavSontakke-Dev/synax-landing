@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useDemo } from "./demo-provider";
 import { hrefFor, type ProductKey } from "../_data/products";
@@ -27,7 +28,7 @@ import { LIVE_POSITIONING } from "../_data/live";
  *
  * Layout: brand column (white Synax PRO logo, positioning line, contact) · six products · platform · company,
  * then compliance chips and a legal bar with back-to-top. The logo is a white knockout of the brand logo
- * (`/images/synax-pro-light.png`) so it sits straight on the dark surface, with a soft glow behind it. A faint
+ * (`/images/synax-pro-light.webp`) so it sits straight on the dark surface, with a soft glow behind it. A faint
  * "SYNAX" watermark runs along the bottom. Everything is real navigation inside labelled <nav>s.
  */
 
@@ -106,8 +107,7 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Link href="/erp" aria-label="Synax by Senwell — home" className={`relative inline-block rounded-lg ${FOCUS}`}>
               <span className="absolute -inset-x-6 -inset-y-4 -z-10 rounded-full bg-blue-500/20 blur-2xl" aria-hidden="true" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/synax-pro-light.png" alt="" width={900} height={247} className="h-8 w-auto object-contain" />
+              <Image src="/images/synax-pro-light.webp" alt="" width={480} height={132} sizes="117px" className="h-8 w-auto object-contain" />
             </Link>
             <p className="mt-4 text-sm font-semibold text-orange-300">{LIVE_POSITIONING.headline}</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-300">

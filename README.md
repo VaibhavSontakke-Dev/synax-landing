@@ -22,6 +22,16 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Image performance
+Commit subject: `Performance: lighter images, image config and cache headers`
+- **Biggest cause**: the header logo was `SYNAX_PRO.svg`, a 1.5 MB file (a PNG embedded in an SVG) downloaded on every page. It is now `public/images/synax-pro.webp` (480x160, 9 KB, same 3:1 box so the layout is unchanged) through `next/image` with `priority` in `site-nav.tsx`. The footer and tour-player logo is `synax-pro-light.webp` (14 KB, was a 56 KB PNG).
+- **Sources converted to resized WebP** (Next optimises them again per request, but a small source makes the first request after a deploy much faster): `aerospace.png` 125 KB -> `aerospace.webp` 37 KB, `precision.png` 140 -> `precision.webp` 79, `hrms.jpg` 395 -> `assembly-line.webp` 228, `IT-staffing.jpg` 286 -> `robot-floor.webp` 211, `modern-ui.png` 1752 -> `modern-ui.webp` 73 KB. References updated in `industry-heroes.tsx` and `console-viewport.tsx`. The old files and the unused `synax-dashboard.png` (1.4 MB), `hero-factory.webp`, `usp-billing.webp` and `synax_logo.png` were deleted.
+- **`next.config.ts`**: `images.minimumCacheTTL` 30 days (the default is 4 hours, so optimised images were re-encoded constantly), WebP output, fewer widths (`deviceSizes` 640 to 1920, `imageSizes` to 384) and `qualities` 70 and 75 (the values the code uses; Next 16 only allows listed ones). Files served straight from `/public` (`/images/*`, `/audio/*`) now send `Cache-Control: public, max-age=604800, stale-while-revalidate=2592000` (they were `max-age=0`, so every visit re-checked them). Because of that cache: give a changed image a NEW file name.
+- **Preloads**: removed `priority` from the two photos that sit inside `hidden lg:block` panels (Precision CNC hero, Shop Floor hero); `priority` preloads even when the element is hidden, so phones were downloading images they never showed. Visible hero images keep `priority`.
+- **Left as is**: `public/images/SYNAX_PRO.svg` (your original, 1.5 MB, no longer loaded; delete it or keep it outside `public/`), the four client logos (loaded from their own sites, already lazy), `hero-dashboard-overview.webp` (129 KB, also used as a CSS background for the magnifier lens, loaded only when the lens shows on large screens). AVIF output was not enabled: it is smaller but slower to generate on the first request after a deploy; consider it if the host has spare CPU or an image CDN.
+- **Verified**: `tsc`, `eslint` (no errors) and `next build` pass. Not measured in a browser: compare Lighthouse or the network tab before and after on the deployed site.
+- **Rollback**: revert the commit (the deleted images come back).
+
 ### Pending (next commit) — Home hero: gap under the headline
 Commit subject: `Home hero: add a gap between the headline and the product name`
 - **What**: in `home-hero.tsx`, the rotating product name (`ActiveProductName`) sat 2 px under "One Platform for Every Operation", right against the orange underline. It now has a 16 px gap (`mt-4`), and on large screens `clamp(0.625rem, 1.8vh, 1.25rem)`, so it still scales with the viewport height the hero is sized to.

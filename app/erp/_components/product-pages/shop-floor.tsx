@@ -69,7 +69,6 @@ export function ShopFloorPage() {
               src="/images/products/shop-floor.webp"
               alt=""
               fill
-              priority
               sizes="62vw"
               quality={75}
               className="object-cover object-[60%_50%]"

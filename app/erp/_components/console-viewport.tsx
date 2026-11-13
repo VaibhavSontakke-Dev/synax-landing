@@ -35,7 +35,7 @@ interface TabData {
 
 const DATA: Record<ConsoleTab, TabData> = {
   precision: {
-    photo: "/images/precision.png",
+    photo: "/images/precision.webp",
     chip: "Plant 1 · Machining",
     head: "Machine to invoice",
     caption: "Cycle counts from the machine drive the route card, the COC and the GST invoice.",
@@ -62,7 +62,7 @@ const DATA: Record<ConsoleTab, TabData> = {
     },
   },
   aerospace: {
-    photo: "/images/aerospace.png",
+    photo: "/images/aerospace.webp",
     chip: "Quality lab · Inspection",
     head: "Release against a complete record",
     caption: "AS9100D QMS controls sit at the checkpoints, so the evidence builds itself.",
@@ -89,7 +89,7 @@ const DATA: Record<ConsoleTab, TabData> = {
     },
   },
   hrms: {
-    photo: "/images/hrms.jpg",
+    photo: "/images/assembly-line.webp",
     chip: "Plant 1 · Shift Alpha",
     head: "From the first day to the payslip",
     caption: "Attendance and approvals feed payroll, in the same workspace as operations.",
@@ -116,7 +116,7 @@ const DATA: Record<ConsoleTab, TabData> = {
     },
   },
   staffing: {
-    photo: "/images/IT-staffing.jpg",
+    photo: "/images/robot-floor.webp",
     chip: "Delivery desk",
     head: "Requirement to deployment",
     caption: "Customer needs, candidates, interviews and deployments in one flow.",
