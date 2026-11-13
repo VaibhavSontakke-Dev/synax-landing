@@ -127,9 +127,11 @@ export function SiteNav() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/synax_logo.png"
+              src="/images/SYNAX_PRO.svg"
               alt=""
-              className="h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] sm:h-9"
+              width={2048}
+              height={682}
+              className="-my-3 h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] sm:h-16"
             />
           </Link>
 

@@ -96,10 +96,10 @@ export function Footer() {
             <Link
               href="/erp"
               aria-label="Synax by Senwell — home"
-              className="inline-block rounded-lg bg-white px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
+              className="inline-block rounded-lg bg-white px-3 py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/synax_logo.png" alt="" className="h-8 w-auto object-contain" />
+              <img src="/images/SYNAX_PRO.svg" alt="" width={2048} height={682} className="h-14 w-auto object-contain" />
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-300">
               Synax is a unified business suite by <strong className="text-white">Senwell Group</strong>: manufacturing,
