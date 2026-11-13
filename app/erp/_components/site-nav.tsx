@@ -131,7 +131,7 @@ export function SiteNav() {
               alt=""
               width={2048}
               height={682}
-              className="-my-3 h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] sm:h-16"
+              className="-my-3 h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] sm:h-12"
             />
           </Link>
 
