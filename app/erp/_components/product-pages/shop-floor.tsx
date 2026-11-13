@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { CalendarRange, Cpu, Gauge, Hand, PlugZap, ScanLine, Server } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { industryHref } from "../../_data/industries";
@@ -57,10 +58,25 @@ const CONNECT: { icon: LucideIcon; title: string; copy: string }[] = [
 export function ShopFloorPage() {
   return (
     <main className="pb-6">
-      {/* Hero: a floor plan with the copy card on top of it */}
+      {/* Hero: the photo runs off the right edge of the page and fades into the background, machine cards on top of it */}
       <HeroBand productKey="shopfloor">
-        <div className="grid gap-5 overflow-hidden rounded-3xl border border-slate-200 bg-white/60 bg-[radial-gradient(circle,#cbd5e1_1px,transparent_1px)] bg-[length:22px_22px] p-4 sm:p-6 lg:grid-cols-[400px_1fr] lg:items-start lg:gap-8">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-md sm:p-6">
+        <div className="relative lg:flex lg:min-h-[28rem] lg:items-center">
+          <div
+            className="pointer-events-none absolute inset-y-0 right-[calc(50%-50vw)] left-[38%] hidden [mask-image:linear-gradient(to_right,transparent,#000_40%)] lg:block"
+            aria-hidden="true"
+          >
+            <Image
+              src="/images/products/shop-floor.webp"
+              alt=""
+              fill
+              priority
+              sizes="62vw"
+              quality={75}
+              className="object-cover object-[60%_50%]"
+            />
+          </div>
+
+          <div className="relative z-10 max-w-xl lg:max-w-md">
             <HeroCopy
               productKey="shopfloor"
               compact
@@ -70,30 +86,32 @@ export function ShopFloorPage() {
             />
           </div>
 
-          <div>
-            <p className="mb-2 text-xs font-semibold text-slate-600">Live machine board (illustration)</p>
-            <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-              {MACHINES.map((m) => {
-                const s = STATE_STYLE[m.state];
-                return (
-                  <li key={m.name} className={`rounded-xl border-2 bg-white p-2.5 shadow-sm ${s.ring}`}>
-                    <p className="flex items-center gap-1.5 text-[13px] font-bold text-slate-900">
-                      <span className={`size-2.5 rounded-full ${s.dot} ${m.state === "alarm" ? "synax-prod-pulse" : ""}`} aria-hidden="true" />
-                      {m.name}
-                    </p>
-                    <p className="mt-0.5 text-[11px] leading-tight text-slate-600">{m.note}</p>
-                    <div className="mt-2 h-1.5 rounded-full bg-slate-200">
-                      <div className={`h-1.5 rounded-full ${s.bar}`} style={{ width: `${m.pct}%` }} />
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-            <div className="mt-3 rounded-xl border border-slate-200 bg-white p-3 text-xs shadow-sm">
-              <p className="font-bold text-slate-900">Downtime reasons (sample)</p>
-              <p className="mt-1 text-slate-600">Waiting for material · Tool change · Alarm: needs a person</p>
-            </div>
+          {/* Small screens: photo banner below the copy */}
+          <div className="relative mt-6 h-52 overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 lg:hidden">
+            <Image src="/images/products/shop-floor.webp" alt="A blue industrial robot arm working on a production line" fill sizes="100vw" quality={70} className="object-cover" />
           </div>
+
+          <ul
+            className="relative mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:absolute lg:top-8 lg:right-4 lg:mt-0 lg:block lg:w-60 lg:space-y-3 xl:right-10"
+            aria-label="Live machine board (illustration)"
+          >
+            {MACHINES.filter((m) => ["CNC 04", "CNC 03", "CNC 05"].includes(m.name)).map((m) => {
+              const s = STATE_STYLE[m.state];
+              return (
+                <li key={m.name} className={`rounded-xl border-2 bg-white p-3 shadow-lg ${s.ring}`}>
+                  <p className="flex items-center gap-1.5 text-[13px] font-bold text-slate-900">
+                    <span className={`size-2.5 rounded-full ${s.dot} ${m.state === "alarm" ? "synax-prod-pulse" : ""}`} aria-hidden="true" />
+                    {m.name}
+                  </p>
+                  <p className="mt-0.5 text-[11px] leading-tight text-slate-600">{m.note}</p>
+                  <div className="mt-2 h-1.5 rounded-full bg-slate-200">
+                    <div className={`h-1.5 rounded-full ${s.bar}`} style={{ width: `${m.pct}%` }} />
+                  </div>
+                </li>
+              );
+            })}
+            <li className="px-1 text-[11px] text-slate-500 sm:col-span-3 lg:col-span-1">Live machine board: sample data.</li>
+          </ul>
         </div>
       </HeroBand>
 

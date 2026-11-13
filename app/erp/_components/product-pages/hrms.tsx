@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BarChart3, CalendarCheck, CircleCheck, Factory, Fingerprint, LogOut, UserPlus, UserRoundCheck, Wallet, Building2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SOLUTION_PATHS } from "../../_data/solution-paths";
@@ -75,7 +76,7 @@ const MONTHLY = [
 export function HrmsPage() {
   return (
     <main className="pb-6">
-      {/* Hero: centred copy over a month of attendance */}
+      {/* Hero: centred copy, a panoramic team photo, and a month of attendance overlapping its bottom edge */}
       <HeroBand productKey="hrms">
         <HeroCopy
           productKey="hrms"
@@ -84,7 +85,18 @@ export function HrmsPage() {
           subtitle="Employee operations and workforce administration"
           lead="Run employee records, attendance, leave and work-from-home, and payroll with approvals in the same workspace as operations. Attendance logs and overtime approvals sync from biometric devices."
         />
-        <div className="mx-auto mt-8 max-w-xl rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="relative mx-auto mt-8 h-56 max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 shadow-md sm:h-72">
+          <Image
+            src="/images/products/hrms.webp"
+            alt="A team seated around a long meeting-room table with laptops"
+            fill
+            priority
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            quality={75}
+            className="object-cover object-[50%_60%]"
+          />
+        </div>
+        <div className="relative mx-auto -mt-16 max-w-xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl sm:-mt-20">
           <div className="mb-3 flex items-center justify-between text-xs text-slate-500">
             <p className="font-bold text-slate-900">A month of attendance</p>
             <p>Sample data</p>

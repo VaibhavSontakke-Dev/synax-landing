@@ -22,6 +22,34 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Product pages: photo-led heroes (Unsplash)
+Commit subject: `Products: photo-led hero for each of the six product pages`
+- **What**: each product page's hero now has its own composition around a photo, still on the home hero background (`HeroBand` / `HeroBackdrop`, unchanged) with navy headings and soft orange accents. Only the hero blocks in `app/erp/_components/product-pages/*.tsx` changed (plus `next/image` imports); everything below the heroes is untouched.
+  - **Manufacturing ERP**: copy left, rounded workshop photo with a navy offset block, a "Part passport" card on its corner and a "Count from the machine" chip; the full six-step part passport stays below.
+  - **Work & Delivery**: copy left, team-at-the-board photo with three lane cards over its left edge and an "Hours to billing" chip (cards sit under the photo on small screens).
+  - **HRMS**: centred copy, a wide panoramic team photo, and the sample attendance month overlapping its bottom edge.
+  - **Staffing** (mirrored): interview photo cropped to a circle inside a dashed ring, stage chips around it, the sample candidates card below; copy right.
+  - **Shop Floor**: the robot-arm photo runs off the right edge of the page and fades out to the left (CSS mask); three sample machine cards sit on it. Small screens get a photo banner under the copy.
+  - **AI & BI**: centred headline over a gray browser frame (same look as "See Synax in Action") holding the photo, with a "Synax AI proposes" card on its corner; the four approval steps are a chip row below.
+- **Photos** (all from Unsplash, free to use without attribution under the Unsplash licence; resized to 1600 px wide WebP in `public/images/products/`): `manufacturing-erp.webp` (CNC machines in a workshop, unsplash.com/photos/O6YIDLs4AZE), `work-delivery.webp` (team at a whiteboard, MLWk6FFWURU), `hrms.webp` (meeting-room table, faEfWCdOKIg), `staffing.webp` (job interview, pg2eJwNVpvY), `shop-floor.webp` (blue robot arm, sz1CHL7Pky0), `ai-bi.webp` (analytics dashboard on a screen, yqaskj8lQBE). Re-check each photo's licence on its Unsplash page before launch. The workshop photo shows incidental tool brand names and the dashboard photo a third-party analytics UI (blurred); swap either if that matters.
+- **Samples**: names, counts and statuses in the floating cards are illustrations and are labelled "sample" where they show numbers.
+- **Rollback**: revert the commit; the previous heroes (part passport, tilted card stack, attendance grid, match board, floor-plan board, approval-gate row) come back with it.
+
+### Pending (next commit) — Industry pages (/solutions/<industry>): premium layout and photo hero
+Commit subject: `Solutions: a different photo hero for each of the five industry pages`
+- **What**: the five industry pages (`/solutions/aerospace-defence`, `precision-cnc-machining`, `it-services-staffing`, `automotive-heavy-industrial`, `plant-workforce-hcm`) use the new `app/erp/_components/industry-page-premium.tsx` (`IndustryPagePremium`; `PREMIUM_INDUSTRIES` lists the slugs it applies to, now all of them). `/solutions` itself is untouched. `app/solutions/[slug]/page.tsx` renders it for those slugs and `IndustryPageView` (still in the repo) for any other. All copy comes from `_data/industries.ts` and the product data; nothing was reworded.
+- **Heroes (a different one per industry, all different from the product pages)**: new `app/erp/_components/industry-heroes.tsx`; `IndustryHero` picks by slug and `HeroFoot` is the slim "Built for / Delivered by / counts" band under every hero. Copy and flow steps come from `_data/industries.ts`; the small figures inside the mock cards are samples and say so. Heroes carry only "Watch overview" (no "Schedule a Demo" button); the demo stays in the header and the closing band.
+  - **Aerospace & Defence — "Flight deck"**: full-bleed jets photo (`aerospace.png`), corner brackets, headline top-left, a glass bar of the four quality gates along the bottom with Inspect lit in soft orange.
+  - **Precision CNC — "Drawing"**: light split screen on a faint engineering grid; the spindle photo (`precision.png`) is cut on a diagonal and carries four callouts with leader lines to a focus dot (small screens: photo below the copy, callouts as chips).
+  - **IT Services & Staffing — "Pipeline"**: centred headline on light sky with the device photo (`modern-ui.png`) faded in on the right edge, and the six-step requirement-to-billing board beneath (last step in navy).
+  - **Automotive & Heavy Industrial — "Poster"**: oversized type over the assembly-line photo (`hrms.jpg`) with an orange bar, a big step count, and a production line of six nodes with a moving dashed line and a pulsing active node.
+  - **Plant Workforce & HCM — "Roster"**: copy beside one card whose header is the plant-floor photo (`IT-staffing.jpg`), with a sample attendance roster, overtime approvals and payroll rows.
+  - Photos and crops are set inside each hero component in `industry-heroes.tsx` (`src`, `object-[x_y]`); swap a file there. An unknown industry slug falls back to the Poster hero.
+- **Layout below the hero**: sticky jump bar; challenges as numbered cards beside a sticky heading; the four stages joined by a moving dashed line; three module cards with counts; product cards with the first one filled navy and marked "Start here"; FAQ; other-industry tiles; a closing band on a dotted navy backdrop. Cards lift on hover and reveal on scroll (`Reveal`).
+- **Colours**: navy, sky and soft orange only; no deep orange, green or red (industry tiles use one navy style instead of the per-industry green/orange).
+- **Other changes**: `globals.css` adds `synax-ind-tick` (off for reduced motion). The timeline steps are an illustration (module names from the portal).
+- **Rollback**: revert the commit, or remove the premium branch in `app/solutions/[slug]/page.tsx` to use `IndustryPageView` again.
+
 ### Pending (next commit) — Six product pages, each with its own layout and hero
 Commit subject: `Products: give each of the six product pages its own hero and layout`
 - **What**: `/products/<slug>` no longer uses one shared template. Each product has its own page in `app/erp/_components/product-pages/`, with a different hero and more detailed copy (what each stage or module does, not only its name):

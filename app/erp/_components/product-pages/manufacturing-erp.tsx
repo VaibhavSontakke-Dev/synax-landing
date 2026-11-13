@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, BookOpen, Check, FileCheck2, FileText, Layers, PackageCheck, Receipt, Settings2, Truck, Undo2, Trash2, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SOLUTION_PATHS } from "../../_data/solution-paths";
@@ -61,15 +62,41 @@ const LEDGER: { icon: LucideIcon; title: string; copy: string }[] = [
 export function ManufacturingErpPage() {
   return (
     <main className="pb-6">
-      {/* Hero: copy on top, a full-width "part passport" below */}
+      {/* Hero: copy left, a framed workshop photo right with a passport card on its corner, the full part passport below */}
       <HeroBand productKey="precision">
-        <HeroCopy
-          productKey="precision"
-          eyebrow="Precision & job-work ERP"
-          subtitle="From the machine spindle to the GST invoice"
-          lead="Built for precision and job-work machine shops. Customer orders and supplied-material challans connect to route cards, machine-confirmed production, inspection, dispatch and invoicing, so every part carries one traceable record."
-        />
-        <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <HeroCopy
+            productKey="precision"
+            eyebrow="Precision & job-work ERP"
+            subtitle="From the machine spindle to the GST invoice"
+            lead="Built for precision and job-work machine shops. Customer orders and supplied-material challans connect to route cards, machine-confirmed production, inspection, dispatch and invoicing, so every part carries one traceable record."
+          />
+          <div className="relative mx-auto w-full max-w-xl pb-6 lg:max-w-none">
+            <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-blue-900" aria-hidden="true" />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-slate-200 bg-slate-200">
+              <Image
+                src="/images/products/manufacturing-erp.webp"
+                alt="CNC machines and workbenches in a machine shop"
+                fill
+                priority
+                sizes="(min-width: 1024px) 540px, 100vw"
+                quality={75}
+                className="object-cover"
+              />
+            </div>
+            <span className="absolute top-4 right-4 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-blue-900 shadow-md">
+              Count from the machine
+            </span>
+            <div className="absolute bottom-0 left-3 w-60 rounded-xl border border-slate-200 bg-white p-3 shadow-lg sm:-left-4">
+              <p className="text-xs font-bold text-blue-900">Part passport</p>
+              <p className="mt-0.5 text-[11px] text-slate-600">Material ID · Route card · COC</p>
+              <div className="mt-2 h-1.5 rounded-full bg-slate-200">
+                <div className="h-1.5 w-[70%] rounded-full bg-blue-900/40" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
           <div className="mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
             <p className="font-bold text-slate-900">Part passport: one part, one record</p>
             <p>Traced back to its PO, material lot, machine and operator</p>

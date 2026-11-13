@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BarChart3, ClipboardList, FileBarChart, LayoutDashboard, LineChart, Lock, ShieldCheck, Sparkles, Truck, Wallet, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -42,7 +43,7 @@ const BI: { icon: LucideIcon; title: string; copy: string }[] = [
 export function AiBiPage() {
   return (
     <main className="pb-6">
-      {/* Hero: centred headline over the approval gate */}
+      {/* Hero: centred headline over a gray browser frame holding the photo, the approval card on its corner */}
       <HeroBand productKey="ai">
         <HeroCopy
           productKey="ai"
@@ -53,30 +54,51 @@ export function AiBiPage() {
           subtitle="You approve."
           lead="Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes. Dashboards and reports across your workflows keep decisions on current data."
         />
-        <div className="mx-auto mt-8 max-w-5xl">
-          <ol className="relative grid gap-3 md:grid-cols-4" aria-label="How a Synax AI action works">
-            <span aria-hidden="true" className="synax-prod-dash-x absolute top-[34px] right-[12.5%] left-[12.5%] hidden h-0.5 text-blue-900/40 md:block" />
-            {GATE.map((g, i) => (
-              <li key={g.title} className="relative">
-                <div
-                  className={`h-full rounded-2xl border border-t-4 border-slate-200 bg-white p-4 shadow-sm ${g.accent === "orange" ? "border-t-orange-300" : "border-t-blue-900"}`}
-                >
-                  <span className={`flex size-7 items-center justify-center rounded-full text-xs font-semibold ${g.accent === "orange" ? "bg-orange-300 text-orange-950" : "bg-blue-900 text-white"}`}>
-                    {i + 1}
-                  </span>
-                  <p className="mt-2 text-[11px] font-bold tracking-wider text-slate-500 uppercase">{g.title}</p>
-                  <p className="mt-0.5 text-sm font-semibold text-slate-900">{g.text}</p>
-                  {i === 3 ? (
-                    <span className="mt-3 inline-block rounded-md bg-orange-300 px-3 py-1 text-xs font-semibold text-orange-950">Approve</span>
-                  ) : null}
-                </div>
-              </li>
-            ))}
-          </ol>
-          <p className="mx-auto mt-4 max-w-md rounded-xl border border-dashed border-orange-300 bg-white/70 px-4 py-2.5 text-center text-xs text-slate-600">
-            Every decision is kept in the event history. Agents cannot change your data on their own.
-          </p>
+        <div className="relative mx-auto mt-8 max-w-4xl pb-10 md:pb-4">
+          <div className="overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-lg">
+            <div className="flex items-center gap-2.5 border-b border-slate-300 bg-slate-200 px-4 py-2.5 text-xs text-slate-600">
+              <span className="flex gap-1.5" aria-hidden="true">
+                <i className="size-2.5 rounded-full bg-slate-400" />
+                <i className="size-2.5 rounded-full bg-slate-400" />
+                <i className="size-2.5 rounded-full bg-slate-400" />
+              </span>
+              <span className="font-mono text-slate-500">synax.senwellgroup.com</span>
+            </div>
+            <div className="relative h-56 bg-slate-100 sm:h-72">
+              <Image
+                src="/images/products/ai-bi.webp"
+                alt="An analytics dashboard with a table of coloured retention blocks on a screen"
+                fill
+                priority
+                sizes="(min-width: 1024px) 896px, 100vw"
+                quality={75}
+                className="object-cover"
+              />
+            </div>
+          </div>
+          <div className="absolute right-3 -bottom-0 w-64 rounded-2xl border border-t-4 border-slate-200 border-t-orange-300 bg-white p-4 shadow-xl sm:right-6 md:-bottom-6">
+            <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">Synax AI proposes</p>
+            <p className="mt-1 text-sm font-semibold text-slate-900">{GATE[2].text}</p>
+            <p className="mt-0.5 text-xs text-slate-600">{GATE[1].text}</p>
+            <div className="mt-3 flex items-center gap-2">
+              <span className="rounded-md bg-orange-300 px-3 py-1 text-xs font-semibold text-orange-950">Approve</span>
+              <span className="rounded-md border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600">Reject</span>
+            </div>
+          </div>
         </div>
+        <ol className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-semibold" aria-label="How a Synax AI action works">
+          {GATE.map((g, i) => (
+            <li key={g.title} className="flex items-center gap-2">
+              <span className={`rounded-full px-3 py-1 ${g.accent === "orange" ? "bg-orange-300 text-orange-950" : "bg-blue-900 text-white"}`}>
+                {i + 1}. {g.title}
+              </span>
+              {i < GATE.length - 1 ? <span className="text-slate-400" aria-hidden="true">→</span> : null}
+            </li>
+          ))}
+        </ol>
+        <p className="mx-auto mt-4 max-w-md rounded-xl border border-dashed border-orange-300 bg-white/70 px-4 py-2.5 text-center text-xs text-slate-600">
+          Every decision is kept in the event history. Agents cannot change your data on their own.
+        </p>
       </HeroBand>
 
       {/* Why approval first */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { IndustryPageView } from "../../erp/_components/industry-page";
+import { IndustryPagePremium, PREMIUM_INDUSTRIES } from "../../erp/_components/industry-page-premium";
 import { INDUSTRY_PAGES, industryBySlug } from "../../erp/_data/industries";
 
 /** One page per industry from `_data/industries.ts`: /solutions/<slug>. Unknown slugs 404. */
@@ -24,5 +25,7 @@ export default async function IndustryRoutePage({ params }: { params: Promise<{ 
   const { slug } = await params;
   const page = industryBySlug(slug);
   if (!page) notFound();
+  // The redesigned layout is rolled out industry by industry; the rest keep the standard template.
+  if (PREMIUM_INDUSTRIES.has(page.slug)) return <IndustryPagePremium page={page} />;
   return <IndustryPageView page={page} />;
 }

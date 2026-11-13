@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ClipboardCheck, RefreshCw, ShieldCheck, Timer, UserRound, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SOLUTION_PATHS } from "../../_data/solution-paths";
@@ -30,39 +31,45 @@ const CANDIDATES = [
 export function StaffingPage() {
   return (
     <main className="pb-6">
-      {/* Hero (mirrored): match board left, copy right */}
+      {/* Hero (mirrored): an interview photo cropped to a circle with the stages orbiting it, copy right */}
       <HeroBand productKey="staffing">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
           <div className="order-2 lg:order-1" aria-label="A requirement matched to candidates">
-            <div className="grid items-center gap-4 sm:grid-cols-[170px_1fr]">
-              <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-4 shadow-sm">
-                <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">Customer requirement</p>
-                <p className="mt-1 text-sm font-bold text-slate-900">Role, skills, headcount</p>
-                <p className="mt-1 text-xs text-slate-600">Approvals along the way</p>
+            <div className="relative mx-auto size-72 sm:size-80">
+              <span className="absolute inset-0 rounded-full border-2 border-dashed border-blue-900/30" aria-hidden="true" />
+              <div className="absolute inset-5 overflow-hidden rounded-full border-4 border-white bg-slate-200 shadow-lg">
+                <Image
+                  src="/images/products/staffing.webp"
+                  alt="An interviewer taking notes while a candidate sits across the desk"
+                  fill
+                  priority
+                  sizes="320px"
+                  quality={75}
+                  className="object-cover object-[32%_30%]"
+                />
               </div>
-              <div className="relative sm:pl-8">
-                <svg className="absolute top-1/2 left-0 hidden h-40 w-8 -translate-y-1/2 text-blue-900/40 sm:block" viewBox="0 0 32 160" fill="none" aria-hidden="true">
-                  <path d="M0 80 C16 80 16 22 32 22 M0 80 L32 80 M0 80 C16 80 16 138 32 138" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
-                </svg>
-                <ul className="space-y-2.5">
-                  {CANDIDATES.map((c) => (
-                    <li key={c.name} className={`rounded-xl border border-l-4 border-slate-200 bg-white p-3 shadow-sm ${c.done ? "border-l-slate-400" : "border-l-blue-900"}`}>
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="flex items-center gap-1.5 text-sm font-bold text-slate-900">
-                          <UserRound className="size-4 text-slate-400" aria-hidden="true" />
-                          {c.name}
-                        </p>
-                        <p className={`text-xs font-semibold ${c.done ? "text-slate-600" : "text-blue-900"}`}>{c.stage}</p>
-                      </div>
-                      <div className="mt-2 h-1.5 rounded-full bg-slate-200">
-                        <div className={`h-1.5 rounded-full ${c.done ? "bg-blue-900/40" : "bg-slate-400"}`} style={{ width: `${c.pct}%` }} />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <span className="absolute top-6 left-0 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-blue-900 shadow-md">Requirement</span>
+              <span className="absolute top-0 right-6 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-blue-900 shadow-md">Interviews</span>
+              <span className="absolute right-0 bottom-14 rounded-full bg-blue-900 px-3 py-1 text-xs font-semibold text-white shadow-md">Offer</span>
+              <span className="absolute bottom-6 left-2 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-blue-900 shadow-md">Deployment</span>
+              <ul className="absolute -bottom-16 left-1/2 w-64 -translate-x-1/2 space-y-1.5 rounded-xl border border-slate-200 bg-white p-2.5 shadow-lg">
+                {CANDIDATES.map((c) => (
+                  <li key={c.name}>
+                    <div className="flex items-center justify-between gap-2 text-xs">
+                      <p className="flex items-center gap-1.5 font-bold text-slate-900">
+                        <UserRound className="size-3.5 text-slate-400" aria-hidden="true" />
+                        {c.name}
+                      </p>
+                      <p className={`font-semibold ${c.done ? "text-slate-600" : "text-blue-900"}`}>{c.stage}</p>
+                    </div>
+                    <div className="mt-1 h-1 rounded-full bg-slate-200">
+                      <div className={`h-1 rounded-full ${c.done ? "bg-blue-900/40" : "bg-slate-400"}`} style={{ width: `${c.pct}%` }} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="mt-3 text-xs text-slate-500">Illustration: sample candidates.</p>
+            <p className="mt-20 text-center text-xs text-slate-500">Illustration: sample candidates.</p>
           </div>
           <div className="order-1 lg:order-2">
             <HeroCopy

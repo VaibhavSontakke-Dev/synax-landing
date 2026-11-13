@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, BriefcaseBusiness, ClipboardList, Headset, LayoutDashboard, MessagesSquare, Phone, UserCheck, UsersRound, Video, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Block } from "../site-page";
@@ -59,36 +60,40 @@ const AROUND: { icon: LucideIcon; title: string; copy: string }[] = [
 export function WorkDeliveryPage() {
   return (
     <main className="pb-6">
-      {/* Hero: copy left, a tilted stack of three cards right */}
+      {/* Hero: copy left, a team-at-the-board photo right with three lane cards over its edge */}
       <HeroBand productKey="it">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
           <HeroCopy
             productKey="it"
             eyebrow="Delivery, people and billing"
             subtitle="Plan the work, track the hours, bill what you deliver"
             lead="Track the day's work, run projects against customer requirements and SOWs, record timesheets and costs, and bill with a clear view of profitability. People, attendance and approvals are shared with the rest of Synax, not re-entered."
           />
-          <div className="relative space-y-3 lg:h-[300px] lg:space-y-0" aria-label="From a task to an invoice line">
-            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-4 shadow-md lg:absolute lg:top-0 lg:left-0 lg:w-[78%] lg:-rotate-3">
-              <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">1. Work Tracker</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">Task, owner, progress, blocker</p>
-              <div className="mt-3 h-2 rounded-full bg-slate-200">
-                <div className="h-2 w-[65%] rounded-full bg-blue-900/40" />
-              </div>
+          <div className="relative lg:pl-16">
+            <div className="relative aspect-[3/2] overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 shadow-md">
+              <Image
+                src="/images/products/work-delivery.webp"
+                alt="A team looking at a task board on a whiteboard"
+                fill
+                priority
+                sizes="(min-width: 1024px) 560px, 100vw"
+                quality={75}
+                className="object-cover"
+              />
             </div>
-            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-slate-400 bg-white p-4 shadow-md lg:absolute lg:top-[100px] lg:left-[14%] lg:w-[78%] lg:rotate-1">
-              <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">2. Timesheet and work log</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">Hours against the project</p>
-              <div className="mt-3 flex h-10 items-end gap-1.5" aria-hidden="true">
-                {[5, 8, 6, 7, 4, 8, 3].map((h, i) => (
-                  <span key={i} className="flex-1 rounded-sm bg-blue-900/35" style={{ height: `${h * 12}%` }} />
-                ))}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-300 bg-white p-4 shadow-md lg:absolute lg:top-[204px] lg:left-[3%] lg:w-[78%] lg:-rotate-1">
-              <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">3. Project Billing Tracker</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">Invoice line, with a view of profitability</p>
-            </div>
+            <span className="absolute top-4 right-4 rounded-full bg-blue-900 px-3 py-1 text-xs font-semibold text-white shadow-md">Hours to billing</span>
+            <ul className="mt-3 grid grid-cols-3 gap-2 lg:absolute lg:top-8 lg:left-0 lg:mt-0 lg:block lg:w-44 lg:space-y-3" aria-label="From a task to an invoice line">
+              {[
+                { t: "Work Tracker", n: "Task, owner, progress" },
+                { t: "Timesheets", n: "Hours against the project" },
+                { t: "Billing Tracker", n: "Invoice line and profitability" },
+              ].map((c, i) => (
+                <li key={c.t} className={`rounded-xl border border-l-4 border-slate-200 bg-white p-2.5 shadow-lg ${i === 2 ? "border-l-orange-300" : "border-l-blue-900"}`}>
+                  <p className="text-xs font-bold text-blue-900">{c.t}</p>
+                  <p className="mt-0.5 text-[11px] leading-snug text-slate-600">{c.n}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </HeroBand>
