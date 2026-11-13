@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
  */
 export function JumpBar({ items }: { items: { id: string; label: string }[] }) {
   const [active, setActive] = useState(items[0]?.id ?? "");
+  const list = useRef<HTMLUListElement | null>(null);
   const chips = useRef<Record<string, HTMLAnchorElement | null>>({});
   const lock = useRef(0);
 
@@ -41,14 +42,22 @@ export function JumpBar({ items }: { items: { id: string; label: string }[] }) {
     };
   }, [items]);
 
-  // Keep the active chip visible when the row scrolls sideways (phones).
+  // Keep the active chip visible when the row scrolls sideways (phones). Only the chip row is scrolled: calling
+  // scrollIntoView here also scrolled the PAGE down to the bar on load whenever a tall hero pushed it below the
+  // fold (so /why-synax and /security opened past their hero).
   useEffect(() => {
-    chips.current[active]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    const row = list.current;
+    const chip = chips.current[active];
+    if (!row || !chip) return;
+    const rowBox = row.getBoundingClientRect();
+    const chipBox = chip.getBoundingClientRect();
+    const left = chipBox.left - rowBox.left + row.scrollLeft - (row.clientWidth - chipBox.width) / 2;
+    row.scrollTo({ left: Math.max(0, left) });
   }, [active]);
 
   return (
     <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <ul className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
+      <ul ref={list} className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
         {items.map((j) => {
           const on = j.id === active;
           return (

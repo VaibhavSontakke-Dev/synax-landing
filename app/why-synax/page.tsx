@@ -56,6 +56,7 @@ const PROOF: { icon: LucideIcon; value: string; label: string; accent?: boolean 
 ];
 
 const JUMP = [
+  { id: "difference", label: "The difference" },
   { id: "pillars", label: "Pillars" },
   { id: "flow", label: "Flow" },
   { id: "reasons", label: "Reasons" },
@@ -70,13 +71,13 @@ export default function WhySynaxPage() {
     <main className="pb-6">
       <WhyHero proof={PROOF} />
 
+      {/* Jump bar: the current section is navy */}
+      <JumpBar items={JUMP} />
+
       {/* The animated comparison: one part, two ways to run it */}
       <Block id="difference" tag="See the difference" title="One part, two ways to run it" lead="An illustration of the same part going through the same five stations." tone="white">
         <WhyRace />
       </Block>
-
-      {/* Jump bar: the current section is navy */}
-      <JumpBar items={JUMP} />
 
       {/* Pillars */}
       <section id="pillars" aria-labelledby="pillars-heading" className="scroll-mt-32 border-b border-sky-200 bg-sky-50">

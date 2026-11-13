@@ -22,6 +22,13 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Fix: /why-synax and /security opened scrolled past the hero
+Commit subject: `Fix: jump bar no longer scrolls the page past the hero on load`
+- **Cause**: `jump-bar.tsx` called `scrollIntoView` on the active chip on load. When a tall hero pushed the bar below the fold, the browser scrolled the page down to the bar, so the page opened below its hero.
+- **Fix**: the active chip is now centred by scrolling only the chip row sideways (`scrollTo` on the list); the page itself is never scrolled. This also fixes /security (same component).
+- **Also**: on /why-synax the jump bar now sits right under the hero, with the new "One part, two ways to run it" band after it (listed as "The difference" in the bar).
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — /why-synax: "One part, two ways to run it" animation
 Commit subject: `Why Synax: animated one-part-two-ways comparison under the hero`
 - **What**: a new band under the /why-synax hero ("See the difference": "One part, two ways to run it"), `app/erp/_components/why-race.tsx` (`WhyRace`, client component). The same part travels through five stations (Material in, Route card and machine, Inspection and COC, Invoice and GST, Books) in two lanes. "Typical alternatives": it stalls at "Needs a separate MES or integrator", "Manual paperwork entry & reassembly" and "Re-keying invoices into Tally" (the comparison table's own wording from `_data/benchmark.ts`); "Still waiting…" shows after the lane's last stall. "Synax": it flows end to end, the three pillars light up as badges (`LIVE_PILLARS` kickers), a "Synax AI proposes" card (2 challans past their return date: draft reminders) is approved at inspection, a Tally bridge badge appears at the end, and "Done ✓" shows first. About 13.5 s loop.
