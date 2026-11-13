@@ -68,7 +68,7 @@ export default function WhySynaxPage() {
   return (
     <main className="pb-6">
       <PageHero
-        tourTitle="Synax Platform Overview"
+        tourTitle="Why Synax"
         crumbs={[{ label: "Why Synax" }]}
         tag="Why Synax"
         title="Why industry leaders choose Synax"
@@ -326,7 +326,7 @@ export default function WhySynaxPage() {
 
       <CtaBand
         tone="light"
-        tourTitle="Synax Platform Overview"
+        tourTitle="Why Synax"
         title="See why it works on your own process"
         text="A short walkthrough with a Senwell Group systems engineer, using your workflows rather than a canned demo."
       />

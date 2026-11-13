@@ -747,3 +747,19 @@ body {
     animation: none;
   }
 }
+
+@keyframes synax-ov-glow {
+  50% {
+    transform: translate(-40px, 24px) scale(1.08);
+  }
+}
+
+.synax-ov-glow {
+  animation: synax-ov-glow 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .synax-ov-glow {
+    animation: none;
+  }
+}

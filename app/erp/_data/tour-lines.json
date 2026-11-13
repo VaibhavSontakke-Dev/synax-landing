@@ -1,0 +1,104 @@
+{
+  "overview": [
+    "Running a plant on spreadsheets, paper registers and five separate tools? Meet Synax, by Senwell Group.",
+    "Synax brings six products into one connected platform: manufacturing ERP, work and delivery management, HRMS, staffing, shop floor monitoring, and AI with business intelligence.",
+    "Follow a part from the customer's PO to the GST invoice. Every document carries the one before it, so any part can be traced back to its PO, material lot, machine and operator.",
+    "On the shop floor, machines report their own cycle counts. Alarms and downtime reach the board as they happen.",
+    "Your accounts stay in Tally. Synax generates the e-invoice, the IRN and the e-way bill in the same flow, and sends the vouchers across.",
+    "Synax AI finds the exception and proposes the fix, but it never changes your data on its own. Nothing happens until an approver says yes, and every decision is recorded.",
+    "Start with what hurts most, and add the rest when you are ready. Book a demo to see Synax on your own process."
+  ],
+  "manufacturing-erp": [
+    "Synax Manufacturing ERP is built for precision and job-work machine shops, from the machine spindle to the GST invoice.",
+    "Every part carries one passport. It starts at the customer PO line, follows the material lot and the route card, picks up the machine and operator, and ends with the certificate of conformance and the invoice. Any part traces back to its PO, lot, machine and operator.",
+    "Customer material is accounted for to the last piece. It comes in on a challan with its Material ID range, is issued against the route card, consumed one to one against every invoiced part, and returns and scrap are documented against the customer.",
+    "Start a job by route card number or barcode scan. The machine's cycle counts are proposed, the operator confirms them with a variance reason, and buy-offs are recorded at each stage.",
+    "Packing, the GST invoice, the IRN and the e-way bill sit in one flow, and accounting vouchers go across to Tally, so your books stay where they are.",
+    "Start with gate entry, route cards and machine monitoring, and add the rest when you are ready. Book a demo to see it on your own parts."
+  ],
+  "work-delivery": [
+    "Synax Work and Delivery Management helps you plan the work, track the hours, and bill what you deliver.",
+    "One path runs from a task to a bill. The day's work lives in the work tracker. Projects run against customer requirements and SOWs. Timesheets and costs turn into a bill, with a view of profitability while the project is still running.",
+    "Each role sees what it needs: the PM dashboard for project managers, the PC dashboard for coordinators, the work tracker and timesheet for team members, and the billing tracker and budget planner for finance.",
+    "Around the work there is team chat, audio and video calls, public and private meetings, support tickets, visitor management, and department performance.",
+    "Start with the work tracker and projects, and add timesheets and billing when you are ready. Book a demo to see it on your own projects."
+  ],
+  "hrms": [
+    "Synax HRMS runs employee records, attendance, leave, and payroll with approvals in the same workspace as operations.",
+    "Follow the employee lifecycle: hire, onboard, attend, approve, pay, and grow or exit. Recruitment moves the chosen candidate straight into an employee record, and every person has one record from day one.",
+    "Attendance, leave and work from home sit in one flow. Biometric devices sync the logs, break passes are managed alongside, and attendance and overtime are approved before they reach payroll.",
+    "Payroll runs with approvals in the same workspace as attendance and operations, with an audit trail on every posting. Department KPIs show how each team is doing.",
+    "Start with employee records and attendance, and add payroll and department KPIs when you are ready. Book a demo to see it on your own plant."
+  ],
+  "staffing": [
+    "Synax Staffing and Resource Management helps you source, deploy and manage customer staffing requirements.",
+    "Follow the hiring funnel: the customer requirement, candidates, interviews, the offer, onboarding, and deployment. Each candidate stays linked to the requirement they are for, with approvals along the way.",
+    "Interview rounds and feedback are kept against the candidate and the requirement, and the offer goes through approval before it goes out.",
+    "After placement, track resource performance, replace a resource without losing the requirement's history, and record timesheets to bill the customer for the hours delivered.",
+    "Start with customer requirements and candidate management, and add interviews, offers and deployments when you are ready. Book a demo to see it on your own requirements."
+  ],
+  "shop-floor": [
+    "Synax Shop Floor and Machine Monitoring lets the spindle report the count. Connect CNC machines and let real cycle counts, alarms and downtime drive production confirmation.",
+    "It works in three layers. Plan: load the machines and release each job against the BOM. Run: give the operator the job in front of them, with counts proposed and confirmed. Watch: see what every machine is doing, with alarms and downtime on the board.",
+    "There are three ways to connect a machine: the manufacturer's own connection, open FOCAS, or no connection at all, where operators confirm counts on the shop floor screen.",
+    "The live machine board shows running, idle and alarm states, with utilization and OEE per job, and the machining record follows the part to the certificate of conformance.",
+    "Start with machine monitoring and jobs, and add the rest when you are ready. Book a demo to see your own machines on the board."
+  ],
+  "ai-bi": [
+    "Synax AI finds the exception and proposes the fix. You approve.",
+    "Ask Synax anything about your ERP data. An agent finds the exception and proposes the fix, an approver decides, and the decision is recorded in the event history. Nothing changes until an approver says yes.",
+    "Agents work on challan reconciliation, overdue chasers, dispatch readiness, receivables follow-up, quality compliance, and shop floor watch.",
+    "Dashboards and reports across your workflows keep decisions on current data: business dashboards, operational analytics, reports for sales, stores, production, quality, dispatch and people, and performance insights.",
+    "Agents cannot change your data on their own: every action waits for an approver with the right role, the same maker-checker model the rest of Synax uses. Start with what hurts most, and add the rest when you are ready. Book a demo to see it on your own data."
+  ],
+  "aerospace-defence": [
+    "Synax for aerospace and defence: ERP for suppliers who machine customer-supplied material, with AS9100D quality controls at the checkpoints and a record behind every part.",
+    "What gets in the way today: audit evidence rebuilt after the part has shipped, paperwork kept apart from the job, customer material that is hard to trace, and checks that depend on memory.",
+    "Synax answers with one flow: plan, execute, inspect and release. The part is held at the gate until the check is recorded, then released against a complete record, so the trace stays linked for the audit that comes later.",
+    "Behind it are modules for planning and execution, material and procurement, and quality and compliance, including the FAIR manager, NCR and CAPA, genealogy trace, and dispatch release controls.",
+    "It is delivered by Manufacturing ERP, with Shop Floor and Machine Monitoring and Synax AI added when you are ready.",
+    "Start with stage buy-offs, the FAIR register and the certificate of conformance. Book a demo to see Synax on your own process."
+  ],
+  "precision-cnc-machining": [
+    "Synax for precision CNC machining and tooling: your customer's material accounted to the last piece, CNC machines reporting counts straight to the route card, and the GST invoice following from the machine.",
+    "What gets in the way today: customer material tracked on the side, quantities that do not reconcile, counts keyed in by hand, and dispatch paperwork assembled at the end.",
+    "Synax runs it from spindle to invoice: the RFQ and customer PO, gate entry and GRN, the route card, machine-confirmed operations, inspection and the certificate of conformance, then the invoice and dispatch. Each document carries the one before it.",
+    "Behind it are three groups of modules: route cards and production, customer material and stores, and inspection and dispatch.",
+    "It is delivered by Manufacturing ERP, with Shop Floor and Machine Monitoring for live counts, and Synax AI added when you are ready.",
+    "Start with gate entry and GRN, route cards, and machine monitoring, and add inspection, invoicing and Tally when you are ready. Book a demo to see Synax on your own parts."
+  ],
+  "it-services-staffing": [
+    "Synax for IT services and staffing teams: project delivery, SOWs and billing, next to candidates, interviews and deployments, in one workspace.",
+    "What gets in the way today: weeks-long recruiting cycles, consultants idle on the bench, multi-vendor friction, and disputed timesheets and invoices.",
+    "Synax runs one flow from the customer's requirement to the invoice: candidates and interviews, offer and onboarding, deployment, timesheets and work logs, and billing and profitability, with approvals along the way.",
+    "Behind it are modules for work and projects, time and billing, and teams and support.",
+    "It is delivered by Work and Delivery Management, with Staffing and Resource Management and HRMS added when you are ready.",
+    "Start with customer requirements and candidate management, and add interviews, offers and deployments when you are ready. Book a demo to see Synax on your own projects."
+  ],
+  "automotive-heavy-industrial": [
+    "Synax for automotive and heavy industrial suppliers: built for suppliers who machine customer-supplied material, by a group that runs industrial operations itself.",
+    "What gets in the way today: customer-owned material across many jobs, production status that lags the floor, job-work returns compiled by hand, and accounts in one tool while operations run in another.",
+    "Synax runs it from spindle to invoice: the RFQ and customer PO, gate entry, the route card, machine-confirmed operations, inspection and the certificate of conformance, then the invoice and dispatch, with each document carrying the one before it.",
+    "Behind it are three groups of modules: route cards and production, customer material and stores, and inspection and dispatch.",
+    "It is delivered by Manufacturing ERP, with Shop Floor and Machine Monitoring and HRMS added when you are ready.",
+    "Senwell Exports, Stacwell Rubber, Stacem France and Stacem Morocco, companies of the Senwell Group, run on Synax. Start with what hurts most, and book a demo to see it on your own process."
+  ],
+  "plant-workforce-hcm": [
+    "Synax for plant workforces: employee records, attendance, leave and work from home, payroll with approvals and department KPIs, in the same workspace as operations.",
+    "What gets in the way today: buddy punching, unaccounted break passes, multi-day manual payroll, and approvals on paper.",
+    "Synax runs one flow from the first day to the payslip: the employee record, attendance, leave and work from home, overtime approval, payroll with approvals, and department KPIs.",
+    "Behind it are modules for the employee lifecycle, attendance and payroll, and work and performance.",
+    "It is delivered by HRMS, with Shop Floor and Machine Monitoring and Work and Delivery Management added when you are ready.",
+    "Start with employee records and attendance, and add payroll with approvals and department KPIs when you are ready. Book a demo to see Synax on your own plant."
+  ],
+  "why-synax": [
+    "Why Synax? Most plants run on a separate MES, evidence rebuilt by hand after the part ships, and invoices re-keyed into Tally. Synax is the ERP for precision and job-work manufacturers, from the machine spindle to the GST invoice, in one workspace.",
+    "First, it is job-work native. Your customer's material is accounted to the last piece. Every challan, Material ID range and rejection stays tied to the customer who owns it, and raw material is consumed one to one against every invoiced part.",
+    "Second, machine to invoice. The spindle reports the count, and the route card, certificate of conformance and invoice follow. Connect CNC machines through the manufacturer's connection or open FOCAS, with no separate MES or integrator.",
+    "Third, AI that acts. Synax AI finds the exception and proposes the fix, and you approve. Agents watch your challans, dispatch, receivables, quality and shop floor, and nothing changes until an approver says yes.",
+    "Compared with typical alternatives, Synax keeps machine monitoring, the FAIR register and certificate of conformance, biometric attendance, an assistant that acts, and Tally and GST in one connected workspace, where others need a separate MES, manual reassembly, sync lags or re-keying.",
+    "It is built in India, for Indian shop floors. Your books stay in Tally, GST e-invoices and e-way bills are generated in the same flow, AS9100D quality controls sit at the checkpoints, and Synax is free for SMEs with fewer than fifty employees.",
+    "And it is audit ready by design, not by report. Every company runs in its own isolated workspace, postings are checked on the server, who changed what and when is kept for every material change, and access follows the roles you configure, with two-step sign-in.",
+    "Start with what hurts most, and add the rest when you are ready. Book a demo and see why industry leaders choose Synax."
+  ]
+}

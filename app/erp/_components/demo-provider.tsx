@@ -4,7 +4,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { ArrowRight, CheckCircle2, Play, X } from "lucide-react";
 import { SectionTag } from "./section-tag";
 import { PRODUCT_ROUTES } from "../_data/products";
-import { OverviewPlayer } from "./overview-player";
+import { TourPlayer } from "./tour-player";
+import { TOURS } from "../_data/tours";
 
 /**
  * Demo-request and product-tour modals, shared by every page.
@@ -380,8 +381,10 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
               </button>
             </div>
 
-            {tourTitle === "Synax Platform Overview" ? (
-              <OverviewPlayer
+            {TOURS[tourTitle] ? (
+              <TourPlayer
+                key={tourTitle}
+                tour={TOURS[tourTitle]}
                 onBook={() => {
                   setTourOpen(false);
                   openDemo(DEFAULT_PRODUCT);
