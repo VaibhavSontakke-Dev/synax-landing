@@ -421,6 +421,7 @@ export function TourPlayer({ tour, onBook }: { tour: Tour; onBook: () => void })
         <span className="hidden w-14 shrink-0 text-right text-xs text-slate-400 sm:block">
           {scene + 1} / {count}
         </span>
+        <span className="hidden shrink-0 text-xs text-slate-500 md:block">AI-generated voice</span>
         <button
           type="button"
           onClick={toggleMute}

@@ -40,14 +40,6 @@ type PreviewTab = "precision" | "aerospace" | "hrms" | "staffing";
    ========================================================================= */
 
 /**
- * Customer quotes are hidden until they are replaced with real, permissioned
- * testimonials (named person, company, approved wording). The previous copy
- * read as placeholder content and carried unverifiable metrics. Flip to
- * `true` once the content in the "Customer Voices" section is genuine.
- */
-const SHOW_TESTIMONIALS = false;
-
-/**
  * The home page body. The header, footer, demo/tour modals and page frame now come from
  * <ErpShell> (shared with the product routes); each product has its own route under /products.
  */
@@ -394,108 +386,6 @@ function HomeView({
 
 
       {/* =========================================================================
-         CUSTOMER VOICES & VERIFIED TESTIMONIALS (4 DOMAINS)
-         ========================================================================= */}
-      {SHOW_TESTIMONIALS && (
-      <section className="py-12 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-            <SectionTag>Operational Proof</SectionTag>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-              Validated on Active Plant Floors & Delivery Operations
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600">
-              Hear directly from directors, plant managers, and quality leaders who run Synax
-              every single shift.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Story 1: Precision */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
-              <div className="space-y-3">
-                <div className="flex items-center gap-1 text-amber-400">
-                  {"★".repeat(5)}
-                </div>
-                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 uppercase">
-                  Precision Manufacturing ERP
-                </span>
-                <p className="text-xs text-slate-600 leading-relaxed italic">
-                  &ldquo;Synax eliminated spreadsheet chaos across our 5-axis CNC lines. Spindle
-                  telemetry and real-time tool wear offsets boosted our overall floor OEE by 32%.&rdquo;
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-100 mt-4">
-                <div className="text-xs font-bold text-slate-900">Rajesh Kumar</div>
-                <div className="text-[11px] text-slate-500">Operations Director, Precision Machining Co.</div>
-              </div>
-            </div>
-
-            {/* Story 2: Aerospace */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
-              <div className="space-y-3">
-                <div className="flex items-center gap-1 text-amber-400">
-                  {"★".repeat(5)}
-                </div>
-                <span className="text-[10px] font-bold text-blue-900 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 uppercase">
-                  Aerospace & Defence ERP
-                </span>
-                <p className="text-xs text-slate-600 leading-relaxed italic">
-                  &ldquo;AS9100D and ITAR compliance used to mean weeks of paper reassembly. With
-                  Synax, CMM records and AS9102 FAIRs generate automatically at the inspection gate.&rdquo;
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-100 mt-4">
-                <div className="text-xs font-bold text-slate-900">Michael Chen</div>
-                <div className="text-[11px] text-slate-500">QA Lead, Defense Flight Components Inc.</div>
-              </div>
-            </div>
-
-            {/* Story 3: HRMS */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
-              <div className="space-y-3">
-                <div className="flex items-center gap-1 text-amber-400">
-                  {"★".repeat(5)}
-                </div>
-                <span className="text-[10px] font-bold text-blue-900 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 uppercase">
-                  Synax HRMS Platform
-                </span>
-                <p className="text-xs text-slate-600 leading-relaxed italic">
-                  &ldquo;Connecting biometric turnstiles directly to plant break-passes and shift differentials
-                  reduced our monthly payroll run from 4 days to under 60 seconds.&rdquo;
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-100 mt-4">
-                <div className="text-xs font-bold text-slate-900">Sarah Mitchell</div>
-                <div className="text-[11px] text-slate-500">Plant Manager & Controller, Advanced Aerospace</div>
-              </div>
-            </div>
-
-            {/* Story 4: IT Staffing */}
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
-              <div className="space-y-3">
-                <div className="flex items-center gap-1 text-amber-400">
-                  {"★".repeat(5)}
-                </div>
-                <span className="text-[10px] font-bold text-orange-700 bg-orange-50 px-2 py-0.5 rounded border border-orange-200 uppercase">
-                  Synax IT Staffing VMS
-                </span>
-                <p className="text-xs text-slate-600 leading-relaxed italic">
-                  &ldquo;The AI semantic matching and bench utilization suite gave us instant clarity on
-                  consultant allocations. Placement velocity tripled within the first quarter.&rdquo;
-                </p>
-              </div>
-              <div className="pt-4 border-t border-slate-100 mt-4">
-                <div className="text-xs font-bold text-slate-900">Emma Rodriguez</div>
-                <div className="text-[11px] text-slate-500">VP of Talent Acquisition, Global IT Services</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      )}
-
-      {/* =========================================================================
          TRUSTED ENTERPRISE CLIENTS & ECOSYSTEM PARTNERS
          ========================================================================= */}
       <section className="py-10 sm:py-12 bg-white border-t border-slate-200">
@@ -519,7 +409,7 @@ function HomeView({
               className="group p-6 rounded-2xl border border-slate-200/90 hover:border-emerald-300 bg-white hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
               <img
-                src="https://senwellexports.com/static/media/SenwellLogo.524bb520c09926753630.png"
+                src="https://senwellexports.com/static/media/SenwellLogo.524bb520c09926753630.png" referrerPolicy="no-referrer"
                 alt="Senwell Exports"
                 className="h-10 sm:h-12 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
@@ -538,7 +428,7 @@ function HomeView({
             >
               <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105">
                 <img
-                  src="https://exxoninfo.com/favicon.ico"
+                  src="https://exxoninfo.com/favicon.ico" referrerPolicy="no-referrer"
                   alt="Exxon Info"
                   className="w-7 h-7 object-contain"
                   loading="lazy"
@@ -560,7 +450,7 @@ function HomeView({
               className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-white hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
               <img
-                src="https://stacwell.com/_next/image?url=%2FstacwellLogo.webp&w=256&q=75"
+                src="https://stacwell.com/_next/image?url=%2FstacwellLogo.webp&w=256&q=75" referrerPolicy="no-referrer"
                 alt="Stacwell"
                 className="h-9 sm:h-11 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
@@ -578,7 +468,7 @@ function HomeView({
               className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-white hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
               <img
-                src="https://www.stacem.com/wp-content/themes/themeb17/img/logo-stacem.svg"
+                src="https://www.stacem.com/wp-content/themes/themeb17/img/logo-stacem.svg" referrerPolicy="no-referrer"
                 alt="Stacem"
                 className="h-8 sm:h-10 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"

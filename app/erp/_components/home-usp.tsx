@@ -327,6 +327,7 @@ function MachinesRow() {
                 sizes="(min-width: 1024px) 700px, 100vw"
                 className="block h-auto w-full"
               />
+              <span className="absolute top-2 right-2 rounded bg-white/90 px-2 py-0.5 text-[10px] leading-none font-semibold text-slate-600 shadow-xs">Illustration</span>
             </div>
           </Frame>
           <div className={`${FLOAT} lg:top-[12%] lg:-right-4`} style={{ animationDelay: "0.2s" }}>

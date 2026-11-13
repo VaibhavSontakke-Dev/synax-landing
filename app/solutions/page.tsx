@@ -13,6 +13,7 @@ import { TONE } from "../erp/_components/route-tone";
 import { Reveal } from "../erp/_components/reveal";
 import { SectionTag } from "../erp/_components/section-tag";
 import { INDUSTRY_ICON } from "../erp/_components/industry-icons";
+import { SolutionsScene } from "../erp/_components/solutions-scene";
 
 export const metadata: Metadata = {
   title: "Solutions by Industry & Business Need | Synax by Senwell",
@@ -67,7 +68,14 @@ export default function SolutionsPage() {
         title="Start with what hurts most. Add the rest when you are ready."
         lead="Pick the problem in front of you. For each solution you will see the modules to switch on first, what to add next, how far it reaches across the platform, and the full module directory."
         aside={
-          <nav aria-label="Pick your starting point" className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6">
+          <>
+            <div className="hidden md:block">
+              <SolutionsScene
+                areas={AREAS}
+                solutions={SOLUTIONS.map((x) => ({ key: x.key, title: x.title, pain: SOLUTION_PATHS[x.key].pain, start: SOLUTION_PATHS[x.key].start, then: SOLUTION_PATHS[x.key].then, coverage: SOLUTION_PATHS[x.key].coverage }))}
+              />
+            </div>
+            <nav aria-label="Pick your starting point" className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6 md:hidden">
             <p className="text-sm font-bold text-slate-900">Pick your starting point</p>
             <ul className="mt-4 space-y-2">
               {SOLUTIONS.map((s) => {
@@ -93,7 +101,8 @@ export default function SolutionsPage() {
                 );
               })}
             </ul>
-          </nav>
+            </nav>
+          </>
         }
       />
 

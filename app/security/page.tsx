@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Check, ExternalLink } from "lucide-react";
 import { LIVE_COMPLIANCE, LIVE_SECURITY, LIVE_SOURCE } from "../erp/_data/live";
-import { Block, CtaBand, PageHero } from "../erp/_components/site-page";
+import { Block, CtaBand } from "../erp/_components/site-page";
+import { SecurityHero } from "../erp/_components/security-hero";
 import { JumpBar } from "../erp/_components/jump-bar";
 import { SectionTag } from "../erp/_components/section-tag";
 import { Reveal } from "../erp/_components/reveal";
@@ -96,13 +97,6 @@ const YOURS = [
   "Holding your own certifications and passing your own audits",
 ];
 
-const FACTS: { icon: IconName; label: string; value: string }[] = [
-  { icon: "layers", label: "Workspaces", value: "One tenant per company" },
-  { icon: "lock", label: "Sign-in", value: "Two-step" },
-  { icon: "shield", label: "Postings", value: "Checked on the server" },
-  { icon: "badge", label: "History", value: "Who changed what, and when" },
-];
-
 /** What happens to a posting, using only statements from the live portal. */
 const PROCESS: { icon: IconName; title: string; copy: string }[] = [
   { icon: "lock", title: "Role check", copy: "Menus, actions and sensitive values follow the roles you configure." },
@@ -110,6 +104,9 @@ const PROCESS: { icon: IconName; title: string; copy: string }[] = [
   { icon: "bolt", title: "Approval", copy: "Where your process needs it, an approver with the right role decides." },
   { icon: "badge", title: "Audit history", copy: "Who changed what and when is kept for every material business change." },
 ];
+
+/** One short line per check for the hero strip (the full wording is in the "How it works" section below). */
+const HERO_GATE_COPY = ["Menus, actions and values follow roles", "Validated on the server", "An approver decides", "Who changed what, and when"];
 
 const JUMP = [
   { id: "controls", label: "Controls" },
@@ -123,31 +120,7 @@ const JUMP = [
 export default function SecurityPage() {
   return (
     <main className="pb-6">
-      <PageHero
-        tourTitle="Synax Security Overview"
-        crumbs={[{ label: "Security & Trust" }]}
-        tag="Security & Trust"
-        title="Audit-ready by design, not by report"
-        lead="Each company runs in its own workspace, every posting is checked on the server, and the system keeps a record of who changed what and when. Here is how that works, and what stays your responsibility."
-        aside={
-          <div className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6">
-            <p className="text-sm font-bold text-slate-900">Security at a glance</p>
-            <ul className="mt-4 space-y-2" aria-label="Security at a glance">
-              {FACTS.map((f) => (
-                <li key={f.label} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-sky-200 bg-sky-100 text-blue-900">
-                    <ModuleIcon name={f.icon} className="size-[18px]" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-bold text-slate-900">{f.value}</span>
-                    <span className="block text-xs text-slate-600">{f.label}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        }
-      />
+      <SecurityHero gates={PROCESS.map((p, i) => ({ ...p, copy: HERO_GATE_COPY[i] }))} />
 
       <JumpBar items={JUMP} />
 

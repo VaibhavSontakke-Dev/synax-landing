@@ -46,6 +46,8 @@ interface FormState {
   product: string;
   floorSize: string;
   message: string;
+  /** The visitor ticked the privacy-notice box (DPDP Act, 2023: notice and consent before we collect personal data). */
+  consent: boolean;
 }
 
 const EMPTY_FORM: FormState = {
@@ -56,6 +58,7 @@ const EMPTY_FORM: FormState = {
   product: DEFAULT_PRODUCT,
   floorSize: "50 - 250 Employees (1-3 Plants)",
   message: "",
+  consent: false,
 };
 
 const FIELD =
@@ -74,6 +77,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
     setForm((prev) => ({
       ...prev,
       product: PRODUCT_OPTIONS.includes(product) ? product : DEFAULT_PRODUCT,
+      consent: false,
     }));
     setSubmitted(false);
     setError("");
@@ -146,7 +150,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="demo-modal-title"
-            className="relative max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8"
+            className="synax-thin-scroll relative max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8"
           >
             <button
               type="button"
@@ -320,6 +324,30 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
                     <label htmlFor="demo-website">Website</label>
                     <input id="demo-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
+
+                  <div className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-slate-50/60 p-3">
+                    <input
+                      id="demo-consent"
+                      name="consent"
+                      type="checkbox"
+                      required
+                      checked={form.consent}
+                      onChange={(e) => setForm((prev) => ({ ...prev, consent: e.target.checked }))}
+                      className="mt-0.5 size-4 shrink-0 cursor-pointer accent-blue-900"
+                    />
+                    <label htmlFor="demo-consent" className="text-xs leading-relaxed text-slate-600">
+                      I agree that Senwell Group may contact me about this demo and process the details I have entered, as described in the{" "}
+                      <a
+                        href="https://synax.senwellgroup.com/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-blue-900 underline hover:text-blue-800"
+                      >
+                        Privacy Policy
+                      </a>
+                      . I can withdraw this at any time. *
+                    </label>
                   </div>
 
                   {error && (

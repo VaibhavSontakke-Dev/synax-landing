@@ -120,7 +120,7 @@ export function ClientMarquee() {
               >
                 {item.isExxon ? (
                   <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105">
-                    <img
+                    <img referrerPolicy="no-referrer"
                       src={item.src}
                       alt={item.alt}
                       className="w-6 h-6 object-contain"
@@ -132,7 +132,7 @@ export function ClientMarquee() {
                     </span>
                   </div>
                 ) : (
-                  <img
+                  <img referrerPolicy="no-referrer"
                     src={item.src}
                     alt={item.alt}
                     className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${item.imgClass}`}
@@ -157,7 +157,7 @@ export function ClientMarquee() {
               >
                 {item.isExxon ? (
                   <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105">
-                    <img
+                    <img referrerPolicy="no-referrer"
                       src={item.src}
                       alt=""
                       className="w-6 h-6 object-contain"
@@ -169,7 +169,7 @@ export function ClientMarquee() {
                     </span>
                   </div>
                 ) : (
-                  <img
+                  <img referrerPolicy="no-referrer"
                     src={item.src}
                     alt=""
                     className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${item.imgClass}`}

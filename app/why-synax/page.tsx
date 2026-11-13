@@ -10,11 +10,12 @@ import {
   LIVE_FLOW,
   LIVE_FLOW_LEAD,
   LIVE_PILLARS,
-  LIVE_POSITIONING,
   LIVE_PRICING,
 } from "../erp/_data/live";
 import { TONE } from "../erp/_components/route-tone";
-import { Block, CtaBand, Faq, PageHero } from "../erp/_components/site-page";
+import { Block, CtaBand, Faq } from "../erp/_components/site-page";
+import { WhyHero } from "../erp/_components/why-hero";
+import { WhyRace } from "../erp/_components/why-race";
 import { Reveal } from "../erp/_components/reveal";
 import { SectionTag } from "../erp/_components/section-tag";
 import { ReasonTabs } from "../erp/_components/reason-tabs";
@@ -67,45 +68,12 @@ const JUMP = [
 export default function WhySynaxPage() {
   return (
     <main className="pb-6">
-      <PageHero
-        tourTitle="Why Synax"
-        crumbs={[{ label: "Why Synax" }]}
-        tag="Why Synax"
-        title="Why industry leaders choose Synax"
-        lead={`${LIVE_POSITIONING.headline} ${LIVE_POSITIONING.sub}`}
-        aside={
-          <div className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6">
-            <p className="text-sm font-bold text-slate-900">Synax at a glance</p>
-            <ul className="mt-4 space-y-2" aria-label="Key facts">
-              {PROOF.map((p) => {
-                const Icon = p.icon;
-                return (
-                  <li key={p.value} className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3">
-                    <span
-                      className={`flex size-9 shrink-0 items-center justify-center rounded-lg border ${
-                        p.accent ? "border-orange-200 bg-orange-50 text-orange-700" : "border-sky-200 bg-sky-100 text-blue-900"
-                      }`}
-                    >
-                      <Icon className="size-[18px]" aria-hidden="true" />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-bold text-slate-900">{p.value}</span>
-                      <span className="block text-xs text-slate-600">{p.label}</span>
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-            <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Highlights">
-              {["Built in India, for Indian shop floors", "Audit trail on every posting"].map((c) => (
-                <li key={c} className="rounded-md border border-dashed border-sky-300 bg-sky-50 px-2 py-1 text-[11.5px] font-medium text-slate-700">
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
-        }
-      />
+      <WhyHero proof={PROOF} />
+
+      {/* The animated comparison: one part, two ways to run it */}
+      <Block id="difference" tag="See the difference" title="One part, two ways to run it" lead="An illustration of the same part going through the same five stations." tone="white">
+        <WhyRace />
+      </Block>
 
       {/* Jump bar: the current section is navy */}
       <JumpBar items={JUMP} />

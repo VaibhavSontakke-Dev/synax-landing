@@ -49,9 +49,9 @@ const PILLARS: Pillar[] = [
     Icon: TrendingUp,
     tag: "Operational Velocity",
     title: "Smarter Business Operations",
-    subtitle: "Single source of truth from raw ingot receipt to customer dispatch",
-    body: "Synax breaks the barrier between the front office and the shop floor. By capturing real-time machine telemetry, material heat-lot certifications, and stage-by-stage scrap rates, leadership gains true OEE visibility and predictive capacity dispatch without waiting for end-of-month manual reconciliation.",
-    chips: ["360° Material Lot Genealogy", "Dynamic Machine Dispatch"],
+    subtitle: "Single source of truth from material receipt to customer dispatch",
+    body: "Synax connects the front office and the shop floor. Real machine counts, material lots and stage-by-stage records feed one view, so leadership sees OEE per job and the state of the floor without waiting for end-of-month reconciliation.",
+    chips: ["Material Lot Genealogy", "Machine Scheduling"],
     tone: "light",
   },
   {
@@ -59,8 +59,8 @@ const PILLARS: Pillar[] = [
     tag: "Human Capital Intelligence",
     title: "Better Workforce Management",
     subtitle: "Unifying permanent floor staff with contingent technical talent",
-    body: "High-precision delivery requires the right certified specialist on every shift. Synax bridges biometric turnstile punch-ins, plant floor break-pass monitoring, and <60s automated payroll with an AI-powered talent bench that sources and validates certified engineers and machinists on demand.",
-    chips: ["Biometric IoT Turnstile Sync", "AI Bench Matching & VMS"],
+    body: "High-precision delivery needs the right people on every shift. Synax brings biometric punch-ins, plant floor break-pass management and payroll with approvals into one workspace, and its staffing tools show who is available and where each person is deployed.",
+    chips: ["Biometric Device Sync", "Staffing & Deployments"],
     tone: "light",
   },
   {
