@@ -22,6 +22,11 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Home hero: gap under the headline
+Commit subject: `Home hero: add a gap between the headline and the product name`
+- **What**: in `home-hero.tsx`, the rotating product name (`ActiveProductName`) sat 2 px under "One Platform for Every Operation", right against the orange underline. It now has a 16 px gap (`mt-4`), and on large screens `clamp(0.625rem, 1.8vh, 1.25rem)`, so it still scales with the viewport height the hero is sized to.
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — Fix: /why-synax and /security opened scrolled past the hero
 Commit subject: `Fix: jump bar no longer scrolls the page past the hero on load`
 - **Cause**: `jump-bar.tsx` called `scrollIntoView` on the active chip on load. When a tall hero pushed the bar below the fold, the browser scrolled the page down to the bar, so the page opened below its hero.

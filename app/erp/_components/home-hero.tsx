@@ -140,7 +140,7 @@ const ROW_START = ["lg:row-start-1", "lg:row-start-2", "lg:row-start-3"] as cons
 /** The gradient product name; all names share one grid cell so the block never jumps. */
 function ActiveProductName({ active }: { active: number }) {
   return (
-    <span className="mt-0.5 grid justify-items-center text-[0.78em]" aria-hidden="true">
+    <span className="mt-4 grid justify-items-center text-[0.78em] lg:mt-[clamp(0.625rem,1.8vh,1.25rem)]" aria-hidden="true">
       {HERO_PRODUCTS.map(({ label }, i) => (
         <span
           key={label}
