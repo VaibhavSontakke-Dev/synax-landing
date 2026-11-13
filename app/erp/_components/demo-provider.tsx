@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { ArrowRight, CheckCircle2, Play, X } from "lucide-react";
 import { SectionTag } from "./section-tag";
 import { PRODUCT_ROUTES } from "../_data/products";
+import { OverviewPlayer } from "./overview-player";
 
 /**
  * Demo-request and product-tour modals, shared by every page.
@@ -379,43 +380,52 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
               </button>
             </div>
 
-            <div className="relative flex aspect-video w-full flex-col items-center justify-center overflow-hidden bg-slate-950 p-6 text-center">
-              <div
-                className="absolute inset-0 opacity-10"
-                style={{
-                  backgroundImage: "radial-gradient(#fdba74 1px, transparent 1px)",
-                  backgroundSize: "24px 24px",
+            {tourTitle === "Synax Platform Overview" ? (
+              <OverviewPlayer
+                onBook={() => {
+                  setTourOpen(false);
+                  openDemo(DEFAULT_PRODUCT);
                 }}
-                aria-hidden="true"
               />
-              <div className="relative z-10 w-full max-w-xl space-y-4">
-                <h4 className="text-lg font-bold text-white sm:text-xl">{tourTitle}</h4>
-                <p className="mx-auto max-w-md text-xs leading-relaxed text-slate-400">
-                  The recorded tour is being prepared. Book a live walkthrough and we will show you the modules,
-                  workflows and reports for your own setup.
-                </p>
-                <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTourOpen(false);
-                      openDemo(tourTitle.replace(" Tour", "").replace(" Demo Video", ""));
-                    }}
-                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white px-6 py-2.5 text-xs font-bold text-blue-900 shadow-lg transition-colors hover:bg-slate-100 sm:w-auto"
-                  >
-                    <span>Book a live walkthrough</span>
-                    <ArrowRight className="size-3.5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setTourOpen(false)}
-                    className="w-full cursor-pointer rounded-xl border border-slate-700 bg-slate-800 px-5 py-2.5 text-xs font-semibold text-slate-300 transition-colors hover:bg-slate-700 sm:w-auto"
-                  >
-                    Close
-                  </button>
+            ) : (
+              <div className="relative flex aspect-video w-full flex-col items-center justify-center overflow-hidden bg-slate-950 p-6 text-center">
+                <div
+                  className="absolute inset-0 opacity-10"
+                  style={{
+                    backgroundImage: "radial-gradient(#fdba74 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                  }}
+                  aria-hidden="true"
+                />
+                <div className="relative z-10 w-full max-w-xl space-y-4">
+                  <h4 className="text-lg font-bold text-white sm:text-xl">{tourTitle}</h4>
+                  <p className="mx-auto max-w-md text-xs leading-relaxed text-slate-400">
+                    The recorded tour is being prepared. Book a live walkthrough and we will show you the modules,
+                    workflows and reports for your own setup.
+                  </p>
+                  <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setTourOpen(false);
+                        openDemo(tourTitle.replace(" Tour", "").replace(" Demo Video", ""));
+                      }}
+                      className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white px-6 py-2.5 text-xs font-bold text-blue-900 shadow-lg transition-colors hover:bg-slate-100 sm:w-auto"
+                    >
+                      <span>Book a live walkthrough</span>
+                      <ArrowRight className="size-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTourOpen(false)}
+                      className="w-full cursor-pointer rounded-xl border border-slate-700 bg-slate-800 px-5 py-2.5 text-xs font-semibold text-slate-300 transition-colors hover:bg-slate-700 sm:w-auto"
+                    >
+                      Close
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}

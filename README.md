@@ -22,6 +22,15 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Watch overview: narrated explainer video
+Commit subject: `Watch overview: narrated platform explainer in the video modal`
+- **What**: the "Synax Platform Overview" tour (the Watch overview button on the home page, /solutions and others that use that title) now plays a 7-scene animated explainer with an AI voice instead of "The recorded tour is being prepared". New `app/erp/_components/overview-player.tsx` (`OverviewPlayer`); `demo-provider.tsx` renders it when the tour title is "Synax Platform Overview" (other tours keep the placeholder until their own videos exist). Controls: play / pause / replay, seven clickable scene segments with progress, mute. Captions show the spoken words; the last scene has a Schedule a Demo button (closes the tour and opens the demo form).
+- **Scenes**: 1 the problem and "Meet Synax"; 2 six products, one platform; 3 spindle to invoice (six steps); 4 machines report the count; 5 accounts stay in Tally, GST invoice, IRN and e-way bill; 6 AI proposes, you approve; 7 call to action. About 84 seconds in total.
+- **Voice**: seven MP3s in `public/audio/overview/scene-1.mp3 … scene-7.mp3` (about 450 KB), voice `en-IN-NeerjaNeural`, rate -4 %. Generated once with the `msedge-tts` Node package (installed in a scratch folder, not in the project), which calls Microsoft Edge's online text-to-speech. The spoken text is the `LINES` array used for generation (acronyms spaced out for the voice: "E R P", "G S T"); the on-screen captions in `SCENES` are the same words with normal spelling. To change the wording: edit the captions, regenerate the matching MP3, and update that scene's `dur` fallback.
+- **Licence note**: `msedge-tts` is an unofficial client for Edge's read-aloud service, so its terms for commercial use are unclear. Before launch, regenerate the seven files with the official Azure AI Speech service (same Neerja voice) or another licensed TTS and drop them in over the same file names; no code change needed.
+- **Behaviour**: each scene ends when its audio ends; if audio is blocked or missing, scenes advance on a timer (`dur`). The stage is drawn at 880 x 495 and scaled to fit the modal. Animations use `synax-ov-in` / `synax-ov-bar` in `globals.css` (off for reduced motion). Machine states and figures in scene 4 are illustrations.
+- **Rollback**: revert the commit (the `public/audio/overview` files go with it).
+
 ### Pending (next commit) — Product pages: photo-led heroes (Unsplash)
 Commit subject: `Products: photo-led hero for each of the six product pages`
 - **What**: each product page's hero now has its own composition around a photo, still on the home hero background (`HeroBand` / `HeroBackdrop`, unchanged) with navy headings and soft orange accents. Only the hero blocks in `app/erp/_components/product-pages/*.tsx` changed (plus `next/image` imports); everything below the heroes is untouched.
