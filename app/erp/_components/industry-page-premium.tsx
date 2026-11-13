@@ -79,9 +79,9 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
   ];
 
   const stats = [
-    { value: page.flow.length, label: "steps in the flow" },
-    ...(modules ? [{ value: modules.groups.length, label: "module groups" }, { value: moduleCount, label: "modules behind it" }] : []),
-    { value: page.products.length, label: "products deliver it" },
+    { value: page.flow.length, label: "Flow steps" },
+    ...(modules ? [{ value: modules.groups.length, label: "Module groups" }, { value: moduleCount, label: "Modules" }] : []),
+    { value: page.products.length, label: "Products" },
   ];
 
   return (

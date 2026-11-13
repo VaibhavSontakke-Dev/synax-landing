@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BarChart3, ClipboardList, FileBarChart, LayoutDashboard, LineChart, Lock, ShieldCheck, Sparkles, Truck, Wallet, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -30,6 +29,15 @@ const AGENTS: { icon: LucideIcon; title: string; copy: string }[] = [
   { icon: ShieldCheck, title: "Quality compliance", copy: "Watches for open quality items against the checks your process requires." },
   { icon: Wrench, title: "Shop-floor watch", copy: "Brings alarms and downtime that need a person to your attention." },
 ];
+
+/** Sample figures for the hero dashboard (illustration only). */
+const KPIS = [
+  { label: "Challans past return date", value: "2", pct: "30%" },
+  { label: "Lots ready to dispatch", value: "5", pct: "70%" },
+  { label: "Route cards awaiting buy-off", value: "3", pct: "45%" },
+];
+const BARS = [40, 55, 48, 70, 62, 80, 74, 90];
+const ATTENTION = ["2 challans are past their return date", "5 lots are ready to dispatch", "3 route cards await a buy-off"];
 
 const QUESTIONS = ["Which challans are past their return date?", "Which lots are ready to dispatch?", "Which route cards are awaiting buy-off?"];
 
@@ -64,16 +72,47 @@ export function AiBiPage() {
               </span>
               <span className="font-mono text-slate-500">synax.senwellgroup.com</span>
             </div>
-            <div className="relative h-56 bg-slate-100 sm:h-72">
-              <Image
-                src="/images/products/ai-bi.webp"
-                alt="An analytics dashboard with a table of coloured retention blocks on a screen"
-                fill
-                priority
-                sizes="(min-width: 1024px) 896px, 100vw"
-                quality={75}
-                className="object-cover"
-              />
+            <div className="bg-slate-50 p-4 pb-16 sm:p-5 sm:pb-20 md:pb-5">
+              <div className="mb-3 flex items-center justify-between text-xs">
+                <p className="font-bold text-slate-900">Business dashboard</p>
+                <p className="text-slate-500">Sample data</p>
+              </div>
+              <ul className="grid gap-3 sm:grid-cols-3">
+                {KPIS.map((k) => (
+                  <li key={k.label} className="rounded-xl border border-slate-200 bg-white p-3.5 text-left">
+                    <p className="text-[11px] font-semibold text-slate-500">{k.label}</p>
+                    <p className="mt-1 text-2xl font-extrabold tracking-tight text-blue-900">{k.value}</p>
+                    <div className="mt-2 h-1.5 rounded-full bg-slate-200">
+                      <div className="h-1.5 rounded-full bg-blue-900/40" style={{ width: k.pct }} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-3 grid gap-3 md:grid-cols-[1.5fr_1fr]">
+                <div className="rounded-xl border border-slate-200 bg-white p-3.5 text-left">
+                  <p className="text-[11px] font-semibold text-slate-500">Lots ready to dispatch, by week</p>
+                  <div className="mt-3 flex h-24 items-end gap-2" role="img" aria-label="Sample bar chart of lots ready to dispatch, rising over eight weeks">
+                    {BARS.map((h, i) => (
+                      <span
+                        key={i}
+                        className={`flex-1 rounded-t ${i === BARS.length - 1 ? "bg-orange-300" : "bg-blue-900/35"}`}
+                        style={{ height: `${h}%` }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="hidden rounded-xl border border-slate-200 bg-white p-3.5 text-left md:block">
+                  <p className="text-[11px] font-semibold text-slate-500">Needs attention</p>
+                  <ul className="mt-2 space-y-2 text-xs text-slate-700">
+                    {ATTENTION.map((t) => (
+                      <li key={t} className="flex items-start gap-2">
+                        <span className="mt-1 size-2 shrink-0 rounded-full bg-orange-300" aria-hidden="true" />
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div className="absolute right-3 -bottom-0 w-64 rounded-2xl border border-t-4 border-slate-200 border-t-orange-300 bg-white p-4 shadow-xl sm:right-6 md:-bottom-6">

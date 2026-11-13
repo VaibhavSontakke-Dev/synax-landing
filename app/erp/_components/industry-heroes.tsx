@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { hrefFor, routeFor } from "../_data/products";
+import { ChevronRight, Users } from "lucide-react";
+import { PRODUCT_DATA, hrefFor, routeFor } from "../_data/products";
 import type { IndustryPage } from "../_data/industries";
 import { Breadcrumb } from "./site-page";
 import { SectionTag } from "./section-tag";
@@ -445,41 +445,60 @@ export function IndustryHero({ page }: { page: IndustryPage }) {
   }
 }
 
-/** Slim band under every hero: who it is for, the products that deliver it, and the counts. */
+/** Band under every hero: who it is for, the products that deliver it (each with its icon), and four counts. */
 export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: number; label: string }[] }) {
   return (
-    <section aria-label="At a glance" className="border-b border-slate-200 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-10 lg:px-8">
-        <dl className="space-y-3 text-sm">
-          <div className="flex gap-3">
-            <dt className="w-24 shrink-0 pt-0.5 text-[11px] font-bold tracking-wider text-slate-500 uppercase">Built for</dt>
-            <dd className="leading-snug text-slate-700">{page.whoFor}</dd>
+    <section aria-label="At a glance" className="border-b border-slate-200 bg-gradient-to-b from-white to-slate-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-0 divide-y divide-slate-200 lg:grid-cols-[1fr_1.15fr_auto] lg:divide-x lg:divide-y-0">
+          {/* Built for */}
+          <div className="flex items-start gap-4 py-6 lg:pr-8">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white text-blue-900 shadow-xs">
+              <Users className="size-5" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-[11px] font-bold tracking-[0.14em] text-orange-600 uppercase">Built for</p>
+              <p className="mt-1 text-sm leading-relaxed font-medium text-slate-800">{page.whoFor}</p>
+            </div>
           </div>
-          <div className="flex gap-3">
-            <dt className="w-24 shrink-0 pt-1 text-[11px] font-bold tracking-wider text-slate-500 uppercase">Delivered by</dt>
-            <dd className="flex flex-wrap gap-1.5">
-              {page.products.map((key) => (
-                <Link
-                  key={key}
-                  href={hrefFor(key)}
-                  className={`rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-xs font-semibold text-blue-900 transition-colors hover:border-blue-900 hover:bg-white ${FOCUS}`}
-                >
-                  {routeFor(key).name}
-                </Link>
-              ))}
-            </dd>
+
+          {/* Delivered by */}
+          <div className="py-6 lg:px-8">
+            <p className="text-[11px] font-bold tracking-[0.14em] text-orange-600 uppercase">Delivered by</p>
+            <ul className="mt-2.5 flex flex-wrap gap-2">
+              {page.products.map((key, i) => {
+                const PIcon = PRODUCT_DATA[key].icon;
+                return (
+                  <li key={key}>
+                    <Link
+                      href={hrefFor(key)}
+                      className={`group flex items-center gap-2 rounded-xl border bg-white py-1.5 pr-3 pl-1.5 text-xs font-semibold shadow-xs transition-all hover:-translate-y-0.5 hover:border-blue-900 hover:shadow-md ${FOCUS} ${
+                        i === 0 ? "border-blue-900/40 text-blue-900" : "border-slate-300 text-slate-800"
+                      }`}
+                    >
+                      <span className="flex size-7 items-center justify-center rounded-lg bg-slate-100 text-blue-900 transition-colors group-hover:bg-blue-900 group-hover:text-white">
+                        <PIcon className="size-4" aria-hidden="true" />
+                      </span>
+                      {routeFor(key).name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-        </dl>
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Counts">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} as="li" delay={i * 60}>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-center">
-                <p className="text-2xl font-extrabold tracking-tight text-blue-900">{s.value}</p>
-                <p className="text-[11px] leading-tight text-slate-600">{s.label}</p>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
+
+          {/* Counts */}
+          <ul className="grid grid-cols-4 gap-2 py-6 lg:gap-0 lg:pl-8" aria-label="Counts">
+            {stats.map((s, i) => (
+              <Reveal key={s.label} as="li" delay={i * 60}>
+                <div className="px-1 text-center lg:min-w-24 lg:border-l lg:border-slate-200 lg:first:border-l-0">
+                  <p className="text-3xl leading-none font-extrabold tracking-tight text-blue-900 sm:text-4xl">{s.value}</p>
+                  <p className="mt-1.5 text-[11px] leading-tight font-semibold tracking-wide text-slate-500 uppercase">{s.label}</p>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
