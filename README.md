@@ -22,6 +22,13 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — IT Services page: "client" instead of "customer"
+Commit subject: `IT Services & Staffing page: say "client" instead of "customer"`
+- **What**: on /solutions/it-services-staffing the word "customer" is now "client": the "Built for" line and meta description, the multi-vendor challenge ("vendors and clients"), the flow title ("From the client's requirement to the invoice") and the first flow step ("Client requirement: Capture what the client needs…", which the hero's pipeline cards and the tour also show). Changed in the `it-services-staffing` entry of `app/erp/_data/industries.ts` only; other industries and the Work & Delivery and Staffing product pages keep their own wording.
+- **Tour video**: the page's Watch overview narration said "customer" twice, so scenes 3 and 6 of the `it-services-staffing` tour were reworded in `tour-lines.json` and its six narration clips were regenerated (`public/audio/tours/it-services-staffing/`, `tour-durations.json`).
+- **Not changed**: the shared product data used for the page's module cards (Work & Delivery) has no "customer" in what this page shows. If you want "client" on the Work & Delivery and Staffing product pages too, say so.
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — Footer address
 Commit subject: `Footer: show the Pune office address`
 - **What**: in `app/erp/_components/home-footer.tsx` the placeholder "Senwell Industrial Park" is replaced by the address you gave (Gera's Imperium Alpha, Near EON IT Park, Kharadi, Pune, Maharashtra, India-411014), in an `<address>` element under the website link, with the pin icon aligned to the first line. The address is shown as text only (no map link).
