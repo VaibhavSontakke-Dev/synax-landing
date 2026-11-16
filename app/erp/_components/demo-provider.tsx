@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { ArrowRight, CheckCircle2, Play, X } from "lucide-react";
 import { SectionTag } from "./section-tag";
 import { PRODUCT_ROUTES } from "../_data/products";
-import { TourPlayer } from "./tour-player";
+import { TourPlayer, VideoTour } from "./tour-player";
 import { TOURS } from "../_data/tours";
 
 /**
@@ -409,7 +409,16 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
               </button>
             </div>
 
-            {TOURS[tourTitle] ? (
+            {TOURS[tourTitle]?.video ? (
+              <VideoTour
+                key={tourTitle}
+                tour={TOURS[tourTitle]}
+                onBook={() => {
+                  setTourOpen(false);
+                  openDemo(DEFAULT_PRODUCT);
+                }}
+              />
+            ) : TOURS[tourTitle] ? (
               <TourPlayer
                 key={tourTitle}
                 tour={TOURS[tourTitle]}

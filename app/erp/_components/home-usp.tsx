@@ -50,7 +50,7 @@ function Frame({ url, tilt, children }: { url: string; tilt: "left" | "right"; c
         tilt === "left" ? FRAME_LEFT : FRAME_RIGHT
       }`}
     >
-      {/* Same title bar as the "See Synax in Action" viewport on the home page. */}
+      {/* Gray browser-style title bar. */}
       <div className="flex items-center gap-2.5 rounded-t-2xl border-b border-slate-300 bg-slate-200 px-4 py-2.5 text-xs text-slate-600" aria-hidden="true">
         <span className="size-3 rounded-full bg-rose-500" />
         <span className="size-3 rounded-full bg-amber-500" />

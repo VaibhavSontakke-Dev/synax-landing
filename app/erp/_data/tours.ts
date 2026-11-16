@@ -77,6 +77,8 @@ export interface Tour {
   durations: number[];
   /** Small label shown top right of the video. */
   tag?: string;
+  /** A finished video file (instead of the animated scenes): played by VideoTour. */
+  video?: { src: string; poster?: string; captions?: string };
 }
 
 const LINE_MAP = LINES as Record<string, string[]>;
@@ -450,10 +452,21 @@ const whySynax = tour(
   "Why Synax",
 );
 
+/** The Assets module walkthrough: a recorded product demo (MP4 with an AI voice and sound design, no subtitles), not animated scenes. */
+const assetsTour: Tour = {
+  slug: "assets",
+  audioDir: "",
+  scenes: [],
+  captions: [],
+  durations: [],
+  video: { src: "/videos/assets-tour-v2.mp4", poster: "/videos/assets-tour-v2-poster.webp" },
+};
+
 /** Tour title (as passed to the Watch overview button) -> its video. */
 export const TOURS: Record<string, Tour> = {
   "Synax Platform Overview": overview,
   "Why Synax": whySynax,
+  "Assets Module Tour": assetsTour,
   [`${routeFor("precision").name} Tour`]: manufacturing,
   [`${routeFor("it").name} Tour`]: workDelivery,
   [`${routeFor("hrms").name} Tour`]: hrms,

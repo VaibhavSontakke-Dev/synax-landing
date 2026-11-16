@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Exported full-size videos (the website uses the 720p files in public/videos)
+/video-exports/

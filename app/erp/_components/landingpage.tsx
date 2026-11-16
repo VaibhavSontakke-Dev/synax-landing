@@ -18,7 +18,6 @@ import { Products } from "./home-products";
 import { Sectors } from "./home-sectors";
 import { Comparison } from "./home-comparison";
 import Link from "next/link";
-import { ConsoleViewport } from "./console-viewport";
 import { Usp } from "./home-usp";
 import { DemoButton, TourButton } from "./demo-buttons";
 import { hrefFor } from "../_data/products";
@@ -30,10 +29,6 @@ import { ModuleIcon } from "./icons";
 /* =========================================================================
    TYPES
    ========================================================================= */
-
-/** Tabs of the live console preview. */
-type PreviewTab = "precision" | "aerospace" | "hrms" | "staffing";
-
 
 /* =========================================================================
    MAIN COMPONENT
@@ -49,9 +44,6 @@ export default function Landingpage() {
   // so it never covers them.
   const [showStickyCta, setShowStickyCta] = useState(false);
 
-  // Interactive Live Console Preview Tab in Hero
-  const [previewTab, setPreviewTab] = useState<PreviewTab>("precision");
-
   useEffect(() => {
     const onScroll = () => setShowStickyCta(window.scrollY > 720);
     onScroll();
@@ -61,12 +53,7 @@ export default function Landingpage() {
 
   return (
     <>
-      <HomeView
-        openModal={openDemo}
-        openTourModal={openTour}
-        previewTab={previewTab}
-        setPreviewTab={setPreviewTab}
-      />
+      <HomeView openModal={openDemo} openTourModal={openTour} />
 
       {/* Sticky mobile CTA: keeps the primary conversion action in reach below the hero. */}
       {showStickyCta && !modalOpen && (
@@ -92,16 +79,9 @@ export default function Landingpage() {
 interface HomeViewProps {
   openModal: (prodName?: string) => void;
   openTourModal: (title?: string) => void;
-  previewTab: PreviewTab;
-  setPreviewTab: (tab: PreviewTab) => void;
 }
 
-function HomeView({
-  openModal,
-  openTourModal,
-  previewTab,
-  setPreviewTab,
-}: HomeViewProps) {
+function HomeView({ openModal, openTourModal }: HomeViewProps) {
   return (
     <main>
       {/* HERO: see home-hero.tsx */}
@@ -310,79 +290,6 @@ function HomeView({
           WHY SYNAX
          ========================================================================= */}
       <Comparison onSeeProducts={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })} />
-
-
-       {/* Interactive Platform Console */}
-          <section className="pt-6 pb-8 md:pt-8 md:pb-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-6 space-y-3">
-              <SectionTag>Live Platform Preview</SectionTag>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                See Synax in Action
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-                Switch between products to see how each one reads: where the work is in its flow, what needs attention, and the records behind it. Figures shown are sample data.
-              </p>
-            </div>
-            <div>
-              {/* Viewport Control Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-slate-200 text-slate-600 px-4 py-2.5 rounded-t-2xl border border-slate-300 gap-2.5 text-xs">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-3 h-3 rounded-full bg-rose-500" />
-                  <span className="w-3 h-3 rounded-full bg-amber-500" />
-                  <span className="w-3 h-3 rounded-full bg-emerald-500" />
-                  <span className="ml-2 font-mono text-[11px] text-slate-500">
-                    synax.senwellgroup.com/console/{previewTab}
-                  </span>
-                </div>
-
-                {/* Switchable 4 Product Tabs */}
-                <div className="flex flex-wrap gap-1 bg-slate-300/60 p-1 rounded-xl">
-                  <button
-                    onClick={() => setPreviewTab("precision")}
-                    className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
-                      previewTab === "precision"
-                        ? "bg-emerald-600 text-white shadow-xs"
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    Manufacturing ERP
-                  </button>
-                  <button
-                    onClick={() => setPreviewTab("aerospace")}
-                    className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
-                      previewTab === "aerospace"
-                        ? "bg-blue-900 text-white shadow-xs"
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    Aerospace &amp; Defence
-                  </button>
-                  <button
-                    onClick={() => setPreviewTab("hrms")}
-                    className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
-                      previewTab === "hrms"
-                        ? "bg-blue-900 text-white shadow-xs"
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    HRMS
-                  </button>
-                  <button
-                    onClick={() => setPreviewTab("staffing")}
-                    className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
-                      previewTab === "staffing"
-                        ? "bg-orange-700 text-white shadow-xs"
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    Staffing
-                  </button>
-                </div>
-              </div>
-
-              <ConsoleViewport tab={previewTab} />
-            </div>
-          </section>
 
 
       {/* =========================================================================

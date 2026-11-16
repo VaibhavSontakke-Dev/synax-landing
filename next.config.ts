@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/images/:path*", headers: longCache },
       { source: "/audio/:path*", headers: longCache },
+      { source: "/videos/:path*", headers: longCache },
       {
         source: "/:path*",
         headers: [

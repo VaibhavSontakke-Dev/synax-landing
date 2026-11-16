@@ -125,11 +125,19 @@ export function Footer() {
                   <span className="sr-only">(opens in a new tab)</span>
                 </a>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-start gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-200">
                   <MapPin className="size-4" aria-hidden="true" />
                 </span>
-                <span className="text-slate-300">Senwell Industrial Park</span>
+                <address className="text-slate-300 not-italic leading-relaxed">
+                  Gera&apos;s Imperium Alpha,
+                  <br />
+                  Near EON IT Park,
+                  <br />
+                  Kharadi, Pune, Maharashtra,
+                  <br />
+                  India-411014.
+                </address>
               </li>
             </ul>
           </div>

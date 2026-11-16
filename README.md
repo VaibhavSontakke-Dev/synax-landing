@@ -22,6 +22,31 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Footer address
+Commit subject: `Footer: show the Pune office address`
+- **What**: in `app/erp/_components/home-footer.tsx` the placeholder "Senwell Industrial Park" is replaced by the address you gave (Gera's Imperium Alpha, Near EON IT Park, Kharadi, Pune, Maharashtra, India-411014), in an `<address>` element under the website link, with the pin icon aligned to the first line. The address is shown as text only (no map link).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Home: "See Synax in Action" section removed
+Commit subject: `Home: remove the Live Platform Preview ("See Synax in Action") section`
+- **What**: the whole "Live Platform Preview / See Synax in Action" section is gone from the home page (the window bar with the fake URL, the four product tabs and the dashboard viewport). It showed sample figures (OEE, scrap rate, tool life, job counts, gauge and requirement IDs) that are not real data, so it is removed rather than redesigned.
+- **Code**: removed from `app/erp/_components/landingpage.tsx` (the section, the `PreviewTab` type, the `previewTab` state and props, the import) and deleted `app/erp/_components/console-viewport.tsx` (it held the sample data). The photos it used (`precision.webp`, `aerospace.webp`, `assembly-line.webp`, `robot-floor.webp`) stay: the industry pages use them.
+- **Page order now**: hero, USP section, comparison, then "Running on Synax". Nothing else on the page changed. A tour gallery, flow explorer or annotated-screenshot section can be added later if wanted.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Assets module tour video (MP4 with an AI voice and sound design)
+Commit subject: `Assets module: premium product tour video with sound design`
+- **What**: a 1 min 43 s product demo of the Assets module (Add Asset, then the Asset Management list), 1080p, 30 fps, with an Indian-English neural voice (en-IN-Neerja) and sound design. **No subtitles or on-screen captions** are drawn, embedded or shipped (the captions track and `assets-tour.vtt` were removed; the site player no longer has a captions track).
+- **Premium intro (3 s)**: dark navy backdrop with a faint grid and glow, the Synax logo fading in with a light sweep, "SYNAX ERP" tracking in, "Assets Management Module" rising into place with an accent line, then a soft blur-and-push dissolve into the portal.
+- **Sound design** (synthesised in ffmpeg, no sample files): a short launch sound over the intro (sub hit, rising sweep, bright chime, whoosh), a very low ambient pad for the whole video that ducks under the voice, soft UI ticks on each click, a light swish on screen changes, a success chime when the "Asset created" alert appears, and a gentle chime on the closing card. Final mix normalised to about -16 LUFS with the voice on top; the ambience sits roughly 20 dB or more under speech (an estimate from the synthesis levels, not a stem measurement).
+- **Polish**: every action is timed from the word timings of the narration (the dropdown highlight follows each spoken type, rings appear as each field is named, the alert appears as the voice says "confirms"); the cursor moves faster (about 0.3 to 0.6 s per move) and straight to its target; keys are typed with natural uneven timing and pauses; clicks have a pointer press, a ripple and a button press; the sidebar pills, page changes and alert ease in; the camera uses smoother zooms, stays inside the picture, and merges consecutive zooms. The portal UI, values and layout are unchanged.
+- **Files**: `public/videos/assets-tour-v2.mp4` (720p, 4.7 MB, used by the site) and `assets-tour-v2-poster.webp` (the intro title frame; the "v2" name is deliberate: `/videos/*` is cached for a week, so a changed video needs a new file name, otherwise browsers keep showing the old one); the 1080p master is `video-exports/synax-assets-module-tour-1080p.mp4` (11.3 MB, git-ignored, for sharing). Source: `tools/assets-tour-video/` (see its README).
+- **On the site**: unchanged placement: `TOURS["Assets Module Tour"]` in `app/erp/_data/tours.ts`, `VideoTour` in `tour-player.tsx` (video, "AI-generated voice" note, Book a demo), the "Watch the Assets tour" button under "Around the work" on the Work & Delivery page. The other tour videos (the animated overviews) keep their own on-screen captions; only this video was changed.
+- **Assumptions to confirm**: the Asset Number is built from the category code, location code and running number; the list starts with one existing row (HP); the order after sorting. Everything not in the four screenshots (Assign Asset, edit, delete, other tabs) is not shown. The user name and email were replaced by "Demo User" and "demo@company.com".
+- **Licence note**: the narration uses the unofficial Edge speech client; regenerate with Azure AI Speech before launch. The sound effects are synthesised here, so they carry no third-party licence.
+- **Not checked**: I did not watch or listen to the finished video. I checked frames at many moments and measured the loudness (about -16 LUFS integrated, ambience far below the voice). Review it with sound before publishing.
+- **Rollback**: revert the commit (the video files and tool source go with it).
+
 ### Pending (next commit) — Image performance
 Commit subject: `Performance: lighter images, image config and cache headers`
 - **Biggest cause**: the header logo was `SYNAX_PRO.svg`, a 1.5 MB file (a PNG embedded in an SVG) downloaded on every page. It is now `public/images/synax-pro.webp` (480x160, 9 KB, same 3:1 box so the layout is unchanged) through `next/image` with `priority` in `site-nav.tsx`. The footer and tour-player logo is `synax-pro-light.webp` (14 KB, was a 56 KB PNG).

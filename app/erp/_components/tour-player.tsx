@@ -242,6 +242,30 @@ function SceneView({ scene, dur, onBook }: { scene: TourScene; dur: number; onBo
   }
 }
 
+/** A finished video file (MP4, optionally with a WebVTT captions track) with a slim bar under it. Used for recorded product walkthroughs. */
+export function VideoTour({ tour, onBook }: { tour: Tour; onBook: () => void }) {
+  const v = tour.video;
+  if (!v) return null;
+  return (
+    <div>
+      <video className="aspect-video w-full bg-slate-950" controls autoPlay playsInline preload="metadata" poster={v.poster}>
+        <source src={v.src} type="video/mp4" />
+        Your browser cannot play this video.
+      </video>
+      <div className="flex items-center justify-between gap-3 border-t border-slate-800 bg-slate-950 px-4 py-3">
+        <span className="text-xs text-slate-500">AI-generated voice</span>
+        <button
+          type="button"
+          onClick={onBook}
+          className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-orange-300 px-4 py-2 text-xs font-semibold text-blue-950 transition-colors hover:bg-orange-200"
+        >
+          Book a demo <ArrowRight className="size-3.5" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function TourPlayer({ tour, onBook }: { tour: Tour; onBook: () => void }) {
   const count = tour.scenes.length;
   const [scene, setScene] = useState(0);

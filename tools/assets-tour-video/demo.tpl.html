@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url("node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2")}
+@font-face{font-family:Inter;font-weight:500;src:url("node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url("node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2")}
+@font-face{font-family:Inter;font-weight:700;src:url("node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2")}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#141414;font-family:Inter,"Segoe UI",sans-serif;color:#eaeaea}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#stage{position:absolute;inset:0;overflow:hidden;background:#141414}
+#app{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#141414}
+
+/* sidebar */
+#side{position:absolute;left:0;top:0;width:279px;height:1080px;background:radial-gradient(ellipse 380px 420px at 10% 0%,rgba(36,62,104,.55),rgba(24,24,24,0) 70%),#181818;border-right:1px solid #1f2a3b}
+#brand{position:absolute;left:16px;top:17px;display:flex;align-items:center;gap:12px}
+#logo{width:45px;height:45px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:800;color:#1e3a8a;letter-spacing:.2px}
+#logo b{border:1px solid #93b4e6;padding:2px 3px;font-weight:800}
+#brand .n{font-weight:700;font-size:15px;color:#f5f5f5;line-height:17px}
+#brand .s{font-size:11px;color:#8a8a8a;line-height:13px;margin-top:1px}
+.nav{position:absolute;left:12px;width:259px;height:40.5px;display:flex;align-items:center;padding-left:10px;gap:12px;font-size:13px;font-weight:600;color:#ececec;border-radius:20px;border:1.5px solid transparent}
+.nav .ch{position:absolute;right:14px;font-size:17px;color:#cfcfcf}
+.nav.on{background:#1f2c3d;border-color:#2c4a73;border-left:3px solid #60a5fa;color:#fff;padding-left:8px}
+.nav.on svg.i:first-child{color:#8ec1ff}
+.sub{position:absolute;left:32px;width:239px;height:37px;display:flex;align-items:center;padding-left:11px;gap:10px;font-size:12px;font-weight:500;color:#e6e6e6;border-radius:18px;border:1.5px solid transparent}
+.sub.on{background:#1f2c3d;border-color:#2c4a73;border-left:3px solid #60a5fa;color:#fff;padding-left:9px}
+#dots{position:absolute;left:40px;top:455px;height:162px;border-left:1px dashed #3a3a3a}
+#user{position:absolute;left:15px;top:832px;width:250px;height:60px}
+#av{position:absolute;left:0;top:6px;width:38px;height:38px;border-radius:50%;background:#20293a;display:flex;align-items:center;justify-content:center;font-weight:700;color:#8ec1ff;font-size:13px}
+#user .n{position:absolute;left:47px;top:3px;font-size:13px;font-weight:700;color:#f5f5f5}
+#user .r{position:absolute;left:47px;top:17px;font-size:10.5px;font-weight:700;color:#60a5fa}
+#user .e{position:absolute;left:47px;top:30px;font-size:10px;color:#8f8f8f}
+#kebab{position:absolute;left:217px;top:3px;width:30px;height:30px;border-radius:8px;background:#242424;display:flex;align-items:center;justify-content:center;font-size:15px;color:#cfcfcf}
+#powered{position:absolute;left:0;width:279px;top:882px;text-align:center;font-size:9.5px;letter-spacing:2px;color:#9a9a9a;font-weight:600}
+#powered b{color:#cfd6e4}
+
+/* cards */
+.card{position:absolute;left:290px;width:1618px;background:#1c1c1c;border:1px solid #272727;border-radius:14px}
+.btn{position:absolute;display:flex;align-items:center;justify-content:center;gap:7px;border:1px solid #2c2c2c;background:#1b1b1b;border-radius:9px;font-size:13px;font-weight:600;color:#9fc7ff}
+.iconbtn{position:absolute;width:42px;height:42px;border-radius:9px;background:#1b1b1b;border:1px solid #262626;display:flex;align-items:center;justify-content:center;font-size:17px;color:#60a5fa}
+.h1{position:absolute;font-size:19px;font-weight:700;color:#f6f6f6;line-height:24px}
+
+/* form page */
+#pageForm,#pageList{position:absolute;inset:0}
+#fcard{top:108px;height:187px;overflow:visible}
+#fgrid{position:absolute;left:27px;top:23px;width:1564px;height:67px;overflow:hidden}
+.fld{position:absolute;width:376px}
+.fld label{display:block;font-size:14px;color:#e4e4e4;height:20px;line-height:20px;margin-bottom:5px;font-weight:400}
+.fld label i{color:#ef4444;font-style:normal;margin-left:4px}
+.inp{position:relative;height:42px;border:1px solid #2e2e2e;border-radius:10px;background:#181818;font-size:14.5px;color:#f3f3f3;line-height:40px;padding:0 14px;white-space:nowrap;overflow:hidden}
+.inp.ta{height:107px;line-height:22px;padding:11px 14px;white-space:pre-wrap}
+.inp.focus{border-color:#3b82f6;box-shadow:0 0 0 1px #2f63c4}
+.inp .cal{position:absolute;right:14px;top:0;font-size:16px;color:#e8e8e8}
+.caret{display:inline-block;width:1.5px;height:17px;background:#f3f3f3;vertical-align:-3px;margin-left:1px}
+.help{font-size:14.5px;color:#9a9a9a;height:20px;line-height:20px;margin-top:8px;margin-bottom:6px}
+#savebtn{position:absolute;right:25px;width:115px;height:44px}
+#savebtn.dis{color:#3d4b5a;background:#202020;border-color:#262626}
+#savebtn.act{color:#93c5fd;background:#1e1e1e;border-color:#2b2b2b}
+/* select + dropdown */
+#sel{font-size:15px}
+#sel.focus{border:2px solid #25416b;box-shadow:0 0 0 2px #1a2c4b;line-height:38px}
+#dd{position:absolute;left:317px;top:198px;width:377px;background:#181818;border:1px solid #6b6b6b;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+#dd div{height:31.1px;line-height:31px;padding:0 14px;font-size:15px;color:#ededed}
+#dd div.ph{color:#8b8b8b}
+#dd div.hi{background:#99c8ff;color:#12202f}
+
+/* list page */
+#lcard{top:13px;height:900px}
+.hd2{position:absolute;left:0;right:0;top:86px;border-top:1px solid #272727}
+#chip{position:absolute;left:309px;top:17px;height:26px;padding:0 9px;border-radius:13px;background:#242424;color:#93c5fd;font-size:11px;font-weight:600;display:flex;align-items:center}
+.tabs{position:absolute;left:19px;top:104px;display:flex;gap:0;height:49px}
+.tab{height:49px;padding:0 21px;display:flex;align-items:center;gap:9px;font-size:15.5px;color:#b9b9b9;font-weight:500;white-space:nowrap;position:relative;border-radius:12px}
+.tab.on{background:#233143;color:#9fc7ff;border-bottom:2px solid #60a5fa}
+.tab svg.i{font-size:17px}
+#search{position:absolute;left:19px;top:185px;width:809px;height:42px;border:1px solid #2a2a2a;border-radius:12px;background:#181818;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:15px;color:#a0a0a0}
+#search .val{color:#a0a0a0}
+#tbl{position:absolute;left:19px;top:237px;width:1579px;height:166px;border:1px solid #272727;border-radius:10px;background:#1b1b1b;overflow:hidden;font-size:12.5px}
+.tr{position:absolute;left:0;right:0;height:39px;border-top:1px solid #272727}
+.th{position:absolute;left:0;right:0;top:0;height:31px;background:#202020;font-size:11.5px;font-weight:700;color:#8ab8f5}
+.td{position:absolute;top:0;height:100%;display:flex;align-items:center;gap:5px;color:#eaeaea;white-space:nowrap;font-size:12.5px}
+.th .td{color:#8ab8f5}
+.td.g{color:#2fa866}
+.act2{position:absolute;top:50%;margin-top:-12px;width:25px;height:25px;border-radius:6px;background:#1c3350;color:#93c5fd;display:flex;align-items:center;justify-content:center;font-size:13px}
+.foot{position:absolute;left:0;right:0;top:109px;height:57px;border-top:1px solid #272727;font-size:13px;color:#a8a8a8}
+.pg{position:absolute;top:10px;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#6b6b6b;font-size:16px}
+
+/* overlays */
+#dim{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:30}
+#alert{position:absolute;left:679px;top:-8px;width:562px;height:184px;border-radius:22px;background:#1e1b19;border:1px solid #3a3532;z-index:40;opacity:0;padding:30px 26px}
+#alert .t{font-size:20px;font-weight:600;color:#f1ebe7}
+#alert .m{margin-top:18px;font-size:15.5px;color:#e8e1dc}
+#alert .ok{position:absolute;right:21px;bottom:19px;width:87px;height:46px;border-radius:23px;background:#e0c6b7;color:#4a2f22;font-size:15px;font-weight:500;display:flex;align-items:center;justify-content:center;border:3px solid #1e1b19;box-shadow:0 0 0 3px #e0c6b7}
+/* rings, cursor */
+.ring{position:absolute;border:3px solid #fb923c;border-radius:12px;box-shadow:0 0 0 6px rgba(251,146,60,.18);pointer-events:none;z-index:25;opacity:0}
+#cursor{position:absolute;left:0;top:0;z-index:60;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+#ripple{position:absolute;z-index:59;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:3px solid #60a5fa;pointer-events:none;opacity:0}
+/* end card */
+#end{position:absolute;inset:0;z-index:80;opacity:0;background:radial-gradient(ellipse 900px 600px at 50% 40%,#16284a,#0b1220 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center}
+#end img{height:84px;margin-bottom:40px}
+#end h2{font-size:58px;font-weight:700;letter-spacing:-1px}
+#end p{margin-top:16px;font-size:26px;color:#bcd0f0}
+#end .cta{margin-top:46px;padding:18px 40px;border-radius:14px;background:#fdba74;color:#0b1b3d;font-size:24px;font-weight:700}
+#end small{position:absolute;bottom:60px;font-size:20px;color:#8aa4d0}
+
+/* premium intro */
+#intro{position:absolute;inset:0;z-index:100;overflow:hidden;background:radial-gradient(ellipse 1100px 700px at 50% 45%,#12264b 0%,#0a1428 55%,#060b17 100%);opacity:1;will-change:transform,opacity,filter}
+#igrid{position:absolute;inset:0;opacity:0;background-image:linear-gradient(rgba(96,165,250,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,.07) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 800px 520px at 50% 48%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 800px 520px at 50% 48%,#000 20%,transparent 75%)}
+#iglow{position:absolute;left:50%;top:46%;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.28),rgba(59,130,246,0) 65%);transform:translate(-50%,-50%)}
+#ilogo{position:absolute;left:50%;top:368px;width:340px;height:114px;opacity:0;overflow:hidden}
+#ilogo img{width:100%;height:100%;object-fit:contain;display:block}
+#isheen{position:absolute;top:-10px;width:80px;height:140px;left:-120px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);opacity:0;pointer-events:none}
+#ieye{position:absolute;left:0;right:0;top:462px;text-align:center;font-size:22px;font-weight:600;color:#7fb0f0;letter-spacing:18px;opacity:0;text-transform:uppercase;padding-left:18px}
+#ititle{position:absolute;left:0;right:0;top:504px;height:100px;overflow:hidden;text-align:center}
+#ititle span{display:block;font-size:76px;font-weight:700;color:#fff;letter-spacing:-1.5px;line-height:100px;transform:translateY(100%)}
+#iline{position:absolute;left:50%;top:632px;height:3px;width:0;margin-left:-170px;border-radius:2px;background:linear-gradient(90deg,rgba(96,165,250,0),#60a5fa 30%,#fdba74 70%,rgba(253,186,116,0));opacity:0}
+</style>
+</head>
+<body>
+<div id="stage">
+ <div id="app">
+  <aside id="side">
+   <div id="brand"><div id="logo"><b>SYNAX</b></div><div><div class="n">Demo IT Inc</div><div class="s">demo</div></div></div>
+   <div id="dots"></div>
+   <div id="user"><div id="av">D</div><div class="n">Demo User</div><div class="r">Super Admin</div><div class="e">demo@company.com</div><div id="kebab"></div></div>
+   <div id="powered">POWERED BY <b>SYNAX PRO</b></div>
+  </aside>
+
+  <section id="pageForm">
+   <div class="card" style="top:12px;height:77px">
+    <div class="btn" style="left:21px;top:19px;width:78px;height:40px;font-size:13px;color:#cfe0f7"><span id="ic_back"></span>Back</div>
+    <div class="h1" style="left:118px;top:26px">Add Asset</div>
+    <div class="iconbtn" style="left:1533px;top:18px"><span id="ic_bell1"></span></div>
+   </div>
+   <div class="card" id="fcard">
+    <div id="fgrid"></div>
+    <div class="btn dis" id="savebtn">Save Asset</div>
+   </div>
+   <div id="dd"></div>
+  </section>
+
+  <section id="pageList">
+   <div class="card" id="lcard">
+    <div class="btn" style="left:21px;top:19px;width:78px;height:40px;color:#cfe0f7"><span id="ic_back2"></span>Back</div>
+    <div class="h1" style="left:118px;top:17px">Asset Management</div>
+    <div id="chip">1 Records</div>
+    <div style="position:absolute;left:118px;top:50px;font-size:13.5px;color:#a7a7a7">Manage company assets and employee assignments.</div>
+    <div class="iconbtn" style="left:1228px;top:20px"><span id="ic_bell2"></span></div>
+    <div class="btn" id="addBtn" style="left:1281px;top:20px;width:131px;height:45px;font-size:15px;color:#9fc7ff;font-weight:500"><span id="ic_plus1"></span>Add Asset</div>
+    <div class="btn" id="assignBtn" style="left:1425px;top:20px;width:149px;height:45px;font-size:15px;color:#34d399;border-color:#1f6a52;background:#0f2a22;font-weight:500"><span id="ic_plus2"></span>Assign Asset</div>
+    <div class="hd2"></div>
+    <div class="tabs" id="tabs"></div>
+    <div id="search"><span id="ic_search"></span><span class="val" id="searchtxt">Search assets</span></div>
+    <div id="tbl"></div>
+   </div>
+  </section>
+
+  <div id="dim"></div>
+  <div id="alert"><div class="t">synax.senwellgroup.com says</div><div class="m">Asset created successfully!</div><div class="ok">OK</div></div>
+  <div id="rings"></div>
+ </div>
+ <div id="ripple"></div>
+ <div id="cursor"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M3 2l15 9.2-6.3 1.6 3.7 7.1-2.9 1.5-3.7-7.2L3 20z" fill="#fff" stroke="#111" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+
+ <div id="intro">
+  <div id="igrid"></div><div id="iglow"></div>
+  <div id="ilogo"><img src="assets/synax-pro-light.webp" alt=""><div id="isheen"></div></div>
+  <div id="ieye">Synax ERP</div>
+  <div id="ititle"><span>Assets Management Module</span></div>
+  <div id="iline"></div>
+ </div>
+ <div id="end"><img src="assets/synax-pro-light.webp" alt=""><h2>Assets module</h2><p>Add an asset in a minute. Find it just as fast.</p><div class="cta">Book a demo</div><small>synax.senwellgroup.com</small></div>
+</div>
+<script>
+const ICONS = /*ICONS*/;
+const DUR = /*DUR*/;
+</script>
+<script src="director.js"></script>
+</body>
+</html>

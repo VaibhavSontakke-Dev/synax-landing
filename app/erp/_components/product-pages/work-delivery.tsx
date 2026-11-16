@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { ArrowRight, BriefcaseBusiness, ClipboardList, Headset, LayoutDashboard, MessagesSquare, Phone, UserCheck, UsersRound, Video, Wallet } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, ClipboardList, Headset, Laptop, LayoutDashboard, MessagesSquare, Phone, UserCheck, UsersRound, Video, Wallet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Block } from "../site-page";
 import { Reveal } from "../reveal";
+import { TourButton } from "../demo-buttons";
 import { HeroBand, HeroCopy, ProductTail, faqItems, relatedProduct } from "./shared";
 
 /** Work & Delivery Management — a tilted stack of cards, three connected lanes and a card per role. */
@@ -55,6 +56,7 @@ const AROUND: { icon: LucideIcon; title: string; copy: string }[] = [
   { icon: Headset, title: "Support tickets", copy: "Create and resolve SLA-based tickets." },
   { icon: UsersRound, title: "Company visitor management", copy: "Keep a record of who comes to the office." },
   { icon: LayoutDashboard, title: "Department performance", copy: "See how each department is doing." },
+  { icon: Laptop, title: "Asset management", copy: "Manage company assets and employee assignments." },
 ];
 
 export function WorkDeliveryPage() {
@@ -167,6 +169,9 @@ export function WorkDeliveryPage() {
             );
           })}
         </ul>
+        <div className="mt-6 flex justify-center">
+          <TourButton title="Assets Module Tour">Watch the Assets tour</TourButton>
+        </div>
       </Block>
 
       <ProductTail
