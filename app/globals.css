@@ -478,6 +478,18 @@ body {
   animation: synax-hero-enter-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
+/* Hero product cards (lg+): `--sp` is how far a card may drift into the empty space beside the stage.
+   It is the free margin next to the stage (same width formula as the stage's max-width) less 3rem,
+   capped at 280px, and 0 when there is no room — so the cards never run off the screen.
+   `--spy` is the same for the vertical drift, also limited by the viewport height so that on short
+   screens the bottom cards stay inside the hero. */
+@media (min-width: 64rem) {
+  .synax-hero-visual {
+    --sp: clamp(0px, calc((100vw - (37.6vh * 2.1 + 2 * var(--g) + 3rem)) / 2 - 3rem), 17.5rem);
+    --spy: min(var(--sp), 33vh);
+  }
+}
+
 /* The hero connector fades in each time the active product changes. */
 @keyframes synax-hero-fade {
   from {

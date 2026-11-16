@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, Play, Users, ZoomIn } from "lucide-react";
 
 /**
@@ -10,7 +10,8 @@ import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, 
  *  - The dashboard (glass frame on two tinted "platform" plates) comes first, with the six product
  *    cards beside it (3 + 3 from `lg`; a grid under it on smaller screens). The intro (headline,
  *    product name, paragraph, CTAs, tick lines) comes after, set smaller on purpose. The cards sit on
- *    the sides — not in a row underneath — so the CTAs stay inside the first viewport.
+ *    the sides — not in a row underneath — so the CTAs stay inside the first viewport. On wide screens the
+ *    cards are scattered (`shift`) into the empty space beside the stage; the dashboard keeps its size.
  *  - The intro stays first in the DOM (reading order / SEO) and is moved below with `order`.
  *  - One product is active at a time. Its card is highlighted, an orange outline glides to the matching
  *    module on the dashboard (`region`, % of the screenshot) and — from `lg` — a dashed line is drawn
@@ -54,6 +55,12 @@ interface HeroProduct {
   side: "left" | "right";
   /** 0 = top, 1 = middle, 2 = bottom card within its side. */
   slot: 0 | 1 | 2;
+  /**
+   * Scatter (lg+): how far the card drifts from its grid cell, as [x, y] multiples of `--sp` / `--spy` (up to 280px,
+   * set in globals.css from the free space beside the stage). Negative x = left, negative y = up. [0, 0] keeps it in
+   * place. The bottom cards drop below the dashboard, beside the headline.
+   */
+  shift: [number, number];
   /** Module on the screenshot this product maps to: [x0, y0, x1, y1] as fractions. */
   region: [number, number, number, number];
   /**
@@ -72,6 +79,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     tile: "bg-emerald-50 text-emerald-600",
     side: "right",
     slot: 1,
+    shift: [1, 0.21],
     region: [0.369, 0.446, 0.586, 0.595],
     lens: { crop: [0.369, 0.446, 0.586, 0.595], at: "right" },
   },
@@ -82,6 +90,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     tile: "bg-slate-100 text-blue-900",
     side: "left",
     slot: 0,
+    shift: [-0.89, -0.16],
     region: [0.006, 0.16, 0.134, 0.2],
     lens: { crop: [0.006, 0.13, 0.2, 0.235], at: "right" },
   },
@@ -92,6 +101,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     tile: "bg-slate-100 text-blue-900",
     side: "right",
     slot: 2,
+    shift: [0.25, 0.54],
     region: [0.591, 0.606, 0.807, 0.758],
     lens: { crop: [0.591, 0.606, 0.807, 0.758], at: "above" },
   },
@@ -102,6 +112,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     tile: "bg-orange-50 text-orange-700",
     side: "left",
     slot: 1,
+    shift: [-0.21, 0.07],
     region: [0.006, 0.236, 0.134, 0.278],
     lens: { crop: [0.006, 0.205, 0.2, 0.31], at: "right" },
   },
@@ -112,6 +123,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     tile: "bg-emerald-50 text-emerald-600",
     side: "right",
     slot: 0,
+    shift: [0.43, -0.14],
     region: [0.369, 0.286, 0.586, 0.436],
     lens: { crop: [0.369, 0.286, 0.586, 0.436], at: "right" },
   },
@@ -122,6 +134,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     tile: "bg-orange-50 text-orange-700",
     side: "left",
     slot: 2,
+    shift: [-0.68, 0.61],
     region: [0.146, 0.286, 0.363, 0.436],
     lens: { crop: [0.146, 0.286, 0.363, 0.436], at: "below" },
   },
@@ -278,7 +291,12 @@ export function Hero({
     const stage = stageRef.current;
     const observer = stage ? new ResizeObserver(draw) : null;
     if (stage && observer) observer.observe(stage);
-    return () => observer?.disconnect();
+    // The cards' scatter follows the viewport width even when the stage itself does not resize.
+    window.addEventListener("resize", draw);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", draw);
+    };
   }, [active]);
 
   const pick = (index: number) => {
@@ -451,7 +469,8 @@ export function Hero({
                   ref={(el) => {
                     chipRefs.current[i] = el;
                   }}
-                  className={`flex lg:self-center ${COL_START[p.side]} ${ROW_START[p.slot]}`}
+                  style={{ "--dx": p.shift[0], "--dy": p.shift[1] } as CSSProperties}
+                  className={`flex lg:translate-x-[calc(var(--sp)*var(--dx))] lg:translate-y-[calc(var(--spy)*var(--dy))] lg:self-center ${COL_START[p.side]} ${ROW_START[p.slot]}`}
                 >
                   <button
                     type="button"
@@ -459,10 +478,10 @@ export function Hero({
                     onMouseEnter={() => pick(i)}
                     onFocus={() => pick(i)}
                     onClick={() => pick(i)}
-                    className={`flex w-full cursor-pointer items-center gap-2 rounded-lg border bg-white/90 p-2 text-left shadow-xs backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 ${
+                    className={`flex w-full cursor-pointer items-center gap-2 rounded-lg border bg-white/90 p-2 text-left shadow-[0_14px_28px_-10px_rgba(56,189,248,0.5),0_4px_10px_-4px_rgba(125,211,252,0.4)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 ${
                       on
-                        ? "-translate-y-0.5 border-orange-400 shadow-md ring-1 ring-orange-400"
-                        : "border-slate-200 hover:border-slate-300"
+                        ? "-translate-y-0.5 border-orange-400 ring-1 ring-orange-400"
+                        : "border-sky-100 hover:border-sky-200"
                     }`}
                   >
                     <span className={`flex size-7 shrink-0 items-center justify-center rounded-md ${p.tile}`}>

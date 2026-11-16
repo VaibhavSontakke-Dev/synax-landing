@@ -452,14 +452,27 @@ const whySynax = tour(
   "Why Synax",
 );
 
-/** The Assets module walkthrough: a recorded product demo (MP4 with an AI voice and sound design, no subtitles), not animated scenes. */
+/**
+ * The Assets module explainer: an animated MP4 (cartoon opening, Synax reveal, then illustrated add / list / assign
+ * scenes; no portal screens), AI voice and sound design, no subtitles. Not animated scenes.
+ */
 const assetsTour: Tour = {
   slug: "assets",
   audioDir: "",
   scenes: [],
   captions: [],
   durations: [],
-  video: { src: "/videos/assets-tour-v2.mp4", poster: "/videos/assets-tour-v2-poster.webp" },
+  video: { src: "/videos/assets-tour-v5.mp4", poster: "/videos/assets-tour-v5-poster.webp" },
+};
+
+/**
+ * The HRMS page's Watch overview: the animated explainer (problem, then the Synax solution, for each HRMS area; no portal
+ * screens), MP4 with AI voice and sound design, no subtitles. The animated `hrms` scenes stay defined above; the `video`
+ * field makes the modal play the MP4 instead.
+ */
+const hrmsVideoTour: Tour = {
+  ...hrms,
+  video: { src: "/videos/hrms-explainer.mp4", poster: "/videos/hrms-explainer-poster.webp" },
 };
 
 /** Tour title (as passed to the Watch overview button) -> its video. */
@@ -469,7 +482,7 @@ export const TOURS: Record<string, Tour> = {
   "Assets Module Tour": assetsTour,
   [`${routeFor("precision").name} Tour`]: manufacturing,
   [`${routeFor("it").name} Tour`]: workDelivery,
-  [`${routeFor("hrms").name} Tour`]: hrms,
+  [`${routeFor("hrms").name} Tour`]: hrmsVideoTour,
   [`${routeFor("staffing").name} Tour`]: staffing,
   [`${routeFor("shopfloor").name} Tour`]: shopFloor,
   [`${routeFor("ai").name} Tour`]: aiBi,
