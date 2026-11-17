@@ -78,14 +78,16 @@ export function HrmsPage() {
     <main className="pb-6">
       {/* Hero: centred copy, a panoramic team photo, and a month of attendance overlapping its bottom edge */}
       <HeroBand productKey="hrms">
+        <div className="lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-12">
         <HeroCopy
           productKey="hrms"
-          center
+          centerBelowLg
           eyebrow="Employee lifecycle, attendance & payroll"
           subtitle="Employee operations and workforce administration"
           lead="Run employee records, attendance, leave and work-from-home, and payroll with approvals in the same workspace as operations. Attendance logs and overtime approvals sync from biometric devices."
         />
-        <div className="relative mx-auto mt-8 h-56 max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 shadow-md sm:h-72">
+        <div>
+        <div className="relative mx-auto mt-8 h-56 max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 shadow-md sm:h-72 lg:mt-0 lg:h-[clamp(13rem,34vh,22rem)]">
           <Image
             src="/images/products/hrms.webp"
             alt="A team seated around a long meeting-room table with laptops"
@@ -96,7 +98,7 @@ export function HrmsPage() {
             className="object-cover object-[50%_60%]"
           />
         </div>
-        <div className="relative mx-auto -mt-16 max-w-xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl sm:-mt-20">
+        <div className="relative mx-auto -mt-16 max-w-xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl sm:-mt-20 lg:-mt-24 lg:max-w-sm">
           <div className="mb-3 flex items-center justify-between text-xs text-slate-500">
             <p className="font-bold text-slate-900">A month of attendance</p>
             <p>Sample data</p>
@@ -108,7 +110,7 @@ export function HrmsPage() {
           </div>
           <div className="mt-1.5 grid grid-cols-7 gap-1.5" role="img" aria-label="Sample month of attendance: present, leave, work from home and overtime days">
             {MONTH.map((d, i) => (
-              <span key={i} className={`aspect-square rounded-md ${DAY_STYLE[d]}`} />
+              <span key={i} className={`aspect-square rounded-md lg:aspect-auto lg:h-6 ${DAY_STYLE[d]}`} />
             ))}
           </div>
           <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-slate-600" aria-label="Legend">
@@ -130,6 +132,8 @@ export function HrmsPage() {
               </li>
             ))}
           </ul>
+        </div>
+        </div>
         </div>
       </HeroBand>
 

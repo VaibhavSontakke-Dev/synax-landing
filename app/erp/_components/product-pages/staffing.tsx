@@ -33,7 +33,7 @@ export function StaffingPage() {
     <main className="pb-6">
       {/* Hero (mirrored): an interview photo cropped to a circle with the stages orbiting it, copy right */}
       <HeroBand productKey="staffing">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center gap-12 lg:items-start lg:grid-cols-2 lg:gap-14">
           <div className="order-2 lg:order-1" aria-label="A requirement matched to candidates">
             <div className="relative mx-auto size-72 sm:size-80">
               <span className="absolute inset-0 rounded-full border-2 border-dashed border-blue-900/30" aria-hidden="true" />

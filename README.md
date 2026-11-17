@@ -22,6 +22,44 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Schedule a Demo popup: no scrolling
+Commit subject: `Demo popup: wider, two-column form so it fits without scrolling`
+- **What**: the "Request Executive Demo" popup was taller than a laptop screen (about 760px), so users had to scroll inside it. It is now wider (`max-w-2xl`, was `max-w-lg`), the two dropdowns (product, headcount scale) sit side by side, and padding and spacing are a little tighter. It is about 600px tall and fits on a 768px-high screen; on very short windows or phones it still scrolls (thin scrollbar) as a fallback. Fields, consent box and validation are unchanged.
+- **Files**: `app/erp/_components/demo-provider.tsx`.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Product heroes: same gap under the breadcrumb
+Commit subject: `Product pages: same gap between the breadcrumb and the hero title on all six`
+- **What**: on desktop the hero content on every product page now starts a fixed gap below the breadcrumb (`clamp(0.5rem, 6vh, 4rem)` plus the breadcrumb's own margin), and its first line (the eyebrow, e.g. "Precision & job-work ERP") is aligned to the top of the content, so the breadcrumb-to-title gap is the same on all six pages. Before, the content was centred in the screen-high hero, so the gap changed with each page's height. Any leftover height now sits below the content instead of above it. Mobile and tablet unchanged.
+- **Files**: `product-pages/shared.tsx` (`HeroBand`: fixed top gap instead of centring), and top alignment of the hero columns in `manufacturing-erp.tsx`, `work-delivery.tsx`, `staffing.tsx`, `hrms.tsx`, `shop-floor.tsx`, `ai-bi.tsx` (AI & BI: copy rows moved to the top of its grid).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Breadcrumb hidden after clicking a link to a page
+Commit subject: `Fix: breadcrumb hidden under the sticky header after navigating to a page`
+- **What**: after clicking e.g. "Explore" on Manufacturing ERP (home), the product page opened scrolled so its first 4rem sat under the sticky header, hiding the breadcrumb until you scrolled up. Next.js scrolls the new page's `<main>` to the top of the viewport on navigation; the header covers that top strip. Every page's `<main>` now has `scroll-margin-top: 5rem`, so the page opens at its very top. Applies to all routes (products, industries, Solutions, Why Synax, Security, home).
+- **Files**: `app/globals.css` (`.erp-root main { scroll-margin-top: 5rem }`).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — All six product pages: same hero frame, breadcrumb in the same place
+Commit subject: `Product pages: one hero frame (fills first screen, breadcrumb pinned top) for all six products`
+- **What**: on desktop (lg and up) every product hero now fills exactly the first screen under the header, like the home hero, and the breadcrumb ("Synax > Products > name") is pinned at the top of the hero, so it sits in the same place on all six pages. The hero content is centred in the space below it. The layouts stay different per product (photo, circle, browser frame, machine board); only the frame is shared. Mobile and tablet are unchanged.
+- **Shared frame**: `HeroBand` in `product-pages/shared.tsx` is now always the fit-to-screen frame (the earlier opt-in `fit` prop is gone). `HeroCopy` got `centerBelowLg` (centred on phones and tablets, left-aligned on desktop).
+- **Per page**: HRMS and AI & Business Intelligence were too tall for one screen, so on desktop they became two columns (copy left, photo and attendance card / dashboard frame right; the "Sample data" attendance cells are shorter, the dashboard chart is lower). Shop Floor's hero height follows the viewport height. Staffing, Manufacturing ERP and Work & Delivery fit as they are (the two photos follow the viewport height).
+- **Files**: `product-pages/shared.tsx`, `hrms.tsx`, `ai-bi.tsx`, `shop-floor.tsx`, `manufacturing-erp.tsx`, `work-delivery.tsx` (only the `fit` prop removed in the last two).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Work & Delivery page: hero fits the first screen
+Commit subject: `Work & Delivery page: hero fills the first screen like the home hero`
+- **What**: on desktop (lg and up) the hero of `/products/work-delivery-management` fills exactly the first screen under the header, content centred, like the home hero. The photo height follows the viewport height (`clamp(15rem, 52vh, 31rem)`) so it grows on tall screens and shrinks on short ones. Mobile and tablet are unchanged.
+- **Files**: `app/erp/_components/product-pages/work-delivery.tsx` (uses `HeroBand fit`, photo height). The `fit` option itself was added in `shared.tsx` with the Manufacturing ERP change.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Manufacturing ERP page: hero fits the first screen
+Commit subject: `Manufacturing ERP page: hero fills the first screen like the home hero`
+- **What**: on desktop (lg and up) the hero of `/products/manufacturing-erp` (copy, photo and the "Part passport" strip) now fills exactly the first screen under the header, content centred, like the home hero. To make it fit, the photo height follows the viewport height (`clamp(12rem, 38vh, 25rem)`) and the gaps and padding around the passport strip shrink on short screens. Mobile and tablet are unchanged.
+- **Files**: `app/erp/_components/product-pages/shared.tsx` (`HeroBand` gets an optional `fit` prop; off by default, so the other five product pages are unchanged), `app/erp/_components/product-pages/manufacturing-erp.tsx` (uses `fit`, photo height, spacing).
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — Nav: top banner removed, home hero height adjusted
 Commit subject: `Nav: remove the top banner (Senwell Pedigree) and fit the home hero to the header`
 - **What**: the dark strip above the header ("Enterprise Ecosystem · A product of Senwell Group · AS9100D QMS controls · Senwell Pedigree") is removed; only the sticky white header remains. The home hero used to reserve room for that strip, so its minimum height is now the viewport minus the header alone (`100svh - 4.1rem`, was `6.25rem`); the hero fills the first screen again with no empty gap under it.

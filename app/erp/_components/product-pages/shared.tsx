@@ -13,15 +13,23 @@ import { HeroBackdrop } from "../home-hero";
  * look different); only the breadcrumb, hero copy, "start with" path and the closing sections live here.
  */
 
-/** Hero band with the home page's backdrop (dot grid, soft glow, navy and orange base line) and the standard width and spacing. Put the page's own hero layout inside. */
+/**
+ * Hero band with the home page's backdrop (dot grid, soft glow, navy and orange base line) and the standard
+ * width and spacing. Put the page's own hero layout inside.
+ *
+ * Same frame on all six product pages: on desktop the band fills exactly the first screen under the header
+ * (like the home hero), the breadcrumb is pinned at the top and the hero content starts a fixed gap below it,
+ * so the breadcrumb and the first line (eyebrow / title) sit in the same place on every page. Each page sizes its own content from the viewport height
+ * so it does not overflow.
+ */
 export function HeroBand({ productKey, children }: { productKey: ProductKey; children: React.ReactNode }) {
   const route = routeFor(productKey);
   return (
-    <section aria-labelledby="product-heading" className="relative isolate overflow-hidden">
+    <section aria-labelledby="product-heading" className="relative isolate overflow-hidden lg:flex lg:min-h-[calc(100svh-4.1rem)]">
       <HeroBackdrop />
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+      <div className="mx-auto flex w-full max-w-7xl flex-col px-4 py-8 sm:px-6 lg:px-8 lg:py-5">
         <Breadcrumb items={[{ label: "Products", href: "/products" }, { label: route.name }]} />
-        {children}
+        <div className="lg:mt-[clamp(0.5rem,6vh,4rem)]">{children}</div>
       </div>
     </section>
   );
@@ -35,6 +43,7 @@ export function HeroCopy({
   subtitle,
   lead,
   center = false,
+  centerBelowLg = false,
   compact = false,
 }: {
   productKey: ProductKey;
@@ -44,12 +53,14 @@ export function HeroCopy({
   subtitle: string;
   lead: string;
   center?: boolean;
+  /** Centred on phones and tablets, left-aligned from `lg` (for a two-column hero). */
+  centerBelowLg?: boolean;
   /** A smaller headline, for narrow cards and long titles. */
   compact?: boolean;
 }) {
   const route = routeFor(productKey);
   return (
-    <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-xl"}>
+    <div className={center ? "mx-auto max-w-2xl text-center" : centerBelowLg ? "mx-auto max-w-2xl text-center lg:mx-0 lg:max-w-xl lg:text-left" : "max-w-xl"}>
       <SectionTag lines="start">{eyebrow}</SectionTag>
       <h1
         id="product-heading"
@@ -59,7 +70,7 @@ export function HeroCopy({
       </h1>
       <p className="mt-2 text-base font-semibold text-slate-700">{subtitle}</p>
       <p className="mt-4 text-sm leading-relaxed text-slate-700 sm:text-base">{lead}</p>
-      <div className={`mt-7 flex ${center ? "justify-center" : ""}`}>
+      <div className={`mt-7 flex ${center ? "justify-center" : centerBelowLg ? "justify-center lg:justify-start" : ""}`}>
         <TourButton title={`${route.name} Tour`} />
       </div>
     </div>

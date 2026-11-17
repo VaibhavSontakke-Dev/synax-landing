@@ -832,3 +832,8 @@ body {
     animation: none;
   }
 }
+
+/* After a link navigation Next scrolls the new page's <main> to the top of the viewport; the sticky header (4rem) would cover its first lines (the breadcrumb). Keep that much room above it. */
+.erp-root main {
+  scroll-margin-top: 5rem;
+}
