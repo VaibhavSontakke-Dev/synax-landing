@@ -22,57 +22,6 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
-### Pending (next commit) — Solutions page: hero fills the first screen
-Commit subject: `Solutions page: hero fills the first screen under the header`
-- **What**: on desktop (lg and up) the hero of `/solutions` (headline, copy, Watch overview button and the animated module ring) now fills exactly the first screen under the header, like the home hero and the product pages: the content starts right under the breadcrumb (same small gap as Security & Trust and Why Synax; an earlier version centred it in the screen and left a big gap), and any spare height sits below the content, which now has the same bottom design as the Security & Trust and Why Synax heroes (dot grid fading downwards, soft sky glow, navy base line with a sky-blue accent at its left end). It also gets a "Pick your starting point" strip at the bottom of the hero (md and up), like the cards under those two heroes: four cards (Precision, Aerospace, HRMS, Staffing) with icon, the problem each one starts from, and a link to its starting-point card further down; on screen-high heroes it sits at the bottom of the screen. Mobile and tablet are unchanged apart from that backdrop. **Fits the screen**: on desktop the headline size, the gaps, the hero padding and the animated ring (at most 44% of the window height, centred; it re-measures on resize) all follow the window height, so breadcrumb, headline, ring and the strip stay inside the first screen instead of running past it; the ring component is `solutions-scene.tsx`. On a short window the hero simply grows to hold its content.
-- **Files**: `app/erp/_components/site-page.tsx` (`PageHero` got opt-in `fit` and `foot` props, off by default, so the old industry page that also uses `PageHero` is unchanged), `app/solutions/page.tsx` (`fit`).
-- **Not changed**: the Security & Trust and Why Synax heroes.
-- **Rollback**: revert the commit.
-
-### Pending (next commit) — FAQ: one look on every page
-Commit subject: `FAQ: separate cards with Geist type (question 15px semibold, answer 14px) on all pages`
-- **What**: every FAQ on the site (product pages, industry pages, Solutions "Getting started", Why Synax) now looks like the reference screenshot: one rounded card per question with a small gap between them, the question in 15px semibold dark text, the answer in 14px regular grey, and a light-blue chevron that turns grey and flips when open. The FAQ type is set to Geist (the sans the screenshot uses) instead of the site-wide Sora, so the questions read the same everywhere. Before, all questions sat in one bordered box with dividers, in bold 14/16px Sora.
-- **Where**: all FAQs use one component, so the change applies to every page that has an FAQ at once. Still native `<details>` (keyboard accessible, no client code).
-- **Files**: `app/erp/_components/site-page.tsx` (`Faq`).
-- **Rollback**: revert the commit.
-
-### Pending (next commit) — Machine board card: dark blue
-Commit subject: `Home: Machine board card in a dark blue`
-- **What**: the floating "Machine board" card (M-01, M-02 running, M-03 alarm) next to the machines picture in the home page's "Live machine monitoring" section is now dark blue (the site navy, `blue-900`) instead of white: white title, light-blue "Live" dot and "Running", lighter-blue progress bars on a darker track, and the alarm row as a soft orange tint on the navy. The "FOCAS connected" card and the others are unchanged.
-- **Files**: `app/erp/_components/home-usp.tsx` (`MachineBoard`; `LiveDot` got an optional `dark` look).
-- **Rollback**: revert the commit.
-
-### Pending (next commit) — Live machines picture (home): the Overview page view on the left
-Commit subject: `Home: machines picture uses the Overview page sidebar (workspace, menu, user card)`
-- **What**: the machines dashboard picture in the "Live machine monitoring" section of the home page (the one with the synax.senwellgroup.com/machines window bar, the FOCAS-connected card and the Machine board card) had its own dark menu (Production Line, Process Analysis, Quality Control, OEE, ...) and the old SYNAX logo. Its left side is now the Overview hero page's sidebar, exactly as that page shows it: light sidebar, "Synax Workspace / Demo tenant" switcher, Home (highlighted), Work Tracker, Projects, Master, Staffing, HRMS, Department Performance, Manufacturing, Assets, Chat, Calendar, Public Meetings, Help & Support, and the "Synax Demo / Super Admin" user card with "Powered by Synax". The two small old-logo tiles (workspace switcher and user avatar) show the new Synax "S" mark. The whole right side (production line, OEE, downtime, line events) is unchanged, pixel for pixel; the collapse button on the seam is kept. (An earlier dark-menu version of this picture was replaced.)
-- **How**: the portal sidebar was cut from the Overview screenshot (menu part and user-card part, the empty middle left out) and scaled to the picture's sidebar width; the corner behind the content card was lightened to match.
-- **Not changed**: the Overview hero screenshot itself (`hero-dashboard-overview*.webp`).
-- **Files**: new `public/images/usp-machines-v3.webp` (1400x781), `public/images/usp-machines.webp` deleted, `app/erp/_components/home-usp.tsx` (image path). New file name because `/images` is cached for 7 days.
-- **Note**: still the AI-made illustration (labelled "Illustration"), and the sidebar shows the sample "Synax Demo" workspace; use a real screenshot when available.
-- **Rollback**: revert the commit (the old image comes back).
-
-### Pending (next commit) — AI & BI hero: animated "Ask Synax AI" board
-Commit subject: `AI & BI page: animated Ask Synax AI chat board in the hero`
-- **What**: the static dashboard picture in the hero of `/products/ai-business-intelligence` is replaced by an animated chat board in the same dark style as the home page's "Your Enterprise, Answered Instantly" card. It loops: a question is typed into the input ("Who is on leave today?", "Which challans are past their return date?", "Which lots are ready to dispatch?"), sent, Synax AI "thinks", then answers with a card (leave list with days per person; overdue challans with the Approve / Reject proposal; ready lots), holds, clears and asks the next one. With reduced-motion set it shows the first answer, still. Hidden from screen readers and described by a short text instead.
-- **Follow-up question**: right after "Who is on leave today?" the board asks "When is Emma Clarke back in the office?" (a name taken from the first answer) and answers with how long the leave is and when the person is back. The loop is now four questions.
-- **Sample data**: the names (non-Indian, as requested: Emma Clarke, Daniel Moreau, Sofia Alvarez), challan and lot numbers and day counts are made-up illustration and the board is labelled "Illustration: sample data". Replace them in `SCENARIOS` (top of `ai-ask-board.tsx`) when real examples are available.
-- **Files**: new `app/erp/_components/ai-ask-board.tsx`, `app/erp/_components/product-pages/ai-bi.tsx` (uses the board; the old dashboard constants removed), `app/globals.css` (`synax-ask-in` keyframes). The copy, approval-steps strip and note on the left are unchanged.
-- **Rollback**: revert the commit.
-
-### Pending (next commit) — IT Services hero photo: new Synax PRO logo
-Commit subject: `IT Services hero: replace the old Synax logo in the device photo with the Synax PRO logo`
-- **What**: the photo behind the IT Services & Staffing hero (a phone and laptop showing a dashboard) carried the old "SYNAX by SENWELL" badge on the phone and the old "S SYNAX" logo in the laptop sidebar. Both are painted over and replaced with the current Synax PRO logo (white version, rotated to the phone's tilt; slightly blurred on the laptop to match the out-of-focus background). Nothing else in the photo changed.
-- **Files**: new `public/images/modern-ui-v2.webp` (70 KB), `public/images/modern-ui.webp` deleted, `app/erp/_components/industry-heroes.tsx` (image path). The new file name is needed because `/images` is cached for 7 days.
-- **Note**: the photo is still the AI-made image with sample figures on the phone screen (see the owner list below: replace with a real screenshot when available).
-- **Rollback**: revert the commit (the old image comes back).
-
-### Pending (next commit) — Favicon: the Synax PRO "S"
-Commit subject: `Favicon: use the Synax PRO logo's "S" on a white tile`
-- **What**: the browser-tab icon is now the blue "S" from the Synax PRO logo on a white rounded tile (the full wordmark is far too wide to read at 16px, so the "S" is cut out of the logo's source image; the white tile keeps it visible on dark browser themes). Made from the PNG embedded in `public/images/SYNAX_PRO.svg`.
-- **Files**: `app/favicon.ico` (replaced; 16, 32 and 48px), new `app/icon.png` (256px) and `app/apple-icon.png` (180px, iPhone home screen), `app/layout.tsx` (removed the `icons: { icon: "/favicon.ico" }` override so Next.js serves the three icon files itself).
-- **Note**: browsers cache favicons hard; after deploying, hard-refresh or reopen the tab to see the new one. To use another part of the logo (e.g. the green arrow "X"), the icon files can be regenerated from the same source.
-- **Rollback**: revert the commit (the old `favicon.ico` comes back).
-
 ### Pending (next commit) — Nav: top banner removed, home hero height adjusted
 Commit subject: `Nav: remove the top banner (Senwell Pedigree) and fit the home hero to the header`
 - **What**: the dark strip above the header ("Enterprise Ecosystem · A product of Senwell Group · AS9100D QMS controls · Senwell Pedigree") is removed; only the sticky white header remains. The home hero used to reserve room for that strip, so its minimum height is now the viewport minus the header alone (`100svh - 4.1rem`, was `6.25rem`); the hero fills the first screen again with no empty gap under it.

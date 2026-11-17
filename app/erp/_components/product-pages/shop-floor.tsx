@@ -109,7 +109,6 @@ export function ShopFloorPage() {
                 </li>
               );
             })}
-            <li className="px-1 text-[11px] text-slate-500 sm:col-span-3 lg:col-span-1">Live machine board: sample data.</li>
           </ul>
         </div>
       </HeroBand>
