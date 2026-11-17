@@ -64,7 +64,7 @@ export function WorkDeliveryPage() {
     <main className="pb-6">
       {/* Hero: copy left, a team-at-the-board photo right with three lane cards over its edge */}
       <HeroBand productKey="it">
-        <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+        <div className="grid items-center gap-10 lg:items-start lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
           <HeroCopy
             productKey="it"
             eyebrow="Delivery, people and billing"
@@ -72,7 +72,7 @@ export function WorkDeliveryPage() {
             lead="Track the day's work, run projects against customer requirements and SOWs, record timesheets and costs, and bill with a clear view of profitability. People, attendance and approvals are shared with the rest of Synax, not re-entered."
           />
           <div className="relative lg:pl-16">
-            <div className="relative aspect-[3/2] overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 shadow-md">
+            <div className="relative aspect-[3/2] overflow-hidden rounded-3xl lg:aspect-auto lg:h-[clamp(15rem,52vh,31rem)] border border-slate-200 bg-slate-200 shadow-md">
               <Image
                 src="/images/products/work-delivery.webp"
                 alt="A team looking at a task board on a whiteboard"

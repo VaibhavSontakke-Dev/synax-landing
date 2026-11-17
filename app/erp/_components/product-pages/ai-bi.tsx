@@ -53,16 +53,19 @@ export function AiBiPage() {
     <main className="pb-6">
       {/* Hero: centred headline over a gray browser frame holding the photo, the approval card on its corner */}
       <HeroBand productKey="ai">
-        <HeroCopy
-          productKey="ai"
-          center
-          compact
-          eyebrow="AI & Business Intelligence"
-          title="Synax AI finds the exception and proposes the fix."
-          subtitle="You approve."
-          lead="Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes. Dashboards and reports across your workflows keep decisions on current data."
-        />
-        <div className="relative mx-auto mt-8 max-w-4xl pb-10 md:pb-4">
+        <div className="lg:grid lg:grid-cols-[1fr_1.05fr] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-12">
+        <div className="lg:col-start-1 lg:row-start-1">
+          <HeroCopy
+            productKey="ai"
+            centerBelowLg
+            compact
+            eyebrow="AI & Business Intelligence"
+            title="Synax AI finds the exception and proposes the fix."
+            subtitle="You approve."
+            lead="Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes. Dashboards and reports across your workflows keep decisions on current data."
+          />
+        </div>
+        <div className="relative mx-auto mt-8 max-w-4xl pb-10 md:pb-4 lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mt-0 lg:w-full lg:self-start">
           <div className="overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-lg">
             <div className="flex items-center gap-2.5 border-b border-slate-300 bg-slate-200 px-4 py-2.5 text-xs text-slate-600">
               <span className="flex gap-1.5" aria-hidden="true">
@@ -91,7 +94,7 @@ export function AiBiPage() {
               <div className="mt-3 grid gap-3 md:grid-cols-[1.5fr_1fr]">
                 <div className="rounded-xl border border-slate-200 bg-white p-3.5 text-left">
                   <p className="text-[11px] font-semibold text-slate-500">Lots ready to dispatch, by week</p>
-                  <div className="mt-3 flex h-24 items-end gap-2" role="img" aria-label="Sample bar chart of lots ready to dispatch, rising over eight weeks">
+                  <div className="mt-3 flex h-24 items-end lg:h-20 gap-2" role="img" aria-label="Sample bar chart of lots ready to dispatch, rising over eight weeks">
                     {BARS.map((h, i) => (
                       <span
                         key={i}
@@ -125,7 +128,7 @@ export function AiBiPage() {
             </div>
           </div>
         </div>
-        <ol className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-semibold" aria-label="How a Synax AI action works">
+        <ol className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-semibold lg:col-start-1 lg:row-start-2 lg:mx-0 lg:mt-6 lg:justify-start" aria-label="How a Synax AI action works">
           {GATE.map((g, i) => (
             <li key={g.title} className="flex items-center gap-2">
               <span className={`rounded-full px-3 py-1 ${g.accent === "orange" ? "bg-orange-300 text-orange-950" : "bg-blue-900 text-white"}`}>
@@ -135,9 +138,10 @@ export function AiBiPage() {
             </li>
           ))}
         </ol>
-        <p className="mx-auto mt-4 max-w-md rounded-xl border border-dashed border-orange-300 bg-white/70 px-4 py-2.5 text-center text-xs text-slate-600">
+        <p className="mx-auto mt-4 max-w-md rounded-xl border border-dashed border-orange-300 bg-white/70 px-4 py-2.5 text-center text-xs text-slate-600 lg:col-start-1 lg:row-start-3 lg:mx-0 lg:text-left">
           Every decision is kept in the event history. Agents cannot change your data on their own.
         </p>
+        </div>
       </HeroBand>
 
       {/* Why approval first */}

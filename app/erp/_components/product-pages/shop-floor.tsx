@@ -60,7 +60,7 @@ export function ShopFloorPage() {
     <main className="pb-6">
       {/* Hero: the photo runs off the right edge of the page and fades into the background, machine cards on top of it */}
       <HeroBand productKey="shopfloor">
-        <div className="relative lg:flex lg:min-h-[28rem] lg:items-center">
+        <div className="relative lg:flex lg:min-h-[clamp(26rem,64vh,40rem)] lg:items-start">
           <div
             className="pointer-events-none absolute inset-y-0 right-[calc(50%-50vw)] left-[38%] hidden [mask-image:linear-gradient(to_right,transparent,#000_40%)] lg:block"
             aria-hidden="true"

@@ -22,13 +22,6 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
-### Pending (next commit) — Video kit: one shared engine for the bird videos
-Commit subject: `Video kit: shared engine for the Pip & Sage videos (one command per step)`
-- **What**: the build files of the two bird videos (platform overview and Manufacturing ERP) were two near-identical copies. They are now one kit, `tools/video-kit/`: a shared `engine/` (bird rig, page template, narration, layout check, sound, render, encode) and one small folder per video in `videos/` holding only its story (`video.json` with the output name, end card and music levels; `lines.json`; `director.js`; optional `style.css`; README). `make.mjs` runs every step with one command (`audio`, `preview`, `snap`, `draft`, `final`) and `new <name> --from <video>` starts a new video from an existing one. New: a half-size `draft` render that publishes nothing, and fresh frames on every render unless `--resume`. The kit has its own `package.json` (installed once with `npm install` in the folder) and its own `.gitignore` for `node_modules/` and the generated `work/` folder; nothing is added to the website build.
-- **Checked**: both videos rebuild from the kit with exactly the same timeline as the published files (299.08 s and 178.52 s), stills match the published frames, and both end cards show the right text. The shared bird rig uses the newer chest-height wave, so a future re-render of the overview would show that wave; the published files are unchanged.
-- **Files**: new `tools/video-kit/` (README, make.mjs, package.json, package-lock.json, .gitignore, engine/, videos/overview/, videos/manufacturing-erp/); `tools/overview-video/` and `tools/mfg-erp-video/` removed (never committed). The older folders (`assets-tour-video`, `hrms-explainer-video`, `hrms-tour-video`) are unchanged.
-- **Rollback**: revert the commit (the published videos do not depend on these files).
-
 ### Pending (next commit) — Nav: top banner removed, home hero height adjusted
 Commit subject: `Nav: remove the top banner (Senwell Pedigree) and fit the home hero to the header`
 - **What**: the dark strip above the header ("Enterprise Ecosystem · A product of Senwell Group · AS9100D QMS controls · Senwell Pedigree") is removed; only the sticky white header remains. The home hero used to reserve room for that strip, so its minimum height is now the viewport minus the header alone (`100svh - 4.1rem`, was `6.25rem`); the hero fills the first screen again with no empty gap under it.

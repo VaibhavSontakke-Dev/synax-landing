@@ -150,7 +150,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="demo-modal-title"
-            className="synax-thin-scroll relative max-h-[92vh] w-full max-w-lg overflow-y-auto rounded-xl border border-slate-200 bg-white p-6 shadow-2xl sm:p-8"
+            className="synax-thin-scroll relative max-h-[94vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-slate-200 bg-white p-5 shadow-2xl sm:px-7 sm:py-6"
           >
             <button
               type="button"
@@ -186,7 +186,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
               </div>
             ) : (
               <div>
-                <div className="mb-5">
+                <div className="mb-4 pr-8">
                   <SectionTag lines="start">Senwell Group Architecture Consultation</SectionTag>
                   <h3 id="demo-modal-title" className="mt-2 text-xl font-extrabold text-slate-900 sm:text-2xl">
                     Request Executive Demo
@@ -196,7 +196,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   </p>
                 </div>
 
-                <form onSubmit={onSubmit} className="space-y-3.5 text-left">
+                <form onSubmit={onSubmit} className="space-y-3 text-left">
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div>
                       <label htmlFor="demo-fullName" className="mb-1 block text-xs font-semibold text-slate-700">
@@ -266,6 +266,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                     </div>
                   </div>
 
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
                     <label htmlFor="demo-product" className="mb-1 block text-xs font-semibold text-slate-700">
                       Primary Product of Interest *
@@ -303,6 +304,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       </option>
                       <option value="1,000+ Enterprise Tier">1,000+ Enterprise Tier</option>
                     </select>
+                  </div>
                   </div>
 
                   <div>

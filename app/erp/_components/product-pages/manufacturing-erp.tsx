@@ -64,7 +64,7 @@ export function ManufacturingErpPage() {
     <main className="pb-6">
       {/* Hero: copy left, a framed workshop photo right with a passport card on its corner, the full part passport below */}
       <HeroBand productKey="precision">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+        <div className="grid items-center gap-10 lg:items-start lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:gap-y-[clamp(1rem,3vh,2rem)]">
           <HeroCopy
             productKey="precision"
             eyebrow="Precision & job-work ERP"
@@ -73,7 +73,7 @@ export function ManufacturingErpPage() {
           />
           <div className="relative mx-auto w-full max-w-xl pb-6 lg:max-w-none">
             <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-blue-900" aria-hidden="true" />
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-slate-200 bg-slate-200">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-auto lg:h-[clamp(12rem,38vh,25rem)] border border-slate-200 bg-slate-200">
               <Image
                 src="/images/products/manufacturing-erp.webp"
                 alt="CNC machines and workbenches in a machine shop"
@@ -96,7 +96,7 @@ export function ManufacturingErpPage() {
             </div>
           </div>
         </div>
-        <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6 lg:mt-[clamp(1.25rem,4vh,3rem)] lg:py-[clamp(0.75rem,2.2vh,1.5rem)]">
           <div className="mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
             <p className="font-bold text-slate-900">Part passport: one part, one record</p>
             <p>Traced back to its PO, material lot, machine and operator</p>
