@@ -45,6 +45,8 @@ export function PageHero({
   tourTitle,
   aside,
   calm = false,
+  fit = false,
+  foot,
 }: {
   crumbs: Crumb[];
   tag: string;
@@ -56,27 +58,44 @@ export function PageHero({
   aside?: React.ReactNode;
   /** Softer type: a semibold dusky-gray headline instead of the bold navy one. */
   calm?: boolean;
+  /** On desktop the hero is at least as tall as the first screen under the header (like the home hero); the content starts right under the breadcrumb, as on Security & Trust and Why Synax. */
+  fit?: boolean;
+  /** A strip of cards under the hero content, like the one under the Security & Trust and Why Synax heroes. With `fit` it sits at the bottom of the screen-high hero. */
+  foot?: React.ReactNode;
 }) {
   return (
-    <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white" aria-labelledby="page-heading">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+    <section
+      className={`border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white ${fit ? "relative isolate overflow-hidden lg:flex lg:min-h-[calc(100svh-4.1rem)]" : ""}`}
+      aria-labelledby="page-heading"
+    >
+      {fit ? (
+        // Same backdrop as the Security & Trust and Why Synax heroes: dot grid fading out, a soft sky glow, and a navy base line with a sky accent.
+        <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+          <div className="absolute inset-0 [background-image:radial-gradient(rgba(30,58,138,0.1)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,#000,transparent_90%)]" />
+          <div className="absolute -top-24 left-[30%] size-96 rounded-full bg-sky-300/40 blur-3xl" />
+          <div className="absolute inset-x-0 bottom-0 h-1 bg-blue-900" />
+          <div className="absolute bottom-0 left-0 h-1 w-32 bg-sky-400" />
+        </div>
+      ) : null}
+      <div className={`mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 ${fit ? "flex w-full flex-col lg:py-5" : "lg:py-10"}`}>
         <Breadcrumb items={crumbs} />
         <div className={aside ? "grid items-center gap-10 lg:grid-cols-2 lg:gap-14" : "max-w-3xl"}>
           <div>
             <SectionTag lines="start">{tag}</SectionTag>
             <h1
               id="page-heading"
-              className={`mt-3 text-3xl leading-tight tracking-tight sm:text-4xl lg:text-5xl ${calm ? "font-semibold text-slate-700" : "font-extrabold text-blue-900"}`}
+              className={`mt-3 text-3xl leading-tight tracking-tight sm:text-4xl ${fit ? "lg:text-[clamp(1.875rem,5vh,3rem)]" : "lg:text-5xl"} ${calm ? "font-semibold text-slate-700" : "font-extrabold text-blue-900"}`}
             >
               {title}
             </h1>
             <p className={`mt-4 max-w-xl text-sm leading-relaxed sm:text-base ${calm ? "text-slate-500" : "text-slate-700"}`}>{lead}</p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className={`mt-7 flex flex-col gap-3 sm:flex-row sm:items-center ${fit ? "lg:mt-[clamp(1rem,3vh,1.75rem)]" : ""}`}>
               <TourButton title={tourTitle} />
             </div>
           </div>
           {aside}
         </div>
+        {foot ? <div className={fit ? "mt-10 lg:mt-auto lg:pt-[clamp(0.75rem,3vh,2rem)]" : "mt-10"}>{foot}</div> : null}
       </div>
     </section>
   );
@@ -130,17 +149,21 @@ export function Block({
   );
 }
 
-/** Questions and answers as native <details> (keyboard accessible, no client code). */
+/**
+ * Questions and answers as native <details> (keyboard accessible, no client code). One card per question; the
+ * type is Geist (the page-level sans), question 15px semibold, answer 14px regular, the same on every page that
+ * has an FAQ (all of them use this component).
+ */
 export function Faq({ items }: { items: { q: string; a: string }[] }) {
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+    <div className="mx-auto max-w-3xl space-y-3 font-[family-name:var(--font-geist-sans)]">
       {items.map((item) => (
-        <details key={item.q} className="group">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left text-sm font-bold text-slate-900 marker:content-none hover:bg-slate-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange-500 sm:text-base [&::-webkit-details-marker]:hidden">
+        <details key={item.q} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left text-[15px] leading-snug font-semibold text-slate-900 marker:content-none hover:bg-slate-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange-500 [&::-webkit-details-marker]:hidden">
             {item.q}
-            <ChevronDown className="size-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" aria-hidden="true" />
+            <ChevronDown className="size-4 shrink-0 text-sky-500 transition-transform group-open:rotate-180 group-open:text-slate-400" aria-hidden="true" />
           </summary>
-          <p className="px-5 pb-5 text-sm leading-relaxed text-slate-600">{item.a}</p>
+          <p className="px-5 pb-5 text-sm leading-[1.6] font-normal text-slate-600">{item.a}</p>
         </details>
       ))}
     </div>

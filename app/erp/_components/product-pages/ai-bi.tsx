@@ -3,6 +3,7 @@ import { ArrowRight, BarChart3, ClipboardList, FileBarChart, LayoutDashboard, Li
 import type { LucideIcon } from "lucide-react";
 import { Block } from "../site-page";
 import { Reveal } from "../reveal";
+import { AiAskBoard } from "../ai-ask-board";
 import { HeroBand, HeroCopy, ProductTail, faqItems, relatedProduct } from "./shared";
 
 /** AI & Business Intelligence — the approval gate first, then the agents, the questions and the analytics. */
@@ -30,15 +31,6 @@ const AGENTS: { icon: LucideIcon; title: string; copy: string }[] = [
   { icon: Wrench, title: "Shop-floor watch", copy: "Brings alarms and downtime that need a person to your attention." },
 ];
 
-/** Sample figures for the hero dashboard (illustration only). */
-const KPIS = [
-  { label: "Challans past return date", value: "2", pct: "30%" },
-  { label: "Lots ready to dispatch", value: "5", pct: "70%" },
-  { label: "Route cards awaiting buy-off", value: "3", pct: "45%" },
-];
-const BARS = [40, 55, 48, 70, 62, 80, 74, 90];
-const ATTENTION = ["2 challans are past their return date", "5 lots are ready to dispatch", "3 route cards await a buy-off"];
-
 const QUESTIONS = ["Which challans are past their return date?", "Which lots are ready to dispatch?", "Which route cards are awaiting buy-off?"];
 
 const BI: { icon: LucideIcon; title: string; copy: string }[] = [
@@ -51,7 +43,7 @@ const BI: { icon: LucideIcon; title: string; copy: string }[] = [
 export function AiBiPage() {
   return (
     <main className="pb-6">
-      {/* Hero: centred headline over a gray browser frame holding the photo, the approval card on its corner */}
+      {/* Hero: copy left, an animated "Ask Synax AI" chat board right (same style as the home page's "Answered Instantly" section) */}
       <HeroBand productKey="ai">
         <div className="lg:grid lg:grid-cols-[1fr_1.05fr] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-12">
         <div className="lg:col-start-1 lg:row-start-1">
@@ -65,68 +57,8 @@ export function AiBiPage() {
             lead="Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes. Dashboards and reports across your workflows keep decisions on current data."
           />
         </div>
-        <div className="relative mx-auto mt-8 max-w-4xl pb-10 md:pb-4 lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mt-0 lg:w-full lg:self-start">
-          <div className="overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-lg">
-            <div className="flex items-center gap-2.5 border-b border-slate-300 bg-slate-200 px-4 py-2.5 text-xs text-slate-600">
-              <span className="flex gap-1.5" aria-hidden="true">
-                <i className="size-2.5 rounded-full bg-slate-400" />
-                <i className="size-2.5 rounded-full bg-slate-400" />
-                <i className="size-2.5 rounded-full bg-slate-400" />
-              </span>
-              <span className="font-mono text-slate-500">synax.senwellgroup.com</span>
-            </div>
-            <div className="bg-slate-50 p-4 pb-16 sm:p-5 sm:pb-20 md:pb-5">
-              <div className="mb-3 flex items-center justify-between text-xs">
-                <p className="font-bold text-slate-900">Business dashboard</p>
-                <p className="text-slate-500">Sample data</p>
-              </div>
-              <ul className="grid gap-3 sm:grid-cols-3">
-                {KPIS.map((k) => (
-                  <li key={k.label} className="rounded-xl border border-slate-200 bg-white p-3.5 text-left">
-                    <p className="text-[11px] font-semibold text-slate-500">{k.label}</p>
-                    <p className="mt-1 text-2xl font-extrabold tracking-tight text-blue-900">{k.value}</p>
-                    <div className="mt-2 h-1.5 rounded-full bg-slate-200">
-                      <div className="h-1.5 rounded-full bg-blue-900/40" style={{ width: k.pct }} />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-3 grid gap-3 md:grid-cols-[1.5fr_1fr]">
-                <div className="rounded-xl border border-slate-200 bg-white p-3.5 text-left">
-                  <p className="text-[11px] font-semibold text-slate-500">Lots ready to dispatch, by week</p>
-                  <div className="mt-3 flex h-24 items-end lg:h-20 gap-2" role="img" aria-label="Sample bar chart of lots ready to dispatch, rising over eight weeks">
-                    {BARS.map((h, i) => (
-                      <span
-                        key={i}
-                        className={`flex-1 rounded-t ${i === BARS.length - 1 ? "bg-orange-300" : "bg-blue-900/35"}`}
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <div className="hidden rounded-xl border border-slate-200 bg-white p-3.5 text-left md:block">
-                  <p className="text-[11px] font-semibold text-slate-500">Needs attention</p>
-                  <ul className="mt-2 space-y-2 text-xs text-slate-700">
-                    {ATTENTION.map((t) => (
-                      <li key={t} className="flex items-start gap-2">
-                        <span className="mt-1 size-2 shrink-0 rounded-full bg-orange-300" aria-hidden="true" />
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="absolute right-3 -bottom-0 w-64 rounded-2xl border border-t-4 border-slate-200 border-t-orange-300 bg-white p-4 shadow-xl sm:right-6 md:-bottom-6">
-            <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">Synax AI proposes</p>
-            <p className="mt-1 text-sm font-semibold text-slate-900">{GATE[2].text}</p>
-            <p className="mt-0.5 text-xs text-slate-600">{GATE[1].text}</p>
-            <div className="mt-3 flex items-center gap-2">
-              <span className="rounded-md bg-orange-300 px-3 py-1 text-xs font-semibold text-orange-950">Approve</span>
-              <span className="rounded-md border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600">Reject</span>
-            </div>
-          </div>
+        <div className="mx-auto mt-8 w-full max-w-xl lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mt-0 lg:max-w-none lg:self-start">
+          <AiAskBoard />
         </div>
         <ol className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-semibold lg:col-start-1 lg:row-start-2 lg:mx-0 lg:mt-6 lg:justify-start" aria-label="How a Synax AI action works">
           {GATE.map((g, i) => (

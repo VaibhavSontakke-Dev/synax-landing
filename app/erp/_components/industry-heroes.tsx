@@ -216,7 +216,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
         className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 opacity-40 [mask-image:linear-gradient(to_right,transparent,#000_65%)] lg:block"
         aria-hidden="true"
       >
-        <Image src="/images/modern-ui.webp" alt="" fill sizes="50vw" quality={70} className="object-cover object-[50%_35%]" />
+        <Image src="/images/modern-ui-v2.webp" alt="" fill sizes="50vw" quality={70} className="object-cover object-[50%_35%]" />
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgba(30,58,138,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" aria-hidden="true" />
 

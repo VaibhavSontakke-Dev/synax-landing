@@ -62,6 +62,36 @@ export default function SolutionsPage() {
   return (
     <main className="pb-6">
       <PageHero
+        fit
+        foot={
+          <div className="hidden md:block">
+            <p className="mb-3 text-xs font-bold tracking-[0.14em] text-slate-500 uppercase">Pick your starting point</p>
+            <ul className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+              {SOLUTIONS.map((s) => {
+                const route = routeFor(s.key);
+                const t = TONE[route.tone];
+                const Icon = PRODUCT_DATA[s.key].icon;
+                return (
+                  <li key={s.key}>
+                    <a
+                      href={`#start-${s.key}`}
+                      className="group flex h-full items-start gap-3 rounded-xl border border-slate-300 bg-white p-3.5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-orange-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                    >
+                      <span className={`flex size-9 shrink-0 items-center justify-center rounded-lg border ${t.tile}`}>
+                        <Icon className="size-[18px]" aria-hidden="true" />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm leading-tight font-bold text-slate-900">{s.title}</span>
+                        <span className="mt-0.5 block text-xs leading-snug text-slate-600">{SOLUTION_PATHS[s.key].pain}</span>
+                      </span>
+                      <ArrowRight className="mt-1 size-4 shrink-0 text-slate-400 transition-colors group-hover:text-orange-600" aria-hidden="true" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        }
         tourTitle="Synax Platform Overview"
         crumbs={[{ label: "Solutions" }]}
         tag="Solutions by industry & business need"

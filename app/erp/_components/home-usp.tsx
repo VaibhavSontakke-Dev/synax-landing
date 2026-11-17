@@ -34,10 +34,10 @@ function useReducedMotion() {
   return reduced;
 }
 
-function LiveDot({ children }: { children: React.ReactNode }) {
+function LiveDot({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-900">
-      <span className="size-2 animate-pulse rounded-full bg-blue-900/50 motion-reduce:animate-none" aria-hidden="true" />
+    <span className={`inline-flex items-center gap-1.5 text-xs font-bold ${dark ? "text-sky-200" : "text-blue-900"}`}>
+      <span className={`size-2 animate-pulse rounded-full motion-reduce:animate-none ${dark ? "bg-sky-300" : "bg-blue-900/50"}`} aria-hidden="true" />
       {children}
     </span>
   );
@@ -256,31 +256,34 @@ function MachineBoard() {
   const m1 = 48 + tick;
   const m2 = 31 + tick;
   return (
-    <div className={`${FLOAT} lg:-bottom-6 lg:-left-6 lg:w-64`} style={{ animationDelay: "1s" }}>
-      <div className="flex items-center justify-between font-bold text-slate-900">
+    <div
+      className={`${FLOAT.replace("border-slate-200 bg-white", "border-blue-800 bg-blue-900")} text-white lg:-bottom-6 lg:-left-6 lg:w-64`}
+      style={{ animationDelay: "1s" }}
+    >
+      <div className="flex items-center justify-between font-bold text-white">
         <span>Machine board</span>
-        <LiveDot>Live</LiveDot>
+        <LiveDot dark>Live</LiveDot>
       </div>
       {[
         { id: "M-01", count: m1, max: 50 },
         { id: "M-02", count: m2, max: 40 },
       ].map((m) => (
-        <div key={m.id} className="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5">
+        <div key={m.id} className="mt-2 rounded-lg border border-blue-700/70 bg-blue-800/60 px-2.5 py-1.5">
           <div className="flex items-center justify-between text-xs">
             <span>
-              {m.id} <span className="text-slate-500">Running</span>
+              {m.id} <span className="text-sky-200">Running</span>
             </span>
             <b>
               {m.count} / {m.max}
             </b>
           </div>
-          <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-200">
-            <div className="h-full rounded-full bg-blue-900/40 transition-[width] duration-500" style={{ width: `${(m.count / m.max) * 100}%` }} />
+          <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-blue-950/70">
+            <div className="h-full rounded-full bg-sky-300 transition-[width] duration-500" style={{ width: `${(m.count / m.max) * 100}%` }} />
           </div>
         </div>
       ))}
-      <p className="mt-2 flex items-center gap-1.5 rounded-lg border border-orange-200 bg-orange-50 px-2.5 py-1.5 text-xs text-slate-700">
-        <AlertTriangle className="size-3.5 text-orange-400" aria-hidden="true" /> M-03 Alarm · tool life
+      <p className="mt-2 flex items-center gap-1.5 rounded-lg border border-orange-300/40 bg-orange-400/15 px-2.5 py-1.5 text-xs text-orange-50">
+        <AlertTriangle className="size-3.5 text-orange-300" aria-hidden="true" /> M-03 Alarm · tool life
       </p>
     </div>
   );
@@ -320,7 +323,7 @@ function MachinesRow() {
                 aria-hidden="true"
               />
               <Image
-                src="/images/usp-machines.webp"
+                src="/images/usp-machines-v3.webp"
                 alt="Machine monitoring view with a production line, OEE and downtime (illustration)"
                 width={1400}
                 height={785}

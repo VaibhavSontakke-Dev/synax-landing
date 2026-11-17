@@ -47,12 +47,23 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
 
   useLayoutEffect(() => {
     const el = frame.current;
-    if (!el) return;
-    const measure = () => setScale(Math.min(1.15, el.clientWidth / W));
+    const box = el?.parentElement;
+    if (!el || !box) return;
+    // Fit the column's width and, on desktop, the screen height: the hero (copy, this scene, the strip below) must
+    // stay inside the first screen, so the stage is at most ~44% of the window height.
+    const measure = () => {
+      const byWidth = box.clientWidth / W;
+      const byHeight = window.innerWidth >= 1024 ? (window.innerHeight * 0.44) / H : Infinity;
+      setScale(Math.max(0.5, Math.min(1.15, byWidth, byHeight)));
+    };
     measure();
     const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
+    ro.observe(box);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   useEffect(() => {
@@ -114,8 +125,8 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
       </p>
       <div
         ref={frame}
-        className="relative w-full overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white shadow-sm"
-        style={{ height: H * scale }}
+        className="relative mx-auto max-w-full overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white shadow-sm"
+        style={{ width: W * scale, height: H * scale }}
       >
         <div className="absolute top-0 left-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${scale})` }}>
           <div aria-hidden="true" className="absolute inset-0 text-[12px] text-slate-900">
