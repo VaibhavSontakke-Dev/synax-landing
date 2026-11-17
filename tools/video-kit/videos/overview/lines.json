@@ -1,0 +1,61 @@
+[
+  { "id": "a1", "who": "P", "scene": "hook", "text": "I've been watching this company all morning. Projects, people, machines, finance. Everyone is so busy!" },
+  { "id": "a2", "who": "S", "text": "Busy, yes. Connected? Not really. Every team has its own sheet, and its own version of the truth." },
+  { "id": "a3", "who": "P", "text": "So that's why they keep calling each other!", "gap": 0.8 },
+
+  { "id": "b1", "who": "S", "scene": "reveal", "text": "Now picture them all on one platform. Meet Synax ERP." },
+  { "id": "b2", "who": "P", "text": "Projects, people, and the shop floor? In one place?" },
+  { "id": "b3", "who": "S", "text": "Projects, staffing, HR, manufacturing, quality and finance. Each team gets its own workspace, on shared data." },
+  { "id": "b4", "who": "P", "text": "Okay, you have my attention. Show me!", "gap": 0.8 },
+
+  { "id": "c1", "who": "P", "scene": "projects", "text": "How does a manager know if a project is actually making money?" },
+  { "id": "c2", "who": "S", "text": "The team logs its hours in the Work Tracker, and Cost Mapper brings the project's costs together." },
+  { "id": "c3", "who": "P", "text": "And billing?" },
+  { "id": "c4", "who": "S", "text": "Billing and dev cost review sit right beside it. Project analytics shows the whole picture.", "gap": 0.8 },
+
+  { "id": "d1", "who": "P", "scene": "staffing", "text": "New scenario. A client needs three Java developers by Monday!" },
+  { "id": "d2", "who": "S", "text": "That's a requirement under a statement of work. Then candidates, interviews and offers, onboarding and deployment." },
+  { "id": "d3", "who": "P", "text": "So hiring is just the beginning?" },
+  { "id": "d4", "who": "S", "text": "Exactly. Work logs and timesheets lead to invoices and payments, with replacements and an audit trail on record.", "gap": 0.8 },
+
+  { "id": "e1", "who": "P", "scene": "hrms", "text": "And the people inside the company? Attendance, leave, the usual chaos?" },
+  { "id": "e2", "who": "S", "text": "Follow Maya. A manpower request opens a job position. She's interviewed, gets an offer, and pre-joining checks are done before day one." },
+  { "id": "e3", "who": "P", "text": "Does she get her own login?" },
+  { "id": "e4", "who": "S", "text": "Her own employee portal: attendance, leave, the holiday calendar and her documents. Then performance reviews, and one day, clearance, final settlement and an exit interview." },
+  { "id": "e5", "who": "P", "text": "From hello to goodbye. Got it!", "gap": 0.8 },
+
+  { "id": "f1", "who": "P", "scene": "mfg", "text": "Now the serious part. A customer order comes in. Does everyone start phoning each other?" },
+  { "id": "f2", "who": "S", "text": "Not here. Let's follow one order. The customer P O is recorded, and contract review checks that we can deliver." },
+  { "id": "f3", "who": "P", "text": "Do we even have the material?" },
+  { "id": "f4", "who": "S", "text": "Sales planning and the M R P run work it out. Anything short becomes a purchase requisition, then a vendor P O." },
+  { "id": "f5", "who": "P", "text": "And when the truck arrives?" },
+  { "id": "f6", "who": "S", "text": "Gate control logs it, the G R N register books it in, and the material ledger holds the stock. Customer-owned material is tracked separately, for job work." },
+  { "id": "f7", "who": "P", "text": "Now we make the parts?" },
+  { "id": "f8", "who": "S", "text": "A route card is generated against the bill of materials, material is issued, and jobs are scheduled. The load chart shows how busy each machine is." },
+  { "id": "f9", "who": "P", "text": "What if a machine stops halfway?" },
+  { "id": "f10", "who": "S", "text": "Live monitoring shows every connected machine, and downtime and alarms record why it stopped." },
+  { "id": "f11", "who": "P", "text": "I thought manufacturing was just machines making things!" },
+  { "id": "f12", "who": "S", "text": "And I thought birds didn't do paperwork." },
+  { "id": "f13", "who": "P", "text": "Fair point. What if a part fails inspection?" },
+  { "id": "f14", "who": "S", "text": "Quality has its own workspace: final inspection and C O C, FAIR, N C R and CAPA, and calibration. Genealogy traces any part back through its history." },
+  { "id": "f15", "who": "P", "text": "And then it ships?" },
+  { "id": "f16", "who": "S", "text": "Packing and dispatch, delivery challans with e-way bills, and the route cards move on to the invoice." },
+  { "id": "f17", "who": "P", "text": "From order to truck. I need a moment.", "gap": 0.8 },
+
+  { "id": "g1", "who": "P", "scene": "fin", "text": "Does it stop once the work is done?" },
+  { "id": "g2", "who": "S", "text": "No. Customer invoices with your own templates, debit and credit notes, project billing and staffing invoices." },
+  { "id": "g3", "who": "P", "text": "Quick one. Who has the company laptop?" },
+  { "id": "g4", "who": "S", "text": "Check assets. Every asset is listed and assigned to a person." },
+  { "id": "g5", "who": "P", "text": "And who decides who sees what?" },
+  { "id": "g6", "who": "S", "text": "Admins do, with roles, users, and page and feature permissions.", "gap": 0.8 },
+
+  { "id": "h1", "who": "P", "scene": "ai", "text": "Last question. With all this data, who spots the problems?" },
+  { "id": "h2", "who": "S", "text": "Synax AI answers questions about your data, and Synax agents watch for exceptions, like overdue challans, and propose a fix." },
+  { "id": "h3", "who": "P", "text": "Wait. They change things on their own?" },
+  { "id": "h4", "who": "S", "text": "No. Nothing changes until someone with the right role approves. And teams talk it through in chat and meetings.", "gap": 0.8 },
+
+  { "id": "i1", "who": "P", "scene": "close", "text": "Projects, people, manufacturing, finance. All connected?" },
+  { "id": "i2", "who": "S", "text": "That's the idea. Less juggling. More visibility. Better control." },
+  { "id": "i3", "who": "P", "text": "Sounds like a smarter way to run a business!" },
+  { "id": "i4", "who": "S", "text": "Synax ERP. One platform. Connected business." }
+]

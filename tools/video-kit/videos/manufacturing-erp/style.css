@@ -1,0 +1,17 @@
+/* problem cards */
+.prob{position:absolute;left:640px;top:120px;width:1220px;height:640px;border-radius:28px;background:#fff;box-shadow:0 40px 100px rgba(15,35,71,.2);padding:30px 36px;overflow:hidden}
+.ptag{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;border-radius:18px;background:#fff1e6;color:#c2560f;font-size:16px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}
+.ptag svg.i{font-size:18px}
+.prob h3{margin-top:14px;font-size:42px;font-weight:800;letter-spacing:-1px;color:#0f2347}
+.pchip{position:absolute;top:800px;width:290px;height:64px;border-radius:18px;background:#fff;border:2px solid #fdba74;display:flex;align-items:center;gap:12px;padding:0 16px;font-size:18px;font-weight:800;color:#0f2347;white-space:nowrap;box-shadow:0 12px 28px rgba(15,35,71,.1)}
+.pchip .pi{width:36px;height:36px;border-radius:50%;background:#f97316;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.pchip.ok{border-color:#93c5fd}
+.pchip.ok .pi{background:#2563eb}
+.sheet{border-collapse:collapse;font-size:20px}
+.sheet td,.sheet th{border:1.5px solid #d7e3f3;height:52px;padding:0 14px;white-space:nowrap;text-align:left}
+.sheet th{background:#eef4fb;font-size:15px;letter-spacing:1px;text-transform:uppercase;color:#6b80a3}
+.sheet td.err{color:#c2560f;font-weight:800;background:#fff7ef}
+.paper{position:absolute;background:#fffaf0;border:1.5px solid #ead9b8;border-radius:10px;box-shadow:0 14px 30px rgba(15,35,71,.12);padding:20px 24px;font-style:italic;color:#5b4a2e}
+.scr{position:absolute;width:340px;height:300px;border-radius:20px;background:#fff;border:1.5px solid #e3eaf5;box-shadow:0 14px 34px rgba(15,35,71,.1);padding:20px 22px}
+.bot{position:absolute;left:0;top:0;width:1px;height:1px}
+.bot svg{position:absolute;left:-150px;top:-200px;width:300px;height:300px;overflow:visible}

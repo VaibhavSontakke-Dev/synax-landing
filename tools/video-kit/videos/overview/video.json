@@ -1,0 +1,21 @@
+{
+  "title": "Synax platform overview (Pip & Sage), Watch overview on the home page",
+  "name": "synax-overview",
+  "master": "synax-overview-birds-1080p.mp4",
+  "end": {
+    "title": "One platform. <b>Connected business.</b>",
+    "text": "Connect your people, projects and operations with one business platform.",
+    "cta": "Explore Synax ERP · Book a demo"
+  },
+  "music": {
+    "hook": [0.8, 0.5, 0, 0, 0],
+    "reveal": [1, 1, 0.8, 0, 0],
+    "projects": [0.8, 0.8, 0.7, 0, 0.5],
+    "staffing": [0.8, 0.8, 0.7, 0, 0.5],
+    "hrms": [0.8, 0.8, 0.7, 0, 0.5],
+    "mfg": [0.8, 0.9, 0.9, 0.9, 0.8],
+    "fin": [0.8, 0.8, 0.7, 0, 0.5],
+    "ai": [1, 0.25, 0.3, 0, 0],
+    "close": [1, 1, 0.9, 0.6, 0.6]
+  }
+}

@@ -1,0 +1,34 @@
+[
+  { "id": "p1", "who": "P", "scene": "prob", "text": "Sage, this machine shop looks so busy. Why is everyone running around?" },
+  { "id": "p2", "who": "S", "text": "Because nothing is connected. Let me show you a normal day." },
+  { "id": "p3", "who": "S", "text": "A customer sends bars for job work. Whose material is on which rack? It's in a spreadsheet. Maybe." },
+  { "id": "p4", "who": "P", "text": "Maybe?!" },
+  { "id": "p5", "who": "S", "text": "On the floor, route cards are on paper and counts are written by hand. To know if a machine is running, someone walks over and asks." },
+  { "id": "p6", "who": "P", "text": "So the machine knows, but the office doesn't?" },
+  { "id": "p7", "who": "S", "text": "Exactly. And before dispatch, the inspection records and the certificate are put together by hand." },
+  { "id": "p8", "who": "S", "text": "Then the invoice and the e-way bill are typed again, and once more into Tally." },
+  { "id": "p9", "who": "P", "text": "That's the same work, three times!", "gap": 0.8 },
+
+  { "id": "q1", "who": "S", "scene": "reveal", "text": "Now the same day with Synax Manufacturing ERP. From the machine spindle to the GST invoice, in one workspace." },
+  { "id": "q2", "who": "P", "text": "One workspace? Show me one part.", "gap": 0.7 },
+
+  { "id": "r1", "who": "S", "scene": "sol", "text": "It starts with the customer P O. Every line is quoted, every revision is kept, and the open quantity shows what is still to ship." },
+  { "id": "r2", "who": "P", "text": "And the customer's bars?" },
+  { "id": "r3", "who": "S", "text": "They're booked in at the gate against the challan, with their material I D range. Then they're tracked through issue, consumption, returns and scrap, one to one against every invoiced part." },
+  { "id": "r4", "who": "P", "text": "Then production?" },
+  { "id": "r5", "who": "S", "text": "A route card is released against the bill of materials, and the material is reserved, so the same stock is never promised twice." },
+  { "id": "r6", "who": "P", "text": "And the counts?" },
+  { "id": "r7", "who": "S", "text": "The operator scans the route card to start. The machine proposes the cycle count, and the operator confirms it, with a reason if it differs." },
+  { "id": "r8", "who": "P", "text": "No more walking over to ask!" },
+  { "id": "r9", "who": "S", "text": "Inspection, FAIR and the certificate of conformance carry the machining record. Then packing, the GST invoice, the I R N and the e-way bill, in one flow. The vouchers go across to Tally." },
+  { "id": "r10", "who": "P", "text": "So each document carries the one before it?" },
+  { "id": "r11", "who": "S", "text": "Yes. Any part traces back to its P O, material lot, machine and operator.", "gap": 0.8 },
+
+  { "id": "s1", "who": "P", "scene": "ai", "text": "One more thing. Who keeps an eye on all of this?" },
+  { "id": "s2", "who": "S", "text": "Meet the Synax agents. They watch for challans past their return date, orders ready to dispatch, and quality compliance, and they propose the fix." },
+  { "id": "s3", "who": "P", "text": "Do they act on their own?" },
+  { "id": "s4", "who": "S", "text": "No. Nothing changes until an approver with the right role says yes, and every decision is recorded." },
+  { "id": "s5", "who": "P", "text": "Smart helpers, and people in charge. I like it!", "gap": 0.6 },
+
+  { "id": "t1", "who": "S", "scene": "end", "text": "Synax Manufacturing ERP. From the spindle to the invoice." }
+]

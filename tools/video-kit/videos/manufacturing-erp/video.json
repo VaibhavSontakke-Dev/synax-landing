@@ -1,0 +1,17 @@
+{
+  "title": "Manufacturing ERP, Watch overview on /products/manufacturing-erp (problem, solution, AI bot)",
+  "name": "manufacturing-erp-tour",
+  "master": "synax-manufacturing-erp-1080p.mp4",
+  "end": {
+    "title": "Manufacturing <b>ERP</b>",
+    "text": "From the machine spindle to the GST invoice.",
+    "cta": "Book a demo"
+  },
+  "music": {
+    "prob": [0.7, 0.35, 0.3, 0, 0],
+    "reveal": [1, 1, 0.8, 0, 0],
+    "sol": [0.8, 0.9, 0.9, 0.7, 0.7],
+    "ai": [1, 0.25, 0.3, 0, 0],
+    "end": [1, 1, 0.9, 0.5, 0.5]
+  }
+}

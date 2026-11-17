@@ -475,12 +475,33 @@ const hrmsVideoTour: Tour = {
   video: { src: "/videos/hrms-explainer.mp4", poster: "/videos/hrms-explainer-poster.webp" },
 };
 
+/**
+ * The platform overview: a 5-minute animated MP4 in which two Synax birds (Pip and Sage) walk through Projects, Staffing,
+ * HRMS, Manufacturing, Finance, Assets, Access Control and Synax AI (source: tools/overview-video/). Two AI voices and
+ * sound design, no subtitles. The animated `overview` scenes stay defined above; the `video` field makes the modal play
+ * the MP4 instead.
+ */
+const overviewVideoTour: Tour = {
+  ...overview,
+  video: { src: "/videos/synax-overview.mp4", poster: "/videos/synax-overview-poster.webp" },
+};
+
+/**
+ * The Manufacturing ERP page's Watch overview: a 3-minute animated MP4, the problem first (a normal day at a machine
+ * shop), then the Synax solution (one part, one passport), ending with the Synax agents (an AI bot proposes, people
+ * approve). Source: tools/mfg-erp-video/. The animated `manufacturing` scenes stay defined above.
+ */
+const manufacturingVideoTour: Tour = {
+  ...manufacturing,
+  video: { src: "/videos/manufacturing-erp-tour.mp4", poster: "/videos/manufacturing-erp-tour-poster.webp" },
+};
+
 /** Tour title (as passed to the Watch overview button) -> its video. */
 export const TOURS: Record<string, Tour> = {
-  "Synax Platform Overview": overview,
+  "Synax Platform Overview": overviewVideoTour,
   "Why Synax": whySynax,
   "Assets Module Tour": assetsTour,
-  [`${routeFor("precision").name} Tour`]: manufacturing,
+  [`${routeFor("precision").name} Tour`]: manufacturingVideoTour,
   [`${routeFor("it").name} Tour`]: workDelivery,
   [`${routeFor("hrms").name} Tour`]: hrmsVideoTour,
   [`${routeFor("staffing").name} Tour`]: staffing,

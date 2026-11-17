@@ -1,0 +1,15 @@
+{
+  "name": "synax-video-kit",
+  "private": true,
+  "description": "Shared engine for the animated Synax product videos (Pip & Sage). Not part of the website build.",
+  "type": "commonjs",
+  "scripts": {
+    "video": "node make.mjs"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.0.20",
+    "ffmpeg-static": "^5.2.0",
+    "msedge-tts": "2.1.0",
+    "playwright": "^1.48.2"
+  }
+}
