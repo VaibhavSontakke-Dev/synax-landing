@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ChevronDown, Menu, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PRODUCT_DATA, PRODUCT_ROUTES, type ProductRoute } from "../_data/products";
 import { INDUSTRY_PAGES, industryHref } from "../_data/industries";
@@ -13,7 +13,7 @@ import { useDemo } from "./demo-provider";
 import { TONE } from "./route-tone";
 
 /**
- * Announcement banner + sticky header, shared by every page (landing, product, industry and content routes).
+ * Sticky header, shared by every page (landing, product, industry and content routes).
  *
  * All destinations are real links. The current page is read from the URL and shown three ways:
  * `aria-current="page"` on the link, a bold navy label with an orange underline in the bar, and a tinted
@@ -93,31 +93,6 @@ export function SiteNav() {
 
   return (
     <>
-      <div className="border-b border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950 px-4 py-2 text-[11px] text-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-2 truncate">
-            <span className="rounded-full bg-orange-700 px-2 py-0.5 text-[9px] font-bold tracking-wider text-white uppercase">
-              Enterprise Ecosystem
-            </span>
-            <span className="hidden font-medium text-slate-300 sm:inline">
-              A product of Senwell Group: the ERP for precision and job-work manufacturers
-            </span>
-            <span className="font-medium text-slate-300 sm:hidden">A product of Senwell Group</span>
-          </div>
-          <div className="flex shrink-0 items-center gap-4 font-mono text-[10px] text-slate-400">
-            <span className="hidden items-center gap-1.5 md:inline-flex">
-              <ShieldCheck className="size-3.5 text-emerald-400" aria-hidden="true" /> AS9100D QMS controls
-            </span>
-            <Link
-              href={`${HOME}#senwell`}
-              className="font-semibold text-orange-300 underline underline-offset-2 transition-colors hover:text-orange-200"
-            >
-              Senwell Pedigree &rarr;
-            </Link>
-          </div>
-        </div>
-      </div>
-
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 shadow-xs backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link

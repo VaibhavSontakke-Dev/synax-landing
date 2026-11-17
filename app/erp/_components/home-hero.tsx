@@ -24,7 +24,7 @@ import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, 
  */
 
 /** Height of the announcement banner (~2rem) + sticky header (4rem). */
-const HERO_MIN_HEIGHT = "lg:min-h-[calc(100svh-6.25rem)]";
+const HERO_MIN_HEIGHT = "lg:min-h-[calc(100svh-4.1rem)]";
 const CYCLE_MS = 2800;
 
 /**

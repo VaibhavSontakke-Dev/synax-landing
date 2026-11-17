@@ -22,6 +22,13 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Nav: top banner removed, home hero height adjusted
+Commit subject: `Nav: remove the top banner (Senwell Pedigree) and fit the home hero to the header`
+- **What**: the dark strip above the header ("Enterprise Ecosystem · A product of Senwell Group · AS9100D QMS controls · Senwell Pedigree") is removed; only the sticky white header remains. The home hero used to reserve room for that strip, so its minimum height is now the viewport minus the header alone (`100svh - 4.1rem`, was `6.25rem`); the hero fills the first screen again with no empty gap under it.
+- **Files**: `app/erp/_components/site-nav.tsx` (banner removed, unused `ShieldCheck` import and comment cleaned), `app/erp/_components/home-hero.tsx` (`HERO_MIN_HEIGHT`).
+- **Note**: the home section `#senwell` and the footer link "About Senwell" are unchanged. The other heroes (product, industry, Security, Why Synax, Solutions) size by their content, so they needed no change.
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — Overview hero: product cards scattered into the side space
 Commit subject: `Overview hero: scatter the product cards into the empty side space`
 - **What**: on wide desktop screens the six product cards beside the hero dashboard no longer sit in two straight columns. Each card drifts from its place by its own amount (scattered, not mirrored), up to 280px sideways and about 170px down, into the empty space left and right of the stage; the two bottom cards (AI & Business Intelligence, HRMS) sit beside the headline. The dashboard image keeps its size and position; the spotlight, zoom lens and dashed connector work as before (the connector is also redrawn on window resize). The drift shrinks to zero when there is no free space beside the stage, so nothing is cut off on narrower desktops; the mobile and tablet grid is unchanged.
