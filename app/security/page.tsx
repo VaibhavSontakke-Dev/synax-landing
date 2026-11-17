@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Check, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
 import { LIVE_COMPLIANCE, LIVE_SECURITY, LIVE_SOURCE } from "../erp/_data/live";
 import { Block, CtaBand } from "../erp/_components/site-page";
 import { SecurityHero } from "../erp/_components/security-hero";
@@ -258,20 +259,17 @@ export default function SecurityPage() {
       >
         <div className="flex flex-wrap justify-center gap-3">
           {[
-            { label: "Privacy Policy", href: "https://synax.senwellgroup.com/privacy" },
-            { label: "Terms and Conditions", href: "https://synax.senwellgroup.com/terms" },
+            { label: "Privacy Policy", href: "/privacy" },
+            { label: "Terms and Conditions", href: "/terms" },
           ].map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border-2 border-orange-500 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
             >
               {l.label}
-              <ExternalLink className="size-3.5" aria-hidden="true" />
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
+              <ArrowRight className="size-3.5" aria-hidden="true" />
+            </Link>
           ))}
         </div>
         <p className="mt-4 text-center text-xs text-slate-500">

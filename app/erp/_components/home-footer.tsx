@@ -220,22 +220,12 @@ export function Footer() {
         <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-5 text-xs text-slate-400 sm:flex-row">
           <p>© {COPYRIGHT_YEAR} Synax by Senwell Group. All rights reserved.</p>
           <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-            <a
-              href="https://synax.senwellgroup.com/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}
-            >
+            <Link href="/privacy" className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}>
               Privacy Policy
-            </a>
-            <a
-              href="https://synax.senwellgroup.com/terms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}
-            >
-              Terms of Service
-            </a>
+            </Link>
+            <Link href="/terms" className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}>
+              Terms and Conditions
+            </Link>
             <Link href="/security" className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}>
               Security
             </Link>

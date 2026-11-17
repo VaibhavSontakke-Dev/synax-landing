@@ -341,9 +341,9 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                     <label htmlFor="demo-consent" className="text-xs leading-relaxed text-slate-600">
                       I agree that Senwell Group may contact me about this demo and process the details I have entered, as described in the{" "}
                       <a
-                        href="https://synax.senwellgroup.com/privacy"
+                        href="/privacy"
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener"
                         className="font-semibold text-blue-900 underline hover:text-blue-800"
                       >
                         Privacy Policy

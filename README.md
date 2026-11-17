@@ -22,6 +22,14 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Own Privacy Policy and Terms pages (no more links out to the portal)
+Commit subject: `Legal: own /privacy and /terms pages instead of linking to the portal`
+- **What**: the site had no legal pages of its own; the footer, the demo-form consent box and the Security page sent visitors to `synax.senwellgroup.com/privacy` and `/terms` in a new tab. Both documents now live on this site at `/privacy` and `/terms`, with the portal's text copied word for word (effective 3 November 2026; Privacy 14 sections, Terms 21 sections).
+- **Design**: one layout for both. A sky hero with the breadcrumb, an "Effective" date and the company name, the intro, a switcher between the two documents, and the "In short" card. Below it, a sticky "On this page" list on desktop (it highlights the section being read and shows reading progress; a fold-out list on phones and tablets), numbered section cards (bold lead-ins such as "Account data:" and defined terms, orange bullets), and a navy contact band ("Email us", plus a link to the other document). The contact email is a mail link, and in the Terms, "Privacy Policy" links to `/privacy`.
+- **Links changed**: footer legal bar (Privacy Policy, "Terms of Service" renamed to "Terms and Conditions" to match the document), demo-form consent link (still opens in a new tab so the form is not lost), Security page "Privacy & terms" buttons (internal links, arrow icon instead of the external-link icon).
+- **Files**: new `app/(legal)/layout.tsx`, `app/(legal)/privacy/page.tsx`, `app/(legal)/terms/page.tsx`, `app/erp/_components/legal-page.tsx`, `app/erp/_components/legal-toc.tsx`, `app/erp/_data/legal.ts` (the text; update it together with the portal when either changes); edited `home-footer.tsx`, `demo-provider.tsx`, `app/security/page.tsx`.
+- **Rollback**: revert the commit (the links point to the portal again).
+
 ### Pending (next commit) — Nav: top banner removed, home hero height adjusted
 Commit subject: `Nav: remove the top banner (Senwell Pedigree) and fit the home hero to the header`
 - **What**: the dark strip above the header ("Enterprise Ecosystem · A product of Senwell Group · AS9100D QMS controls · Senwell Pedigree") is removed; only the sticky white header remains. The home hero used to reserve room for that strip, so its minimum height is now the viewport minus the header alone (`100svh - 4.1rem`, was `6.25rem`); the hero fills the first screen again with no empty gap under it.
