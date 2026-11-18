@@ -201,10 +201,10 @@ export function HeroDashboard() {
 /* -------------------------------------------------------------------------- */
 
 const MACHINES = [
-  { id: "VMC-01", load: [0, 42], tone: "#0b6cff" },
-  { id: "VMC-02", load: [18, 38], tone: "#3d88ff" },
-  { id: "CNC-07", load: [10, 66], tone: "#00b2a9" },
-  { id: "GRND-02", load: [48, 34], tone: "#38bdf8" },
+  { id: "M-01", load: [0, 42], tone: "#0b6cff" },
+  { id: "M-02", load: [18, 38], tone: "#3d88ff" },
+  { id: "M-07", load: [10, 66], tone: "#00b2a9" },
+  { id: "M-12", load: [48, 34], tone: "#38bdf8" },
 ];
 
 export function PlanBoardMock() {

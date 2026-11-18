@@ -8,15 +8,15 @@ import { HeroBand, HeroCopy, ModChips, ProductTail, faqItems, relatedProduct } f
 /** Shop Floor & Machine Monitoring — a floor plan hero with the copy card on top, three stacked layers and the connection options. */
 
 const MACHINES: { name: string; state: "run" | "idle" | "alarm" | "manual"; pct: number; note: string }[] = [
-  { name: "CNC 01", state: "run", pct: 82, note: "Running" },
-  { name: "CNC 02", state: "run", pct: 64, note: "Running" },
-  { name: "CNC 03", state: "idle", pct: 30, note: "Idle: waiting for material" },
-  { name: "CNC 04", state: "run", pct: 90, note: "Running" },
-  { name: "CNC 05", state: "alarm", pct: 12, note: "Alarm: needs a person" },
-  { name: "CNC 06", state: "run", pct: 70, note: "Running" },
-  { name: "Manual lathe", state: "manual", pct: 0, note: "Counts confirmed by the operator" },
-  { name: "CNC 07", state: "run", pct: 55, note: "Running" },
-  { name: "CNC 08", state: "run", pct: 76, note: "Running" },
+  { name: "Machine 01", state: "run", pct: 82, note: "Running" },
+  { name: "Machine 02", state: "run", pct: 64, note: "Running" },
+  { name: "Machine 03", state: "idle", pct: 30, note: "Idle: waiting for material" },
+  { name: "Machine 04", state: "run", pct: 90, note: "Running" },
+  { name: "Machine 05", state: "alarm", pct: 12, note: "Alarm: needs a person" },
+  { name: "Machine 06", state: "run", pct: 70, note: "Running" },
+  { name: "Manual machine", state: "manual", pct: 0, note: "Counts confirmed by the operator" },
+  { name: "Machine 07", state: "run", pct: 55, note: "Running" },
+  { name: "Machine 08", state: "run", pct: 76, note: "Running" },
 ];
 const STATE_STYLE = {
   run: { ring: "border-slate-300", dot: "bg-blue-900", bar: "bg-blue-900/40" },
@@ -80,8 +80,8 @@ export function ShopFloorPage() {
               productKey="shopfloor"
               compact
               eyebrow="Production execution"
-              subtitle="The spindle reports the count"
-              lead="Connect CNC machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator. Schedule work onto machines, give operators the job in front of them, and see what every machine is doing."
+              subtitle="The machine reports the count"
+              lead="Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator. Schedule work onto machines, give operators the job in front of them, and see what every machine is doing."
             />
           </div>
 
@@ -94,7 +94,7 @@ export function ShopFloorPage() {
             className="relative mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-3 lg:absolute lg:top-8 lg:right-4 lg:mt-0 lg:block lg:w-60 lg:space-y-3 xl:right-10"
             aria-label="Live machine board (illustration)"
           >
-            {MACHINES.filter((m) => ["CNC 04", "CNC 03", "CNC 05"].includes(m.name)).map((m) => {
+            {MACHINES.filter((m) => ["Machine 04", "Machine 03", "Machine 05"].includes(m.name)).map((m) => {
               const s = STATE_STYLE[m.state];
               return (
                 <li key={m.name} className={`rounded-xl border-2 bg-white p-3 shadow-lg ${s.ring}`}>
@@ -116,7 +116,7 @@ export function ShopFloorPage() {
       {/* Three layers */}
       <Block
         id="layers"
-        tag="Schedule to spindle"
+        tag="Schedule to machine"
         title="Plan, run, watch"
         lead="The same job moves from the plan, to the operator, to the machine's own record."
       >

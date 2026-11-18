@@ -59,7 +59,7 @@ export const PRODUCT_DATA: Record<ProductKey, ProductMeta> = {
     icon: Factory,
     description:
       "Built for precision and job-work machine shops, Synax connects customer orders and supplied-material challans to route cards, machine-confirmed production, inspection, dispatch, and invoicing. Track each customer's material through consumption, returns, and scrap.",
-    heroStat: { label: "Production Flow", value: "Spindle to Invoice" },
+    heroStat: { label: "Production Flow", value: "Machine to Invoice" },
     highlights: [
       "Link customer purchase orders, inward challans, and material ID ranges",
       "Track customer material balances, consumption, returns, and scrap",
@@ -121,7 +121,7 @@ export const PRODUCT_DATA: Record<ProductKey, ProductMeta> = {
       {
         title: "Machine-Confirmed Production",
         description:
-          "Use CNC cycle counts, alarms, and downtime to support production confirmation, with operators reviewing count variances.",
+          "Use machine cycle counts, alarms, and downtime to support production confirmation, with operators reviewing count variances.",
         metric: "Live job counts",
       },
       {
@@ -137,7 +137,7 @@ export const PRODUCT_DATA: Record<ProductKey, ProductMeta> = {
         metric: "Part-level history",
       },
       {
-        title: "Spindle-to-Invoice Dispatch",
+        title: "Machine-to-Invoice Dispatch",
         description:
           "Connect production completion to packing, customer invoice, delivery challan, GST e-invoice, and e-way bill workflows.",
         metric: "Connected dispatch flow",
@@ -382,7 +382,7 @@ export const PRODUCT_DATA: Record<ProductKey, ProductMeta> = {
     accentBorder: "border-emerald-200",
     icon: Activity,
     description:
-      "Connect CNC machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator. Schedule work onto machines, give operators the job in front of them, and see what every machine is doing.",
+      "Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator. Schedule work onto machines, give operators the job in front of them, and see what every machine is doing.",
     heroStat: { label: "Product Focus", value: "Machine Execution" },
     highlights: [
       "Machine scheduling and load charts",
@@ -392,7 +392,7 @@ export const PRODUCT_DATA: Record<ProductKey, ProductMeta> = {
     ],
     moduleSection: {
       kicker: "Shop floor",
-      subtitle: "From the schedule to the spindle, with the machine's own counts",
+      subtitle: "From the schedule to the shop floor, with the machine's own counts",
       groups: [
         {
           id: "machine-scheduling",

@@ -44,7 +44,7 @@ const DIMENSIONS = BENCHMARK.map((d) => ({ ...d, Icon: BENCHMARK_ICONS[d.icon] }
 
 /** Bar lengths are illustrative (a share of the track), not measurements. */
 const TIMELINE = [
-  { name: "Synax Unified Suite", value: "Live module by module in a few weeks", width: "12%", kind: "synax" },
+  { name: "Synax Unified Suite", value: "Live module by module, on a tailored plan", width: "12%", kind: "synax" },
   { name: LEGACY, value: "A long, consultant-led project", width: "64%", kind: "legacy" },
   { name: POINT, value: "Endless patchworks & API breaks", width: "46%", kind: "point" },
 ] as const;
@@ -90,8 +90,8 @@ export function Comparison({ onSeeProducts }: { onSeeProducts: () => void }) {
           Why Industry Leaders Migrate to Synax
         </h2>
         <p className="text-xs text-slate-600 sm:text-sm md:text-base">
-          Compare modern purpose-built manufacturing software against legacy monoliths and disjointed point
-          solutions.
+          Modern, purpose-built manufacturing software, backed by a technology team of 100+ IT professionals.
+          See how it compares with legacy monoliths and disjointed point solutions.
         </p>
       </div>
 
@@ -178,9 +178,10 @@ export function Comparison({ onSeeProducts }: { onSeeProducts: () => void }) {
             <span className="flex size-9 items-center justify-center rounded-lg bg-white/15 text-orange-300">
               <Scale className="size-[18px]" aria-hidden="true" />
             </span>
-            <h3 className="mt-3 text-lg leading-snug font-extrabold">See how Synax compares on your own process</h3>
+            <h3 className="mt-3 text-lg leading-snug font-extrabold">Technology backed by 100+ IT professionals</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-slate-300">
-              Bring your current tools and workflows to a 30-minute walkthrough.
+              More than a software vendor: an experienced in-house team that understands technology and business,
+              helps with your technical needs, and supports you as you grow, well beyond go-live.
             </p>
           </div>
           <div className="flex flex-col gap-2.5">

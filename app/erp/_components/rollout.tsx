@@ -53,7 +53,7 @@ export function Rollout() {
           <SectionHeading
             align="center"
             title="A phased path from discovery to optimization"
-            lead="Prepare the data and owners first, pilot with one team, then expand in governed waves."
+            lead="Every rollout follows the same four phases. How long each one takes depends on your organization, so the schedule is planned with you."
           />
         </Reveal>
 
@@ -123,8 +123,8 @@ export function Rollout() {
             <p className="flex max-w-2xl items-start gap-3 text-[0.9375rem] text-erp-body">
               <Repeat className="mt-0.5 size-5 shrink-0 text-orange-600" aria-hidden />
               <span>
-                Start with the highest-impact team, then expand in 1–2 week waves. Total timing depends on
-                process complexity and data readiness.
+                Implementation timelines are tailored to your organization&apos;s size, operational complexity,
+                and requirements. A detailed rollout plan will be established during the discovery phase.
               </span>
             </p>
           </div>

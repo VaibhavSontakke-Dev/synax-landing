@@ -310,7 +310,7 @@ function PosterHero({ page }: { page: IndustryPage }) {
 
           <div className="hidden text-right lg:block">
             <p className="text-7xl leading-none font-black tracking-tight text-white">{page.flow.length}</p>
-            <p className="mt-1 text-sm text-slate-300">steps, spindle to invoice</p>
+            <p className="mt-1 text-sm text-slate-300">steps, machine to invoice</p>
           </div>
         </div>
 

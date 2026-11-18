@@ -145,7 +145,7 @@ export default function SolutionsPage() {
               Four starting points
             </h2>
             <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-              Most plants go live module by module within a few weeks. Begin with the modules on the left of each path.
+              Plants go live module by module, at a pace set by their size and data readiness. Begin with the modules on the left of each path.
             </p>
           </div>
 

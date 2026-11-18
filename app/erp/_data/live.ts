@@ -14,7 +14,7 @@ export const LIVE_SOURCE = "https://synax.senwellgroup.com/landing";
 /** The portal's own positioning line. */
 export const LIVE_POSITIONING = {
   headline: "The ERP for precision and job-work manufacturers.",
-  sub: "From the machine spindle to the GST invoice, in one workspace, with AI that chases your exceptions.",
+  sub: "From the machine to the GST invoice, in one workspace, with AI that chases your exceptions.",
 };
 
 /** Chips under the portal's hero. */
@@ -40,8 +40,8 @@ export const LIVE_PILLARS = [
   },
   {
     kicker: "Machine to invoice",
-    title: "The spindle reports the count. The route card, COC and invoice follow.",
-    copy: "Connect CNC machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator.",
+    title: "The machine reports the count. The route card, COC and invoice follow.",
+    copy: "Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator.",
     points: [
       "Live machine board with alarms and downtime reasons",
       "Start jobs by route card number or barcode scan",
@@ -132,7 +132,7 @@ export const LIVE_FAQ = [
   },
   {
     q: "How long does onboarding take?",
-    a: "Most plants go live module by module within a few weeks, depending on how ready your masters and opening stock are. We import part, BOM and stock data from Excel.",
+    a: "It depends on your organization's size, the modules you start with, and how ready your masters and opening stock are. Plants go live module by module, on a rollout plan agreed with you during discovery. We import part, BOM and stock data from Excel.",
   },
 ];
 
@@ -189,7 +189,7 @@ export const LIVE_COMPLIANCE = [
 /** The portal's rollout guide (/rollout): four phases, with the points it lists under each. */
 export const LIVE_ROLLOUT = [
   {
-    week: "Week 1",
+    week: "Phase 1",
     title: "Discovery & mapping",
     points: [
       "Map departments, process owners and current tools",
@@ -198,7 +198,7 @@ export const LIVE_ROLLOUT = [
     ],
   },
   {
-    week: "Week 2",
+    week: "Phase 2",
     title: "Configuration & data setup",
     points: [
       "Configure modules by domain: IT, HR, finance, manufacturing",
@@ -207,7 +207,7 @@ export const LIVE_ROLLOUT = [
     ],
   },
   {
-    week: "Week 3",
+    week: "Phase 3",
     title: "Pilot launch",
     points: [
       "Run one controlled team or plant-cell pilot",
@@ -216,7 +216,7 @@ export const LIVE_ROLLOUT = [
     ],
   },
   {
-    week: "Week 4+",
+    week: "Phase 4",
     title: "Full rollout & optimization",
     points: [
       "Expand to all target teams with phased onboarding batches",
@@ -225,4 +225,4 @@ export const LIVE_ROLLOUT = [
     ],
   },
 ];
-export const LIVE_ROLLOUT_NOTE = "Start with your highest-impact team first, then expand in 1-2 week waves.";
+export const LIVE_ROLLOUT_NOTE = "Start with your highest-impact team, then expand in planned waves. Timelines are tailored to your organization's size, complexity and requirements.";

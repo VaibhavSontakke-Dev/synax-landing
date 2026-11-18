@@ -69,7 +69,7 @@ const PILLARS: Pillar[] = [
     title: "Technology-Driven Transformation",
     subtitle: "Cloud-native scale, machine connectivity & audit-ready security",
     body: "Replacing clunky legacy on-premise architectures with modern, cloud-native engineering. Synax connects CNC machines through the OEM connection or open FOCAS, runs every company in its own isolated workspace, checks postings on the server, and keeps an audit history of material changes.",
-    chips: ["CNC Machine Data (OEM / FOCAS)", "Audit History & Isolated Workspaces"],
+    chips: ["Machine Data (OEM / FOCAS)", "Audit History & Isolated Workspaces"],
     tone: "navy",
   },
 ];
@@ -221,7 +221,7 @@ export function Purpose() {
               One Unified Continuum. Zero Disconnected Tools.
             </h3>
             <p className="text-sm leading-relaxed text-slate-600">
-              Every tier of Synax works in synchrony: from hiring and biometric clock-in to CNC
+              Every tier of Synax works in synchrony: from hiring and biometric clock-in to
               machining and AS9100D-controlled release.
             </p>
           </div>

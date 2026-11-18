@@ -129,7 +129,7 @@ export default function WhySynaxPage() {
       </section>
 
       {/* Flow */}
-      <Block id="flow" tag="Spindle to invoice" title="One connected flow, every step traceable" lead={LIVE_FLOW_LEAD} tone="white">
+      <Block id="flow" tag="Machine to invoice" title="One connected flow, every step traceable" lead={LIVE_FLOW_LEAD} tone="white">
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {LIVE_FLOW.map((step, i) => {
             const emphasis = i === 3;
@@ -170,7 +170,7 @@ export default function WhySynaxPage() {
         id="compare"
         tag="Market benchmark"
         title="How Synax compares with the usual alternatives"
-        lead="Most businesses run either a heavy legacy ERP with add-ons, or a set of disconnected tools. Here is how each handles the same jobs."
+        lead="Most businesses run either a heavy legacy ERP with add-ons, or a set of disconnected tools. Synax is purpose-built software backed by 100+ IT professionals. Here is how each handles the same jobs."
         tone="white"
       >
         <div className="hidden overflow-hidden rounded-2xl border border-slate-200 md:block">

@@ -66,7 +66,7 @@ const PRODUCTS: Product[] = [
     tag: "Core ERP",
     tagline: "Customer material, route cards, and machine-to-invoice control.",
     statLabel: "Production Flow",
-    statValue: "Spindle to Invoice",
+    statValue: "Machine to Invoice",
     bullets: [
       "POs, challans & material ID ranges",
       "Material balances, use, returns & scrap",

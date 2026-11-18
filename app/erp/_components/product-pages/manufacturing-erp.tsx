@@ -68,7 +68,7 @@ export function ManufacturingErpPage() {
           <HeroCopy
             productKey="precision"
             eyebrow="Precision & job-work ERP"
-            subtitle="From the machine spindle to the GST invoice"
+            subtitle="From the machine to the GST invoice"
             lead="Built for precision and job-work machine shops. Customer orders and supplied-material challans connect to route cards, machine-confirmed production, inspection, dispatch and invoicing, so every part carries one traceable record."
           />
           <div className="relative mx-auto w-full max-w-xl pb-6 lg:max-w-none">
@@ -133,7 +133,7 @@ export function ManufacturingErpPage() {
       {/* The chain */}
       <Block
         id="chain"
-        tag="Spindle to invoice"
+        tag="Machine to invoice"
         title="Each document carries the one before it"
         lead="Any part can be traced back to its PO, material lot, machine and operator."
       >
@@ -196,10 +196,10 @@ export function ManufacturingErpPage() {
           <div className="mx-auto mb-8 max-w-2xl space-y-3 text-center">
             <SectionTag>Accounts and GST</SectionTag>
             <h2 id="accounts-heading" className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-              Keep your books in Tally
+              GST invoices with IRN. Books stay in Tally.
             </h2>
             <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
-              Run purchase, stores, production and dispatch in Synax. Vouchers flow to Tally, so your accountant changes nothing.
+              Run purchase, stores, production and dispatch in Synax. GST invoices, IRN and e-way bills come from the same flow, and vouchers go to Tally, so your accountant changes nothing.
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl items-stretch gap-4 md:grid-cols-[1fr_auto_1fr_1fr]">

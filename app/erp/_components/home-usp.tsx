@@ -302,8 +302,8 @@ function MachinesRow() {
             </span>
           }
           label="Live machine monitoring"
-          title="The spindle reports the count."
-          body="Connect CNC machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator."
+          title="The machine reports the count."
+          body="Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator."
           points={[
             "OEM connection or open FOCAS",
             "Live machine board with alarms and downtime reasons",
@@ -462,13 +462,13 @@ function BillingRow() {
             </span>
           }
           label="Tally and GST"
-          title="Keep your books in Tally. Invoices carry their IRN."
-          body="Run purchase, stores, production and dispatch in Synax. Vouchers flow to Tally, so your accountant changes nothing."
+          title="GST invoices carry their IRN. Your books stay in Tally."
+          body="Run purchase, stores, production and dispatch in Synax. GST invoices, IRN and e-way bills come from the same flow, and vouchers go to Tally, so your accountant changes nothing."
           points={[
-            "Tally bridge for vouchers",
-            "GST invoice, IRN and e-way bill in one flow",
-            "ClearTax or Masters India connects the IRN on approval",
+            "GST tax invoice, IRN and e-way bill in one flow",
+            "IRN through ClearTax or Masters India, on approval",
             "ITC-04 data pack for job work",
+            "Tally bridge for vouchers",
           ]}
           href={hrefFor("precision")}
           cta="Explore Manufacturing ERP"
@@ -515,7 +515,7 @@ export function Usp() {
             Built in, not bolted on: <span className="text-blue-900">AI</span>, live machines, <span className="text-blue-900">Tally</span> and GST
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-            Most plants stitch these together from separate tools. In Synax they share one record, from the spindle to the GST invoice.
+            Most plants stitch these together from separate tools. In Synax they share one record, from the machine to the GST invoice.
           </p>
           <ul className="mt-5 flex flex-wrap justify-center gap-2" aria-label="Highlights">
             {["Agents only propose", "OEM or open FOCAS", "IRN on approval", "Works with Tally", "Built in India"].map((c) => (

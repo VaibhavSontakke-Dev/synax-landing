@@ -88,7 +88,7 @@ export const NAV: NavItem[] = [
       {
         label: "Rollout blueprint",
         href: "#rollout",
-        description: "Pilot to full scale in three phases.",
+        description: "Four phases, planned around your organization.",
       },
     ],
   },
@@ -610,54 +610,54 @@ export const CLIENTS = [
 export const ROLLOUT = [
   {
     step: "01",
-    title: "Discovery & Mapping",
-    timing: "Week 1",
-    copy: "Map departments, process owners, current tools, Day 1 workflows, and role-based access.",
+    title: "Discovery & Planning",
+    timing: "Phase 1",
+    copy: "Review departments, processes, current systems, data, and integrations, then agree the scope and a rollout plan for your organization.",
   },
   {
     step: "02",
     title: "Configuration & Data Setup",
-    timing: "Week 2",
-    copy: "Configure modules and approvals, then prepare employee, customer, vendor, project, and inventory records.",
+    timing: "Phase 2",
+    copy: "Configure modules, roles, and approvals, then clean, import, and check employee, customer, vendor, project, and inventory records.",
   },
   {
     step: "03",
     title: "Pilot Launch",
-    timing: "Week 3",
-    copy: "Pilot with one team or plant cell, resolve blockers, and train managers and process champions.",
+    timing: "Phase 3",
+    copy: "Go live with one team, department, or site first, train its users, and resolve issues before the wider rollout.",
   },
   {
     step: "04",
     title: "Full Rollout & Optimization",
-    timing: "Week 4+",
-    copy: "Expand in phases, review adoption and compliance, then automate repeat approvals after stabilization.",
+    timing: "Phase 4",
+    copy: "Extend to more teams, modules, and locations in planned waves, track adoption, and refine workflows once stable.",
   },
 ];
 
 export const ROLLOUT_CHECKLIST = [
-  "Name a rollout owner and department champions",
-  "Prepare employee, customer, vendor, and project master data",
-  "Document approval, attendance, and task-update procedures",
-  "Set success measures for turnaround, SLA adherence, and throughput",
-  "Schedule manager training and the first 14 days of hypercare",
+  "Name a rollout owner, a leadership sponsor, and department champions",
+  "Prepare and check employee, customer, vendor, and project master data",
+  "Document current approval, attendance, and task-update procedures",
+  "Agree success measures, such as turnaround, SLA adherence, and throughput",
+  "Plan user training and a support period after each go-live",
 ];
 
 export const ROLLOUT_ROLES = [
   {
     title: "Rollout Owner",
-    description: "Owns the schedule, accountability, and escalations.",
+    description: "Owns the rollout plan, its milestones, and escalations.",
   },
   {
     title: "Department Champion",
-    description: "Coordinates team onboarding, training, and process adoption.",
+    description: "Represents the team's processes and leads its training and adoption.",
   },
   {
     title: "System Admin",
-    description: "Configures modules, permissions, and quality checks.",
+    description: "Manages module settings, user access, and data checks.",
   },
   {
     title: "Leadership Sponsor",
-    description: "Aligns decisions, policy, and adoption across the organization.",
+    description: "Sets priorities, approves scope, and drives adoption across the organization.",
   },
 ];
 

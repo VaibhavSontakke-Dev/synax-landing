@@ -98,9 +98,9 @@ const GATE = [
 ];
 
 const MACHINES = [
-  { t: "CNC 01", n: "Running", pct: 82 },
-  { t: "CNC 03", n: "Idle: waiting for material", pct: 30 },
-  { t: "CNC 05", n: "Alarm: needs a person", pct: 12, alarm: true },
+  { t: "Machine 01", n: "Running", pct: 82 },
+  { t: "Machine 03", n: "Idle: waiting for material", pct: 30 },
+  { t: "Machine 05", n: "Alarm: needs a person", pct: 12, alarm: true },
 ];
 
 const CTA: TourScene = { kind: "cta" };
@@ -112,7 +112,7 @@ const overview = tour("overview", "/audio/overview", [
   { kind: "tiles", head: "Six products, ", accent: "one platform", items: PRODUCT_KEYS.map((k) => ({ Icon: PRODUCT_DATA[k].icon, label: routeFor(k).name })) },
   {
     kind: "steps",
-    head: "Spindle to invoice, ",
+    head: "Machine to invoice, ",
     accent: "one record",
     items: [
       { t: "RFQ and customer PO", n: "Quotes and revisions" },
@@ -123,7 +123,7 @@ const overview = tour("overview", "/audio/overview", [
       { t: "Invoice and dispatch", n: "IRN and e-way bill" },
     ],
   },
-  { kind: "bars", head: "The spindle ", accent: "reports the count", items: MACHINES, note: "Illustration" },
+  { kind: "bars", head: "The machine ", accent: "reports the count", items: MACHINES, note: "Illustration" },
   {
     kind: "flow",
     head: "Your accounts ",
@@ -139,7 +139,7 @@ const overview = tour("overview", "/audio/overview", [
 ]);
 
 const manufacturing = tour("manufacturing-erp", "/audio/tours/manufacturing-erp", [
-  { kind: "intro", head: "Manufacturing ERP", accent: " from spindle to GST invoice", sub: "Precision and job-work machine shops" },
+  { kind: "intro", head: "Manufacturing ERP", accent: " from machine to GST invoice", sub: "Precision and job-work machine shops" },
   {
     kind: "steps",
     head: "One part, ",
@@ -311,7 +311,7 @@ const staffing = tour("staffing", "/audio/tours/staffing", [
 ]);
 
 const shopFloor = tour("shop-floor", "/audio/tours/shop-floor", [
-  { kind: "intro", head: "Shop Floor &", accent: " Machine Monitoring", sub: "The spindle reports the count" },
+  { kind: "intro", head: "Shop Floor &", accent: " Machine Monitoring", sub: "The machine reports the count" },
   {
     kind: "steps",
     head: "Plan, run, ",
