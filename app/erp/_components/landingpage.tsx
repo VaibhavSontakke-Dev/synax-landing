@@ -307,6 +307,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
             </p>
           </div>
 
+          {/* The four logos are made for light backgrounds (dark lettering), so in dark mode each sits on a white plate. */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
             {/* Client 1: Senwell Exports */}
             <a
@@ -315,12 +316,14 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               rel="noopener noreferrer"
               className="group p-6 rounded-2xl border border-slate-200/90 hover:border-emerald-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
-              <img
-                src="https://senwellexports.com/static/media/SenwellLogo.524bb520c09926753630.png" referrerPolicy="no-referrer"
-                alt="Senwell Exports"
-                className="h-10 sm:h-12 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
+              <span className="inline-flex items-center justify-center rounded-xl dark:bg-white dark:px-4 dark:py-2.5 dark:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.7)]">
+                <img
+                  src="https://senwellexports.com/static/media/SenwellLogo.524bb520c09926753630.png" referrerPolicy="no-referrer"
+                  alt="Senwell Exports"
+                  className="h-10 sm:h-12 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </span>
               <span className="text-[11px] font-semibold text-slate-500 group-hover:text-emerald-700 transition-colors">
                 senwellexports.com
               </span>
@@ -333,7 +336,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               rel="noopener noreferrer"
               className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
-              <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105">
+              <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105 rounded-xl dark:bg-white dark:px-4 dark:py-2.5 dark:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.7)]">
                 <img
                   src="https://exxoninfo.com/favicon.ico" referrerPolicy="no-referrer"
                   alt="Exxon Info"
@@ -356,12 +359,14 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               rel="noopener noreferrer"
               className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
-              <img
-                src="https://stacwell.com/_next/image?url=%2FstacwellLogo.webp&w=256&q=75" referrerPolicy="no-referrer"
-                alt="Stacwell"
-                className="h-9 sm:h-11 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
+              <span className="inline-flex items-center justify-center rounded-xl dark:bg-white dark:px-4 dark:py-2.5 dark:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.7)]">
+                <img
+                  src="https://stacwell.com/_next/image?url=%2FstacwellLogo.webp&w=256&q=75" referrerPolicy="no-referrer"
+                  alt="Stacwell"
+                  className="h-9 sm:h-11 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </span>
               <span className="text-[11px] font-semibold text-slate-500 group-hover:text-brand transition-colors">
                 stacwell.com
               </span>
@@ -374,12 +379,14 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               rel="noopener noreferrer"
               className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
-              <img
-                src="https://www.stacem.com/wp-content/themes/themeb17/img/logo-stacem.svg" referrerPolicy="no-referrer"
-                alt="Stacem"
-                className="h-8 sm:h-10 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
+              <span className="inline-flex items-center justify-center rounded-xl dark:bg-white dark:px-4 dark:py-2.5 dark:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.7)]">
+                <img
+                  src="https://www.stacem.com/wp-content/themes/themeb17/img/logo-stacem.svg" referrerPolicy="no-referrer"
+                  alt="Stacem"
+                  className="h-8 sm:h-10 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </span>
               <span className="text-[11px] font-semibold text-slate-500 group-hover:text-brand transition-colors">
                 stacem.com
               </span>

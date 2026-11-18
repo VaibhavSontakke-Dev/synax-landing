@@ -22,6 +22,32 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Footer fits the screen again after the Solutions column
+Commit subject: `Footer: tighter layout so it fits one screen with the Solutions column`
+- **Problem**: the footer is built to fill exactly one screen below the header. With the new Solutions column it was about 90 px too tall on a laptop-height window (about 680 px of viewport), so the logo and the Products heading slid under the sticky header. The right-hand column was the tallest part:
+  - "Rubber & Polymer Moulding" wrapped onto two lines.
+  - The HRMS and Staffing product cards wrapped onto two lines.
+  - "All solutions" took a row of its own.
+- **Fix** (`app/erp/_components/home-footer.tsx`):
+  - "All solutions →" sits beside the Solutions heading.
+  - Rubber is "Rubber Moulding" in the footer.
+  - Product-card descriptions stay on one line (the full text shows on hover), and the card padding and gaps are slightly smaller.
+  - The address takes two lines instead of four.
+  - Spacing is a little tighter: the top padding, the gap above the link columns, the Solutions group spacing, and the legal bar.
+  - By my estimate, the tallest column is now about 100 px shorter.
+- **Checks**:
+  - Typecheck and lint pass.
+  - **Not measured in a browser**: the heights above are estimates from your screenshot.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — "Running on Synax" logos readable in dark mode
+Commit subject: `Running on Synax: white logo plates in dark mode`
+- **What**: on the home page's "Senwell Group & Ecosystem Companies" section, the four company logos are made for light backgrounds. In dark mode, Exxon's navy "EXXON" lettering, Stacwell's grey "ST" and Stacem's dark letters disappeared into the dark cards.
+- **Fix**: in dark mode only, each logo sits on a small white rounded plate with a soft shadow. Light mode is unchanged.
+- **Code**: `app/erp/_components/landingpage.tsx`: a wrapper around the Senwell, Stacwell and Stacem images, and plate classes on the Exxon logo row (`dark:bg-white dark:px-4 dark:py-2.5`). The unused `client-marquee.tsx` was not changed.
+- **Checks**: typecheck and lint pass; lint shows only the existing `<img>` warnings. **Not viewed in a browser.**
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — USP "Live machine monitoring": illustrated machine board, light and dark
 Commit subject: `USP machine row: illustrated live machine board in the hero style (light and dark)`
 - **What**: the second row of "What sets Synax apart" showed `usp-machines-v3.webp`, a PCB-line screen (light only). It now shows an illustrated **machine board** in the same style as the overview hero and the AI row:

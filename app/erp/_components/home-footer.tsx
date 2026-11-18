@@ -63,6 +63,7 @@ const PLATFORM_LINKS = [
 const FOOTER_NAME: Partial<Record<SolutionKey, string>> = {
   machinery: "Industrial Machinery",
   precision: "Precision CNC & Job Work",
+  rubber: "Rubber Moulding",
 };
 
 /** The Solutions column is split like the header menu: industries on the left, the other two lenses on the right. */
@@ -114,9 +115,9 @@ export function Footer() {
         </p>
       </div>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 pt-12 pb-24 sm:px-6 lg:px-8 lg:pt-10 lg:pb-6">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 pt-12 pb-24 sm:px-6 lg:px-8 lg:pt-8 lg:pb-5">
         {/* Content block, centred between the top and the legal bar */}
-        <div className="my-auto grid gap-10 py-4 lg:grid-cols-12 lg:gap-x-12">
+        <div className="my-auto grid gap-10 py-2 lg:grid-cols-12 lg:gap-x-12">
           {/* Brand, contact, demo, compliance */}
           <div className="lg:col-span-4">
             <Link href="/erp" aria-label="Synax by Senwell — home" className={`relative inline-block rounded-lg ${FOCUS}`}>
@@ -130,7 +131,7 @@ export function Footer() {
               audit-ready platform.
             </p>
 
-            <ul className="mt-5 space-y-2.5 text-sm">
+            <ul className="mt-4 space-y-2 text-sm">
               <li className="flex items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sky-200">
                   <Globe className="size-4" aria-hidden="true" />
@@ -145,18 +146,14 @@ export function Footer() {
                   <MapPin className="size-4" aria-hidden="true" />
                 </span>
                 <address className="text-slate-300 not-italic leading-relaxed">
-                  Gera&apos;s Imperium Alpha,
+                  Gera&apos;s Imperium Alpha, Near EON IT Park,
                   <br />
-                  Near EON IT Park,
-                  <br />
-                  Kharadi, Pune, Maharashtra,
-                  <br />
-                  India-411014.
+                  Kharadi, Pune, Maharashtra, India-411014.
                 </address>
               </li>
             </ul>
 
-            <div className="mt-6">
+            <div className="mt-5">
               <p className="mb-2.5 text-xs font-bold tracking-[0.14em] text-slate-400 uppercase">Compliance alignment</p>
               <ul className="flex flex-wrap gap-2">
                 {COMPLIANCE.map(({ Icon, label }) => (
@@ -176,19 +173,19 @@ export function Footer() {
           <div className="lg:col-span-8">
             <nav aria-label="Synax products">
               <ColumnHeading>Products</ColumnHeading>
-              <ul className="grid gap-3 sm:grid-cols-2">
+              <ul className="grid gap-2.5 sm:grid-cols-2">
                 {PRODUCTS.map((p) => (
                   <li key={p.label}>
                     <Link
                       href={hrefFor(p.key)}
-                      className={`group flex h-full items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3 transition-colors hover:border-orange-300/50 hover:bg-white/[0.08] ${FOCUS}`}
+                      className={`group flex h-full items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 transition-colors hover:border-orange-300/50 hover:bg-white/[0.08] ${FOCUS}`}
                     >
                       <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-sky-200 transition-colors group-hover:border-orange-300/50 group-hover:bg-orange-300/10 group-hover:text-orange-300">
                         <p.Icon className="size-4" aria-hidden="true" />
                       </span>
                       <span className="min-w-0">
                         <span className="block text-sm leading-snug font-semibold text-white transition-colors group-hover:text-orange-300">{p.label}</span>
-                        <span className="mt-0.5 block text-xs leading-snug text-slate-400">{routeFor(p.key).menu}</span>
+                        <span className="mt-0.5 block truncate text-xs leading-snug text-slate-400" title={routeFor(p.key).menu}>{routeFor(p.key).menu}</span>
                       </span>
                     </Link>
                   </li>
@@ -196,7 +193,7 @@ export function Footer() {
               </ul>
             </nav>
 
-            <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2.2fr)_minmax(0,1fr)]">
+            <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2.2fr)_minmax(0,1fr)]">
               <nav aria-label="Platform">
                 <ColumnHeading>Platform</ColumnHeading>
                 <ul className="space-y-2.5">
@@ -211,13 +208,21 @@ export function Footer() {
               </nav>
 
               <nav aria-label="Solutions" className="sm:order-last sm:col-span-2 lg:order-none lg:col-span-1">
-                <ColumnHeading>Solutions</ColumnHeading>
-                <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
+                <div className="flex items-start justify-between gap-4">
+                  <ColumnHeading>Solutions</ColumnHeading>
+                  <Link
+                    href="/solutions"
+                    className={`rounded-sm text-xs font-semibold whitespace-nowrap text-orange-300 transition-colors hover:text-orange-200 ${FOCUS}`}
+                  >
+                    All solutions &rarr;
+                  </Link>
+                </div>
+                <div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
                   {SOLUTION_COLUMNS.map((groups, c) => (
-                    <div key={c} className="space-y-4">
+                    <div key={c} className="space-y-3">
                       {groups.map((id) => (
                         <div key={id}>
-                          <p className="mb-2 text-[10px] font-bold tracking-[0.12em] text-slate-500 uppercase">
+                          <p className="mb-1.5 text-[10px] font-bold tracking-[0.12em] text-slate-500 uppercase">
                             {SOLUTION_GROUPS.find((g) => g.id === id)?.label}
                           </p>
                           <ul className="space-y-2">
@@ -231,11 +236,6 @@ export function Footer() {
                           </ul>
                         </div>
                       ))}
-                      {c === 0 ? (
-                        <Link href="/solutions" className={`inline-block rounded-sm text-sm font-semibold text-orange-300 transition-colors hover:text-orange-200 ${FOCUS}`}>
-                          All solutions &rarr;
-                        </Link>
-                      ) : null}
                     </div>
                   ))}
                 </div>
@@ -270,7 +270,7 @@ export function Footer() {
         </div>
 
         {/* Legal bar */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-5 text-xs text-slate-400 sm:flex-row">
+        <div className="mt-4 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-4 text-xs text-slate-400 sm:flex-row">
           <p>© {COPYRIGHT_YEAR} Synax by Senwell Group. All rights reserved.</p>
           <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <Link href="/privacy" className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}>
