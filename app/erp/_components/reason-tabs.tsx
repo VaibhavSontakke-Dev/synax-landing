@@ -46,7 +46,7 @@ export function ReasonTabs({ items }: { items: Reason[] }) {
   };
 
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm lg:grid-cols-[270px_minmax(0,1fr)]">
+    <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-surface shadow-sm lg:grid-cols-[270px_minmax(0,1fr)]">
       <div
         role="tablist"
         aria-label="Five reasons"
@@ -70,10 +70,10 @@ export function ReasonTabs({ items }: { items: Reason[] }) {
               tabIndex={on ? 0 : -1}
               onClick={() => setActive(i)}
               className={`flex shrink-0 cursor-pointer items-center gap-2.5 rounded-lg border-l-[3px] px-3 py-2.5 text-left text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${
-                on ? "border-orange-300 bg-white font-semibold text-slate-900 shadow-sm" : "border-transparent text-slate-600 hover:bg-white/70"
+                on ? "border-orange-300 bg-surface font-semibold text-slate-900 shadow-sm" : "border-transparent text-slate-600 hover:bg-surface/70"
               }`}
             >
-              <span className="text-[11px] font-bold text-orange-600">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-[11px] font-bold text-accent">{String(i + 1).padStart(2, "0")}</span>
               <span className="whitespace-nowrap lg:whitespace-normal">{it.tab}</span>
             </button>
           );
@@ -88,7 +88,7 @@ export function ReasonTabs({ items }: { items: Reason[] }) {
         tabIndex={0}
         className="animate-in fade-in p-6 duration-300 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange-500 sm:p-8"
       >
-        <span className="flex size-11 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-blue-900">
+        <span className="flex size-11 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
           <ModuleIcon name={item.icon} className="size-5" />
         </span>
         <h3 className="mt-4 text-xl leading-snug font-extrabold tracking-tight text-slate-900 sm:text-2xl">{item.question}</h3>
@@ -96,7 +96,7 @@ export function ReasonTabs({ items }: { items: Reason[] }) {
         <ul className="mt-5 space-y-2.5">
           {item.points.map((p) => (
             <li key={p} className="flex gap-3 rounded-xl border border-slate-200 bg-sky-50/60 p-3.5 text-sm text-slate-700">
-              <Check className="mt-0.5 size-4 shrink-0 text-orange-600" aria-hidden="true" />
+              <Check className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
               <span>{p}</span>
             </li>
           ))}

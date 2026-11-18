@@ -42,7 +42,7 @@ export function LegalToc({ items }: { items: { id: string; title: string }[] }) 
   }, [items]);
 
   return (
-    <nav aria-label="On this page" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <nav aria-label="On this page" className="rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm">
       <p className="px-2 text-[11px] font-bold tracking-widest text-slate-500 uppercase">On this page</p>
       <div className="mx-2 mt-3 h-1 overflow-hidden rounded-full bg-slate-100" aria-hidden="true">
         <div className="h-full rounded-full bg-orange-500 transition-[width] duration-150" style={{ width: `${progress * 100}%` }} />
@@ -57,10 +57,10 @@ export function LegalToc({ items }: { items: { id: string; title: string }[] }) 
                 onClick={() => setActive(s.id)}
                 aria-current={on ? "location" : undefined}
                 className={`flex gap-2.5 rounded-lg border-l-2 px-2 py-1.5 text-[13px] leading-snug transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${
-                  on ? "border-orange-500 bg-sky-50 font-semibold text-blue-900" : "border-transparent text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  on ? "border-orange-500 bg-sky-50 font-semibold text-brand" : "border-transparent text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                 }`}
               >
-                <span className={`w-5 shrink-0 text-right tabular-nums ${on ? "text-orange-600" : "text-slate-400"}`}>{i + 1}.</span>
+                <span className={`w-5 shrink-0 text-right tabular-nums ${on ? "text-accent" : "text-slate-400"}`}>{i + 1}.</span>
                 {s.title}
               </a>
             </li>

@@ -5,7 +5,7 @@ import type { SolutionKey } from "./solutions";
  * to switch on first, what to add next, and how far it reaches across the portal's module areas.
  *
  * Module names for manufacturing come from the live portal's module directory (`LIVE_MODULES` in live.ts);
- * the staffing names come from the product's own highlights. `coverage` is typical use (2 = core, 1 =
+ * the staffing and services names come from the products' own highlights. `coverage` is typical use (2 = core, 1 =
  * optional, 0 = not usually part of it), not a product limit.
  */
 
@@ -68,7 +68,67 @@ export const SOLUTION_PATHS: Record<SolutionKey, SolutionPath> = {
       Platform: 2,
     },
   },
-  hrms: {
+  energy: {
+    pain: "Proving where a delivered part came from means searching files.",
+    start: ["Gate entry, GRN & store inward", "Receiving & final inspection", "Stage buy-offs"],
+    then: ["Certificate of conformance", "Route card production order", "Delivery challans"],
+    coverage: {
+      Sales: 1,
+      "Procurement & Stores": 2,
+      Production: 2,
+      Quality: 2,
+      "Dispatch & GST": 1,
+      People: 1,
+      Collaboration: 1,
+      Platform: 2,
+    },
+  },
+  machinery: {
+    pain: "BOMs, routings and machine load are planned in spreadsheets.",
+    start: ["Part master & BOM suite", "Operation master & routing", "Route card production order"],
+    then: ["Machine monitoring & jobs", "Packing & customer invoice", "Tally bridge"],
+    coverage: {
+      Sales: 2,
+      "Procurement & Stores": 2,
+      Production: 2,
+      Quality: 1,
+      "Dispatch & GST": 2,
+      People: 1,
+      Collaboration: 1,
+      Platform: 2,
+    },
+  },
+  services: {
+    pain: "Hours and costs are not tied to the project they belong to.",
+    start: ["Work Tracker", "Timesheets & work logs"],
+    then: ["Project billing tracker", "Customer requirements", "Deployments & replacements"],
+    coverage: {
+      Sales: 1,
+      "Procurement & Stores": 0,
+      Production: 0,
+      Quality: 0,
+      "Dispatch & GST": 0,
+      People: 2,
+      Collaboration: 2,
+      Platform: 1,
+    },
+  },
+  rubber: {
+    pain: "Material balances and job-work returns are rebuilt by hand.",
+    start: ["Customer PO & amendments", "Gate entry, GRN & store inward", "Route card production order"],
+    then: ["Receiving & final inspection", "Delivery challans", "E-invoice (IRN) & e-way bill"],
+    coverage: {
+      Sales: 2,
+      "Procurement & Stores": 2,
+      Production: 2,
+      Quality: 2,
+      "Dispatch & GST": 2,
+      People: 1,
+      Collaboration: 1,
+      Platform: 1,
+    },
+  },
+  workforce: {
     pain: "Attendance, overtime and payroll are chased on paper.",
     start: ["Employee records", "Attendance, leave & WFH"],
     then: ["Payroll with approvals", "Department KPIs"],

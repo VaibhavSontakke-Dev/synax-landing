@@ -57,11 +57,11 @@ export default function Landingpage() {
 
       {/* Sticky mobile CTA: keeps the primary conversion action in reach below the hero. */}
       {showStickyCta && !modalOpen && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-4 py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-surface/95 px-4 py-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
           <button
             type="button"
             onClick={() => openDemo()}
-            className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-blue-900 py-3 text-sm font-semibold text-white hover:bg-blue-800"
+            className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-brand-solid py-3 text-sm font-semibold text-white hover:bg-brand-solid-hover"
           >
             <span>Schedule a Demo</span>
             <ArrowRight className="size-4" />
@@ -116,7 +116,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
       {/* =========================================================================
          SYNAX AI — INTELLIGENT ENTERPRISE ASSISTANT
          ========================================================================= */}
-      <section id="synax-ai" className="scroll-mt-20 py-10 sm:py-12 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
+      <section id="synax-ai" className="keep-light-palette scroll-mt-20 py-10 sm:py-12 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
         {/* Ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
@@ -276,7 +276,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
             <p className="text-xs text-slate-500">Synax AI is included in every enterprise plan — no extra setup, no third-party integrations.</p>
             <Link
               href={hrefFor("ai")}
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-orange-50 text-blue-900 font-semibold text-xs transition-all shadow-lg"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-surface hover:bg-orange-50 text-brand font-semibold text-xs transition-all shadow-lg"
             >
               <Bot className="w-4 h-4" />
               <span>Explore AI &amp; Business Intelligence</span>
@@ -295,7 +295,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
       {/* =========================================================================
          TRUSTED ENTERPRISE CLIENTS & ECOSYSTEM PARTNERS
          ========================================================================= */}
-      <section className="py-10 sm:py-12 bg-white border-t border-slate-200">
+      <section className="py-10 sm:py-12 bg-surface border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-10 space-y-2">
             <SectionTag>Running on Synax</SectionTag>
@@ -313,7 +313,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               href="https://senwellexports.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-emerald-300 bg-white hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
+              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-emerald-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
               <img
                 src="https://senwellexports.com/static/media/SenwellLogo.524bb520c09926753630.png" referrerPolicy="no-referrer"
@@ -331,7 +331,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               href="https://exxoninfo.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-white hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
+              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
               <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105">
                 <img
@@ -344,7 +344,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                   EXXON <span className="text-[#0b6cff]">INFO</span>
                 </span>
               </div>
-              <span className="text-[11px] font-semibold text-slate-500 group-hover:text-blue-900 transition-colors">
+              <span className="text-[11px] font-semibold text-slate-500 group-hover:text-brand transition-colors">
                 exxoninfo.com
               </span>
             </a>
@@ -354,7 +354,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               href="https://stacwell.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-white hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
+              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
               <img
                 src="https://stacwell.com/_next/image?url=%2FstacwellLogo.webp&w=256&q=75" referrerPolicy="no-referrer"
@@ -362,7 +362,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                 className="h-9 sm:h-11 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
-              <span className="text-[11px] font-semibold text-slate-500 group-hover:text-blue-900 transition-colors">
+              <span className="text-[11px] font-semibold text-slate-500 group-hover:text-brand transition-colors">
                 stacwell.com
               </span>
             </a>
@@ -372,7 +372,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               href="https://www.stacem.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-white hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
+              className="group p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 bg-surface hover:bg-slate-50/60 shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 min-h-[140px]"
             >
               <img
                 src="https://www.stacem.com/wp-content/themes/themeb17/img/logo-stacem.svg" referrerPolicy="no-referrer"
@@ -380,7 +380,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                 className="h-8 sm:h-10 w-auto max-w-[150px] object-contain transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
-              <span className="text-[11px] font-semibold text-slate-500 group-hover:text-blue-900 transition-colors">
+              <span className="text-[11px] font-semibold text-slate-500 group-hover:text-brand transition-colors">
                 stacem.com
               </span>
             </a>
@@ -391,7 +391,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
       {/* =========================================================================
          SECURITY & ARCHITECTURE PILLARS
          ========================================================================= */}
-      <section id="security" className="scroll-mt-20 py-10 bg-white border-y border-slate-200">
+      <section id="security" className="scroll-mt-20 py-10 bg-surface border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
             <SectionTag>Security &amp; control</SectionTag>
@@ -404,7 +404,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {LIVE_SECURITY.map((item) => (
               <div key={item.title} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-                <ModuleIcon name={item.icon} className="w-6 h-6 text-blue-900" />
+                <ModuleIcon name={item.icon} className="w-6 h-6 text-brand" />
                 <h3 className="text-sm font-bold text-slate-900">{item.title}</h3>
                 <p className="text-xs text-slate-500 leading-relaxed">{item.copy}</p>
               </div>
@@ -412,7 +412,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
           </div>
 
           <p className="mt-8 text-center">
-            <Link href="/security" className="text-xs font-bold text-blue-900 hover:underline">
+            <Link href="/security" className="text-xs font-bold text-brand hover:underline">
               Read more about security &amp; trust &rarr;
             </Link>
           </p>
@@ -422,7 +422,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
          {/* =========================================================================
          SENWELL GROUP PARENTAGE & HERITAGE
          ========================================================================= */}
-      <section id="senwell" className="scroll-mt-20 py-10 bg-white border-y border-slate-200">
+      <section id="senwell" className="scroll-mt-20 py-10 bg-surface border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="space-y-3 text-center lg:text-left max-w-xl">
@@ -453,7 +453,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
       {/* =========================================================================
          BOTTOM EXECUTIVE CTA SECTION
          ========================================================================= */}
-      <section className="relative overflow-hidden border-y border-slate-200 bg-white py-10 text-slate-900 sm:py-12">
+      <section className="relative overflow-hidden border-y border-slate-200 bg-surface py-10 text-slate-900 sm:py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
           <SectionTag>Senwell Group Enterprise Software</SectionTag>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">

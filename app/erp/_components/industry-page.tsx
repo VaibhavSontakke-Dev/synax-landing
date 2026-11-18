@@ -21,7 +21,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
   const others = INDUSTRY_PAGES.filter((i) => i.slug !== page.slug);
 
   return (
-    <main className="pb-6">
+    <main>
       <PageHero
         crumbs={[{ label: "Solutions", href: "/solutions" }, { label: page.name }]}
         tag={page.tag}
@@ -29,7 +29,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
         lead={page.lead}
         tourTitle={`${page.name} Tour`}
         aside={
-          <div className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6">
+          <div className="rounded-3xl border border-sky-200 bg-surface p-5 shadow-sm sm:p-6">
             <div className="flex items-center gap-3 border-b border-slate-200 pb-4">
               <span className={`flex size-10 items-center justify-center rounded-xl border ${tone.tile}`}>
                 <Icon className="size-5" aria-hidden="true" />
@@ -50,7 +50,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
                       <Link
                         key={key}
                         href={hrefFor(key)}
-                        className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors hover:bg-white ${TONE[r.tone].chip}`}
+                        className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors hover:bg-surface ${TONE[r.tone].chip}`}
                       >
                         {r.name}
                       </Link>
@@ -72,8 +72,8 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
       >
         <ul className="grid gap-5 sm:grid-cols-2">
           {page.challenges.map((c) => (
-            <li key={c.title} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-orange-200 bg-orange-50 text-orange-600">
+            <li key={c.title} className="flex gap-4 rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-orange-200 bg-orange-50 text-accent">
                 <AlertCircle className="size-[18px]" aria-hidden="true" />
               </span>
               <div>
@@ -90,7 +90,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {page.flow.map((step, i) => (
             <li key={step.title} className="flex flex-col rounded-2xl border border-slate-200 bg-slate-50/60 p-5">
-              <span className="flex size-9 items-center justify-center rounded-full bg-blue-900 font-mono text-sm font-semibold text-white">
+              <span className="flex size-9 items-center justify-center rounded-full bg-brand-solid font-mono text-sm font-semibold text-white">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-3 text-base font-bold text-slate-900">{step.title}</h3>
@@ -98,7 +98,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
               {step.chips ? (
                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`${step.title} modules`}>
                   {step.chips.map((c) => (
-                    <li key={c} className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-600">
+                    <li key={c} className="rounded-md border border-slate-200 bg-surface px-2 py-1 text-[11px] font-medium text-slate-600">
                       {c}
                     </li>
                   ))}
@@ -116,7 +116,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
             {modules.groups.map((g) => (
               <li
                 key={g.id}
-                className={`flex flex-col rounded-2xl border border-t-4 border-slate-200 bg-white p-6 shadow-sm ${tone.bar}`}
+                className={`flex flex-col rounded-2xl border border-t-4 border-slate-200 bg-surface p-6 shadow-sm ${tone.bar}`}
               >
                 <h3 className="text-base font-bold text-slate-900">{g.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">{g.description}</p>
@@ -151,19 +151,19 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
               <li key={key}>
                 <Link
                   href={hrefFor(key)}
-                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                 >
                   <div className="flex items-center justify-between">
                     <span className={`flex size-10 items-center justify-center rounded-xl border ${t.tile}`}>
                       <PIcon className="size-5" aria-hidden="true" />
                     </span>
                     {i === 0 ? (
-                      <span className="rounded-full bg-orange-50 px-2.5 py-0.5 text-[11px] font-semibold text-orange-700">Start here</span>
+                      <span className="rounded-full bg-orange-50 px-2.5 py-0.5 text-[11px] font-semibold text-accent-strong">Start here</span>
                     ) : null}
                   </div>
                   <h3 className="mt-4 text-base font-bold text-slate-900">{r.name}</h3>
                   <p className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-600">{PRODUCT_DATA[key].subtitle}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-900">
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
                     Explore <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>
                 </Link>
@@ -183,7 +183,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
         >
           <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {page.proof.map((name) => (
-              <li key={name} className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-sm">
+              <li key={name} className="rounded-2xl border border-slate-200 bg-surface p-5 text-center shadow-sm">
                 <p className="text-base font-extrabold tracking-tight text-slate-900">{name}</p>
               </li>
             ))}
@@ -199,7 +199,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
       ) : null}
 
       {/* Other industries */}
-      <section aria-labelledby="other-heading" className="border-y border-slate-200 bg-white">
+      <section aria-labelledby="other-heading" className="border-y border-slate-200 bg-surface">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <h2 id="other-heading" className="mb-6 text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
             Other industries
@@ -212,7 +212,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
                 <li key={o.slug}>
                   <Link
                     href={industryHref(o.slug)}
-                    className="group flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                    className="group flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                   >
                     <span className={`flex size-10 shrink-0 items-center justify-center rounded-xl border ${t.tile}`}>
                       <OIcon className="size-5" aria-hidden="true" />
@@ -221,7 +221,7 @@ export function IndustryPageView({ page }: { page: IndustryPage }) {
                       <span className="block text-sm font-bold text-slate-900">{o.name}</span>
                       <span className="block text-xs text-slate-500">{o.menu}</span>
                     </span>
-                    <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-orange-600" aria-hidden="true" />
+                    <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true" />
                   </Link>
                 </li>
               );

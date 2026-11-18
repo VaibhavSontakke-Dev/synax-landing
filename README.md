@@ -22,6 +22,197 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Solutions restructure, phase 3: Oil, Gas & Energy page and new hero art
+Commit subject: `Solutions: Oil, Gas & Energy page; illustrated heroes for Oil & Gas and Machinery`
+- **New page `/solutions/oil-gas-energy`**:
+  - Who it's for: suppliers of machined and moulded parts (valve bodies, fittings, flanges, seals) to oil, gas, power and energy customers.
+  - Four challenges: material trace rebuilt after shipping, inspection kept apart from the job, failed checks handled by email, certificates assembled at the end.
+  - A six-step "Material to certificate" flow: material receipt, route card, machine-confirmed operations, inspection and buy-offs, NCR and CAPA, certificate and dispatch.
+  - Products: Manufacturing ERP, Shop Floor and Synax AI.
+  - Copy uses only features the site already claims; no industry certifications are named.
+- **Where it appears**: it is in the Solutions menu, the footer and `/solutions` (all read `INDUSTRY_PAGES` / `SOLUTIONS`). The home section's and the menu's Oil & Gas entry now link to it instead of the `/solutions` starting-path card.
+- **Tour** (Watch overview on the page):
+  - Six narrated scenes in the same voice as the other industry tours (`en-IN-NeerjaNeural`).
+  - Scenes 1, 2, 3 and 6 are new recordings. Scenes 4 and 5 reuse the Precision and Aerospace clips that have exactly the same words (checked by the script).
+  - Files: `public/audio/tours/oil-gas-energy/`, `tour-lines.json` and `tour-durations.json`.
+- **Hero art** (original illustrations, no photos), from the new script `tools/industry-hero-art/generate.mjs` (SVG rasterised with sharp, 1920×1080):
+  - `public/images/industry-oil-gas.webp` (43 KB): a refinery at dusk with a flare, wind turbines and a pylon, and a flanged pipeline with an orange gate valve.
+  - `public/images/industry-machinery.webp` (58 KB): a blueprint of a centrifugal pump driving two meshing gears, with an orange routing path. The Machinery page now uses it instead of the shared robot photo.
+- **Poster hero**: the line beside the step count now reads from the page's flow title ("6 steps, material to certificate" / "machine to invoice"). Before, "machine to invoice" was fixed in the code.
+- **Code**:
+  - `industries.ts`: the new entry, the Machinery `heroImage`, and a new icon option `energy` (Fuel) in `industry-icons.ts`.
+  - `solutions.ts`: Oil & Gas's `href`.
+  - `industry-heroes.tsx`: the flow-title line.
+- **Checks**:
+  - Typecheck and lint pass.
+  - The tours module loads, and the Oil & Gas tour has 6 scenes, 6 captions and 6 clips.
+  - I viewed both illustrations as images. **I did not view the pages in a browser.**
+- **Rollback**: revert the commit. Oil & Gas goes back to its `/solutions` starting-path card, and Machinery to the robot photo.
+
+### Pending (next commit) — Solutions restructure, phase 2: menu, footer, Machinery page and redirect
+Commit subject: `Solutions menu and footer in three lenses; Automotive page becomes Industrial Machinery`
+- **Header**:
+  - The "Industries" dropdown is now **Solutions**: the eight entries under the same three headings as the home section, in two columns (Industries we serve on the left; How you manufacture and Business needs on the right), ending with "See all solutions".
+  - The separate "Solutions" bar link is gone, because the dropdown now leads to `/solutions`.
+  - The trigger is marked on `/solutions` and on every `/solutions/<slug>` page. The mobile menu lists the same groups.
+- **Footer**: the "Industries" column is now **Solutions**, with the three group headings and "All solutions →", and "Solutions" left the Platform column. To keep the footer within one screen, the column is split in two like the header menu: industries on the left, How you manufacture and Business needs on the right. It is wider than Platform and Senwell Group, and two names are shortened ("Industrial Machinery", "Precision CNC & Job Work"). On tablets it takes its own full-width row under the other two columns.
+- **Automotive & Heavy Industrial → Industrial Machinery & Equipment** (`/solutions/industrial-machinery-equipment`):
+  - New copy: BOMs and routings, machine load, live counts, accounts re-keyed. It keeps the Senwell Group customer proof.
+  - Hero: the "Poster" layout now takes the photo from the page's `heroImage` field. Machinery uses `robot-floor.webp` (shared with the Plant Workforce card) instead of the car-body photo. `assembly-line.webp` stays in `public/images`, unused.
+  - **Tour**: scenes 1 and 2 have new narration (same voice, `en-IN-NeerjaNeural`). Scenes 3–6 reuse the old recordings, which say nothing automotive-specific. Audio is in `public/audio/tours/industrial-machinery-equipment/`; the old `automotive-heavy-industrial` folder was removed; `tour-lines.json` and `tour-durations.json` are re-keyed.
+  - **Redirect**: `next.config.ts` sends `/solutions/automotive-heavy-industrial` permanently to the new page.
+- **Renames, same URLs**:
+  - "IT Services & Talent Staffing" → **IT Services & Consulting**. Its tour narration is unchanged; it still says "IT services and staffing", which the page covers.
+  - "Precision CNC Machining & Tooling" → **Precision CNC Machining & Job Work**.
+  - "Plant Workforce & Multi-Facility HCM" → **Plant Workforce & HR**.
+- **Data**: each industry page now has a `group` (industry / process / need). In `solutions.ts`, Machinery's Explore link goes to its page, and Oil & Gas and Rubber go to their starting-path cards on `/solutions` (`#start-energy`, `#start-rubber`). There, those cards link to Manufacturing ERP.
+- **`/solutions`**: the page list is now "A dedicated page for your industry, process or need", ordered by group, with each card's group label.
+- **Wording**: "automotive" removed from the Aerospace product description and SEO text in `products.ts`. The portal's own FAQ answer in `live.ts` is unchanged.
+- **Cross-links**:
+  - Shop Floor's related list links Industrial Machinery instead of a second Aerospace link.
+  - HRMS's related link reads "Plant Workforce & HR".
+- **Checks**:
+  - Typecheck and lint pass.
+  - The tours module loads, and the Machinery tour has 6 scenes, 6 captions and 6 clips.
+  - **Not viewed in a browser.** The dev server restarts itself when `next.config.ts` changes; the redirect works after that restart.
+- **Next (phase 3)**: the Oil, Gas & Energy page, with its own hero, narrated tour and image, plus Machinery's own hero picture.
+- **Rollback**: revert the commit. The old Automotive page, its audio and the menu come back.
+
+### Pending (next commit) — Solutions restructure, phase 1: industries, manufacturing types and business needs
+Commit subject: `Home solutions: three lenses (industries, how you manufacture, business needs)`
+- **What**: the home page's "Sector & Challenge Alignment" section mixed an industry (Aerospace), a manufacturing type (Precision) and two products (HRMS, Staffing) under "By industry / By business need". It now has a switch with three lenses and eight entries:
+  - **Industries we serve**: Aerospace & Defence, **Oil, Gas & Energy** (new), **Industrial Machinery & Equipment** (new), IT Services & Consulting.
+  - **How you manufacture**: Precision CNC Machining & Job Work, **Rubber & Polymer Moulding** (new).
+  - **Business needs**: Plant Workforce & HR, Staffing & Contract Talent.
+- **Section**: new heading "Built for your industry, your process and your people" and sub-line. The list shows the chosen lens, and the detail panel gains a **Works with** row: chips that jump to related entries in the other lenses (for example, Oil, Gas & Energy → Precision, Rubber, Plant Workforce). "Powered by" now names the delivering product (Manufacturing ERP for the manufacturing entries).
+- **Copy**: only features the site already describes. No certifications or numbers are added. Rubber is described only by the Manufacturing ERP flow (POs, challans, route cards, inspection, ITC-04 job-work records, dispatch), not compound recipes or cure data. The Aerospace description no longer says "automotive".
+- **Links**: Explore goes to the industry page where one exists (Aerospace, IT services, Precision, Plant workforce). Oil & Gas, Machinery and Rubber go to Manufacturing ERP, and Staffing goes to the Staffing product, until phase 3 adds the new industry pages.
+- **/solutions page**: reads the same eight entries: "Eight starting points", the coverage table, the hero scene and the "Core to" notes. Each card links to its industry or product page.
+- **Code**:
+  - `app/erp/_data/solutions.ts`: new keys (`aerospace | energy | machinery | services | precision | rubber | workforce | staffing`), groups (`industry | process | need`, with `SOLUTION_GROUPS`), and per entry `product`, `tone`, `href`, `related`.
+  - `app/erp/_data/solution-paths.ts`: starting paths for the four new entries; `hrms` is now `workforce`, and `product-pages/hrms.tsx` uses the new key.
+  - New `app/erp/_components/solution-icons.ts` (icon and short name per entry), used by the home section, `/solutions` and `solutions-scene.tsx`.
+  - `app/erp/_components/home-sectors.tsx`: the lens switch and the Works with row.
+  - Typecheck and lint pass. **Not viewed in a browser.**
+- **Next**:
+  - Phase 2: group the nav, footer and `/solutions` industry list the same way, rename the "Industries" menu to "Solutions", and redirect `/solutions/automotive-heavy-industrial` to the Machinery page.
+  - Phase 3: the Oil, Gas & Energy and Industrial Machinery pages, with heroes and narrated tours.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Home page Watch overview: "Running Out of Hands" crisis film (v2)
+Commit subject: `Overview video: founder crisis film "Running Out of Hands" replaces the bird video`
+- **What**: the home page's **Watch overview** ("Synax Platform Overview") now plays a 2 min 27 s cinematic 2.5D film, made the same way as the Manufacturing films: layered sets, a parallax camera, red alarm and cool grades turning into clean blue-white light, characters speaking their own lines, and a narrator. It is 1920×1080 at 30 fps, with **no subtitles** and **no birds**. The Pip & Sage video (`synax-overview.mp4`) stays in `public/videos`, unused.
+- **Story**: a founder's bad morning. The phone buzzes and notifications stack up, then seven department heads call in turn: Projects (margin unknown), Staffing (three Java developers by Monday), HR (attendance and leave wrong), Production (machine 4 stopped), Quality (the lot can't be traced), Finance (can't bill) and IT & Admin (who has the laptop?). The founder is overwhelmed ("Every team is working hard. So why are we always behind?"), five sheets show five numbers for the same order, and quick cutaways follow. The real cause is six disconnected departments. Then the Synax hub with nine modules. Each problem is solved in turn: a red "before" flash, then the person, relaxed, beside a "With Synax" panel for Projects, Staffing, HRMS, Manufacturing, Quality, and Finance & Assets. Synax AI flags overdue challans and an agent proposes reminders, which the founder approves. The film closes on the calm office and the end card "FROM DISCONNECTED TEAMS TO ONE CONNECTED BUSINESS."
+- **v2 (after your review)**:
+  - **Voices:** a more energetic mixed cast with Indian, UK and US accents, each role with its own voice. The narrator is UK male (Ryan); the founder Prabhat (IN), the Project Manager Ava (US), Staffing Thomas (UK), HR Neerja (IN), Production Guy (US), Quality Sonia (UK), Finance Emma (US) and IT Brian (US).
+  - **Pacing:** punchier, at 2:27 instead of 2:59, with whip-pan cuts in the crisis.
+  - **Role tags:** raised higher and bolder.
+  - **Title cards:** four kinetic titles at the big moments.
+  - **Solution panels:** counters, filling bars, flowing data dots and a "Solved" stamp with a ring burst.
+  - **Score:** a driving tension pulse that speeds up under the calls, then an upbeat 120 BPM theme.
+- **Claims**: only what the earlier overview video and the portal's own wording cover. Agents only propose, and a person approves. All names and numbers are fictional and international, and no money amounts are shown.
+- **Code**: `app/erp/_data/tours.ts`: `overviewVideoTour.video` points to `synax-overview-crisis-v2.mp4` (a new name, so the cached first version isn't shown). Typecheck passes.
+- **Files**: `public/videos/synax-overview-crisis-v2.mp4` (720p, 10.2 MB) and `synax-overview-crisis-v2-poster.webp`; the 1080p master is `video-exports/synax-overview-crisis-v2-1080p.mp4` (27 MB, git-ignored). The first version (`synax-overview-crisis.mp4`) was removed. Source: `tools/overview-crisis-video/` (see its README).
+- **Checks done (no screenshots; frame previews are blocked by the environment's safety rules)**:
+  - Whoever speaks in a shot has their face in frame, and every caller is on screen for most of their line.
+  - The overlays, title cards and role tags stay on screen, and the titles stay clear of the islands, hub and notifications.
+  - No text overflows, and no panel covers the person beside it.
+  - All 4,396 frames rendered without page errors, and the video plays the full 2:26.4.
+  - The mix measures -16.7 LUFS with a -2.5 dBFS peak.
+
+  **I did not watch the film**: please review it with sound.
+- **Licence note**: voices use the unofficial Edge speech client; regenerate with a licensed voice service before launch.
+- **Rollback**: revert the commit (Watch overview goes back to the Pip & Sage video).
+### Pending (next commit) — USP "AI that acts": illustrated dashboard, only Overview sharp
+Commit subject: `USP AI row: illustrated dashboard with only the Overview card sharp, animated like the hero`
+- **What**: the screen in the first row of "What sets Synax apart" (AI that acts) is no longer the old portal screenshot. It is the hero's illustrated dashboard in the theme colours, with **only the Overview card sharp**, because that is where Synax AI lives. Every other menu, KPI tile and card is frosted, with unreadable words, and animated: light sweeps, live dots and the airplane gliding over the banner (all off for `prefers-reduced-motion`). It has light and dark versions; the old screenshot was light only.
+- **Kept**: the orange ring on the Synax AI chip, the zoom lens on the Overview card (now cropped from a 2× master, in both themes), and the floating "Synax AI · Ask anything about your ERP data" and "Synax AI proposes … Approve" cards. Their positions are re-measured on the new picture.
+- **Code**: new `app/erp/_components/dashboard-motion.tsx` (`DashboardMotion`: airplane, light sweeps, live dots), now used by both the hero and the USP row. In `home-hero.tsx` the inline motion layers are replaced by it, with no visual change. In `home-usp.tsx` the AI row uses `usp-ai-dashboard*.webp`, `AI_BANNER` / `AI_HAZE`, and the new ring and lens numbers. The old `hero-dashboard-overview*.webp` files are no longer used anywhere and are left in place. Typecheck and lint pass.
+- **Files**: `public/images/usp-ai-dashboard.webp` (48 KB), `usp-ai-dashboard-master.webp` (88 KB), `usp-ai-dashboard-dark.webp` (45 KB) and `usp-ai-dashboard-dark-master.webp` (81 KB). Source: `tools/hero-dashboard/` (`render.js` with a variant argument, `regions-usp-ai.json`).
+- **Checks**: I rendered and inspected the image (only Overview is sharp, and the frosted words can't be read), and the dev server serves the images and both sections' animation layers on /erp. I did not check the tilted frame, ring and lens in a browser: please look at the USP section in light and dark mode.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Home hero: new illustrated dashboard with frosted, animated cards and a flying airplane
+Commit subject: `Home hero: illustrated dashboard, frosted non-product areas, animated cards and airplane`
+- **What**: the dashboard picture in the home-page hero (/ and /erp) is no longer a portal screenshot. It is a new illustrated dashboard in the site's theme colours: navy, orange accent, slate and white in light mode, and deep navy, milky white, steel blue and orange-300 in dark mode. Its layout is new: a sidebar, a sunset banner, a KPI strip, a 3 × 3 grid of module cards, a throughput chart, "My work", "Machine status" and "Today".
+- **Frosted vs sharp**: only what the six product cards point at stays sharp. That is the **Projects** and **Staffing** menus and the **Overview** (AI & BI), **Planning & Production** (Shop Floor), **Purchase & SCM** (Manufacturing ERP) and **People** (HRMS) cards. In every other menu, KPI tile and card the words are blurred until they can't be read, and the cards are slightly blurred and faded. Their icons, sparklines, bars, donut and chart keep their shape, so they still look like a dashboard.
+- **Animation**: a soft band of light sweeps across each frosted card in turn (a 9 s cycle, staggered); the four KPI tiles and the machine-status card have pulsing orange live dots; and a small navy-and-orange airliner glides back and forth over the banner with a gentle rise, bank and trail. It is all CSS, drawn as layers over the image, and all of it stops for `prefers-reduced-motion`. The sharp product cards stay still, so the pointer outline and the zoom lens line up.
+- **Code**: `app/erp/_components/home-hero.tsx` has the new image names, the master size for the zoom lens (3496 × 2090), the measured `region` and lens `crop` for all six products (dark mode uses the same layout, so the same numbers), the airplane layer clipped to the banner (`BANNER`), and the light sweeps and live dots over the frosted cards (`HAZE`). `app/globals.css` adds the `synax-hero-plane`, `synax-hero-trail`, `synax-hero-sweep` and `synax-hero-live` animations, which are off for reduced motion. Typecheck and lint pass.
+- **Files**: `public/images/hero-dashboard-v3.webp` (63 KB), `hero-dashboard-v3-master.webp` (118 KB), `hero-dashboard-v3-dark.webp` (60 KB) and `hero-dashboard-v3-dark-master.webp` (112 KB). Source: `tools/hero-dashboard/` (`dashboard.html`, `render.js`, `regions.json`, README). The old screenshots (`hero-dashboard-overview*.webp`) are no longer used and are left in place.
+- **Checks**: I rendered and inspected both images. The six sharp areas are crisp and readable, the frosted words can't be read, and the charts are still recognisable. The pointer outlines, zoom crops, sweeps and dots come from the measured element boxes, and the dev server serves the images and the animation layers on /erp. I did not check the motion in a browser: please look at it in light and dark mode.
+- **Rollback**: revert the commit (the hero goes back to the portal screenshots).
+### Pending (next commit) — Manufacturing ERP: "Watch overview 2" with film 2 (dialogue version)
+Commit subject: `Manufacturing ERP: Watch overview 2 button with the dialogue crisis film`
+- **What**: the Manufacturing ERP hero now has two buttons. **Watch overview** plays film 1, "One Small Mistake". **Watch overview 2** plays film 2: 2 min 26 s, 1920×1080, 30 fps, sound design and score, **no subtitles**. In film 2 six characters speak the brief's dialogue, with their mouths following the words, and a narrator explains the root cause and Synax ERP. The style is the same cinematic 2.5D as film 1 (layered sets, parallax camera, red alarm light, sepia flashback, blue-white Synax resolution), not photoreal 3D.
+- **Story**: the failure on machine M02 (sound only for the first 12 s); the walkie-talkie, the supervisor, the inspector with rejected parts, and the manager taking calls. Then the losses (idle machines, rejected parts and goods on hold, raw material consumed, orders delayed; no financial figures) and "nobody has the answer", with close-ups of each person, job cards, the clock and repeated calls. Next comes the flashback ("Earlier that day": the clerk writes 24.50 instead of 25.40 on the paper job card, it is passed to the operator, and the machine cuts the wrong size). After that, the manual ways of working (spreadsheets, paper, manual communication) give way to a blue ripple, the Synax logo and seven connected areas. Six panels follow (manufacturing overview, order fulfilment, production management, dashboards, reports hub, connected information), with the manager reviewing on his tablet, then the clean floor, the inspector's OK measurement and the brand reveal.
+- **Cast and voices**: Production Manager (main, male), Production Supervisor, Machine Operator, Quality Inspector, Inventory Employee and Production Planner, plus a clerk in the flashback. The outfits stay the same throughout, and a role tag appears the first time each person speaks. Edge has only three Indian-English voices (Prabhat, Neerja, Neerja Expressive), so the six roles and the narrator are cast from them with different pitch and pace.
+- **Length**: the brief asks for 120 s, but its dialogue alone runs about 70 s at an urgent pace (the brief allows 48 s for those scenes), so the film is 2 min 26 s. Cutting it to 2 minutes means shortening the dialogue.
+- **Code**: `app/erp/_components/product-pages/shared.tsx`: `HeroCopy` takes an optional `secondTourLabel`, which renders a second `TourButton` that opens the tour titled "<product> Tour 2"; the button row is now `flex-wrap gap-3`, which doesn't change the pages that have one button. `manufacturing-erp.tsx` passes `secondTourLabel="Watch overview 2"`. `app/erp/_data/tours.ts`: new `manufacturingVideoTour2` and its `TOURS` entry. Typecheck and lint pass.
+- **Files**: `public/videos/manufacturing-crisis-2-full.mp4` (720p, 13.3 MB) and `manufacturing-crisis-2-full-poster.webp` (the "-full" name is deliberate: a first, cut-short encode had been served as `manufacturing-crisis-2.mp4` and `/videos/*` is cached for a week, so the complete film needs a new name); the 1080p master is `video-exports/synax-manufacturing-crisis-2-1080p.mp4` (41 MB, git-ignored). Source: `tools/mfg-crisis2-video/` (see its README).
+- **Checks done (no screenshots)**: whoever speaks in a shot has their face fully in frame and visible at the start, middle and end of the shot (the loss montage and the manager's cutaways are deliberate voice-overs). Every speaker is on screen for a good part of their line. The call cards, loss tags, manual-work cards, Synax areas and the six panels stay on screen, don't overlap and don't cover the manager's face. No text overflows. All 4,379 frames rendered without page errors (one first pass stopped on a screenshot timeout under load; the missing frames were re-rendered and the video checked at its full 2:25.9); the mix measures -16.8 LUFS with a -2.0 dBFS peak. **I did not watch the film**: please review it with sound.
+- **Licence note**: voices use the unofficial Edge speech client; regenerate with a licensed voice service before launch.
+- **Rollback**: revert the commit (the page goes back to one Watch overview button).
+
+### Pending (next commit) — Manufacturing ERP: cinematic crisis film
+Commit subject: `Manufacturing ERP: cinematic crisis film "One Small Mistake" (2 min 08 s)`
+- **What**: the Watch overview on the Manufacturing ERP page now plays "One Small Mistake. An Entire Production Line at Risk.", a 2 min 08 s film, 1920×1080, 30 fps, with a mature male Indian-English neural voice (en-IN-Prabhat), sound design and score, and **no subtitles**. **Style: cinematic 2.5D, not real 3D.** This pipeline can't produce photoreal 3D, so the film uses a layered factory with parallax camera moves, depth of field, red alarm lighting, sparks and smoke, a sepia flashback, and a blue-white Synax resolution.
+- **Story**: it opens on the emergency with no logo. Machine 4 chatters, sparks fly, the alarm sounds, the operator hits the E-stop, and the line stops ("Stop the line!"). QC measures 24.50 against Ø 25.40 ± 0.02 and the batch is rejected. A flashback shows the Production Employee hand-copying the PO onto a paper job card and writing 24.50, which the operator then keys in. Then come the consequences (machine hours, material, schedule, delivery due in 3 days) and the investigation across disconnected departments. At the turning point a blue ripple connects the plant and Synax ERP is introduced. The feature panels show the production order released against the part master and BOM ("One approved record"), the live route card and inspections, the manufacturing overview and order fulfilment, and the part passport. The same floor then runs in clean light, and the film closes on "FROM MANUAL CHAOS TO MANUFACTURING CONTROL." The narration does not claim that the ERP removes human error. It says problems are found sooner and traced in minutes.
+- **Characters**: Production Manager (the main character), Machine Operator, Quality Inspector and Production Employee keep the same outfits and safety gear in every scene. All names are fictional and international; the operator is "D. Weber" on the part passport.
+- **Claims**: only the manufacturing features this website already describes (production orders and route cards against the part master and BOM, machine-confirmed operations, stage buy-offs and inspection, order fulfilment, dashboards, the part passport). The numbers are demo data.
+- **Files**: `public/videos/manufacturing-crisis.mp4` (720p, 12.2 MB) and `manufacturing-crisis-poster.webp`; the 1080p master is `video-exports/synax-manufacturing-crisis-1080p.mp4` (37 MB, git-ignored). `app/erp/_data/tours.ts`: `manufacturingVideoTour.video` now points to the crisis film. The earlier `manufacturing-erp-tour.mp4` (Pip and Sage, from `tools/video-kit/`) stays in `public/videos`, unused. Source: `tools/mfg-crisis-video/` (see its README).
+- **Checks done (no screenshots)**: every one of the 33 shots frames its subject (fully in frame and large enough, checked at the start, middle and end of each shot); the chips, departments, Synax areas, feature panels and part passport stay on screen and don't overlap; no text overflows. All 3,855 frames rendered without page errors; the mix measures -17.3 LUFS with a -2.3 dBFS peak. **I did not watch the film**: everything was drawn without looking at it, so please review it with sound.
+- **Licence note**: narration uses the unofficial Edge speech client; regenerate with a licensed voice service before launch. The effects and music are synthesised.
+- **Rollback**: revert the commit (the page goes back to `manufacturing-erp-tour.mp4`).
+
+### Pending (next commit) — Overview hero: dark screenshot in dark mode
+Commit subject: `Overview hero: show the dark portal screenshot in dark mode`
+- **What**: in dark mode the Overview hero (/erp) shows a dark screenshot of the portal home screen instead of the light one; light mode is unchanged. The screenshot was cleaned first: the user's name, tenant, e-mail and the old tiny logo are replaced by the neutral "Good evening, Synax", "Synax Workspace / Demo tenant", "Synax Demo / Super Admin / Demo workspace" wording and the Synax "S" mark, like the light screenshot. The picture is wider than the hero frame (2.1:1 vs 1.67:1), so it is padded at the bottom with more of its own night-sky star field (the user card is moved to the bottom of the sidebar) rather than squeezed.
+- **Spotlights and zoom lenses**: each of the six products has its own position on the dark screenshot (`dark` field in `HERO_PRODUCTS`): Manufacturing ERP -> Manufacturing menu row, Work & Delivery -> Projects menu row, HRMS -> People & HR module, Staffing -> Staffing menu row, Shop Floor -> Assets module, AI & BI -> the Analytics tile. This tenant's screen has no Shop Floor or AI module, so those two are the closest fits; change them in `HERO_PRODUCTS` (fractions of the 1918x1147 image).
+- **Files**: new `public/images/hero-dashboard-overview-dark-fit.webp` (1748x1045, shown) and `hero-dashboard-overview-dark-master.webp` (1918x1147, the lens source); `app/erp/_components/home-hero.tsx` (theme-aware image, region, lens and master size; a small `useIsDark` hook). The "AI that acts" section further down still uses the light screenshot in both themes.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Dark mode: hairline borders, outlines, underlines and soft shadows
+Commit subject: `Dark mode: very thin, light borders, outlines and active underlines; soft shadows`
+- **What** (dark mode only; light mode unchanged): borders are 1px and faint (white at 9-14% for grey borders, light-blue / orange at low opacity for tinted ones); the thick 2px and 4px borders, the accent bars on top of cards and the 2px rings (e.g. the hero spotlight and lens outlines) become 1px hairlines; the bright orange accent borders turn into a faint orange hairline; the nav's active underline is 1px and softer; text underlines and the short accent dashes are 1px; shadows (the standard sizes and the custom coloured ones) are replaced by one soft, faint shadow. Keyboard focus outlines keep their 2px on purpose, so they stay visible.
+- **Files**: `app/globals.css` (dark border colours in the dark palette block, plus a block at the end).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Dark mode (all pages) with a light / dark switch in the header
+Commit subject: `Dark mode: theme tokens, header switch, no-flash script, dark palette for every page`
+- **What**: the whole site now has a dark theme, switched with a sun / moon button in the header (desktop bar and the mobile bar). **Default** = follow the browser / OS setting; clicking the button saves the choice (localStorage key `synax.theme` = `light` | `dark`, the same key the live portal uses) and it is kept across pages and tabs. A tiny script in `<head>` sets the theme before the first paint, so there is no light flash on reload. The header logo switches to the white version on dark. Light mode is unchanged.
+- **Dark look** (checked against the live portal and the dark reference screenshot): navy-black page `#0b0f1a`, cards `#121826`, soft blue-grey borders, light text, **steel-blue** solid buttons, number circles and pills (`#5b81ae`, hover `#4e78ad`, white text; colour sampled from the reference Sign in button the owner supplied; first tried `#3b82f6`, then light sky blue `#7dd3fc`) and light sky blue (`#7dd3fc`) only for borders, rings and outlines (new `brand-line` token; brand text, links and the hero's changing product name are not blue in dark mode). A final rule in `globals.css` also turns every light-blue text utility (`text-sky-100..700`, `text-blue-100..600`) milky white in dark mode, including inside the always-dark regions, so no text or icon colour is blue in dark mode. **Titles are milky white** (`#f6f3ec`): every h1-h6 in dark mode (including the ones that are blue in light mode) and the strong slate-900 / 800 text; always-dark regions keep their own heading colours, orange accents kept, the portal's success / danger greens and reds, a faint night-sky glow and star dots on the hero backdrops.
+- **How** (so few files had to change): Tailwind v4 colours are CSS variables, so in dark mode the palette steps the site uses (slate, sky, orange tints, emerald…) are re-pointed to dark values in `globals.css`. What a palette swap cannot express uses small semantic tokens: `bg-white` -> `bg-surface`, `from/via/to-white` -> `-page`, `text|border-blue-900` -> `brand`, `bg-blue-900` -> `bg-brand-solid`, `text-orange-600|700` -> `text-accent` / `-strong` (a one-time script over the 58 files the pages actually use; legacy unused components were not touched). Regions that are dark in both themes (footer, tour modal and video player, the Synax AI section, AI ask board, navy bands, industry hero photos, navy cards) carry the class `keep-light-palette`, which puts every colour back to its light-theme value inside that element, so they look exactly as before. Grid / dot patterns and the SVG colours of the animated scenes now use CSS variables.
+- **Files**: new `app/erp/_components/theme-toggle.tsx`; `app/globals.css` (dark block, tokens, scope class, stars, scrollbars, scene variables); `app/layout.tsx` (script, `suppressHydrationWarning`, viewport theme colours); `site-nav.tsx` (toggle + logo swap); colour-class swaps in `site-page.tsx`, `demo-provider.tsx`, home / product / industry / Solutions / Why Synax / Security / legal components; scene SVGs in `solutions-scene.tsx`, `why-race.tsx`.
+- **Not done / not verified**: nothing was opened in a browser (code-only). Expect a few spots that need a visual pass in dark: the white-UI screenshots (Overview hero, machines picture) stay light inside their frames, photos are not dimmed, and any element whose colour is set outside the classes above. Report them and they are one-line fixes. To change a dark colour, edit the value in the `:root[data-theme="dark"]` block in `globals.css`.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Footer redesigned to use the whole screen
+Commit subject: `Footer: redesign so the screen-high footer is filled with useful content`
+- **What**: the screen-high footer had a large empty band between the link columns and the compliance row. New layout (lg and up): **left (4 of 12 columns)** the Synax PRO logo, positioning line, address and website, then the **Compliance alignment** chips (moved here from their own full-width row; the footer has no demo / overview buttons, the page above already ends with them). **Right (8 of 12)** the six products as small cards (icon, name and the one-line description from the header menu), and under them three link columns: **Platform**, **Industries** (new: the five industry pages, which the footer did not link before) and **Senwell Group** (About Senwell, Exports, Stacwell, Stacem, Contact Sales). Only the **legal bar** (copyright, Privacy, Terms, Security, Back to top) stays as a bottom row. The content block is centred between the top and the legal bar, so spare height is split above and below instead of leaving one hole. On phones everything stacks in one column.
+- **No new wording**: every label and description already existed on the site (product menu lines, industry names, compliance chips).
+- **Files**: `app/erp/_components/home-footer.tsx` (whole component).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Footer: fills the screen when you reach the bottom
+Commit subject: `Footer: as tall as the screen under the header, so nothing above it peeks in at the bottom`
+- **What**: scrolling to the bottom of a page left the end of the page above (the Schedule a Demo / Watch overview buttons) half-visible at the top edge, above a footer that was shorter than the screen. The footer now has a minimum height of the full screen under the sticky header (`100svh - 4.1rem`). At the bottom of any page the footer is all you see: the link columns at the top, the compliance row and the legal bar pushed to the bottom of the screen. On very short screens and on phones the footer is simply as tall as its content.
+- **Also (answering "what did you change")**: the Products list in the footer is now two flowing columns (3 + 3, even gaps), so it reads down the left column (Manufacturing ERP, Work & Delivery, HRMS) and then the right (Staffing, Shop Floor, AI & BI); before, it read across in pairs with uneven gaps. The extra 24px strip above the footer (`pb-6` on every page's `<main>`) was removed, and the closing band has less padding.
+- **Files**: `app/erp/_components/home-footer.tsx`.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Closing "Get started" band: less white space under the buttons
+Commit subject: `Closing band: less white space under the Schedule a Demo / Watch overview buttons`
+- **What**: under the Schedule a Demo / Watch overview buttons at the end of the pages there was about 80px of near-white space before the footer: the card's bottom padding (40px) plus the section's bottom padding (40px), and the light card's gradient faded to almost white at the bottom right, so its edge could not be seen and the space looked empty. The card now ends in the same sky blue it starts in (slightly stronger border), its vertical padding is 32px (was 40px) and the space between the card and the footer is 24px (was 40px).
+- **Files**: `app/erp/_components/site-page.tsx` (`CtaBand`; used on the product pages, Solutions, Why Synax, Security and the old industry page).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Footer: even product list, same gap above it on every page
+Commit subject: `Footer: even spacing in the Products list; no extra strip above the footer on any page`
+- **What (1)**: the Products list in the footer used a grid whose rows took the height of their tallest cell, so a one-line name (HRMS) beside a three-line one (Staffing & Resource Management) left an uneven gap, and the two columns did not line up. It is now two flowing columns (3 + 3): every product keeps the same gap below it however many lines its name takes.
+- **What (2)**: the footer itself is one component on every page (`ErpShell` > `home-footer.tsx`), but the pages met it differently: all pages except Home had `pb-6` on `<main>`, a 24px strip of page background between the last section (e.g. the closing Schedule a Demo / Watch overview band) and the footer. That padding is removed from every page's `<main>` (products, product pages, industry pages, Solutions, Why Synax, Security, legal), so the footer starts straight after the last section everywhere; each page's last section has its own bottom padding.
+- **Files**: `app/erp/_components/home-footer.tsx`; `<main className="pb-6">` -> `<main>` in `product-page.tsx`, `product-pages/*.tsx`, `industry-page.tsx`, `industry-page-premium.tsx`, `legal-page.tsx`, `app/products/page.tsx`, `app/solutions/page.tsx`, `app/why-synax/page.tsx`, `app/security/page.tsx`.
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — Home USP: GST as visible as Tally
 Commit subject: `Home USP: give GST equal weight in the Tally and GST block`
 - **What**: the third USP block ("Tally and GST") talked only about Tally in its heading and description. Title "Keep your books in Tally. Invoices carry their IRN." → "GST invoices carry their IRN. Your books stay in Tally." Body now adds "GST invoices, IRN and e-way bills come from the same flow" before the Tally voucher line. Bullets lead with GST: "GST tax invoice, IRN and e-way bill in one flow", "IRN through ClearTax or Masters India, on approval" (was "ClearTax or Masters India connects the IRN on approval"), "ITC-04 data pack for job work", "Tally bridge for vouchers" (moved last). Label, link, invoice illustration and floating cards unchanged.

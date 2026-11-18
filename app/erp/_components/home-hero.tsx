@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
+import { DashboardMotion, type HazeBox } from "./dashboard-motion";
 import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, Play, Users, ZoomIn } from "lucide-react";
 
 /**
@@ -19,25 +20,36 @@ import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, 
  *  - It steps through the products every few seconds until the visitor hovers, focuses or taps one;
  *    it never auto-advances for `prefers-reduced-motion`.
  *
- * `region` values are measured on `hero-dashboard-overview.webp` (the page shows its squeezed copy `hero-dashboard-overview-fit.webp`, same fractions) — re-measure them if the screenshot is
- * replaced. The state lives here (not in `HomeView`), so only this component re-renders.
+ * The dashboard is an illustration, not a portal screenshot (source: tools/hero-dashboard/). What the six products point at
+ * stays sharp (the Projects and Staffing menus; the Overview, Planning & Production, Purchase & SCM and People cards);
+ * every other menu and card is frosted. Light: `hero-dashboard-v3.webp` (1748x1045) and the lens master
+ * `hero-dashboard-v3-master.webp` (2x); dark: the same with `-dark`. Both themes share one layout, so each product's
+ * `dark` region and lens equal the light ones. The airplane is not in the image: it is its own animated layer over the
+ * banner. `region` / `crop` values come from tools/hero-dashboard/regions.json (re-run its render.js if the design changes).
+ * The state lives here (not in `HomeView`), so only this component re-renders.
  */
 
 /** Height of the announcement banner (~2rem) + sticky header (4rem). */
 const HERO_MIN_HEIGHT = "lg:min-h-[calc(100svh-4.1rem)]";
 const CYCLE_MS = 2800;
 
-/**
- * The displayed image is `hero-dashboard-overview-fit.webp` (1748x1045): the full screenshot squeezed ~12.6% in width so the
- * stage keeps its 1.67:1 shape, with nothing cropped. `region` values are fractions of the screenshot (measured on
- * `hero-dashboard-overview.webp`, 2000x1045; a uniform squeeze keeps them valid) — re-measure them if the screenshot changes.
- */
+/** The displayed image is `hero-dashboard-v3.webp` (1748x1045); `region` values are fractions of it. */
 const NATIVE_RATIO = 1748 / 1045;
 const FRAME_RATIO = NATIVE_RATIO;
 
-/** Size of the full screenshot the lens crops from (`hero-dashboard-overview.webp`). */
-const MASTER_W = 2000;
-const MASTER_H = 1045;
+/** Size of the image the lens crops from (`hero-dashboard-v3-master.webp`, the same design at 2x). */
+const MASTER_W = 3496;
+const MASTER_H = 2090;
+/** Same for the dark master (`hero-dashboard-v3-dark-master.webp`). */
+const DARK_MASTER_W = 3496;
+const DARK_MASTER_H = 2090;
+/** Where the airplane flies: the dashboard's banner, as fractions of the image (tools/hero-dashboard/regions.json). */
+const BANNER: [number, number, number, number] = [0.1442, 0.0134, 0.992, 0.1569];
+/**
+ * The frosted cards (fractions of the image, from tools/hero-dashboard/regions.json): a soft light sweeps across each in
+ * turn, and the KPI tiles and machine-status card carry a pulsing "live" dot. Off for prefers-reduced-motion.
+ */
+const HAZE: HazeBox[] = [["kpi",0.1442,0.1722,0.2975,0.2641],["kpi",0.3055,0.1722,0.4588,0.2641],["kpi",0.4668,0.1722,0.6201,0.2641],["kpi",0.6281,0.1722,0.7815,0.2641],["card",0.5767,0.2794,0.7803,0.4325],["card",0.1442,0.4536,0.3478,0.6067],["card",0.5767,0.4536,0.7803,0.6067],["card",0.1442,0.6278,0.3478,0.7809],["card",0.3604,0.6278,0.5641,0.7809],["wide",0.1442,0.8057,0.7803,0.9856],["side",0.7895,0.1722,0.992,0.488],["machines",0.7895,0.5033,0.992,0.7522],["side",0.7895,0.7675,0.992,0.9856]];
 /** How far the lens may poke out past the image edge, in px. */
 const POKE = 14;
 /** Every lens is this fraction of the displayed image width (less if there is no room), so all of them look alike. */
@@ -68,6 +80,8 @@ interface HeroProduct {
    * to put it relative to the spotlight. Every lens has the same width (`LENS_W`), so the zoom follows from the crop.
    */
   lens: { crop: [number, number, number, number]; at: "right" | "below" | "above" };
+  /** The same two, measured on the dark screenshot (dark mode). */
+  dark: { region: [number, number, number, number]; lens: { crop: [number, number, number, number]; at: "right" | "below" | "above" } };
 }
 
 // Listed in cycle order.
@@ -80,41 +94,45 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 1,
     shift: [1, 0.21],
-    region: [0.369, 0.446, 0.586, 0.595],
-    lens: { crop: [0.369, 0.446, 0.586, 0.595], at: "right" },
+    region: [0.3604, 0.4536, 0.5641, 0.6067],
+    lens: { crop: [0.3564, 0.4476, 0.5681, 0.6127], at: "right" },
+    dark: { region: [0.3604, 0.4536, 0.5641, 0.6067], lens: { crop: [0.3564, 0.4476, 0.5681, 0.6127], at: "right" } },
   },
   {
     label: "Work & Delivery Management",
     desc: "Work tracker, projects, timesheets & billing",
     Icon: Briefcase,
-    tile: "bg-slate-100 text-blue-900",
+    tile: "bg-slate-100 text-brand",
     side: "left",
     slot: 0,
     shift: [-0.89, -0.16],
-    region: [0.006, 0.16, 0.134, 0.2],
-    lens: { crop: [0.006, 0.13, 0.2, 0.235], at: "right" },
+    region: [0.0069, 0.1684, 0.1281, 0.2067],
+    lens: { crop: [0, 0.1334, 0.155, 0.2417], at: "right" },
+    dark: { region: [0.0069, 0.1684, 0.1281, 0.2067], lens: { crop: [0, 0.1334, 0.155, 0.2417], at: "right" } },
   },
   {
     label: "HRMS",
     desc: "Employee lifecycle, attendance, payroll & performance",
     Icon: Building2,
-    tile: "bg-slate-100 text-blue-900",
+    tile: "bg-slate-100 text-brand",
     side: "right",
     slot: 2,
     shift: [0.25, 0.54],
-    region: [0.591, 0.606, 0.807, 0.758],
-    lens: { crop: [0.591, 0.606, 0.807, 0.758], at: "above" },
+    region: [0.5767, 0.6278, 0.7803, 0.7809],
+    lens: { crop: [0.5727, 0.6218, 0.7843, 0.7869], at: "above" },
+    dark: { region: [0.5767, 0.6278, 0.7803, 0.7809], lens: { crop: [0.5727, 0.6218, 0.7843, 0.7869], at: "above" } },
   },
   {
     label: "Staffing & Resource Management",
     desc: "Customer needs, candidates, interviews & deployments",
     Icon: Users,
-    tile: "bg-orange-50 text-orange-700",
+    tile: "bg-orange-50 text-accent-strong",
     side: "left",
     slot: 1,
     shift: [-0.21, 0.07],
-    region: [0.006, 0.236, 0.134, 0.278],
-    lens: { crop: [0.006, 0.205, 0.2, 0.31], at: "right" },
+    region: [0.0069, 0.2565, 0.1281, 0.2947],
+    lens: { crop: [0, 0.2215, 0.155, 0.3297], at: "right" },
+    dark: { region: [0.0069, 0.2565, 0.1281, 0.2947], lens: { crop: [0, 0.2215, 0.155, 0.3297], at: "right" } },
   },
   {
     label: "Shop Floor & Machine Monitoring",
@@ -124,19 +142,21 @@ const HERO_PRODUCTS: HeroProduct[] = [
     side: "right",
     slot: 0,
     shift: [0.43, -0.14],
-    region: [0.369, 0.286, 0.586, 0.436],
-    lens: { crop: [0.369, 0.286, 0.586, 0.436], at: "right" },
+    region: [0.3604, 0.2794, 0.5641, 0.4325],
+    lens: { crop: [0.3564, 0.2734, 0.5681, 0.4385], at: "right" },
+    dark: { region: [0.3604, 0.2794, 0.5641, 0.4325], lens: { crop: [0.3564, 0.2734, 0.5681, 0.4385], at: "right" } },
   },
   {
     label: "AI & Business Intelligence",
     desc: "AI assistance, agents, analytics & reports",
     Icon: Bot,
-    tile: "bg-orange-50 text-orange-700",
+    tile: "bg-orange-50 text-accent-strong",
     side: "left",
     slot: 2,
     shift: [-0.68, 0.61],
-    region: [0.146, 0.286, 0.363, 0.436],
-    lens: { crop: [0.146, 0.286, 0.363, 0.436], at: "below" },
+    region: [0.1442, 0.2794, 0.3478, 0.4325],
+    lens: { crop: [0.1402, 0.2734, 0.3518, 0.4385], at: "below" },
+    dark: { region: [0.1442, 0.2794, 0.3478, 0.4325], lens: { crop: [0.1402, 0.2734, 0.3518, 0.4385], at: "below" } },
   },
 ];
 
@@ -157,7 +177,7 @@ function ActiveProductName({ active }: { active: number }) {
       {HERO_PRODUCTS.map(({ label }, i) => (
         <span
           key={label}
-          className={`col-start-1 row-start-1 w-fit bg-gradient-to-r from-violet-600 via-indigo-500 to-teal-500 bg-clip-text pb-1 text-transparent transition-all duration-500 ${
+          className={`col-start-1 row-start-1 w-fit bg-gradient-to-r from-violet-600 via-indigo-500 to-teal-500 bg-clip-text pb-1 text-transparent transition-all dark:bg-none dark:text-slate-900 duration-500 ${
             i === active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
           }`}
         >
@@ -168,13 +188,27 @@ function ActiveProductName({ active }: { active: number }) {
   );
 }
 
+/** True while the page is in dark mode (`data-theme="dark"` on <html>, set by app/layout.tsx and the header switch). */
+function useIsDark() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mo = new MutationObserver(onChange);
+      mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+      return () => mo.disconnect();
+    },
+    () => document.documentElement.getAttribute("data-theme") === "dark",
+    () => false,
+  );
+}
+
 /** Dot grid, soft light-orange glow and a navy / light-orange base line. Purely decorative. */
 export function HeroBackdrop() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-      <div className="absolute inset-0 [background-image:radial-gradient(rgba(30,58,138,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000_35%,transparent_80%)]" />
+      <div className="synax-stars absolute inset-0" />
+      <div className="absolute inset-0 [background-image:radial-gradient(var(--grid-dot)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000_35%,transparent_80%)]" />
       <div className="absolute top-12 left-1/2 aspect-square w-[40rem] -translate-x-1/2 rounded-full bg-orange-200/25 blur-3xl" />
-      <div className="absolute inset-x-0 bottom-0 h-1 bg-blue-900" />
+      <div className="absolute inset-x-0 bottom-0 h-1 bg-brand-solid" />
       <div className="absolute bottom-0 left-0 h-1 w-32 bg-orange-300" />
     </div>
   );
@@ -188,6 +222,7 @@ export function Hero({
   onWatchOverview: () => void;
 }) {
   const [active, setActive] = useState(0);
+  const dark = useIsDark();
   const [auto, setAuto] = useState(true);
 
   const stageRef = useRef<HTMLDivElement>(null);
@@ -218,11 +253,14 @@ export function Hero({
       if (!stage || !image || !chip || !path || !dot) return;
 
       const p = HERO_PRODUCTS[active];
+      const view = dark ? p.dark : p;
+      const MW = dark ? DARK_MASTER_W : MASTER_W;
+      const MH = dark ? DARK_MASTER_H : MASTER_H;
       const s = stage.getBoundingClientRect();
       const i = image.getBoundingClientRect();
       const c = chip.getBoundingClientRect();
 
-      const [rx0, y0, rx1, y1] = p.region;
+      const [rx0, y0, rx1, y1] = view.region;
       const x0 = mapX(rx0);
       const x1 = mapX(rx1);
       const left = p.side === "left";
@@ -238,24 +276,24 @@ export function Hero({
         const f = frame.getBoundingClientRect();
         const W = i.width;
         const H = i.height;
-        const sy = H / MASTER_H; // screen px per screenshot px
-        const [cx0, cy0, cx1, cy1] = p.lens.crop;
-        const cw = (cx1 - cx0) * MASTER_W;
-        const ch = (cy1 - cy0) * MASTER_H;
+        const sy = H / MH; // screen px per screenshot px
+        const [cx0, cy0, cx1, cy1] = view.lens.crop;
+        const cw = (cx1 - cx0) * MW;
+        const ch = (cy1 - cy0) * MH;
         const spotL = x0 * W;
         const spotR = x1 * W;
         const spotT = y0 * H;
         const spotB = y1 * H;
-        const room = p.lens.at === "right" ? W + POKE - (spotR + 10) : W + POKE;
+        const room = view.lens.at === "right" ? W + POKE - (spotR + 10) : W + POKE;
         const w = Math.min(LENS_W * W, room);
         const z = w / (cw * sy);
         const h = ch * sy * z;
         let lx: number;
         let ly: number;
-        if (p.lens.at === "right") {
+        if (view.lens.at === "right") {
           lx = spotR + 10;
           ly = (spotT + spotB) / 2 - h / 2;
-        } else if (p.lens.at === "below") {
+        } else if (view.lens.at === "below") {
           lx = Math.min(spotL, W + POKE - w);
           ly = spotB + 8;
         } else {
@@ -271,8 +309,8 @@ export function Hero({
         lensEl.style.height = `${h}px`;
         const pic = lensEl.firstElementChild as HTMLElement | null;
         if (pic) {
-          pic.style.backgroundSize = `${MASTER_W * sy * z}px ${MASTER_H * sy * z}px`;
-          pic.style.backgroundPosition = `${-cx0 * MASTER_W * sy * z}px ${-cy0 * MASTER_H * sy * z}px`;
+          pic.style.backgroundSize = `${MW * sy * z}px ${MH * sy * z}px`;
+          pic.style.backgroundPosition = `${-cx0 * MW * sy * z}px ${-cy0 * MH * sy * z}px`;
         }
         if (!left) {
           // Right-hand cards connect to the lens (its right edge), so the line does not cross other modules.
@@ -297,14 +335,14 @@ export function Hero({
       observer?.disconnect();
       window.removeEventListener("resize", draw);
     };
-  }, [active]);
+  }, [active, dark]);
 
   const pick = (index: number) => {
     setAuto(false);
     setActive(index);
   };
 
-  const [rawX0, ry0, rawX1, ry1] = HERO_PRODUCTS[active].region;
+  const [rawX0, ry0, rawX1, ry1] = (dark ? HERO_PRODUCTS[active].dark : HERO_PRODUCTS[active]).region;
   const rx0 = mapX(rawX0);
   const rx1 = mapX(rawX1);
 
@@ -354,7 +392,7 @@ export function Hero({
             <button
               type="button"
               onClick={onScheduleDemo}
-              className="flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md bg-blue-900 px-5 py-2.5 text-[0.8125rem] font-semibold text-white shadow-sm transition-colors hover:bg-blue-800 hover:shadow-md"
+              className="flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md bg-brand-solid px-5 py-2.5 text-[0.8125rem] font-semibold text-white shadow-sm transition-colors hover:bg-brand-solid-hover hover:shadow-md"
             >
               <span>Schedule a Demo</span>
               <ArrowRight className="size-4" aria-hidden="true" />
@@ -407,24 +445,36 @@ export function Hero({
           {/* Dashboard on platform plates */}
           <div className="relative self-center pb-8 lg:col-start-2 lg:row-span-3 lg:row-start-1">
             <div className="absolute inset-x-10 top-10 bottom-1 rounded-2xl border border-orange-300 bg-orange-400/15" aria-hidden="true" />
-            <div className="absolute inset-x-5 top-6 bottom-[18px] rounded-2xl border border-blue-900/20 bg-blue-900/[0.07]" aria-hidden="true" />
-            <div className="absolute inset-x-10 -bottom-1 h-4 rounded-[50%] bg-slate-900/10 blur-md" aria-hidden="true" />
+            <div className="absolute inset-x-5 top-6 bottom-[18px] rounded-2xl border border-brand-line/20 bg-blue-900/[0.07]" aria-hidden="true" />
+            <div className="absolute inset-x-10 -bottom-1 h-4 rounded-[50%] bg-black/10 blur-md" aria-hidden="true" />
 
             <div
               ref={frameRef}
-              className="relative rounded-2xl border border-slate-200 bg-white p-1.5 shadow-[0_22px_44px_-20px_rgba(11,27,51,0.42)]"
+              className="relative rounded-2xl border border-slate-200 bg-surface p-1.5 shadow-[0_22px_44px_-20px_rgba(11,27,51,0.42)]"
             >
-              <div ref={imageRef} className="relative overflow-hidden rounded-xl ring-1 ring-slate-900/5">
+              <div ref={imageRef} className="relative overflow-hidden rounded-xl ring-1 ring-black/5">
                 <Image
-                  src="/images/hero-dashboard-overview-fit.webp"
+                  src="/images/hero-dashboard-v3.webp"
                   alt="Synax Enterprise ERP Command Dashboard"
                   width={1748}
                   height={1045}
                   priority
                   sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 50vw, 100vw"
-                  className="block aspect-[1748/1045] w-full object-cover"
+                  className="block aspect-[1748/1045] w-full object-cover dark:hidden"
                   draggable={false}
                 />
+                <Image
+                  src="/images/hero-dashboard-v3-dark.webp"
+                  alt="Synax Enterprise ERP Command Dashboard in the dark theme"
+                  width={1748}
+                  height={1045}
+                  priority
+                  sizes="(min-width: 1280px) 45vw, (min-width: 1024px) 50vw, 100vw"
+                  className="hidden aspect-[1748/1045] w-full object-cover dark:block"
+                  draggable={false}
+                />
+                {/* The airplane, light sweeps and live dots (off for prefers-reduced-motion) */}
+                <DashboardMotion banner={BANNER} haze={HAZE} />
                 {/* Spotlight on the active module */}
                 <div
                   aria-hidden="true"
@@ -446,10 +496,9 @@ export function Hero({
                 className="synax-hero-lens pointer-events-none absolute z-20 hidden lg:block"
               >
                 <div
-                  className="absolute inset-0 overflow-hidden rounded-xl border-2 border-orange-400 bg-white bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)]"
-                  style={{ backgroundImage: "url(/images/hero-dashboard-overview.webp)" }}
+                  className="absolute inset-0 overflow-hidden rounded-xl border-2 border-orange-400 bg-surface bg-[url(/images/hero-dashboard-v3-master.webp)] bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)] dark:bg-[url(/images/hero-dashboard-v3-dark-master.webp)]"
                 />
-                <span className="absolute -top-2.5 -left-2.5 flex size-6 items-center justify-center rounded-full bg-orange-400 text-white shadow-sm ring-2 ring-white">
+                <span className="absolute -top-2.5 -left-2.5 flex size-6 items-center justify-center rounded-full bg-orange-400 text-white shadow-sm ring-2 ring-surface">
                   <ZoomIn className="size-3.5" />
                 </span>
               </div>
@@ -478,7 +527,7 @@ export function Hero({
                     onMouseEnter={() => pick(i)}
                     onFocus={() => pick(i)}
                     onClick={() => pick(i)}
-                    className={`flex w-full cursor-pointer items-center gap-2 rounded-lg border bg-white/90 p-2 text-left shadow-[0_14px_28px_-10px_rgba(56,189,248,0.5),0_4px_10px_-4px_rgba(125,211,252,0.4)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 ${
+                    className={`flex w-full cursor-pointer items-center gap-2 rounded-lg border bg-surface/90 p-2 text-left shadow-[0_14px_28px_-10px_rgba(56,189,248,0.5),0_4px_10px_-4px_rgba(125,211,252,0.4)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 ${
                       on
                         ? "-translate-y-0.5 border-orange-400 ring-1 ring-orange-400"
                         : "border-sky-100 hover:border-sky-200"

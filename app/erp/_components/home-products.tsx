@@ -28,17 +28,17 @@ const TONES: Record<Tone, { bar: string; tile: string; chipTile: string; tag: st
   },
   navy: {
     bar: "border-t-blue-900",
-    tile: "bg-slate-100 border-slate-300 text-blue-900",
-    chipTile: "bg-slate-100 text-blue-900",
-    tag: "bg-slate-100 text-blue-900",
-    check: "text-blue-900",
+    tile: "bg-slate-100 border-slate-300 text-brand",
+    chipTile: "bg-slate-100 text-brand",
+    tag: "bg-slate-100 text-brand",
+    check: "text-brand",
   },
   orange: {
     bar: "border-t-orange-600",
-    tile: "bg-orange-50 border-orange-200 text-orange-700",
-    chipTile: "bg-orange-50 text-orange-700",
-    tag: "bg-orange-50 text-orange-700",
-    check: "text-orange-600",
+    tile: "bg-orange-50 border-orange-200 text-accent-strong",
+    chipTile: "bg-orange-50 text-accent-strong",
+    tag: "bg-orange-50 text-accent-strong",
+    check: "text-accent",
   },
 };
 
@@ -234,9 +234,9 @@ export function Products() {
                 type="button"
                 onClick={() => scrollToIndex(i)}
                 aria-current={active ? "true" : undefined}
-                className={`flex cursor-pointer items-center gap-2 rounded-full bg-white py-1.5 pr-3 pl-1.5 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${
+                className={`flex cursor-pointer items-center gap-2 rounded-full bg-surface py-1.5 pr-3 pl-1.5 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${
                   active
-                    ? "border-2 border-blue-900 font-semibold text-slate-900"
+                    ? "border-2 border-brand-line font-semibold text-slate-900"
                     : "border border-slate-300 text-slate-700 hover:border-slate-400"
                 }`}
               >
@@ -264,7 +264,7 @@ export function Products() {
           aria-valuenow={Math.round(progress * 100)}
         >
           <div
-            className="h-full rounded-full bg-blue-900 transition-[width] duration-200"
+            className="h-full rounded-full bg-brand-solid transition-[width] duration-200"
             style={{ width: `${Math.max(12, progress * 100)}%` }}
           />
         </div>
@@ -273,7 +273,7 @@ export function Products() {
           onClick={() => scrollBy(-1)}
           disabled={!edges.canPrev}
           aria-label="Previous products"
-          className="flex size-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex size-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-surface text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronLeft className="size-4" aria-hidden="true" />
         </button>
@@ -282,7 +282,7 @@ export function Products() {
           onClick={() => scrollBy(1)}
           disabled={!edges.canNext}
           aria-label="Next products"
-          className="flex size-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex size-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-surface text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ChevronRight className="size-4" aria-hidden="true" />
         </button>
@@ -307,7 +307,7 @@ export function Products() {
               data-product-slide
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${PRODUCTS.length}: ${p.title}`}
-              className={`flex h-full min-w-0 snap-start flex-col rounded-b-2xl rounded-t-sm border border-t-[3px] border-slate-200 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-xl ${tone.bar}`}
+              className={`flex h-full min-w-0 snap-start flex-col rounded-b-2xl rounded-t-sm border border-t-[3px] border-slate-200 bg-surface p-4 shadow-sm transition-shadow duration-200 hover:shadow-xl ${tone.bar}`}
             >
               <div className="flex items-center justify-between gap-2">
                 <span className={`flex size-10 shrink-0 items-center justify-center rounded-xl border ${tone.tile}`}>

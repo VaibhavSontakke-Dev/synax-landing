@@ -62,7 +62,7 @@ const EMPTY_FORM: FormState = {
 };
 
 const FIELD =
-  "w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-slate-50/50";
+  "w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-line focus:ring-1 focus:ring-brand-line bg-slate-50/50";
 
 export function DemoProvider({ children }: { children: React.ReactNode }) {
   const [demoOpen, setDemoOpen] = useState(false);
@@ -141,7 +141,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
 
       {demoOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md"
           onClick={(e) => {
             if (e.target === e.currentTarget) setDemoOpen(false);
           }}
@@ -150,7 +150,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="demo-modal-title"
-            className="synax-thin-scroll relative max-h-[94vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-slate-200 bg-white p-5 shadow-2xl sm:px-7 sm:py-6"
+            className="synax-thin-scroll relative max-h-[94vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-slate-200 bg-surface p-5 shadow-2xl sm:px-7 sm:py-6"
           >
             <button
               type="button"
@@ -172,13 +172,13 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                 <p className="mx-auto max-w-sm text-sm leading-relaxed text-slate-600" role="status">
                   Thank you, <strong>{form.fullName}</strong>. Our team will contact you at{" "}
                   <strong>{form.email}</strong> to arrange a tailored demonstration for{" "}
-                  <strong className="text-blue-900">{form.product}</strong>.
+                  <strong className="text-brand">{form.product}</strong>.
                 </p>
                 <div className="pt-2">
                   <button
                     type="button"
                     onClick={() => setDemoOpen(false)}
-                    className="cursor-pointer rounded-xl bg-blue-900 px-6 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-blue-800"
+                    className="cursor-pointer rounded-xl bg-brand-solid px-6 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-brand-solid-hover"
                   >
                     Return to Platform
                   </button>
@@ -276,7 +276,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       name="product"
                       value={form.product}
                       onChange={onChange}
-                      className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs focus:border-blue-900 focus:outline-none"
+                      className="w-full rounded-xl border border-slate-200 bg-surface px-3.5 py-2.5 text-xs focus:border-brand-line focus:outline-none"
                     >
                       {PRODUCT_OPTIONS.map((name) => (
                         <option key={name} value={name}>
@@ -295,7 +295,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       name="floorSize"
                       value={form.floorSize}
                       onChange={onChange}
-                      className="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs focus:border-blue-900 focus:outline-none"
+                      className="w-full rounded-xl border border-slate-200 bg-surface px-3.5 py-2.5 text-xs focus:border-brand-line focus:outline-none"
                     >
                       <option value="1 - 50 Employees (1 Plant)">1 - 50 Employees (1 Plant)</option>
                       <option value="50 - 250 Employees (1-3 Plants)">50 - 250 Employees (1-3 Plants)</option>
@@ -336,7 +336,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       required
                       checked={form.consent}
                       onChange={(e) => setForm((prev) => ({ ...prev, consent: e.target.checked }))}
-                      className="mt-0.5 size-4 shrink-0 cursor-pointer accent-blue-900"
+                      className="mt-0.5 size-4 shrink-0 cursor-pointer accent-brand-line"
                     />
                     <label htmlFor="demo-consent" className="text-xs leading-relaxed text-slate-600">
                       I agree that Senwell Group may contact me about this demo and process the details I have entered, as described in the{" "}
@@ -344,7 +344,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                         href="/privacy"
                         target="_blank"
                         rel="noopener"
-                        className="font-semibold text-blue-900 underline hover:text-blue-800"
+                        className="font-semibold text-brand underline hover:text-blue-800 dark:hover:text-accent"
                       >
                         Privacy Policy
                       </a>
@@ -364,7 +364,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="mt-1 w-full cursor-pointer rounded-xl bg-blue-900 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-1 w-full cursor-pointer rounded-xl bg-brand-solid py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-solid-hover disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {submitting ? "Sending…" : "Request Architecture Demo"}
                   </button>
@@ -378,7 +378,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
 
       {tourOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
           onClick={(e) => {
             if (e.target === e.currentTarget) setTourOpen(false);
           }}
@@ -387,7 +387,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
             role="dialog"
             aria-modal="true"
             aria-labelledby="tour-modal-title"
-            className="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl"
+            className="keep-light-palette relative w-full max-w-4xl overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl"
           >
             <div className="flex items-center justify-between border-b border-slate-800 bg-slate-950/60 px-6 py-4">
               <div className="flex items-center gap-3">
@@ -452,7 +452,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                         setTourOpen(false);
                         openDemo(tourTitle.replace(" Tour", "").replace(" Demo Video", ""));
                       }}
-                      className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white px-6 py-2.5 text-xs font-bold text-blue-900 shadow-lg transition-colors hover:bg-slate-100 sm:w-auto"
+                      className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-surface px-6 py-2.5 text-xs font-bold text-brand shadow-lg transition-colors hover:bg-slate-100 sm:w-auto"
                     >
                       <span>Book a live walkthrough</span>
                       <ArrowRight className="size-3.5" />

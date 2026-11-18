@@ -25,7 +25,7 @@ import { Reveal } from "./reveal";
 export const PREMIUM_INDUSTRIES = new Set(INDUSTRY_PAGES.map((i) => i.slug));
 
 const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
-const TILE = "border-slate-300 bg-slate-100 text-blue-900";
+const TILE = "border-slate-300 bg-slate-100 text-brand";
 
 const GROUP_ICON: LucideIcon[] = [ClipboardList, Boxes, ShieldCheck];
 
@@ -85,7 +85,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
   ];
 
   return (
-    <main className="pb-6">
+    <main>
       <IndustryHero page={page} />
       <HeroFoot page={page} stats={stats} />
 
@@ -109,8 +109,8 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
           <ul className="grid gap-4 sm:grid-cols-2">
             {page.challenges.map((c, i) => (
               <Reveal key={c.title} as="li" delay={i * 70} className="flex">
-                <article className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-900/30 hover:shadow-lg">
-                  <span className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-blue-900 transition-transform duration-300 group-hover:scale-y-100" aria-hidden="true" />
+                <article className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-surface p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-line/30 hover:shadow-lg">
+                  <span className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-brand-solid transition-transform duration-300 group-hover:scale-y-100" aria-hidden="true" />
                   <span className="absolute top-3 right-4 text-5xl leading-none font-extrabold text-slate-100 select-none" aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -127,7 +127,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
       </section>
 
       {/* Flow */}
-      <section id="flow" aria-labelledby="flow-heading" className="scroll-mt-32 border-y border-slate-200 bg-white">
+      <section id="flow" aria-labelledby="flow-heading" className="scroll-mt-32 border-y border-slate-200 bg-surface">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <SectionHead id="flow-heading" tag="How Synax answers it" title={page.flowTitle} lead={page.flowLead} />
           <ol className={`grid gap-x-5 gap-y-10 pt-5 sm:grid-cols-2 ${LG_COLS[page.flow.length] ?? "lg:grid-cols-3"}`}>
@@ -135,13 +135,13 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
               <Reveal key={step.title} as="li" delay={(i % 4) * 70} className="relative flex">
                 {page.flow.length <= 4 && i < page.flow.length - 1 ? (
                   <span
-                    className="synax-prod-dash-x absolute top-0 left-[3.75rem] z-0 hidden h-0.5 -translate-y-1/2 text-blue-900/40 lg:block"
+                    className="synax-prod-dash-x absolute top-0 left-[3.75rem] z-0 hidden h-0.5 -translate-y-1/2 text-brand/40 lg:block"
                     style={{ right: "-2.5rem" }}
                     aria-hidden="true"
                   />
                 ) : null}
-                <div className="group relative flex w-full flex-col rounded-2xl border border-slate-200 bg-slate-50/70 p-5 pt-8 transition-all duration-300 hover:-translate-y-1 hover:border-blue-900/30 hover:bg-white hover:shadow-lg">
-                  <span className="absolute -top-5 left-5 z-10 flex size-10 items-center justify-center rounded-full border-4 border-white bg-blue-900 font-mono text-sm font-semibold text-white shadow-sm transition-transform duration-300 group-hover:scale-110">
+                <div className="group relative flex w-full flex-col rounded-2xl border border-slate-200 bg-slate-50/70 p-5 pt-8 transition-all duration-300 hover:-translate-y-1 hover:border-brand-line/30 hover:bg-surface hover:shadow-lg">
+                  <span className="absolute -top-5 left-5 z-10 flex size-10 items-center justify-center rounded-full border-4 border-surface bg-brand-solid font-mono text-sm font-semibold text-white shadow-sm transition-transform duration-300 group-hover:scale-110">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="text-lg font-bold text-slate-900">{step.title}</h3>
@@ -149,7 +149,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                   {step.chips ? (
                     <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-slate-200 pt-4" aria-label={`${step.title} modules`}>
                       {step.chips.map((c) => (
-                        <li key={c} className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 transition-colors group-hover:border-sky-300 group-hover:bg-sky-50">
+                        <li key={c} className="rounded-md border border-slate-200 bg-surface px-2 py-1 text-[11px] font-medium text-slate-700 transition-colors group-hover:border-sky-300 group-hover:bg-sky-50">
                           {c}
                         </li>
                       ))}
@@ -172,10 +172,10 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                 const GIcon = GROUP_ICON[i % GROUP_ICON.length];
                 return (
                   <Reveal key={g.id} as="li" delay={i * 70} className="flex">
-                    <article className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-sky-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <article className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-sky-200 bg-surface p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                       <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-900 via-blue-900/60 to-sky-200" aria-hidden="true" />
                       <div className="flex items-center justify-between">
-                        <span className={`flex size-11 items-center justify-center rounded-xl border ${TILE} transition-colors group-hover:border-blue-900 group-hover:bg-blue-900 group-hover:text-white`}>
+                        <span className={`flex size-11 items-center justify-center rounded-xl border ${TILE} transition-colors group-hover:border-brand-line group-hover:bg-brand-solid group-hover:text-white`}>
                           <GIcon className="size-5" aria-hidden="true" />
                         </span>
                         <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{g.items.length} modules</span>
@@ -185,7 +185,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                       <ul className="mt-5 flex-1 space-y-1 border-t border-slate-100 pt-4">
                         {g.items.map((item) => (
                           <li key={item} className="flex items-start gap-2.5 rounded-lg px-2 py-1.5 text-sm text-slate-700 transition-colors hover:bg-sky-50">
-                            <Check className="mt-0.5 size-4 shrink-0 text-blue-900" aria-hidden="true" />
+                            <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -218,7 +218,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                   <Link
                     href={hrefFor(key)}
                     className={`group relative flex w-full flex-col overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${FOCUS} ${
-                      first ? "border-blue-900 bg-blue-900 text-white shadow-lg" : "border-slate-200 bg-white shadow-sm hover:border-blue-900/30"
+                      first ? "keep-light-palette border-brand-line bg-brand-solid text-white shadow-lg" : "border-slate-200 bg-surface shadow-sm hover:border-brand-line/30"
                     }`}
                   >
                     {first ? <span className="absolute -top-16 -right-16 size-44 rounded-full bg-orange-300/15 blur-2xl" aria-hidden="true" /> : null}
@@ -230,7 +230,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                     </div>
                     <h3 className={`relative mt-5 text-lg font-bold ${first ? "text-white" : "text-slate-900"}`}>{r.name}</h3>
                     <p className={`relative mt-2 flex-1 text-sm leading-relaxed ${first ? "text-slate-200" : "text-slate-600"}`}>{PRODUCT_DATA[key].subtitle}</p>
-                    <span className={`relative mt-5 inline-flex items-center gap-1.5 text-sm font-semibold ${first ? "text-orange-300" : "text-blue-900"}`}>
+                    <span className={`relative mt-5 inline-flex items-center gap-1.5 text-sm font-semibold ${first ? "text-orange-300" : "text-brand"}`}>
                       Explore <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>
                   </Link>
@@ -243,7 +243,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
 
       {/* Proof */}
       {page.proof ? (
-        <section id="proof" aria-labelledby="proof-heading" className="scroll-mt-32 border-y border-slate-200 bg-white">
+        <section id="proof" aria-labelledby="proof-heading" className="scroll-mt-32 border-y border-slate-200 bg-surface">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
             <SectionHead
               id="proof-heading"
@@ -264,7 +264,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
 
       {/* FAQ */}
       {faq.length > 0 ? (
-        <section id="faq" aria-labelledby="faq-heading" className={`scroll-mt-32 ${page.proof ? "" : "border-y border-slate-200 bg-white"}`}>
+        <section id="faq" aria-labelledby="faq-heading" className={`scroll-mt-32 ${page.proof ? "" : "border-y border-slate-200 bg-surface"}`}>
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
             <SectionHead id="faq-heading" tag="FAQ" title="Questions we hear most" />
             <Faq items={faq} />
@@ -283,16 +283,16 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                 <Reveal key={o.slug} as="li" delay={i * 60} className="flex">
                   <Link
                     href={industryHref(o.slug)}
-                    className={`group flex h-full w-full items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-blue-900/30 hover:shadow-lg ${FOCUS}`}
+                    className={`group flex h-full w-full items-center gap-3 rounded-2xl border border-slate-200 bg-surface p-4 transition-all duration-300 hover:-translate-y-1 hover:border-brand-line/30 hover:shadow-lg ${FOCUS}`}
                   >
-                    <span className={`flex size-11 shrink-0 items-center justify-center rounded-xl border ${TILE} transition-colors group-hover:border-blue-900 group-hover:bg-blue-900 group-hover:text-white`}>
+                    <span className={`flex size-11 shrink-0 items-center justify-center rounded-xl border ${TILE} transition-colors group-hover:border-brand-line group-hover:bg-brand-solid group-hover:text-white`}>
                       <OIcon className="size-5" aria-hidden="true" />
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm font-bold text-slate-900">{o.name}</span>
                       <span className="block text-xs text-slate-500">{o.menu}</span>
                     </span>
-                    <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-blue-900" aria-hidden="true" />
+                    <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-brand" aria-hidden="true" />
                   </Link>
                 </Reveal>
               );
@@ -303,7 +303,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
 
       {/* Closing band */}
       <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
-        <div className="relative isolate overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 p-7 shadow-2xl md:p-12">
+        <div className="keep-light-palette relative isolate overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 p-7 shadow-2xl md:p-12">
           <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
             <div className="absolute inset-0 [background-image:radial-gradient(rgba(148,163,184,0.14)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_right,transparent,#000_70%)]" />
             <div className="absolute -top-24 -right-16 size-72 rounded-full bg-orange-300/15 blur-3xl" />

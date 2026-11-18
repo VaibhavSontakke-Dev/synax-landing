@@ -1,4 +1,4 @@
-import { Layers } from "lucide-react";
+import { Fuel, Layers } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PRODUCT_DATA } from "../_data/products";
 import type { IndustryPage } from "../_data/industries";
@@ -13,4 +13,5 @@ export const INDUSTRY_ICON: Record<IndustryPage["icon"], LucideIcon> = {
   ai: PRODUCT_DATA.ai.icon,
   aerospace: PRODUCT_DATA.aerospace.icon,
   layers: Layers,
+  energy: Fuel,
 };

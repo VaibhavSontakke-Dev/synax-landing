@@ -14,7 +14,8 @@ import { Reveal } from "./reveal";
  *   aerospace-defence            "Flight deck"  full-bleed sky photo, corner brackets, a glass gate bar
  *   precision-cnc-machining      "Drawing"      split screen, diagonal-cut spindle photo with callouts
  *   it-services-staffing         "Pipeline"     centred headline over a requirement-to-billing board
- *   automotive-heavy-industrial  "Poster"       oversized type on the assembly-line photo, a production line
+ *   (any other page)             "Poster"       oversized type on the page's heroImage, a six-step line
+ *                                              (industrial-machinery-equipment, oil-gas-energy)
  *   plant-workforce-hcm          "Roster"       copy beside one card with a plant-floor photo header
  * Copy and flow steps come from `_data/industries.ts`; the small numbers and names inside the mock cards and
  * boards are samples and say so. Photos are the files in /public/images. Server components.
@@ -59,7 +60,7 @@ function FlightDeckHero({ page }: { page: IndustryPage }) {
   const gate = found >= 0 ? found : 0;
   const bracket = "absolute hidden size-6 border-orange-300 sm:block";
   return (
-    <section aria-labelledby="page-heading" className="relative isolate overflow-hidden bg-blue-950 text-white">
+    <section aria-labelledby="page-heading" className="keep-light-palette relative isolate overflow-hidden bg-blue-950 text-white">
       <Image
         src="/images/aerospace.webp"
         alt="A business jet, a fighter and an unmanned aircraft in flight"
@@ -107,7 +108,7 @@ function FlightDeckHero({ page }: { page: IndustryPage }) {
               >
                 <p className="font-mono text-[11px] font-semibold opacity-70">{String(i + 1).padStart(2, "0")}</p>
                 <p className="text-sm font-bold">{s.title}</p>
-                {s.chips?.[0] ? <p className={`truncate text-[11px] ${on ? "text-blue-900" : "text-slate-300"}`}>{s.chips[0]}</p> : null}
+                {s.chips?.[0] ? <p className={`truncate text-[11px] ${on ? "text-brand" : "text-slate-300"}`}>{s.chips[0]}</p> : null}
               </li>
             );
           })}
@@ -132,11 +133,11 @@ function DrawingHero({ page }: { page: IndustryPage }) {
   const { head, tail } = splitTitle(page.title);
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-slate-200 bg-slate-50">
-      <div className="pointer-events-none absolute inset-0 -z-10 [background-image:linear-gradient(rgba(30,58,138,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(30,58,138,0.06)_1px,transparent_1px)] [background-size:32px_32px] [mask-image:linear-gradient(to_right,#000,transparent_60%)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-10 [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:32px_32px] [mask-image:linear-gradient(to_right,#000,transparent_60%)]" aria-hidden="true" />
 
       {/* Photo panel, cut on a diagonal (large screens) */}
       <div
-        className="absolute inset-y-0 right-0 hidden w-[58%] bg-blue-900 lg:block"
+        className="absolute inset-y-0 right-0 hidden w-[58%] bg-brand-solid lg:block"
         style={{ clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0 100%)" }}
         aria-hidden="true"
       >
@@ -159,7 +160,7 @@ function DrawingHero({ page }: { page: IndustryPage }) {
           <span
             key={c.text}
             className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-md px-2.5 py-1 text-xs font-semibold whitespace-nowrap shadow-md ${
-              c.tone === "orange" ? "bg-orange-300 text-blue-950" : "bg-white text-blue-900"
+              c.tone === "orange" ? "bg-orange-300 text-blue-950" : "bg-surface text-brand"
             }`}
             style={{ left: `${c.x}%`, top: `${c.y}%` }}
           >
@@ -174,7 +175,7 @@ function DrawingHero({ page }: { page: IndustryPage }) {
           <SectionTag lines="start">{page.tag}</SectionTag>
           <h1 id="page-heading" className="mt-3 text-3xl leading-[1.12] font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             {head}
-            {tail ? <span className="text-blue-900">{tail}</span> : null}
+            {tail ? <span className="text-brand">{tail}</span> : null}
           </h1>
           <p className="mt-5 text-sm leading-relaxed text-slate-700 sm:text-base">{page.lead}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -184,12 +185,12 @@ function DrawingHero({ page }: { page: IndustryPage }) {
 
         {/* Small screens: the photo sits below the copy with the callouts as chips */}
         <div className="mt-6 lg:hidden">
-          <div className="relative h-48 overflow-hidden rounded-2xl border border-slate-200 bg-blue-900">
+          <div className="relative h-48 overflow-hidden rounded-2xl border border-slate-200 bg-brand-solid">
             <Image src="/images/precision.webp" alt="A CNC spindle machining a metal part" fill sizes="100vw" quality={70} className="object-cover" />
           </div>
           <ul className="mt-3 flex flex-wrap gap-2">
             {DRAWING_CALLOUTS.map((c) => (
-              <li key={c.text} className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-blue-900">
+              <li key={c.text} className="rounded-md border border-slate-200 bg-surface px-2.5 py-1 text-xs font-semibold text-brand">
                 {c.text}
               </li>
             ))}
@@ -210,7 +211,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
   const { head, tail } = splitTitle(page.title);
   const last = page.flow.length - 1;
   return (
-    <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white">
+    <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page">
       {/* Device photo as a soft accent on the right edge */}
       <div
         className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 opacity-40 [mask-image:linear-gradient(to_right,transparent,#000_65%)] lg:block"
@@ -218,7 +219,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
       >
         <Image src="/images/modern-ui-v2.webp" alt="" fill sizes="50vw" quality={70} className="object-cover object-[50%_35%]" />
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgba(30,58,138,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(var(--grid-dot)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" aria-hidden="true" />
 
       <div className="mx-auto max-w-7xl px-4 pt-8 pb-12 sm:px-6 lg:px-8 lg:pt-10 lg:pb-14">
         <LightCrumbs page={page} />
@@ -226,7 +227,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
           <SectionTag lines="both">{page.tag}</SectionTag>
           <h1 id="page-heading" className="mt-3 text-3xl leading-[1.12] font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             {head}
-            {tail ? <span className="text-blue-900">{tail}</span> : null}
+            {tail ? <span className="text-brand">{tail}</span> : null}
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-700 sm:text-base">{page.lead}</p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -243,16 +244,16 @@ function PipelineHero({ page }: { page: IndustryPage }) {
                 <Reveal key={s.title} as="li" delay={i * 60} className="flex">
                   <div
                     className={`relative flex w-full flex-col rounded-xl border p-3.5 shadow-sm ${
-                      end ? "border-blue-900 bg-blue-900 text-white" : "border-slate-200 bg-white text-slate-900"
+                      end ? "keep-light-palette border-brand-line bg-brand-solid text-white" : "border-slate-200 bg-surface text-slate-900"
                     }`}
                   >
-                    <p className={`font-mono text-[11px] font-semibold ${end ? "text-sky-200" : "text-blue-900/60"}`}>{String(i + 1).padStart(2, "0")}</p>
+                    <p className={`font-mono text-[11px] font-semibold ${end ? "text-sky-200" : "text-brand/60"}`}>{String(i + 1).padStart(2, "0")}</p>
                     <p className="mt-1 text-sm leading-snug font-bold">{s.title}</p>
                     <p className={`mt-2.5 rounded-md px-2 py-1 text-[11px] font-medium ${end ? "bg-white/15 text-white" : "bg-slate-100 text-slate-700"}`}>
                       {PIPELINE_SAMPLES[i] ?? "In progress"}
                     </p>
                     {i < last ? (
-                      <ChevronRight className="absolute top-1/2 -right-2.5 z-10 hidden size-4 -translate-y-1/2 rounded-full bg-white text-blue-900 shadow lg:block" aria-hidden="true" />
+                      <ChevronRight className="absolute top-1/2 -right-2.5 z-10 hidden size-4 -translate-y-1/2 rounded-full bg-surface text-brand shadow lg:block" aria-hidden="true" />
                     ) : null}
                   </div>
                 </Reveal>
@@ -267,17 +268,17 @@ function PipelineHero({ page }: { page: IndustryPage }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 4 · Automotive & Heavy Industrial — "Poster"                               */
+/* 4 · Machinery, Oil & Gas (and any page without its own) — "Poster"         */
 /* -------------------------------------------------------------------------- */
 
 function PosterHero({ page }: { page: IndustryPage }) {
   const { head, tail } = splitTitle(page.title);
   const active = Math.min(3, page.flow.length - 1);
   return (
-    <section aria-labelledby="page-heading" className="relative isolate overflow-hidden bg-blue-950 text-white">
+    <section aria-labelledby="page-heading" className="keep-light-palette relative isolate overflow-hidden bg-blue-950 text-white">
       <Image
-        src="/images/assembly-line.webp"
-        alt="Vehicle bodies moving along an assembly line"
+        src={page.heroImage?.src ?? "/images/robot-floor.webp"}
+        alt={page.heroImage?.alt ?? "Industrial robot arms on a factory floor"}
         fill
         priority
         sizes="100vw"
@@ -310,7 +311,7 @@ function PosterHero({ page }: { page: IndustryPage }) {
 
           <div className="hidden text-right lg:block">
             <p className="text-7xl leading-none font-black tracking-tight text-white">{page.flow.length}</p>
-            <p className="mt-1 text-sm text-slate-300">steps, machine to invoice</p>
+            <p className="mt-1 text-sm text-slate-300">steps, {page.flowTitle.toLowerCase()}</p>
           </div>
         </div>
 
@@ -323,7 +324,7 @@ function PosterHero({ page }: { page: IndustryPage }) {
             return (
               <li key={s.title} className="relative flex flex-col items-center text-center">
                 <span
-                  className={`relative z-10 block size-4 rounded-full border-2 border-white ${on ? "synax-prod-pulse bg-orange-300" : i < active ? "bg-white" : "bg-white/30"}`}
+                  className={`relative z-10 block size-4 rounded-full border-2 border-surface ${on ? "synax-prod-pulse bg-orange-300" : i < active ? "bg-surface" : "bg-white/30"}`}
                   aria-hidden="true"
                 />
                 <span className="mt-2.5 text-xs leading-snug font-semibold text-slate-100">{s.title}</span>
@@ -346,7 +347,7 @@ const ROSTER = [
   { name: "Operator 2", days: [1, 2, 1, 1, 0] },
   { name: "Operator 3", days: [1, 1, 2, 1, 1] },
 ];
-const DAY_STYLE = ["bg-slate-200", "bg-blue-900", "bg-blue-900/35"];
+const DAY_STYLE = ["bg-slate-200", "bg-brand-solid", "bg-blue-900/35"];
 const DAY_LABEL = ["Absent", "Present", "Leave or half day"];
 
 function RosterHero({ page }: { page: IndustryPage }) {
@@ -356,7 +357,7 @@ function RosterHero({ page }: { page: IndustryPage }) {
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-slate-200 bg-slate-100">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute inset-0 [background-image:radial-gradient(rgba(30,58,138,0.07)_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="absolute inset-0 [background-image:radial-gradient(var(--grid-line)_1px,transparent_1px)] [background-size:22px_22px]" />
         <div className="absolute -right-24 -bottom-24 size-96 rounded-full bg-orange-200/30 blur-3xl" />
       </div>
       <div className="mx-auto max-w-7xl px-4 pt-8 pb-10 sm:px-6 lg:px-8 lg:pt-10 lg:pb-14">
@@ -366,7 +367,7 @@ function RosterHero({ page }: { page: IndustryPage }) {
             <SectionTag lines="start">{page.tag}</SectionTag>
             <h1 id="page-heading" className="mt-3 text-3xl leading-[1.12] font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
               {head}
-              {tail ? <span className="text-blue-900">{tail}</span> : null}
+              {tail ? <span className="text-brand">{tail}</span> : null}
             </h1>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base">{page.lead}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -374,8 +375,8 @@ function RosterHero({ page }: { page: IndustryPage }) {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-300 bg-white shadow-lg">
-            <div className="relative h-36 bg-blue-900 sm:h-40">
+          <div className="overflow-hidden rounded-3xl border border-slate-300 bg-surface shadow-lg">
+            <div className="relative h-36 bg-brand-solid sm:h-40">
               <Image
                 src="/images/robot-floor.webp"
                 alt="Robotic arms working on a plant floor"
@@ -408,13 +409,13 @@ function RosterHero({ page }: { page: IndustryPage }) {
                 {overtime ? (
                   <p className="flex items-center justify-between gap-3 text-slate-700">
                     <span>{overtime.title}</span>
-                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-blue-900">2 pending</span>
+                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-brand">2 pending</span>
                   </p>
                 ) : null}
                 {payroll ? (
                   <p className="flex items-center justify-between gap-3 text-slate-700">
                     <span>{payroll.title}</span>
-                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-blue-900">Ready to review</span>
+                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-brand">Ready to review</span>
                   </p>
                 ) : null}
               </div>
@@ -447,23 +448,23 @@ export function IndustryHero({ page }: { page: IndustryPage }) {
 /** Band under every hero: who it is for, the products that deliver it (each with its icon), and four counts. */
 export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: number; label: string }[] }) {
   return (
-    <section aria-label="At a glance" className="border-b border-slate-200 bg-gradient-to-b from-white to-slate-50">
+    <section aria-label="At a glance" className="border-b border-slate-200 bg-gradient-to-b from-page to-slate-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-0 divide-y divide-slate-200 lg:grid-cols-[1fr_1.15fr_auto] lg:divide-x lg:divide-y-0">
           {/* Built for */}
           <div className="flex items-start gap-4 py-6 lg:pr-8">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-white text-blue-900 shadow-xs">
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-slate-300 bg-surface text-brand shadow-xs">
               <Users className="size-5" aria-hidden="true" />
             </span>
             <div>
-              <p className="text-[11px] font-bold tracking-[0.14em] text-orange-600 uppercase">Built for</p>
+              <p className="text-[11px] font-bold tracking-[0.14em] text-accent uppercase">Built for</p>
               <p className="mt-1 text-sm leading-relaxed font-medium text-slate-800">{page.whoFor}</p>
             </div>
           </div>
 
           {/* Delivered by */}
           <div className="py-6 lg:px-8">
-            <p className="text-[11px] font-bold tracking-[0.14em] text-orange-600 uppercase">Delivered by</p>
+            <p className="text-[11px] font-bold tracking-[0.14em] text-accent uppercase">Delivered by</p>
             <ul className="mt-2.5 flex flex-wrap gap-2">
               {page.products.map((key, i) => {
                 const PIcon = PRODUCT_DATA[key].icon;
@@ -471,11 +472,11 @@ export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: 
                   <li key={key}>
                     <Link
                       href={hrefFor(key)}
-                      className={`group flex items-center gap-2 rounded-xl border bg-white py-1.5 pr-3 pl-1.5 text-xs font-semibold shadow-xs transition-all hover:-translate-y-0.5 hover:border-blue-900 hover:shadow-md ${FOCUS} ${
-                        i === 0 ? "border-blue-900/40 text-blue-900" : "border-slate-300 text-slate-800"
+                      className={`group flex items-center gap-2 rounded-xl border bg-surface py-1.5 pr-3 pl-1.5 text-xs font-semibold shadow-xs transition-all hover:-translate-y-0.5 hover:border-brand-line hover:shadow-md ${FOCUS} ${
+                        i === 0 ? "border-brand-line/40 text-brand" : "border-slate-300 text-slate-800"
                       }`}
                     >
-                      <span className="flex size-7 items-center justify-center rounded-lg bg-slate-100 text-blue-900 transition-colors group-hover:bg-blue-900 group-hover:text-white">
+                      <span className="flex size-7 items-center justify-center rounded-lg bg-slate-100 text-brand transition-colors group-hover:bg-brand-solid group-hover:text-white">
                         <PIcon className="size-4" aria-hidden="true" />
                       </span>
                       {routeFor(key).name}
@@ -491,7 +492,7 @@ export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: 
             {stats.map((s, i) => (
               <Reveal key={s.label} as="li" delay={i * 60}>
                 <div className="px-1 text-center lg:min-w-24 lg:border-l lg:border-slate-200 lg:first:border-l-0">
-                  <p className="text-3xl leading-none font-extrabold tracking-tight text-blue-900 sm:text-4xl">{s.value}</p>
+                  <p className="text-3xl leading-none font-extrabold tracking-tight text-brand sm:text-4xl">{s.value}</p>
                   <p className="mt-1.5 text-[11px] leading-tight font-semibold tracking-wide text-slate-500 uppercase">{s.label}</p>
                 </div>
               </Reveal>

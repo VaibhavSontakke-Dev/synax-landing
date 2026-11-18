@@ -84,14 +84,14 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
     <article
       className={`flex h-full flex-col rounded-2xl p-5 sm:p-6 ${
         navy
-          ? "bg-blue-900 text-white shadow-lg"
-          : "border border-slate-200/90 bg-white text-slate-900 shadow-sm"
+          ? "keep-light-palette bg-brand-solid text-white shadow-lg"
+          : "border border-slate-200/90 bg-surface text-slate-900 shadow-sm"
       }`}
     >
       <div className="flex items-center justify-between">
         <span
           className={`flex size-10 items-center justify-center rounded-xl ${
-            navy ? "bg-white/15 text-orange-300" : "bg-orange-50 text-orange-600"
+            navy ? "bg-white/15 text-orange-300" : "bg-orange-50 text-accent"
           }`}
         >
           <Icon className="size-5" aria-hidden="true" />
@@ -108,7 +108,7 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
 
       <span
         className={`mt-3 inline-block self-start rounded-md px-2.5 py-0.5 text-[11px] font-semibold ${
-          navy ? "bg-white/15 text-orange-300" : "bg-orange-50 text-orange-700"
+          navy ? "bg-white/15 text-orange-300" : "bg-orange-50 text-accent-strong"
         }`}
       >
         {pillar.tag}
@@ -133,7 +133,7 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
         aria-controls={bodyId}
         onClick={() => setOpen((v) => !v)}
         className={`mt-1.5 inline-flex cursor-pointer items-center gap-1 self-start rounded-sm text-xs font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${
-          navy ? "text-orange-300 hover:text-orange-200" : "text-orange-700 hover:text-orange-800"
+          navy ? "text-orange-300 hover:text-orange-200" : "text-accent-strong hover:text-accent-strong"
         }`}
       >
         {open ? "Show less" : "Read more"}
@@ -149,7 +149,7 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
             }`}
           >
             <CircleCheck
-              className={`size-3.5 shrink-0 ${navy ? "text-orange-300" : "text-orange-600"}`}
+              className={`size-3.5 shrink-0 ${navy ? "text-orange-300" : "text-accent"}`}
               aria-hidden="true"
             />
             {chip}
@@ -165,7 +165,7 @@ export function Purpose() {
     <section
       id="purpose"
       aria-labelledby="purpose-heading"
-      className="scroll-mt-20 border-t border-slate-200/80 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/70 py-10 sm:py-12"
+      className="scroll-mt-20 border-t border-slate-200/80 bg-gradient-to-b from-slate-50/50 via-page to-slate-50/70 py-10 sm:py-12"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -187,8 +187,8 @@ export function Purpose() {
             <span className="rounded-full bg-slate-100 px-3 py-1.5 text-slate-500 line-through">
               Fragmented spreadsheets
             </span>
-            <ArrowRight className="size-4 text-orange-600" aria-hidden="true" />
-            <span className="rounded-full bg-blue-900 px-3 py-1.5 text-white">One cohesive continuum</span>
+            <ArrowRight className="size-4 text-accent" aria-hidden="true" />
+            <span className="rounded-full bg-brand-solid px-3 py-1.5 text-white">One cohesive continuum</span>
           </p>
         </div>
 
@@ -201,7 +201,7 @@ export function Purpose() {
           </div>
 
           <div
-            className="absolute top-1/2 left-1/2 z-10 hidden size-[76px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-orange-600 text-center text-white ring-[7px] ring-white md:flex"
+            className="absolute top-1/2 left-1/2 z-10 hidden size-[76px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-orange-600 text-center text-white ring-[7px] ring-surface md:flex"
             aria-hidden="true"
           >
             <InfinityIcon className="size-5" />
@@ -227,7 +227,7 @@ export function Purpose() {
           </div>
           <Link
             href="/why-synax"
-            className="flex shrink-0 items-center gap-2 rounded-lg border-2 border-orange-500 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+            className="flex shrink-0 items-center gap-2 rounded-lg border-2 border-orange-500 bg-surface px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
           >
             <span>See why teams choose Synax</span>
             <ArrowRight className="size-4" aria-hidden="true" />

@@ -7,6 +7,15 @@ import { Activity, AlertTriangle, ArrowRight, BookOpen, Check, CircleCheck, Plug
 import { SectionTag } from "./section-tag";
 import { HeroBackdrop } from "./home-hero";
 import { hrefFor } from "../_data/products";
+import { DashboardMotion, type HazeBox } from "./dashboard-motion";
+
+/**
+ * The AI row's screen is the illustrated dashboard (tools/hero-dashboard/, `usp-ai-dashboard*.webp`, light and dark):
+ * only the Overview card, where Synax AI lives, is sharp; everything else is frosted, with light sweeps, live dots and the
+ * airplane over the banner. Boxes from tools/hero-dashboard/regions-usp-ai.json.
+ */
+const AI_BANNER: [number, number, number, number] = [0.1442, 0.0134, 0.992, 0.1569];
+const AI_HAZE: HazeBox[] = [["kpi",0.1442,0.1722,0.2975,0.2641],["kpi",0.3055,0.1722,0.4588,0.2641],["kpi",0.4668,0.1722,0.6201,0.2641],["kpi",0.6281,0.1722,0.7815,0.2641],["card",0.3604,0.2794,0.5641,0.4325],["card",0.5767,0.2794,0.7803,0.4325],["card",0.1442,0.4536,0.3478,0.6067],["card",0.3604,0.4536,0.5641,0.6067],["card",0.5767,0.4536,0.7803,0.6067],["card",0.1442,0.6278,0.3478,0.7809],["card",0.3604,0.6278,0.5641,0.7809],["card",0.5767,0.6278,0.7803,0.7809],["wide",0.1442,0.8057,0.7803,0.9856],["side",0.7895,0.1722,0.992,0.488],["machines",0.7895,0.5033,0.992,0.7522],["side",0.7895,0.7675,0.992,0.9856]];
 
 /**
  * "What sets Synax apart" — the USP section right after the hero. Three numbered story rows (AI that acts, live machine
@@ -18,9 +27,9 @@ import { hrefFor } from "../_data/products";
 const FRAME_LEFT = "lg:[transform:perspective(1600px)_rotateY(-6deg)_rotateX(2deg)]";
 const FRAME_RIGHT = "lg:[transform:perspective(1600px)_rotateY(6deg)_rotateX(2deg)]";
 const FLOAT =
-  "synax-usp-float z-20 mt-3 rounded-2xl border border-slate-200 bg-white p-3 text-[13px] leading-snug shadow-[0_22px_40px_-18px_rgba(30,58,138,0.55)] lg:absolute lg:mt-0";
+  "synax-usp-float z-20 mt-3 rounded-2xl border border-slate-200 bg-surface p-3 text-[13px] leading-snug shadow-[0_22px_40px_-18px_rgba(30,58,138,0.55)] lg:absolute lg:mt-0";
 const LINK =
-  "inline-flex items-center gap-2 rounded-lg border-2 border-orange-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
+  "inline-flex items-center gap-2 rounded-lg border-2 border-orange-300 bg-surface px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -36,7 +45,7 @@ function useReducedMotion() {
 
 function LiveDot({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 text-xs font-bold ${dark ? "text-sky-200" : "text-blue-900"}`}>
+    <span className={`inline-flex items-center gap-1.5 text-xs font-bold ${dark ? "text-sky-200" : "text-brand"}`}>
       <span className={`size-2 animate-pulse rounded-full motion-reduce:animate-none ${dark ? "bg-sky-300" : "bg-blue-900/50"}`} aria-hidden="true" />
       {children}
     </span>
@@ -46,7 +55,7 @@ function LiveDot({ children, dark = false }: { children: React.ReactNode; dark?:
 function Frame({ url, tilt, children }: { url: string; tilt: "left" | "right"; children: React.ReactNode }) {
   return (
     <div
-      className={`relative rounded-2xl border border-sky-200 bg-white shadow-[0_40px_70px_-34px_rgba(30,58,138,0.55)] transition-transform duration-500 motion-reduce:[transform:none] lg:hover:[transform:none] ${
+      className={`relative rounded-2xl border border-sky-200 bg-surface shadow-[0_40px_70px_-34px_rgba(30,58,138,0.55)] transition-transform duration-500 motion-reduce:[transform:none] lg:hover:[transform:none] ${
         tilt === "left" ? FRAME_LEFT : FRAME_RIGHT
       }`}
     >
@@ -80,7 +89,7 @@ function Row({
       }`}
     >
       <span
-        className="absolute top-1/2 left-1/2 z-10 hidden size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-blue-900 text-sm font-extrabold text-white ring-8 ring-white outline-2 outline-sky-200 lg:flex"
+        className="absolute top-1/2 left-1/2 z-10 hidden size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-solid text-sm font-extrabold text-white ring-8 ring-surface outline-2 outline-sky-200 lg:flex"
         aria-hidden="true"
       >
         {n}
@@ -110,7 +119,7 @@ function UspText({
 }) {
   return (
     <>
-      <div className="flex items-center gap-2.5 text-xs font-bold tracking-wider text-blue-900 uppercase">
+      <div className="flex items-center gap-2.5 text-xs font-bold tracking-wider text-brand uppercase">
         {tile}
         {label}
       </div>
@@ -135,28 +144,26 @@ function UspText({
 /* ---- 1. AI ---- */
 
 /**
- * Magnifier for the Synax AI tile: the Overview card of the full-size screenshot (x 14.6-36.3%, y 28.6-43.6%), enlarged
- * about 2.3x and placed just below the ring, with a small pointer up to it. Sized in percentages of the image, so it
- * scales with the frame. The picture is a CSS background of the 2000px master, so it stays sharp.
+ * Magnifier for the Synax AI tile: the Overview card of the 2x master (crop x 14.02-35.18%, y 27.34-43.85%),
+ * placed just below the ring, with a small pointer up to it. Sized in percentages of the image, so it scales with the frame.
  */
 function AiLens() {
   return (
-    <div className="pointer-events-none absolute z-10 aspect-[434/156] w-[40%]" style={{ left: "14.6%", top: "48%" }} aria-hidden="true">
+    <div className="pointer-events-none absolute z-10 aspect-[370/173] w-[40%]" style={{ left: "14.4%", top: "48%" }} aria-hidden="true">
       <div
-        className="absolute inset-0 overflow-hidden rounded-xl border-2 border-orange-400 bg-white bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)]"
+        className="absolute inset-0 overflow-hidden rounded-xl border-2 border-orange-400 bg-surface bg-[url(/images/usp-ai-dashboard-master.webp)] bg-origin-border bg-no-repeat shadow-[0_18px_36px_-12px_rgba(30,58,138,0.5)] dark:bg-[url(/images/usp-ai-dashboard-dark-master.webp)]"
         style={{
-          backgroundImage: "url(/images/hero-dashboard-overview.webp)",
-          backgroundSize: "460.8% auto",
-          backgroundPosition: "18.65% 33.6%",
+          backgroundSize: "472.59% auto",
+          backgroundPosition: "17.78% 32.75%",
         }}
       >
         <span
           className="absolute rounded-md border-2 border-orange-400"
-          style={{ left: "49.8%", top: "61.7%", width: "47%", height: "30.9%" }}
+          style={{ left: "51.09%", top: "67.96%", width: "42.44%", height: "22.05%" }}
         />
       </div>
-      <span className="absolute -top-[7px] left-[39.75%] size-3 -translate-x-1/2 rotate-45 border-t-2 border-l-2 border-orange-400 bg-white" />
-      <span className="absolute -top-2.5 -left-2.5 flex size-6 items-center justify-center rounded-full bg-orange-400 text-white shadow-sm ring-2 ring-white">
+      <span className="absolute -top-[7px] left-[37.3%] size-3 -translate-x-1/2 rotate-45 border-t-2 border-l-2 border-orange-400 bg-surface" />
+      <span className="absolute -top-2.5 -left-2.5 flex size-6 items-center justify-center rounded-full bg-orange-400 text-white shadow-sm ring-2 ring-surface">
         <ZoomIn className="size-3.5" />
       </span>
     </div>
@@ -170,7 +177,7 @@ function AiRow() {
       text={
         <UspText
           tile={
-            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-blue-900">
+            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-brand">
               <Sparkles className="size-5" aria-hidden="true" />
             </span>
           }
@@ -192,16 +199,25 @@ function AiRow() {
           <Frame url="synax.senwellgroup.com/home" tilt="left">
             <div className="relative overflow-hidden rounded-b-2xl leading-[0]">
               <Image
-                src="/images/hero-dashboard-overview.webp"
-                alt="Synax home screen with the Overview card, Synax AI and the My Work panel"
-                width={2000}
+                src="/images/usp-ai-dashboard.webp"
+                alt="Synax home screen with the Overview card and Synax AI"
+                width={1748}
                 height={1045}
                 sizes="(min-width: 1024px) 700px, 100vw"
-                className="block h-auto w-full"
+                className="block h-auto w-full dark:hidden"
               />
+              <Image
+                src="/images/usp-ai-dashboard-dark.webp"
+                alt="Synax home screen with the Overview card and Synax AI, in the dark theme"
+                width={1748}
+                height={1045}
+                sizes="(min-width: 1024px) 700px, 100vw"
+                className="hidden h-auto w-full dark:block"
+              />
+              <DashboardMotion banner={AI_BANNER} haze={AI_HAZE} />
               <span
                 className="synax-usp-ring pointer-events-none absolute rounded-[10px] border-[3px] border-orange-400"
-                style={{ left: "25.4%", top: "37.8%", width: "10.2%", height: "4.6%" }}
+                style={{ left: "24.53%", top: "38.26%", width: "9.58%", height: "4.24%" }}
                 aria-hidden="true"
               />
               <AiLens />
@@ -214,14 +230,14 @@ function AiRow() {
           <div className={`${FLOAT} lg:-right-6 lg:-bottom-7 lg:w-[19rem]`} aria-live="polite">
             {approved ? (
               <>
-                <p className="flex items-center gap-1.5 font-bold text-blue-900">
+                <p className="flex items-center gap-1.5 font-bold text-brand">
                   <CircleCheck className="size-4" aria-hidden="true" /> Approved by you
                 </p>
                 <p className="mt-1 text-xs text-slate-600">2 reminders drafted. Recorded in the event history.</p>
               </>
             ) : (
               <>
-                <p className="flex items-center gap-1.5 font-bold text-blue-900">
+                <p className="flex items-center gap-1.5 font-bold text-brand">
                   <Sparkles className="size-4" aria-hidden="true" /> Synax AI proposes
                 </p>
                 <p className="mt-1.5 mb-2.5 text-slate-800">2 challans are past their return date. Draft reminders to the customer?</p>
@@ -229,7 +245,7 @@ function AiRow() {
                   <button
                     type="button"
                     onClick={() => setApproved(true)}
-                    className="cursor-pointer rounded-lg bg-blue-900 px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                    className="cursor-pointer rounded-lg bg-brand-solid px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-solid-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                   >
                     Approve
                   </button>
@@ -257,7 +273,7 @@ function MachineBoard() {
   const m2 = 31 + tick;
   return (
     <div
-      className={`${FLOAT.replace("border-slate-200 bg-white", "border-blue-800 bg-blue-900")} text-white lg:-bottom-6 lg:-left-6 lg:w-64`}
+      className={`${FLOAT.replace("border-slate-200 bg-surface", "keep-light-palette border-blue-800 bg-brand-solid")} text-white lg:-bottom-6 lg:-left-6 lg:w-64`}
       style={{ animationDelay: "1s" }}
     >
       <div className="flex items-center justify-between font-bold text-white">
@@ -297,7 +313,7 @@ function MachinesRow() {
       text={
         <UspText
           tile={
-            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-blue-900">
+            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-brand">
               <Activity className="size-5" aria-hidden="true" />
             </span>
           }
@@ -330,7 +346,7 @@ function MachinesRow() {
                 sizes="(min-width: 1024px) 700px, 100vw"
                 className="block h-auto w-full"
               />
-              <span className="absolute top-2 right-2 rounded bg-white/90 px-2 py-0.5 text-[10px] leading-none font-semibold text-slate-600 shadow-xs">Illustration</span>
+              <span className="absolute top-2 right-2 rounded bg-surface/90 px-2 py-0.5 text-[10px] leading-none font-semibold text-slate-600 shadow-xs">Illustration</span>
             </div>
           </Frame>
           <div className={`${FLOAT} lg:top-[12%] lg:-right-4`} style={{ animationDelay: "0.2s" }}>
@@ -376,11 +392,11 @@ function InvoiceMock() {
   const irn = done >= 2;
 
   return (
-    <div className="grid gap-5 rounded-b-2xl bg-gradient-to-br from-slate-50 via-white to-sky-50 p-5 pl-8 sm:grid-cols-[1.45fr_1fr] sm:p-6 sm:pl-12 lg:pb-9">
-      <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-[0_12px_28px_-18px_rgba(30,58,138,0.55)]">
+    <div className="grid gap-5 rounded-b-2xl bg-gradient-to-br from-slate-50 via-page to-sky-50 p-5 pl-8 sm:grid-cols-[1.45fr_1fr] sm:p-6 sm:pl-12 lg:pb-9">
+      <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-[0_12px_28px_-18px_rgba(30,58,138,0.55)]">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className="text-[11px] font-bold tracking-wider text-blue-900 uppercase">Tax invoice</p>
+            <p className="text-[11px] font-bold tracking-wider text-brand uppercase">Tax invoice</p>
             <p className="text-base font-extrabold text-slate-900">INV-2201</p>
           </div>
           <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold text-slate-500">Sample</span>
@@ -402,15 +418,15 @@ function InvoiceMock() {
           <span>GST</span>
           <span className="font-semibold text-slate-700">27,792</span>
         </div>
-        <div className="mt-1 flex items-center justify-between rounded-lg bg-blue-900 px-3 py-1.5 text-xs font-bold text-white">
+        <div className="mt-1 flex items-center justify-between rounded-lg bg-brand-solid px-3 py-1.5 text-xs font-bold text-white">
           <span>Total</span>
           <span>1,82,192</span>
         </div>
 
         <div className={`mt-3 flex items-center gap-3 transition-opacity duration-500 ${irn ? "opacity-100" : "opacity-35"}`}>
-          <div className="grid shrink-0 grid-cols-7 gap-px rounded-sm bg-white p-1 ring-1 ring-slate-200" aria-hidden="true">
+          <div className="grid shrink-0 grid-cols-7 gap-px rounded-sm bg-surface p-1 ring-1 ring-slate-200" aria-hidden="true">
             {QR.join("").split("").map((c, i) => (
-              <span key={i} className={`size-[5px] ${c === "1" ? "bg-blue-900" : "bg-transparent"}`} />
+              <span key={i} className={`size-[5px] ${c === "1" ? "bg-brand-solid" : "bg-transparent"}`} />
             ))}
           </div>
           <p className="text-[11px] leading-snug text-slate-500">
@@ -433,7 +449,7 @@ function InvoiceMock() {
               ) : null}
               <span
                 className={`relative z-10 flex size-7 shrink-0 items-center justify-center rounded-full border-2 text-[11px] font-bold transition-colors duration-500 ${
-                  on ? "border-blue-900 bg-blue-900 text-white" : "border-slate-300 bg-white text-slate-400"
+                  on ? "border-brand-line bg-brand-solid text-white" : "border-slate-300 bg-surface text-slate-400"
                 }`}
               >
                 {on ? <Check className="size-3.5" aria-hidden="true" /> : i + 1}
@@ -457,7 +473,7 @@ function BillingRow() {
       text={
         <UspText
           tile={
-            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-blue-900">
+            <span className="flex size-10 items-center justify-center rounded-xl border border-slate-300 bg-slate-100 text-brand">
               <Receipt className="size-5" aria-hidden="true" />
             </span>
           }
@@ -480,12 +496,12 @@ function BillingRow() {
             <InvoiceMock />
           </Frame>
           <div className={`${FLOAT} lg:-top-5 lg:-right-5`} style={{ animationDelay: "0.3s" }}>
-            <p className="flex items-center gap-1.5 text-xs font-bold text-blue-900">
+            <p className="flex items-center gap-1.5 text-xs font-bold text-brand">
               <Plug className="size-3.5" aria-hidden="true" /> ClearTax or Masters India connected
             </p>
           </div>
           <div className={`${FLOAT} lg:-bottom-6 lg:-left-5`} style={{ animationDelay: "0.8s" }}>
-            <p className="flex items-center gap-1.5 font-bold text-blue-900">
+            <p className="flex items-center gap-1.5 font-bold text-brand">
               <BookOpen className="size-4" aria-hidden="true" /> Voucher sent to Tally
             </p>
             <p className="text-xs text-slate-500">Your accountant changes nothing</p>
@@ -512,14 +528,14 @@ export function Usp() {
         <div className="mx-auto max-w-3xl text-center">
           <SectionTag>What sets Synax apart (USP)</SectionTag>
           <h2 id="usp-heading" className="mt-3 text-2xl leading-[1.15] font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
-            Built in, not bolted on: <span className="text-blue-900">AI</span>, live machines, <span className="text-blue-900">Tally</span> and GST
+            Built in, not bolted on: <span className="text-brand">AI</span>, live machines, <span className="text-brand">Tally</span> and GST
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
             Most plants stitch these together from separate tools. In Synax they share one record, from the machine to the GST invoice.
           </p>
           <ul className="mt-5 flex flex-wrap justify-center gap-2" aria-label="Highlights">
             {["Agents only propose", "OEM or open FOCAS", "IRN on approval", "Works with Tally", "Built in India"].map((c) => (
-              <li key={c} className="rounded-full border border-sky-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
+              <li key={c} className="rounded-full border border-sky-200 bg-surface px-3 py-1 text-xs font-semibold text-slate-700">
                 {c}
               </li>
             ))}
@@ -533,20 +549,20 @@ export function Usp() {
           <BillingRow />
         </div>
 
-        <div className="rounded-3xl bg-blue-900 p-6 text-white shadow-xl sm:p-8">
+        <div className="keep-light-palette rounded-3xl bg-brand-solid p-6 text-white shadow-xl sm:p-8">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <p className="text-xs font-bold tracking-[0.14em] text-orange-300 uppercase">One record from the machine to the ledger</p>
             <p className="text-sm text-blue-100">With AI watching each step</p>
           </div>
           <div className="relative mt-8">
-            <div className="absolute top-4 right-[10%] left-[10%] hidden h-0.5 bg-white/35 sm:block" aria-hidden="true" />
+            <div className="absolute top-4 right-[10%] left-[10%] hidden h-0.5 bg-surface/35 sm:block" aria-hidden="true" />
             <div className="relative hidden sm:block" aria-hidden="true">
               <span className="synax-usp-flow absolute top-[9px] left-[10%] size-[13px] rounded-full bg-orange-300 shadow-[0_0_0_5px_rgba(253,186,116,0.3)]" />
             </div>
             <ol className="relative grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-5">
               {FLOW.map((f, i) => (
                 <li key={f} className="text-center text-[13px] font-semibold">
-                  <span className="mx-auto mb-2 flex size-8 items-center justify-center rounded-full bg-white text-sm font-bold text-blue-900">{i + 1}</span>
+                  <span className="mx-auto mb-2 flex size-8 items-center justify-center rounded-full bg-surface text-sm font-bold text-brand">{i + 1}</span>
                   {f}
                 </li>
               ))}
@@ -554,7 +570,7 @@ export function Usp() {
           </div>
           <ul className="mt-7 flex flex-wrap justify-center gap-2" aria-label="Guarantees">
             {["Agents only propose", "IRN on approval", "Works with Tally", "Audit trail on every posting"].map((c) => (
-              <li key={c} className="rounded-full border border-white/35 bg-white/10 px-3 py-1 text-xs font-semibold">
+              <li key={c} className="rounded-full border border-surface/35 bg-white/10 px-3 py-1 text-xs font-semibold">
                 {c}
               </li>
             ))}

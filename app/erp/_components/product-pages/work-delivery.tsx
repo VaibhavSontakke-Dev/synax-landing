@@ -61,7 +61,7 @@ const AROUND: { icon: LucideIcon; title: string; copy: string }[] = [
 
 export function WorkDeliveryPage() {
   return (
-    <main className="pb-6">
+    <main>
       {/* Hero: copy left, a team-at-the-board photo right with three lane cards over its edge */}
       <HeroBand productKey="it">
         <div className="grid items-center gap-10 lg:items-start lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
@@ -83,15 +83,15 @@ export function WorkDeliveryPage() {
                 className="object-cover"
               />
             </div>
-            <span className="absolute top-4 right-4 rounded-full bg-blue-900 px-3 py-1 text-xs font-semibold text-white shadow-md">Hours to billing</span>
+            <span className="absolute top-4 right-4 rounded-full bg-brand-solid px-3 py-1 text-xs font-semibold text-white shadow-md">Hours to billing</span>
             <ul className="mt-3 grid grid-cols-3 gap-2 lg:absolute lg:top-8 lg:left-0 lg:mt-0 lg:block lg:w-44 lg:space-y-3" aria-label="From a task to an invoice line">
               {[
                 { t: "Work Tracker", n: "Task, owner, progress" },
                 { t: "Timesheets", n: "Hours against the project" },
                 { t: "Billing Tracker", n: "Invoice line and profitability" },
               ].map((c, i) => (
-                <li key={c.t} className={`rounded-xl border border-l-4 border-slate-200 bg-white p-2.5 shadow-lg ${i === 2 ? "border-l-orange-300" : "border-l-blue-900"}`}>
-                  <p className="text-xs font-bold text-blue-900">{c.t}</p>
+                <li key={c.t} className={`rounded-xl border border-l-4 border-slate-200 bg-surface p-2.5 shadow-lg ${i === 2 ? "border-l-orange-300" : "border-l-blue-900"}`}>
+                  <p className="text-xs font-bold text-brand">{c.t}</p>
                   <p className="mt-0.5 text-[11px] leading-snug text-slate-600">{c.n}</p>
                 </li>
               ))}
@@ -110,9 +110,9 @@ export function WorkDeliveryPage() {
         <ol className="grid gap-5 lg:grid-cols-3">
           {LANES.map((l, i) => (
             <Reveal key={l.title} as="li" delay={i * 70} className="relative flex">
-              <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-5 shadow-sm">
+              <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
                 <div className="flex items-center gap-3">
-                  <span className="flex size-9 items-center justify-center rounded-full bg-blue-900 font-mono text-sm font-semibold text-white">{l.n}</span>
+                  <span className="flex size-9 items-center justify-center rounded-full bg-brand-solid font-mono text-sm font-semibold text-white">{l.n}</span>
                   <h3 className="text-base font-bold text-slate-900">{l.title}</h3>
                 </div>
                 <p className="mt-3 rounded-xl border border-orange-200 bg-orange-50/70 px-3 py-2.5 text-[13px] leading-snug text-slate-700">{l.copy}</p>
@@ -126,7 +126,7 @@ export function WorkDeliveryPage() {
                 </ul>
               </div>
               {i < LANES.length - 1 ? (
-                <ArrowRight className="absolute top-1/2 -right-3.5 z-10 hidden size-5 -translate-y-1/2 rounded-full bg-white text-orange-500 lg:block" aria-hidden="true" />
+                <ArrowRight className="absolute top-1/2 -right-3.5 z-10 hidden size-5 -translate-y-1/2 rounded-full bg-surface text-orange-500 lg:block" aria-hidden="true" />
               ) : null}
             </Reveal>
           ))}
@@ -139,8 +139,8 @@ export function WorkDeliveryPage() {
           {ROLES.map((r) => {
             const Icon = r.icon;
             return (
-              <li key={r.role} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-blue-900">
+              <li key={r.role} className="rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
+                <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
                 <h3 className="mt-3 text-[15px] font-bold text-slate-900">{r.role}</h3>
@@ -157,8 +157,8 @@ export function WorkDeliveryPage() {
           {AROUND.map((a) => {
             const Icon = a.icon;
             return (
-              <li key={a.title} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-sky-200 bg-sky-100 text-blue-900">
+              <li key={a.title} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-sky-200 bg-sky-100 text-brand">
                   <Icon className="size-[18px]" aria-hidden="true" />
                 </span>
                 <div>

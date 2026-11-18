@@ -19,7 +19,7 @@ const MACHINES: { name: string; state: "run" | "idle" | "alarm" | "manual"; pct:
   { name: "Machine 08", state: "run", pct: 76, note: "Running" },
 ];
 const STATE_STYLE = {
-  run: { ring: "border-slate-300", dot: "bg-blue-900", bar: "bg-blue-900/40" },
+  run: { ring: "border-slate-300", dot: "bg-brand-solid", bar: "bg-blue-900/40" },
   idle: { ring: "border-slate-300", dot: "bg-slate-400", bar: "bg-slate-400" },
   alarm: { ring: "border-orange-300", dot: "bg-orange-300", bar: "bg-slate-400" },
   manual: { ring: "border-slate-300", dot: "bg-slate-300", bar: "bg-slate-300" },
@@ -57,7 +57,7 @@ const CONNECT: { icon: LucideIcon; title: string; copy: string }[] = [
 
 export function ShopFloorPage() {
   return (
-    <main className="pb-6">
+    <main>
       {/* Hero: the photo runs off the right edge of the page and fades into the background, machine cards on top of it */}
       <HeroBand productKey="shopfloor">
         <div className="relative lg:flex lg:min-h-[clamp(26rem,64vh,40rem)] lg:items-start">
@@ -97,7 +97,7 @@ export function ShopFloorPage() {
             {MACHINES.filter((m) => ["Machine 04", "Machine 03", "Machine 05"].includes(m.name)).map((m) => {
               const s = STATE_STYLE[m.state];
               return (
-                <li key={m.name} className={`rounded-xl border-2 bg-white p-3 shadow-lg ${s.ring}`}>
+                <li key={m.name} className={`rounded-xl border-2 bg-surface p-3 shadow-lg ${s.ring}`}>
                   <p className="flex items-center gap-1.5 text-[13px] font-bold text-slate-900">
                     <span className={`size-2.5 rounded-full ${s.dot} ${m.state === "alarm" ? "synax-prod-pulse" : ""}`} aria-hidden="true" />
                     {m.name}
@@ -122,9 +122,9 @@ export function ShopFloorPage() {
       >
         <ol className="mx-auto max-w-5xl space-y-4">
           {LAYERS.map((l) => (
-            <li key={l.title} className={`grid gap-4 rounded-2xl border border-t-4 border-slate-200 bg-white p-5 shadow-sm md:grid-cols-[170px_1fr] ${l.tone}`}>
+            <li key={l.title} className={`grid gap-4 rounded-2xl border border-t-4 border-slate-200 bg-surface p-5 shadow-sm md:grid-cols-[170px_1fr] ${l.tone}`}>
               <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2">
-                <span className="flex size-10 items-center justify-center rounded-full bg-blue-900 font-mono text-sm font-semibold text-white">{l.n}</span>
+                <span className="flex size-10 items-center justify-center rounded-full bg-brand-solid font-mono text-sm font-semibold text-white">{l.n}</span>
                 <h3 className="text-lg font-extrabold text-slate-900">{l.title}</h3>
               </div>
               <div>
@@ -148,7 +148,7 @@ export function ShopFloorPage() {
           {CONNECT.map((c) => {
             const Icon = c.icon;
             return (
-              <li key={c.title} className="rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-white p-5 shadow-sm">
+              <li key={c.title} className="rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-surface p-5 shadow-sm">
                 <span className="flex size-10 items-center justify-center rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-600">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
@@ -168,14 +168,14 @@ export function ShopFloorPage() {
         lead="Production confirmation, the certificate and the invoice all read the same machine record."
       >
         <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
-          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-slate-400 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-slate-400 bg-surface p-5 shadow-sm">
             <h3 className="flex items-center gap-2 text-base font-bold text-slate-900">
               <CalendarRange className="size-4 text-slate-400" aria-hidden="true" />
               Without it
             </h3>
             <p className="mt-1.5 text-sm leading-relaxed text-slate-600">Counts are written on paper, typed in later and corrected at dispatch.</p>
           </div>
-          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-white p-5 shadow-sm">
+          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-surface p-5 shadow-sm">
             <h3 className="flex items-center gap-2 text-base font-bold text-slate-900">
               <Cpu className="size-4 text-emerald-600" aria-hidden="true" />
               With Synax
@@ -185,11 +185,11 @@ export function ShopFloorPage() {
         </div>
         <p className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-slate-600">
           <span className="flex items-center gap-1.5">
-            <ScanLine className="size-4 text-orange-600" aria-hidden="true" />
+            <ScanLine className="size-4 text-accent" aria-hidden="true" />
             Start jobs by route card number or barcode
           </span>
           <span className="flex items-center gap-1.5">
-            <Gauge className="size-4 text-orange-600" aria-hidden="true" />
+            <Gauge className="size-4 text-accent" aria-hidden="true" />
             OEE per job
           </span>
         </p>
@@ -201,7 +201,7 @@ export function ShopFloorPage() {
           relatedProduct("precision", "Route cards, inspection, dispatch and invoicing."),
           relatedProduct("ai", "Shop-floor watch and quality compliance agents."),
           relatedProduct("hrms", "Operator attendance and overtime."),
-          { label: "Aerospace & Defence", note: "AS9100D controls and certificates.", href: industryHref("aerospace-defence") },
+          { label: "Industrial Machinery & Equipment", note: "BOMs, routings and machine load.", href: industryHref("industrial-machinery-equipment") },
         ]}
         faq={faqItems(["Which machines can Synax connect to?", "How long does onboarding take?"], [
           { q: "Can jobs be started by barcode?", a: "Yes. Start jobs by route card number or barcode scan." },

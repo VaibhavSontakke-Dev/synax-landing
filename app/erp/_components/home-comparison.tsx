@@ -96,9 +96,9 @@ export function Comparison({ onSeeProducts }: { onSeeProducts: () => void }) {
       </div>
 
       {/* Timeline */}
-      <div ref={timelineRef} className="mb-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+      <div ref={timelineRef} className="mb-4 rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm sm:p-6">
         <div className="flex items-center gap-3">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-blue-900">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-brand">
             <Calendar className="size-[18px]" aria-hidden="true" />
           </span>
           <div>
@@ -122,7 +122,7 @@ export function Comparison({ onSeeProducts }: { onSeeProducts: () => void }) {
                 <div
                   className={`h-full rounded-full transition-[width] duration-1000 ease-out motion-reduce:transition-none ${
                     row.kind === "synax"
-                      ? "bg-blue-900"
+                      ? "bg-brand-solid"
                       : row.kind === "legacy"
                         ? "bg-slate-300"
                         : "bg-[repeating-linear-gradient(90deg,#cbd5e1_0_8px,transparent_8px_14px)]"
@@ -144,15 +144,15 @@ export function Comparison({ onSeeProducts }: { onSeeProducts: () => void }) {
       {/* Dimension cards + CTA */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {DIMENSIONS.map((d) => (
-          <article key={d.title} className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <article key={d.title} className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm">
             <h3 className="flex items-center gap-3 text-sm font-bold text-slate-900">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-blue-900">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-brand">
                 <d.Icon className="size-[18px]" aria-hidden="true" />
               </span>
               {d.title}
             </h3>
 
-            <p className="flex items-start gap-2 rounded-xl border-2 border-blue-900 bg-blue-900/[0.05] px-3 py-2.5 text-sm font-semibold text-slate-900">
+            <p className="flex items-start gap-2 rounded-xl border-2 border-brand-line bg-blue-900/[0.05] px-3 py-2.5 text-sm font-semibold text-slate-900">
               <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-orange-500" aria-hidden="true" />
               <span>
                 <span className="sr-only">Synax: </span>
@@ -173,7 +173,7 @@ export function Comparison({ onSeeProducts }: { onSeeProducts: () => void }) {
           </article>
         ))}
 
-        <div className="flex flex-col justify-between gap-5 rounded-2xl bg-blue-900 p-5 text-white shadow-sm">
+        <div className="keep-light-palette flex flex-col justify-between gap-5 rounded-2xl bg-brand-solid p-5 text-white shadow-sm">
           <div>
             <span className="flex size-9 items-center justify-center rounded-lg bg-white/15 text-orange-300">
               <Scale className="size-[18px]" aria-hidden="true" />

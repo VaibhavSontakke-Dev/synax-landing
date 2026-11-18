@@ -95,7 +95,7 @@ function SceneView({ scene, dur, onBook }: { scene: TourScene; dur: number; onBo
                 style={d(at(n, scene.items.length, dur))}
               >
                 {scene.approve ? null : (
-                  <span className={`flex size-6 items-center justify-center rounded-full text-xs font-semibold ${n === last ? "bg-orange-300 text-blue-950" : "bg-white text-blue-900"}`}>{n + 1}</span>
+                  <span className={`flex size-6 items-center justify-center rounded-full text-xs font-semibold ${n === last ? "bg-orange-300 text-blue-950" : "bg-surface text-brand"}`}>{n + 1}</span>
                 )}
                 <p className={`${scene.approve ? "" : "mt-2 "}text-base font-semibold text-white`}>{s.t}</p>
                 <p className="mt-0.5 text-sm text-slate-300">{s.n}</p>
@@ -423,7 +423,7 @@ export function TourPlayer({ tour, onBook }: { tour: Tour; onBook: () => void })
           type="button"
           onClick={toggle}
           aria-label={done ? "Replay the video" : playing ? "Pause the video" : "Play the video"}
-          className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-blue-900 transition-colors hover:bg-orange-100"
+          className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-surface text-brand transition-colors hover:bg-orange-100"
         >
           {done ? <RotateCcw className="size-4" /> : playing ? <Pause className="size-4 fill-current" /> : <Play className="size-4 fill-current" />}
         </button>

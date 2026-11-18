@@ -42,7 +42,7 @@ export function ErpShell({ children }: { children: React.ReactNode }) {
 
       <DemoProvider>
         <SiteNav />
-        <div id="main" className="flex-1 scroll-mt-24 bg-slate-50/70 text-slate-800 antialiased selection:bg-blue-900 selection:text-white">
+        <div id="main" className="flex-1 scroll-mt-24 bg-slate-50/70 text-slate-800 antialiased selection:bg-brand-solid selection:text-white">
           {children}
         </div>
         <Footer />

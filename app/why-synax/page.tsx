@@ -68,7 +68,7 @@ const JUMP = [
 /** /why-synax — same layout language as /solutions: hero + card, sky band of cards, then alternating blocks. */
 export default function WhySynaxPage() {
   return (
-    <main className="pb-6">
+    <main>
       <WhyHero proof={PROOF} />
 
       {/* Jump bar: the current section is navy */}
@@ -99,7 +99,7 @@ export default function WhySynaxPage() {
                 <Reveal key={p.kicker} as="li" delay={i * 70} className="flex">
                   <article
                     aria-labelledby={`pillar-${i}-title`}
-                    className={`flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md ${t.bar}`}
+                    className={`flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 bg-surface p-5 shadow-sm transition-shadow hover:shadow-md ${t.bar}`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`flex size-10 shrink-0 items-center justify-center rounded-xl border ${t.tile}`}>
@@ -111,7 +111,7 @@ export default function WhySynaxPage() {
                       {p.title}
                     </h3>
                     <p className="mt-3 rounded-xl border border-orange-200 bg-orange-50/70 px-3 py-2.5 text-[13px] leading-snug text-slate-700">{p.copy}</p>
-                    <p className="mt-4 text-[11px] font-bold tracking-wider text-blue-900 uppercase">What you get</p>
+                    <p className="mt-4 text-[11px] font-bold tracking-wider text-brand uppercase">What you get</p>
                     <ul className="mt-2 space-y-1.5">
                       {p.points.map((pt) => (
                         <li key={pt} className="flex items-start gap-2.5 text-[13px] leading-snug font-medium text-slate-800">
@@ -136,13 +136,13 @@ export default function WhySynaxPage() {
             return (
               <li
                 key={step.title}
-                className={`flex flex-col rounded-2xl border border-t-4 bg-white p-4 shadow-sm ${
+                className={`flex flex-col rounded-2xl border border-t-4 bg-surface p-4 shadow-sm ${
                   emphasis ? "border-slate-200 border-t-orange-500" : "border-slate-200 border-t-blue-900"
                 }`}
               >
                 <span
                   className={`flex size-8 items-center justify-center rounded-full font-mono text-sm font-semibold ${
-                    emphasis ? "bg-orange-300 text-orange-950" : "bg-blue-900 text-white"
+                    emphasis ? "bg-orange-300 text-orange-950" : "bg-brand-solid text-white"
                   }`}
                 >
                   {i + 1}
@@ -179,7 +179,7 @@ export default function WhySynaxPage() {
             <thead>
               <tr className="bg-slate-50 text-xs font-bold text-slate-600">
                 <th scope="col" className="px-5 py-3.5">Capability</th>
-                <th scope="col" className="bg-blue-900 px-5 py-3.5 text-white">Synax</th>
+                <th scope="col" className="bg-brand-solid px-5 py-3.5 text-white">Synax</th>
                 <th scope="col" className="px-5 py-3.5">{LEGACY}</th>
                 <th scope="col" className="px-5 py-3.5">{POINT}</th>
               </tr>
@@ -189,7 +189,7 @@ export default function WhySynaxPage() {
                 <tr key={r.title}>
                   <th scope="row" className="px-5 py-4 font-bold text-slate-900">
                     <span className="flex items-center gap-2.5">
-                      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-sky-200 bg-sky-100 text-blue-900">
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-sky-200 bg-sky-100 text-brand">
                         <ModuleIcon name={ROW_ICON[r.icon]} className="size-4" />
                       </span>
                       {r.title}
@@ -197,7 +197,7 @@ export default function WhySynaxPage() {
                   </th>
                   <td className="bg-sky-50 px-5 py-4 font-semibold text-slate-900">
                     <span className="flex gap-2">
-                      <Check className="mt-0.5 size-4 shrink-0 text-orange-600" aria-hidden="true" />
+                      <Check className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
                       {r.synax}
                     </span>
                   </td>
@@ -221,10 +221,10 @@ export default function WhySynaxPage() {
 
         <ul className="space-y-4 md:hidden">
           {BENCHMARK.map((r) => (
-            <li key={r.title} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <li key={r.title} className="rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm">
               <h3 className="text-sm font-bold text-slate-900">{r.title}</h3>
               <p className="mt-2 flex gap-2 rounded-lg bg-sky-50 p-2.5 text-sm font-semibold text-slate-900">
-                <Check className="mt-0.5 size-4 shrink-0 text-orange-600" aria-hidden="true" />
+                <Check className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
                 <span>
                   <span className="sr-only">Synax: </span>
                   {r.synax}

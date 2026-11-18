@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ArrowRight, Building2, Check, Factory, ShieldCheck, Users } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight, Check, Factory } from "lucide-react";
+import { SOLUTION_ICON, SOLUTION_SHORT } from "./solution-icons";
 
 /**
  * Animated hero scene for /solutions: a ring of the eight module areas around a hub. For each solution in turn
- * (Precision, Aerospace, HRMS, Staffing) the "what hurts" note appears, the start modules tick off in order, the
+ * (the eight in _data/solutions.ts) the "what hurts" note appears, the start modules tick off in order, the
  * "then add" modules slide in, and the areas switch on around the ring (solid = core, dashed = optional, faded = not
  * usually part of it) while the reach ring fills to the core count. All words and the coverage come from
  * `_data/solution-paths.ts` and `_data/solutions.ts` (passed in by the page). Drawn on a fixed 640 x 440 stage that
@@ -33,8 +33,8 @@ export interface SceneSolution {
   coverage: Record<string, number>;
 }
 
-const ICON: Record<string, LucideIcon> = { precision: Factory, aerospace: ShieldCheck, hrms: Building2, staffing: Users };
-const SHORT: Record<string, string> = { precision: "Precision", aerospace: "Aerospace", hrms: "HRMS", staffing: "Staffing" };
+const ICON = SOLUTION_ICON as Record<string, (typeof SOLUTION_ICON)[keyof typeof SOLUTION_ICON]>;
+const SHORT = SOLUTION_SHORT as Record<string, string>;
 const AREA_SHORT: Record<string, string> = { "Procurement & Stores": "Stores", Collaboration: "Collab." };
 
 export function SolutionsScene({ areas, solutions }: { areas: string[]; solutions: SceneSolution[] }) {
@@ -125,18 +125,18 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
       </p>
       <div
         ref={frame}
-        className="relative mx-auto max-w-full overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white shadow-sm"
+        className="relative mx-auto max-w-full overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page shadow-sm"
         style={{ width: W * scale, height: H * scale }}
       >
         <div className="absolute top-0 left-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${scale})` }}>
           <div aria-hidden="true" className="absolute inset-0 text-[12px] text-slate-900">
-            <div className="absolute inset-0 [background-image:linear-gradient(rgba(30,58,138,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(30,58,138,0.06)_1px,transparent_1px)] [background-size:28px_28px]" />
+            <div className="absolute inset-0 [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:28px_28px]" />
 
             <svg className="absolute inset-0" width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
-              <ellipse cx={CX} cy={CY} rx={RX} ry={RY} fill="rgba(255,255,255,0.5)" stroke="#93b4e6" strokeWidth="1.5" strokeDasharray="5 5" />
-              <ellipse cx={CX} cy={CY} rx={RX * 1.35} ry={RY * 1.3} fill="none" stroke="#bfdbfe" strokeWidth="1" strokeDasharray="2 6" />
+              <ellipse cx={CX} cy={CY} rx={RX} ry={RY} style={{ fill: "var(--scene-fill)", stroke: "var(--scene-a)" }} strokeWidth="1.5" strokeDasharray="5 5" />
+              <ellipse cx={CX} cy={CY} rx={RX * 1.35} ry={RY * 1.3} fill="none" style={{ stroke: "var(--scene-b)" }} strokeWidth="1" strokeDasharray="2 6" />
               {nodes.map((n) => (
-                <line key={n.area} x1={CX} y1={CY} x2={n.x} y2={n.y} stroke="#bfdbfe" strokeWidth="1" strokeDasharray="3 4" />
+                <line key={n.area} x1={CX} y1={CY} x2={n.x} y2={n.y} style={{ stroke: "var(--scene-b)" }} strokeWidth="1" strokeDasharray="3 4" />
               ))}
               {reduced ? null : (
                 <circle r="5" fill="#fdba74" stroke="#fff" strokeWidth="2">
@@ -146,11 +146,11 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
             </svg>
 
             {/* What hurts, start with, then add */}
-            <div className="absolute top-3.5 left-3.5 w-[176px] rounded-xl border border-slate-300 bg-white/90 px-3 py-2.5">
+            <div className="absolute top-3.5 left-3.5 w-[176px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2.5">
               <p className="text-[10px] tracking-[0.09em] text-slate-500">WHAT HURTS</p>
               <p className="mt-1 min-h-[48px] text-[12px] leading-snug">{s.pain}</p>
             </div>
-            <div className="absolute top-[132px] left-3.5 w-[176px] rounded-xl border border-slate-300 bg-white/90 px-3 py-2.5">
+            <div className="absolute top-[132px] left-3.5 w-[176px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2.5">
               <p className="text-[10px] tracking-[0.09em] text-slate-500">START WITH</p>
               <ol className="mt-1">
                 {s.start.map((m, n) => {
@@ -159,7 +159,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                     <li key={m} className={`flex items-center gap-2 py-[3px] text-[11px] leading-tight transition-colors duration-500 ${on ? "text-slate-900" : "text-slate-400"}`}>
                       <span
                         className={`flex size-4 shrink-0 items-center justify-center rounded-full border-[1.5px] text-[9px] transition-all duration-500 ${
-                          on ? "border-blue-900 bg-blue-900 text-white" : "border-slate-300 text-transparent"
+                          on ? "border-brand-line bg-brand-solid text-white" : "border-slate-300 text-transparent"
                         }`}
                       >
                         {n + 1}
@@ -185,16 +185,16 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
             </div>
 
             {/* Reach */}
-            <div className="absolute top-3.5 right-3.5 w-[128px] rounded-xl border border-slate-300 bg-white/90 px-3 py-2 text-center">
+            <div className="absolute top-3.5 right-3.5 w-[128px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2 text-center">
               <p className="text-[10px] tracking-[0.09em] text-slate-500">REACH</p>
               <svg width="56" height="56" viewBox="0 0 64 64" className="mx-auto mt-0.5 block">
-                <circle cx="32" cy="32" r="26" fill="none" stroke="#dbeafe" strokeWidth="7" />
+                <circle cx="32" cy="32" r="26" fill="none" style={{ stroke: "var(--scene-track)" }} strokeWidth="7" />
                 <circle
                   cx="32"
                   cy="32"
                   r="26"
                   fill="none"
-                  stroke="#1e3a8a"
+                  className="[stroke:var(--scene-ring)]"
                   strokeWidth="7"
                   strokeLinecap="round"
                   strokeDasharray={ringLen}
@@ -203,16 +203,16 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                   style={{ transition: "stroke-dashoffset 1.2s" }}
                 />
               </svg>
-              <p className="text-[15px] font-medium text-blue-900">{reachOn ? core : 0} of {areas.length}</p>
+              <p className="text-[15px] font-medium text-brand">{reachOn ? core : 0} of {areas.length}</p>
               <p className="text-[10px] text-slate-500">areas core</p>
             </div>
 
             {/* Switch-on order */}
-            <div className="absolute right-3.5 bottom-[50px] w-[128px] rounded-xl border border-slate-300 bg-white/90 px-3 py-2">
+            <div className="absolute right-3.5 bottom-[50px] w-[128px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2">
               <p className="text-[10px] tracking-[0.09em] text-slate-500">SWITCH-ON ORDER</p>
               <div className="mt-1.5 space-y-[5px]">
                 {[
-                  { n: core, c: "bg-blue-900" },
+                  { n: core, c: "bg-brand-solid" },
                   { n: opt, c: "bg-blue-900/40" },
                   { n: rest, c: "bg-orange-300" },
                 ].map((b, i) => (
@@ -233,16 +233,16 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                   key={n.area}
                   className={`absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 rounded-full border-[1.5px] px-2.5 py-1 text-[11px] whitespace-nowrap transition-all duration-500 ${
                     kind === "core"
-                      ? "border-blue-900 bg-white text-blue-900 opacity-100 shadow-md"
+                      ? "border-brand-line bg-surface text-brand opacity-100 shadow-md"
                       : kind === "opt"
-                        ? "border-dashed border-blue-900 bg-white/90 text-blue-900 opacity-100"
-                        : "border-slate-300 bg-white text-slate-400 opacity-60"
+                        ? "border-dashed border-brand-line bg-surface/90 text-brand opacity-100"
+                        : "border-slate-300 bg-surface text-slate-400 opacity-60"
                   }`}
                   style={{ left: n.x, top: n.y }}
                 >
                   <span
                     className={`flex size-3.5 items-center justify-center rounded-full text-[9px] transition-all duration-500 ${
-                      kind === "core" ? "bg-blue-900 text-white" : kind === "opt" ? "border-[1.5px] border-dashed border-blue-900" : "bg-slate-200"
+                      kind === "core" ? "bg-brand-solid text-white" : kind === "opt" ? "border-[1.5px] border-dashed border-brand-line" : "bg-slate-200"
                     }`}
                   >
                     {kind === "core" ? <Check className="size-2.5" /> : null}
@@ -254,7 +254,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
 
             {/* Hub */}
             <div
-              className="absolute flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-blue-900 text-center text-white shadow-[0_0_0_10px_rgba(30,58,138,0.1),0_10px_24px_rgba(30,58,138,0.3)]"
+              className="absolute flex size-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-brand-solid text-center text-white shadow-[0_0_0_10px_rgba(30,58,138,0.1),0_10px_24px_rgba(30,58,138,0.3)]"
               style={{ left: CX, top: CY }}
             >
               <Hub className="size-6" />
@@ -271,7 +271,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                 onClick={() => choose(i)}
                 aria-pressed={i === idx}
                 className={`cursor-pointer rounded-full border px-2.5 py-[3px] text-[11px] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${
-                  i === idx ? "border-blue-900 bg-blue-900 text-white" : "border-blue-900/30 bg-white/80 text-slate-600 hover:border-blue-900"
+                  i === idx ? "border-brand-line bg-brand-solid text-white" : "border-brand-line/30 bg-surface/80 text-slate-600 hover:border-brand-line"
                 }`}
               >
                 {SHORT[x.key] ?? x.title}
@@ -282,7 +282,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
       </div>
       <a
         href={`#start-${s.key}`}
-        className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+        className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
       >
         See the full path for {s.title}
         <ArrowRight className="size-4" aria-hidden="true" />

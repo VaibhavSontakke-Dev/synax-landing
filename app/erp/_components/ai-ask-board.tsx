@@ -150,7 +150,7 @@ export function AiAskBoard() {
         Illustration: Synax AI answering questions such as who is on leave today, which challans are past their return
         date and which lots are ready to dispatch. Sample data.
       </p>
-      <div aria-hidden="true" className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/90 shadow-2xl">
+      <div aria-hidden="true" className="keep-light-palette overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/90 shadow-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 border-b border-slate-800 bg-slate-900/60 px-5 py-3.5">
           <AiAvatar />

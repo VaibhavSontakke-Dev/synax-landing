@@ -120,7 +120,7 @@ const JUMP = [
 /** /security — same layout language as /solutions: hero + card, sky band of cards, then alternating blocks. */
 export default function SecurityPage() {
   return (
-    <main className="pb-6">
+    <main>
       <SecurityHero gates={PROCESS.map((p, i) => ({ ...p, copy: HERO_GATE_COPY[i] }))} />
 
       <JumpBar items={JUMP} />
@@ -143,7 +143,7 @@ export default function SecurityPage() {
                 <Reveal key={p.title} as="li" delay={(i % 3) * 70} className="flex">
                   <article
                     aria-labelledby={`control-${i}-title`}
-                    className={`flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md ${t.bar}`}
+                    className={`flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 bg-surface p-5 shadow-sm transition-shadow hover:shadow-md ${t.bar}`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`flex size-10 shrink-0 items-center justify-center rounded-xl border ${t.tile}`}>
@@ -154,10 +154,10 @@ export default function SecurityPage() {
                       </h3>
                     </div>
                     <p className="mt-4 rounded-xl border border-orange-200 bg-orange-50/70 px-3 py-2.5 text-[13px] leading-snug text-slate-700">
-                      <span className="block text-[11px] font-bold tracking-wider text-orange-700 uppercase">What it does</span>
+                      <span className="block text-[11px] font-bold tracking-wider text-accent-strong uppercase">What it does</span>
                       {p.summary}
                     </p>
-                    <p className="mt-4 text-[11px] font-bold tracking-wider text-blue-900 uppercase">In practice</p>
+                    <p className="mt-4 text-[11px] font-bold tracking-wider text-brand uppercase">In practice</p>
                     <ul className="mt-2 space-y-1.5">
                       {p.points.map((pt) => (
                         <li key={pt} className="flex items-start gap-2.5 text-[13px] leading-snug font-medium text-slate-800">
@@ -178,12 +178,12 @@ export default function SecurityPage() {
       <Block id="process" tag="How it works" title="What happens to every posting" lead="Four checks sit between a request and the record." tone="white">
         <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {PROCESS.map((step, i) => (
-            <li key={step.title} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <li key={step.title} className="flex flex-col rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
               <div className="flex items-center justify-between">
-                <span className="flex size-9 items-center justify-center rounded-full bg-blue-900 font-mono text-sm font-semibold text-white">
+                <span className="flex size-9 items-center justify-center rounded-full bg-brand-solid font-mono text-sm font-semibold text-white">
                   {i + 1}
                 </span>
-                <span className="flex size-9 items-center justify-center rounded-lg border border-sky-200 bg-sky-100 text-blue-900">
+                <span className="flex size-9 items-center justify-center rounded-lg border border-sky-200 bg-sky-100 text-brand">
                   <ModuleIcon name={step.icon} className="size-[18px]" />
                 </span>
               </div>
@@ -203,8 +203,8 @@ export default function SecurityPage() {
       >
         <dl className="grid gap-4 sm:grid-cols-2">
           {LIVE_COMPLIANCE.map((c) => (
-            <div key={c.name} className="flex gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border border-orange-200 bg-orange-50 text-orange-600">
+            <div key={c.name} className="flex gap-3 rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
+              <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border border-orange-200 bg-orange-50 text-accent">
                 <Check className="size-4" aria-hidden="true" />
               </span>
               <div>
@@ -225,18 +225,18 @@ export default function SecurityPage() {
         tone="white"
       >
         <div className="grid gap-5 md:grid-cols-2">
-          <section aria-labelledby="ours-heading" className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-5 shadow-sm">
+          <section aria-labelledby="ours-heading" className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
             <h3 id="ours-heading" className="text-[15px] font-bold text-slate-900">Synax and Senwell Group</h3>
             <ul className="mt-3 space-y-2">
               {OURS.map((o) => (
                 <li key={o} className="flex gap-2.5 text-[13px] leading-snug font-medium text-slate-800">
-                  <Check className="mt-0.5 size-3.5 shrink-0 text-blue-900" aria-hidden="true" />
+                  <Check className="mt-0.5 size-3.5 shrink-0 text-brand" aria-hidden="true" />
                   {o}
                 </li>
               ))}
             </ul>
           </section>
-          <section aria-labelledby="yours-heading" className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-white p-5 shadow-sm">
+          <section aria-labelledby="yours-heading" className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
             <h3 id="yours-heading" className="text-[15px] font-bold text-slate-900">Your organisation</h3>
             <ul className="mt-3 space-y-2">
               {YOURS.map((o) => (
@@ -265,7 +265,7 @@ export default function SecurityPage() {
             <Link
               key={l.href}
               href={l.href}
-              className="inline-flex items-center gap-2 rounded-md border-2 border-orange-500 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+              className="inline-flex items-center gap-2 rounded-md border-2 border-orange-500 bg-surface px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
             >
               {l.label}
               <ArrowRight className="size-3.5" aria-hidden="true" />
@@ -274,7 +274,7 @@ export default function SecurityPage() {
         </div>
         <p className="mt-4 text-center text-xs text-slate-500">
           Statements on this page follow the live portal at{" "}
-          <a href={LIVE_SOURCE} target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-900">
+          <a href={LIVE_SOURCE} target="_blank" rel="noopener noreferrer" className="underline hover:text-brand">
             synax.senwellgroup.com
           </a>
           .

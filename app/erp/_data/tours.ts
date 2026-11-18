@@ -476,24 +476,37 @@ const hrmsVideoTour: Tour = {
 };
 
 /**
- * The platform overview: a 5-minute animated MP4 in which two Synax birds (Pip and Sage) walk through Projects, Staffing,
- * HRMS, Manufacturing, Finance, Assets, Access Control and Synax AI (source: tools/overview-video/). Two AI voices and
- * sound design, no subtitles. The animated `overview` scenes stay defined above; the `video` field makes the modal play
- * the MP4 instead.
+ * The platform overview: "Running Out of Hands", a 3-minute cinematic 2.5D crisis film. A founder's bad morning (every
+ * department calls with a problem), the real cause (nothing is connected), then Synax ERP solving each problem: Projects,
+ * Staffing, HRMS, Manufacturing, Quality, Finance & Assets, and Synax AI (source: tools/overview-crisis-video/). AI voices,
+ * sound design and score, no subtitles. The earlier Pip & Sage bird video (synax-overview.mp4) stays in public/videos,
+ * unused. The animated `overview` scenes stay defined above; the `video` field makes the modal play the MP4 instead.
  */
 const overviewVideoTour: Tour = {
   ...overview,
-  video: { src: "/videos/synax-overview.mp4", poster: "/videos/synax-overview-poster.webp" },
+  video: { src: "/videos/synax-overview-crisis-v2.mp4", poster: "/videos/synax-overview-crisis-v2-poster.webp" },
 };
 
 /**
- * The Manufacturing ERP page's Watch overview: a 3-minute animated MP4, the problem first (a normal day at a machine
- * shop), then the Synax solution (one part, one passport), ending with the Synax agents (an AI bot proposes, people
- * approve). Source: tools/mfg-erp-video/. The animated `manufacturing` scenes stay defined above.
+ * The Manufacturing ERP page's Watch overview: "One Small Mistake. An Entire Production Line at Risk.", a cinematic
+ * 2.5D crisis film (a hand-copied dimension on a paper job card stops the line; Synax ERP connects the plant), AI voice,
+ * sound design and score, no subtitles. Source: tools/mfg-crisis-video/. The earlier 3-minute video
+ * (manufacturing-erp-tour.mp4, tools/video-kit/videos/manufacturing-erp/) stays in public/videos, unused here.
+ * The animated `manufacturing` scenes stay defined above.
  */
 const manufacturingVideoTour: Tour = {
   ...manufacturing,
-  video: { src: "/videos/manufacturing-erp-tour.mp4", poster: "/videos/manufacturing-erp-tour-poster.webp" },
+  video: { src: "/videos/manufacturing-crisis.mp4", poster: "/videos/manufacturing-crisis-poster.webp" },
+};
+
+/**
+ * The Manufacturing ERP page's "Watch overview 2": film 2 of the crisis, the dialogue version (operator, supervisor,
+ * inspector, inventory, planner and manager talk their way through an emergency nobody can explain; Synax ERP connects
+ * the plant). Source: tools/mfg-crisis2-video/.
+ */
+const manufacturingVideoTour2: Tour = {
+  ...manufacturing,
+  video: { src: "/videos/manufacturing-crisis-2-full.mp4", poster: "/videos/manufacturing-crisis-2-full-poster.webp" },
 };
 
 /** Tour title (as passed to the Watch overview button) -> its video. */
@@ -502,6 +515,7 @@ export const TOURS: Record<string, Tour> = {
   "Why Synax": whySynax,
   "Assets Module Tour": assetsTour,
   [`${routeFor("precision").name} Tour`]: manufacturingVideoTour,
+  [`${routeFor("precision").name} Tour 2`]: manufacturingVideoTour2,
   [`${routeFor("it").name} Tour`]: workDelivery,
   [`${routeFor("hrms").name} Tour`]: hrmsVideoTour,
   [`${routeFor("staffing").name} Tour`]: staffing,

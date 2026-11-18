@@ -42,7 +42,7 @@ const BI: { icon: LucideIcon; title: string; copy: string }[] = [
 
 export function AiBiPage() {
   return (
-    <main className="pb-6">
+    <main>
       {/* Hero: copy left, an animated "Ask Synax AI" chat board right (same style as the home page's "Answered Instantly" section) */}
       <HeroBand productKey="ai">
         <div className="lg:grid lg:grid-cols-[1fr_1.05fr] lg:grid-rows-[auto_auto_auto_1fr] lg:gap-x-12">
@@ -63,14 +63,14 @@ export function AiBiPage() {
         <ol className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-semibold lg:col-start-1 lg:row-start-2 lg:mx-0 lg:mt-6 lg:justify-start" aria-label="How a Synax AI action works">
           {GATE.map((g, i) => (
             <li key={g.title} className="flex items-center gap-2">
-              <span className={`rounded-full px-3 py-1 ${g.accent === "orange" ? "bg-orange-300 text-orange-950" : "bg-blue-900 text-white"}`}>
+              <span className={`rounded-full px-3 py-1 ${g.accent === "orange" ? "bg-orange-300 text-orange-950" : "bg-brand-solid text-white"}`}>
                 {i + 1}. {g.title}
               </span>
               {i < GATE.length - 1 ? <span className="text-slate-400" aria-hidden="true">→</span> : null}
             </li>
           ))}
         </ol>
-        <p className="mx-auto mt-4 max-w-md rounded-xl border border-dashed border-orange-300 bg-white/70 px-4 py-2.5 text-center text-xs text-slate-600 lg:col-start-1 lg:row-start-3 lg:mx-0 lg:text-left">
+        <p className="mx-auto mt-4 max-w-md rounded-xl border border-dashed border-orange-300 bg-surface/70 px-4 py-2.5 text-center text-xs text-slate-600 lg:col-start-1 lg:row-start-3 lg:mx-0 lg:text-left">
           Every decision is kept in the event history. Agents cannot change your data on their own.
         </p>
         </div>
@@ -86,7 +86,7 @@ export function AiBiPage() {
         <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {LADDER.map((l, i) => (
             <Reveal key={l.title} as="li" delay={i * 70} className="flex">
-              <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-white p-5 shadow-sm">
+              <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
                 <span className="flex size-8 items-center justify-center rounded-full bg-orange-300 font-mono text-sm font-semibold text-orange-950">{i + 1}</span>
                 <h3 className="mt-3 text-[15px] font-bold text-slate-900">{l.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{l.copy}</p>
@@ -95,9 +95,9 @@ export function AiBiPage() {
           ))}
         </ol>
         <p className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-600">
-          <Lock className="size-4 text-orange-600" aria-hidden="true" />
+          <Lock className="size-4 text-accent" aria-hidden="true" />
           Roles, two-step sign-in and the audit history are described on the{" "}
-          <Link href="/security" className="font-semibold text-blue-900 hover:underline">
+          <Link href="/security" className="font-semibold text-brand hover:underline">
             Security &amp; Trust page
           </Link>
           .
@@ -110,8 +110,8 @@ export function AiBiPage() {
           {AGENTS.map((a) => {
             const Icon = a.icon;
             return (
-              <li key={a.title} className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-white p-5 shadow-sm">
-                <span className="flex size-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-orange-700">
+              <li key={a.title} className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
+                <span className="flex size-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-accent-strong">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
                 <h3 className="mt-3 text-base font-bold text-slate-900">{a.title}</h3>
@@ -125,8 +125,8 @@ export function AiBiPage() {
       {/* Ask Synax */}
       <Block id="ask" tag="Ask Synax" title="Questions answered from your own data" lead="Ask in plain language and get answers from live records.">
         <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
-          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-5 shadow-sm">
-            <p className="text-[11px] font-bold tracking-wider text-blue-900 uppercase">You ask</p>
+          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
+            <p className="text-[11px] font-bold tracking-wider text-brand uppercase">You ask</p>
             <ul className="mt-3 space-y-2">
               {QUESTIONS.map((q) => (
                 <li key={q} className="rounded-xl rounded-bl-sm border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-800">
@@ -135,8 +135,8 @@ export function AiBiPage() {
               ))}
             </ul>
           </div>
-          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-white p-5 shadow-sm">
-            <p className="text-[11px] font-bold tracking-wider text-orange-700 uppercase">Synax answers</p>
+          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
+            <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">Synax answers</p>
             <p className="mt-3 rounded-xl rounded-bl-sm border border-orange-200 bg-orange-50/70 px-3 py-2 text-sm text-slate-800">
               A list from your live records, with the next step proposed for approval.
             </p>
@@ -153,8 +153,8 @@ export function AiBiPage() {
           {BI.map((b) => {
             const Icon = b.icon;
             return (
-              <li key={b.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-blue-900">
+              <li key={b.title} className="rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
+                <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
                 <h3 className="mt-3 text-[15px] font-bold text-slate-900">{b.title}</h3>

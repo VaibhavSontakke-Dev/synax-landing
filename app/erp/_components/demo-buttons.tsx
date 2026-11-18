@@ -24,8 +24,8 @@ export function DemoButton({
 }) {
   const { openDemo } = useDemo();
   const colours = onDark
-    ? "bg-white text-blue-900 hover:bg-orange-50"
-    : "bg-blue-900 text-white shadow-md hover:bg-blue-800";
+    ? "bg-surface text-brand hover:bg-orange-50"
+    : "bg-brand-solid text-white shadow-md hover:bg-brand-solid-hover";
   return (
     <button
       type="button"
@@ -55,7 +55,7 @@ export function TourButton({
       type="button"
       onClick={() => openTour(title)}
       className={`inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-md border-2 border-orange-500 px-5 py-2.5 text-sm font-semibold transition-colors ${
-        onDark ? "text-white hover:bg-orange-500/10" : "bg-white text-slate-800 hover:bg-orange-50"
+        onDark ? "text-white hover:bg-orange-500/10" : "bg-surface text-slate-800 hover:bg-orange-50"
       } ${FOCUS} ${className}`}
     >
       <span

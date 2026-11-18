@@ -98,7 +98,7 @@ export function WhyRace() {
   const chip = (text: string, x: number, top: number, on: boolean) => (
     <span
       key={text}
-      className={`absolute -translate-x-1/2 rounded-full border border-dashed border-orange-300 bg-orange-50 px-2.5 py-[3px] text-[10.5px] whitespace-nowrap text-orange-800 transition-opacity duration-500 ${on ? "opacity-100" : "opacity-0"}`}
+      className={`absolute -translate-x-1/2 rounded-full border border-dashed border-orange-300 bg-orange-50 px-2.5 py-[3px] text-[10.5px] whitespace-nowrap text-accent-strong transition-opacity duration-500 ${on ? "opacity-100" : "opacity-0"}`}
       style={{ left: x, top }}
     >
       {text}
@@ -107,7 +107,7 @@ export function WhyRace() {
   const badge = (text: string, x: number, on: boolean) => (
     <span
       key={text}
-      className={`absolute -translate-x-1/2 rounded-full bg-blue-900 px-2.5 py-[3px] text-[10.5px] whitespace-nowrap text-white transition-all duration-500 ${on ? "translate-y-0 opacity-100" : "translate-y-1.5 opacity-0"}`}
+      className={`absolute -translate-x-1/2 rounded-full bg-brand-solid px-2.5 py-[3px] text-[10.5px] whitespace-nowrap text-white transition-all duration-500 ${on ? "translate-y-0 opacity-100" : "translate-y-1.5 opacity-0"}`}
       style={{ left: x, top: 338 }}
     >
       {text}
@@ -118,7 +118,7 @@ export function WhyRace() {
     <div>
       {/* Phones: a plain comparison */}
       <div className="grid gap-4 sm:hidden">
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+        <div className="rounded-2xl border border-slate-200 bg-surface p-4">
           <p className="text-xs font-bold tracking-wider text-slate-500 uppercase">Typical alternatives</p>
           <ul className="mt-2 space-y-1.5 text-sm text-slate-600">
             {stalls.map((s) => (
@@ -131,12 +131,12 @@ export function WhyRace() {
             ))}
           </ul>
         </div>
-        <div className="rounded-2xl border border-blue-900/30 bg-sky-50 p-4">
-          <p className="text-xs font-bold tracking-wider text-blue-900 uppercase">Synax</p>
+        <div className="rounded-2xl border border-brand-line/30 bg-sky-50 p-4">
+          <p className="text-xs font-bold tracking-wider text-brand uppercase">Synax</p>
           <ul className="mt-2 space-y-1.5 text-sm text-slate-800">
             {[...pillars, tally].map((s) => (
               <li key={s} className="flex gap-2">
-                <Check className="mt-0.5 size-4 shrink-0 text-blue-900" aria-hidden="true" />
+                <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
                 {s}
               </li>
             ))}
@@ -153,19 +153,19 @@ export function WhyRace() {
         <div
           ref={frame}
           aria-hidden="true"
-          className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white shadow-sm"
+          className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page shadow-sm"
           style={{ height: H * scale }}
         >
           <div className="absolute top-0 left-0 origin-top-left text-[12px] text-slate-900" style={{ width: W, height: H, transform: `scale(${scale})` }}>
-            <div className="absolute inset-0 [background-image:linear-gradient(rgba(30,58,138,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(30,58,138,0.06)_1px,transparent_1px)] [background-size:28px_28px]" />
+            <div className="absolute inset-0 [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:28px_28px]" />
             <p className="absolute top-3.5 left-4 text-[10px] tracking-[0.09em] text-slate-500">ONE PART, TWO WAYS TO RUN IT</p>
             <p className="absolute top-3.5 right-4 text-[10px] tracking-[0.09em] text-slate-500">ILLUSTRATION</p>
 
             <svg className="absolute inset-0" width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
               {[0, 1, 2, 3].map((i) => (
                 <g key={i}>
-                  <line x1={X[i]} x2={X[i + 1]} y1={Y1} y2={Y1} stroke="#cbd5e1" strokeWidth="3" strokeDasharray={i === 0 || i === 2 ? undefined : "4 7"} />
-                  <line x1={X[i]} x2={X[i + 1]} y1={Y2} y2={Y2} stroke="#1e3a8a" strokeWidth="3" strokeLinecap="round" />
+                  <line x1={X[i]} x2={X[i + 1]} y1={Y1} y2={Y1} style={{ stroke: "var(--scene-race-track)" }} strokeWidth="3" strokeDasharray={i === 0 || i === 2 ? undefined : "4 7"} />
+                  <line x1={X[i]} x2={X[i + 1]} y1={Y2} y2={Y2} style={{ stroke: "var(--scene-ring)" }} strokeWidth="3" strokeLinecap="round" />
                 </g>
               ))}
             </svg>
@@ -176,12 +176,12 @@ export function WhyRace() {
               </span>
             ))}
             <p className="absolute top-[104px] left-4 text-[11px] text-slate-500">Typical alternatives</p>
-            <p className="absolute top-[274px] left-4 text-[11px] font-medium text-blue-900">Synax</p>
+            <p className="absolute top-[274px] left-4 text-[11px] font-medium text-brand">Synax</p>
 
             {X.map((x, i) => (
               <span key={`a${i}`}>
-                <span className={`absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-500 ${xTypical >= x - 1 ? "border-slate-400 bg-slate-400" : "border-slate-300 bg-white"}`} style={{ left: x, top: Y1 }} />
-                <span className={`absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-500 ${xSynax >= x - 1 ? "border-blue-900 bg-blue-900" : "border-slate-300 bg-white"}`} style={{ left: x, top: Y2 }} />
+                <span className={`absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-500 ${xTypical >= x - 1 ? "border-slate-400 bg-slate-400" : "border-slate-300 bg-surface"}`} style={{ left: x, top: Y1 }} />
+                <span className={`absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all duration-500 ${xSynax >= x - 1 ? "border-brand-line bg-brand-solid" : "border-slate-300 bg-surface"}`} style={{ left: x, top: Y2 }} />
               </span>
             ))}
 
@@ -196,12 +196,12 @@ export function WhyRace() {
 
             {/* AI approval at inspection */}
             <div
-              className={`absolute w-[176px] -translate-x-1/2 rounded-[10px] border border-t-[3px] border-slate-300 border-t-orange-300 bg-white px-2.5 py-2 text-[11px] transition-opacity duration-500 ${!reduced && time > 2.5 && time < 4.3 ? "opacity-100" : "opacity-0"}`}
+              className={`absolute w-[176px] -translate-x-1/2 rounded-[10px] border border-t-[3px] border-slate-300 border-t-orange-300 bg-surface px-2.5 py-2 text-[11px] transition-opacity duration-500 ${!reduced && time > 2.5 && time < 4.3 ? "opacity-100" : "opacity-0"}`}
               style={{ left: X[2], top: 206 }}
             >
               <p className="text-[10px] tracking-[0.09em] text-slate-500">SYNAX AI PROPOSES</p>
               <p className="mt-0.5 leading-snug">2 challans are past their return date: draft reminders</p>
-              <span className={`mt-1 inline-block rounded-md px-2.5 py-px font-medium transition-colors duration-300 ${time > 3.6 ? "bg-blue-900 text-white" : "bg-orange-300 text-blue-950"}`}>
+              <span className={`mt-1 inline-block rounded-md px-2.5 py-px font-medium transition-colors duration-300 ${time > 3.6 ? "bg-brand-solid text-white" : "bg-orange-300 text-blue-950"}`}>
                 {time > 3.6 ? "Approved ✓" : "Approve"}
               </span>
             </div>
@@ -210,11 +210,11 @@ export function WhyRace() {
             <span className="absolute flex size-5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-slate-400 text-white" style={{ left: xTypical, top: Y1 }}>
               <Package className="size-3" />
             </span>
-            <span className="absolute flex size-5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-blue-900 text-white shadow-[0_0_0_5px_rgba(30,58,138,0.15)]" style={{ left: xSynax, top: Y2 }}>
+            <span className="absolute flex size-5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-solid text-white shadow-[0_0_0_5px_rgba(30,58,138,0.15)]" style={{ left: xSynax, top: Y2 }}>
               <Package className="size-3" />
             </span>
 
-            <span className={`absolute right-4 rounded-full bg-blue-900 px-2.5 py-[3px] text-[11px] text-white transition-opacity duration-500 ${doneSynax ? "opacity-100" : "opacity-0"}`} style={{ top: Y2 - 34 }}>
+            <span className={`absolute right-4 rounded-full bg-brand-solid px-2.5 py-[3px] text-[11px] text-white transition-opacity duration-500 ${doneSynax ? "opacity-100" : "opacity-0"}`} style={{ top: Y2 - 34 }}>
               Done ✓
             </span>
             <span className={`absolute right-4 text-[11px] text-slate-400 ${waiting ? "block" : "hidden"}`} style={{ top: Y1 - 34 }}>

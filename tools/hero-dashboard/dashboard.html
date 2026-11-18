@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- The illustrated dashboard behind the home-page hero (not a portal screenshot). 1748 x 1045, light and dark themes
+     (#light / #dark). ?sharp=overview,projects,... picks what stays sharp (default: the hero's six): the Projects and Staffing menus and the Overview,
+     Planning & Production, Purchase & SCM and People cards (data-region). Everything else is frosted and decorated.
+     The airplane is not drawn here: the hero animates it as its own layer over the banner. -->
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url("node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2")}
+@font-face{font-family:Inter;font-weight:500;src:url("node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url("node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2")}
+@font-face{font-family:Inter;font-weight:700;src:url("node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2")}
+@font-face{font-family:Inter;font-weight:800;src:url("node_modules/@fontsource/inter/files/inter-latin-800-normal.woff2")}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1748px;height:1045px;overflow:hidden;font-family:Inter,sans-serif}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* theme tokens: navy brand, orange accent, slate, white (light) / deep navy surfaces, milky text, steel blue, orange-300 (dark) */
+body.light{--page:#eef3fb;--page2:#f7f9fd;--side:#ffffff;--card:#ffffff;--card2:#f5f8fd;--line:#e2e8f0;--ink:#0f172a;--head:#1e293b;--soft:#64748b;--mute:#94a3b8;
+  --brand:#1e3a8a;--brand2:#1e40af;--brandT:#e6edf9;--acc:#f97316;--accT:#fff1e6;--acc2:#fb923c;--ok:#16a34a;--okT:#e7f7ed;--chip:#f1f5fb;--haze:rgba(238,243,251,.55);--hazeText:rgba(51,65,85,.55);--hazeIcon:#94a3b8;--shadow:0 10px 26px -14px rgba(15,35,80,.35)}
+body.dark{--page:#0b0f1a;--page2:#0e1424;--side:#101727;--card:#141c2e;--card2:#18223a;--line:rgba(255,255,255,.08);--ink:#f6f3ec;--head:#f6f3ec;--soft:#9aa6bd;--mute:#6b7891;
+  --brand:#8fb3e6;--brand2:#5b81ae;--brandT:rgba(91,129,174,.22);--acc:#fdba74;--accT:rgba(253,186,116,.14);--acc2:#fdba74;--ok:#4ade80;--okT:rgba(74,222,128,.12);--chip:#1b2640;--haze:rgba(11,15,26,.45);--hazeText:rgba(203,213,225,.45);--hazeIcon:#55627d;--shadow:0 10px 26px -14px rgba(0,0,0,.6)}
+body{background:radial-gradient(ellipse 900px 600px at 70% 30%,var(--page2),var(--page))}
+.abs{position:absolute}
+
+/* sidebar */
+#side{position:absolute;left:0;top:0;width:236px;height:1045px;background:var(--side);border-right:1px solid var(--line)}
+#brand{position:absolute;left:18px;top:20px;display:flex;align-items:center;gap:12px}
+#brand .lg{width:42px;height:42px;border-radius:12px;background:linear-gradient(150deg,var(--brand2),var(--brand));color:#fff;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center}
+body.dark #brand .lg{background:linear-gradient(150deg,#5b81ae,#2b4a7a)}
+#brand b{display:block;font-size:16px;font-weight:800;color:var(--head)}
+#brand span{font-size:12px;font-weight:500;color:var(--soft)}
+.menu{position:absolute;left:12px;width:212px;height:40px;border-radius:12px;display:flex;align-items:center;gap:12px;padding:0 14px;font-size:14.5px;font-weight:600;color:var(--head)}
+.menu svg.i{font-size:18px;color:var(--soft)}
+.menu.home{background:var(--brandT);color:var(--brand)}
+.menu.home svg.i{color:var(--brand)}
+.menu .chev{margin-left:auto;font-size:14px}
+.menu.sharp svg.i:first-child{color:var(--brand)}
+/* frosted: words become soft unreadable smudges (transparent text + a blurred shadow); icons and charts keep their shape */
+.haze{filter:blur(1.4px);opacity:.62}
+.haze,.haze *{color:transparent!important;text-shadow:0 0 13px var(--hazeText),0 0 6px var(--hazeText)}
+.haze svg.i{stroke:var(--hazeIcon)}
+#sideFoot{position:absolute;left:14px;right:14px;bottom:18px;height:64px;border-radius:14px;background:var(--card2);display:flex;align-items:center;gap:12px;padding:0 12px}
+#sideFoot .av{width:38px;height:38px;border-radius:50%;background:var(--accT);color:var(--acc);font-weight:800;display:flex;align-items:center;justify-content:center}
+#sideFoot b{display:block;font-size:13.5px;color:var(--head)}#sideFoot span{font-size:12px;color:var(--soft)}
+
+/* banner */
+#banner{position:absolute;left:252px;top:14px;width:1482px;height:150px;border-radius:20px;overflow:hidden;background:linear-gradient(100deg,#0f2a5f 0%,#1e3a8a 38%,#4b6cb7 64%,#f6a56b 88%,#fbd3a8 100%)}
+body.dark #banner{background:linear-gradient(100deg,#0a1630 0%,#132a55 40%,#2b4a7a 66%,#8a5a4a 90%,#c48a62 100%)}
+#banner .hz{position:absolute;left:0;right:0;bottom:0;height:46px;background:linear-gradient(0deg,rgba(15,23,42,.55),rgba(15,23,42,0))}
+#banner .sun{position:absolute;right:250px;bottom:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#fff7ed 0%,#fdba74 35%,rgba(253,186,116,0) 70%)}
+#banner .cl{position:absolute;border-radius:40px;background:rgba(255,255,255,.35);filter:blur(4px)}
+#banner .rw{position:absolute;left:0;right:0;bottom:16px;height:3px;background:repeating-linear-gradient(90deg,rgba(254,243,199,.9) 0 18px,transparent 18px 46px)}
+#banner h1{position:absolute;left:34px;top:34px;font-size:30px;font-weight:800;color:#fff;letter-spacing:-.4px}
+#banner p{position:absolute;left:34px;top:80px;font-size:15px;font-weight:500;color:#dbe6f7}
+#banner .tag{position:absolute;right:30px;top:30px;text-align:right;font-size:12.5px;font-weight:700;color:#fff;letter-spacing:5px;line-height:24px}
+#banner .bell{position:absolute;right:30px;bottom:24px;width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.18);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+
+/* KPI strip (frosted) */
+.kpi{position:absolute;top:180px;height:96px;border-radius:16px;background:var(--card);box-shadow:var(--shadow);padding:16px 18px;overflow:hidden}
+.kpi .k{font-size:13px;font-weight:600;color:var(--soft)}
+.kpi .v{margin-top:6px;font-size:28px;font-weight:800;color:var(--head)}
+.kpi svg.sp{position:absolute;right:14px;bottom:14px}
+.kpi .dot{position:absolute;right:16px;top:16px;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+
+/* module cards */
+.card{position:absolute;width:356px;height:160px;border-radius:18px;background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);padding:16px 16px;overflow:hidden}
+.card .hd{display:flex;align-items:center;gap:10px}
+.card .ti{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.card .hd b{font-size:16.5px;font-weight:800;color:var(--head);white-space:nowrap}
+.card .hd .badge{margin-left:auto;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:9px;white-space:nowrap}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.chip{height:38px;border-radius:10px;background:var(--chip);display:flex;align-items:center;gap:8px;padding:0 10px;font-size:13.5px;font-weight:600;color:var(--head);white-space:nowrap;overflow:hidden}
+.chip svg.i{font-size:15px;color:var(--brand)}
+.card.sharp{border-color:transparent;box-shadow:0 16px 36px -14px rgba(15,35,80,.45),0 0 0 1.5px var(--brandT)}
+.card .deco{position:absolute;right:-30px;bottom:-40px;width:160px;height:160px;border-radius:50%;opacity:.5}
+.t-navy{background:var(--brandT);color:var(--brand)}
+.t-orange{background:var(--accT);color:var(--acc)}
+.t-green{background:var(--okT);color:var(--ok)}
+/* decorative content inside frosted cards */
+.bars{display:flex;align-items:flex-end;gap:7px;height:62px;margin-top:16px}
+.bars i{flex:1;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,var(--acc2),var(--brand2));opacity:.8}
+.skel{height:10px;border-radius:5px;background:var(--line);margin-top:12px}
+.ring{position:absolute;right:20px;top:58px}
+
+/* right column */
+.side2{position:absolute;left:1380px;width:354px;border-radius:18px;background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px}
+.side2 h3{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--head)}
+.side2 h3 svg.i{font-size:18px;color:var(--brand)}
+.row{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--head)}
+.row .dt{width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.row b{margin-left:auto;font-size:16px;font-weight:800}
+.wide{position:absolute;left:252px;top:842px;width:1112px;height:188px;border-radius:18px;background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px 20px;overflow:hidden}
+</style>
+</head>
+<body>
+<script>const ICONS = /*ICONS*/;</script>
+<div id="root"></div>
+<script>
+const theme = location.hash === "#dark" ? "dark" : "light";
+// which regions stay sharp: the hero uses all six; the USP "AI" row only the Overview card (where Synax AI is)
+const SHARP = new Set((new URLSearchParams(location.search).get("sharp") || "projects,staffing,overview,planning,purchase,people").split(","));
+document.body.className = theme;
+const ic = (n) => `<svg class="i" viewBox="0 0 24 24">${ICONS[n] || ""}</svg>`;
+const spark = (w, h, pts, col, fill) => {
+  const xs = pts.map((p, i) => [(i / (pts.length - 1)) * w, h - p * h]);
+  const d = xs.map(([x, y], i) => (i ? "L" : "M") + x.toFixed(1) + "," + y.toFixed(1)).join(" ");
+  return `<svg class="sp" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><path d="${d} L${w},${h} L0,${h}Z" fill="${fill}" opacity=".35"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linecap="round"/></svg>`;
+};
+const donut = (r, parts) => {
+  let a = -Math.PI / 2, s = "";
+  const c = 2 * Math.PI * r;
+  parts.forEach(([v, col]) => { s += `<circle r="${r}" cx="${r + 10}" cy="${r + 10}" fill="none" stroke="${col}" stroke-width="12" stroke-dasharray="${(v * c).toFixed(1)} ${c.toFixed(1)}" stroke-dashoffset="${(-((a + Math.PI / 2) / (2 * Math.PI)) * c).toFixed(1)}" transform="rotate(-90 ${r + 10} ${r + 10})"/>`; a += v * 2 * Math.PI; });
+  return `<svg width="${2 * r + 20}" height="${2 * r + 20}">${s}</svg>`;
+};
+const cs = getComputedStyle(document.body);
+const V = (n) => cs.getPropertyValue(n).trim();
+let h = "";
+// sidebar: only Projects and Staffing are sharp (they are what two product cards point at)
+h += `<div id="side"><div id="brand"><div class="lg">S</div><div><b>Synax Workspace</b><span>Demo tenant</span></div></div>`;
+const menus = [["House", "Home", 0, "home"], ["Timer", "Work Tracker"], ["FolderKanban", "Projects", 1, SHARP.has("projects") ? "sharp" : "", SHARP.has("projects") ? "projects" : ""], ["Database", "Master", 1], ["UserCog", "Staffing", 1, SHARP.has("staffing") ? "sharp" : "", SHARP.has("staffing") ? "staffing" : ""], ["Users", "HRMS", 1], ["Factory", "Manufacturing", 1], ["Box", "Assets", 1], ["ChartColumn", "Reports"], ["MessageCircle", "Chat"], ["CalendarDays", "Calendar"], ["Settings", "Settings"]];
+menus.forEach(([i, n, chev, cls, region], k) => {
+  const y = 84 + k * 46;
+  const haze = cls === "sharp" ? "" : " haze";
+  h += `<div class="menu ${cls || ""}${cls === "home" ? " haze" : haze}"${region ? ` data-region="${region}"` : ""} style="top:${y}px">${ic(i)}<span>${n}</span>${chev ? `<span class="chev">${ic("ChevronDown")}</span>` : ""}</div>`;
+});
+h += `<div id="sideFoot" class="haze"><div class="av">SD</div><div><b>Synax Demo</b><span>Super Admin</span></div></div></div>`;
+// banner (the airplane is animated by the hero itself)
+h += `<div id="banner"><div class="sun"></div>
+  <div class="cl" style="left:520px;top:30px;width:150px;height:30px"></div><div class="cl" style="left:760px;top:70px;width:220px;height:34px"></div><div class="cl" style="left:1080px;top:24px;width:130px;height:26px"></div>
+  <div class="hz"></div><div class="rw"></div>
+  <h1>Good morning, Synax</h1><p>Synax Workspace  ·  Wednesday, 18 November 2026</p>
+  <div class="tag">PRECISION<br>PEOPLE<br>PERFORMANCE</div></div>`;
+// KPI strip (frosted, decorative)
+const K = [["Orders in production", "128", "Factory", "t-navy", [0.3, 0.45, 0.4, 0.6, 0.55, 0.75, 0.7, 0.85]], ["On-time delivery", "96%", "Truck", "t-green", [0.5, 0.55, 0.6, 0.58, 0.7, 0.72, 0.8, 0.82]], ["Machines running", "11/12", "Gauge", "t-orange", [0.6, 0.7, 0.5, 0.8, 0.75, 0.85, 0.8, 0.9]], ["Open approvals", "24", "ClipboardCheck", "t-navy", [0.8, 0.7, 0.75, 0.6, 0.65, 0.5, 0.55, 0.45]]];
+K.forEach(([k, v, i, t, pts], n) => {
+  h += `<div class="kpi haze" data-haze="kpi" style="left:${252 + n * 282}px;width:268px"><div class="k">${k}</div><div class="v">${v}</div><div class="dot ${t}">${ic(i)}</div>${spark(120, 34, pts, V("--acc2"), V("--brand2"))}</div>`;
+});
+// module grid: 3 columns x 3 rows; sharp: Overview (AI & BI), Planning & Production (shop floor), Purchase & SCM (manufacturing), People (HRMS)
+const COLX = [252, 630, 1008], ROWY = [292, 474, 656];
+const card = (c, r, o) => {
+  if (o.region && !SHARP.has(o.region)) o = { ...o, region: "" };
+  const sharp = !!o.region;
+  let inner = `<div class="hd"><span class="ti ${o.tone}">${ic(o.icon)}</span><b>${o.title}</b>${o.badge ? `<span class="badge ${o.badge[1]}">${o.badge[0]}</span>` : ""}</div>`;
+  if (o.chips) inner += `<div class="chips">${o.chips.map(([i, n]) => `<div class="chip"${n === "Synax AI" && sharp ? ' data-region="synaxai"' : ""}>${ic(i)}${n}</div>`).join("")}</div>`;
+  if (o.bars) inner += `<div class="bars">${o.bars.map((b) => `<i style="height:${b * 100}%"></i>`).join("")}</div>`;
+  if (o.skel) inner += o.skel.map((w) => `<div class="skel" style="width:${w}%"></div>`).join("") + `<div class="ring">${donut(26, [[0.62, V("--brand2")], [0.24, V("--acc2")], [0.14, V("--line")]])}</div>`;
+  if (o.spark) inner += `<div style="margin-top:12px">${spark(320, 70, o.spark, V("--brand2"), V("--acc2"))}</div>`;
+  inner += `<div class="deco" style="background:radial-gradient(circle,${sharp ? "transparent" : V("--accT")},transparent 70%)"></div>`;
+  return `<div class="card${sharp ? " sharp" : " haze"}"${sharp ? ` data-region="${o.region}"` : ` data-haze="card"`} style="left:${COLX[c]}px;top:${ROWY[r]}px">${inner}</div>`;
+};
+h += card(0, 0, { region: "overview", title: "Overview", icon: "LayoutDashboard", tone: "t-navy", badge: ["AI", "t-orange"], chips: [["LayoutDashboard", "Dashboard"], ["PackageCheck", "Order fulfilment"], ["FileChartColumn", "Reports hub"], ["Sparkles", "Synax AI"]] });
+h += card(1, 0, { region: "planning", title: "Planning & Production", icon: "Activity", tone: "t-green", badge: ["Live", "t-green"], chips: [["Route", "Route cards"], ["ClipboardList", "Job cards"], ["Cpu", "Live machines"], ["Clock", "Downtime"]] });
+h += card(2, 0, { title: "Sales & Customers", icon: "Handshake", tone: "t-orange", spark: [0.3, 0.5, 0.42, 0.6, 0.55, 0.72, 0.68, 0.82, 0.78, 0.9] });
+h += card(0, 1, { title: "Quality", icon: "ShieldCheck", tone: "t-green", bars: [0.4, 0.55, 0.5, 0.7, 0.62, 0.8, 0.74, 0.9] });
+h += card(1, 1, { region: "purchase", title: "Purchase & SCM", icon: "ShoppingCart", tone: "t-orange", badge: ["5 to approve", "t-orange"], chips: [["ClipboardList", "Indents"], ["FileText", "Vendor PO"], ["Warehouse", "GRN"], ["Building2", "Suppliers"]] });
+h += card(2, 1, { title: "Stores & Logistics", icon: "Truck", tone: "t-navy", skel: [62, 48, 56] });
+h += card(0, 2, { title: "Finance & Billing", icon: "Wallet", tone: "t-navy", spark: [0.5, 0.45, 0.6, 0.55, 0.65, 0.62, 0.75, 0.7, 0.82, 0.86] });
+h += card(1, 2, { title: "Engineering & Masters", icon: "Layers", tone: "t-orange", bars: [0.6, 0.45, 0.7, 0.5, 0.65, 0.8, 0.58, 0.75] });
+h += card(2, 2, { region: "people", title: "People", icon: "Users", tone: "t-navy", badge: ["36 staff", "t-navy"], chips: [["CalendarCheck", "Leave & absence"], ["UserRoundCheck", "Attendance"], ["Banknote", "Payroll"], ["UserRoundSearch", "Interviews"]] });
+// a wide frosted chart along the bottom
+const wb = [0.35, 0.5, 0.42, 0.62, 0.58, 0.7, 0.66, 0.78, 0.72, 0.84, 0.8, 0.9, 0.86, 0.94];
+h += `<div class="wide haze" data-haze="wide"><div style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--head)"><span class="ti t-navy" style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px">${ic("TrendingUp")}</span>Plant throughput this month</div>
+  <div style="display:flex;align-items:flex-end;gap:14px;height:110px;margin-top:22px">${wb.map((b, k) => `<i style="flex:1;height:${b * 100}%;border-radius:6px 6px 2px 2px;background:${k % 2 ? V("--brand2") : V("--acc2")};opacity:.75"></i>`).join("")}</div></div>`;
+// right column (frosted)
+h += `<div class="side2 haze" data-haze="side" style="top:180px;height:330px"><h3>${ic("ClipboardList")}My work</h3>
+  ${[["Inward inspections pending", 16], ["Leave requests", 12], ["Vendor POs awaiting approval", 5], ["Invoices awaiting approval", 4], ["Open NCRs", 2], ["My tasks", 9]].map(([n, v]) => `<div class="row"><span class="dt"></span>${n}<b>${v}</b></div>`).join("")}</div>`;
+h += `<div class="side2 haze" data-haze="machines" style="top:526px;height:260px"><h3>${ic("Gauge")}Machine status</h3><div style="display:flex;align-items:center;gap:18px;margin-top:16px">${donut(54, [[0.78, V("--ok")], [0.14, V("--acc2")], [0.08, "#ef4444"]])}<div>${[["Running", "11", "--ok"], ["Idle", "1", "--acc2"], ["Down", "0", "--mute"]].map(([n, v, c]) => `<div class="row" style="margin-top:10px"><span class="dt" style="background:var(${c})"></span>${n}<b style="margin-left:18px">${v}</b></div>`).join("")}</div></div></div>`;
+h += `<div class="side2 haze" data-haze="side" style="top:802px;height:228px"><h3>${ic("CalendarDays")}Today</h3>${[["09:30", "Production review"], ["13:00", "Supplier call"], ["16:30", "Shift handover"]].map(([t, n]) => `<div class="row"><b style="margin:0 6px 0 0;font-size:14px;color:var(--brand)">${t}</b>${n}</div>`).join("")}</div>`;
+document.getElementById("root").innerHTML = h;
+window.__ready = true;
+</script>
+</body>
+</html>

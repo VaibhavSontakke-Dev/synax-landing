@@ -56,7 +56,7 @@ export function JumpBar({ items }: { items: { id: string; label: string }[] }) {
   }, [active]);
 
   return (
-    <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-slate-200 bg-surface/90 backdrop-blur">
       <ul ref={list} className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
         {items.map((j) => {
           const on = j.id === active;
@@ -75,8 +75,8 @@ export function JumpBar({ items }: { items: { id: string; label: string }[] }) {
                 }}
                 className={`block rounded-full border px-3.5 py-1 text-xs font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${
                   on
-                    ? "border-blue-900 bg-blue-900 text-white shadow-sm"
-                    : "border-slate-200 text-slate-600 hover:border-sky-300 hover:bg-sky-50 hover:text-blue-900"
+                    ? "border-brand-line bg-brand-solid text-white shadow-sm"
+                    : "border-slate-200 text-slate-600 hover:border-sky-300 hover:bg-sky-50 hover:text-brand"
                 }`}
               >
                 {j.label}

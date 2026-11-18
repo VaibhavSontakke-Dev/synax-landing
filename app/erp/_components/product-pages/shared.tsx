@@ -45,6 +45,7 @@ export function HeroCopy({
   center = false,
   centerBelowLg = false,
   compact = false,
+  secondTourLabel,
 }: {
   productKey: ProductKey;
   eyebrow: string;
@@ -57,6 +58,8 @@ export function HeroCopy({
   centerBelowLg?: boolean;
   /** A smaller headline, for narrow cards and long titles. */
   compact?: boolean;
+  /** Label of an optional second tour button; it opens the tour titled "<product> Tour 2" in `TOURS`. */
+  secondTourLabel?: string;
 }) {
   const route = routeFor(productKey);
   return (
@@ -64,14 +67,15 @@ export function HeroCopy({
       <SectionTag lines="start">{eyebrow}</SectionTag>
       <h1
         id="product-heading"
-        className={`mt-3 leading-tight font-extrabold tracking-tight text-blue-900 ${compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl lg:text-5xl"}`}
+        className={`mt-3 leading-tight font-extrabold tracking-tight text-brand ${compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl lg:text-5xl"}`}
       >
         {title ?? route.name}
       </h1>
       <p className="mt-2 text-base font-semibold text-slate-700">{subtitle}</p>
       <p className="mt-4 text-sm leading-relaxed text-slate-700 sm:text-base">{lead}</p>
-      <div className={`mt-7 flex ${center ? "justify-center" : centerBelowLg ? "justify-center lg:justify-start" : ""}`}>
+      <div className={`mt-7 flex flex-wrap gap-3 ${center ? "justify-center" : centerBelowLg ? "justify-center lg:justify-start" : ""}`}>
         <TourButton title={`${route.name} Tour`} />
+        {secondTourLabel ? <TourButton title={`${route.name} Tour 2`}>{secondTourLabel}</TourButton> : null}
       </div>
     </div>
   );
@@ -96,15 +100,15 @@ export function StartPath({ path }: { path: SolutionPath }) {
     <Block id="start" tag="Where to start" title="Start with what hurts most" lead="Switch on the first modules, then add the rest when you are ready." tone="white">
       <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-[1fr_1.2fr]">
         <p className="rounded-2xl border border-orange-200 bg-orange-50/70 p-5 text-sm leading-relaxed text-slate-700">
-          <span className="block text-[11px] font-bold tracking-wider text-orange-700 uppercase">What hurts</span>
+          <span className="block text-[11px] font-bold tracking-wider text-accent-strong uppercase">What hurts</span>
           <span className="mt-1 block text-base font-semibold text-slate-900">{path.pain}</span>
         </p>
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <p className="text-[11px] font-bold tracking-wider text-blue-900 uppercase">Start with</p>
+        <div className="rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
+          <p className="text-[11px] font-bold tracking-wider text-brand uppercase">Start with</p>
           <ol className="mt-2 space-y-1.5">
             {path.start.map((m, n) => (
               <li key={m} className="flex items-center gap-2.5 text-sm font-medium text-slate-800">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-blue-900 text-[11px] font-semibold text-white">{n + 1}</span>
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-solid text-[11px] font-semibold text-white">{n + 1}</span>
                 {m}
               </li>
             ))}
@@ -163,10 +167,10 @@ export function ProductTail({
       >
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {LIVE_ROLLOUT.map((r, i) => (
-            <li key={r.week} className="flex flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-5 shadow-sm">
+            <li key={r.week} className="flex flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
               <div className="flex items-center gap-2.5">
-                <span className="flex size-8 items-center justify-center rounded-full bg-blue-900 font-mono text-sm font-semibold text-white">{i + 1}</span>
-                <p className="text-[11px] font-bold tracking-wider text-orange-700 uppercase">{r.week}</p>
+                <span className="flex size-8 items-center justify-center rounded-full bg-brand-solid font-mono text-sm font-semibold text-white">{i + 1}</span>
+                <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">{r.week}</p>
               </div>
               <h3 className="mt-3 text-[15px] font-bold text-slate-900">{r.title}</h3>
               <ul className="mt-3 space-y-1.5">
@@ -188,11 +192,11 @@ export function ProductTail({
             <li key={r.href}>
               <Link
                 href={r.href}
-                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
               >
                 <span className="flex items-center justify-between gap-2 text-sm font-bold text-slate-900">
                   {r.label}
-                  <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-orange-600" aria-hidden="true" />
+                  <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true" />
                 </span>
                 <span className="mt-1 text-xs leading-snug text-slate-600">{r.note}</span>
               </Link>

@@ -16,14 +16,14 @@ export interface Crumb {
 export function Breadcrumb({ items }: { items: Crumb[] }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
-      <Link href="/erp" className="hover:text-blue-900 hover:underline">
+      <Link href="/erp" className="hover:text-brand hover:underline">
         Synax
       </Link>
       {items.map((c, i) => (
         <span key={c.label} className="flex items-center gap-1.5">
           <ChevronRight className="size-3.5" aria-hidden="true" />
           {c.href && i < items.length - 1 ? (
-            <Link href={c.href} className="hover:text-blue-900 hover:underline">
+            <Link href={c.href} className="hover:text-brand hover:underline">
               {c.label}
             </Link>
           ) : (
@@ -65,15 +65,16 @@ export function PageHero({
 }) {
   return (
     <section
-      className={`border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white ${fit ? "relative isolate overflow-hidden lg:flex lg:min-h-[calc(100svh-4.1rem)]" : ""}`}
+      className={`border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page ${fit ? "relative isolate overflow-hidden lg:flex lg:min-h-[calc(100svh-4.1rem)]" : ""}`}
       aria-labelledby="page-heading"
     >
       {fit ? (
         // Same backdrop as the Security & Trust and Why Synax heroes: dot grid fading out, a soft sky glow, and a navy base line with a sky accent.
         <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-          <div className="absolute inset-0 [background-image:radial-gradient(rgba(30,58,138,0.1)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,#000,transparent_90%)]" />
+          <div className="synax-stars absolute inset-0" />
+          <div className="absolute inset-0 [background-image:radial-gradient(var(--grid-dot)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:linear-gradient(to_bottom,#000,transparent_90%)]" />
           <div className="absolute -top-24 left-[30%] size-96 rounded-full bg-sky-300/40 blur-3xl" />
-          <div className="absolute inset-x-0 bottom-0 h-1 bg-blue-900" />
+          <div className="absolute inset-x-0 bottom-0 h-1 bg-brand-solid" />
           <div className="absolute bottom-0 left-0 h-1 w-32 bg-sky-400" />
         </div>
       ) : null}
@@ -84,7 +85,7 @@ export function PageHero({
             <SectionTag lines="start">{tag}</SectionTag>
             <h1
               id="page-heading"
-              className={`mt-3 text-3xl leading-tight tracking-tight sm:text-4xl ${fit ? "lg:text-[clamp(1.875rem,5vh,3rem)]" : "lg:text-5xl"} ${calm ? "font-semibold text-slate-700" : "font-extrabold text-blue-900"}`}
+              className={`mt-3 text-3xl leading-tight tracking-tight sm:text-4xl ${fit ? "lg:text-[clamp(1.875rem,5vh,3rem)]" : "lg:text-5xl"} ${calm ? "font-semibold text-slate-700" : "font-extrabold text-brand"}`}
             >
               {title}
             </h1>
@@ -130,7 +131,7 @@ export function Block({
     <section
       id={id}
       aria-labelledby={headingId}
-      className={`scroll-mt-32 ${tone === "white" ? "border-y border-slate-200 bg-white" : ""}`}
+      className={`scroll-mt-32 ${tone === "white" ? "border-y border-slate-200 bg-surface" : ""}`}
     >
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${compact ? "py-8 lg:py-10" : "py-10 lg:py-12"}`}>
         <div className={`max-w-2xl space-y-2 ${compact ? "mb-5" : "mb-7 space-y-3"} ${align === "center" ? "mx-auto text-center" : ""}`}>
@@ -158,7 +159,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
   return (
     <div className="mx-auto max-w-3xl space-y-3 font-[family-name:var(--font-geist-sans)]">
       {items.map((item) => (
-        <details key={item.q} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+        <details key={item.q} className="group overflow-hidden rounded-xl border border-slate-200 bg-surface shadow-xs">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left text-[15px] leading-snug font-semibold text-slate-900 marker:content-none hover:bg-slate-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange-500 [&::-webkit-details-marker]:hidden">
             {item.q}
             <ChevronDown className="size-4 shrink-0 text-sky-500 transition-transform group-open:rotate-180 group-open:text-slate-400" aria-hidden="true" />
@@ -186,19 +187,19 @@ export function CtaBand({
 }) {
   const light = tone === "light";
   return (
-    <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 pt-10 pb-6 sm:px-6 lg:px-8">
       <div
-        className={`flex flex-col items-start justify-between gap-6 rounded-3xl border p-7 shadow-xl md:flex-row md:items-center md:p-10 ${
+        className={`flex flex-col items-start justify-between gap-6 rounded-3xl border p-7 shadow-xl md:flex-row md:items-center md:px-10 md:py-8 ${
           light
-            ? "border-sky-200 bg-gradient-to-br from-sky-200 via-sky-100 to-sky-50"
-            : "border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 shadow-2xl"
+            ? "border-sky-300 bg-gradient-to-br from-sky-200 via-sky-100 to-sky-100"
+            : "keep-light-palette border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 shadow-2xl"
         }`}
       >
         <div className="max-w-xl">
           <SectionTag tone={light ? "light" : "dark"} lines="start">
             Get started
           </SectionTag>
-          <h2 id="cta-heading" className={`mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl ${light ? "text-blue-900" : "text-white"}`}>
+          <h2 id="cta-heading" className={`mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl ${light ? "text-brand" : "text-white"}`}>
             {title}
           </h2>
           <p className={`mt-2 text-sm leading-relaxed ${light ? "text-slate-700" : "text-slate-300"}`}>{text}</p>

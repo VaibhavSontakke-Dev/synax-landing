@@ -160,9 +160,9 @@ export function Button({
     primary:
       "bg-erp-brand text-white shadow-erp-brand hover:bg-erp-brand-dark hover:shadow-[0_20px_48px_rgba(11,108,255,0.45)] hover:-translate-y-0.5 transition-all duration-300 ease-erp",
     secondary:
-      "bg-white text-erp-ink border border-erp-line-strong hover:border-erp-brand hover:text-erp-brand hover:shadow-erp-sm transition-all duration-300 ease-erp",
+      "bg-surface text-erp-ink border border-erp-line-strong hover:border-erp-brand hover:text-erp-brand hover:shadow-erp-sm transition-all duration-300 ease-erp",
     "ghost-dark":
-      "bg-white/5 text-white border border-white/20 backdrop-blur-sm hover:bg-white/12 hover:border-white/40 hover:shadow-[0_8px_24px_rgba(255,255,255,0.1)] transition-all duration-300 ease-erp",
+      "bg-white/5 text-white border border-white/20 backdrop-blur-sm hover:bg-white/12 hover:border-surface/40 hover:shadow-[0_8px_24px_rgba(255,255,255,0.1)] transition-all duration-300 ease-erp",
   };
 
   const sizes = {

@@ -50,6 +50,12 @@ const nextConfig: NextConfig = {
         destination: "/products/work-delivery-management",
         permanent: true,
       },
+      {
+        // Automotive & Heavy Industrial became Industrial Machinery & Equipment (solutions restructure).
+        source: "/solutions/automotive-heavy-industrial",
+        destination: "/solutions/industrial-machinery-equipment",
+        permanent: true,
+      },
     ];
   },
   partialPrefetching: true,

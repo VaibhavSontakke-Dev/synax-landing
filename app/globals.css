@@ -504,9 +504,85 @@ body {
   animation: synax-hero-fade 0.45s ease both;
 }
 
+/* The airplane over the dashboard banner: a slow glide back and forth with a gentle rise and bank, and its trail. */
+@keyframes synax-hero-plane {
+  0% {
+    transform: translate(-55%, 18%) rotate(-3deg);
+  }
+  50% {
+    transform: translate(25%, -14%) rotate(1.5deg);
+  }
+  100% {
+    transform: translate(105%, 10%) rotate(-2deg);
+  }
+}
+
+@keyframes synax-hero-trail {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.synax-hero-plane {
+  animation: synax-hero-plane 9s ease-in-out infinite alternate;
+}
+
+.synax-hero-plane .trail {
+  animation: synax-hero-trail 2.4s ease-in-out infinite;
+}
+
+/* The frosted dashboard cards: a soft band of light sweeps across each one in turn (the delay is set per card), and the
+   KPI tiles carry a pulsing "live" dot. */
+@keyframes synax-hero-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  28%,
+  100% {
+    transform: translateX(260%) skewX(-18deg);
+  }
+}
+
+@keyframes synax-hero-live {
+  0% {
+    box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 0.45rem rgba(251, 146, 60, 0);
+  }
+}
+
+.synax-hero-sweep::after {
+  content: "";
+  position: absolute;
+  inset: -10% auto -10% 0;
+  width: 45%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+  transform: translateX(-120%) skewX(-18deg);
+  animation: synax-hero-sweep 9s ease-in-out infinite;
+  animation-delay: inherit;
+}
+
+:root[data-theme="dark"] .synax-hero-sweep::after {
+  background: linear-gradient(90deg, rgba(147, 197, 253, 0), rgba(147, 197, 253, 0.16), rgba(147, 197, 253, 0));
+}
+
+.synax-hero-live {
+  animation: synax-hero-live 2s ease-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .synax-hero-visual,
-  .synax-hero-fade {
+  .synax-hero-fade,
+  .synax-hero-plane,
+  .synax-hero-plane .trail,
+  .synax-hero-sweep::after,
+  .synax-hero-live {
     animation: none;
   }
 }
@@ -856,4 +932,320 @@ body {
   .synax-ask-in {
     animation: none;
   }
+}
+
+/* ==========================================================================
+   Dark mode
+   --------------------------------------------------------------------------
+   Theme is the `data-theme` attribute on <html> ("light" | "dark"), set before
+   first paint by the inline script in app/layout.tsx and changed by the header
+   toggle (theme-toggle.tsx). Saved in localStorage "synax.theme"
+   ("light" | "dark"; nothing saved = follow the OS setting).
+
+   How the site goes dark with so few edits: Tailwind v4 colours are CSS
+   variables (bg-slate-50 -> var(--color-slate-50)), so in dark mode the
+   palette steps the site uses are re-pointed to dark values below. The two
+   cases a palette swap cannot express use semantic tokens instead:
+     bg-white      -> bg-surface        (cards)   | from/via/to-white -> -page
+     text-blue-900 -> text-brand        (headings, links)
+     bg-blue-900   -> bg-brand-solid    (buttons, number circles)
+     text-orange-6|7|800 -> text-accent / text-accent-strong
+   Regions that are dark in BOTH themes (footer, tour modal, navy bands...)
+   carry the class `keep-light-palette`, which puts every value below back to
+   its light-theme value inside that element, so they look exactly as before.
+   Colours: dark values follow the live Synax portal (primary #60a5fa / #3b82f6
+   buttons, status colours) on a navy-black page like synax.senwellgroup.com.
+   ========================================================================== */
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --t-page: #ffffff;
+  --t-surface: #ffffff;
+  --t-brand: oklch(37.9% 0.146 265.522);
+  --t-brand-line: oklch(37.9% 0.146 265.522);
+  --t-brand-solid: oklch(37.9% 0.146 265.522);
+  --t-brand-solid-hover: oklch(42.4% 0.199 265.638);
+  --t-accent: oklch(64.6% 0.222 41.116);
+  --t-accent-strong: oklch(55.3% 0.195 38.402);
+  --t-hero-a: oklch(95.1% 0.026 236.824);
+}
+
+@theme inline {
+  --color-page: var(--t-page);
+  --color-surface: var(--t-surface);
+  --color-brand: var(--t-brand);
+  --color-brand-line: var(--t-brand-line);
+  --color-brand-solid: var(--t-brand-solid);
+  --color-brand-solid-hover: var(--t-brand-solid-hover);
+  --color-accent: var(--t-accent);
+  --color-accent-strong: var(--t-accent-strong);
+  --color-hero-a: var(--t-hero-a);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --t-page: #0b0f1a;
+  --t-surface: #121826;
+  --t-brand: #f6f3ec; /* titles and brand text: milky white */
+  --t-brand-line: rgba(125, 211, 252, 0.4); /* borders, rings, outlines: faint light sky blue */
+  --t-brand-solid: #5b81ae; /* steel blue, sampled from the reference Sign in button; white text */
+  --t-brand-solid-hover: #4e78ad;
+  --t-accent: #fdba74;
+  --t-accent-strong: #fdba74;
+  --t-hero-a: #14233f;
+  --color-slate-50: #0e1320;
+  --color-slate-100: #151c2d;
+  --color-slate-200: rgba(255, 255, 255, 0.09);
+  --color-slate-300: rgba(255, 255, 255, 0.14);
+  --color-slate-400: #7886a0;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #a9b6ca;
+  --color-slate-700: #c3cddc;
+  --color-slate-800: #e9e6df;
+  --color-slate-900: #f6f3ec; /* milky white: titles and strong text */
+  --color-slate-950: #faf8f3;
+  --color-sky-50: #0f1b30;
+  --color-sky-100: #14233f;
+  --color-sky-200: rgba(125, 211, 252, 0.14);
+  --color-sky-300: rgba(125, 211, 252, 0.22);
+  --color-sky-400: #5b8fcf;
+  --color-sky-500: #5db6f4;
+  --color-sky-600: #7cc0f5;
+  --color-sky-700: #8fd0fa;
+  --color-orange-50: #2a180d;
+  --color-orange-100: #33200f;
+  --color-orange-200: rgba(253, 186, 116, 0.26);
+  --color-emerald-50: #0e2a22;
+  --color-emerald-200: rgba(52, 211, 153, 0.26);
+  --color-emerald-600: #34d399;
+  --color-emerald-700: #6ee7b7;
+  --color-red-50: #2a1315;
+  --color-red-200: rgba(248, 113, 113, 0.28);
+  --color-red-300: #8a3a3d;
+  --color-red-700: #fca5a5;
+  --color-teal-50: #0e2a2a;
+  --color-teal-700: #5eead4;
+  --color-cyan-50: #0b2630;
+  --color-cyan-700: #67e8f9;
+  --color-violet-600: #c4b5fd;
+  --color-blue-100: #172554;
+
+  /* the legacy erp-* tokens used by the page frame */
+  --color-erp-surface: #0b0f1a;
+  --color-erp-surface-2: #0e1320;
+  --color-erp-surface-3: #151c2d;
+  --color-erp-ink: #f1f5f9;
+  --color-erp-heading: #e2e8f0;
+  --color-erp-body: #c3cddc;
+  --color-erp-soft: #94a3b8;
+  --color-erp-brand: #5b81ae; /* used as a solid with white text */
+  --color-erp-brand-dark: #f6f3ec; /* used as text */
+  --color-erp-brand-soft: #1e293b;
+  --color-erp-line: rgba(148, 163, 184, 0.2);
+  --color-erp-line-strong: rgba(148, 163, 184, 0.32);
+}
+
+/* Put the light-theme values back inside always-dark regions. */
+:root[data-theme="dark"] .keep-light-palette {
+  color-scheme: light;
+  --t-page: #ffffff;
+  --t-surface: #ffffff;
+  --t-brand: oklch(37.9% 0.146 265.522);
+  --t-brand-line: oklch(37.9% 0.146 265.522);
+  --t-brand-solid: oklch(37.9% 0.146 265.522);
+  --t-brand-solid-hover: oklch(42.4% 0.199 265.638);
+  --t-accent: oklch(64.6% 0.222 41.116);
+  --t-accent-strong: oklch(55.3% 0.195 38.402);
+  --t-hero-a: oklch(95.1% 0.026 236.824);
+  --color-slate-50: oklch(98.4% 0.003 247.858);
+  --color-slate-100: oklch(96.8% 0.007 247.896);
+  --color-slate-200: oklch(92.9% 0.013 255.508);
+  --color-slate-300: oklch(86.9% 0.022 252.894);
+  --color-slate-400: oklch(70.4% 0.04 256.788);
+  --color-slate-500: oklch(55.4% 0.046 257.417);
+  --color-slate-600: oklch(44.6% 0.043 257.281);
+  --color-slate-700: oklch(37.2% 0.044 257.287);
+  --color-slate-800: oklch(27.9% 0.041 260.031);
+  --color-slate-900: oklch(20.8% 0.042 265.755);
+  --color-slate-950: oklch(12.9% 0.042 264.695);
+  --color-sky-50: oklch(97.7% 0.013 236.62);
+  --color-sky-100: oklch(95.1% 0.026 236.824);
+  --color-sky-200: oklch(90.1% 0.058 230.902);
+  --color-sky-300: oklch(82.8% 0.111 230.318);
+  --color-sky-400: oklch(74.6% 0.16 232.661);
+  --color-sky-500: oklch(68.5% 0.169 237.323);
+  --color-sky-600: oklch(58.8% 0.158 241.966);
+  --color-sky-700: oklch(50% 0.134 242.749);
+  --color-orange-50: oklch(98% 0.016 73.684);
+  --color-orange-100: oklch(95.4% 0.038 75.164);
+  --color-orange-200: oklch(90.1% 0.076 70.697);
+  --color-emerald-50: oklch(97.9% 0.021 166.113);
+  --color-emerald-200: oklch(90.5% 0.093 164.15);
+  --color-emerald-600: oklch(59.6% 0.145 163.225);
+  --color-emerald-700: oklch(50.8% 0.118 165.612);
+  --color-red-50: oklch(97.1% 0.013 17.38);
+  --color-red-200: oklch(88.5% 0.062 18.334);
+  --color-red-300: oklch(80.8% 0.114 19.571);
+  --color-red-700: oklch(50.5% 0.213 27.518);
+  --color-teal-50: oklch(98.4% 0.014 180.72);
+  --color-teal-700: oklch(51.1% 0.096 186.391);
+  --color-cyan-50: oklch(98.4% 0.019 200.873);
+  --color-cyan-700: oklch(52% 0.105 223.128);
+  --color-violet-600: oklch(54.1% 0.281 293.009);
+  --color-blue-100: oklch(93.2% 0.032 255.585);
+  --color-erp-surface: #ffffff;
+  --color-erp-surface-2: #f8fbff;
+  --color-erp-surface-3: #f1f6ff;
+  --color-erp-ink: #0f172a;
+  --color-erp-heading: #1e293b;
+  --color-erp-body: #334155;
+  --color-erp-soft: #64748b;
+  --color-erp-brand: #1e3a8a;
+  --color-erp-brand-dark: #172554;
+  --color-erp-brand-soft: #e2e8f0;
+  --color-erp-line: rgba(148, 163, 184, 0.22);
+  --color-erp-line-strong: rgba(148, 163, 184, 0.35);
+}
+
+/* Page, text selection and scrollbars in dark mode. */
+:root[data-theme="dark"] body {
+  background-color: var(--t-page);
+  color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .erp-root {
+  background-image:
+    radial-gradient(ellipse 60% 45% at 80% 0%, rgba(99, 102, 241, 0.14), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 12% 28%, rgba(56, 189, 248, 0.06), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+:root[data-theme="dark"] ::selection {
+  background: rgba(96, 165, 250, 0.35);
+  color: #fff;
+}
+
+:root[data-theme="dark"] .synax-thin-scroll {
+  scrollbar-color: #3d4a66 transparent;
+}
+
+:root[data-theme="dark"] .synax-thin-scroll::-webkit-scrollbar-thumb {
+  background: #3d4a66;
+}
+
+:root[data-theme="dark"] .synax-thin-scroll::-webkit-scrollbar-thumb:hover {
+  background: #56668a;
+}
+
+/* Night-sky star dots for hero backdrops (dark mode only): add the class to an absolutely positioned layer. */
+.synax-stars {
+  display: none;
+}
+
+:root[data-theme="dark"] .synax-stars {
+  display: block;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27420%27%3E%3Ccircle cx=%270%27 cy=%27387%27 r=%270.7%27 fill=%27rgb(226,232,240)%27 opacity=%270.46%27/%3E%3Ccircle cx=%27438%27 cy=%27224%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.73%27/%3E%3Ccircle cx=%27453%27 cy=%27228%27 r=%271.0%27 fill=%27rgb(226,232,240)%27 opacity=%270.67%27/%3E%3Ccircle cx=%27490%27 cy=%27102%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.70%27/%3E%3Ccircle cx=%27419%27 cy=%2723%27 r=%271.0%27 fill=%27rgb(226,232,240)%27 opacity=%270.58%27/%3E%3Ccircle cx=%27553%27 cy=%27339%27 r=%270.6%27 fill=%27rgb(226,232,240)%27 opacity=%270.61%27/%3E%3Ccircle cx=%27554%27 cy=%27289%27 r=%271.0%27 fill=%27rgb(226,232,240)%27 opacity=%270.64%27/%3E%3Ccircle cx=%27547%27 cy=%27382%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.52%27/%3E%3Ccircle cx=%27502%27 cy=%27140%27 r=%270.6%27 fill=%27rgb(226,232,240)%27 opacity=%270.50%27/%3E%3Ccircle cx=%27257%27 cy=%27124%27 r=%271.2%27 fill=%27rgb(226,232,240)%27 opacity=%270.63%27/%3E%3Ccircle cx=%27438%27 cy=%27369%27 r=%270.5%27 fill=%27rgb(226,232,240)%27 opacity=%270.49%27/%3E%3Ccircle cx=%27336%27 cy=%27214%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.45%27/%3E%3Ccircle cx=%27545%27 cy=%2723%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.52%27/%3E%3Ccircle cx=%27399%27 cy=%27388%27 r=%270.9%27 fill=%27rgb(226,232,240)%27 opacity=%270.43%27/%3E%3Ccircle cx=%27243%27 cy=%27119%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.56%27/%3E%3Ccircle cx=%27200%27 cy=%27223%27 r=%271.0%27 fill=%27rgb(226,232,240)%27 opacity=%270.47%27/%3E%3Ccircle cx=%27544%27 cy=%27192%27 r=%271.2%27 fill=%27rgb(226,232,240)%27 opacity=%270.67%27/%3E%3Ccircle cx=%27381%27 cy=%27217%27 r=%270.9%27 fill=%27rgb(226,232,240)%27 opacity=%270.69%27/%3E%3Ccircle cx=%27564%27 cy=%27167%27 r=%271.1%27 fill=%27rgb(226,232,240)%27 opacity=%270.48%27/%3E%3Ccircle cx=%27352%27 cy=%27147%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.55%27/%3E%3Ccircle cx=%27477%27 cy=%27369%27 r=%270.6%27 fill=%27rgb(226,232,240)%27 opacity=%270.76%27/%3E%3Ccircle cx=%2747%27 cy=%27171%27 r=%270.6%27 fill=%27rgb(226,232,240)%27 opacity=%270.39%27/%3E%3Ccircle cx=%27598%27 cy=%2792%27 r=%271.0%27 fill=%27rgb(226,232,240)%27 opacity=%270.42%27/%3E%3Ccircle cx=%27274%27 cy=%27249%27 r=%270.6%27 fill=%27rgb(226,232,240)%27 opacity=%270.81%27/%3E%3Ccircle cx=%27531%27 cy=%27374%27 r=%271.2%27 fill=%27rgb(226,232,240)%27 opacity=%270.80%27/%3E%3Ccircle cx=%27457%27 cy=%27116%27 r=%270.5%27 fill=%27rgb(226,232,240)%27 opacity=%270.47%27/%3E%3Ccircle cx=%2746%27 cy=%271%27 r=%271.0%27 fill=%27rgb(226,232,240)%27 opacity=%270.47%27/%3E%3Ccircle cx=%27445%27 cy=%27206%27 r=%271.1%27 fill=%27rgb(226,232,240)%27 opacity=%270.47%27/%3E%3Ccircle cx=%27529%27 cy=%2799%27 r=%270.8%27 fill=%27rgb(226,232,240)%27 opacity=%270.80%27/%3E%3Ccircle cx=%2771%27 cy=%27205%27 r=%270.5%27 fill=%27rgb(226,232,240)%27 opacity=%270.81%27/%3E%3Ccircle cx=%27382%27 cy=%27387%27 r=%270.5%27 fill=%27rgb(226,232,240)%27 opacity=%270.80%27/%3E%3Ccircle cx=%27113%27 cy=%27407%27 r=%271.0%27 fill=%27rgb(226,232,240)%27 opacity=%270.69%27/%3E%3Ccircle cx=%27160%27 cy=%2794%27 r=%270.7%27 fill=%27rgb(226,232,240)%27 opacity=%270.63%27/%3E%3Ccircle cx=%2731%27 cy=%27323%27 r=%271.1%27 fill=%27rgb(226,232,240)%27 opacity=%270.71%27/%3E%3Ccircle cx=%27299%27 cy=%2714%27 r=%273.5%27 fill=%27rgb(199,210,254)%27 opacity=%270.2%27/%3E%3Ccircle cx=%27299%27 cy=%2714%27 r=%271.3%27 fill=%27rgb(248,250,252)%27 opacity=%270.95%27/%3E%3Ccircle cx=%2766%27 cy=%27386%27 r=%273.5%27 fill=%27rgb(199,210,254)%27 opacity=%270.2%27/%3E%3Ccircle cx=%2766%27 cy=%27386%27 r=%271.3%27 fill=%27rgb(248,250,252)%27 opacity=%270.95%27/%3E%3Ccircle cx=%2778%27 cy=%27289%27 r=%273.5%27 fill=%27rgb(199,210,254)%27 opacity=%270.2%27/%3E%3Ccircle cx=%2778%27 cy=%27289%27 r=%271.3%27 fill=%27rgb(248,250,252)%27 opacity=%270.95%27/%3E%3C/svg%3E");
+  background-size: 600px 420px;
+  opacity: 0.85;
+}
+
+/* Theme-aware grid / scene colours (used by hero backdrops and the animated scenes). */
+:root {
+  --grid-line: rgba(30, 58, 138, 0.06);
+  --grid-dot: rgba(30, 58, 138, 0.1);
+  --scene-a: #93b4e6;
+  --scene-b: #bfdbfe;
+  --scene-track: #dbeafe;
+  --scene-ring: #1e3a8a;
+  --scene-fill: rgba(255, 255, 255, 0.5);
+  --scene-race-track: #cbd5e1;
+}
+
+:root[data-theme="dark"] {
+  --grid-line: rgba(148, 163, 184, 0.07);
+  --grid-dot: rgba(148, 163, 184, 0.14);
+  --scene-a: #3d5f93;
+  --scene-b: #2a4570;
+  --scene-track: #1e3358;
+  --scene-ring: #60a5fa;
+  --scene-fill: rgba(255, 255, 255, 0.04);
+  --scene-race-track: #34405c;
+}
+
+:root[data-theme="dark"] .keep-light-palette {
+  --grid-line: rgba(30, 58, 138, 0.06);
+  --grid-dot: rgba(30, 58, 138, 0.1);
+  --scene-a: #93b4e6;
+  --scene-b: #bfdbfe;
+  --scene-track: #dbeafe;
+  --scene-ring: #1e3a8a;
+  --scene-fill: rgba(255, 255, 255, 0.5);
+  --scene-race-track: #cbd5e1;
+}
+
+/* Dark mode: every heading is milky white (also the ones that are blue in light mode). Always-dark regions keep their own. */
+:root[data-theme="dark"] :is(h1, h2, h3, h4, h5, h6):not(.keep-light-palette *) {
+  color: #f6f3ec;
+}
+
+/* Dark mode: no text, icon or font colour is blue anywhere (also inside the always-dark regions): every light-blue
+   text utility renders milky white. Dark navy text on orange pills (text-blue-950) is not affected. */
+:root[data-theme="dark"] :is(
+    .text-sky-100, .text-sky-200, .text-sky-300, .text-sky-400, .text-sky-500, .text-sky-600, .text-sky-700,
+    .text-blue-100, .text-blue-200, .text-blue-300, .text-blue-400, .text-blue-500, .text-blue-600
+  ) {
+  color: #f6f3ec;
+}
+
+/* Dark mode: hairline borders, outlines and underlines, and soft shadows. Light mode is untouched.
+   (Keyboard focus outlines keep their 2px so they stay visible.) */
+:root[data-theme="dark"] :is(.border-2, .border-4) {
+  border-width: 1px;
+}
+
+:root[data-theme="dark"] :is(.border-t-2, .border-t-4) {
+  border-top-width: 1px;
+}
+
+:root[data-theme="dark"] :is(.border-b-2, .border-b-4) {
+  border-bottom-width: 1px;
+}
+
+:root[data-theme="dark"] :is(.border-l-2, .border-l-4) {
+  border-left-width: 1px;
+}
+
+:root[data-theme="dark"] .border-r-2 {
+  border-right-width: 1px;
+}
+
+/* the bright orange accent borders become a faint orange hairline */
+:root[data-theme="dark"] :is(.border-orange-300, .border-orange-400, .border-orange-500) {
+  border-color: rgba(253, 186, 116, 0.45);
+}
+
+:root[data-theme="dark"] :is(.ring-2, .ring-4) {
+  --tw-ring-shadow: 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+}
+
+/* underlines: text underlines and the nav's active underline */
+:root[data-theme="dark"] :is(.underline, .decoration-2) {
+  text-decoration-thickness: 1px;
+}
+
+:root[data-theme="dark"] .erp-root .synax-nav-active::after {
+  height: 1px;
+  background: rgba(253, 186, 116, 0.6);
+}
+
+/* short accent rules (section tag dashes, column heading dashes, dashed connectors) */
+:root[data-theme="dark"] .h-0\.5 {
+  height: 1px;
+}
+
+/* shadows: soft and faint */
+:root[data-theme="dark"] :is(.shadow, .shadow-xs, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl, [class*=" shadow-[0_"], [class^="shadow-[0_"], [class*=" shadow-erp-"]) {
+  --tw-shadow: 0 6px 18px -10px rgb(0 0 0 / 0.45);
+  --tw-shadow-colored: 0 6px 18px -10px var(--tw-shadow-color);
 }

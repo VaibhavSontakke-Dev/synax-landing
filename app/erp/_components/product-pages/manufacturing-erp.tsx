@@ -61,7 +61,7 @@ const LEDGER: { icon: LucideIcon; title: string; copy: string }[] = [
 
 export function ManufacturingErpPage() {
   return (
-    <main className="pb-6">
+    <main>
       {/* Hero: copy left, a framed workshop photo right with a passport card on its corner, the full part passport below */}
       <HeroBand productKey="precision">
         <div className="grid items-center gap-10 lg:items-start lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:gap-y-[clamp(1rem,3vh,2rem)]">
@@ -70,9 +70,10 @@ export function ManufacturingErpPage() {
             eyebrow="Precision & job-work ERP"
             subtitle="From the machine to the GST invoice"
             lead="Built for precision and job-work machine shops. Customer orders and supplied-material challans connect to route cards, machine-confirmed production, inspection, dispatch and invoicing, so every part carries one traceable record."
+            secondTourLabel="Watch overview 2"
           />
           <div className="relative mx-auto w-full max-w-xl pb-6 lg:max-w-none">
-            <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-blue-900" aria-hidden="true" />
+            <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-3xl bg-brand-solid" aria-hidden="true" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-auto lg:h-[clamp(12rem,38vh,25rem)] border border-slate-200 bg-slate-200">
               <Image
                 src="/images/products/manufacturing-erp.webp"
@@ -84,11 +85,11 @@ export function ManufacturingErpPage() {
                 className="object-cover"
               />
             </div>
-            <span className="absolute top-4 right-4 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-blue-900 shadow-md">
+            <span className="absolute top-4 right-4 rounded-full border border-slate-200 bg-surface px-3 py-1 text-xs font-semibold text-brand shadow-md">
               Count from the machine
             </span>
-            <div className="absolute bottom-0 left-3 w-60 rounded-xl border border-slate-200 bg-white p-3 shadow-lg sm:-left-4">
-              <p className="text-xs font-bold text-blue-900">Part passport</p>
+            <div className="absolute bottom-0 left-3 w-60 rounded-xl border border-slate-200 bg-surface p-3 shadow-lg sm:-left-4">
+              <p className="text-xs font-bold text-brand">Part passport</p>
               <p className="mt-0.5 text-[11px] text-slate-600">Material ID · Route card · COC</p>
               <div className="mt-2 h-1.5 rounded-full bg-slate-200">
                 <div className="h-1.5 w-[70%] rounded-full bg-blue-900/40" />
@@ -96,7 +97,7 @@ export function ManufacturingErpPage() {
             </div>
           </div>
         </div>
-        <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6 lg:mt-[clamp(1.25rem,4vh,3rem)] lg:py-[clamp(0.75rem,2.2vh,1.5rem)]">
+        <div className="mt-12 rounded-3xl border border-slate-200 bg-surface p-4 shadow-sm sm:p-6 lg:mt-[clamp(1.25rem,4vh,3rem)] lg:py-[clamp(0.75rem,2.2vh,1.5rem)]">
           <div className="mb-5 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
             <p className="font-bold text-slate-900">Part passport: one part, one record</p>
             <p>Traced back to its PO, material lot, machine and operator</p>
@@ -104,7 +105,7 @@ export function ManufacturingErpPage() {
           <div className="relative">
             <span
               aria-hidden="true"
-              className="synax-prod-dash-x absolute top-[22px] right-[8.3%] left-[8.3%] hidden h-0.5 text-blue-900/40 lg:block"
+              className="synax-prod-dash-x absolute top-[22px] right-[8.3%] left-[8.3%] hidden h-0.5 text-brand/40 lg:block"
             />
             <ol className="relative grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
               {PASSPORT.map((p, i) => {
@@ -113,10 +114,10 @@ export function ManufacturingErpPage() {
                 return (
                   <li key={p.title} className="text-center">
                     <span
-                      className={`relative mx-auto flex size-11 items-center justify-center rounded-full border-2 bg-white ${last ? "border-orange-300 text-blue-900" : "border-blue-900 text-blue-900"}`}
+                      className={`relative mx-auto flex size-11 items-center justify-center rounded-full border-2 bg-surface ${last ? "border-orange-300 text-brand" : "border-brand-line text-brand"}`}
                     >
                       <Icon className="size-5" aria-hidden="true" />
-                      <span className={`absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full text-[11px] font-semibold ${last ? "bg-orange-300 text-orange-950" : "bg-blue-900 text-white"}`}>
+                      <span className={`absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full text-[11px] font-semibold ${last ? "bg-orange-300 text-orange-950" : "bg-brand-solid text-white"}`}>
                         {i + 1}
                       </span>
                     </span>
@@ -141,8 +142,8 @@ export function ManufacturingErpPage() {
           {CHAIN.map((s, i) => (
             <li key={s.title} className="relative flex gap-4 pb-5 last:pb-0">
               {i < CHAIN.length - 1 ? <span aria-hidden="true" className="absolute top-10 bottom-0 left-[17px] w-0.5 bg-slate-200" /> : null}
-              <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full bg-blue-900 font-mono text-sm font-semibold text-white">{i + 1}</span>
-              <div className="min-w-0 flex-1 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-solid font-mono text-sm font-semibold text-white">{i + 1}</span>
+              <div className="min-w-0 flex-1 rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
                 <h3 className="text-base font-bold text-slate-900">{s.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{s.copy}</p>
                 <ModChips items={s.modules} className="mt-3" />
@@ -164,7 +165,7 @@ export function ManufacturingErpPage() {
           {LEDGER.map((l, i) => {
             const Icon = l.icon;
             return (
-              <li key={l.title} className="relative flex flex-col rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-white p-4 shadow-sm">
+              <li key={l.title} className="relative flex flex-col rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-surface p-4 shadow-sm">
                 <span className="flex size-9 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-600">
                   <Icon className="size-[18px]" aria-hidden="true" />
                 </span>
@@ -203,7 +204,7 @@ export function ManufacturingErpPage() {
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl items-stretch gap-4 md:grid-cols-[1fr_auto_1fr_1fr]">
-            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-5 shadow-sm">
+            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
               <h3 className="text-[15px] font-bold text-slate-900">In Synax</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">Purchase, stores, production, quality, dispatch and the GST invoice.</p>
             </div>
@@ -211,19 +212,19 @@ export function ManufacturingErpPage() {
               <span className="synax-prod-dash-x h-0.5 w-10 text-orange-500" />
               <ArrowRight className="-ml-1 size-4 text-orange-500" />
             </div>
-            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-white p-5 shadow-sm">
+            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
               <h3 className="text-[15px] font-bold text-slate-900">In Tally</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">Your books and vouchers, as they are today. The Tally bridge sends the vouchers across.</p>
             </div>
-            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-white p-5 shadow-sm">
+            <div className="rounded-2xl border border-t-4 border-slate-200 border-t-emerald-600 bg-surface p-5 shadow-sm">
               <h3 className="text-[15px] font-bold text-slate-900">E-invoice and e-way bill</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">Connect your GST suvidha provider (ClearTax or Masters India). The IRN is generated when an invoice is approved.</p>
             </div>
           </div>
           <p className="mt-6 text-center text-sm text-slate-600">
-            <Truck className="mr-1.5 inline size-4 text-orange-600" aria-hidden="true" />
+            <Truck className="mr-1.5 inline size-4 text-accent" aria-hidden="true" />
             Working with aerospace or defence customers? See the{" "}
-            <a href={industryHref("aerospace-defence")} className="font-semibold text-blue-900 hover:underline">
+            <a href={industryHref("aerospace-defence")} className="font-semibold text-brand hover:underline">
               Aerospace &amp; Defence page
             </a>
             .

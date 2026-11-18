@@ -81,7 +81,7 @@ export function Rollout() {
                         goLive
                           ? "bg-orange-600 text-white"
                           : ongoing
-                            ? "border-2 border-dashed border-orange-500 bg-white text-orange-600"
+                            ? "border-2 border-dashed border-orange-500 bg-surface text-accent"
                             : "bg-erp-brand text-white"
                       }`}
                     >
@@ -90,7 +90,7 @@ export function Rollout() {
                   </div>
 
                   <div
-                    className={`h-full rounded-2xl bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md ${
+                    className={`h-full rounded-2xl bg-surface p-4 shadow-sm transition-shadow duration-300 hover:shadow-md ${
                       goLive
                         ? "border-2 border-orange-500"
                         : ongoing
@@ -106,7 +106,7 @@ export function Rollout() {
                       {timingLabel(phase.timing, index)}
                     </span>
                     <div className="mt-3 flex items-start gap-2">
-                      <Icon className="mt-0.5 size-[18px] shrink-0 text-orange-600" aria-hidden />
+                      <Icon className="mt-0.5 size-[18px] shrink-0 text-accent" aria-hidden />
                       <h3 className="text-[0.9375rem] leading-snug font-semibold text-erp-ink">{phase.title}</h3>
                     </div>
                     <p className="mt-2 text-[0.8125rem] leading-relaxed text-erp-body">{phase.copy}</p>
@@ -119,9 +119,9 @@ export function Rollout() {
 
         {/* Pacing note + CTA */}
         <Reveal delay={60}>
-          <div className="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-erp-line bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-erp-line bg-surface p-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="flex max-w-2xl items-start gap-3 text-[0.9375rem] text-erp-body">
-              <Repeat className="mt-0.5 size-5 shrink-0 text-orange-600" aria-hidden />
+              <Repeat className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden />
               <span>
                 Implementation timelines are tailored to your organization&apos;s size, operational complexity,
                 and requirements. A detailed rollout plan will be established during the discovery phase.
@@ -132,7 +132,7 @@ export function Rollout() {
 
         {/* Checklist + ownership */}
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          <Reveal className="rounded-2xl border border-erp-line bg-white p-5 sm:p-6">
+          <Reveal className="rounded-2xl border border-erp-line bg-surface p-5 sm:p-6">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-semibold text-erp-ink">Before onboarding</h3>
               <span className="text-xs text-erp-soft">{ROLLOUT_CHECKLIST.length} steps</span>
@@ -140,14 +140,14 @@ export function Rollout() {
             <ul className="mt-4 space-y-3">
               {ROLLOUT_CHECKLIST.map((item) => (
                 <li key={item} className="flex gap-3 text-[0.875rem] leading-relaxed text-erp-body">
-                  <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-orange-600" aria-hidden />
+                  <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-accent" aria-hidden />
                   {item}
                 </li>
               ))}
             </ul>
           </Reveal>
 
-          <Reveal delay={90} className="rounded-2xl border border-erp-line bg-white p-5 sm:p-6">
+          <Reveal delay={90} className="rounded-2xl border border-erp-line bg-surface p-5 sm:p-6">
             <div className="flex items-center justify-between">
               <h3 className="text-base font-semibold text-erp-ink">Rollout ownership</h3>
               <span className="text-xs text-erp-soft">{ROLLOUT_ROLES.length} roles</span>

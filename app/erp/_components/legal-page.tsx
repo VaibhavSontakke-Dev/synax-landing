@@ -21,11 +21,11 @@ function Rich({ text, doc }: { text: string; doc: LegalDoc }) {
     <>
       {text.split(pattern).map((part, i) =>
         part === LEGAL_EMAIL ? (
-          <a key={i} href={`mailto:${LEGAL_EMAIL}`} className={`rounded-sm font-semibold text-blue-900 underline decoration-blue-900/30 underline-offset-2 hover:decoration-blue-900 ${FOCUS}`}>
+          <a key={i} href={`mailto:${LEGAL_EMAIL}`} className={`rounded-sm font-semibold text-brand underline decoration-brand-line/30 underline-offset-2 hover:decoration-brand-line ${FOCUS}`}>
             {part}
           </a>
         ) : part === "Privacy Policy" ? (
-          <Link key={i} href="/privacy" className={`rounded-sm font-semibold text-blue-900 underline decoration-blue-900/30 underline-offset-2 hover:decoration-blue-900 ${FOCUS}`}>
+          <Link key={i} href="/privacy" className={`rounded-sm font-semibold text-brand underline decoration-brand-line/30 underline-offset-2 hover:decoration-brand-line ${FOCUS}`}>
             {part}
           </Link>
         ) : (
@@ -86,23 +86,23 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
   const toc = doc.sections.map((s) => ({ id: s.id, title: s.title }));
 
   return (
-    <main className="pb-6">
+    <main>
       {/* Hero */}
-      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white" aria-labelledby="page-heading">
+      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page" aria-labelledby="page-heading">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
           <Breadcrumb items={[{ label: "Legal" }, { label: doc.title }]} />
           <div className="grid items-start gap-8 lg:grid-cols-[1fr_440px] lg:gap-14">
             <div>
               <SectionTag lines="start">Legal</SectionTag>
-              <h1 id="page-heading" className="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-blue-900 sm:text-4xl lg:text-5xl">
+              <h1 id="page-heading" className="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-brand sm:text-4xl lg:text-5xl">
                 {doc.title}
               </h1>
               <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-white px-3 py-1.5 text-blue-900">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-surface px-3 py-1.5 text-brand">
                   <CalendarDays className="size-3.5 text-orange-500" aria-hidden="true" />
                   Effective <time dateTime={doc.effectiveIso}>{doc.effective}</time>
                 </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-white px-3 py-1.5 text-slate-700">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-surface px-3 py-1.5 text-slate-700">
                   <Building2 className="size-3.5 text-orange-500" aria-hidden="true" />
                   {LEGAL_ENTITY}
                 </span>
@@ -110,7 +110,7 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
               <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-700 sm:text-base">{doc.intro}</p>
 
               {/* Switch between the two documents */}
-              <nav aria-label="Legal documents" className="mt-7 inline-flex rounded-xl border border-slate-200 bg-white p-1 shadow-sm">
+              <nav aria-label="Legal documents" className="mt-7 inline-flex rounded-xl border border-slate-200 bg-surface p-1 shadow-sm">
                 {DOCS.map((d) => {
                   const on = d.slug === doc.slug;
                   const Icon = d.slug === "privacy" ? Lock : FileText;
@@ -120,7 +120,7 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
                       href={`/${d.slug}`}
                       aria-current={on ? "page" : undefined}
                       className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${FOCUS} ${
-                        on ? "bg-blue-900 text-white shadow" : "text-slate-600 hover:bg-sky-50 hover:text-blue-900"
+                        on ? "bg-brand-solid text-white shadow" : "text-slate-600 hover:bg-sky-50 hover:text-brand"
                       }`}
                     >
                       <Icon className="size-4" aria-hidden="true" />
@@ -133,16 +133,16 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
             </div>
 
             {/* In short */}
-            <aside aria-labelledby="in-short-heading" className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_20px_50px_-20px_rgba(30,58,138,0.25)]">
+            <aside aria-labelledby="in-short-heading" className="relative overflow-hidden rounded-2xl border border-slate-200 bg-surface p-6 shadow-[0_20px_50px_-20px_rgba(30,58,138,0.25)]">
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-300" aria-hidden="true" />
-              <h2 id="in-short-heading" className="text-lg font-extrabold tracking-tight text-blue-900">
+              <h2 id="in-short-heading" className="text-lg font-extrabold tracking-tight text-brand">
                 In short
               </h2>
               <ul className="mt-4 space-y-3">
                 {doc.summary.map((s) => (
                   <li key={s} className="flex gap-3 text-sm leading-snug text-slate-700">
                     <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-orange-100">
-                      <Check className="size-3 text-orange-600" aria-hidden="true" strokeWidth={3} />
+                      <Check className="size-3 text-accent" aria-hidden="true" strokeWidth={3} />
                     </span>
                     <span>
                       <Rich text={s} doc={doc} />
@@ -168,15 +168,15 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
 
         <div id="legal-text" className="min-w-0">
           {/* Contents on phones and tablets */}
-          <details className="group mb-6 rounded-2xl border border-slate-200 bg-white shadow-sm lg:hidden">
-            <summary className={`flex cursor-pointer list-none items-center justify-between rounded-2xl px-5 py-4 text-sm font-bold text-blue-900 ${FOCUS}`}>
+          <details className="group mb-6 rounded-2xl border border-slate-200 bg-surface shadow-sm lg:hidden">
+            <summary className={`flex cursor-pointer list-none items-center justify-between rounded-2xl px-5 py-4 text-sm font-bold text-brand ${FOCUS}`}>
               On this page · {doc.sections.length} sections
               <ChevronDown className="size-4 transition-transform group-open:rotate-180" aria-hidden="true" />
             </summary>
             <ol className="grid gap-1 border-t border-slate-100 px-3 py-3 sm:grid-cols-2">
               {toc.map((s, i) => (
                 <li key={s.id}>
-                  <a href={`#${s.id}`} className={`flex gap-2 rounded-md px-2 py-1.5 text-[13px] text-slate-700 hover:bg-sky-50 hover:text-blue-900 ${FOCUS}`}>
+                  <a href={`#${s.id}`} className={`flex gap-2 rounded-md px-2 py-1.5 text-[13px] text-slate-700 hover:bg-sky-50 hover:text-brand ${FOCUS}`}>
                     <span className="w-5 shrink-0 text-right text-slate-400 tabular-nums">{i + 1}.</span>
                     {s.title}
                   </a>
@@ -188,9 +188,9 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
           <ol className="space-y-5">
             {doc.sections.map((s, i) => (
               <li key={s.id}>
-                <section id={s.id} aria-labelledby={`${s.id}-heading`} className="scroll-mt-24 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+                <section id={s.id} aria-labelledby={`${s.id}-heading`} className="scroll-mt-24 rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm sm:p-7">
                   <div className="mb-4 flex items-center gap-3.5">
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-blue-900 text-sm font-bold text-white tabular-nums">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand-solid text-sm font-bold text-white tabular-nums">
                       {i + 1}
                     </span>
                     <h2 id={`${s.id}-heading`} className="text-lg font-extrabold tracking-tight text-slate-900 sm:text-xl">
@@ -204,7 +204,7 @@ export function LegalPage({ doc }: { doc: LegalDoc }) {
           </ol>
 
           {/* Contact */}
-          <section aria-labelledby="legal-contact-heading" className="relative mt-8 overflow-hidden rounded-2xl bg-blue-950 p-6 text-white sm:p-8">
+          <section aria-labelledby="legal-contact-heading" className="keep-light-palette relative mt-8 overflow-hidden rounded-2xl bg-blue-950 p-6 text-white sm:p-8">
             <div className="absolute -top-16 -right-16 size-56 rounded-full bg-orange-500/20 blur-3xl" aria-hidden="true" />
             <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div>

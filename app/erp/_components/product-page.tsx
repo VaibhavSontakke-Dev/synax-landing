@@ -21,17 +21,17 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
   const others = PRODUCT_ROUTES.filter((r) => r.key !== productKey);
 
   return (
-    <main className="pb-6">
+    <main>
       {/* Hero */}
-      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white" aria-labelledby="product-heading">
+      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page" aria-labelledby="product-heading">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
           <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-slate-500">
-            <Link href="/erp" className="hover:text-blue-900 hover:underline">
+            <Link href="/erp" className="hover:text-brand hover:underline">
               Synax
             </Link>
             <ChevronRight className="size-3.5" aria-hidden="true" />
             {isProduct ? (
-              <Link href="/products" className="hover:text-blue-900 hover:underline">
+              <Link href="/products" className="hover:text-brand hover:underline">
                 Products
               </Link>
             ) : (
@@ -48,7 +48,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
               <SectionTag lines="start">{meta.badge}</SectionTag>
               <h1
                 id="product-heading"
-                className="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-blue-900 sm:text-4xl lg:text-5xl"
+                className="mt-3 text-3xl leading-tight font-extrabold tracking-tight text-brand sm:text-4xl lg:text-5xl"
               >
                 {route.name}
               </h1>
@@ -61,7 +61,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
             </div>
 
             {/* Highlights card */}
-            <div className="rounded-3xl border border-sky-200 bg-white p-5 shadow-sm sm:p-6">
+            <div className="rounded-3xl border border-sky-200 bg-surface p-5 shadow-sm sm:p-6">
               <div className="flex items-center justify-between gap-3 border-b border-slate-200 pb-4">
                 <div className="flex items-center gap-3">
                   <span className={`flex size-10 items-center justify-center rounded-xl border ${tone.tile}`}>
@@ -75,7 +75,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
               </div>
               <ul className="mt-4 space-y-3">
                 {meta.highlights.map((item) => (
-                  <li key={item} className="flex gap-3 rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700">
+                  <li key={item} className="flex gap-3 rounded-xl border border-slate-200 bg-surface p-3 text-sm text-slate-700">
                     <Check className={`mt-0.5 size-4 shrink-0 ${tone.check}`} aria-hidden="true" />
                     <span>{item}</span>
                   </li>
@@ -101,7 +101,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
             {meta.moduleSection.groups.map((group) => (
               <li
                 key={group.id}
-                className={`flex flex-col rounded-2xl border border-t-4 border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md ${tone.bar}`}
+                className={`flex flex-col rounded-2xl border border-t-4 border-slate-200 bg-surface p-6 shadow-sm transition-shadow hover:shadow-md ${tone.bar}`}
               >
                 <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
                   <span className={`flex size-9 shrink-0 items-center justify-center rounded-lg border ${tone.tile}`}>
@@ -125,7 +125,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
       ) : null}
 
       {/* Other products */}
-      <section aria-labelledby="more-heading" className="border-y border-slate-200 bg-white">
+      <section aria-labelledby="more-heading" className="border-y border-slate-200 bg-surface">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="mb-6 space-y-3 text-center">
             <SectionTag>One connected platform</SectionTag>
@@ -141,7 +141,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
                 <li key={r.key}>
                   <Link
                     href={hrefFor(r.key)}
-                    className="group flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+                    className="group flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                   >
                     <span className={`flex size-10 shrink-0 items-center justify-center rounded-xl border ${t.tile}`}>
                       <RIcon className="size-5" aria-hidden="true" />
@@ -150,7 +150,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
                       <span className="block text-sm font-bold text-slate-900">{r.name}</span>
                       <span className="block text-xs text-slate-500">{r.menu}</span>
                     </span>
-                    <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-orange-600" aria-hidden="true" />
+                    <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true" />
                   </Link>
                 </li>
               );
@@ -161,7 +161,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
 
       {/* Closing CTA */}
       <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 p-7 shadow-2xl md:flex-row md:items-center md:p-10">
+        <div className="keep-light-palette flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 p-7 shadow-2xl md:flex-row md:items-center md:p-10">
           <div className="max-w-xl">
             <SectionTag tone="dark" lines="start">
               Get started

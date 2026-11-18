@@ -161,7 +161,7 @@ export const PRODUCT_DATA: Record<ProductKey, ProductMeta> = {
     accentBorder: "border-slate-300",
     icon: ShieldCheck,
     description:
-      "Built for aerospace, defence and automotive suppliers who machine customer-supplied material. Quality gates and AS9100D QMS controls are attached at critical workflow checkpoints, so the record behind every part is created by the work itself.",
+      "Built for aerospace and defence suppliers who machine customer-supplied material. Quality gates and AS9100D QMS controls are attached at critical workflow checkpoints, so the record behind every part is created by the work itself.",
     heroStat: { label: "Standard", value: "AS9100D QMS controls" },
     highlights: [
       "AS9100D QMS controls attached at critical workflow checkpoints",
@@ -594,7 +594,7 @@ export const SOLUTION_ROUTES: ProductRoute[] = [
     tone: "navy",
     seoTitle: "ERP for Aerospace & Defence",
     seoDescription:
-      "AS9100D QMS controls at workflow checkpoints, FAIR register, certificates of conformance and traceability for aerospace, defence and automotive suppliers.",
+      "AS9100D QMS controls at workflow checkpoints, FAIR register, certificates of conformance and traceability for aerospace and defence suppliers.",
   },
 ];
 

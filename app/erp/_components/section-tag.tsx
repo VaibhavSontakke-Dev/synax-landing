@@ -18,7 +18,7 @@ export function SectionTag({
   lines?: "both" | "start";
   className?: string;
 }) {
-  const text = tone === "dark" ? "text-orange-300" : "text-orange-600";
+  const text = tone === "dark" ? "text-orange-300" : "text-accent";
   const rule = tone === "dark" ? "bg-orange-300" : "bg-orange-600";
 
   return (

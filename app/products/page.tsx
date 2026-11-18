@@ -16,13 +16,13 @@ export const metadata: Metadata = {
 /** /products — one card per product, each linking to its own page. */
 export default function ProductsIndexPage() {
   return (
-    <main className="pb-6">
-      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-white" aria-labelledby="products-index-heading">
+    <main>
+      <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page" aria-labelledby="products-index-heading">
         <div className="mx-auto max-w-7xl px-4 py-8 text-center sm:px-6 lg:px-8 lg:py-10">
           <SectionTag>Market-Ready Platforms</SectionTag>
           <h1
             id="products-index-heading"
-            className="mx-auto mt-3 max-w-3xl text-3xl leading-tight font-extrabold tracking-tight text-blue-900 sm:text-5xl"
+            className="mx-auto mt-3 max-w-3xl text-3xl leading-tight font-extrabold tracking-tight text-brand sm:text-5xl"
           >
             Six products. One platform.
           </h1>
@@ -45,7 +45,7 @@ export default function ProductsIndexPage() {
             return (
               <li
                 key={r.key}
-                className={`flex flex-col rounded-2xl border border-t-4 border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md ${tone.bar}`}
+                className={`flex flex-col rounded-2xl border border-t-4 border-slate-200 bg-surface p-6 shadow-sm transition-shadow hover:shadow-md ${tone.bar}`}
               >
                 <div className="flex items-center gap-3">
                   <span className={`flex size-11 shrink-0 items-center justify-center rounded-xl border ${tone.tile}`}>

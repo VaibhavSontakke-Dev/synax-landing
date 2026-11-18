@@ -59,6 +59,14 @@
     "It is delivered by Manufacturing ERP, with Shop Floor and Machine Monitoring and Synax AI added when you are ready.",
     "Start with stage buy-offs, the FAIR register and the certificate of conformance. Book a demo to see Synax on your own process."
   ],
+  "oil-gas-energy": [
+    "Synax for oil, gas and energy suppliers: every part traced back to its material and its inspection, with the certificate of conformance issued from the same record.",
+    "What gets in the way today: material trace rebuilt after the part has shipped, inspection kept apart from the job, failed checks handled by email, and certificates assembled at the end.",
+    "Synax answers with one flow, from material to certificate: material receipt, the route card, machine-confirmed operations, inspection and stage buy-offs, NCR and CAPA when a check fails, then the certificate and dispatch.",
+    "Behind it are three groups of modules: route cards and production, customer material and stores, and inspection and dispatch.",
+    "It is delivered by Manufacturing ERP, with Shop Floor and Machine Monitoring and Synax AI added when you are ready.",
+    "Start with material receipt, inspection and the certificate of conformance. Book a demo to see Synax on your own process."
+  ],
   "precision-cnc-machining": [
     "Synax for precision CNC machining and tooling: your customer's material accounted to the last piece, CNC machines reporting counts straight to the route card, and the GST invoice following from the machine.",
     "What gets in the way today: customer material tracked on the side, quantities that do not reconcile, counts keyed in by hand, and dispatch paperwork assembled at the end.",
@@ -75,9 +83,9 @@
     "It is delivered by Work and Delivery Management, with Staffing and Resource Management and HRMS added when you are ready.",
     "Start with client requirements and candidate management, and add interviews, offers and deployments when you are ready. Book a demo to see Synax on your own projects."
   ],
-  "automotive-heavy-industrial": [
-    "Synax for automotive and heavy industrial suppliers: built for suppliers who machine customer-supplied material, by a group that runs industrial operations itself.",
-    "What gets in the way today: customer-owned material across many jobs, production status that lags the floor, job-work returns compiled by hand, and accounts in one tool while operations run in another.",
+  "industrial-machinery-equipment": [
+    "Synax for industrial machinery and equipment makers: bills of material and routings, machines that report their own counts, and the GST invoice following from the route card.",
+    "What gets in the way today: bills of material and routings kept in spreadsheets, machine load planned on a whiteboard, production status that lags the floor, and accounts in one tool while operations run in another.",
     "Synax runs it from spindle to invoice: the RFQ and customer PO, gate entry, the route card, machine-confirmed operations, inspection and the certificate of conformance, then the invoice and dispatch, with each document carrying the one before it.",
     "Behind it are three groups of modules: route cards and production, customer material and stores, and inspection and dispatch.",
     "It is delivered by Manufacturing ERP, with Shop Floor and Machine Monitoring and HRMS added when you are ready.",

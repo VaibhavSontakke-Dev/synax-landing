@@ -1,9 +1,13 @@
 import type { ProductKey, RouteTone } from "./products";
+import type { SolutionGroup } from "./solutions";
 import { LIVE_FLOW } from "./live";
 import { WORKFLOW_STAGES } from "./content";
 
 /**
- * Industry pages: /solutions/<slug>. One entry per item in the header's Industries menu.
+ * Solution pages: /solutions/<slug>. Each has a `group` (an industry we serve, how you manufacture, or a business
+ * need), and the header's Solutions menu, the footer and /solutions list them under the same three headings as
+ * _data/solutions.ts. (Automotive & Heavy Industrial became Industrial Machinery & Equipment; next.config.ts redirects
+ * the old URL.)
  *
  * Every statement comes from the live portal (_data/live.ts), the product data (_data/products.ts) or
  * the earlier site copy that the portal also supports. Nothing about certifications or numbers is
@@ -19,12 +23,14 @@ export interface FlowStep {
 
 export interface IndustryPage {
   slug: string;
+  /** Which of the three lenses the page belongs to. */
+  group: SolutionGroup;
   name: string;
   /** One line for menus and cards. */
   menu: string;
   tone: RouteTone;
   /** Which product's icon to use ("layers" is the generic one). */
-  icon: ProductKey | "layers";
+  icon: ProductKey | "layers" | "energy";
   tag: string;
   title: string;
   lead: string;
@@ -43,6 +49,8 @@ export interface IndustryPage {
   proof?: string[];
   faq: string[];
   demoName: string;
+  /** Background photo for the "Poster" hero (pages without a hero of their own). */
+  heroImage?: { src: string; alt: string };
 }
 
 const Q_WHO = "Who is Synax built for?";
@@ -56,6 +64,7 @@ const Q_ONBOARD = "How long does onboarding take?";
 export const INDUSTRY_PAGES: IndustryPage[] = [
   {
     slug: "aerospace-defence",
+    group: "industry",
     name: "Aerospace & Defence",
     menu: "AS9100D QMS controls, FAIR register & COC",
     tone: "navy",
@@ -82,8 +91,45 @@ export const INDUSTRY_PAGES: IndustryPage[] = [
     demoName: "Aerospace & Defence",
   },
   {
+    slug: "oil-gas-energy",
+    group: "industry",
+    name: "Oil, Gas & Energy",
+    menu: "Material trace, inspection, NCR/CAPA & COC",
+    tone: "emerald",
+    icon: "energy",
+    tag: "Oil, Gas & Energy",
+    title: "ERP for oil, gas and energy suppliers",
+    lead: "Every part traced back to its material and its inspection, with NCR and CAPA when a check fails and the certificate of conformance issued from the same record.",
+    whoFor: "Suppliers of machined and moulded parts, such as valve bodies, fittings, flanges and seals, to oil, gas, power and energy customers.",
+    seoTitle: "ERP for Oil, Gas & Energy Suppliers",
+    seoDescription:
+      "Material genealogy, receiving and final inspection, stage buy-offs, NCR and CAPA, certificates of conformance, GST dispatch and Tally for suppliers to oil, gas and energy customers.",
+    challenges: [
+      { title: "Material trace rebuilt after shipping", text: "Proving which material lot went into a delivered part means searching files after it has left." },
+      { title: "Inspection kept apart from the job", text: "Receiving, in-process and final inspection results sit in separate sheets, away from the route card." },
+      { title: "Failed checks handled by email", text: "When a check fails, the non-conformance and its corrective action are tracked outside the system." },
+      { title: "Certificates assembled at the end", text: "The certificate of conformance is compiled by hand once the job is done." },
+    ],
+    flowTitle: "Material to certificate",
+    flowLead: "Each step records its evidence as the work happens, so the certificate is issued from a complete record.",
+    flow: [
+      { title: "Material receipt", copy: "Gate entry, GRN and store inward, with customer material tracked by challan and Material ID.", chips: ["Gate entry, GRN & store inward"] },
+      { title: "Route card", copy: "The job is released on a route card against its part and routing.", chips: ["Route card production order"] },
+      { title: "Machine-confirmed operations", copy: "Machines propose the counts and the operator confirms them, with a reason for any variance.", chips: ["Machine monitoring & jobs"] },
+      { title: "Inspection & buy-offs", copy: "Receiving, stage and final inspection, with the part held until the check is recorded.", chips: ["Receiving & final inspection", "Stage buy-offs"] },
+      { title: "NCR & CAPA", copy: "A failed check raises a non-conformance, with its corrective and preventive action recorded against it.", chips: ["NCR / CAPA"] },
+      { title: "Certificate & dispatch", copy: "The certificate of conformance is issued from the record, then packing, the GST invoice and the e-way bill.", chips: ["Certificate of conformance", "E-invoice (IRN) & e-way bill"] },
+    ],
+    products: ["precision", "shopfloor", "ai"],
+    modulesFrom: "precision",
+    faq: [Q_WHO, Q_MACHINES, Q_GST, Q_ONBOARD],
+    demoName: "Manufacturing ERP",
+    heroImage: { src: "/images/industry-oil-gas.webp", alt: "Illustration of a refinery at dusk, with wind turbines on the horizon and a pipeline valve in front" },
+  },
+  {
     slug: "precision-cnc-machining",
-    name: "Precision CNC Machining & Tooling",
+    group: "process",
+    name: "Precision CNC Machining & Job Work",
     menu: "Machine data, route cards & job-work material",
     tone: "emerald",
     icon: "precision",
@@ -110,15 +156,16 @@ export const INDUSTRY_PAGES: IndustryPage[] = [
   },
   {
     slug: "it-services-staffing",
-    name: "IT Services & Talent Staffing",
+    group: "industry",
+    name: "IT Services & Consulting",
     menu: "Projects, SOWs, candidates & deployments",
     tone: "orange",
     icon: "staffing",
-    tag: "IT Services & Staffing",
+    tag: "IT Services & Consulting",
     title: "ERP for IT services and staffing teams",
     lead: "Run project delivery, SOWs and billing next to candidates, interviews and deployments, in one workspace.",
     whoFor: "IT services teams, staffing agencies and technical consulting networks managing client requirements and deployments.",
-    seoTitle: "ERP for IT Services & Talent Staffing",
+    seoTitle: "ERP for IT Services & Consulting",
     seoDescription:
       "Projects, SOWs, timesheets and billing with client requirements, candidates, interviews, onboarding and deployments in one workspace.",
     challenges: [
@@ -143,22 +190,23 @@ export const INDUSTRY_PAGES: IndustryPage[] = [
     demoName: "Work & Delivery Management",
   },
   {
-    slug: "automotive-heavy-industrial",
-    name: "Automotive & Heavy Industrial",
-    menu: "Customer material, route cards & GST dispatch",
+    slug: "industrial-machinery-equipment",
+    group: "industry",
+    name: "Industrial Machinery & Equipment",
+    menu: "BOMs, routings, machine load & GST dispatch",
     tone: "emerald",
-    icon: "layers",
-    tag: "Automotive & Heavy Industrial",
-    title: "ERP for automotive and heavy-industrial suppliers",
-    lead: "Built for suppliers who machine customer-supplied material, by a group that runs industrial operations itself.",
-    whoFor: "Automotive and heavy-industrial suppliers who machine customer-supplied material.",
-    seoTitle: "ERP for Automotive & Heavy Industrial Suppliers",
+    icon: "shopfloor",
+    tag: "Industrial Machinery & Equipment",
+    title: "ERP for industrial machinery and equipment makers",
+    lead: "Part masters, BOMs and routings, machines that report their own counts, and the GST invoice following from the route card, by a group that runs industrial operations itself.",
+    whoFor: "Makers of pumps, valves, compressors, gearboxes and other industrial equipment, and the suppliers who machine their parts.",
+    seoTitle: "ERP for Industrial Machinery & Equipment Manufacturers",
     seoDescription:
-      "Customer material, route cards, machine-confirmed production, inspection, GST dispatch and Tally for automotive and heavy-industrial suppliers.",
+      "Part masters, BOMs, operation routing, route cards, machine scheduling and monitoring, inspection, GST dispatch and Tally for industrial machinery and equipment makers.",
     challenges: [
-      { title: "Customer-owned material across many jobs", text: "Every challan, Material ID range and rejection has to stay tied to the customer who owns it." },
+      { title: "BOMs and routings in spreadsheets", text: "Part masters, bills of material and operation routings are kept apart from the jobs that use them." },
+      { title: "Machine load planned on a whiteboard", text: "Which job runs on which machine, and when, is decided outside the system." },
       { title: "Production status that lags the floor", text: "Counts, alarms and downtime reach the office late, or not at all." },
-      { title: "Job-work returns compiled by hand", text: "Material balances, returns and scrap documents are rebuilt for the ITC-04 return each period." },
       { title: "Accounts in one tool, operations in another", text: "Purchase, stores, production and dispatch are re-keyed into the books." },
     ],
     flowTitle: "Machine to invoice",
@@ -167,12 +215,14 @@ export const INDUSTRY_PAGES: IndustryPage[] = [
     products: ["precision", "shopfloor", "hrms"],
     modulesFrom: "precision",
     proof: ["Senwell Exports", "Stacwell Rubber", "Stacem France", "Stacem Morocco"],
-    faq: [Q_WHO, Q_TALLY, Q_GST, Q_ONBOARD],
+    faq: [Q_WHO, Q_MACHINES, Q_TALLY, Q_GST],
     demoName: "Manufacturing ERP",
+    heroImage: { src: "/images/industry-machinery.webp", alt: "Blueprint illustration of a centrifugal pump driving a pair of gears" },
   },
   {
     slug: "plant-workforce-hcm",
-    name: "Plant Workforce & Multi-Facility HCM",
+    group: "need",
+    name: "Plant Workforce & HR",
     menu: "Attendance, payroll & shift break passes",
     tone: "navy",
     icon: "hrms",

@@ -13,7 +13,7 @@ type Day = "p" | "l" | "w" | "o" | "-";
 /** A sample month (Monday first). p present, l leave, w work from home, o overtime, - weekend. */
 const MONTH: Day[] = "ppppp--ppwpp--pppop--ppplp--pwppp--".split("") as Day[];
 const DAY_STYLE: Record<Day, string> = {
-  p: "bg-blue-900",
+  p: "bg-brand-solid",
   l: "bg-amber-300",
   w: "bg-blue-900/40",
   o: "bg-orange-300",
@@ -75,7 +75,7 @@ const MONTHLY = [
 
 export function HrmsPage() {
   return (
-    <main className="pb-6">
+    <main>
       {/* Hero: centred copy, a panoramic team photo, and a month of attendance overlapping its bottom edge */}
       <HeroBand productKey="hrms">
         <div className="lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-12">
@@ -98,7 +98,7 @@ export function HrmsPage() {
             className="object-cover object-[50%_60%]"
           />
         </div>
-        <div className="relative mx-auto -mt-16 max-w-xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl sm:-mt-20 lg:-mt-24 lg:max-w-sm">
+        <div className="relative mx-auto -mt-16 max-w-xl rounded-3xl border border-slate-200 bg-surface p-5 shadow-xl sm:-mt-20 lg:-mt-24 lg:max-w-sm">
           <div className="mb-3 flex items-center justify-between text-xs text-slate-500">
             <p className="font-bold text-slate-900">A month of attendance</p>
             <p>Sample data</p>
@@ -127,7 +127,7 @@ export function HrmsPage() {
               { label: "Overtime approval", orange: false },
               { label: "Payroll with approval", orange: true },
             ].map((p) => (
-              <li key={p.label} className={`rounded-full px-3 py-1 text-xs font-semibold ${p.orange ? "bg-orange-300 text-orange-950" : "bg-blue-900 text-white"}`}>
+              <li key={p.label} className={`rounded-full px-3 py-1 text-xs font-semibold ${p.orange ? "bg-orange-300 text-orange-950" : "bg-brand-solid text-white"}`}>
                 {p.label}
               </li>
             ))}
@@ -149,13 +149,13 @@ export function HrmsPage() {
             const Icon = s.icon;
             return (
               <Reveal key={s.title} as="li" delay={(i % 3) * 70} className="flex">
-                <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-5 shadow-sm">
+                <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-blue-900">
+                    <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
                       <Icon className="size-5" aria-hidden="true" />
                     </span>
                     <div>
-                      <p className="text-[11px] font-bold tracking-wider text-orange-700 uppercase">Stage {i + 1}</p>
+                      <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">Stage {i + 1}</p>
                       <h3 className="text-base font-bold text-slate-900">{s.title}</h3>
                     </div>
                   </div>
@@ -178,7 +178,7 @@ export function HrmsPage() {
       >
         <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {MONTHLY.map((m, i) => (
-            <li key={m} className={`rounded-2xl border border-t-4 border-slate-200 bg-white p-4 shadow-sm ${i === 3 ? "border-t-orange-600" : "border-t-blue-900"}`}>
+            <li key={m} className={`rounded-2xl border border-t-4 border-slate-200 bg-surface p-4 shadow-sm ${i === 3 ? "border-t-orange-600" : "border-t-blue-900"}`}>
               <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">Step {i + 1}</p>
               <p className="mt-1 text-sm font-bold text-slate-900">{m}</p>
             </li>
@@ -194,13 +194,13 @@ export function HrmsPage() {
         lead="HRMS runs on its own, or in the same workspace as Manufacturing ERP and Work & Delivery, so people data meets production and projects."
       >
         <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
-          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-white p-5 shadow-sm">
-            <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-blue-900">
+          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
+            <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
               <Factory className="size-5" aria-hidden="true" />
             </span>
             <h3 className="mt-3 text-base font-bold text-slate-900">On the shop floor</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-slate-600">Biometric attendance, overtime approval and break pass management for plant workers.</p>
-            <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-blue-900">
+            <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-brand">
               <Fingerprint className="size-4" aria-hidden="true" />
               See the{" "}
               <a href={industryHref("plant-workforce-hcm")} className="underline">
@@ -208,13 +208,13 @@ export function HrmsPage() {
               </a>
             </p>
           </div>
-          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-white p-5 shadow-sm">
-            <span className="flex size-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-orange-700">
+          <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
+            <span className="flex size-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-accent-strong">
               <Building2 className="size-5" aria-hidden="true" />
             </span>
             <h3 className="mt-3 text-base font-bold text-slate-900">In the office</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-slate-600">Daily Work Management, the budget planner and department performance for teams.</p>
-            <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-orange-700">
+            <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-accent-strong">
               <BarChart3 className="size-4" aria-hidden="true" />
               Department KPIs and performance management
             </p>
@@ -222,7 +222,7 @@ export function HrmsPage() {
         </div>
       </Block>
 
-      <StartPath path={SOLUTION_PATHS.hrms} />
+      <StartPath path={SOLUTION_PATHS.workforce} />
 
       <ProductTail
         productKey="hrms"
@@ -230,7 +230,7 @@ export function HrmsPage() {
           relatedProduct("precision", "Plant attendance meets production."),
           relatedProduct("it", "Projects, timesheets and billing."),
           relatedProduct("staffing", "Candidates, offers and deployments."),
-          { label: "Plant Workforce & HCM", note: "The industry page for plants.", href: industryHref("plant-workforce-hcm") },
+          { label: "Plant Workforce & HR", note: "The solution page for plants.", href: industryHref("plant-workforce-hcm") },
         ]}
         faq={faqItems(["Is Synax free for small manufacturers?", "How long does onboarding take?"], [
           { q: "Does attendance connect to biometric devices?", a: "Yes. Attendance logs and overtime approvals sync from biometric devices." },
