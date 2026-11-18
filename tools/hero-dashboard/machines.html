@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- The illustrated machine-monitoring view behind the home page's USP "Live machine monitoring" row (not a portal
+     screenshot). Same frame and theme as dashboard.html: 1748 x 1045, light and dark (#light / #dark).
+     Sharp: the Manufacturing menu, the page header and the Live machine board (six drawn CNC machines with their status,
+     live cycle counts and progress). Frosted: every other menu, the KPI strip, the OEE, line-events and shift cards and
+     the downtime timeline. The site draws the "FOCAS connected" chip and the small machine board over this image. -->
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url("node_modules/@fontsource/inter/files/inter-latin-400-normal.woff2")}
+@font-face{font-family:Inter;font-weight:500;src:url("node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url("node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2")}
+@font-face{font-family:Inter;font-weight:700;src:url("node_modules/@fontsource/inter/files/inter-latin-700-normal.woff2")}
+@font-face{font-family:Inter;font-weight:800;src:url("node_modules/@fontsource/inter/files/inter-latin-800-normal.woff2")}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1748px;height:1045px;overflow:hidden;font-family:Inter,sans-serif}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+body.light{--page:#eef3fb;--page2:#f7f9fd;--side:#ffffff;--card:#ffffff;--card2:#f5f8fd;--line:#e2e8f0;--ink:#0f172a;--head:#1e293b;--soft:#64748b;--mute:#94a3b8;
+  --brand:#1e3a8a;--brand2:#1e40af;--brandT:#e6edf9;--acc:#f97316;--accT:#fff1e6;--acc2:#fb923c;--ok:#16a34a;--okT:#e7f7ed;--bad:#dc2626;--badT:#fdecec;--chip:#f1f5fb;
+  --haze:rgba(238,243,251,.55);--hazeText:rgba(51,65,85,.55);--hazeIcon:#94a3b8;--shadow:0 10px 26px -14px rgba(15,35,80,.35);
+  --mBody:#e7ecf4;--mBody2:#cfd8e6;--mEdge:#b6c2d4;--glass1:#1e3a8a;--glass2:#0f1f4a;--mPanel:#f8fafc;--mTable:#94a3b8}
+body.dark{--page:#0b0f1a;--page2:#0e1424;--side:#101727;--card:#141c2e;--card2:#18223a;--line:rgba(255,255,255,.08);--ink:#f6f3ec;--head:#f6f3ec;--soft:#9aa6bd;--mute:#6b7891;
+  --brand:#8fb3e6;--brand2:#5b81ae;--brandT:rgba(91,129,174,.22);--acc:#fdba74;--accT:rgba(253,186,116,.14);--acc2:#fdba74;--ok:#4ade80;--okT:rgba(74,222,128,.12);--bad:#f87171;--badT:rgba(248,113,113,.14);--chip:#1b2640;
+  --haze:rgba(11,15,26,.45);--hazeText:rgba(203,213,225,.45);--hazeIcon:#55627d;--shadow:0 10px 26px -14px rgba(0,0,0,.6);
+  --mBody:#2a3754;--mBody2:#202b44;--mEdge:#3a4a6b;--glass1:#0f1f42;--glass2:#070f24;--mPanel:#18223a;--mTable:#55627d}
+body{background:radial-gradient(ellipse 900px 600px at 70% 30%,var(--page2),var(--page))}
+
+/* sidebar (as dashboard.html) */
+#side{position:absolute;left:0;top:0;width:236px;height:1045px;background:var(--side);border-right:1px solid var(--line)}
+#brand{position:absolute;left:18px;top:20px;display:flex;align-items:center;gap:12px}
+#brand .lg{width:42px;height:42px;border-radius:12px;background:linear-gradient(150deg,var(--brand2),var(--brand));color:#fff;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center}
+body.dark #brand .lg{background:linear-gradient(150deg,#5b81ae,#2b4a7a)}
+#brand b{display:block;font-size:16px;font-weight:800;color:var(--head)}
+#brand span{font-size:12px;font-weight:500;color:var(--soft)}
+.menu{position:absolute;left:12px;width:212px;height:40px;border-radius:12px;display:flex;align-items:center;gap:12px;padding:0 14px;font-size:14.5px;font-weight:600;color:var(--head)}
+.menu svg.i{font-size:18px;color:var(--soft)}
+.menu .chev{margin-left:auto;font-size:14px}
+.menu.on{background:var(--brandT);color:var(--brand)}
+.menu.on svg.i{color:var(--brand)}
+.sub{position:absolute;left:46px;width:178px;height:34px;border-radius:10px;display:flex;align-items:center;gap:10px;padding:0 12px;font-size:13.5px;font-weight:600;color:var(--soft)}
+.sub.on{color:var(--brand);background:var(--card2)}
+.sub.on::before{content:"";position:absolute;left:-10px;top:9px;width:3px;height:16px;border-radius:2px;background:var(--acc)}
+.haze{filter:blur(1.4px);opacity:.62}
+.haze,.haze *{color:transparent!important;text-shadow:0 0 13px var(--hazeText),0 0 6px var(--hazeText)}
+.haze svg.i{stroke:var(--hazeIcon)}
+#sideFoot{position:absolute;left:14px;right:14px;bottom:18px;height:64px;border-radius:14px;background:var(--card2);display:flex;align-items:center;gap:12px;padding:0 12px}
+#sideFoot .av{width:38px;height:38px;border-radius:50%;background:var(--accT);color:var(--acc);font-weight:800;display:flex;align-items:center;justify-content:center}
+#sideFoot b{display:block;font-size:13.5px;color:var(--head)}#sideFoot span{font-size:12px;color:var(--soft)}
+
+/* header banner: navy, with a faint shop-floor line drawing */
+#banner{position:absolute;left:252px;top:14px;width:1482px;height:150px;border-radius:20px;overflow:hidden;background:linear-gradient(100deg,#0f2a5f 0%,#1e3a8a 45%,#2f5aa8 75%,#4b6cb7 100%)}
+body.dark #banner{background:linear-gradient(100deg,#0a1630 0%,#132a55 45%,#1d3a6b 75%,#2b4a7a 100%)}
+#banner .crumb{position:absolute;left:34px;top:26px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#bcd0f0}
+#banner .crumb svg.i{font-size:14px}
+#banner h1{position:absolute;left:34px;top:52px;font-size:32px;font-weight:800;color:#fff;letter-spacing:-.4px}
+#banner p{position:absolute;left:34px;top:100px;font-size:15px;font-weight:500;color:#dbe6f7}
+#banner .pills{position:absolute;right:30px;top:30px;display:flex;gap:10px}
+.pill{height:34px;border-radius:17px;padding:0 14px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22)}
+.pill .ld{width:9px;height:9px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.25)}
+#banner svg.floor{position:absolute;right:262px;bottom:0}
+
+/* KPI strip (frosted) */
+.kpi{position:absolute;top:180px;height:96px;border-radius:16px;background:var(--card);box-shadow:var(--shadow);padding:16px 18px;overflow:hidden}
+.kpi .k{font-size:13px;font-weight:600;color:var(--soft)}
+.kpi .v{margin-top:6px;font-size:28px;font-weight:800;color:var(--head)}
+.kpi svg.sp{position:absolute;right:14px;bottom:14px}
+.kpi .dot{position:absolute;right:16px;top:16px;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.t-navy{background:var(--brandT);color:var(--brand)}
+.t-orange{background:var(--accT);color:var(--acc)}
+.t-green{background:var(--okT);color:var(--ok)}
+
+/* the live machine board (sharp) */
+#board{position:absolute;left:252px;top:292px;width:1112px;height:470px;border-radius:20px;background:var(--card);border:1px solid transparent;box-shadow:0 18px 40px -16px rgba(15,35,80,.45),0 0 0 1.5px var(--brandT);padding:18px 20px}
+#board .hd{display:flex;align-items:center;gap:12px}
+#board .ti{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;background:var(--brandT);color:var(--brand)}
+#board .hd b{font-size:18px;font-weight:800;color:var(--head)}
+#board .hd .meta{font-size:13px;font-weight:600;color:var(--soft)}
+#board .hd .live{margin-left:auto;display:flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:15px;background:var(--okT);color:var(--ok);font-size:13px;font-weight:700}
+#board .hd .live i{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+#board .legend{display:flex;gap:16px;margin-left:16px;font-size:12.5px;font-weight:600;color:var(--soft)}
+#board .legend span{display:flex;align-items:center;gap:6px}
+#board .legend i{width:9px;height:9px;border-radius:3px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.m{position:relative;height:184px;border-radius:16px;background:var(--card2);border:1px solid var(--line);padding:14px;display:flex;gap:12px;overflow:hidden}
+.m.alarm{border-color:var(--acc);box-shadow:0 0 0 3px var(--accT)}
+.m .art{width:124px;flex:none;display:flex;align-items:flex-end;justify-content:center}
+.m .info{flex:1;min-width:0;display:flex;flex-direction:column}
+.m .nm{font-size:15.5px;font-weight:800;color:var(--head);white-space:nowrap}
+.m .ty{font-size:12px;font-weight:600;color:var(--soft);margin-top:2px}
+.m .st{align-self:flex-start;margin-top:8px;height:24px;border-radius:12px;padding:0 10px;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;white-space:nowrap}
+.m .st i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.run{background:var(--okT);color:var(--ok)}
+.st.alm{background:var(--accT);color:var(--acc)}
+.st.idle{background:var(--chip);color:var(--soft)}
+.m .cnt{margin-top:auto;display:flex;align-items:baseline;gap:6px}
+.m .cnt b{font-size:26px;font-weight:800;color:var(--head);letter-spacing:-.5px}
+.m .cnt span{font-size:13px;font-weight:600;color:var(--soft)}
+.m .bar{height:8px;border-radius:4px;background:var(--line);margin-top:8px;overflow:hidden}
+.m .bar i{display:block;height:100%;border-radius:4px}
+.m .op{margin-top:7px;font-size:11.5px;font-weight:600;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* right column and bottom (frosted) */
+.side2{position:absolute;left:1380px;width:354px;border-radius:18px;background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px}
+.side2 h3{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--head)}
+.side2 h3 svg.i{font-size:18px;color:var(--brand)}
+.row{display:flex;align-items:center;gap:10px;margin-top:13px;font-size:13.5px;font-weight:600;color:var(--head)}
+.row .dt{width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.row b{margin-left:auto;font-size:14px;font-weight:800}
+.wide{position:absolute;left:252px;top:778px;width:1112px;height:252px;border-radius:18px;background:var(--card);box-shadow:var(--shadow);border:1px solid var(--line);padding:18px 20px;overflow:hidden}
+.wide .tl{display:flex;height:22px;border-radius:11px;overflow:hidden;margin-top:12px}
+.wide .tl i{display:block;height:100%}
+.wide .lab{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--head);margin-top:16px}
+</style>
+</head>
+<body>
+<script>const ICONS = /*ICONS*/;</script>
+<div id="root"></div>
+<script>
+const theme = location.hash === "#dark" ? "dark" : "light";
+document.body.className = theme;
+const ic = (n) => `<svg class="i" viewBox="0 0 24 24">${ICONS[n] || ""}</svg>`;
+const spark = (w, h, pts, col, fill) => {
+  const xs = pts.map((p, i) => [(i / (pts.length - 1)) * w, h - p * h]);
+  const d = xs.map(([x, y], i) => (i ? "L" : "M") + x.toFixed(1) + "," + y.toFixed(1)).join(" ");
+  return `<svg class="sp" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><path d="${d} L${w},${h} L0,${h}Z" fill="${fill}" opacity=".35"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2.4" stroke-linecap="round"/></svg>`;
+};
+const donut = (r, parts, sw = 12) => {
+  let a = 0, s = "";
+  const c = 2 * Math.PI * r;
+  parts.forEach(([v, col]) => { s += `<circle r="${r}" cx="${r + 10}" cy="${r + 10}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-dasharray="${(v * c).toFixed(1)} ${c.toFixed(1)}" stroke-dashoffset="${(-a * c).toFixed(1)}" transform="rotate(-90 ${r + 10} ${r + 10})"/>`; a += v; });
+  return `<svg width="${2 * r + 20}" height="${2 * r + 20}">${s}</svg>`;
+};
+const cs = getComputedStyle(document.body);
+const V = (n) => cs.getPropertyValue(n).trim();
+
+/* A drawn CNC machine. kind: "vmc" (vertical machining centre), "lathe" (turning centre) or "hmc".
+   status lights the stack light: run = green, alarm = orange, idle = off (amber dim). */
+function machine(kind, status) {
+  const light = { run: [V("--ok"), 0], alarm: [V("--acc"), 1], idle: [V("--mute"), 2] }[status];
+  const stack = [V("--bad"), V("--acc"), V("--ok")].map((c, k) => {
+    const lit = (status === "run" && k === 2) || (status === "alarm" && k === 1);
+    return `<rect x="0" y="${k * 9}" width="10" height="8" rx="2" fill="${c}" opacity="${lit ? 1 : 0.22}"/>`;
+  }).join("");
+  const screen = status === "alarm" ? V("--acc") : status === "run" ? V("--ok") : V("--mute");
+  const W = 124, H = 120;
+  let body = "";
+  if (kind === "lathe") {
+    body = `<rect x="4" y="30" width="96" height="78" rx="8" fill="var(--mBody)" stroke="var(--mEdge)" stroke-width="1.5"/>
+      <rect x="10" y="38" width="66" height="44" rx="5" fill="url(#g${kind}${status})"/>
+      <rect x="18" y="52" width="14" height="18" rx="3" fill="var(--mTable)"/><rect x="32" y="57" width="26" height="8" rx="2" fill="#cbd5e1" opacity=".9"/>
+      <path d="M 58 61 L 66 61" stroke="${V("--acc2")}" stroke-width="3" stroke-linecap="round"/>
+      <rect x="62" y="64" width="10" height="12" rx="2" fill="var(--mTable)"/>
+      <rect x="10" y="86" width="66" height="6" rx="3" fill="var(--mBody2)"/>`;
+  } else if (kind === "hmc") {
+    body = `<rect x="4" y="24" width="96" height="84" rx="8" fill="var(--mBody)" stroke="var(--mEdge)" stroke-width="1.5"/>
+      <rect x="10" y="32" width="64" height="52" rx="5" fill="url(#g${kind}${status})"/>
+      <rect x="16" y="44" width="16" height="24" rx="3" fill="var(--mTable)"/><path d="M 32 56 L 46 56" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+      <rect x="48" y="46" width="20" height="22" rx="3" fill="#cbd5e1" opacity=".85"/>
+      <rect x="10" y="88" width="64" height="6" rx="3" fill="var(--mBody2)"/>`;
+  } else {
+    body = `<rect x="4" y="18" width="96" height="90" rx="8" fill="var(--mBody)" stroke="var(--mEdge)" stroke-width="1.5"/>
+      <rect x="10" y="26" width="64" height="60" rx="5" fill="url(#g${kind}${status})"/>
+      <rect x="34" y="30" width="16" height="20" rx="3" fill="var(--mTable)"/><path d="M 42 50 L 42 60" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 42 60 L 42 64" stroke="${V("--acc2")}" stroke-width="3" stroke-linecap="round"/>
+      <rect x="30" y="66" width="24" height="7" rx="2" fill="#cbd5e1" opacity=".85"/><rect x="16" y="74" width="52" height="6" rx="2" fill="var(--mTable)"/>
+      <rect x="10" y="90" width="64" height="6" rx="3" fill="var(--mBody2)"/>`;
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <defs><linearGradient id="g${kind}${status}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--glass1)"/><stop offset="1" stop-color="var(--glass2)"/></linearGradient></defs>
+    <ellipse cx="56" cy="112" rx="54" ry="5" fill="var(--line)"/>
+    ${body}
+    <path d="M 14 ${kind === "vmc" ? 30 : kind === "hmc" ? 36 : 42} L 30 ${kind === "vmc" ? 30 : kind === "hmc" ? 36 : 42}" stroke="#ffffff" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+    <rect x="80" y="${kind === "vmc" ? 28 : kind === "hmc" ? 34 : 40}" width="16" height="40" rx="3" fill="var(--mPanel)" stroke="var(--mEdge)"/>
+    <rect x="82.5" y="${kind === "vmc" ? 31 : kind === "hmc" ? 37 : 43}" width="11" height="10" rx="1.5" fill="${screen}" opacity=".85"/>
+    ${[0, 1, 2].map((k) => `<circle cx="${85 + (k % 2) * 6}" cy="${(kind === "vmc" ? 48 : kind === "hmc" ? 54 : 60) + k * 5}" r="1.6" fill="var(--mute)"/>`).join("")}
+    <rect x="6" y="108" width="92" height="6" rx="3" fill="var(--mBody2)"/>
+    <g transform="translate(104 ${kind === "vmc" ? 0 : kind === "hmc" ? 6 : 12})"><rect x="4" y="27" width="2" height="${kind === "vmc" ? 0 : 0}" fill="var(--mEdge)"/>${stack}<rect x="4" y="27" width="2" height="${kind === "vmc" ? 18 : kind === "hmc" ? 18 : 18}" fill="var(--mEdge)"/></g>
+  </svg>`;
+}
+
+let h = "";
+// sidebar: Manufacturing open, with Machine board selected (sharp); everything else frosted
+h += `<div id="side"><div id="brand"><div class="lg">S</div><div><b>Synax Workspace</b><span>Demo tenant</span></div></div>`;
+const menus = [["House", "Home"], ["Timer", "Work Tracker"], ["FolderKanban", "Projects", 1], ["Database", "Master", 1], ["UserCog", "Staffing", 1], ["Users", "HRMS", 1]];
+menus.forEach(([i, n, chev], k) => {
+  h += `<div class="menu haze" data-haze="side" style="top:${84 + k * 46}px">${ic(i)}<span>${n}</span>${chev ? `<span class="chev">${ic("ChevronDown")}</span>` : ""}</div>`;
+});
+h += `<div class="menu on" data-region="menu" style="top:${84 + 6 * 46}px">${ic("Factory")}<span>Manufacturing</span><span class="chev">${ic("ChevronDown")}</span></div>`;
+const subs = [["Route", "Route cards"], ["ClipboardList", "Job cards"], ["Gauge", "Machine board", 1], ["Clock", "Downtime"]];
+subs.forEach(([i, n, on], k) => {
+  h += `<div class="sub ${on ? "on" : "haze"}" style="top:${84 + 7 * 46 + k * 38}px">${ic(i)}<span>${n}</span></div>`;
+});
+[["Box", "Assets", 1], ["ChartColumn", "Reports"], ["MessageCircle", "Chat"], ["Settings", "Settings"]].forEach(([i, n, chev], k) => {
+  h += `<div class="menu haze" style="top:${84 + 7 * 46 + 4 * 38 + 8 + k * 46}px">${ic(i)}<span>${n}</span>${chev ? `<span class="chev">${ic("ChevronDown")}</span>` : ""}</div>`;
+});
+h += `<div id="sideFoot" class="haze"><div class="av">SD</div><div><b>Synax Demo</b><span>Super Admin</span></div></div></div>`;
+
+// header banner with a faint line drawing of a machine line along the bottom right
+const floor = (() => {
+  let s = "";
+  for (let k = 0; k < 5; k++) {
+    const x = 40 + k * 120;
+    s += `<rect x="${x}" y="58" width="86" height="62" rx="7" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="2"/><rect x="${x + 8}" y="66" width="52" height="34" rx="4" fill="#ffffff" fill-opacity=".08"/><rect x="${x + 66}" y="66" width="12" height="30" rx="2" fill="#ffffff" fill-opacity=".12"/>`;
+    s += `<circle cx="${x + 92}" cy="44" r="4" fill="${k === 2 ? "#fdba74" : "#4ade80"}" fill-opacity=".9"/><path d="M ${x + 92} 48 L ${x + 92} 58" stroke="#ffffff" stroke-opacity=".25" stroke-width="2"/>`;
+  }
+  s += `<path d="M 20 128 L 640 128" stroke="#ffffff" stroke-opacity=".25" stroke-width="3" stroke-dasharray="14 10"/>`;
+  return `<svg class="floor" width="660" height="150" viewBox="0 0 660 150">${s}</svg>`;
+})();
+h += `<div id="banner">${floor}
+  <div class="crumb">${ic("Factory")}Manufacturing <span style="opacity:.7">›</span> Shop floor</div>
+  <h1>Machine board</h1><p>Plant 1  ·  Shift A  ·  Wednesday, 18 November 2026</p>
+  <div class="pills"><div class="pill" data-region="live"><span class="ld"></span>Live</div><div class="pill">${ic("Cpu")}FOCAS · OEM</div></div></div>`;
+
+// KPI strip (frosted, decorative)
+const K = [["Utilization", "82%", "Gauge", "t-navy", [0.4, 0.5, 0.48, 0.6, 0.66, 0.7, 0.75, 0.82]], ["OEE", "76%", "Activity", "t-green", [0.5, 0.55, 0.6, 0.58, 0.66, 0.7, 0.72, 0.76]], ["Machines running", "4/6", "Cpu", "t-orange", [0.6, 0.7, 0.5, 0.8, 0.75, 0.7, 0.66, 0.7]], ["Downtime today", "42 min", "Clock", "t-navy", [0.2, 0.3, 0.25, 0.4, 0.35, 0.5, 0.45, 0.42]]];
+K.forEach(([k, v, i, t, pts], n) => {
+  h += `<div class="kpi haze" data-haze="kpi" style="left:${252 + n * 282}px;width:268px"><div class="k">${k}</div><div class="v">${v}</div><div class="dot ${t}">${ic(i)}</div>${spark(120, 34, pts, V("--acc2"), V("--brand2"))}</div>`;
+});
+
+// the live machine board (sharp)
+const M = [
+  ["M-01", "VMC 850", "vmc", "run", "Running", 50, 50, "Housing · Op 20 · cycle 2:14"],
+  ["M-02", "CNC lathe", "lathe", "run", "Running", 33, 40, "Shaft · Op 10 · cycle 1:38"],
+  ["M-03", "VMC 640", "vmc", "alarm", "Alarm · tool life", 18, 40, "Bracket · Op 30 · needs a person"],
+  ["M-04", "HMC 500", "hmc", "run", "Running", 27, 30, "Valve body · Op 20 · cycle 4:05"],
+  ["M-05", "CNC lathe", "lathe", "idle", "Idle · no material", 0, 25, "Flange · Op 10 · waiting for issue"],
+  ["M-06", "VMC 1050", "vmc", "run", "Running", 12, 16, "Gear case · Op 40 · cycle 6:20"],
+];
+const stCls = { run: "run", alarm: "alm", idle: "idle" };
+const barCol = { run: V("--ok"), alarm: V("--acc"), idle: V("--mute") };
+h += `<div id="board" data-region="board"><div class="hd"><span class="ti">${ic("Gauge")}</span><b>Live machine board</b><span class="meta">6 machines · counts from the machine</span>
+  <div class="legend"><span><i style="background:var(--ok)"></i>Running</span><span><i style="background:var(--acc)"></i>Alarm</span><span><i style="background:var(--mute)"></i>Idle</span></div>
+  <span class="live"><i></i>Live</span></div><div class="grid">`;
+M.forEach(([id, ty, kind, st, label, done, of, op]) => {
+  h += `<div class="m${st === "alarm" ? " alarm" : ""}"${id === "M-03" ? ' data-region="alarm"' : ""}><div class="art">${machine(kind, st)}</div><div class="info">
+    <div class="nm">${id}</div><div class="ty">${ty}</div>
+    <div class="st ${stCls[st]}"><i></i>${label}</div>
+    <div class="cnt"><b>${done}</b><span>/ ${of} pcs</span></div>
+    <div class="bar"><i style="width:${Math.round((done / of) * 100)}%;background:${barCol[st]}"></i></div>
+    <div class="op">${op}</div></div></div>`;
+});
+h += `</div></div>`;
+
+// downtime timeline along the bottom (frosted)
+const seg = (cols) => cols.map(([w, c]) => `<i style="width:${w}%;background:${c}"></i>`).join("");
+const ok = V("--ok"), ac = V("--acc2"), mu = V("--line"), br = V("--brand2");
+h += `<div class="wide haze" data-haze="wide"><div style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:800;color:var(--head)"><span class="t-navy" style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px">${ic("Clock")}</span>Downtime by machine, today</div>
+  ${["M-01", "M-02", "M-03", "M-04"].map((m, k) => `<div class="lab">${m}</div><div class="tl">${seg([[[22, 30, 12, 26][k], ok], [[6, 4, 14, 8][k], ac], [[30, 26, 10, 28][k], ok], [[4, 10, 18, 6][k], mu], [[38, 30, 46, 32][k], br]])}</div>`).join("")}</div>`;
+
+// right column (frosted)
+h += `<div class="side2 haze" data-haze="machines" style="top:180px;height:286px"><h3>${ic("Activity")}OEE this shift</h3><div style="display:flex;justify-content:space-between;margin-top:18px">
+  ${[[0.88, V("--ok")], [0.84, V("--brand2")], [0.97, V("--acc2")]].map(([v, c]) => `<div style="text-align:center">${donut(34, [[v, c], [1 - v, V("--line")]], 10)}<div class="row" style="justify-content:center;margin-top:8px">${Math.round(v * 100)}%</div></div>`).join("")}</div>
+  <div class="row" style="margin-top:18px"><span class="dt" style="background:var(--ok)"></span>Availability<b>88%</b></div><div class="row"><span class="dt" style="background:var(--brand2)"></span>Performance<b>84%</b></div></div>`;
+h += `<div class="side2 haze" data-haze="side" style="top:482px;height:330px"><h3>${ic("Bell")}Line events</h3>
+  ${[["10:42", "M-03 tool life alarm"], ["10:20", "M-05 waiting for material"], ["09:58", "M-01 job complete"], ["09:31", "M-04 setup approved"], ["09:05", "Shift A started"], ["08:50", "M-02 first-off passed"]].map(([t, n]) => `<div class="row"><b style="margin:0 6px 0 0;font-size:13px;color:var(--brand)">${t}</b>${n}</div>`).join("")}</div>`;
+h += `<div class="side2 haze" data-haze="side" style="top:828px;height:202px"><h3>${ic("Users")}Operators on shift</h3>${[["Machine shop", "9"], ["Inspection", "3"], ["Maintenance", "2"]].map(([n, v]) => `<div class="row"><span class="dt"></span>${n}<b>${v}</b></div>`).join("")}</div>`;
+
+document.getElementById("root").innerHTML = h;
+window.__ready = true;
+</script>
+</body>
+</html>

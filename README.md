@@ -22,6 +22,29 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — USP "Live machine monitoring": illustrated machine board, light and dark
+Commit subject: `USP machine row: illustrated live machine board in the hero style (light and dark)`
+- **What**: the second row of "What sets Synax apart" showed `usp-machines-v3.webp`, a PCB-line screen (light only). It now shows an illustrated **machine board** in the same style as the overview hero and the AI row:
+  - **Frame**: the same sidebar, frame and theme colours.
+  - **Sharp**: the navy "Machine board" header with Live and FOCAS · OEM pills, and a **Live machine board** of six drawn CNC machines (VMC, lathe, HMC). Each has a stack light, status, a cycle count such as "50 / 50 pcs", a progress bar and its job.
+  - **Machine states**: M-03 has a tool-life alarm with an orange outline, and M-05 is idle, waiting for material.
+  - **Frosted**: the other menus, the KPI strip, the OEE, line-events and operators cards, and the downtime timeline.
+  - **Matching data**: the machines and counts match the floating "Machine board" card.
+- **Light and dark**: `usp-machines-v4.webp` and `usp-machines-v4-dark.webp` (1748 × 1045) switch with the theme. The `-master` 2× files are rendered for a future zoom lens; they are not used yet.
+- **Motion**:
+  - Light sweeps across the frosted cards, and live dots pulse on the KPI tiles and the OEE card. There is no airplane: `DashboardMotion`'s `banner` is now optional, and the hero and AI row are unchanged.
+  - A pulsing orange ring sits on M-03 (`motion-safe`, so it is off for reduced motion).
+  - The "FOCAS connected" chip and the floating machine board stay where they were.
+- **Code**:
+  - `home-usp.tsx`: `MachinesRow`, `MACHINES_HAZE`, `MACHINES_ALARM`.
+  - `dashboard-motion.tsx`: `banner` is optional.
+  - `tools/hero-dashboard/`: new `machines.html` and `regions-usp-machines.json`. `render.js` takes the page as a 5th argument. The README has a section for this variant.
+- **Files**: `usp-machines-v3.webp` stays in `public/images`, unused.
+- **Checks**:
+  - Typecheck and lint pass.
+  - I viewed both rendered images. **I did not view the page in a browser.**
+- **Rollback**: revert the commit (the row goes back to the PCB-line screen).
+
 ### Pending (next commit) — Solutions restructure, phase 3: Oil, Gas & Energy page and new hero art
 Commit subject: `Solutions: Oil, Gas & Energy page; illustrated heroes for Oil & Gas and Machinery`
 - **New page `/solutions/oil-gas-energy`**:

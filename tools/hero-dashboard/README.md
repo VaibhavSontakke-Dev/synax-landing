@@ -39,3 +39,19 @@ hero uses too).
 `node render.js usp-ai-dashboard overview regions-usp-ai.json` writes `usp-ai-dashboard.webp`, `-master`, `-dark` and
 `-dark-master`, and the boxes `overview`, `synaxai`, `banner` and `haze`. The ring, lens crop and position in
 `home-usp.tsx` are computed from them.
+
+## The USP machine row variant
+
+The second row ("Live machine monitoring") uses `machines.html`: the same frame, sidebar and theme with a machine
+board instead of the module grid.
+
+- **Sharp:** the Manufacturing menu, with Machine board selected; the navy header ("Machine board", Live and FOCAS · OEM
+  pills); and the **Live machine board**. The board shows six drawn machines (VMC, lathe, HMC), each with a stack light,
+  status, cycle count, progress bar and job. M-03 has a tool-life alarm and M-05 is idle.
+- **Frosted:** the other menus, the KPI strip, the OEE, line-events and operators cards, and the downtime timeline.
+- **Animated in the row:** light sweeps and live dots through `DashboardMotion`, with no airplane (the `banner` prop is
+  optional), plus a pulsing orange ring on M-03.
+
+`node render.js usp-machines-v4 "" regions-usp-machines.json machines.html` writes `usp-machines-v4.webp`, `-master`,
+`-dark` and `-dark-master`, and the boxes `menu`, `live`, `board`, `alarm` and `haze`. `MACHINES_HAZE` and
+`MACHINES_ALARM` in `home-usp.tsx` are copied from it; the sidebar's small menu rows are left out of the sweeps.

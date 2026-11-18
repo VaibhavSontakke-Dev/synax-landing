@@ -15,6 +15,15 @@ import { DashboardMotion, type HazeBox } from "./dashboard-motion";
  * airplane over the banner. Boxes from tools/hero-dashboard/regions-usp-ai.json.
  */
 const AI_BANNER: [number, number, number, number] = [0.1442, 0.0134, 0.992, 0.1569];
+/**
+ * The machine row's screen is an illustrated machine board in the same frame (tools/hero-dashboard/machines.html,
+ * `usp-machines-v4*.webp`, light and dark): the header and the live machine board (six machines, counts, an alarm on
+ * M-03) are sharp, the rest frosted, with light sweeps and live dots but no airplane. Boxes from
+ * tools/hero-dashboard/regions-usp-machines.json (the sidebar's small menu rows are left out).
+ */
+const MACHINES_HAZE: HazeBox[] = [["kpi",0.1442,0.1722,0.2975,0.2641],["kpi",0.3055,0.1722,0.4588,0.2641],["kpi",0.4668,0.1722,0.6201,0.2641],["kpi",0.6281,0.1722,0.7815,0.2641],["wide",0.1442,0.7445,0.7803,0.9856],["machines",0.7895,0.1722,0.992,0.4459],["side",0.7895,0.4612,0.992,0.777],["side",0.7895,0.7923,0.992,0.9856]];
+/** M-03's tile (the alarm), for the pulsing orange ring. */
+const MACHINES_ALARM = { left: "56.96%", top: "34.74%", width: "19.87%", height: "17.6%" };
 const AI_HAZE: HazeBox[] = [["kpi",0.1442,0.1722,0.2975,0.2641],["kpi",0.3055,0.1722,0.4588,0.2641],["kpi",0.4668,0.1722,0.6201,0.2641],["kpi",0.6281,0.1722,0.7815,0.2641],["card",0.3604,0.2794,0.5641,0.4325],["card",0.5767,0.2794,0.7803,0.4325],["card",0.1442,0.4536,0.3478,0.6067],["card",0.3604,0.4536,0.5641,0.6067],["card",0.5767,0.4536,0.7803,0.6067],["card",0.1442,0.6278,0.3478,0.7809],["card",0.3604,0.6278,0.5641,0.7809],["card",0.5767,0.6278,0.7803,0.7809],["wide",0.1442,0.8057,0.7803,0.9856],["side",0.7895,0.1722,0.992,0.488],["machines",0.7895,0.5033,0.992,0.7522],["side",0.7895,0.7675,0.992,0.9856]];
 
 /**
@@ -339,12 +348,26 @@ function MachinesRow() {
                 aria-hidden="true"
               />
               <Image
-                src="/images/usp-machines-v3.webp"
-                alt="Machine monitoring view with a production line, OEE and downtime (illustration)"
-                width={1400}
-                height={785}
+                src="/images/usp-machines-v4.webp"
+                alt="Live machine board with six machines, their cycle counts and an alarm on M-03 (illustration)"
+                width={1748}
+                height={1045}
                 sizes="(min-width: 1024px) 700px, 100vw"
-                className="block h-auto w-full"
+                className="block h-auto w-full dark:hidden"
+              />
+              <Image
+                src="/images/usp-machines-v4-dark.webp"
+                alt="Live machine board with six machines, their cycle counts and an alarm on M-03, in the dark theme (illustration)"
+                width={1748}
+                height={1045}
+                sizes="(min-width: 1024px) 700px, 100vw"
+                className="hidden h-auto w-full dark:block"
+              />
+              <DashboardMotion haze={MACHINES_HAZE} />
+              <span
+                className="pointer-events-none absolute rounded-[10px] border-[3px] border-orange-400/80 motion-safe:animate-pulse"
+                style={MACHINES_ALARM}
+                aria-hidden="true"
               />
               <span className="absolute top-2 right-2 rounded bg-surface/90 px-2 py-0.5 text-[10px] leading-none font-semibold text-slate-600 shadow-xs">Illustration</span>
             </div>

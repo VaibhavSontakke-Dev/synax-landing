@@ -7,11 +7,13 @@ const fs = require("fs");
 const path = require("path");
 const ffmpeg = require("ffmpeg-static");
 const OUT = "C:/Projects/synax-landing/public/images/";
-// node render.js [base name] [sharp list] [regions file]; the defaults are the hero's
+// node render.js [base name] [sharp list] [regions file] [page]; the defaults are the hero's
 const BASE = process.argv[2] || "hero-dashboard-v3";
 const SHARP = process.argv[3] || "";
 const REGIONS = process.argv[4] || "regions.json";
-let html = fs.readFileSync("dashboard.html", "utf8").replace("/*ICONS*/", fs.readFileSync("icons.json", "utf8"));
+// optional: another page in the same frame (machines.html for the USP machine row)
+const SRC = process.argv[5] || "dashboard.html";
+let html = fs.readFileSync(SRC, "utf8").replace("/*ICONS*/", fs.readFileSync("icons.json", "utf8"));
 fs.writeFileSync("page.html", html);
 const url = "file:///" + path.resolve("page.html").split(path.sep).join("/");
 const webp = (png, out, q) => {
