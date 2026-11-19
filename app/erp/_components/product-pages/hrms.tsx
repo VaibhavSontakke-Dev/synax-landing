@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BarChart3, CalendarCheck, CircleCheck, Factory, Fingerprint, LogOut, UserPlus, UserRoundCheck, Wallet, Building2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SOLUTION_PATHS } from "../../_data/solution-paths";
@@ -203,9 +204,9 @@ export function HrmsPage() {
             <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-brand">
               <Fingerprint className="size-4" aria-hidden="true" />
               See the{" "}
-              <a href={industryHref("plant-workforce-hcm")} className="underline">
+              <Link href={industryHref("plant-workforce-hcm")} className="underline">
                 Plant Workforce page
-              </a>
+              </Link>
             </p>
           </div>
           <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
