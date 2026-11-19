@@ -26,7 +26,7 @@ export function ProductPage({ productKey }: { productKey: ProductKey }) {
       <section className="border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page" aria-labelledby="product-heading">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
           <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs text-slate-500">
-            <Link href="/erp" className="hover:text-brand hover:underline">
+            <Link href="/" className="hover:text-brand hover:underline">
               Synax
             </Link>
             <ChevronRight className="size-3.5" aria-hidden="true" />

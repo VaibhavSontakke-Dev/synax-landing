@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -26,7 +26,7 @@ import { ThemeToggle } from "./theme-toggle";
  * Entries without a page of their own link to their starting path on /solutions.
  */
 
-const HOME = "/erp";
+const HOME = "/";
 
 const SECTION_LINKS = [
   { label: "Why Synax", href: "/why-synax" },
@@ -94,7 +94,15 @@ export function SiteNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const close = () => setMobileOpen(false);
 
-  const isHome = pathname === "/" || pathname === HOME;
+  const isHome = pathname === HOME;
+  // A same-page <Link> click doesn't scroll, so on the home page the logo / Overview link scroll to the top themselves.
+  const homeClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    close();
+    if (isHome) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
   const onProducts = pathname === "/products" || pathname.startsWith("/products/");
   const onSolutions = pathname === "/solutions" || pathname.startsWith("/solutions/");
   const isActive = (href: string) => pathname === href;
@@ -108,7 +116,7 @@ export function SiteNav() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href={HOME}
-            onClick={close}
+            onClick={homeClick}
             aria-label="Synax by Senwell — home"
             className="group flex items-center rounded-md py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-line"
           >
@@ -134,7 +142,7 @@ export function SiteNav() {
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-7 text-xs font-semibold text-slate-600 lg:flex">
-            <Link href={HOME} aria-current={isHome ? "page" : undefined} className={barClass(isHome)}>
+            <Link href={HOME} onClick={homeClick} aria-current={isHome ? "page" : undefined} className={barClass(isHome)}>
               Overview
             </Link>
 

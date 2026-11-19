@@ -16,7 +16,7 @@ export interface Crumb {
 export function Breadcrumb({ items }: { items: Crumb[] }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
-      <Link href="/erp" className="hover:text-brand hover:underline">
+      <Link href="/" className="hover:text-brand hover:underline">
         Synax
       </Link>
       {items.map((c, i) => (

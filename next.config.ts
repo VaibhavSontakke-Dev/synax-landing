@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        // The landing page lives at the site root; /erp was its old address.
+        source: "/erp",
+        destination: "/",
+        permanent: true,
+      },
+      {
         // Renamed from "IT Services & Project ERP".
         source: "/products/it-services-project-erp",
         destination: "/products/work-delivery-management",

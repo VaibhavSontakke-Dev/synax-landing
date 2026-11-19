@@ -120,7 +120,7 @@ export function Footer() {
         <div className="my-auto grid gap-10 py-2 lg:grid-cols-12 lg:gap-x-12">
           {/* Brand, contact, demo, compliance */}
           <div className="lg:col-span-4">
-            <Link href="/erp" aria-label="Synax by Senwell — home" className={`relative inline-block rounded-lg ${FOCUS}`}>
+            <Link href="/" aria-label="Synax by Senwell — home" className={`relative inline-block rounded-lg ${FOCUS}`}>
               <span className="absolute -inset-x-6 -inset-y-4 -z-10 rounded-full bg-blue-500/20 blur-2xl" aria-hidden="true" />
               <Image src="/images/synax-pro-light.webp" alt="" width={480} height={132} sizes="117px" className="h-8 w-auto object-contain" />
             </Link>
@@ -245,7 +245,7 @@ export function Footer() {
                 <ColumnHeading>Senwell Group</ColumnHeading>
                 <ul className="space-y-2.5">
                   <li>
-                    <Link href="/erp#senwell" className={linkClass}>
+                    <Link href="/#senwell" className={linkClass}>
                       About Senwell
                     </Link>
                   </li>

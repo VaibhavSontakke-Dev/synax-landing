@@ -31,7 +31,7 @@ function splitTitle(title: string) {
 function DarkCrumbs({ page }: { page: IndustryPage }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-1.5 text-xs text-slate-300">
-      <Link href="/erp" className="hover:text-white hover:underline">
+      <Link href="/" className="hover:text-white hover:underline">
         Synax
       </Link>
       <ChevronRight className="size-3.5" aria-hidden="true" />

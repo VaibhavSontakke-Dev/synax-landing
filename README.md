@@ -1,7 +1,7 @@
 # Synax Landing
 
 Marketing site for Synax by Senwell Group (Next.js App Router, Tailwind v4).
-Routes: `/` and `/erp` render the landing page in
+Routes: `/` renders the landing page (`/erp` redirects to `/`) in
 [`app/erp/_components/landingpage.tsx`](app/erp/_components/landingpage.tsx).
 
 ```bash
@@ -21,6 +21,23 @@ npm run lint
 Rule: **every commit updates this section** (newest first) so any change can be traced
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
+
+### Pending (next commit) — Home page lives at / (no more /erp)
+Commit subject: `Home page at / only: /erp redirects to /`
+- **Problem**: the logo, the Overview link, the footer and the breadcrumbs all pointed at `/erp`, so the address bar showed `/erp` instead of the bare site address.
+- **Fix**:
+  - Every home link now points at `/` (`site-nav.tsx`, `home-footer.tsx` including `/#senwell`, and the breadcrumbs in `industry-heroes.tsx`, `product-page.tsx`, `site-page.tsx`).
+  - `next.config.ts` redirects `/erp` to `/` (permanent), so old links and bookmarks still work.
+  - The now-unused `app/erp/page.tsx` and `app/erp/layout.tsx` are deleted; the `app/erp/_components` and `_data` folders stay as they are.
+- **Checks**: typecheck passes. **Restart `npm run dev`** (the config changed). Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Header logo scrolls to the top on the home page
+Commit subject: `Header: logo and Overview link scroll to the top when already on the home page`
+- **Problem**: clicking the logo while on the home page did nothing, because a same-page Next.js `<Link>` click does not scroll.
+- **Fix** (`app/erp/_components/site-nav.tsx`): on the home page the logo and the desktop "Overview" link now call `window.scrollTo({ top: 0, behavior: "smooth" })` (and still close the mobile menu). On other pages they navigate to the home page as before.
+- **Checks**: typecheck and lint pass; not tried in a browser.
+- **Rollback**: revert the commit.
 
 ### Pending (next commit) — Footer fits the screen again after the Solutions column
 Commit subject: `Footer: tighter layout so it fits one screen with the Solutions column`
