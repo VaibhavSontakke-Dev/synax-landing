@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
@@ -90,6 +90,21 @@ function MenuItem({
   );
 }
 
+/**
+ * Which tint the header takes, to match the hero right under it (the colours are in globals.css, "Header tint"):
+ *   cream  home and the six product pages (the hero's warm glow)
+ *   sky    /products, /solutions, /why-synax, /security, the legal pages and the IT Services page (the sky-blue hero)
+ *   grey   the Precision and Workforce solution pages (light grey heroes)
+ *   none   plain white, as before: the four solution pages with a dark photo hero, and every page without a tinted hero (404)
+ */
+type HeaderTone = "cream" | "sky" | "grey" | "none";
+function headerTone(path: string): HeaderTone {
+  if (path === "/" || /^\/products\/[^/]+$/.test(path)) return "cream";
+  if (["/products", "/solutions", "/why-synax", "/security", "/privacy", "/terms", "/solutions/it-services-staffing"].includes(path)) return "sky";
+  if (path === "/solutions/precision-cnc-machining" || path === "/solutions/plant-workforce-hcm") return "grey";
+  return "none";
+}
+
 export function SiteNav() {
   const rawPath = usePathname();
   const pathname = rawPath.length > 1 ? rawPath.replace(/\/$/, "") : rawPath;
@@ -99,9 +114,18 @@ export function SiteNav() {
   const ts = useTranslations("Solutions");
   const tg = useTranslations("SolutionGroups");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const close = () => setMobileOpen(false);
 
+  // Once the page has scrolled, the tinted header gets a hairline and a little more body (see "Header tint" in globals.css).
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const isHome = pathname === HOME;
+  const tone = headerTone(pathname);
   // A same-page <Link> click doesn't scroll, so on the home page the logo / Overview link scroll to the top themselves.
   const homeClick = (e: MouseEvent<HTMLAnchorElement>) => {
     close();
@@ -119,7 +143,11 @@ export function SiteNav() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-surface/90 shadow-xs backdrop-blur-md">
+      <header
+        data-tone={tone}
+        data-scrolled={scrolled ? "true" : "false"}
+        className={`sticky top-0 z-40 backdrop-blur-md ${tone === "none" ? "border-b border-slate-200/80 bg-surface/90 shadow-xs" : "synax-header-tint"}`}
+      >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
             href={HOME}
@@ -127,9 +155,9 @@ export function SiteNav() {
             aria-label={t("homeAria")}
             className="group flex items-center rounded-md py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-line"
           >
-            {/* Colour logo on the light theme, the white knockout on the dark theme. */}
+            {/* Colour logo on the light theme (a transparent copy, so the header tint shows around it), the white knockout on the dark theme. */}
             <Image
-              src="/images/synax-pro.webp"
+              src="/images/synax-pro-clear.webp"
               alt=""
               width={480}
               height={160}

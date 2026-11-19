@@ -1680,6 +1680,7 @@
         "short": "Ein Genehmiger entscheidet"
       },
       "audit": {
+        "title": "Prüfhistorie",
         "short": "Wer was wann geändert hat"
       }
     },

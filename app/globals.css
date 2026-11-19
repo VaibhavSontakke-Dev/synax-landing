@@ -1399,3 +1399,54 @@ body {
     animation: none;
   }
 }
+
+/* ==========================================================================
+   Header tint (app/erp/_components/site-nav.tsx, `headerTone`)
+   The header copies the hero's own shading: a little deeper behind the menu in the middle, very light at both sides, and no
+   bottom line while the page is at the top, so header and hero read as one surface. After a scroll it gets a hairline, a faint
+   shadow and slightly more transparency (the blur behind it stays). Pages with a dark photo hero keep the plain white header
+   (data-tone="none" uses ordinary utilities). Dark mode keeps the usual dark header.
+   ========================================================================== */
+.erp-root .synax-header-tint {
+  --hdr-mid: #ffffff;
+  --hdr-edge: #ffffff;
+  --hdr-a: 100%;
+  background-color: color-mix(in srgb, var(--hdr-edge) var(--hdr-a), transparent);
+  background-image: radial-gradient(
+    ellipse 55% 230% at 50% 100%,
+    color-mix(in srgb, var(--hdr-mid) var(--hdr-a), transparent) 0%,
+    color-mix(in srgb, color-mix(in srgb, var(--hdr-mid) 50%, var(--hdr-edge)) var(--hdr-a), transparent) 45%,
+    color-mix(in srgb, var(--hdr-edge) var(--hdr-a), transparent) 80%
+  );
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.erp-root .synax-header-tint[data-tone="cream"] {
+  --hdr-mid: #ffeacf;
+  --hdr-edge: #fffcf8;
+}
+
+.erp-root .synax-header-tint[data-tone="sky"] {
+  --hdr-mid: #cde6fa;
+  --hdr-edge: #f5fbff;
+}
+
+.erp-root .synax-header-tint[data-tone="grey"] {
+  --hdr-mid: #e5eaf1;
+  --hdr-edge: #f8fafc;
+}
+
+.erp-root .synax-header-tint[data-scrolled="true"] {
+  --hdr-a: 88%;
+  border-bottom-color: rgb(148 163 184 / 0.35);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+}
+
+:root[data-theme="dark"] .erp-root .synax-header-tint {
+  background-image: none;
+  background-color: color-mix(in srgb, var(--color-surface) 90%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--color-slate-200) 80%, transparent);
+}

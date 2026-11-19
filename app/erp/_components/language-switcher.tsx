@@ -46,7 +46,7 @@ export function LanguageSwitcher() {
         aria-haspopup="true"
         aria-expanded={open}
         aria-label={`${t("switchTo")}: ${LOCALE_NAMES[current]}`}
-        className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-slate-200 px-2.5 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100"
+        className="flex cursor-pointer items-center gap-1.5 rounded-xl border border-slate-200 bg-surface px-2.5 py-2 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100"
       >
         <Globe className="size-4" aria-hidden="true" />
         <span className="uppercase">{current}</span>

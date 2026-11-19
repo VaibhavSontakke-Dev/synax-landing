@@ -84,7 +84,7 @@ export function ThemeToggle({ className = "", withLabel = false }: { className?:
       onClick={toggle}
       aria-label={label}
       title={label}
-      className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 text-slate-700 transition-colors hover:border-orange-300 hover:bg-slate-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${withLabel ? "px-3 py-2 text-sm font-semibold" : "size-9"} ${className}`}
+      className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 bg-surface text-slate-700 transition-colors hover:border-orange-300 hover:bg-slate-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${withLabel ? "px-3 py-2 text-sm font-semibold" : "size-9"} ${className}`}
     >
       {dark ? <Sun className="size-4" aria-hidden="true" /> : <Moon className="size-4" aria-hidden="true" />}
       {withLabel ? <span>{dark ? t("light") : t("dark")}</span> : null}

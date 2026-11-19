@@ -1680,6 +1680,7 @@
         "short": "An approver decides"
       },
       "audit": {
+        "title": "Audit history",
         "short": "Who changed what, and when"
       }
     },
