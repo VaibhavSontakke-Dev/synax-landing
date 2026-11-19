@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, BookOpen, Check, FileCheck2, FileText, Layers, PackageCheck, Receipt, Settings2, Truck, Undo2, Trash2, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SOLUTION_PATHS } from "../../_data/solution-paths";
@@ -224,9 +225,9 @@ export function ManufacturingErpPage() {
           <p className="mt-6 text-center text-sm text-slate-600">
             <Truck className="mr-1.5 inline size-4 text-accent" aria-hidden="true" />
             Working with aerospace or defence customers? See the{" "}
-            <a href={industryHref("aerospace-defence")} className="font-semibold text-brand hover:underline">
+            <Link href={industryHref("aerospace-defence")} className="font-semibold text-brand hover:underline">
               Aerospace &amp; Defence page
-            </a>
+            </Link>
             .
           </p>
         </div>
