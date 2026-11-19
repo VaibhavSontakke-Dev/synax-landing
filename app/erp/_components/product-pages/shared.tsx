@@ -1,7 +1,10 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { slug } from "@/i18n/slug";
 import { ArrowRight, Check, Plus } from "lucide-react";
 import { hrefFor, routeFor, type ProductKey } from "../../_data/products";
-import { LIVE_FAQ, LIVE_ROLLOUT, LIVE_ROLLOUT_NOTE } from "../../_data/live";
+import { LIVE_FAQ } from "../../_data/live";
+import type { SolutionKey } from "../../_data/solutions";
 import type { SolutionPath } from "../../_data/solution-paths";
 import { Block, Breadcrumb, CtaBand, Faq } from "../site-page";
 import { SectionTag } from "../section-tag";
@@ -23,12 +26,13 @@ import { HeroBackdrop } from "../home-hero";
  * so it does not overflow.
  */
 export function HeroBand({ productKey, children }: { productKey: ProductKey; children: React.ReactNode }) {
-  const route = routeFor(productKey);
+  const t = useTranslations("ProductShared");
+  const tpr = useTranslations("Products");
   return (
     <section aria-labelledby="product-heading" className="relative isolate overflow-hidden lg:flex lg:min-h-[calc(100svh-4.1rem)]">
       <HeroBackdrop />
       <div className="mx-auto flex w-full max-w-7xl flex-col px-4 py-8 sm:px-6 lg:px-8 lg:py-5">
-        <Breadcrumb items={[{ label: "Products", href: "/products" }, { label: route.name }]} />
+        <Breadcrumb items={[{ label: t("breadcrumbProducts"), href: "/products" }, { label: tpr(`${productKey}.name`) }]} />
         <div className="lg:mt-[clamp(0.5rem,6vh,4rem)]">{children}</div>
       </div>
     </section>
@@ -61,7 +65,9 @@ export function HeroCopy({
   /** Label of an optional second tour button; it opens the tour titled "<product> Tour 2" in `TOURS`. */
   secondTourLabel?: string;
 }) {
+  // The tour is looked up by its English title (`_data/tours.ts`); only the visible name is translated.
   const route = routeFor(productKey);
+  const tpr = useTranslations("Products");
   return (
     <div className={center ? "mx-auto max-w-2xl text-center" : centerBelowLg ? "mx-auto max-w-2xl text-center lg:mx-0 lg:max-w-xl lg:text-left" : "max-w-xl"}>
       <SectionTag lines="start">{eyebrow}</SectionTag>
@@ -69,7 +75,7 @@ export function HeroCopy({
         id="product-heading"
         className={`mt-3 leading-tight font-extrabold tracking-tight text-brand ${compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl lg:text-5xl"}`}
       >
-        {title ?? route.name}
+        {title ?? tpr(`${productKey}.name`)}
       </h1>
       <p className="mt-2 text-base font-semibold text-slate-700">{subtitle}</p>
       <p className="mt-4 text-sm leading-relaxed text-slate-700 sm:text-base">{lead}</p>
@@ -95,30 +101,33 @@ export function ModChips({ items, className = "" }: { items: string[]; className
 }
 
 /** The portal's "start with what hurts most" path for a product (from `solution-paths.ts`). */
-export function StartPath({ path }: { path: SolutionPath }) {
+export function StartPath({ path, solution }: { path: SolutionPath; solution: SolutionKey }) {
+  const t = useTranslations("ProductShared.startPath");
+  const tp = useTranslations("SolutionPaths");
+  const tm = useTranslations("Modules");
   return (
-    <Block id="start" tag="Where to start" title="Start with what hurts most" lead="Switch on the first modules, then add the rest when you are ready." tone="white">
+    <Block id="start" tag={t("tag")} title={t("title")} lead={t("lead")} tone="white">
       <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-[1fr_1.2fr]">
         <p className="rounded-2xl border border-orange-200 bg-orange-50/70 p-5 text-sm leading-relaxed text-slate-700">
-          <span className="block text-[11px] font-bold tracking-wider text-accent-strong uppercase">What hurts</span>
-          <span className="mt-1 block text-base font-semibold text-slate-900">{path.pain}</span>
+          <span className="block text-[11px] font-bold tracking-wider text-accent-strong uppercase">{t("whatHurts")}</span>
+          <span className="mt-1 block text-base font-semibold text-slate-900">{tp(`${solution}.pain`)}</span>
         </p>
         <div className="rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
-          <p className="text-[11px] font-bold tracking-wider text-brand uppercase">Start with</p>
+          <p className="text-[11px] font-bold tracking-wider text-brand uppercase">{t("startWith")}</p>
           <ol className="mt-2 space-y-1.5">
             {path.start.map((m, n) => (
               <li key={m} className="flex items-center gap-2.5 text-sm font-medium text-slate-800">
                 <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-solid text-[11px] font-semibold text-white">{n + 1}</span>
-                {m}
+                {tm(slug(m))}
               </li>
             ))}
           </ol>
-          <p className="mt-4 text-[11px] font-bold tracking-wider text-slate-500 uppercase">Then add</p>
+          <p className="mt-4 text-[11px] font-bold tracking-wider text-slate-500 uppercase">{t("thenAdd")}</p>
           <ul className="mt-2 flex flex-wrap gap-1.5">
             {path.then.map((m) => (
               <li key={m} className="flex items-center gap-1 rounded-md border border-dashed border-sky-300 bg-sky-50 px-2 py-1 text-[11.5px] font-medium text-slate-700">
                 <Plus className="size-3 text-sky-700" aria-hidden="true" />
-                {m}
+                {tm(slug(m))}
               </li>
             ))}
           </ul>
@@ -132,11 +141,13 @@ export interface Related {
   label: string;
   note: string;
   href: string;
+  /** Set for product cards, so the name is read in the visitor's language. */
+  key?: ProductKey;
 }
 
 /** A product as a "works with" card. */
 export function relatedProduct(key: ProductKey, note: string): Related {
-  return { label: routeFor(key).name, note, href: hrefFor(key) };
+  return { label: routeFor(key).name, note, href: hrefFor(key), key };
 }
 
 /** Portal FAQ entries by question, followed by any extra ones written for this product. */
@@ -145,7 +156,11 @@ export function faqItems(portalQuestions: string[], extra: { q: string; a: strin
   return [...extra, ...portal];
 }
 
-/** Closing sections shared by every product page: rollout, works-with, FAQ and the call-to-action band. */
+/**
+ * Closing sections shared by every product page: rollout, works-with, FAQ and the call-to-action band.
+ * Notes in `related` and the product's own extra FAQ entries are passed in already translated; the portal's FAQ entries (found by their
+ * English question) are read from the "Faq" messages here.
+ */
 export function ProductTail({
   productKey,
   related,
@@ -156,28 +171,28 @@ export function ProductTail({
   faq: { q: string; a: string }[];
 }) {
   const route = routeFor(productKey);
+  const t = useTranslations("ProductShared");
+  const tpr = useTranslations("Products");
+  const tf = useTranslations("Faq");
+  const name = tpr(`${productKey}.name`);
+  const phases = ["p1", "p2", "p3", "p4"] as const;
+  const items = faq.map((f) => (tf.has(`${slug(f.q)}.q`) ? { q: tf(`${slug(f.q)}.q`), a: tf(`${slug(f.q)}.a`) } : f));
   return (
     <>
-      <Block
-        id="rollout"
-        tag="Getting live"
-        title="Phased, module by module"
-        lead={`The portal's rollout guide. ${LIVE_ROLLOUT_NOTE}`}
-        tone="white"
-      >
+      <Block id="rollout" tag={t("rollout.tag")} title={t("rollout.title")} lead={t("rollout.lead")} tone="white">
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {LIVE_ROLLOUT.map((r, i) => (
-            <li key={r.week} className="flex flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
+          {phases.map((p, i) => (
+            <li key={p} className="flex flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
               <div className="flex items-center gap-2.5">
                 <span className="flex size-8 items-center justify-center rounded-full bg-brand-solid font-mono text-sm font-semibold text-white">{i + 1}</span>
-                <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">{r.week}</p>
+                <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">{t(`rollout.${p}.week`)}</p>
               </div>
-              <h3 className="mt-3 text-[15px] font-bold text-slate-900">{r.title}</h3>
+              <h3 className="mt-3 text-[15px] font-bold text-slate-900">{t(`rollout.${p}.title`)}</h3>
               <ul className="mt-3 space-y-1.5">
-                {r.points.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-[13px] leading-snug text-slate-600">
+                {(["a", "b", "c"] as const).map((pt) => (
+                  <li key={pt} className="flex items-start gap-2 text-[13px] leading-snug text-slate-600">
                     <Check className="mt-0.5 size-3.5 shrink-0 text-orange-500" aria-hidden="true" />
-                    <span>{p}</span>
+                    <span>{t(`rollout.${p}.${pt}`)}</span>
                   </li>
                 ))}
               </ul>
@@ -186,7 +201,7 @@ export function ProductTail({
         </ol>
       </Block>
 
-      <Block id="works-with" tag="One workspace" title="Works with the rest of Synax" lead="Every product shares the same people, records and approvals.">
+      <Block id="works-with" tag={t("worksWith.tag")} title={t("worksWith.title")} lead={t("worksWith.lead")}>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((r) => (
             <li key={r.href}>
@@ -195,7 +210,7 @@ export function ProductTail({
                 className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-surface p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
               >
                 <span className="flex items-center justify-between gap-2 text-sm font-bold text-slate-900">
-                  {r.label}
+                  {r.key ? tpr(`${r.key}.name`) : r.label}
                   <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true" />
                 </span>
                 <span className="mt-1 text-xs leading-snug text-slate-600">{r.note}</span>
@@ -205,16 +220,16 @@ export function ProductTail({
         </ul>
       </Block>
 
-      <Block id="faq" tag="Questions" title={`About ${route.name}`} lead="Answers from the portal, and a few written for this product." tone="white">
-        <Faq items={faq} />
+      <Block id="faq" tag={t("faq.tag")} title={t("faq.title", { name })} lead={t("faq.lead")} tone="white">
+        <Faq items={items} />
       </Block>
 
       <CtaBand
         tone="light"
         tourTitle={`${route.name} Tour`}
         product={route.name}
-        title={`See ${route.name} working with your data`}
-        text="A short walkthrough with a Senwell Group systems engineer, focused on the modules that matter to you."
+        title={t("cta.title", { name })}
+        text={t("cta.text")}
       />
     </>
   );

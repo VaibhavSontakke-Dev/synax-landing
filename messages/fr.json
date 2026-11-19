@@ -1,0 +1,2870 @@
+{
+  "Common": {
+    "skipToContent": "Aller au contenu"
+  },
+  "Language": {
+    "label": "Langue",
+    "switchTo": "Changer de langue"
+  },
+  "Nav": {
+    "homeAria": "Synax by Senwell — accueil",
+    "overview": "Aperçu",
+    "products": "Produits ({count})",
+    "solutions": "Solutions",
+    "whySynax": "Pourquoi Synax",
+    "security": "Sécurité et confiance",
+    "scheduleDemo": "Planifier une démo",
+    "toggleMenu": "Afficher ou masquer le menu mobile",
+    "coreProducts": "Produits métier principaux",
+    "addOnProducts": "Produits autonomes et modules complémentaires",
+    "compareProducts": "Comparer tous les produits",
+    "seeSolutions": "Voir toutes les solutions"
+  },
+  "Buttons": {
+    "scheduleDemo": "Planifier une démo",
+    "watchOverview": "Voir la présentation"
+  },
+  "Theme": {
+    "toLight": "Passer au thème clair",
+    "toDark": "Passer au thème sombre",
+    "light": "Thème clair",
+    "dark": "Thème sombre"
+  },
+  "Shared": {
+    "breadcrumb": "Fil d'Ariane",
+    "getStarted": "Commencer",
+    "onThisPage": "Sur cette page",
+    "opensNewTab": "(s'ouvre dans un nouvel onglet)"
+  },
+  "Footer": {
+    "intro": "Synax est une suite d'entreprise unifiée de <link>Senwell Group</link> : fabrication, gestion des travaux et des livraisons, RH, recrutement, suivi de l'atelier et IA, au sein d'une même plateforme connectée et prête pour les audits.",
+    "complianceHeading": "Alignement réglementaire",
+    "compliance": {
+      "as9100d": "Contrôles qualité AS9100D",
+      "gst": "Facture électronique GST et e-way bill",
+      "tally": "Compatible avec Tally",
+      "dpdp": "Politique de confidentialité conforme au DPDP Act 2023"
+    },
+    "productsAria": "Produits Synax",
+    "products": "Produits",
+    "platform": "Plateforme",
+    "solutions": "Solutions",
+    "allSolutions": "Toutes les solutions",
+    "companyAria": "Entreprise",
+    "aboutSenwell": "À propos de Senwell",
+    "contactSales": "Contacter les ventes",
+    "copyright": "© {year} Synax by Senwell Group. Tous droits réservés.",
+    "legalAria": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions générales",
+    "security": "Sécurité",
+    "backToTop": "Haut de page"
+  },
+  "DemoForm": {
+    "eyebrow": "Consultation d'architecture Senwell Group",
+    "title": "Demander une démo dirigeants",
+    "lead": "Échangez avec un ingénieur en systèmes industriels pour évaluer les flux de travail de votre organisation.",
+    "fullName": "Nom complet",
+    "fullNamePlaceholder": "p. ex. Marc Vidal",
+    "email": "E-mail professionnel",
+    "emailPlaceholder": "m.vidal@entreprise.fr",
+    "company": "Nom de l'entreprise",
+    "companyPlaceholder": "Usinage Aéro SA",
+    "phone": "Numéro de téléphone",
+    "phonePlaceholder": "+33 1 23 45 67 89",
+    "product": "Produit principal qui vous intéresse",
+    "scale": "Taille du site / des effectifs",
+    "sizes": {
+      "s1": "1 à 50 employés (1 site)",
+      "s2": "50 à 250 employés (1 à 3 sites)",
+      "s3": "250 à 1 000 employés (multi-sites)",
+      "s4": "Plus de 1 000 (grande entreprise)"
+    },
+    "message": "Besoins opérationnels et calendrier",
+    "messagePlaceholder": "Notes sur votre ERP ou vos tableurs actuels, vos objectifs d'audit, vos machines ou vos équipes…",
+    "consent": "J'accepte que Senwell Group me contacte au sujet de cette démo et traite les informations saisies, comme décrit dans la <link>politique de confidentialité</link>. Je peux retirer mon consentement à tout moment. *",
+    "sending": "Envoi en cours…",
+    "submit": "Demander la démo d'architecture",
+    "note": "Nous utilisons vos informations uniquement pour organiser votre démo.",
+    "closeModal": "Fermer la fenêtre",
+    "successTitle": "Demande reçue",
+    "successBody": "Merci, <b>{name}</b>. Notre équipe vous contactera à l'adresse <b>{email}</b> pour organiser une démonstration adaptée à <b>{product}</b>.",
+    "returnToPlatform": "Retour à la plateforme",
+    "options": {
+      "suite": "Suite d'entreprise Synax complète et unifiée",
+      "aerospace": "Aéronautique et défense",
+      "securityReview": "Revue sécurité et confiance"
+    },
+    "errors": {
+      "generic": "Une erreur s'est produite. Veuillez réessayer.",
+      "invalid_request": "Requête invalide.",
+      "too_many_requests": "Trop de requêtes. Veuillez réessayer dans quelques minutes.",
+      "name_company": "Veuillez saisir votre nom et votre entreprise.",
+      "invalid_email": "Veuillez saisir une adresse e-mail valide.",
+      "consent_required": "Veuillez cocher la case pour accepter la politique de confidentialité.",
+      "delivery_failed": "Nous n'avons pas pu envoyer votre demande pour le moment. Veuillez réessayer dans quelques instants."
+    }
+  },
+  "TourModal": {
+    "subtitle": "Visite guidée de la plateforme",
+    "close": "Fermer la fenêtre de la visite vidéo",
+    "pending": "La visite enregistrée est en préparation. Réservez une présentation en direct et nous vous montrerons les modules, les flux de travail et les rapports adaptés à votre configuration.",
+    "bookLive": "Réserver une présentation en direct",
+    "closeButton": "Fermer"
+  },
+  "Products": {
+    "precision": {
+      "name": "ERP de fabrication",
+      "menu": "Planification, achats, atelier, qualité et calcul des coûts"
+    },
+    "it": {
+      "name": "Gestion des travaux et des livraisons",
+      "menu": "Suivi du travail, projets, feuilles de temps et facturation"
+    },
+    "hrms": {
+      "name": "HRMS",
+      "menu": "Cycle de vie des employés, présence, paie et performance"
+    },
+    "staffing": {
+      "name": "Recrutement et gestion des ressources",
+      "menu": "Besoins clients, candidats, entretiens et déploiements"
+    },
+    "shopfloor": {
+      "name": "Atelier et suivi des machines",
+      "menu": "Ordonnancement, fiches de travail, machines en direct et arrêts"
+    },
+    "ai": {
+      "name": "IA et Business Intelligence",
+      "menu": "Assistance IA, agents, analyses et rapports"
+    }
+  },
+  "Hero": {
+    "headline": "Une plateforme pour <em>chaque opération</em>",
+    "productsAria": "Produits Synax",
+    "dashboardAlt": "Tableau de bord de commande Synax Enterprise ERP",
+    "dashboardAltDark": "Tableau de bord de commande Synax Enterprise ERP en thème sombre",
+    "ticks": {
+      "ai": "L'IA propose, vous validez",
+      "machines": "Suivi des machines en direct (OEM ou FOCAS)",
+      "tally": "Tally et GST intégrés"
+    }
+  },
+  "Home": {
+    "ai": {
+      "tag": "Synax AI — toujours actif",
+      "title": "Votre entreprise, des réponses <em>instantanées</em>",
+      "lead": "Synax AI est un assistant intelligent intégré qui comprend toute votre entreprise — commandes, dossiers RH, transactions en direct, stocks, état de conformité, et plus encore. Il suffit de demander.",
+      "cards": {
+        "live": {
+          "title": "Requêtes sur les transactions en direct",
+          "desc": "Demandez « Quelles sont les commandes d'achat ouvertes aujourd'hui ? » ou « Montre-moi toutes les factures en attente d'approbation » et obtenez des réponses immédiates à partir des données ERP en direct."
+        },
+        "hrms": {
+          "title": "RH et intelligence des effectifs",
+          "desc": "Interrogez en langage courant les présences, l'état de la paie, les soldes de congés, les certifications de compétences et les pointages biométriques."
+        },
+        "floor": {
+          "title": "Données d'atelier et de production",
+          "desc": "Obtenez en temps réel le TRS, l'état des fiches suiveuses, la durée de vie restante des outils, les taux de rebut et la file d'attente des machines — depuis une seule requête."
+        },
+        "compliance": {
+          "title": "Conformité et préparation aux audits",
+          "desc": "Affichez à la demande l'état du registre FAIR, les certificats de conformité, les exceptions qualité en atelier et les alertes d'expiration d'étalonnage. Les agents proposent ; un approbateur décide."
+        }
+      },
+      "connected": "Connecté aux données de votre entreprise",
+      "user1": "Quelles sont les transactions ouvertes aujourd'hui ?",
+      "reply1": "Voici un résumé en direct des transactions ouvertes aujourd'hui :",
+      "tiles": {
+        "poLabel": "Commandes d'achat",
+        "poValue": "{count} ouvertes",
+        "invLabel": "Factures de vente",
+        "invValue": "{count} en attente",
+        "jobLabel": "Ordres de fabrication",
+        "jobValue": "{count} actifs",
+        "grnLabel": "Réceptions en attente",
+        "grnValue": "{count} à traiter"
+      },
+      "user2": "Affiche les présences de l'équipe A aujourd'hui",
+      "reply2": "<g>Équipe A — 428 pointés</g>, 12 en pause autorisée, 3 en congé approuvé. La synchronisation de la paie est à jour. Aucune alerte de dépassement.",
+      "inputPlaceholder": "Posez une question sur les données de votre entreprise…",
+      "send": "Envoyer le message",
+      "note": "Synax AI est inclus dans chaque offre entreprise — sans configuration supplémentaire, sans intégrations tierces.",
+      "explore": "Découvrir l'IA et la Business Intelligence"
+    },
+    "clients": {
+      "tag": "Fonctionne avec Synax",
+      "title": "Senwell Group et entreprises de l'écosystème",
+      "lead": "Les entreprises de l'écosystème Senwell font tourner leurs opérations sur Synax."
+    },
+    "security": {
+      "tag": "Sécurité et contrôle",
+      "title": "Prêt pour les audits par conception, pas par rapport.",
+      "lead": "Chaque entreprise travaille dans son propre espace, et chaque modification importante laisse une trace.",
+      "more": "En savoir plus sur la sécurité et la confiance"
+    },
+    "heritage": {
+      "tag": "Un savoir-faire industriel",
+      "title": "Un héritage industriel. Un logiciel conçu pour lui.",
+      "body": "Synax n'a pas été conçu dans un incubateur de logiciels généraliste. Il est né de l'héritage de plusieurs décennies de <b>Senwell Group</b> dans la fabrication aéronautique de précision, l'exportation industrielle mondiale (Senwell Exports, Stacwell Rubber, Stacem France et Maroc) et les opérations d'ingénierie à grand volume."
+    },
+    "cta": {
+      "tag": "Logiciels d'entreprise Senwell Group",
+      "title": "Voyez votre propre atelier dans Synax.",
+      "lead": "Une présentation de 30 minutes avec vos pièces, vos bons de livraison (challans) et vos machines."
+    }
+  },
+  "Carousel": {
+    "tag": "Plateformes prêtes pour le marché",
+    "title": "Six produits connectés pour la fabrication et les opérations informatiques",
+    "lead": "Deux ERP principaux forment le socle de l'offre ; HRMS, recrutement, suivi de l'atelier et IA sont disponibles en solutions autonomes ou en fonctionnalités intégrées, selon la formule.",
+    "jumpAria": "Aller à un produit",
+    "position": "{current} sur {total}",
+    "progressAria": "Position dans le carrousel de produits",
+    "prev": "Produits précédents",
+    "next": "Produits suivants",
+    "region": "Offres de produits",
+    "slide": "{current} sur {total} : {title}",
+    "explore": "Découvrir",
+    "exploreAria": "Découvrir {title}",
+    "items": {
+      "precision": {
+        "short": "ERP de fabrication",
+        "tag": "ERP principal",
+        "tagline": "Matière client, fiches de route et maîtrise de la machine à la facture.",
+        "statLabel": "Flux de production",
+        "statValue": "De la machine à la facture",
+        "b1": "Commandes, bons de livraison (challans) et plages d'identifiants matière",
+        "b2": "Soldes matière, consommation, retours et rebuts",
+        "b3": "Comptages machine et arrêts sur les fiches de route",
+        "b4": "Contrôle, certificat de conformité, expédition et Tally"
+      },
+      "hrms": {
+        "short": "HRMS",
+        "tag": "Solution autonome ou intégrée",
+        "tagline": "Gestion des employés et administration des effectifs.",
+        "statLabel": "Durée du traitement mensuel de la paie",
+        "statValue": "< 60 s",
+        "b1": "Cycle de vie des employés, recrutement et départs",
+        "b2": "Présence, congés, paie et conformité",
+        "b3": "Gestion quotidienne du travail (DWM)",
+        "b4": "Gestion de la performance"
+      },
+      "shopfloor": {
+        "short": "Atelier",
+        "tag": "Solution produit",
+        "tagline": "Exécution de la production et gestion des opérations machines.",
+        "statLabel": "Axe du produit",
+        "statValue": "Exécution machine",
+        "b1": "Ordonnancement des machines et diagrammes de charge",
+        "b2": "Fiches de travail opérateur et suivi des machines en direct",
+        "b3": "Visibilité sur les arrêts et les alarmes",
+        "b4": "Suivi de production et taux d'utilisation des machines"
+      },
+      "it": {
+        "short": "Travaux et livraisons",
+        "tag": "Produit principal",
+        "tagline": "Pilotez la prestation de services de la tâche à la facture dans un seul espace de travail.",
+        "statLabel": "Cycle d'activité",
+        "statValue": "Du travail à la facturation",
+        "b1": "Suivi du travail avec activité quotidienne et réunions",
+        "b2": "Projets avec besoins clients et cahiers des charges (SOW)",
+        "b3": "Feuilles de temps, journaux de travail et coûts de développement",
+        "b4": "Facturation des projets et rentabilité"
+      },
+      "staffing": {
+        "short": "Recrutement",
+        "tag": "Solution produit",
+        "tagline": "Recherchez, déployez et gérez les besoins en personnel de vos clients.",
+        "statLabel": "Axe du produit",
+        "statValue": "Déploiement des talents",
+        "b1": "Besoins clients et gestion des candidats",
+        "b2": "Entretiens, offres et intégration",
+        "b3": "Déploiements et performance des ressources",
+        "b4": "Remplacements et validations"
+      },
+      "ai": {
+        "short": "IA et BI",
+        "tag": "Solution produit",
+        "tagline": "Assistance intelligente et analyses pour les opérations de l'entreprise.",
+        "statLabel": "Axe du produit",
+        "statValue": "Analyses et assistance",
+        "b1": "Assistance par IA et agents Synax",
+        "b2": "Analyses opérationnelles et tableaux de bord métier",
+        "b3": "Rapports sur l'ensemble des processus métier",
+        "b4": "Indicateurs de performance pour des décisions éclairées"
+      }
+    }
+  },
+  "Purpose": {
+    "tag": "La raison d'être de l'écosystème",
+    "title": "La vision plus large derrière l'écosystème Synax",
+    "lead": "Les ERP traditionnels ont été conçus pour les services financiers, obligeant les ingénieurs d'atelier, les responsables qualité et les managers d'équipes à se débrouiller avec des tableurs dispersés. Synax existe pour unifier l'exécution de haute précision, le capital humain et la conformité réglementaire en un seul continuum cohérent.",
+    "from": "Tableurs dispersés",
+    "to": "Un continuum cohérent",
+    "hub": "Un<br></br>continuum",
+    "readMore": "Lire la suite",
+    "showLess": "Réduire",
+    "pillars": {
+      "industry": {
+        "tag": "Précision et conformité",
+        "title": "Des solutions centrées sur l'industrie",
+        "subtitle": "Des flux de travail métier plutôt que des contournements d'ERP génériques",
+        "body": "Nous rejetons les logiciels universels. Synax est conçu autour du fonctionnement réel d'un atelier d'usinage : matière fournie par le client suivie par challan et identifiant matière, fiches de route confirmées depuis la machine, contrôles qualité AS9100D aux points de contrôle, et dossiers de première inspection d'article dans le même flux.",
+        "c1": "Contrôles qualité AS9100D",
+        "c2": "Registre FAIR et certificat de conformité"
+      },
+      "operations": {
+        "tag": "Vitesse opérationnelle",
+        "title": "Des opérations plus intelligentes",
+        "subtitle": "Une source de vérité unique, de la réception de la matière à l'expédition au client",
+        "body": "Synax relie les bureaux et l'atelier. Les comptages machine réels, les lots de matière et les enregistrements étape par étape alimentent une seule vue : la direction voit le TRS par ordre et l'état de l'atelier sans attendre le rapprochement de fin de mois.",
+        "c1": "Généalogie des lots de matière",
+        "c2": "Ordonnancement des machines"
+      },
+      "workforce": {
+        "tag": "Intelligence du capital humain",
+        "title": "Une meilleure gestion des effectifs",
+        "subtitle": "Réunir le personnel permanent de l'atelier et les talents techniques externes",
+        "body": "Une livraison de haute précision exige les bonnes personnes à chaque poste. Synax réunit dans un seul espace les pointages biométriques, la gestion des autorisations de pause en atelier et la paie avec validations ; ses outils de recrutement montrent qui est disponible et où chacun est déployé.",
+        "c1": "Synchronisation des appareils biométriques",
+        "c2": "Recrutement et déploiements"
+      },
+      "technology": {
+        "tag": "Architecture technique moderne",
+        "title": "Une transformation portée par la technologie",
+        "subtitle": "Échelle cloud-native, connectivité machine et sécurité prête pour les audits",
+        "body": "Remplacer les architectures sur site anciennes et lourdes par une ingénierie moderne et cloud-native. Synax connecte les machines CNC via la connexion du constructeur ou FOCAS ouvert, fait travailler chaque entreprise dans son propre espace isolé, vérifie les écritures côté serveur et conserve un historique d'audit des modifications importantes.",
+        "c1": "Données machine (OEM / FOCAS)",
+        "c2": "Historique d'audit et espaces isolés"
+      }
+    },
+    "banner": {
+      "tag": "La rigueur d'ingénierie de Senwell Group",
+      "title": "Un continuum unifié. Aucun outil déconnecté.",
+      "lead": "Chaque niveau de Synax travaille en synchronisation : de l'embauche et du pointage biométrique à l'usinage et à la libération contrôlée AS9100D.",
+      "cta": "Découvrez pourquoi les équipes choisissent Synax"
+    }
+  },
+  "Usp": {
+    "tag": "Ce qui distingue Synax (USP)",
+    "title": "Intégrés, pas ajoutés : l’<b>IA</b>, les machines en direct, <b>Tally</b> et la GST",
+    "lead": "La plupart des usines assemblent ces éléments à partir d'outils distincts. Dans Synax, ils partagent un seul enregistrement, de la machine à la facture GST.",
+    "highlightsAria": "Points forts",
+    "highlights": {
+      "agents": "Les agents ne font que proposer",
+      "focas": "OEM ou FOCAS ouvert",
+      "irn": "IRN après validation",
+      "tally": "Compatible avec Tally",
+      "india": "Conçu en Inde",
+      "audit": "Piste d'audit sur chaque écriture"
+    },
+    "guaranteesAria": "Garanties",
+    "band": {
+      "title": "Un seul enregistrement, de la machine au grand livre",
+      "sub": "Avec une IA qui surveille chaque étape"
+    },
+    "flow": {
+      "machine": "Comptage machine",
+      "route": "Fiche de route",
+      "inspection": "Contrôle et COC",
+      "gst": "Facture GST · IRN",
+      "tally": "Écriture Tally"
+    },
+    "ai": {
+      "label": "Une IA qui agit",
+      "title": "Synax AI repère l'exception et propose la correction. Vous validez.",
+      "body": "Posez à Synax n'importe quelle question sur vos données ERP et laissez ses agents surveiller les problèmes qui vous coûtent de l'argent. Rien ne change tant qu'un approbateur n'a pas dit oui.",
+      "p1": "Rapprochement des challans et relances des retards",
+      "p2": "Préparation des expéditions et suivi des créances",
+      "p3": "Conformité qualité et surveillance de l'atelier",
+      "p4": "Validation à double contrôle avec historique complet des événements",
+      "cta": "Découvrir l'IA et la Business Intelligence",
+      "alt": "Écran d'accueil de Synax avec la carte Aperçu et Synax AI",
+      "altDark": "Écran d'accueil de Synax avec la carte Aperçu et Synax AI, en thème sombre",
+      "ask": "Posez une question sur vos données ERP",
+      "approvedTitle": "Approuvé par vous",
+      "approvedBody": "2 relances rédigées. Enregistré dans l'historique des événements.",
+      "proposesTitle": "Synax AI propose",
+      "proposesBody": "2 challans ont dépassé leur date de retour. Rédiger des relances pour le client ?",
+      "approve": "Approuver",
+      "agentsOnly": "Les agents ne font que proposer."
+    },
+    "machines": {
+      "label": "Suivi des machines en direct",
+      "title": "La machine déclare le comptage.",
+      "body": "Connectez vos machines et laissez les vrais comptages de cycles, les alarmes et les arrêts piloter la confirmation de production, sans MES séparé ni intégrateur.",
+      "p1": "Connexion constructeur (OEM) ou FOCAS ouvert",
+      "p2": "Tableau des machines en direct avec alarmes et motifs d'arrêt",
+      "p3": "Les machines non connectables fonctionnent aussi : les opérateurs confirment les comptages",
+      "p4": "Les appareils biométriques synchronisent présences et validations d'heures supplémentaires",
+      "cta": "Découvrir l'atelier et le suivi des machines",
+      "alt": "Tableau des machines en direct avec six machines, leurs comptages de cycles et une alarme sur M-03 (illustration)",
+      "altDark": "Tableau des machines en direct avec six machines, leurs comptages de cycles et une alarme sur M-03, en thème sombre (illustration)",
+      "illustration": "Illustration",
+      "focas": "FOCAS connecté",
+      "cycles": "Comptages de cycles en direct",
+      "board": "Tableau des machines",
+      "live": "En direct",
+      "running": "En marche",
+      "alarm": "M-03 Alarme · durée de vie de l'outil"
+    },
+    "billing": {
+      "label": "Tally et GST",
+      "title": "Les factures GST portent leur IRN. Votre comptabilité reste dans Tally.",
+      "body": "Gérez achats, stocks, production et expéditions dans Synax. Les factures GST, l'IRN et les e-way bills viennent du même flux, et les écritures partent vers Tally : votre comptable ne change rien.",
+      "p1": "Facture GST, IRN et e-way bill dans un seul flux",
+      "p2": "IRN via ClearTax ou Masters India, après validation",
+      "p3": "Dossier de données ITC-04 pour la sous-traitance",
+      "p4": "Passerelle Tally pour les écritures",
+      "cta": "Découvrir l'ERP de fabrication",
+      "plug": "ClearTax ou Masters India connecté",
+      "voucher": "Écriture envoyée à Tally",
+      "accountant": "Votre comptable ne change rien",
+      "invoice": "Facture fiscale",
+      "sample": "Exemple",
+      "billedTo": "Facturé à <b>Client exemple</b>",
+      "gst": "GST",
+      "total": "Total",
+      "irn": "IRN",
+      "irnOn": "Générée à la validation",
+      "irnOff": "Générée une fois la facture validée",
+      "afterAria": "Ce qui se passe après la validation",
+      "chain": {
+        "approved": {
+          "title": "Facture validée",
+          "note": "Par un approbateur ayant le bon rôle"
+        },
+        "irn": {
+          "title": "IRN générée",
+          "note": "Via votre fournisseur GST suvidha"
+        },
+        "eway": {
+          "title": "E-way bill",
+          "note": "Dans le même flux"
+        },
+        "tally": {
+          "title": "Écriture vers Tally",
+          "note": "Votre comptable ne change rien"
+        }
+      },
+      "lines": {
+        "housing": "Boîtier usiné",
+        "shaft": "Arbre rectifié",
+        "bracket": "Support percé",
+        "qty": "{count} pcs"
+      }
+    }
+  },
+  "Benchmark": {
+    "cpu": {
+      "title": "Suivi des machines en direct (IoT)",
+      "synax": "Connexion constructeur (OEM) ou FOCAS ouvert, sans MES séparé",
+      "legacy": "Nécessite un MES séparé ou un intégrateur",
+      "point": "Saisie manuelle sur papier ou tableau blanc"
+    },
+    "filecheck": {
+      "title": "Registre FAIR et certificat de conformité",
+      "synax": "Dans le même flux que le contrôle et l'expédition",
+      "legacy": "Saisie manuelle des documents et reconstitution",
+      "point": "Tableurs Excel fragiles"
+    },
+    "clock": {
+      "title": "Présence biométrique et autorisations de pause par équipe",
+      "synax": "Les pointages et validations d'heures supplémentaires se synchronisent depuis les appareils biométriques",
+      "legacy": "Module RH séparé avec des retards de synchronisation",
+      "point": "Cartes de pointage isolées / pointage par un collègue"
+    },
+    "sparkles": {
+      "title": "Un assistant IA qui agit",
+      "synax": "Les agents proposent, un approbateur décide",
+      "legacy": "Des rapports seulement ; rien ne propose la correction",
+      "point": "Relances des challans et des paiements par e-mail"
+    },
+    "receipt": {
+      "title": "Tally et GST (facture électronique, e-way bill)",
+      "synax": "Passerelle Tally, IRN et e-way bill dans un seul flux",
+      "legacy": "Module GST séparé ou export manuel",
+      "point": "Ressaisie des factures dans Tally"
+    }
+  },
+  "Comparison": {
+    "tag": "Comparatif du marché",
+    "title": "Pourquoi les leaders de l'industrie passent à Synax",
+    "lead": "Un logiciel de fabrication moderne et dédié, soutenu par une équipe technologique de plus de 100 professionnels de l'informatique. Découvrez comment il se compare aux monolithes historiques et aux solutions ponctuelles disjointes.",
+    "timelineTitle": "Calendrier de mise en œuvre",
+    "timelineNote": "Échelle indicative, basée sur des déploiements types",
+    "timeline": {
+      "synax": {
+        "name": "Suite unifiée Synax",
+        "value": "Mise en service module par module, selon un plan sur mesure"
+      },
+      "legacy": {
+        "name": "Suites ERP historiques",
+        "value": "Un long projet mené par des consultants"
+      },
+      "point": {
+        "name": "Outils ponctuels déconnectés",
+        "value": "Rafistolages sans fin et ruptures d'API"
+      }
+    },
+    "synaxSr": "Synax : ",
+    "ctaTitle": "Une technologie soutenue par plus de 100 professionnels de l'informatique",
+    "ctaCopy": "Plus qu'un éditeur de logiciels : une équipe interne expérimentée qui comprend la technologie et le métier, répond à vos besoins techniques et vous accompagne dans votre croissance, bien au-delà de la mise en service.",
+    "explore": "Découvrir les produits",
+    "footnote": "Ce comparatif reflète des déploiements types et l'évaluation propre de Synax ; les résultats varient selon le périmètre et la qualité des données."
+  },
+  "Rollout": {
+    "tag": "Plan de déploiement",
+    "title": "Un parcours par phases, de la découverte à l'optimisation",
+    "lead": "Chaque déploiement suit les mêmes quatre phases. La durée de chacune dépend de votre organisation ; le calendrier est donc planifié avec vous.",
+    "timing": "Phase {n}",
+    "goLive": "Mise en service",
+    "ongoing": "En continu",
+    "phases": {
+      "p1": {
+        "title": "Découverte et planification",
+        "copy": "Passez en revue les services, les processus, les systèmes actuels, les données et les intégrations, puis convenez du périmètre et d'un plan de déploiement pour votre organisation."
+      },
+      "p2": {
+        "title": "Configuration et préparation des données",
+        "copy": "Configurez les modules, les rôles et les validations, puis nettoyez, importez et contrôlez les données des employés, clients, fournisseurs, projets et stocks."
+      },
+      "p3": {
+        "title": "Lancement pilote",
+        "copy": "Démarrez d'abord avec une équipe, un service ou un site, formez ses utilisateurs et résolvez les problèmes avant le déploiement élargi."
+      },
+      "p4": {
+        "title": "Déploiement complet et optimisation",
+        "copy": "Étendez à d'autres équipes, modules et sites par vagues planifiées, suivez l'adoption et affinez les flux de travail une fois stabilisés."
+      }
+    },
+    "note": "Les calendriers de mise en œuvre sont adaptés à la taille, à la complexité opérationnelle et aux besoins de votre organisation. Un plan de déploiement détaillé sera établi pendant la phase de découverte.",
+    "checklistTitle": "Avant l'intégration",
+    "steps": "{count} étapes",
+    "checklist": {
+      "c1": "Désignez un responsable du déploiement, un sponsor de la direction et des champions par service",
+      "c2": "Préparez et contrôlez les données de base des employés, clients, fournisseurs et projets",
+      "c3": "Documentez les procédures actuelles de validation, de présence et de mise à jour des tâches",
+      "c4": "Convenez des indicateurs de réussite, tels que les délais, le respect des SLA et le débit",
+      "c5": "Planifiez la formation des utilisateurs et une période d'assistance après chaque mise en service"
+    },
+    "rolesTitle": "Responsabilités du déploiement",
+    "roles": "{count} rôles",
+    "role": {
+      "r1": {
+        "title": "Responsable du déploiement",
+        "desc": "Pilote le plan de déploiement, ses jalons et les escalades."
+      },
+      "r2": {
+        "title": "Champion de service",
+        "desc": "Représente les processus de l'équipe et conduit sa formation et son adoption."
+      },
+      "r3": {
+        "title": "Administrateur système",
+        "desc": "Gère les paramètres des modules, les accès utilisateurs et les contrôles de données."
+      },
+      "r4": {
+        "title": "Sponsor de la direction",
+        "desc": "Fixe les priorités, valide le périmètre et favorise l'adoption dans toute l'organisation."
+      }
+    }
+  },
+  "SolutionGroups": {
+    "industry": {
+      "label": "Les secteurs que nous servons",
+      "lead": "Les marchés que nos clients approvisionnent.",
+      "short": "Secteur"
+    },
+    "process": {
+      "label": "Votre façon de fabriquer",
+      "lead": "La façon dont le travail est fait dans votre atelier.",
+      "short": "Fabrication"
+    },
+    "need": {
+      "label": "Besoins métier",
+      "lead": "Le problème auquel vous faites face, dans n'importe quel secteur.",
+      "short": "Besoin métier"
+    }
+  },
+  "Solutions": {
+    "aerospace": {
+      "title": "Aéronautique et défense",
+      "short": "Contrôles qualité AS9100D",
+      "tag": "Contrôles QMS AS9100D",
+      "description": "Conçu pour les fournisseurs de l'aéronautique et de la défense qui usinent de la matière fournie par le client.",
+      "challenge": "Des preuves d'audit rassemblées à la main après l'expédition de la pièce, des rapports de première pièce et des certificats conservés dans des fichiers séparés, et une matière appartenant au client difficile à rattacher à une pièce livrée.",
+      "solution": "Des contrôles QMS AS9100D rattachés aux points critiques du flux de travail, un registre FAIR et un certificat de conformité dans le même flux, la généalogie de la matière de l'entrée à l'expédition, et un accès par rôle aux plans et aux enregistrements.",
+      "c1": "Registre FAIR et dossiers de première pièce",
+      "c2": "Certificat de conformité avec le dossier d'usinage",
+      "c3": "Audit d'entrée matière et traçabilité de la généalogie",
+      "c4": "Points de contrôle qualité NCR / CAPA",
+      "chip": "Aéronautique"
+    },
+    "energy": {
+      "title": "Pétrole, gaz et énergie",
+      "short": "Pièces traçables pour les usages critiques",
+      "tag": "Traçabilité et enregistrements qualité",
+      "description": "Pour les fournisseurs de pièces usinées et moulées destinées aux clients du pétrole, du gaz, de l'électricité et de l'énergie, où chaque pièce doit pouvoir être reliée à sa matière et à son contrôle.",
+      "challenge": "Les lots de matière, les résultats de contrôle et les certificats sont séparés de l'ordre de fabrication ; prouver l'origine d'une pièce livrée oblige à fouiller des fichiers après l'expédition.",
+      "solution": "Matière client suivie par challan et identifiant matière, contrôles à la réception et final avec validations d'étapes, NCR et CAPA en cas d'échec d'un contrôle, et certificat de conformité émis à partir du même enregistrement.",
+      "c1": "Généalogie de la matière, de la réception à l'expédition",
+      "c2": "Contrôles à la réception, par étape et final",
+      "c3": "Points de contrôle qualité NCR / CAPA",
+      "c4": "Certificat de conformité avec l'enregistrement",
+      "chip": "Pétrole et gaz"
+    },
+    "machinery": {
+      "title": "Machines et équipements industriels",
+      "short": "Nomenclatures, gammes et charge machine",
+      "footer": "Machines industrielles",
+      "tag": "Équipements d'ingénierie",
+      "description": "Pour les fabricants de pompes, vannes, compresseurs, réducteurs et autres équipements, et pour les fournisseurs qui usinent leurs pièces.",
+      "challenge": "Les nomenclatures, les gammes et la charge machine sont planifiées dans des tableurs, l'état de la production arrive tard au bureau, et les stocks, la production et les expéditions sont ressaisis dans la comptabilité.",
+      "solution": "Fiches articles et nomenclatures, gammes d'opérations et fiches de route lancées à partir d'elles, ordonnancement des machines avec comptages et arrêts en direct, puis emballage, facture GST et passerelle Tally dans un seul flux.",
+      "c1": "Fiche article, nomenclature et gamme d'opérations",
+      "c2": "Ordonnancement des machines et diagrammes de charge",
+      "c3": "Tableau des machines en direct, alarmes et arrêts",
+      "c4": "Expédition GST et passerelle d'écritures Tally",
+      "chip": "Machines"
+    },
+    "services": {
+      "title": "Services informatiques et conseil",
+      "short": "Projets, feuilles de temps et facturation",
+      "tag": "Prestation de services",
+      "description": "Pour les sociétés de services informatiques et les cabinets de conseil technique qui livrent des projets et placent des personnes chez des clients.",
+      "challenge": "Les heures, les journaux de travail et les coûts ne sont pas rattachés au projet auquel ils appartiennent, le temps non facturable n'apparaît qu'en fin de mois, et la communication avec les clients se fait hors du système de référence.",
+      "solution": "Le Work Tracker et les projets, les feuilles de temps et les journaux de travail rattachés à chaque projet, la facturation des projets avec une vue de la rentabilité, ainsi que les besoins clients et les déploiements dans le même espace de travail.",
+      "c1": "Work Tracker et tableaux de bord de projets",
+      "c2": "Feuilles de temps, journaux de travail et coûts de développement",
+      "c3": "Suivi de facturation des projets et planificateur de budget",
+      "c4": "Tickets d'assistance et collaboration d'équipe",
+      "chip": "Services IT"
+    },
+    "precision": {
+      "title": "Usinage CNC de précision et sous-traitance",
+      "short": "De la matière client à la facture",
+      "footer": "Usinage CNC et sous-traitance",
+      "tag": "Précision et sous-traitance",
+      "description": "Suivez la matière fournie par le client par challan, ligne de commande et identifiant matière, puis menez chaque travail à travers les opérations de la fiche de route, les quantités confirmées par la machine, le contrôle et l'expédition.",
+      "challenge": "La matière appartenant au client, l'état de la production, les enregistrements de contrôle et les documents d'expédition se trouvent souvent dans des feuilles séparées, ce qui rend difficile le rapprochement entre consommation et quantités facturées.",
+      "solution": "Reliez les commandes clients et les challans matière aux fiches de route, aux comptages déclarés par la machine avec écarts validés par l'opérateur, aux validations d'étapes, aux dossiers COC et à l'expédition GST, avec écritures transmises à Tally.",
+      "c1": "Challans clients, lignes de commande et identifiants matière",
+      "c2": "Comptages machine, alarmes et validation des écarts par l'opérateur",
+      "c3": "Fiches de route, validations d'étapes et dossiers COC",
+      "c4": "Documents d'expédition GST et passerelle d'écritures Tally",
+      "chip": "Précision"
+    },
+    "rubber": {
+      "title": "Moulage du caoutchouc et des polymères",
+      "short": "Sous-traitance, lots et contrôle",
+      "footer": "Moulage du caoutchouc",
+      "tag": "Pièces moulées",
+      "description": "Pour les mouleurs de joints, de garnitures, de tuyaux et d'autres pièces en caoutchouc et en polymère qui travaillent sur commande client et, souvent, avec de la matière fournie par le client.",
+      "challenge": "Les commandes clients, la matière reçue sur challan, les lots de production, les rebuts et les expéditions sont tenus dans des registres séparés ; les soldes matière et les retours de sous-traitance sont donc reconstitués à la main à chaque période.",
+      "solution": "Le même flux de l'ERP de fabrication : commandes clients et challans, une fiche de route par travail, contrôles à la réception et final, rebuts enregistrés sur le travail, et dossiers de sous-traitance ITC-04 avec expédition GST.",
+      "c1": "Commandes clients, challans et identifiants matière",
+      "c2": "Fiches de route et suivi de production",
+      "c3": "Contrôle à la réception et final",
+      "c4": "Dossiers de sous-traitance ITC-04 et expédition GST",
+      "chip": "Caoutchouc"
+    },
+    "workforce": {
+      "title": "Effectifs d'usine et RH",
+      "short": "Présence, équipes et paie",
+      "tag": "Effectifs et HCM",
+      "description": "Conçu pour les usines industrielles à forte activité, les entreprises de fabrication multi-sites et les équipes d'ingénierie travaillant par équipes.",
+      "challenge": "Pointage par un collègue, autorisations de pause non suivies laissant des lignes d'usinage actives sans surveillance, et calculs de paie manuels sur plusieurs jours avec des erreurs de différentiel d'équipe et d'impôts.",
+      "solution": "Présence, congés et télétravail avec validation des heures supplémentaires, synchronisation des appareils biométriques, paie avec validations et indicateurs par service, dans le même espace de travail que les opérations.",
+      "c1": "Dossiers et cycle de vie des employés",
+      "c2": "Présence, congés et télétravail",
+      "c3": "Synchronisation biométrique des présences et validation des heures supplémentaires",
+      "c4": "Paie avec validations",
+      "chip": "Effectifs"
+    },
+    "staffing": {
+      "title": "Recrutement et talents sous contrat",
+      "short": "Du besoin au déploiement",
+      "tag": "Recrutement et gestion des ressources",
+      "description": "Conçu pour les agences de recrutement, les réseaux de conseil technique et les fournisseurs de main-d'œuvre temporaire qui gèrent les besoins clients et les déploiements.",
+      "challenge": "Des cycles de recrutement de plusieurs semaines, des consultants inactifs en temps non facturable, des frictions de communication entre plusieurs prestataires, et des feuilles de temps et factures contestées.",
+      "solution": "Besoins clients, candidats, entretiens, offres et intégration dans un seul flux, avec déploiements, remplacements et validations suivis pour chaque besoin.",
+      "c1": "Besoins clients et gestion des candidats",
+      "c2": "Entretiens, offres et intégration",
+      "c3": "Déploiements et performance des ressources",
+      "c4": "Remplacements et validations",
+      "chip": "Recrutement"
+    }
+  },
+  "Sectors": {
+    "tag": "Secteurs et défis",
+    "title": "Conçu pour votre secteur, vos processus et vos équipes",
+    "lead": "Choisissez le marché que vous servez, votre façon de fabriquer ou le problème à résoudre. Chacun présente le défi, la façon dont Synax le traite et les produits concernés.",
+    "viewBy": "Afficher les solutions par",
+    "poweredBy": "Propulsé par <b>{name}</b>",
+    "challengeTitle": "Le défi métier",
+    "solveTitle": "Comment Synax le résout",
+    "capabilities": "Fonctionnalités clés",
+    "worksWith": "Fonctionne avec",
+    "explore": "Découvrir cette solution",
+    "notListed": "Votre secteur n'est pas listé ?",
+    "seeAll": "Voir toutes les solutions en détail"
+  },
+  "Meta": {
+    "products": {
+      "title": "Produits | Synax by Senwell",
+      "description": "Six produits Synax : ERP de fabrication, gestion des travaux et des livraisons, HRMS, recrutement et gestion des ressources, atelier et suivi des machines, et IA et Business Intelligence."
+    },
+    "solutions": {
+      "title": "Solutions par secteur et besoin métier | Synax by Senwell",
+      "description": "Commencez par ce qui pèse le plus et ajoutez le reste le moment venu : par où commencer pour l'aéronautique et la défense, le pétrole, le gaz et l'énergie, les machines industrielles, les services informatiques, l'usinage de précision, le moulage du caoutchouc, les effectifs d'usine et le recrutement, jusqu'où va chaque solution, et l'annuaire complet des modules.",
+      "ogTitle": "Solutions par secteur et besoin métier | Synax",
+      "ogDescription": "Par où commencer pour chaque solution, ce qu'il faut ajouter ensuite, et l'annuaire des modules."
+    },
+    "why": {
+      "title": "Pourquoi Synax | Synax by Senwell",
+      "description": "Pourquoi les fabricants et les entreprises de services choisissent Synax : points de contrôle qualité intégrés au flux de travail, enregistrements prêts pour les audits, traçabilité de bout en bout, espaces de travail isolés par locataire et un modèle de données connecté.",
+      "ogTitle": "Pourquoi Synax",
+      "ogDescription": "Qualité intégrée, préparation aux audits, traçabilité et un modèle de données connecté."
+    },
+    "security": {
+      "title": "Sécurité et confiance | Synax by Senwell",
+      "description": "Des espaces de travail isolés par entreprise, des écritures vérifiées côté serveur, un historique d'audit de chaque modification importante, un accès par rôle avec connexion en deux étapes et des agents IA qui ne font que proposer tant qu'un approbateur n'a pas dit oui.",
+      "ogTitle": "Sécurité et confiance | Synax",
+      "ogDescription": "Prêt pour les audits par conception, pas par rapport."
+    }
+  },
+  "Areas": {
+    "sales": "Ventes",
+    "procurement-stores": "Achats et stocks",
+    "production": "Production",
+    "quality": "Qualité",
+    "dispatch-gst": "Expédition et GST",
+    "people": "Personnel",
+    "collaboration": "Collaboration",
+    "platform": "Plateforme"
+  },
+  "AreasShort": {
+    "procurement-stores": "Stocks",
+    "collaboration": "Collab."
+  },
+  "Modules": {
+    "gate-entry-grn-store-inward": "Entrée portail, réception (GRN) et entrée en stock",
+    "route-card-production-order": "Ordre de fabrication sur fiche de route",
+    "machine-monitoring-jobs": "Suivi des machines et ordres",
+    "receiving-final-inspection": "Contrôle à la réception et final",
+    "packing-customer-invoice": "Emballage et facture client",
+    "e-invoice-irn-e-way-bill": "Facture électronique (IRN) et e-way bill",
+    "tally-bridge": "Passerelle Tally",
+    "stage-buy-offs": "Validations d'étapes",
+    "fair-register": "Registre FAIR",
+    "certificate-of-conformance": "Certificat de conformité",
+    "delivery-challans": "Bons de livraison (challans)",
+    "part-master-bom-suite": "Fiches articles et nomenclatures",
+    "operation-master-routing": "Référentiel d'opérations et gammes",
+    "work-tracker": "Work Tracker",
+    "timesheets-work-logs": "Feuilles de temps et journaux de travail",
+    "project-billing-tracker": "Suivi de facturation des projets",
+    "customer-requirements": "Besoins clients",
+    "deployments-replacements": "Déploiements et remplacements",
+    "customer-po-amendments": "Commandes clients et avenants",
+    "employee-records": "Dossiers des employés",
+    "attendance-leave-wfh": "Présence, congés et télétravail",
+    "payroll-with-approvals": "Paie avec validations",
+    "department-kpis": "Indicateurs par service",
+    "candidate-management": "Gestion des candidats",
+    "interviews": "Entretiens",
+    "offers-onboarding": "Offres et intégration",
+    "rfq-quotations": "Demandes de prix et devis",
+    "monthly-sales-plan": "Plan de ventes mensuel",
+    "order-fulfilment": "Exécution des commandes",
+    "purchase-requisition": "Demande d'achat",
+    "vendor-po-receipt-tolerance": "Commandes fournisseurs et tolérance de réception",
+    "stock-ledger-goods-issue": "Grand livre des stocks et sorties de matière",
+    "chat-calls-meetings": "Messagerie, appels et réunions",
+    "meeting-calendar": "Calendrier des réunions",
+    "push-notifications": "Notifications push",
+    "support-help-desk": "Assistance (help desk)",
+    "microsoft-365-mail": "Messagerie Microsoft 365",
+    "customer-portal": "Portail client",
+    "integration-center": "Centre d'intégration",
+    "synax-ai-assistant": "Assistant Synax AI",
+    "project-list": "Liste des projets",
+    "job-scheduling-calendar": "Calendrier d'ordonnancement des travaux",
+    "bill-of-materials": "Nomenclature",
+    "machine-loading-plan-board": "Tableau de charge des machines",
+    "operator-panel": "Panneau opérateur",
+    "dwm": "DWM",
+    "fair-manager": "Gestionnaire FAIR",
+    "ncr-capa": "NCR / CAPA",
+    "calibration-dashboard": "Tableau de bord d'étalonnage",
+    "dispatch-release-controls": "Contrôles de libération des expéditions",
+    "genealogy-trace": "Traçabilité de la généalogie",
+    "execution-reports": "Rapports d'exécution",
+    "itc-04-data-pack": "Dossier de données ITC-04",
+    "recruitment-and-interviews": "Recrutement et entretiens",
+    "employee-self-service": "Libre-service employé",
+    "biometric-device-sync": "Synchronisation des appareils biométriques",
+    "break-pass-management": "Gestion des autorisations de pause",
+    "attendance-ot-approval": "Validation de la présence et des heures supplémentaires",
+    "performance-management": "Gestion de la performance",
+    "offboarding": "Départ",
+    "budget-planner": "Planificateur de budget"
+  },
+  "Workflow": {
+    "plan": {
+      "title": "Planifier",
+      "copy": "Saisissez les programmes de pièces, les échéances, les responsables et les dépendances pour que chaque équipe parte d'une source de vérité unique."
+    },
+    "execute": {
+      "title": "Exécuter",
+      "copy": "Pilotez les opérations, les validations et les plannings avec des contrôles à chaque étape et sans angle mort entre les équipes."
+    },
+    "inspect": {
+      "title": "Contrôler",
+      "copy": "Retenez la pièce au point de contrôle jusqu'à l'enregistrement du contrôle, avec les preuves AS9100D jointes lorsqu'elles s'appliquent."
+    },
+    "release": {
+      "title": "Libérer",
+      "copy": "Libérez sur la base d'un enregistrement complet, puis gardez la traçabilité liée pour l'audit à venir."
+    }
+  },
+  "Faq": {
+    "who-is-synax-built-for": {
+      "q": "Pour qui Synax est-il conçu ?",
+      "a": "Les fabricants de précision et de sous-traitance, en particulier les fournisseurs de l'aéronautique, de la défense et de l'automobile qui usinent de la matière fournie par le client. Le même espace de travail gère aussi les RH, la présence, la paie et les projets."
+    },
+    "do-we-have-to-move-our-accounts-out-of-tally": {
+      "q": "Devons-nous sortir notre comptabilité de Tally ?",
+      "a": "Non. Gérez les opérations dans Synax et gardez votre comptabilité dans Tally. La passerelle Tally transmet les écritures."
+    },
+    "which-machines-can-synax-connect-to": {
+      "q": "À quelles machines Synax peut-il se connecter ?",
+      "a": "Les machines CNC via la connexion du constructeur (OEM) ou FOCAS ouvert. Les machines qui ne peuvent pas se connecter fonctionnent aussi : les opérateurs confirment les comptages sur l'écran d'atelier."
+    },
+    "does-synax-generate-e-invoices-and-e-way-bills": {
+      "q": "Synax génère-t-il des factures électroniques et des e-way bills ?",
+      "a": "Oui. Connectez votre fournisseur GST suvidha (ClearTax ou Masters India) et l'IRN est générée lorsqu'une facture est validée."
+    },
+    "can-the-ai-change-our-data-on-its-own": {
+      "q": "L'IA peut-elle modifier nos données de sa propre initiative ?",
+      "a": "Non. Les agents Synax ne font que proposer. Chaque action attend un approbateur ayant le bon rôle, et la décision est enregistrée."
+    },
+    "is-synax-free-for-small-manufacturers": {
+      "q": "Synax est-il gratuit pour les petits fabricants ?",
+      "a": "Oui. Synax est gratuit pour les PME de moins de 50 employés, afin de soutenir les petites industries et l'initiative Atmanirbhar Bharat."
+    },
+    "how-long-does-onboarding-take": {
+      "q": "Combien de temps dure l'intégration ?",
+      "a": "Cela dépend de la taille de votre organisation, des modules par lesquels vous commencez et de l'état de préparation de vos données de base et de votre stock d'ouverture. Les usines passent en production module par module, selon un plan de déploiement convenu avec vous pendant la phase de découverte. Nous importons les données d'articles, de nomenclatures et de stocks depuis Excel."
+    }
+  },
+  "SolutionPaths": {
+    "precision": {
+      "pain": "La matière client et les comptages machine vivent dans des tableurs."
+    },
+    "aerospace": {
+      "pain": "Les preuves d'audit sont reconstituées à la main après l'expédition de la pièce."
+    },
+    "energy": {
+      "pain": "Prouver l'origine d'une pièce livrée oblige à fouiller des fichiers."
+    },
+    "machinery": {
+      "pain": "Les nomenclatures, les gammes et la charge machine sont planifiées dans des tableurs."
+    },
+    "services": {
+      "pain": "Les heures et les coûts ne sont pas rattachés au projet auquel ils appartiennent."
+    },
+    "rubber": {
+      "pain": "Les soldes matière et les retours de sous-traitance sont reconstitués à la main."
+    },
+    "workforce": {
+      "pain": "La présence, les heures supplémentaires et la paie se gèrent sur papier."
+    },
+    "staffing": {
+      "pain": "Les besoins, les candidats et les déploiements sont répartis à différents endroits."
+    }
+  },
+  "Industries": {
+    "aerospace-defence": {
+      "name": "Aéronautique et défense",
+      "menu": "Contrôles QMS AS9100D, registre FAIR et COC",
+      "tag": "Aéronautique et défense",
+      "titleHead": "ERP pour les ",
+      "titleTail": "fournisseurs de l'aéronautique et de la défense",
+      "lead": "Conçu pour les fournisseurs de l'aéronautique, de la défense et de l'automobile qui usinent de la matière fournie par le client : contrôles QMS AS9100D aux points de contrôle qualité, registre FAIR et certificats de conformité dans le même flux, et un enregistrement derrière chaque pièce.",
+      "whoFor": "Fournisseurs de l'aéronautique, de la défense et de l'automobile qui usinent de la matière fournie par le client.",
+      "seoTitle": "ERP pour l'aéronautique et la défense",
+      "seoDescription": "Contrôles QMS AS9100D aux points de contrôle du flux de travail, registre FAIR, certificats de conformité et traçabilité pour les fournisseurs de l'aéronautique, de la défense et de l'automobile.",
+      "ch1": {
+        "title": "Preuves d'audit reconstituées après coup",
+        "text": "Les enregistrements sont rassemblés à la main une fois la pièce expédiée : chaque audit coûte des semaines de reconstitution."
+      },
+      "ch2": {
+        "title": "Des documents séparés du travail",
+        "text": "Les rapports de première pièce, les certificats et les enregistrements de contrôle sont dans des fichiers séparés, loin du travail qui les a produits."
+      },
+      "ch3": {
+        "title": "Une matière client difficile à tracer",
+        "text": "La matière appartenant au client doit être suivie du challan à la pièce livrée, par identifiant matière."
+      },
+      "ch4": {
+        "title": "Des contrôles qui reposent sur la mémoire",
+        "text": "Quand un contrôle peut être sauté, la preuve manque le jour où un auditeur la demande."
+      },
+      "flowTitle": "Planifier, exécuter, contrôler, libérer",
+      "flowLead": "Retenez la pièce au point de contrôle jusqu'à l'enregistrement du contrôle, puis libérez-la sur la base d'un enregistrement complet.",
+      "heroAlt": "Un jet d'affaires, un chasseur et un aéronef sans pilote en vol"
+    },
+    "oil-gas-energy": {
+      "name": "Pétrole, gaz et énergie",
+      "menu": "Traçabilité matière, contrôle, NCR/CAPA et COC",
+      "tag": "Pétrole, gaz et énergie",
+      "titleHead": "ERP pour les ",
+      "titleTail": "fournisseurs du pétrole, du gaz et de l'énergie",
+      "lead": "Chaque pièce remonte à sa matière et à son contrôle, avec NCR et CAPA en cas d'échec d'un contrôle et le certificat de conformité émis à partir du même enregistrement.",
+      "whoFor": "Fournisseurs de pièces usinées et moulées, comme des corps de vannes, des raccords, des brides et des joints, destinées aux clients du pétrole, du gaz, de l'électricité et de l'énergie.",
+      "seoTitle": "ERP pour les fournisseurs du pétrole, du gaz et de l'énergie",
+      "seoDescription": "Généalogie de la matière, contrôles à la réception et final, validations d'étapes, NCR et CAPA, certificats de conformité, expédition GST et Tally pour les fournisseurs des clients du pétrole, du gaz et de l'énergie.",
+      "ch1": {
+        "title": "Traçabilité matière reconstituée après l'expédition",
+        "text": "Prouver quel lot de matière est entré dans une pièce livrée oblige à fouiller des fichiers après son départ."
+      },
+      "ch2": {
+        "title": "Contrôle séparé du travail",
+        "text": "Les résultats des contrôles à la réception, en cours de fabrication et final sont dans des feuilles séparées, loin de la fiche de route."
+      },
+      "ch3": {
+        "title": "Contrôles échoués gérés par e-mail",
+        "text": "Lorsqu'un contrôle échoue, la non-conformité et son action corrective sont suivies hors du système."
+      },
+      "ch4": {
+        "title": "Certificats assemblés à la fin",
+        "text": "Le certificat de conformité est compilé à la main une fois le travail terminé."
+      },
+      "flowTitle": "De la matière au certificat",
+      "flowLead": "Chaque étape enregistre ses preuves au fur et à mesure du travail : le certificat est émis à partir d'un enregistrement complet.",
+      "flow": {
+        "f1": {
+          "title": "Réception de la matière",
+          "copy": "Entrée portail, réception (GRN) et entrée en stock, avec la matière client suivie par challan et identifiant matière."
+        },
+        "f2": {
+          "title": "Fiche de route",
+          "copy": "Le travail est lancé sur une fiche de route, rattachée à sa pièce et à sa gamme."
+        },
+        "f3": {
+          "title": "Opérations confirmées par la machine",
+          "copy": "Les machines proposent les comptages et l'opérateur les confirme, avec un motif pour tout écart."
+        },
+        "f4": {
+          "title": "Contrôles et validations",
+          "copy": "Contrôles à la réception, par étape et final, la pièce étant retenue jusqu'à l'enregistrement du contrôle."
+        },
+        "f5": {
+          "title": "NCR et CAPA",
+          "copy": "Un contrôle échoué crée une non-conformité, avec son action corrective et préventive enregistrée."
+        },
+        "f6": {
+          "title": "Certificat et expédition",
+          "copy": "Le certificat de conformité est émis à partir de l'enregistrement, puis viennent l'emballage, la facture GST et l'e-way bill."
+        }
+      },
+      "heroAlt": "Illustration d'une raffinerie au crépuscule, avec des éoliennes à l'horizon et une vanne de pipeline au premier plan"
+    },
+    "precision-cnc-machining": {
+      "name": "Usinage CNC de précision et sous-traitance",
+      "menu": "Données machine, fiches de route et matière de sous-traitance",
+      "tag": "Précision et sous-traitance",
+      "titleHead": "ERP pour les ",
+      "titleTail": "fabricants de précision et de sous-traitance",
+      "lead": "La matière de votre client comptabilisée jusqu'à la dernière pièce, des machines qui déclarent leurs comptages directement sur la fiche de route, et la facture GST qui découle de la machine.",
+      "whoFor": "Fabricants de précision et de sous-traitance qui usinent de la matière fournie par le client.",
+      "seoTitle": "ERP pour l'usinage CNC de précision et la sous-traitance",
+      "seoDescription": "Matière client par challan et identifiant matière, fiches de route confirmées depuis la machine, contrôle, COC, facture GST et Tally dans un seul flux.",
+      "ch1": {
+        "title": "Matière client suivie à part",
+        "text": "La matière fournie par le client vit dans un tableur au lieu d'être rattachée au client à qui elle appartient."
+      },
+      "ch2": {
+        "title": "Des quantités qui ne concordent pas",
+        "text": "La consommation, les retours, les rebuts et les quantités facturées sont difficiles à rapprocher de ce qui est entré."
+      },
+      "ch3": {
+        "title": "Des comptages saisis à la main",
+        "text": "La confirmation de production dépend de quelqu'un qui ressaisit ce que la machine savait déjà."
+      },
+      "ch4": {
+        "title": "Documents d'expédition assemblés à la fin",
+        "text": "L'emballage, la facture, l'IRN et l'e-way bill sont compilés séparément, une fois le travail terminé."
+      },
+      "flowTitle": "De la machine à la facture",
+      "flowLead": "Chaque document reprend le précédent : toute pièce peut ainsi être remontée jusqu'à sa commande, son lot de matière, sa machine et son opérateur.",
+      "callouts": {
+        "c1": "Comptages de la machine",
+        "c2": "Identifiant matière par challan",
+        "c3": "De la fiche de route à la facture",
+        "c4": "COC, facture GST, e-way bill"
+      },
+      "heroAlt": "Une broche CNC usinant une pièce métallique"
+    },
+    "it-services-staffing": {
+      "name": "Services informatiques et conseil",
+      "menu": "Projets, cahiers des charges, candidats et déploiements",
+      "tag": "Services informatiques et conseil",
+      "titleHead": "ERP pour les ",
+      "titleTail": "équipes de services informatiques et de recrutement",
+      "lead": "Pilotez la livraison des projets, les cahiers des charges (SOW) et la facturation à côté des candidats, des entretiens et des déploiements, dans un seul espace de travail.",
+      "whoFor": "Équipes de services informatiques, agences de recrutement et réseaux de conseil technique qui gèrent les besoins clients et les déploiements.",
+      "seoTitle": "ERP pour les services informatiques et le conseil",
+      "seoDescription": "Projets, cahiers des charges, feuilles de temps et facturation avec besoins clients, candidats, entretiens, intégration et déploiements dans un seul espace de travail.",
+      "ch1": {
+        "title": "Des cycles de recrutement de plusieurs semaines",
+        "text": "Les besoins, les candidats et les entretiens sont répartis à différents endroits : chaque placement prend plus de temps que nécessaire."
+      },
+      "ch2": {
+        "title": "Des consultants inactifs entre deux missions",
+        "text": "Le temps non facturable entre deux missions est difficile à voir avant la fin du mois."
+      },
+      "ch3": {
+        "title": "Frictions entre plusieurs prestataires",
+        "text": "La communication avec plusieurs prestataires et clients se fait hors du système de référence."
+      },
+      "ch4": {
+        "title": "Feuilles de temps et factures contestées",
+        "text": "Les heures, les journaux de travail et les coûts ne sont pas rattachés au projet auquel ils appartiennent."
+      },
+      "flowTitle": "De l'exigence du client à la facture",
+      "flowLead": "Un seul flux, de l'exigence à la facturation du projet, avec des validations en cours de route.",
+      "flow": {
+        "f1": {
+          "title": "Exigence du client",
+          "copy": "Saisissez ce dont le client a besoin, avec les cahiers des charges et les exigences suivis par projet."
+        },
+        "f2": {
+          "title": "Candidats et entretiens",
+          "copy": "Gérez les candidats et menez les entretiens pour chaque exigence."
+        },
+        "f3": {
+          "title": "Offre et intégration",
+          "copy": "Offres, validations et intégration dans un seul flux."
+        },
+        "f4": {
+          "title": "Déploiement",
+          "copy": "Déployez les personnes sur les projets, avec affectation des ressources et remplacements."
+        },
+        "f5": {
+          "title": "Feuilles de temps et journaux de travail",
+          "copy": "Feuilles de temps, journaux de travail et coûts de développement enregistrés par projet."
+        },
+        "f6": {
+          "title": "Facturation et rentabilité",
+          "copy": "Facturation des projets et vue de la rentabilité."
+        }
+      },
+      "samples": {
+        "s1": "Besoin enregistré",
+        "s2": "3 candidats retenus",
+        "s3": "Offre envoyée",
+        "s4": "1 déployé",
+        "s5": "Heures enregistrées",
+        "s6": "Facture prête"
+      }
+    },
+    "industrial-machinery-equipment": {
+      "name": "Machines et équipements industriels",
+      "menu": "Nomenclatures, gammes, charge machine et expédition GST",
+      "tag": "Machines et équipements industriels",
+      "titleHead": "ERP pour les ",
+      "titleTail": "fabricants de machines et d'équipements industriels",
+      "lead": "Fiches articles, nomenclatures et gammes, machines qui déclarent leurs propres comptages, et facture GST découlant de la fiche de route, par un groupe qui exploite lui-même des opérations industrielles.",
+      "whoFor": "Fabricants de pompes, vannes, compresseurs, réducteurs et autres équipements industriels, et fournisseurs qui usinent leurs pièces.",
+      "seoTitle": "ERP pour les fabricants de machines et d'équipements industriels",
+      "seoDescription": "Fiches articles, nomenclatures, gammes d'opérations, fiches de route, ordonnancement et suivi des machines, contrôle, expédition GST et Tally pour les fabricants de machines et d'équipements industriels.",
+      "ch1": {
+        "title": "Nomenclatures et gammes dans des tableurs",
+        "text": "Les fiches articles, les nomenclatures et les gammes d'opérations sont séparées des travaux qui les utilisent."
+      },
+      "ch2": {
+        "title": "Charge machine planifiée sur un tableau blanc",
+        "text": "Quel travail tourne sur quelle machine, et quand, se décide hors du système."
+      },
+      "ch3": {
+        "title": "État de la production en retard sur l'atelier",
+        "text": "Les comptages, les alarmes et les arrêts arrivent tard au bureau, voire jamais."
+      },
+      "ch4": {
+        "title": "Comptabilité dans un outil, opérations dans un autre",
+        "text": "Les achats, les stocks, la production et les expéditions sont ressaisis dans la comptabilité."
+      },
+      "flowTitle": "De la machine à la facture",
+      "flowLead": "Chaque document reprend le précédent : toute pièce peut ainsi être remontée jusqu'à sa commande, son lot de matière, sa machine et son opérateur.",
+      "heroAlt": "Illustration en plan technique d'une pompe centrifuge entraînant deux engrenages"
+    },
+    "plant-workforce-hcm": {
+      "name": "Effectifs d'usine et RH",
+      "menu": "Présence, paie et autorisations de pause par équipe",
+      "tag": "Effectifs et HCM",
+      "titleHead": "HRMS pour les ",
+      "titleTail": "effectifs d'usine",
+      "lead": "Dossiers des employés, présence, congés et télétravail, paie avec validations et indicateurs par service, dans le même espace de travail que les opérations.",
+      "whoFor": "Usines industrielles à forte activité, fabricants multi-sites et équipes d'ingénierie travaillant par équipes.",
+      "seoTitle": "HRMS pour les effectifs d'usine",
+      "seoDescription": "Dossiers des employés, présence et congés, synchronisation des appareils biométriques, validation des heures supplémentaires, paie avec validations et indicateurs par service pour les usines et les équipes par équipes.",
+      "ch1": {
+        "title": "Pointage par un collègue",
+        "text": "Une présence qui dépend d'une carte ou d'un collègue n'est pas fiable au moment de la paie."
+      },
+      "ch2": {
+        "title": "Autorisations de pause non suivies",
+        "text": "Des opérateurs éloignés des lignes d'usinage actives laissent des machines sans surveillance."
+      },
+      "ch3": {
+        "title": "Paie manuelle sur plusieurs jours",
+        "text": "Les différentiels d'équipe, les heures supplémentaires et les retenues sont calculés à la main, puis revérifiés."
+      },
+      "ch4": {
+        "title": "Validations sur papier",
+        "text": "Les heures supplémentaires et les exceptions de présence sont validées hors du système."
+      },
+      "flowTitle": "Du premier jour au bulletin de paie",
+      "flowLead": "Un dossier par personne, avec la présence et les validations qui alimentent la paie.",
+      "flow": {
+        "f1": {
+          "title": "Dossier de l'employé",
+          "copy": "Un dossier par personne, du recrutement au départ."
+        },
+        "f2": {
+          "title": "Présence, congés et télétravail",
+          "copy": "Les pointages se synchronisent depuis les appareils biométriques vers la présence et les congés."
+        },
+        "f3": {
+          "title": "Validation des heures supplémentaires",
+          "copy": "Les heures supplémentaires et les exceptions de présence sont validées dans le flux de travail."
+        },
+        "f4": {
+          "title": "Paie avec validations",
+          "copy": "La paie est préparée et validée dans le même espace de travail."
+        },
+        "f5": {
+          "title": "Indicateurs par service",
+          "copy": "Voyez comment performe chaque service."
+        }
+      },
+      "roster": {
+        "aria": "Exemple de présence pour la semaine",
+        "operator": "Opérateur {n}",
+        "absent": "Absent",
+        "present": "Présent",
+        "leave": "Congé ou demi-journée",
+        "breakPass": "Autorisation de pause",
+        "pending": "{n} en attente",
+        "ready": "Prêt à relire",
+        "alt": "Des bras robotisés travaillant dans un atelier"
+      }
+    },
+    "rubber-polymer-moulding": {
+      "name": "Moulage du caoutchouc et des polymères",
+      "menu": "Sous-traitance, lots et contrôle",
+      "tag": "Moulage du caoutchouc et des polymères",
+      "titleHead": "ERP pour les ",
+      "titleTail": "mouleurs de caoutchouc et de polymères",
+      "lead": "Commandes clients et matière sur challan, une fiche de route pour chaque travail, contrôles à la réception et final avec rebuts enregistrés sur le travail, et dossiers de sous-traitance ITC-04 avec la facture GST : les soldes matière cessent d'être reconstitués à la main.",
+      "whoFor": "Mouleurs de joints, de garnitures, de tuyaux et d'autres pièces en caoutchouc et en polymère qui travaillent sur commande client et, souvent, avec de la matière fournie par le client.",
+      "seoTitle": "ERP pour le moulage du caoutchouc et des polymères",
+      "seoDescription": "Commandes clients et challans matière, fiches de route, contrôles à la réception et final, rebuts, dossiers de sous-traitance ITC-04, expédition GST et Tally pour les mouleurs de caoutchouc et de polymères.",
+      "ch1": {
+        "title": "Soldes matière reconstitués à la main",
+        "text": "La matière reçue sur challan, utilisée dans les lots de production et retournée en sous-traitance est rapprochée à la main à chaque période."
+      },
+      "ch2": {
+        "title": "Registres séparés",
+        "text": "Les commandes clients, les challans, les lots de production, les rebuts et les expéditions sont dans des registres séparés au lieu d'un seul flux."
+      },
+      "ch3": {
+        "title": "Rebuts non rattachés au travail",
+        "text": "Les pièces rebutées sont comptées sur une feuille au lieu d'être enregistrées sur le travail qui les a produites."
+      },
+      "ch4": {
+        "title": "Retours de sous-traitance compilés tardivement",
+        "text": "Les détails de sous-traitance ITC-04 sont rassemblés en fin de période à partir d'enregistrements séparés."
+      },
+      "flowTitle": "De la commande à l'expédition",
+      "flowLead": "Chaque étape enregistre ses preuves au fur et à mesure du travail : les soldes de matière et de sous-traitance découlent de l'enregistrement.",
+      "flow": {
+        "f1": {
+          "title": "Commande client",
+          "copy": "Enregistrez la commande du client et ses avenants, avec la pièce et la quantité commandées."
+        },
+        "f2": {
+          "title": "Réception de la matière",
+          "copy": "Entrée portail, réception (GRN) et entrée en stock, avec la matière fournie par le client suivie par challan et identifiant matière."
+        },
+        "f3": {
+          "title": "Fiche de route",
+          "copy": "Lancez chaque travail sur une fiche de route rattachée à sa pièce et à sa gamme, et suivez-le en production."
+        },
+        "f4": {
+          "title": "Contrôle",
+          "copy": "Contrôles à la réception et final, avec les rebuts enregistrés sur le travail qui les a produits."
+        },
+        "f5": {
+          "title": "Dossiers de sous-traitance",
+          "copy": "Les soldes de matière client, les retours et les documents de rebut alimentent le dossier de données ITC-04."
+        },
+        "f6": {
+          "title": "Expédition et GST",
+          "copy": "Bons de livraison (challans), puis facture GST, IRN et e-way bill à partir du même enregistrement."
+        }
+      },
+      "heroAlt": "Illustration en plan technique d'un joint torique, d'un profil de joint à lèvre et d'un moule à deux plaques"
+    }
+  },
+  "ProductData": {
+    "precision": {
+      "badge": "ERP pour la précision et la sous-traitance",
+      "subtitle": "Matière client, fiches de route et maîtrise de la machine à la facture",
+      "h1": "Reliez les commandes clients, les challans d'entrée et les plages d'identifiants matière",
+      "h2": "Suivez les soldes de matière client, la consommation, les retours et les rebuts",
+      "h3": "Capturez les comptages de cycles, les alarmes et les arrêts machine sur les fiches de route",
+      "h4": "Reliez le contrôle, le COC, l'expédition, les factures GST et les écritures Tally"
+    },
+    "it": {
+      "badge": "Livraison, équipes et facturation",
+      "subtitle": "Planifiez le travail, suivez les heures, facturez ce que vous livrez",
+      "h1": "Work Tracker avec activité quotidienne et réunions",
+      "h2": "Projets avec besoins clients et cahiers des charges (SOW)",
+      "h3": "Feuilles de temps, journaux de travail et coûts de développement",
+      "h4": "Facturation des projets et rentabilité"
+    },
+    "hrms": {
+      "badge": "Cycle de vie des employés, présence et paie",
+      "subtitle": "Gestion des employés et administration des effectifs",
+      "h1": "Cycle de vie des employés, recrutement et départs",
+      "h2": "Présence, congés et télétravail, avec validation des heures supplémentaires",
+      "h3": "Paie avec validations",
+      "h4": "Indicateurs par service et gestion de la performance"
+    },
+    "staffing": {
+      "badge": "Candidats, entretiens et déploiements",
+      "subtitle": "Recherchez, déployez et gérez les besoins en personnel de vos clients",
+      "h1": "Besoins clients et gestion des candidats",
+      "h2": "Entretiens, offres et intégration",
+      "h3": "Déploiements et performance des ressources",
+      "h4": "Remplacements et validations"
+    },
+    "shopfloor": {
+      "badge": "Exécution de la production",
+      "subtitle": "Exécution de la production et gestion des opérations machines",
+      "h1": "Ordonnancement des machines et diagrammes de charge",
+      "h2": "Fiches de travail opérateur et suivi des machines en direct",
+      "h3": "Visibilité sur les arrêts et les alarmes",
+      "h4": "Suivi de production et taux d'utilisation des machines"
+    },
+    "ai": {
+      "badge": "Assistance et analyses",
+      "subtitle": "Assistance intelligente et analyses pour les opérations de l'entreprise",
+      "h1": "Assistance par IA et agents Synax",
+      "h2": "Analyses opérationnelles et tableaux de bord métier",
+      "h3": "Rapports sur l'ensemble des processus métier",
+      "h4": "Indicateurs de performance pour des décisions éclairées"
+    }
+  },
+  "ProductsPage": {
+    "tag": "Plateformes prêtes pour le marché",
+    "title": "Six produits. Une seule plateforme.",
+    "lead": "Commencez par le produit dont votre entreprise a besoin aujourd'hui. Ils sont conçus pour fonctionner ensemble : ajouter le suivant ne signifie pas tout recommencer.",
+    "allAria": "Tous les produits",
+    "explore": "Découvrir {name}"
+  },
+  "SolutionsPage": {
+    "pickStart": "Choisissez votre point de départ",
+    "tag": "Solutions par secteur et besoin métier",
+    "title": "Commencez par ce qui vous pèse le plus. Ajoutez le reste quand vous êtes prêt.",
+    "lead": "Choisissez le problème auquel vous faites face. Pour chaque solution, vous verrez les modules à activer en premier, ce qu'il faut ajouter ensuite, jusqu'où elle s'étend sur la plateforme et l'annuaire complet des modules.",
+    "start": {
+      "tag": "Par où commencer",
+      "title": "Huit points de départ",
+      "lead": "Les usines passent en production module par module, à un rythme fixé par leur taille et la qualité de leurs données. Commencez par les modules à gauche de chaque parcours.",
+      "whatHurts": "Ce qui pèse",
+      "startWith": "Commencez par",
+      "thenAdd": "Puis ajoutez",
+      "seeIndustry": "Voir la page du secteur",
+      "seeProduct": "Voir {name}"
+    },
+    "reach": {
+      "tag": "Couverture",
+      "title": "Jusqu'où va chaque solution",
+      "lead": "Utilisation type sur les huit domaines de modules de la plateforme. Tout se trouve dans un seul espace de travail : vous pouvez donc étendre n'importe quelle solution plus tard.",
+      "caption": "Domaines de modules utilisés par chaque solution : essentiels, facultatifs ou peu courants",
+      "solution": "Solution",
+      "core": "Essentiel",
+      "optional": "Facultatif",
+      "notTypical": "Peu courant",
+      "legendAria": "Légende",
+      "legendCore": "Essentiel pour la solution",
+      "legendOptional": "Facultatif, à ajouter le moment venu",
+      "legendNot": "Ne fait généralement pas partie de la solution"
+    },
+    "modules": {
+      "tag": "Annuaire des modules",
+      "title": "Ce que vous pouvez activer",
+      "lead": "L'annuaire du portail, par domaine. Commencez par ce qui pèse le plus et ajoutez le reste le moment venu.",
+      "coreTo": "Essentiel pour : {list}",
+      "notListed": "Votre secteur n'est pas listé ? Commencez par le produit qui correspond à votre problème — voir <link>les six produits</link>."
+    },
+    "pages": {
+      "tag": "Pages de solutions",
+      "title": "Une page dédiée à votre secteur, à votre processus ou à votre besoin",
+      "lead": "À qui elle s'adresse, les défis, le flux qui y répond et les produits qui la soutiennent."
+    },
+    "workflow": {
+      "tag": "Un seul flux derrière chaque solution",
+      "title": "Planifier, exécuter, contrôler, libérer",
+      "lead": "Quel que soit le secteur, le travail passe par les mêmes quatre étapes et l'enregistrement se construit au fur et à mesure.",
+      "modulesAria": "Modules : {title}"
+    },
+    "faq": {
+      "tag": "Pour démarrer",
+      "title": "Questions sur la mise en service",
+      "lead": "Réponses du portail : intégration, Tally, GST, machines et tarifs."
+    },
+    "cta": {
+      "title": "Dites-nous le problème. Nous vous montrerons la solution.",
+      "text": "Une courte présentation avec un ingénieur systèmes de Senwell Group, centrée sur la solution adaptée à votre activité."
+    }
+  },
+  "Scene": {
+    "description": "Aperçu animé : pour chaque solution, les modules à activer en premier, ce qu'il faut ajouter ensuite et combien des huit domaines de modules sont essentiels. Les mêmes informations figurent dans les sections ci-dessous.",
+    "whatHurts": "CE QUI PÈSE",
+    "startWith": "COMMENCEZ PAR",
+    "thenAdd": "PUIS AJOUTEZ",
+    "reach": "PORTÉE",
+    "ofCount": "{core} sur {total}",
+    "order": "ORDRE D'ACTIVATION",
+    "seePath": "Voir le parcours complet : {title}"
+  },
+  "Live": {
+    "positioning": {
+      "headline": "L'ERP des fabricants de précision et de sous-traitance.",
+      "sub": "De la machine à la facture GST, dans un seul espace de travail, avec une IA qui traque vos exceptions."
+    },
+    "pillars": {
+      "p1": {
+        "kicker": "Conçu pour la sous-traitance",
+        "title": "La matière de votre client, comptabilisée jusqu'à la dernière pièce.",
+        "copy": "La matière fournie par le client est traitée comme un élément à part entière, pas comme un tableur à côté. Chaque challan, plage d'identifiants matière et rebut reste rattaché au client à qui il appartient.",
+        "a": "Challans d'entrée avec plages d'identifiants matière et références de lignes de commande",
+        "b": "Matière première consommée 1:1 pour chaque pièce facturée",
+        "c": "Solde de matière client, livraisons de retour et documents de rebut",
+        "d": "Dossier de données ITC-04 et portail client en lecture seule"
+      },
+      "p2": {
+        "kicker": "De la machine à la facture",
+        "title": "La machine déclare le comptage. La fiche de route, le COC et la facture suivent.",
+        "copy": "Connectez vos machines et laissez les vrais comptages de cycles, les alarmes et les arrêts piloter la confirmation de production, sans MES séparé ni intégrateur.",
+        "a": "Tableau des machines en direct avec alarmes et motifs d'arrêt",
+        "b": "Démarrez les travaux par numéro de fiche de route ou scan de code-barres",
+        "c": "Comptages de cycles proposés, l'opérateur confirme avec un motif d'écart",
+        "d": "TRS par ordre et dossier d'usinage sur le COC"
+      },
+      "p3": {
+        "kicker": "Une IA qui agit",
+        "title": "Synax AI repère l'exception et propose la correction. Vous validez.",
+        "copy": "Posez à Synax n'importe quelle question sur vos données ERP et laissez ses agents surveiller les problèmes qui vous coûtent de l'argent. Rien ne change tant qu'un approbateur n'a pas dit oui.",
+        "a": "Rapprochement des challans et relances des retards",
+        "b": "Préparation des expéditions et suivi des créances",
+        "c": "Conformité qualité et surveillance de l'atelier",
+        "d": "Validation à double contrôle avec historique complet des événements"
+      }
+    },
+    "flow": {
+      "lead": "Chaque document reprend le précédent : toute pièce peut ainsi être remontée jusqu'à sa commande, son lot de matière, sa machine et son opérateur.",
+      "f1": {
+        "title": "Demande de prix et commande client",
+        "copy": "Devis par ligne, révisions et contrôle des quantités ouvertes de la commande."
+      },
+      "f2": {
+        "title": "Entrée portail et réception (GRN)",
+        "copy": "Réception sur commande ou challan, avec tolérance de réception et contrôle."
+      },
+      "f3": {
+        "title": "Fiche de route",
+        "copy": "Lancée à partir de la nomenclature, avec la matière réservée par unité RI."
+      },
+      "f4": {
+        "title": "Opérations confirmées par la machine",
+        "copy": "Opérations confirmées depuis la machine, avec validations à chaque étape."
+      },
+      "f5": {
+        "title": "Contrôle et COC",
+        "copy": "Contrôle final, FAIR et certificat de conformité."
+      },
+      "f6": {
+        "title": "Facture et expédition",
+        "copy": "Emballage, facture GST, IRN et e-way bill dans un seul flux."
+      }
+    },
+    "security": {
+      "tenant": {
+        "title": "Espaces de travail isolés",
+        "copy": "Chaque entreprise travaille dans son propre locataire (tenant). Les données ne passent jamais de l'un à l'autre."
+      },
+      "server": {
+        "title": "Écritures vérifiées côté serveur",
+        "copy": "Les stocks, les quantités et les changements de statut sont validés sur le serveur, pas dans le navigateur."
+      },
+      "audit": {
+        "title": "Historique d'audit",
+        "copy": "Qui a modifié quoi et quand, conservé pour chaque modification importante de l'activité."
+      },
+      "roles": {
+        "title": "Accès par rôle",
+        "copy": "Les menus, les actions et les valeurs sensibles suivent les rôles que vous configurez, avec connexion en deux étapes."
+      }
+    },
+    "pricing": {
+      "headline": "Gratuit pour les PME de moins de 50 employés.",
+      "copy": "La plateforme complète sans frais pour les petites usines, dans le cadre de notre soutien aux petites industries et à l'initiative Atmanirbhar Bharat. Les offres pour les équipes plus grandes sont facturées par utilisateur, avec des options pour les modules dont vous avez besoin."
+    },
+    "compliance": {
+      "c1": {
+        "name": "Contrôles QMS AS9100D",
+        "how": "Des points de contrôle qualité et des contrôles QMS AS9100D sont rattachés aux étapes critiques du flux de travail : les preuves sont créées par le travail lui-même."
+      },
+      "c2": {
+        "name": "GST en Inde : facture électronique et e-way bill",
+        "how": "Connectez votre fournisseur GST suvidha (ClearTax ou Masters India) et l'IRN est générée lorsqu'une facture est validée. L'emballage, la facture et l'e-way bill forment un seul flux."
+      },
+      "c3": {
+        "name": "ITC-04 pour la sous-traitance",
+        "how": "Les soldes de matière client, les retours et les documents de rebut alimentent un dossier de données ITC-04."
+      },
+      "c4": {
+        "name": "DPDP Act 2023 (confidentialité)",
+        "how": "Senwell Group Private Limited publie une politique de confidentialité décrivant comment les données personnelles dans Synax sont collectées, utilisées et protégées au titre du Digital Personal Data Protection Act de 2023."
+      }
+    }
+  },
+  "Benefits": {
+    "quality": {
+      "tab": "Qualité intégrée",
+      "question": "Fatigué de courir après les documents une fois la pièce expédiée ?",
+      "answer": "Les points de contrôle qualité sont placés sur les opérations elles-mêmes. Une pièce ne peut pas passer à l'étape suivante tant que son contrôle n'est pas enregistré : les preuves existent avant que quiconque les demande.",
+      "p1": "Contrôles obligatoires à l'usinage, au contrôle, à l'expédition et à la libération",
+      "p2": "NCR / CAPA et dossiers FAIR créés dans le même flux",
+      "p3": "État d'étalonnage suivi pour l'équipement qui a mesuré la pièce"
+    },
+    "compliance": {
+      "tab": "Préparation aux audits",
+      "question": "Un audit signifie-t-il encore des semaines de reconstitution de documents ?",
+      "answer": "Les exigences AS9100D sont reliées aux étapes du flux de travail qu'elles régissent. L'audit lit les mêmes enregistrements que l'atelier a déjà remplis, plutôt qu'un classeur parallèle tenu pour l'auditeur.",
+      "p1": "Exigences QMS AS9100D rattachées aux points critiques du processus",
+      "p2": "Preuves reliées à l'étape qui les a produites",
+      "p3": "Traçabilité de la généalogie conservée de la planification à la livraison finale"
+    },
+    "traceability": {
+      "tab": "Traçabilité",
+      "question": "Pouvez-vous remonter toute l'histoire d'une pièce ?",
+      "answer": "L'historique de la pièce, du processus et de la qualité reste lié tout au long du cycle de vie : une question sur une pièce expédiée se règle avec des enregistrements, pas avec des souvenirs.",
+      "p1": "Audit d'entrée matière et historique de la matière de bout en bout",
+      "p2": "Nomenclature reliée aux travaux qui l'ont consommée",
+      "p3": "Contrôles de libération des expéditions conditionnés à un enregistrement complet"
+    },
+    "security": {
+      "tab": "Sécurité par locataire",
+      "question": "Vous craignez de ne pas savoir qui peut voir quel programme ?",
+      "answer": "L'architecture multi-locataires isole chaque espace de travail ; des droits par rôle et des contrôles au niveau des routes décident de ce qu'une personne peut atteindre.",
+      "p1": "Espaces de travail isolés par locataire avec hébergement sur sous-domaine dédié",
+      "p2": "Droits par rôle selon le service et la fonction",
+      "p3": "Contrôle d'accès au niveau des routes, pas seulement des éléments de menu masqués"
+    },
+    "connected": {
+      "tab": "Une colonne vertébrale de données",
+      "question": "Combien de systèmes un seul travail traverse-t-il aujourd'hui ?",
+      "answer": "Projets, fabrication, qualité, RH, paie, validations et finance reposent sur un seul modèle traçable : l'état d'avancement et les coûts ne sont plus deux conversations séparées.",
+      "p1": "Enregistrements partagés entre opérations, effectifs et finance",
+      "p2": "Orchestration des validations et alertes sur la même colonne vertébrale",
+      "p3": "Rapports d'exécution lus à partir du planning publié"
+    }
+  },
+  "Why": {
+    "hero": {
+      "tag": "Pourquoi Synax",
+      "title": "<b>Pourquoi les leaders de l'industrie </b>choisissent Synax",
+      "highlightsAria": "Points forts",
+      "ticks": {
+        "india": "Conçu en Inde, pour les ateliers indiens",
+        "audit": "Piste d'audit sur chaque écriture",
+        "tally": "Compatible avec Tally"
+      },
+      "free": "Gratuit pour les PME de moins de 50 employés",
+      "pillarsAria": "Les trois piliers",
+      "glance": "Synax en un coup d'œil",
+      "factsAria": "Chiffres clés"
+    },
+    "proof": {
+      "free": {
+        "value": "Gratuit",
+        "label": "pour les PME de moins de 50 employés"
+      },
+      "tally": {
+        "value": "Tally",
+        "label": "les écritures passent la passerelle"
+      },
+      "gst": {
+        "value": "GST",
+        "label": "facture électronique et e-way bill"
+      },
+      "qms": {
+        "value": "AS9100D",
+        "label": "contrôles QMS aux points de contrôle"
+      }
+    },
+    "jump": {
+      "difference": "La différence",
+      "pillars": "Piliers",
+      "flow": "Flux",
+      "reasons": "Raisons",
+      "compare": "Comparer",
+      "pricing": "Tarifs",
+      "faq": "FAQ"
+    },
+    "difference": {
+      "tag": "Voyez la différence",
+      "title": "Une pièce, deux façons de la gérer",
+      "lead": "Une illustration de la même pièce passant par les mêmes cinq postes."
+    },
+    "pillars": {
+      "tag": "Conçu autour d'un atelier d'usinage",
+      "title": "Trois choses qui distinguent Synax",
+      "lead": "Dans les propres mots du portail.",
+      "whatYouGet": "Ce que vous obtenez"
+    },
+    "flow": {
+      "tag": "De la machine à la facture",
+      "title": "Un flux connecté, chaque étape traçable"
+    },
+    "reasons": {
+      "tag": "Cinq raisons",
+      "title": "Ce qui change quand la qualité vit dans le flux de travail",
+      "lead": "Choisissez une raison pour voir la question que nous entendons le plus souvent et ce que Synax y répond."
+    },
+    "compare": {
+      "tag": "Comparatif du marché",
+      "title": "Comment Synax se compare aux alternatives habituelles",
+      "lead": "La plupart des entreprises utilisent soit un ERP historique lourd avec des modules complémentaires, soit un ensemble d'outils déconnectés. Synax est un logiciel conçu sur mesure, soutenu par plus de 100 professionnels de l'informatique. Voici comment chacun traite les mêmes tâches.",
+      "caption": "Synax comparé aux suites ERP historiques et aux outils ponctuels déconnectés",
+      "capability": "Fonctionnalité",
+      "note": "La colonne des alternatives décrit des configurations types, pas un produit précis. Demandez-nous de passer en revue vos propres outils actuels."
+    },
+    "pricing": {
+      "tag": "Tarifs",
+      "cta": "Voir les six produits"
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Les questions que nous entendons le plus",
+      "lead": "Réponses du portail, dans ses propres mots."
+    },
+    "heritage": {
+      "lead": "Né de l'héritage de plusieurs décennies de Senwell Group dans la fabrication aéronautique de précision, l'exportation industrielle et les opérations d'ingénierie à grand volume."
+    },
+    "cta": {
+      "title": "Voyez pourquoi cela fonctionne sur votre propre processus",
+      "text": "Une courte présentation avec un ingénieur systèmes de Senwell Group, avec vos propres flux de travail plutôt qu'une démo préenregistrée."
+    }
+  },
+  "WhyRace": {
+    "stations": {
+      "s1": "Entrée matière",
+      "s2": "Fiche de route et machine",
+      "s3": "Contrôle et COC",
+      "s4": "Facture et GST",
+      "s5": "Comptabilité"
+    },
+    "typical": "Alternatives habituelles",
+    "synax": "Synax",
+    "title": "UNE PIÈCE, DEUX FAÇONS DE LA GÉRER",
+    "illustration": "ILLUSTRATION",
+    "aiTitle": "SYNAX AI PROPOSE",
+    "aiText": "2 challans ont dépassé leur date de retour : rédiger des relances",
+    "approve": "Approuver",
+    "approved": "Approuvé ✓",
+    "done": "Terminé ✓",
+    "waiting": "Toujours en attente…",
+    "tallyBadge": "Passerelle Tally, IRN et e-way bill",
+    "srDescription": "Illustration : la même pièce traverse cinq postes. Dans la voie des alternatives habituelles, elle s'arrête à {stalls}. Dans la voie Synax, elle circule de bout en bout : {pillars}, et {tally}."
+  },
+  "ReasonTabs": {
+    "aria": "Cinq raisons"
+  },
+  "Security": {
+    "hero": {
+      "tag": "Sécurité et confiance",
+      "highlightsAria": "Points forts",
+      "title": "<b>Prêt pour les audits par conception, </b>pas par rapport",
+      "lead": "Chaque entreprise travaille dans son propre espace, chaque écriture est vérifiée sur le serveur, et le système conserve la trace de qui a modifié quoi et quand. Voici comment cela fonctionne, et ce qui reste de votre responsabilité.",
+      "ticks": {
+        "signin": "Connexion en deux étapes",
+        "roles": "Accès par rôle",
+        "ai": "L'IA ne fait que proposer, vous validez"
+      },
+      "ringsAria": "Un bouclier au centre d'anneaux concentriques : un locataire par entreprise, connexion en deux étapes, contrôles sur le serveur et historique d'audit",
+      "chips": {
+        "tenant": "Un locataire par entreprise",
+        "signin": "Connexion en deux étapes",
+        "server": "Vérifié sur le serveur",
+        "audit": "Historique d'audit"
+      },
+      "gates": "Ce qui arrive à chaque écriture"
+    },
+    "jump": {
+      "controls": "Contrôles",
+      "process": "Fonctionnement",
+      "compliance": "Conformité",
+      "responsibility": "Responsabilité",
+      "legal": "Confidentialité et conditions"
+    },
+    "controls": {
+      "title": "Six contrôles, en langage clair",
+      "lead": "Ce que fait chacun, et ce que cela signifie pour vous.",
+      "whatItDoes": "Ce que cela fait",
+      "inPractice": "En pratique"
+    },
+    "pillars": {
+      "tenant": {
+        "a": "Hébergement sur sous-domaine dédié pour chaque locataire",
+        "b": "Les unités d'activité peuvent être séparées dans leurs propres espaces de travail"
+      },
+      "server": {
+        "a": "Tolérance de réception et contrôle des quantités ouvertes des commandes",
+        "b": "Matière réservée par unité RI sur la fiche de route"
+      },
+      "audit": {
+        "a": "Une piste d'audit sur chaque écriture",
+        "b": "Validation à double contrôle avec historique complet des événements"
+      },
+      "roles": {
+        "a": "Connexion en deux étapes",
+        "b": "Valeurs sensibles visibles uniquement pour les rôles que vous choisissez"
+      },
+      "ai": {
+        "title": "L'IA propose, vous validez",
+        "summary": "Les agents Synax ne font que proposer. Chaque action attend un approbateur ayant le bon rôle, et la décision est enregistrée.",
+        "a": "L'IA ne peut pas modifier vos données de sa propre initiative",
+        "b": "Chaque validation est conservée dans l'historique des événements"
+      },
+      "material": {
+        "title": "La matière client reste attachée à son propriétaire",
+        "summary": "Chaque challan, plage d'identifiants matière et rebut reste rattaché au client à qui il appartient.",
+        "a": "Soldes de matière client, retours et documents de rebut",
+        "b": "Un portail client en lecture seule"
+      }
+    },
+    "process": {
+      "title": "Ce qui arrive à chaque écriture",
+      "lead": "Quatre contrôles s'interposent entre une demande et l'enregistrement.",
+      "role": {
+        "title": "Contrôle du rôle",
+        "copy": "Les menus, les actions et les valeurs sensibles suivent les rôles que vous configurez.",
+        "short": "Menus, actions et valeurs suivent les rôles"
+      },
+      "server": {
+        "title": "Contrôle serveur",
+        "short": "Validé sur le serveur"
+      },
+      "approval": {
+        "title": "Validation",
+        "copy": "Lorsque votre processus l'exige, un approbateur ayant le bon rôle décide.",
+        "short": "Un approbateur décide"
+      },
+      "audit": {
+        "short": "Qui a modifié quoi, et quand"
+      }
+    },
+    "compliance": {
+      "title": "Soutient vos normes. Votre audit reste le vôtre.",
+      "lead": "Synax vous donne les contrôles et les enregistrements que ces exigences demandent. La certification appartient à votre organisation et à son auditeur, pas au logiciel."
+    },
+    "responsibility": {
+      "tag": "Responsabilité partagée",
+      "title": "Qui s'occupe de quoi",
+      "lead": "La sécurité fonctionne lorsque chaque partie sait clairement ce qui lui revient.",
+      "oursTitle": "Synax et Senwell Group",
+      "yoursTitle": "Votre organisation",
+      "o1": "Exploiter la plateforme et maintenir isolé le locataire de chaque entreprise",
+      "o2": "Valider sur le serveur les stocks, les quantités et les changements de statut",
+      "o3": "Enregistrer un historique d'audit des modifications importantes de l'activité",
+      "o4": "Fournir un accès par rôle et une connexion en deux étapes",
+      "y1": "Décider qui reçoit quel rôle et retirer les accès lorsque des personnes partent",
+      "y2": "Définir vos procédures de validation, de présence et de mise à jour des tâches",
+      "y3": "Choisir quels enregistrements et contrôles sont obligatoires dans votre processus",
+      "y4": "Détenir vos propres certifications et réussir vos propres audits"
+    },
+    "legal": {
+      "title": "Exploité par Senwell Group Private Limited",
+      "lead": "La politique de confidentialité explique comment les données personnelles dans Synax sont collectées, utilisées et protégées au titre du DPDP Act de 2023. Les conditions encadrent l'utilisation de la plateforme.",
+      "source": "Les déclarations de cette page suivent le portail en ligne à l'adresse <link>synax.senwellgroup.com</link>."
+    },
+    "cta": {
+      "title": "Apportez votre questionnaire de sécurité",
+      "text": "Réservez une revue sécurité et confiance avec un ingénieur systèmes de Senwell Group et apportez vos questions. Nous les passerons en revue avec vous."
+    }
+  },
+  "ProductModules": {
+    "precision": {
+      "kicker": "Précision et sous-traitance",
+      "subtitle": "Suivez chaque commande, de la réception de la matière client à l'expédition",
+      "g1": {
+        "title": "Fiches de route et production",
+        "desc": "Lancez la production à partir des commandes clients et confirmez chaque opération sur sa fiche de route.",
+        "i1": "Lignes de commande client et révisions",
+        "i2": "Nomenclature et gamme d'opérations",
+        "i3": "Démarrage du travail par fiche de route ou code-barres",
+        "i4": "Comptages, alarmes et arrêts machine",
+        "i5": "Écarts de comptage confirmés par l'opérateur"
+      },
+      "g2": {
+        "title": "Matière client et magasin",
+        "desc": "Gardez le stock appartenant au client distinct et traçable, du challan d'entrée à la consommation, au retour ou au rebut.",
+        "i1": "Challans d'entrée et plages d'identifiants matière",
+        "i2": "Soldes de matière client",
+        "i3": "Matière sortie vers la production",
+        "i4": "Retours et enregistrements de rebut",
+        "i5": "Achats, réceptions et registre de stock"
+      },
+      "g3": {
+        "title": "Contrôle et expédition",
+        "desc": "Conservez l'historique d'usinage et de contrôle jusqu'à la certification, l'emballage et la facturation.",
+        "i1": "Contrôle à la réception et final",
+        "i2": "Validations d'étapes et registre FAIR",
+        "i3": "Certificat de conformité",
+        "i4": "Emballage et bons de livraison",
+        "i5": "Facture GST, e-way bill et passerelle Tally"
+      }
+    },
+    "aerospace": {
+      "kicker": "Aéronautique et défense",
+      "subtitle": "Points de contrôle qualité AS9100D, traçabilité et flux de conformité",
+      "g1": {
+        "title": "Planification et exécution",
+        "desc": "Planifiez les travaux et exécutez la production avec une coordination en direct des opérateurs et des machines.",
+        "i1": "Tableau de charge des machines",
+        "i2": "Poste opérateur et connexion",
+        "i3": "Calendrier d'ordonnancement des travaux",
+        "i4": "Liste d'ordonnancement des travaux",
+        "i5": "Rapports d'exécution"
+      },
+      "g2": {
+        "title": "Matière et approvisionnement",
+        "desc": "Maîtrisez le flux de matière, de l'entrée à la sortie de stock, avec des achats traçables.",
+        "i1": "Audit des entrées de matière",
+        "i2": "Historique de la matière",
+        "i3": "Gestion des sorties de stock",
+        "i4": "Commande fournisseur et commande interne",
+        "i5": "Nomenclature"
+      },
+      "g3": {
+        "title": "Qualité et conformité",
+        "desc": "Des flux qualité structurés pour les audits, la traçabilité et les actions correctives.",
+        "i1": "NCR / CAPA",
+        "i2": "Gestionnaire FAIR",
+        "i3": "Tableau de bord d'étalonnage",
+        "i4": "Traçabilité de la généalogie",
+        "i5": "Contrôles de libération avant expédition"
+      }
+    },
+    "hrms": {
+      "kicker": "HRMS",
+      "subtitle": "Gestion des employés et administration des effectifs, en autonome ou intégrée",
+      "g1": {
+        "title": "Cycle de vie de l'employé",
+        "desc": "De l'embauche au départ, un dossier par personne.",
+        "i1": "Dossiers des employés",
+        "i2": "Recrutement et entretiens",
+        "i3": "Départ",
+        "i4": "Libre-service employé"
+      },
+      "g2": {
+        "title": "Présence et paie",
+        "desc": "Présence, congés et paie dans un seul flux, avec validations.",
+        "i1": "Présence, congés et télétravail",
+        "i2": "Validation de la présence et des heures supplémentaires",
+        "i3": "Synchronisation des appareils biométriques",
+        "i4": "Paie avec validations",
+        "i5": "Gestion des autorisations de pause"
+      },
+      "g3": {
+        "title": "Travail et performance",
+        "desc": "Planifiez le travail de la journée et voyez comment avancent les équipes.",
+        "i1": "Gestion quotidienne du travail (DWM)",
+        "i2": "Indicateurs par service",
+        "i3": "Gestion de la performance",
+        "i4": "Planificateur de budget"
+      }
+    },
+    "staffing": {
+      "kicker": "Recrutement",
+      "subtitle": "De l'exigence du client à la personne sur site",
+      "g1": {
+        "title": "Exigences et candidats",
+        "desc": "Saisissez ce dont le client a besoin et qui peut y répondre.",
+        "i1": "Exigences des clients",
+        "i2": "Gestion des candidats",
+        "i3": "Entretiens"
+      },
+      "g2": {
+        "title": "Offres et intégration",
+        "desc": "Menez un candidat retenu jusqu'à son premier jour.",
+        "i1": "Offres",
+        "i2": "Intégration",
+        "i3": "Validations"
+      },
+      "g3": {
+        "title": "Déploiements et performance",
+        "desc": "Gardez la trace de qui est où, et de comment ils s'en sortent.",
+        "i1": "Déploiements",
+        "i2": "Performance des ressources",
+        "i3": "Remplacements",
+        "i4": "Feuilles de temps et facturation des projets"
+      }
+    },
+    "it": {
+      "kicker": "Travail et livraison",
+      "subtitle": "Du travail de la journée à la facture, avec l'équipe et le support autour",
+      "g1": {
+        "title": "Travail et projets",
+        "desc": "Planifiez le travail, suivez l'activité et gardez la livraison visible.",
+        "i1": "Suivi du travail",
+        "i2": "Liste des projets et ajout de projet",
+        "i3": "Réunions quotidiennes",
+        "i4": "Suivi des activités",
+        "i5": "Tableaux de bord PM / PC"
+      },
+      "g2": {
+        "title": "Temps et facturation",
+        "desc": "Transformez les heures et les coûts en facturation et en vue de la rentabilité.",
+        "i1": "Feuilles de temps et journaux de travail",
+        "i2": "Coûts de développement",
+        "i3": "Suivi de la facturation des projets",
+        "i4": "Planificateur de budget"
+      },
+      "g3": {
+        "title": "Équipes et support",
+        "desc": "Collaboration, support et performance des services au même endroit.",
+        "i1": "Messagerie d'équipe et appels vidéo",
+        "i2": "Réunions publiques",
+        "i3": "Tickets de support",
+        "i4": "Gestion des visiteurs de l'entreprise",
+        "i5": "Performance des services"
+      }
+    },
+    "shopfloor": {
+      "kicker": "Atelier",
+      "subtitle": "Du planning à l'atelier, avec les comptages propres à la machine",
+      "g1": {
+        "title": "Ordonnancement des machines",
+        "desc": "Planifiez la charge machine et libérez chaque travail vers la bonne machine.",
+        "i1": "Ordonnancement des machines et graphiques de charge",
+        "i2": "Nomenclature et gamme d'opérations",
+        "i3": "Fiche de route lancée sur la nomenclature",
+        "i4": "Démarrage des travaux par numéro de fiche de route ou scan de code-barres"
+      },
+      "g2": {
+        "title": "Fiches de travail des opérateurs",
+        "desc": "Donnez aux opérateurs le travail à faire et saisissez ce qui s'est réellement passé.",
+        "i1": "Fiches de travail des opérateurs",
+        "i2": "Comptages de cycles proposés, l'opérateur confirme avec un motif d'écart",
+        "i3": "Les machines qui ne peuvent pas se connecter fonctionnent quand même : les opérateurs confirment les comptages sur l'écran de l'atelier",
+        "i4": "Suivi de la production"
+      },
+      "g3": {
+        "title": "Suivi des machines en direct",
+        "desc": "Voyez ce que fait chaque machine, et ce qu'elle a fait.",
+        "i1": "Tableau des machines en direct avec alarmes et motifs d'arrêt",
+        "i2": "Machines CNC via la connexion constructeur ou FOCAS ouvert",
+        "i3": "TRS par travail et historique d'usinage sur le COC",
+        "i4": "Taux d'utilisation des machines"
+      }
+    },
+    "ai": {
+      "kicker": "IA et BI",
+      "subtitle": "Posez une question, obtenez une réponse à partir de vos propres données",
+      "g1": {
+        "title": "Assistance par l'IA",
+        "desc": "Posez vos questions en langage courant et obtenez des réponses à partir des enregistrements en direct.",
+        "i1": "Posez à Synax toutes vos questions sur vos données ERP",
+        "i2": "Rapprochement des challans et relances des retards",
+        "i3": "Préparation des expéditions et suivi des créances",
+        "i4": "Conformité qualité et veille de l'atelier"
+      },
+      "g2": {
+        "title": "Contrôle par validation d'abord",
+        "desc": "Les agents proposent. Une personne ayant le bon rôle décide.",
+        "i1": "Les agents ne font que proposer ; l'IA ne peut pas modifier vos données seule",
+        "i2": "Chaque action attend un validateur ayant le bon rôle",
+        "i3": "Validation à quatre yeux (maker-checker)",
+        "i4": "La décision est enregistrée dans un historique complet des événements"
+      },
+      "g3": {
+        "title": "Analyses et rapports",
+        "desc": "Des tableaux de bord et des rapports sur les flux que vous exécutez déjà.",
+        "i1": "Tableaux de bord métier",
+        "i2": "Analyses opérationnelles",
+        "i3": "Rapports sur l'ensemble des flux métier",
+        "i4": "Analyses de performance"
+      }
+    }
+  },
+  "SolutionPage": {
+    "jump": {
+      "challenge": "Le défi",
+      "answer": "Comment Synax y répond",
+      "modules": "Modules",
+      "products": "Produits",
+      "proof": "Preuves",
+      "faq": "FAQ",
+      "industries": "Autres secteurs"
+    },
+    "stats": {
+      "flowSteps": "Étapes du flux",
+      "moduleGroups": "Groupes de modules",
+      "modules": "Modules",
+      "products": "Produits"
+    },
+    "challenges": {
+      "tag": "Le défi",
+      "title": "Ce qui pose problème aujourd'hui",
+      "lead": "Les problèmes que nous entendons le plus dans ce type d'entreprise.",
+      "note": "Chacun de ces points est un enregistrement créé après coup. Synax le crée pendant que le travail se fait."
+    },
+    "flow": {
+      "tag": "Comment Synax y répond",
+      "chipsAria": "{title} : modules"
+    },
+    "modules": {
+      "title": "Les modules qui le permettent",
+      "count": "{n} modules"
+    },
+    "products": {
+      "tag": "Fourni par",
+      "title": "Les produits derrière cette solution",
+      "lead": "Commencez par le premier et ajoutez les autres quand vous êtes prêt.",
+      "start": "Commencez ici",
+      "explore": "Découvrir"
+    },
+    "proof": {
+      "tag": "Fonctionne sur Synax",
+      "title": "Conçu par un groupe qui exploite des opérations industrielles",
+      "lead": "Ces sociétés du groupe Senwell fonctionnent sur Synax."
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Les questions les plus fréquentes"
+    },
+    "industries": {
+      "tag": "Explorer",
+      "title": "Autres secteurs"
+    },
+    "cta": {
+      "tag": "Commencer",
+      "title": "Voyez Synax sur votre propre process",
+      "text": "Une courte présentation avec un ingénieur systèmes du groupe Senwell, sur vos propres pièces, personnes et process.",
+      "demo": "Planifier une démo"
+    },
+    "hero": {
+      "crumbHome": "Synax",
+      "crumbSolutions": "Solutions",
+      "gatesAria": "Points de contrôle qualité",
+      "flowAria": "Le flux",
+      "stepsLine": "étapes, {title}",
+      "sample": "Données d'exemple, à titre d'illustration",
+      "inProgress": "En cours",
+      "glanceAria": "En un coup d'œil",
+      "builtFor": "Conçu pour",
+      "deliveredBy": "Fourni par",
+      "countsAria": "Chiffres"
+    }
+  },
+  "ProductShared": {
+    "breadcrumbProducts": "Produits",
+    "startPath": {
+      "tag": "Par où commencer",
+      "title": "Commencez par ce qui fait le plus mal",
+      "lead": "Activez les premiers modules, puis ajoutez les autres quand vous êtes prêt.",
+      "whatHurts": "Ce qui fait mal",
+      "startWith": "Commencer par",
+      "thenAdd": "Puis ajouter"
+    },
+    "rollout": {
+      "tag": "Mise en service",
+      "title": "Par étapes, module après module",
+      "lead": "Le guide de déploiement du portail. Commencez par l'équipe à plus fort impact, puis étendez par vagues planifiées. Les délais sont adaptés à la taille, à la complexité et aux besoins de votre organisation.",
+      "p1": {
+        "week": "Phase 1",
+        "title": "Découverte et cartographie",
+        "a": "Cartographier les services, les responsables de processus et les outils actuels",
+        "b": "Définir les flux indispensables pour la mise en service du jour 1",
+        "c": "Finaliser la matrice des rôles et les limites d'accès"
+      },
+      "p2": {
+        "week": "Phase 2",
+        "title": "Configuration et préparation des données",
+        "a": "Configurer les modules par domaine : informatique, RH, finance, production",
+        "b": "Importer les données de base : employés, projets, clients, fournisseurs, stocks",
+        "c": "Définir les chaînes de validation et les règles de notification"
+      },
+      "p3": {
+        "week": "Phase 3",
+        "title": "Lancement pilote",
+        "a": "Mener un pilote contrôlé avec une équipe ou une cellule d'atelier",
+        "b": "Suivre les blocages chaque jour et combler les lacunes de processus prioritaires",
+        "c": "Former les responsables et les référents de processus sur des flux réels"
+      },
+      "p4": {
+        "week": "Phase 4",
+        "title": "Déploiement complet et optimisation",
+        "a": "Étendre à toutes les équipes cibles par lots d'intégration successifs",
+        "b": "Suivre chaque semaine les indicateurs d'adoption et de conformité",
+        "c": "Automatiser les validations et rapports récurrents après la stabilisation"
+      }
+    },
+    "worksWith": {
+      "tag": "Un seul espace de travail",
+      "title": "Fonctionne avec le reste de Synax",
+      "lead": "Tous les produits partagent les mêmes personnes, enregistrements et validations."
+    },
+    "faq": {
+      "tag": "Questions",
+      "title": "À propos de {name}",
+      "lead": "Des réponses issues du portail, et quelques-unes écrites pour ce produit."
+    },
+    "cta": {
+      "title": "Voyez {name} fonctionner avec vos données",
+      "text": "Une courte présentation avec un ingénieur systèmes du groupe Senwell, centrée sur les modules qui comptent pour vous."
+    }
+  },
+  "ProductPage": {
+    "precision": {
+      "eyebrow": "ERP de précision et de sous-traitance",
+      "subtitle": "De la machine à la facture GST",
+      "lead": "Conçu pour les ateliers d'usinage de précision et de sous-traitance. Les commandes clients et les challans de matière fournie se relient aux fiches de route, à la production confirmée par la machine, au contrôle, à l'expédition et à la facturation : chaque pièce porte un enregistrement traçable unique.",
+      "second": "Voir l'aperçu 2",
+      "imgAlt": "Machines CNC et établis dans un atelier d'usinage",
+      "badge": "Comptage depuis la machine",
+      "passportCard": "Passeport pièce",
+      "passportCardSub": "Identifiant matière · Fiche de route · COC",
+      "passportHead": "Passeport pièce : une pièce, un enregistrement",
+      "passportTrace": "Remonté jusqu'à sa commande, son lot de matière, sa machine et son opérateur",
+      "passport": {
+        "p1": {
+          "title": "Ligne de commande client",
+          "note": "Devis et révision"
+        },
+        "p2": {
+          "title": "Lot de matière",
+          "note": "Plage d'identifiants matière"
+        },
+        "p3": {
+          "title": "Fiche de route",
+          "note": "Lancée sur la nomenclature"
+        },
+        "p4": {
+          "title": "Machine et opérateur",
+          "note": "Comptage de cycles, validation"
+        },
+        "p5": {
+          "title": "COC",
+          "note": "Porte l'historique d'usinage"
+        },
+        "p6": {
+          "title": "Facture",
+          "note": "IRN et e-way bill"
+        }
+      },
+      "chain": {
+        "tag": "De la machine à la facture",
+        "title": "Chaque document reprend le précédent",
+        "lead": "Toute pièce peut être remontée jusqu'à sa commande, son lot de matière, sa machine et son opérateur.",
+        "s1": {
+          "title": "Demande de prix et commande client",
+          "copy": "Chiffrez chaque ligne, conservez chaque révision et suivez la quantité ouverte de la commande pour toujours savoir ce qu'il reste à expédier."
+        },
+        "s2": {
+          "title": "Entrée portail et réception",
+          "copy": "La matière arrive sur une commande ou un challan client. La tolérance de réception est vérifiée et le contrôle est enregistré. La matière client est enregistrée avec sa plage d'identifiants matière et la référence de la ligne de commande."
+        },
+        "s3": {
+          "title": "Fiche de route",
+          "copy": "La fiche de route est lancée sur la nomenclature et la gamme d'opérations. La matière est réservée par unité RI : le même stock n'est donc pas promis à deux travaux."
+        },
+        "s4": {
+          "title": "Opérations confirmées par la machine",
+          "copy": "Démarrez un travail par numéro de fiche de route ou scan de code-barres. Les comptages de cycles de la machine sont proposés, l'opérateur les confirme avec un motif d'écart, et les validations sont enregistrées par étape."
+        },
+        "s5": {
+          "title": "Contrôle et COC",
+          "copy": "Contrôles à la réception et final, registre FAIR et certificat de conformité qui reprend l'historique d'usinage, y compris le TRS par travail."
+        },
+        "s6": {
+          "title": "Facture et expédition",
+          "copy": "L'emballage, la facture GST, l'IRN et l'e-way bill sont dans un seul flux. Les écritures comptables passent dans Tally."
+        }
+      },
+      "material": {
+        "tag": "Conçu pour la sous-traitance",
+        "title": "La matière de votre client, comptabilisée jusqu'à la dernière pièce",
+        "lead": "La matière fournie par le client est un enregistrement à part entière, pas un tableur à côté. Chaque challan, plage d'identifiants matière et rebut reste rattaché au client à qui il appartient.",
+        "step": "Étape {n}",
+        "l1": {
+          "title": "Challan d'entrée",
+          "copy": "Plages d'identifiants matière et références de lignes de commande."
+        },
+        "l2": {
+          "title": "Sorti vers la production",
+          "copy": "Réservé et sorti sur la fiche de route."
+        },
+        "l3": {
+          "title": "Consommé 1:1",
+          "copy": "Matière première consommée pour chaque pièce facturée."
+        },
+        "l4": {
+          "title": "Retourné",
+          "copy": "Livraisons de retour avec leurs documents."
+        },
+        "l5": {
+          "title": "Rebut",
+          "copy": "Documents de rebut rattachés au client."
+        },
+        "n1": {
+          "title": "Solde de matière client",
+          "copy": "Un solde courant par client, avec les livraisons de retour et les documents de rebut."
+        },
+        "n2": {
+          "title": "Dossier de données ITC-04",
+          "copy": "Les soldes de matière client, les retours et les documents de rebut alimentent le dossier de données ITC-04."
+        },
+        "n3": {
+          "title": "Portail client en lecture seule",
+          "copy": "Votre client voit sa propre matière sans pouvoir la modifier."
+        }
+      },
+      "accounts": {
+        "tag": "Comptabilité et GST",
+        "title": "Factures GST avec IRN. La comptabilité reste dans Tally.",
+        "lead": "Pilotez achats, stocks, production et expédition dans Synax. Les factures GST, l'IRN et les e-way bills viennent du même flux, et les écritures vont dans Tally : votre comptable ne change rien.",
+        "inSynax": {
+          "title": "Dans Synax",
+          "copy": "Achats, stocks, production, qualité, expédition et facture GST."
+        },
+        "inTally": {
+          "title": "Dans Tally",
+          "copy": "Votre comptabilité et vos écritures, comme aujourd'hui. La passerelle Tally transmet les écritures."
+        },
+        "einv": {
+          "title": "E-facture et e-way bill",
+          "copy": "Connectez votre fournisseur GST suvidha (ClearTax ou Masters India). L'IRN est généré lorsqu'une facture est validée."
+        },
+        "aerospace": "Vous travaillez avec des clients de l'aéronautique ou de la défense ? Consultez la <link>page Aéronautique et défense</link>."
+      },
+      "related": {
+        "shopfloor": "Machines en direct, fiches de travail et arrêts.",
+        "ai": "Relances de challans, préparation des expéditions et validations.",
+        "hrms": "Présence en usine, heures supplémentaires et paie.",
+        "aerospace": "Contrôles AS9100D, FAIR et certificats."
+      }
+    },
+    "hrms": {
+      "eyebrow": "Cycle de vie de l'employé, présence et paie",
+      "subtitle": "Gestion des employés et administration des effectifs",
+      "lead": "Gérez les dossiers des employés, la présence, les congés et le télétravail, ainsi que la paie avec validations, dans le même espace de travail que les opérations. Les pointages et les validations d'heures supplémentaires se synchronisent depuis les appareils biométriques.",
+      "imgAlt": "Une équipe assise autour d'une longue table de réunion avec des ordinateurs portables",
+      "monthTitle": "Un mois de présence",
+      "sample": "Données d'exemple",
+      "days": {
+        "d1": "Lun",
+        "d2": "Mar",
+        "d3": "Mer",
+        "d4": "Jeu",
+        "d5": "Ven",
+        "d6": "Sam",
+        "d7": "Dim"
+      },
+      "monthAria": "Exemple de mois de présence : jours de présence, de congé, de télétravail et d'heures supplémentaires",
+      "legendAria": "Légende",
+      "legend": {
+        "p": "Présent",
+        "l": "Congé",
+        "w": "Télétravail",
+        "o": "Heures supplémentaires"
+      },
+      "pill": {
+        "a": "Synchro biométrique",
+        "b": "Validation des heures sup.",
+        "c": "Paie avec validation"
+      },
+      "lifecycle": {
+        "tag": "Cycle de vie de l'employé",
+        "title": "Un dossier par personne, de l'embauche au départ",
+        "lead": "Chaque étape lit le même dossier d'employé : rien n'est saisi deux fois.",
+        "stage": "Étape {n}",
+        "s1": {
+          "title": "Recruter",
+          "copy": "Le recrutement et les entretiens se font au même endroit, et le candidat retenu passe directement dans un dossier d'employé."
+        },
+        "s2": {
+          "title": "Intégrer",
+          "copy": "Un dossier par personne dès le premier jour, avec un libre-service pour que chacun consulte et mette à jour ses propres informations."
+        },
+        "s3": {
+          "title": "Pointer",
+          "copy": "Présence, congés et télétravail dans un seul flux. Les appareils biométriques synchronisent les pointages, et les autorisations de pause sont gérées en parallèle."
+        },
+        "s4": {
+          "title": "Valider",
+          "copy": "La présence et les heures supplémentaires sont validées avant d'atteindre la paie : la paie part de données vérifiées."
+        },
+        "s5": {
+          "title": "Payer",
+          "copy": "La paie s'exécute avec validations, dans le même espace de travail que la présence et les opérations, avec une piste d'audit sur chaque écriture."
+        },
+        "s6": {
+          "title": "Évoluer et partir",
+          "copy": "Les indicateurs par service et la gestion de la performance montrent comment avancent les équipes, et le départ clôt le dossier de la personne."
+        }
+      },
+      "month": {
+        "tag": "Chaque mois",
+        "title": "À quoi ressemble un mois de paie dans Synax",
+        "lead": "La présence, les congés et les heures supplémentaires sont validés d'abord : la paie part de données vérifiées.",
+        "step": "Étape {n}",
+        "m1": "Les pointages biométriques se synchronisent",
+        "m2": "Congés et télétravail validés",
+        "m3": "Heures supplémentaires validées",
+        "m4": "Paie exécutée avec validation",
+        "m5": "Indicateurs par service examinés"
+      },
+      "plantOffice": {
+        "tag": "Autonome ou intégré",
+        "title": "Utilisez-le seul, ou avec les opérations",
+        "lead": "Le HRMS fonctionne seul, ou dans le même espace de travail que l'ERP de production et Travail et livraison : les données RH rejoignent la production et les projets.",
+        "plantTitle": "Dans l'atelier",
+        "plantCopy": "Présence biométrique, validation des heures supplémentaires et gestion des autorisations de pause pour le personnel d'usine.",
+        "plantLink": "Voir la <link>page Effectifs d'usine</link>",
+        "officeTitle": "Au bureau",
+        "officeCopy": "Gestion quotidienne du travail, planificateur de budget et performance des services pour les équipes.",
+        "officeNote": "Indicateurs par service et gestion de la performance"
+      },
+      "related": {
+        "precision": "La présence en usine rejoint la production.",
+        "it": "Projets, feuilles de temps et facturation.",
+        "staffing": "Candidats, offres et déploiements.",
+        "plant": "La page de solution pour les usines."
+      },
+      "faq": {
+        "q1": "La présence se connecte-t-elle aux appareils biométriques ?",
+        "a1": "Oui. Les pointages et les validations d'heures supplémentaires se synchronisent depuis les appareils biométriques.",
+        "q2": "La paie est-elle validée avant d'être comptabilisée ?",
+        "a2": "La paie s'exécute avec validations, et une piste d'audit est conservée pour chaque écriture."
+      }
+    },
+    "staffing": {
+      "eyebrow": "Candidats, entretiens et déploiements",
+      "subtitle": "Recherchez, déployez et gérez les besoins en personnel de vos clients",
+      "lead": "Gérez les besoins clients et les candidats, menez les entretiens, les offres et l'intégration, et suivez les déploiements, les remplacements et la performance des ressources, avec des validations en cours de route.",
+      "matchAria": "Une exigence mise en relation avec des candidats",
+      "imgAlt": "Un recruteur prend des notes pendant qu'un candidat est assis en face de lui",
+      "orbit": {
+        "requirement": "Exigence",
+        "interviews": "Entretiens",
+        "offer": "Offre",
+        "deployment": "Déploiement"
+      },
+      "candidate": "Candidat {letter}",
+      "stageName": {
+        "interview": "Entretien",
+        "offer": "Offre",
+        "deployed": "Déployé"
+      },
+      "illustration": "Illustration : candidats d'exemple.",
+      "pipeline": {
+        "tag": "Processus de recrutement",
+        "title": "De l'exigence du client à la personne sur site",
+        "lead": "Chaque candidat reste lié à l'exigence qu'il comble.",
+        "s1": {
+          "title": "Exigence du client",
+          "copy": "Saisissez ce dont le client a besoin : le poste, les compétences et le nombre de personnes."
+        },
+        "s2": {
+          "title": "Candidats",
+          "copy": "Gérez les personnes qui peuvent y répondre, chaque candidat étant lié à l'exigence concernée."
+        },
+        "s3": {
+          "title": "Entretiens",
+          "copy": "Planifiez les tours d'entretien et conservez les retours rattachés au candidat et à l'exigence."
+        },
+        "s4": {
+          "title": "Offre",
+          "copy": "Préparez l'offre et faites-la valider avant son envoi."
+        },
+        "s5": {
+          "title": "Intégration",
+          "copy": "Accompagnez le candidat retenu de l'offre acceptée jusqu'au premier jour."
+        },
+        "s6": {
+          "title": "Déploiement",
+          "copy": "Placez la personne chez le client et voyez qui est où."
+        }
+      },
+      "after": {
+        "tag": "Après le premier jour",
+        "title": "Gardez le placement en bonne santé",
+        "lead": "Placer une personne n'est que le début. Ces modules couvrent la suite.",
+        "a1": {
+          "title": "Performance des ressources",
+          "copy": "Voyez comment chaque personne déployée se situe par rapport aux attentes du client."
+        },
+        "a2": {
+          "title": "Remplacements",
+          "copy": "Remplacez une ressource et conservez l'historique de l'exigence, au lieu de repartir de zéro."
+        },
+        "a3": {
+          "title": "Feuilles de temps et facturation des projets",
+          "copy": "Enregistrez les heures effectuées et facturez-les au client."
+        }
+      },
+      "sides": {
+        "tag": "Deux côtés, un seul enregistrement",
+        "title": "Rien n'avance sans la bonne validation",
+        "lead": "Les offres, l'intégration et les déploiements passent par des validations, et l'historique reste attaché à l'enregistrement.",
+        "customerTitle": "Côté client",
+        "customerCopy": "L'exigence, les retours d'entretien et l'état du déploiement au même endroit.",
+        "candidateTitle": "Côté candidat",
+        "candidateCopy": "Le profil, les entretiens, l'offre et les étapes d'intégration."
+      },
+      "related": {
+        "hrms": "Dossiers des employés, présence et paie.",
+        "it": "Feuilles de temps, projets et facturation.",
+        "ai": "Tableaux de bord, rapports et validations.",
+        "precision": "Le même espace de travail pour la production."
+      },
+      "faq": {
+        "q1": "Le recrutement est-il un système distinct ?",
+        "a1": "Non. Il fonctionne dans le même espace de travail que le HRMS et Travail et livraison : les personnes, les projets et les validations sont partagés.",
+        "q2": "Les feuilles de temps sont-elles facturées au client ?",
+        "a2": "Les feuilles de temps et la facturation des projets font partie de Recrutement et gestion des ressources."
+      }
+    },
+    "it": {
+      "eyebrow": "Livraison, personnes et facturation",
+      "subtitle": "Planifiez le travail, suivez les heures, facturez ce que vous livrez",
+      "lead": "Suivez le travail de la journée, pilotez les projets selon les exigences clients et les cahiers des charges (SOW), enregistrez feuilles de temps et coûts, et facturez avec une vision claire de la rentabilité. Les personnes, la présence et les validations sont partagées avec le reste de Synax, sans ressaisie.",
+      "imgAlt": "Une équipe devant un tableau de tâches sur un tableau blanc",
+      "badge": "Des heures à la facturation",
+      "cardsAria": "D'une tâche à une ligne de facture",
+      "card": {
+        "c1": {
+          "t": "Suivi du travail",
+          "n": "Tâche, responsable, avancement"
+        },
+        "c2": {
+          "t": "Feuilles de temps",
+          "n": "Heures rattachées au projet"
+        },
+        "c3": {
+          "t": "Suivi de la facturation",
+          "n": "Ligne de facture et rentabilité"
+        }
+      },
+      "lanes": {
+        "tag": "Du jour à la facture",
+        "title": "Un seul chemin, de la tâche à la facture",
+        "lead": "Travail, heures et facturation sont dans le même espace de travail : le montant de la facture remonte jusqu'au travail qui le justifie.",
+        "l1": {
+          "title": "Le travail de la journée",
+          "copy": "Tâches, responsables, avancement et blocages restent dans un seul outil de suivi : personne n'a besoin de demander où en sont les choses.",
+          "i1": {
+            "name": "Suivi du travail",
+            "note": "Tâches, responsables, avancement et blocages"
+          },
+          "i2": {
+            "name": "Réunions quotidiennes",
+            "note": "Le point du jour, conservé avec le travail"
+          },
+          "i3": {
+            "name": "Suivi des activités",
+            "note": "Ce qui a été fait, et quand"
+          }
+        },
+        "l2": {
+          "title": "Projets",
+          "copy": "Pilotez la livraison par rapport à ce que le client a demandé : ses exigences et le cahier des charges (SOW) de chaque projet.",
+          "i1": {
+            "name": "Liste des projets et ajout de projet",
+            "note": "Créez des projets et voyez-les tous"
+          },
+          "i2": {
+            "name": "Exigences clients et SOW",
+            "note": "Ce qui a été convenu, à côté du travail"
+          },
+          "i3": {
+            "name": "Tableaux de bord PM et PC",
+            "note": "L'état pour les chefs de projet et les coordinateurs"
+          }
+        },
+        "l3": {
+          "title": "Des heures à la facturation",
+          "copy": "Transformez le temps et les coûts en facture, avec une vue de la rentabilité pendant que le projet est en cours.",
+          "i1": {
+            "name": "Feuilles de temps et journaux de travail",
+            "note": "Heures enregistrées sur le projet"
+          },
+          "i2": {
+            "name": "Coûts de développement",
+            "note": "Ce que coûte la livraison"
+          },
+          "i3": {
+            "name": "Suivi de la facturation des projets",
+            "note": "Ce qui est facturé et ce qui est dû"
+          },
+          "i4": {
+            "name": "Planificateur de budget",
+            "note": "Planifiez par rapport au budget"
+          }
+        }
+      },
+      "roles": {
+        "tag": "Qui l'utilise",
+        "title": "Un premier écran différent pour chaque rôle",
+        "lead": "Tout le monde travaille à partir des mêmes enregistrements ; chaque rôle s'ouvre sur ce qui compte pour lui.",
+        "r1": {
+          "role": "Chef de projet",
+          "sees": "Le tableau de bord PM : état du projet, heures et facturation."
+        },
+        "r2": {
+          "role": "Coordinateur de projet",
+          "sees": "Le tableau de bord PC : le suivi au quotidien."
+        },
+        "r3": {
+          "role": "Membre de l'équipe",
+          "sees": "Le suivi du travail, la feuille de temps et le journal de travail."
+        },
+        "r4": {
+          "role": "Finance",
+          "sees": "Le suivi de la facturation des projets et le planificateur de budget."
+        }
+      },
+      "around": {
+        "tag": "Autour du travail",
+        "title": "Collaboration et support au même endroit",
+        "lead": "L'équipe échange, se réunit et ouvre des tickets sans quitter l'espace de travail.",
+        "a1": {
+          "title": "Messagerie d'équipe",
+          "copy": "Messagerie d'équipe rapide entre les fonctions."
+        },
+        "a2": {
+          "title": "Appels audio et vidéo",
+          "copy": "Appels instantanés en tête-à-tête et en équipe."
+        },
+        "a3": {
+          "title": "Réunions publiques et privées",
+          "copy": "Salles ouvertes et réunions à accès contrôlé."
+        },
+        "a4": {
+          "title": "Tickets de support",
+          "copy": "Créez et résolvez des tickets soumis à des SLA."
+        },
+        "a5": {
+          "title": "Gestion des visiteurs de l'entreprise",
+          "copy": "Gardez la trace de qui vient au bureau."
+        },
+        "a6": {
+          "title": "Performance des services",
+          "copy": "Voyez comment va chaque service."
+        },
+        "a7": {
+          "title": "Gestion des actifs",
+          "copy": "Gérez les actifs de l'entreprise et leur attribution aux employés."
+        },
+        "assetsTour": "Voir la visite du module Actifs"
+      },
+      "related": {
+        "hrms": "Présence, congés et paie pour les mêmes personnes.",
+        "staffing": "Exigences, candidats et déploiements.",
+        "ai": "Tableaux de bord, rapports et validations.",
+        "precision": "Le même espace de travail dans l'atelier."
+      },
+      "faq": {
+        "q1": "Faut-il ressaisir les personnes et la présence ?",
+        "a1": "Non. Travail et livraison se trouve dans le même espace de travail que l'ERP de production, le HRMS et le recrutement : les personnes, la présence et les validations sont partagées."
+      }
+    },
+    "shopfloor": {
+      "eyebrow": "Exécution de la production",
+      "subtitle": "La machine déclare le comptage",
+      "lead": "Connectez vos machines et laissez les vrais comptages de cycles, alarmes et arrêts piloter la confirmation de production, sans MES ni intégrateur distinct. Planifiez le travail sur les machines, donnez aux opérateurs le travail à faire et voyez ce que fait chaque machine.",
+      "imgAlt": "Un bras robotisé industriel bleu travaillant sur une ligne de production",
+      "boardAria": "Tableau des machines en direct (illustration)",
+      "machine": "Machine {n}",
+      "manualMachine": "Machine manuelle",
+      "state": {
+        "run": "En marche",
+        "idle": "À l'arrêt : attend de la matière",
+        "alarm": "Alarme : une personne doit intervenir",
+        "manual": "Comptages confirmés par l'opérateur"
+      },
+      "layers": {
+        "tag": "Du planning à la machine",
+        "title": "Planifier, exécuter, surveiller",
+        "lead": "Le même travail passe du plan à l'opérateur, puis à l'enregistrement propre de la machine.",
+        "l1": {
+          "title": "Planifier",
+          "copy": "Chargez les machines et lancez chaque travail sur la nomenclature. Démarrez un travail en saisissant le numéro de fiche de route ou en scannant son code-barres : le bon travail arrive sur la bonne machine.",
+          "m1": "Ordonnancement des machines et graphiques de charge",
+          "m2": "Nomenclature et gamme d'opérations",
+          "m3": "Fiche de route lancée sur la nomenclature",
+          "m4": "Démarrage par numéro de fiche de route ou scan de code-barres"
+        },
+        "l2": {
+          "title": "Exécuter",
+          "copy": "Donnez à l'opérateur le travail à faire et saisissez ce qui s'est réellement passé. Les comptages de cycles sont proposés, et l'opérateur les confirme avec un motif d'écart.",
+          "m1": "Fiches de travail des opérateurs",
+          "m2": "Comptages de cycles proposés, l'opérateur confirme",
+          "m3": "Suivi de la production"
+        },
+        "l3": {
+          "title": "Surveiller",
+          "copy": "Voyez ce que fait chaque machine et ce qu'elle a fait. Les alarmes et les motifs d'arrêt figurent sur le tableau, et l'historique d'usinage suit la pièce jusqu'au certificat.",
+          "m1": "Tableau des machines en direct",
+          "m2": "Alarmes et motifs d'arrêt",
+          "m3": "Taux d'utilisation des machines",
+          "m4": "TRS par travail",
+          "m5": "Historique d'usinage sur le COC"
+        }
+      },
+      "connect": {
+        "tag": "Connectez vos machines",
+        "title": "Connectée ou non, la production est quand même confirmée",
+        "lead": "Pas de MES ni d'intégrateur distinct. Les machines qui peuvent se connecter déclarent elles-mêmes ; les autres sont confirmées sur l'écran de l'atelier.",
+        "c1": {
+          "title": "Connexion constructeur",
+          "copy": "Les machines CNC peuvent se connecter via la connexion propre au constructeur."
+        },
+        "c2": {
+          "title": "FOCAS ouvert",
+          "copy": "Les machines compatibles FOCAS ouvert déclarent leurs comptages, alarmes et arrêts."
+        },
+        "c3": {
+          "title": "Pas de connexion",
+          "copy": "Les machines qui ne peuvent pas se connecter fonctionnent quand même : les opérateurs confirment les comptages sur l'écran de l'atelier."
+        }
+      },
+      "record": {
+        "tag": "Un seul enregistrement machine",
+        "title": "Le comptage vient de la machine, l'enregistrement va jusqu'à la facture",
+        "lead": "La confirmation de production, le certificat et la facture lisent le même enregistrement machine.",
+        "withoutTitle": "Sans cela",
+        "withoutCopy": "Les comptages sont notés sur papier, saisis plus tard et corrigés à l'expédition.",
+        "withTitle": "Avec Synax",
+        "withCopy": "Les comptages sont proposés par la machine, confirmés par l'opérateur et reportés sur le certificat de conformité.",
+        "barcode": "Démarrer les travaux par numéro de fiche de route ou code-barres",
+        "oee": "TRS par travail"
+      },
+      "related": {
+        "precision": "Fiches de route, contrôle, expédition et facturation.",
+        "ai": "Agents de veille de l'atelier et de conformité qualité.",
+        "hrms": "Présence et heures supplémentaires des opérateurs.",
+        "machinery": "Nomenclatures, gammes et charge machine."
+      },
+      "faq": {
+        "q1": "Peut-on démarrer les travaux par code-barres ?",
+        "a1": "Oui. Démarrez les travaux par numéro de fiche de route ou scan de code-barres.",
+        "q2": "Avons-nous besoin d'un MES distinct ?",
+        "a2": "Non. Les vrais comptages de cycles, alarmes et arrêts pilotent la confirmation de production, sans MES ni intégrateur distinct."
+      }
+    },
+    "ai": {
+      "eyebrow": "IA et Business Intelligence",
+      "title": "Synax AI trouve l'exception et propose la correction.",
+      "subtitle": "Vous validez.",
+      "lead": "Posez à Synax toutes vos questions sur vos données ERP et laissez ses agents surveiller les problèmes qui vous coûtent de l'argent. Rien ne change tant qu'un validateur n'a pas dit oui. Des tableaux de bord et des rapports sur vos flux gardent vos décisions sur des données à jour.",
+      "gateAria": "Comment fonctionne une action de Synax AI",
+      "gate": {
+        "g1": "Demander",
+        "g2": "L'agent trouve",
+        "g3": "L'agent propose",
+        "g4": "Vous validez"
+      },
+      "gateNote": "Chaque décision est conservée dans l'historique des événements. Les agents ne peuvent pas modifier vos données seuls.",
+      "approval": {
+        "tag": "Validation d'abord",
+        "title": "L'IA propose. Une personne décide.",
+        "lead": "Les agents ne peuvent pas modifier vos données seuls. Chaque action attend un validateur ayant le bon rôle, et la décision est enregistrée.",
+        "l1": {
+          "title": "L'agent trouve l'exception",
+          "copy": "Les agents surveillent vos enregistrements à la recherche des problèmes qui coûtent de l'argent : un retour en retard, un lot qui n'est pas prêt, un paiement tardif."
+        },
+        "l2": {
+          "title": "L'agent propose la correction",
+          "copy": "Au lieu de modifier quoi que ce soit, il rédige l'action : un rappel, une relance, une note pour la bonne personne."
+        },
+        "l3": {
+          "title": "Un validateur décide",
+          "copy": "Chaque action attend un validateur ayant le bon rôle. C'est le modèle maker-checker que le reste de Synax utilise déjà."
+        },
+        "l4": {
+          "title": "La décision est enregistrée",
+          "copy": "Qui a validé quoi, et quand, est conservé dans un historique complet des événements, à côté de l'enregistrement modifié."
+        },
+        "security": "Les rôles, la connexion en deux étapes et l'historique d'audit sont décrits sur la <link>page Sécurité et confiance</link>."
+      },
+      "agents": {
+        "tag": "Agents Synax",
+        "title": "Six tâches que surveillent les agents",
+        "lead": "Chaque agent cherche un problème précis et vous apporte une correction proposée.",
+        "a1": {
+          "title": "Rapprochement des challans",
+          "copy": "Compare les challans de matière client avec ce qui est revenu, et signale les écarts."
+        },
+        "a2": {
+          "title": "Relances des retards",
+          "copy": "Rédige le rappel quand un challan dépasse sa date de retour, prêt à être validé."
+        },
+        "a3": {
+          "title": "Préparation des expéditions",
+          "copy": "Montre quels lots sont prêts à expédier et ce qui retient les autres."
+        },
+        "a4": {
+          "title": "Suivi des créances",
+          "copy": "Prépare la liste de ceux à relancer pour paiement, avec la relance rédigée."
+        },
+        "a5": {
+          "title": "Conformité qualité",
+          "copy": "Surveille les points qualité ouverts par rapport aux contrôles que requiert votre processus."
+        },
+        "a6": {
+          "title": "Veille de l'atelier",
+          "copy": "Attire votre attention sur les alarmes et les arrêts qui demandent une intervention humaine."
+        }
+      },
+      "ask": {
+        "tag": "Demandez à Synax",
+        "title": "Des réponses tirées de vos propres données",
+        "lead": "Posez vos questions en langage courant et obtenez des réponses à partir des enregistrements en direct.",
+        "youAsk": "Vous demandez",
+        "q1": "Quels challans ont dépassé leur date de retour ?",
+        "q2": "Quels lots sont prêts à expédier ?",
+        "q3": "Quelles fiches de route attendent une validation ?",
+        "answers": "Synax répond",
+        "answer": "Une liste issue de vos enregistrements en direct, avec la prochaine étape proposée pour validation.",
+        "approve": "Approuver"
+      },
+      "bi": {
+        "tag": "Business intelligence",
+        "title": "Des tableaux de bord et des rapports sur les flux que vous exécutez déjà",
+        "lead": "Les mêmes enregistrements, résumés pour ceux qui décident.",
+        "b1": {
+          "title": "Tableaux de bord métier",
+          "copy": "L'état de l'entreprise sur un seul écran."
+        },
+        "b2": {
+          "title": "Analyses opérationnelles",
+          "copy": "Comment tourne l'exploitation, jour après jour."
+        },
+        "b3": {
+          "title": "Rapports sur l'ensemble des flux",
+          "copy": "Des rapports pour les ventes, les stocks, la production, la qualité, l'expédition et les personnes."
+        },
+        "b4": {
+          "title": "Analyses de performance",
+          "copy": "Ce qu'il faut regarder ensuite, à partir des données actuelles."
+        }
+      },
+      "related": {
+        "precision": "Challans, fiches de route, expédition et factures.",
+        "shopfloor": "Alarmes, arrêts et comptages des machines.",
+        "hrms": "Présence, paie et indicateurs par service.",
+        "security": "Rôles, historique d'audit et validations."
+      }
+    }
+  },
+  "AiBoard": {
+    "name": "Synax AI",
+    "connected": "Connecté aux données de votre entreprise",
+    "srDescription": "Illustration : Synax AI répond à des questions comme qui est en congé aujourd'hui, quels challans ont dépassé leur date de retour et quels lots sont prêts à expédier. Données d'exemple.",
+    "placeholder": "Posez une question sur les données de votre entreprise...",
+    "proposes": "Synax AI propose",
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "caption": "Illustration : données d'exemple.",
+    "s1": {
+      "q": "Qui est en congé aujourd'hui ?",
+      "lead": "3 personnes sont en congé aujourd'hui :",
+      "r1": {
+        "title": "Emma Clarke",
+        "sub": "Congé occasionnel",
+        "tag": "2 jours"
+      },
+      "r2": {
+        "title": "Daniel Moreau",
+        "sub": "Congé maladie",
+        "tag": "1 jour"
+      },
+      "r3": {
+        "title": "Sofia Alvarez",
+        "sub": "Congé acquis",
+        "tag": "5 jours"
+      },
+      "note": "Les congés sont lus dans le HRMS et les demandes validées."
+    },
+    "s2": {
+      "q": "Quand Emma Clarke est-elle de retour au bureau ?",
+      "lead": "Emma Clarke est en congé occasionnel pour 2 jours.",
+      "r1": {
+        "title": "En congé",
+        "sub": "Congé occasionnel, validé",
+        "tag": "2 jours"
+      },
+      "r2": {
+        "title": "De retour au bureau",
+        "sub": "Après-demain",
+        "tag": "Dans 2 jours"
+      },
+      "note": "Les congés sont lus dans le HRMS et les demandes validées."
+    },
+    "s3": {
+      "q": "Quels challans ont dépassé leur date de retour ?",
+      "lead": "2 challans ont dépassé leur date de retour.",
+      "r1": {
+        "title": "Challan CH-1042",
+        "sub": "Matière client, pas encore retournée",
+        "tag": "5 jours de retard"
+      },
+      "r2": {
+        "title": "Challan CH-1057",
+        "sub": "Matière client, pas encore retournée",
+        "tag": "2 jours de retard"
+      },
+      "approval": "Rédiger des rappels au client"
+    },
+    "s4": {
+      "q": "Quels lots sont prêts à expédier ?",
+      "lead": "5 lots sont prêts à expédier.",
+      "r1": {
+        "title": "Lot L-2208",
+        "sub": "Contrôle et COC terminés",
+        "tag": "Prêt"
+      },
+      "r2": {
+        "title": "Lot L-2211",
+        "sub": "Contrôle et COC terminés",
+        "tag": "Prêt"
+      },
+      "r3": {
+        "title": "Lot L-2214",
+        "sub": "Contrôle et COC terminés",
+        "tag": "Prêt"
+      },
+      "note": "+ 2 autres lots sont prêts."
+    }
+  },
+  "ProductMeta": {
+    "precision": {
+      "seoTitle": "ERP de production",
+      "seoDescription": "Matière client, fiches de route, contrôle, expédition et facturation dans un seul flux traçable, de la machine à la facture."
+    },
+    "it": {
+      "seoTitle": "Gestion du travail et de la livraison",
+      "seoDescription": "Suivi du travail, projets, feuilles de temps et facturation des projets pour les équipes de services, dans le même espace de travail que l'ERP de production."
+    },
+    "hrms": {
+      "seoTitle": "HRMS",
+      "seoDescription": "Cycle de vie de l'employé, recrutement, présence, congés, paie, conformité et gestion de la performance, en autonome ou intégré."
+    },
+    "staffing": {
+      "seoTitle": "Recrutement et gestion des ressources",
+      "seoDescription": "Recherchez, déployez et gérez les besoins en personnel de vos clients : candidats, entretiens, offres, intégration et déploiements."
+    },
+    "shopfloor": {
+      "seoTitle": "Atelier et suivi des machines",
+      "seoDescription": "Ordonnancement des machines, fiches de travail des opérateurs, suivi des machines en direct, arrêts et taux d'utilisation."
+    },
+    "ai": {
+      "seoTitle": "IA et Business Intelligence",
+      "seoDescription": "Assistance et agents Synax AI, avec analyses opérationnelles, tableaux de bord et rapports sur l'ensemble des flux métier."
+    }
+  },
+  "NotFound": {
+    "metaTitle": "Page introuvable",
+    "code": "Erreur 404",
+    "title": "Cette page est introuvable",
+    "text": "L'adresse comporte peut-être une faute de frappe, ou la page a été déplacée. Ces pages sont un bon point de départ.",
+    "home": "Retour à l'accueil",
+    "products": "Produits",
+    "solutions": "Solutions",
+    "why": "Pourquoi Synax",
+    "security": "Sécurité et confiance"
+  },
+  "Chat": {
+    "launcher": "Discuter avec nous",
+    "close": "Fermer le chat",
+    "panel": "Chat d'assistance Synax",
+    "agentName": "Assistance Synax",
+    "agentNote": "Assistant automatique. Une personne vous répond par e-mail.",
+    "expand": "Agrandir le chat",
+    "reduce": "Réduire le chat",
+    "messages": "Conversation",
+    "placeholder": "Écrivez votre message...",
+    "send": "Envoyer le message",
+    "typing": "L'assistance Synax écrit",
+    "newMessage": "1 nouveau message",
+    "you": "Vous",
+    "greet1": "Bonjour ! Bienvenue chez Synax.",
+    "greet2": "Je peux répondre aux questions courantes sur nos produits, ou vous mettre en relation avec l'équipe. Que souhaitez-vous savoir ?",
+    "chip": {
+      "demo": "Réserver une démo",
+      "products": "Quel produit me convient ?",
+      "pricing": "Tarifs et offre gratuite",
+      "person": "Parler à une personne"
+    },
+    "reply": {
+      "demo": "Avec plaisir. C'est une courte présentation avec un ingénieur systèmes du groupe Senwell, sur vos propres pièces, personnes et process.",
+      "products": "Synax réunit six produits dans un seul espace de travail. L'ERP de production couvre des commandes clients à la facture GST, Atelier et suivi des machines couvre les machines en direct, le HRMS couvre la présence et la paie, et il existe des produits pour le travail et la livraison, le recrutement et l'IA. Dites-moi ce que vous faites et je vous orienterai vers le bon.",
+      "pricing": "Synax est gratuit pour les petits industriels (PME de moins de 50 salariés). Pour les équipes plus grandes, l'offre dépend des modules et des utilisateurs : l'équipe vous communiquera les détails.",
+      "tally": "Inutile de déplacer votre comptabilité. Pilotez les opérations dans Synax et gardez vos livres dans Tally : la passerelle Tally transmet les écritures.",
+      "gst": "Les factures GST, l'IRN et les e-way bills viennent du même flux que la production et l'expédition, via votre fournisseur GST suvidha.",
+      "machines": "Les machines CNC peuvent se connecter via la connexion du constructeur ou FOCAS ouvert. Les machines qui ne peuvent pas se connecter fonctionnent quand même : les opérateurs confirment les comptages sur l'écran de l'atelier.",
+      "hr": "Le HRMS couvre les dossiers des employés, la présence, les congés et le télétravail, ainsi que la paie avec validations. Les pointages et les validations d'heures supplémentaires se synchronisent depuis les appareils biométriques.",
+      "security": "Chaque entreprise fonctionne dans son propre espace, les mouvements de stock et changements de statut sont vérifiés sur le serveur, et un historique d'audit est conservé. Les détails sont sur la page Sécurité et confiance.",
+      "person": "Pas le temps d'attendre une réponse ? Laissez votre adresse e-mail et nous vous recontacterons dès que possible.",
+      "fallback": "Merci pour votre message. Je suis un assistant automatique : je le transmets à l'équipe. Laissez votre adresse e-mail et quelqu'un vous répondra."
+    },
+    "action": {
+      "demo": "Ouvrir le formulaire de démo",
+      "products": "Voir tous les produits",
+      "security": "Page Sécurité et confiance"
+    },
+    "email": {
+      "placeholder": "Saisissez votre adresse e-mail",
+      "label": "Votre adresse e-mail",
+      "send": "Envoyer l'adresse e-mail",
+      "invalid": "Veuillez saisir une adresse e-mail valide.",
+      "note": "Nous utilisons votre e-mail uniquement pour vous répondre. <link>Politique de confidentialité</link>",
+      "thanks": "Merci ! Nous avons bien noté {email}. Un membre de l'équipe vous recontactera."
+    },
+    "ended": "Votre chat est terminé.",
+    "restart": "Pour démarrer un nouveau chat, cliquez ici.",
+    "keywords": {
+      "demo": "démo,demo,présentation,essai,réserver",
+      "person": "personne,humain,conseiller,appeler,téléphone,contact,commercial",
+      "pricing": "prix,tarif,coût,cout,gratuit,offre,devis,combien",
+      "tally": "tally,comptab,livres",
+      "gst": "gst,e-facture,irn,e-way,facture",
+      "machines": "machine,cnc,focas,mes,atelier,arrêt",
+      "hr": "rh,hrms,paie,présence,congé,employé",
+      "security": "sécurité,securite,confidentialité,audit,données,donnees",
+      "products": "produit,produits,modules,lequel,erp,recrutement,ia"
+    }
+  }
+}

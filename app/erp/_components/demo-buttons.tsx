@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Play } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useDemo } from "./demo-provider";
 
 /**
@@ -13,7 +14,7 @@ const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visi
 
 export function DemoButton({
   product,
-  children = "Schedule a Demo",
+  children,
   onDark = false,
   className = "",
 }: {
@@ -22,6 +23,7 @@ export function DemoButton({
   onDark?: boolean;
   className?: string;
 }) {
+  const t = useTranslations("Buttons");
   const { openDemo } = useDemo();
   const colours = onDark
     ? "bg-surface text-brand hover:bg-orange-50"
@@ -32,7 +34,7 @@ export function DemoButton({
       onClick={() => openDemo(product)}
       className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold transition-colors ${colours} ${FOCUS} ${className}`}
     >
-      <span>{children}</span>
+      <span>{children ?? t("scheduleDemo")}</span>
       <ArrowRight className="size-4" aria-hidden="true" />
     </button>
   );
@@ -40,7 +42,7 @@ export function DemoButton({
 
 export function TourButton({
   title,
-  children = "Watch overview",
+  children,
   onDark = false,
   className = "",
 }: {
@@ -49,6 +51,7 @@ export function TourButton({
   onDark?: boolean;
   className?: string;
 }) {
+  const t = useTranslations("Buttons");
   const { openTour } = useDemo();
   return (
     <button
@@ -64,7 +67,7 @@ export function TourButton({
       >
         <Play className="size-3 fill-current" />
       </span>
-      <span>{children}</span>
+      <span>{children ?? t("watchOverview")}</span>
     </button>
   );
 }

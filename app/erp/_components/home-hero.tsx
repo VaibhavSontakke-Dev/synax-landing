@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { DashboardMotion, type HazeBox } from "./dashboard-motion";
 import { Activity, ArrowRight, Bot, Briefcase, Building2, CircleCheck, Factory, Play, Users, ZoomIn } from "lucide-react";
@@ -59,8 +60,8 @@ const CROP_X = (1 - VISIBLE_W) / 2;
 const mapX = (x: number) => Math.min(1, Math.max(0, (x - CROP_X) / VISIBLE_W));
 
 interface HeroProduct {
-  label: string;
-  desc: string;
+  /** Message id: the name and short description live in messages/*.json under "Products.<id>". */
+  id: "precision" | "it" | "hrms" | "staffing" | "shopfloor" | "ai";
   Icon: typeof Factory;
   /** Same colours the Products menu uses for this product. */
   tile: string;
@@ -87,8 +88,7 @@ interface HeroProduct {
 // Listed in cycle order.
 const HERO_PRODUCTS: HeroProduct[] = [
   {
-    label: "Manufacturing ERP",
-    desc: "Planning, procurement, shop-floor, quality & costing",
+    id: "precision",
     Icon: Factory,
     tile: "bg-emerald-50 text-emerald-600",
     side: "right",
@@ -99,8 +99,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     dark: { region: [0.3604, 0.4536, 0.5641, 0.6067], lens: { crop: [0.3564, 0.4476, 0.5681, 0.6127], at: "right" } },
   },
   {
-    label: "Work & Delivery Management",
-    desc: "Work tracker, projects, timesheets & billing",
+    id: "it",
     Icon: Briefcase,
     tile: "bg-slate-100 text-brand",
     side: "left",
@@ -111,8 +110,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     dark: { region: [0.0069, 0.1684, 0.1281, 0.2067], lens: { crop: [0, 0.1334, 0.155, 0.2417], at: "right" } },
   },
   {
-    label: "HRMS",
-    desc: "Employee lifecycle, attendance, payroll & performance",
+    id: "hrms",
     Icon: Building2,
     tile: "bg-slate-100 text-brand",
     side: "right",
@@ -123,8 +121,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     dark: { region: [0.5767, 0.6278, 0.7803, 0.7809], lens: { crop: [0.5727, 0.6218, 0.7843, 0.7869], at: "above" } },
   },
   {
-    label: "Staffing & Resource Management",
-    desc: "Customer needs, candidates, interviews & deployments",
+    id: "staffing",
     Icon: Users,
     tile: "bg-orange-50 text-accent-strong",
     side: "left",
@@ -135,8 +132,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     dark: { region: [0.0069, 0.2565, 0.1281, 0.2947], lens: { crop: [0, 0.2215, 0.155, 0.3297], at: "right" } },
   },
   {
-    label: "Shop Floor & Machine Monitoring",
-    desc: "Scheduling, job cards, live machines & downtime",
+    id: "shopfloor",
     Icon: Activity,
     tile: "bg-emerald-50 text-emerald-600",
     side: "right",
@@ -147,8 +143,7 @@ const HERO_PRODUCTS: HeroProduct[] = [
     dark: { region: [0.3604, 0.2794, 0.5641, 0.4325], lens: { crop: [0.3564, 0.2734, 0.5681, 0.4385], at: "right" } },
   },
   {
-    label: "AI & Business Intelligence",
-    desc: "AI assistance, agents, analytics & reports",
+    id: "ai",
     Icon: Bot,
     tile: "bg-orange-50 text-accent-strong",
     side: "left",
@@ -160,11 +155,8 @@ const HERO_PRODUCTS: HeroProduct[] = [
   },
 ];
 
-const HERO_TICKS = [
-  "AI that proposes, you approve",
-  "Live machine monitoring (OEM or FOCAS)",
-  "Tally and GST built in",
-];
+/** Message keys under "Hero.ticks". */
+const HERO_TICKS = ["ai", "machines", "tally"] as const;
 
 // Literal class names so Tailwind can see them.
 const COL_START = { left: "lg:col-start-1", right: "lg:col-start-3" } as const;
@@ -172,16 +164,17 @@ const ROW_START = ["lg:row-start-1", "lg:row-start-2", "lg:row-start-3"] as cons
 
 /** The gradient product name; all names share one grid cell so the block never jumps. */
 function ActiveProductName({ active }: { active: number }) {
+  const tp = useTranslations("Products");
   return (
     <span className="mt-4 grid justify-items-center text-[0.78em] lg:mt-[clamp(0.625rem,1.8vh,1.25rem)]" aria-hidden="true">
-      {HERO_PRODUCTS.map(({ label }, i) => (
+      {HERO_PRODUCTS.map(({ id }, i) => (
         <span
-          key={label}
+          key={id}
           className={`col-start-1 row-start-1 w-fit bg-gradient-to-r from-violet-600 via-indigo-500 to-teal-500 bg-clip-text pb-1 text-transparent transition-all dark:bg-none dark:text-slate-900 duration-500 ${
             i === active ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
           }`}
         >
-          {label}
+          {tp(`${id}.name`)}
         </span>
       ))}
     </span>
@@ -221,6 +214,9 @@ export function Hero({
   onScheduleDemo: () => void;
   onWatchOverview: () => void;
 }) {
+  const t = useTranslations("Hero");
+  const tp = useTranslations("Products");
+  const tb = useTranslations("Buttons");
   const [active, setActive] = useState(0);
   const dark = useIsDark();
   const [auto, setAuto] = useState(true);
@@ -358,43 +354,46 @@ export function Hero({
         <div className="order-2 mx-auto flex max-w-2xl flex-col items-center gap-3 text-center lg:gap-[clamp(0.75rem,1.9vh,1.25rem)]">
           <h1
             id="hero-heading"
-            className="text-[2rem] leading-[1.08] font-black tracking-tight text-slate-900 sm:text-5xl lg:text-[clamp(2rem,5vh,3rem)]"
+            className="synax-enter [--enter-d:80ms] text-[2rem] leading-[1.08] font-black tracking-tight text-slate-900 sm:text-5xl lg:text-[clamp(2rem,5vh,3rem)]"
           >
             <span className="block">
-              One Platform for{" "}
-              <span className="relative inline-block">
-                Every Operation
-                {/* Hand-drawn underline flourish */}
-                <svg
-                  className="absolute -bottom-1.5 left-0 h-2.5 w-full text-orange-400"
-                  viewBox="0 0 200 10"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M2 7 C40 1 80 9 120 4 S180 3 198 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    vectorEffect="non-scaling-stroke"
-                  />
-                </svg>
-              </span>
+              {t.rich("headline", {
+                em: (chunks) => (
+                  <span className="relative inline-block">
+                    {chunks}
+                    {/* Hand-drawn underline flourish */}
+                    <svg
+                      className="absolute -bottom-1.5 left-0 h-2.5 w-full text-orange-400"
+                      viewBox="0 0 200 10"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 7 C40 1 80 9 120 4 S180 3 198 6"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        vectorEffect="non-scaling-stroke"
+                      />
+                    </svg>
+                  </span>
+                ),
+              })}
             </span>
             {/* Screen readers get the full list once instead of a changing name. */}
-            <span className="sr-only">: {HERO_PRODUCTS.map((p) => p.label).join(", ")}</span>
+            <span className="sr-only">: {HERO_PRODUCTS.map((p) => tp(`${p.id}.name`)).join(", ")}</span>
             <ActiveProductName active={active} />
           </h1>
 
 
-          <div className="flex w-full flex-col items-stretch justify-center gap-2.5 sm:w-auto sm:flex-row sm:items-center">
+          <div className="synax-enter [--enter-d:260ms] flex w-full flex-col items-stretch justify-center gap-2.5 sm:w-auto sm:flex-row sm:items-center">
             <button
               type="button"
               onClick={onScheduleDemo}
               className="flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-md bg-brand-solid px-5 py-2.5 text-[0.8125rem] font-semibold text-white shadow-sm transition-colors hover:bg-brand-solid-hover hover:shadow-md"
             >
-              <span>Schedule a Demo</span>
+              <span>{tb("scheduleDemo")}</span>
               <ArrowRight className="size-4" aria-hidden="true" />
             </button>
             <button
@@ -405,15 +404,15 @@ export function Hero({
               <span className="flex size-5 items-center justify-center rounded-full bg-slate-200 text-slate-600" aria-hidden="true">
                 <Play className="size-2.5 fill-current" />
               </span>
-              <span>Watch overview</span>
+              <span>{tb("watchOverview")}</span>
             </button>
           </div>
 
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-1.5 text-[11.5px] text-slate-600 sm:text-xs">
+          <ul className="synax-enter [--enter-d:400ms] flex flex-wrap justify-center gap-x-5 gap-y-1.5 text-[11.5px] text-slate-600 sm:text-xs">
             {HERO_TICKS.map((tick) => (
               <li key={tick} className="flex items-center gap-1.5">
                 <CircleCheck className="size-4 shrink-0 text-orange-400" aria-hidden="true" />
-                {tick}
+                {t(`ticks.${tick}`)}
               </li>
             ))}
           </ul>
@@ -455,7 +454,7 @@ export function Hero({
               <div ref={imageRef} className="relative overflow-hidden rounded-xl ring-1 ring-black/5">
                 <Image
                   src="/images/hero-dashboard-v3.webp"
-                  alt="Synax Enterprise ERP Command Dashboard"
+                  alt={t("dashboardAlt")}
                   width={1748}
                   height={1045}
                   priority
@@ -465,7 +464,7 @@ export function Hero({
                 />
                 <Image
                   src="/images/hero-dashboard-v3-dark.webp"
-                  alt="Synax Enterprise ERP Command Dashboard in the dark theme"
+                  alt={t("dashboardAltDark")}
                   width={1748}
                   height={1045}
                   priority
@@ -507,14 +506,14 @@ export function Hero({
 
           {/* The six products (a grid below lg; placed beside the dashboard from lg) */}
           <ul
-            aria-label="Synax products"
+            aria-label={t("productsAria")}
             className="grid gap-2 min-[480px]:grid-cols-2 sm:grid-cols-3 lg:contents"
           >
             {HERO_PRODUCTS.map((p, i) => {
               const on = i === active;
               return (
                 <li
-                  key={p.label}
+                  key={p.id}
                   ref={(el) => {
                     chipRefs.current[i] = el;
                   }}
@@ -536,10 +535,10 @@ export function Hero({
                     <span className={`flex size-7 shrink-0 items-center justify-center rounded-md ${p.tile}`}>
                       <p.Icon className="size-3.5" aria-hidden="true" />
                     </span>
-                    <span className="min-w-0">
-                      <span className="block text-[11.5px] leading-tight font-semibold text-slate-900">{p.label}</span>
+                    <span className="min-w-0 hyphens-auto break-words">
+                      <span className="block text-[11.5px] leading-tight font-semibold text-slate-900">{tp(`${p.id}.name`)}</span>
                       <span className="mt-0.5 hidden text-[11px] leading-tight text-slate-500 xl:block">
-                        {p.desc}
+                        {tp(`${p.id}.menu`)}
                       </span>
                     </span>
                   </button>

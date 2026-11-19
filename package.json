@@ -12,6 +12,7 @@
     "@splidejs/splide": "^4.1.4",
     "lucide-react": "^1.65.0",
     "next": "16.4.3",
+    "next-intl": "^4.15.1",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

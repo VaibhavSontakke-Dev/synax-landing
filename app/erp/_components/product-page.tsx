@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight, Check, ChevronRight } from "lucide-react";
 import { PRODUCT_DATA, PRODUCT_ROUTES, hrefFor, routeFor, type ProductKey } from "../_data/products";
 import { DemoButton, TourButton } from "./demo-buttons";

@@ -2,8 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Check, Package } from "lucide-react";
-import { BENCHMARK } from "../_data/benchmark";
-import { LIVE_PILLARS } from "../_data/live";
+import { useTranslations } from "next-intl";
 
 /**
  * "One part, two ways to run it" for /why-synax: the same part travels through five stations in two lanes. In the
@@ -22,7 +21,8 @@ const Y1 = 150;
 const Y2 = 318;
 const CYCLE = 13.5;
 
-const STATIONS = ["Material in", "Route card and machine", "Inspection and COC", "Invoice and GST", "Books"];
+/** Message ids under "WhyRace.stations". */
+const STATIONS = ["s1", "s2", "s3", "s4", "s5"] as const;
 
 // [time in seconds, x] waypoints for the part in each lane.
 const TYPICAL: [number, number][] = [[0, X[0]], [1.2, X[1]], [2.7, X[1]], [3.9, X[2]], [5.4, X[2]], [6.6, X[3]], [7.2, X[3]], [8.4, X[4]], [9.9, X[4]]];
@@ -41,15 +41,19 @@ function at(points: [number, number][], t: number) {
 }
 
 export function WhyRace() {
+  const tr = useTranslations("WhyRace");
+  const bm = useTranslations("Benchmark");
+  const live = useTranslations("Live");
   const [t, setT] = useState(0);
   const [reduced, setReduced] = useState(false);
   const [visible, setVisible] = useState(false);
   const [scale, setScale] = useState(1);
   const frame = useRef<HTMLDivElement | null>(null);
 
-  const stalls = [BENCHMARK[0].legacy, BENCHMARK[1].legacy, BENCHMARK[4].point];
-  const pillars = LIVE_PILLARS.map((p) => p.kicker);
-  const tally = BENCHMARK[4].synax;
+  // The wording is the comparison table's own (messages "Benchmark") and the three pillar names ("Live.pillars").
+  const stalls = [bm("cpu.legacy"), bm("filecheck.legacy"), bm("receipt.point")];
+  const pillars = (['p1', 'p2', 'p3'] as const).map((p) => live(`pillars.${p}.kicker`));
+  const tally = bm("receipt.synax");
 
   useLayoutEffect(() => {
     const el = frame.current;
@@ -119,7 +123,7 @@ export function WhyRace() {
       {/* Phones: a plain comparison */}
       <div className="grid gap-4 sm:hidden">
         <div className="rounded-2xl border border-slate-200 bg-surface p-4">
-          <p className="text-xs font-bold tracking-wider text-slate-500 uppercase">Typical alternatives</p>
+          <p className="text-xs font-bold tracking-wider text-slate-500 uppercase">{tr("typical")}</p>
           <ul className="mt-2 space-y-1.5 text-sm text-slate-600">
             {stalls.map((s) => (
               <li key={s} className="flex gap-2">
@@ -132,7 +136,7 @@ export function WhyRace() {
           </ul>
         </div>
         <div className="rounded-2xl border border-brand-line/30 bg-sky-50 p-4">
-          <p className="text-xs font-bold tracking-wider text-brand uppercase">Synax</p>
+          <p className="text-xs font-bold tracking-wider text-brand uppercase">{tr("synax")}</p>
           <ul className="mt-2 space-y-1.5 text-sm text-slate-800">
             {[...pillars, tally].map((s) => (
               <li key={s} className="flex gap-2">
@@ -147,8 +151,7 @@ export function WhyRace() {
       {/* Larger screens: the animated two-lane stage */}
       <div className="hidden sm:block">
         <p className="sr-only">
-          Illustration: the same part moves through five stations. In the typical-alternatives lane it stalls at {stalls.join(", ")}. In the Synax lane it flows end
-          to end: {pillars.join(", ")}, and {tally}.
+          {tr("srDescription", { stalls: stalls.join(", "), pillars: pillars.join(", "), tally })}
         </p>
         <div
           ref={frame}
@@ -158,8 +161,8 @@ export function WhyRace() {
         >
           <div className="absolute top-0 left-0 origin-top-left text-[12px] text-slate-900" style={{ width: W, height: H, transform: `scale(${scale})` }}>
             <div className="absolute inset-0 [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:28px_28px]" />
-            <p className="absolute top-3.5 left-4 text-[10px] tracking-[0.09em] text-slate-500">ONE PART, TWO WAYS TO RUN IT</p>
-            <p className="absolute top-3.5 right-4 text-[10px] tracking-[0.09em] text-slate-500">ILLUSTRATION</p>
+            <p className="absolute top-3.5 left-4 text-[10px] tracking-[0.09em] text-slate-500">{tr("title")}</p>
+            <p className="absolute top-3.5 right-4 text-[10px] tracking-[0.09em] text-slate-500">{tr("illustration")}</p>
 
             <svg className="absolute inset-0" width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
               {[0, 1, 2, 3].map((i) => (
@@ -170,13 +173,13 @@ export function WhyRace() {
               ))}
             </svg>
 
-            {STATIONS.map((name, i) => (
-              <span key={name} className="absolute top-[52px] w-[104px] -translate-x-1/2 text-center text-[11px] leading-tight text-slate-700" style={{ left: X[i] }}>
-                {name}
+            {STATIONS.map((station, i) => (
+              <span key={station} className="absolute top-[52px] w-[104px] -translate-x-1/2 text-center text-[11px] leading-tight text-slate-700" style={{ left: X[i] }}>
+                {tr(`stations.${station}`)}
               </span>
             ))}
-            <p className="absolute top-[104px] left-4 text-[11px] text-slate-500">Typical alternatives</p>
-            <p className="absolute top-[274px] left-4 text-[11px] font-medium text-brand">Synax</p>
+            <p className="absolute top-[104px] left-4 text-[11px] text-slate-500">{tr("typical")}</p>
+            <p className="absolute top-[274px] left-4 text-[11px] font-medium text-brand">{tr("synax")}</p>
 
             {X.map((x, i) => (
               <span key={`a${i}`}>
@@ -192,17 +195,17 @@ export function WhyRace() {
             {badge(pillars[0], X[0], reduced || time > 0.2)}
             {badge(pillars[1], X[1], reduced || time > 1.2)}
             {badge(pillars[2], X[2], reduced || time > 2.5)}
-            {badge("Tally bridge, IRN and e-way bill", X[4] - 8, reduced || time > 6.5)}
+            {badge(tr("tallyBadge"), X[4] - 8, reduced || time > 6.5)}
 
             {/* AI approval at inspection */}
             <div
               className={`absolute w-[176px] -translate-x-1/2 rounded-[10px] border border-t-[3px] border-slate-300 border-t-orange-300 bg-surface px-2.5 py-2 text-[11px] transition-opacity duration-500 ${!reduced && time > 2.5 && time < 4.3 ? "opacity-100" : "opacity-0"}`}
               style={{ left: X[2], top: 206 }}
             >
-              <p className="text-[10px] tracking-[0.09em] text-slate-500">SYNAX AI PROPOSES</p>
-              <p className="mt-0.5 leading-snug">2 challans are past their return date: draft reminders</p>
+              <p className="text-[10px] tracking-[0.09em] text-slate-500">{tr("aiTitle")}</p>
+              <p className="mt-0.5 leading-snug">{tr("aiText")}</p>
               <span className={`mt-1 inline-block rounded-md px-2.5 py-px font-medium transition-colors duration-300 ${time > 3.6 ? "bg-brand-solid text-white" : "bg-orange-300 text-blue-950"}`}>
-                {time > 3.6 ? "Approved ✓" : "Approve"}
+                {time > 3.6 ? tr("approved") : tr("approve")}
               </span>
             </div>
 
@@ -215,10 +218,10 @@ export function WhyRace() {
             </span>
 
             <span className={`absolute right-4 rounded-full bg-brand-solid px-2.5 py-[3px] text-[11px] text-white transition-opacity duration-500 ${doneSynax ? "opacity-100" : "opacity-0"}`} style={{ top: Y2 - 34 }}>
-              Done ✓
+              {tr("done")}
             </span>
             <span className={`absolute right-4 text-[11px] text-slate-400 ${waiting ? "block" : "hidden"}`} style={{ top: Y1 - 34 }}>
-              Still waiting…
+              {tr("waiting")}
             </span>
           </div>
         </div>

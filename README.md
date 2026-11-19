@@ -3,6 +3,7 @@
 Marketing site for Synax by Senwell Group (Next.js App Router, Tailwind v4).
 Routes: `/` renders the landing page (`/erp` redirects to `/`) in
 [`app/erp/_components/landingpage.tsx`](app/erp/_components/landingpage.tsx).
+Languages: English (`/`), French (`/fr`) and German (`/de`); see [internationalisation.md](internationalisation.md).
 
 ```bash
 npm run dev      # http://localhost:3000
@@ -21,6 +22,162 @@ npm run lint
 Rule: **every commit updates this section** (newest first) so any change can be traced
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
+
+### Pending (next commit) — Chat support widget (dummy answers, ready for an API)
+Commit subject: `chat support: floating chat widget with a dummy transport, en/fr/de`
+- **What it does**: a round chat button in the bottom-right corner of every page opens a chat panel (modelled on the Keka support chat): header with the assistant's name and an expand / close button, a conversation with typing dots and message times, quick-reply chips (Book a demo, Which product fits me?, Pricing and free plan, Talk to a person), a message box, and an email box ("Don't have time to wait? Leave your email address..."). After the email is left the chat ends ("Your chat has ended. To start a new chat, click here."). The first greeting appears the first time it is opened; an orange dot marks the unread greeting.
+- **Dummy for now**: answers are canned and translated (English, French, German). It matches keywords (demo, price, Tally, GST, machines, HR, security, products, person) and otherwise asks for an email. **Nothing is sent anywhere and no address is stored**; the email only appears in the on-screen "thanks" line. The panel says it is an automated assistant, so visitors are not told a person is typing. Answers only restate things the site already says (free for SMEs under 50 employees, Tally bridge, GST/IRN/e-way bill, FOCAS, HRMS, tenants and audit history).
+- **Later (the API)**: everything the widget needs from a backend is the small `ChatTransport` interface in `chat-transport.ts` (`send(text, intent)` and `sendEmail(email)`, both returning agent replies). Write a transport that calls your support API and the lead webhook, and pass it as `<ChatWidget transport={...} />` in `erp-shell.tsx`; the widget does not change.
+- **Details**: the conversation is kept for the browser tab (sessionStorage, key `synax.chat`), so it survives moving between pages and reloads; it is hidden while the demo or tour window is open; on small screens the button sits above the home page's sticky "Schedule a Demo" bar; Escape closes the panel and returns focus to the button; the panel is a non-modal dialog and the messages are a live region for screen readers; motion is off for `prefers-reduced-motion`; dark mode follows the site tokens; the email note links to the privacy page.
+- **New files**: `app/erp/_components/chat-support/chat-widget.tsx`, `chat-support/chat-transport.ts`. **Changed**: `erp-shell.tsx` (mounts `<ChatWidget />`), `globals.css` (two small keyframes), `messages/*.json` (new namespace `Chat`, 49 messages per language).
+- **Checks**: typecheck and lint pass; `node tools/check-messages.mjs` passes (1,878 keys); the served `/`, `/fr`, `/de`, product and solution pages contain the translated launcher; the dummy transport was run in Node with sample questions in all three languages and picked the right answer (two keyword gaps found that way were fixed: German "kostet", and "Lohnabrechnung" being read as an invoice). Not tried in a browser, so layout on phones and the panel size are unchecked.
+- **Rollback**: revert the commit, or remove `<ChatWidget />` from `erp-shell.tsx` to hide it.
+
+### Pending (next commit) — Footer: "Senwell Group" links to the Senwell Exports site
+Commit subject: `footer: make Senwell Group in the intro a link to senwellexports.com`
+- **What**: in the footer intro ("Synax is a unified business suite by Senwell Group: ...", in English, French and German) the words "Senwell Group" are now a link to https://senwellexports.com/ (the same address as the "Senwell Exports" link in the footer's Senwell Group column). It opens in a new tab with `rel="noopener noreferrer"`, has a screen-reader note "opens in a new tab", a hover colour and a visible focus outline. Before, it was only bold text.
+- **Changed**: `messages/en.json`, `fr.json`, `de.json` (`Footer.intro`: `<strong>` became `<link>`), `app/erp/_components/home-footer.tsx` (the `link` renderer). The footer is on every page, so the link is everywhere.
+- **Checks**: typecheck and lint pass; `node tools/check-messages.mjs` passes (1,829 keys); the served `/`, `/fr` and `/de` footers contain the link. Not looked at in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Fix: French headline showed <b> tags as text
+Commit subject: `fix fr Usp.title apostrophe before a bold tag; check-messages flags it`
+- **What**: on `/fr` the USP headline read "l<b>IA</b>, ... <b>Tally</b>" with the tags visible. In ICU message format a straight apostrophe next to `<` or `{` starts a quoted (literal) section, so `l'<b>IA</b>` swallowed the tag. The message now uses the typographic apostrophe: `l’<b>IA</b>`.
+- **Changed**: `messages/fr.json` (`Usp.title`), `tools/check-messages.mjs` (new check: a straight apostrophe next to `<`, `>`, `{` or `}` is reported, with the fix). A scan of all three message files found no other case.
+- **Checks**: `node tools/check-messages.mjs` passes (1,829 keys) and, tested on the old text, the new check fails as intended; the served `/fr` page now renders the bold span. Not looked at in a browser.
+- **Rule for new French text**: write `’`, not `'`, directly before a tag or placeholder (or double the straight one: `''`).
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Fix: German product cards in the home hero overflowed
+Commit subject: `fix hero product cards: hyphenate long German words`
+- **What**: in `/de` the six product cards around the hero dashboard let long words ("Maschinenüberwachung", "Ressourcenmanagement", "Mitarbeiterlebenszyklus") run past the card edge and leave a lone "&" on its own line. The text block of each card now has `hyphens-auto break-words` (the page already declares `lang="de"`, so the browser hyphenates: "Maschinen-überwachung").
+- **Site-wide**: a rule in `app/globals.css` ("German hyphenation", `@layer base`) now applies `hyphens: auto` and `overflow-wrap: break-word` to headings, paragraphs, list items, links, buttons, labels and table cells on every page where `<html lang="de">`, so long compounds break with a hyphen instead of overflowing. Words are split only when they would not fit, never in `whitespace-nowrap` or truncated text, and never shorter than 7 letters. French and English are unchanged. Remove the block to undo it.
+- **Changed**: `app/erp/_components/home-hero.tsx` (one class list). No messages changed.
+- **Checks**: typecheck passes; the served `/de` HTML carries the classes. Not looked at in a browser; other German pages may have similar long-word spots.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Home page: smooth scroll reveals, hero entrance and parallax glows
+Commit subject: `home page motion: expo-out scroll reveals, staggered hero entrance, parallax glows`
+- **Why**: studied keka.com's home page. It runs on GSAP + ScrollTrigger + Lenis: long "expo out" entrances (1.4 to 2 s), headings, paragraphs and cards fading and rising in as they reach the viewport (cards with a small stagger), a staggered hero (headline, then copy, then buttons), and scroll-scrubbed parallax. Most of our home sections had no scroll motion at all (only the Rollout section used `Reveal`).
+- **What it does**: (1) the hero headline, buttons and ticks now enter one after another on load, and the hero visual rises with the same soft easing; (2) every home section reveals as it scrolls in: section headers (tag, title, lead, chips) one after another, card grids with a 70 ms stagger (Purpose pillars, security cards, client logos, comparison cards, heritage cards, AI capability cards), large blocks (product carousel, solutions panel, USP rows, the navy band, the chat mock) rising further; (3) the two orange glows behind the Synax AI section drift slowly with the scroll. Everything is off for `prefers-reduced-motion`.
+- **How**: no new library. `app/globals.css` ("Home page motion"): keyframe animations that only define the `from` state, so after playing, the element returns to its own styles and its hover effects are untouched; only opacity and transform are animated. Markup opts in with `data-anim="rise|rise-lg|scale|fade"`, `data-anim-stagger="..."` (its direct children reveal in turn) and `data-parallax="0.14"`. New `app/erp/_components/home-motion.tsx` (renders nothing) marks elements `data-in` once with an IntersectionObserver and moves parallax layers on scroll through one `requestAnimationFrame`. `erp-shell.tsx`'s `<noscript>` rule keeps everything visible without JavaScript.
+- **Changed**: `globals.css`, `home-motion.tsx` (new), `landingpage.tsx`, `home-hero.tsx`, `home-products.tsx`, `home-sectors.tsx`, `home-usp.tsx`, `home-comparison.tsx`, `home-purpose.tsx`, `erp-shell.tsx`.
+- **Not copied from keka.com, on purpose**: Lenis smooth-scroll (it takes over the wheel; risky next to our sticky jump bars, modals and anchor links), count-up numbers (the home page has no headline statistics, and we do not add numbers), horizontal pinned sliders.
+- **Checks**: typecheck passes; lint has no errors in the changed files; the served `/`, `/fr` and `/de` HTML carries the new attributes (11 `data-anim`, 16 `data-anim-stagger`, 2 `data-parallax`). The three hero classes (`synax-enter`) are in the compiled code but the running dev server kept serving the old hero markup, so restart the dev server once. Timings confirmed by the owner after viewing the tightened version (earlier pass 1.15 s reveals / 90 ms stagger / 1.4 s hero; now 0.9 s / 70 ms / 1 s, hero delays 80, 260 and 400 ms, reveal starts when an element is 10% inside the screen).
+- **Tuning**: the three numbers that set the feel are variables at the top of the "Home page motion" block in `globals.css`: `--synax-enter-dur` (hero text on load), `--synax-reveal-dur` (one scroll reveal) and `--synax-stagger` (gap between siblings); the hero delays are the `[--enter-d:...]` classes in `home-hero.tsx`, and the rise distance is `--anim-y` (28 px, 44 px for `rise-lg`).
+- **Rollback**: revert the commit. To switch the scroll reveals off only, remove `<HomeMotion />` from `landingpage.tsx` and delete the `[data-anim]` hidden-state rule in `globals.css`.
+
+### Pending (next commit) — Legacy Manufacturing ERP address redirects
+Commit subject: `redirect /cloud-erp-software/manufacturing-management to /products/manufacturing-erp`
+- **What it does**: `/cloud-erp-software/manufacturing-management`, `/fr/...` and `/de/...` now answer with a permanent redirect (308) to `/products/manufacturing-erp` in the same language. Before, this old address showed the generic English product page, which duplicated the real Manufacturing ERP page.
+- **Changed**: `next.config.ts` (two redirect rules: one for English, one for `/fr` and `/de`, because redirects run before the language proxy). Nothing else; the old route folder, `product-page.tsx` and the English product fields in `products.ts` are now unreachable and can be deleted in a clean-up.
+- **Checks**: typecheck passes; on the dev server the three old URLs return 308 with the right `Location`, and the target pages return 200. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 3 (part 6): sitemap.xml and a translated 404 page
+Commit subject: `i18n phase 3f: add sitemap.xml with hreflang alternates and a localised 404 page`
+- **What it does**: `/sitemap.xml` now exists and lists every page in English, French and German (60 URLs), each with its other-language versions and `x-default`. Unknown addresses (`/nope`, `/fr/nope`, `/products/unknown`, `/de/solutions/unknown`) show a translated 404 page inside the normal header and footer (`noindex`), still answering with HTTP 404. Before, they showed Next.js's plain English 404.
+- **New files**: `app/sitemap.ts`, `app/[locale]/not-found.tsx`, `app/[locale]/[...rest]/page.tsx` (catch-all that calls `notFound()`), `i18n/site.ts` (`SITE_URL`, now shared with `app/[locale]/layout.tsx`). Messages: new namespace `NotFound` (1,829 messages per language).
+- **Deployment note**: set `NEXT_PUBLIC_SITE_URL` in production, otherwise the sitemap lists `http://localhost:3000`. `robots.txt` is not added.
+- **Known**: the legacy `/cloud-erp-software/manufacturing-management` page (not in the sitemap) is redirected in the entry above. In the dev server the 404 page's HTML is wrapped in Next's own error shell (no `lang` attribute in the first HTML); this was the same before and should be checked on a production build.
+- **Checks**: typecheck passes; `node tools/check-messages.mjs` passes (1,829 keys); lint has no errors in the new files; on the dev server `/sitemap.xml` returns 200 `application/xml` with 60 `<url>` entries, and the five unknown-address cases return 404 with the page title in the right language. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 3 (part 5): the six product pages in French and German
+Commit subject: `i18n phase 3e: translate the six product pages, their shared sections and the AI chat board (en/fr/de)`
+- **What it does**: `/products/<slug>` follows the language (`/fr`, `/de`) for Manufacturing ERP, Work & Delivery Management, HRMS, Staffing & Resource Management, Shop Floor & Machine Monitoring and AI & Business Intelligence: heroes, every body section, "Start with what hurts most", the rollout phases, "Works with the rest of Synax", the FAQ (portal and product-specific entries), the closing band, the animated "Ask Synax AI" board, and the browser titles and descriptions. English is unchanged. French and German are drafts that need native review.
+- **Messages**: new namespaces `ProductShared`, `ProductPage.<key>` (one group per product), `AiBoard`, `ProductMeta`; eight HR module names added to `Modules`. 1,820 messages per language.
+- **Changed**: `product-pages/shared.tsx` (`StartPath` now takes a `solution` prop for the translated pain line; `ProductTail` translates product names and the portal FAQ), `manufacturing-erp.tsx`, `work-delivery.tsx`, `hrms.tsx`, `staffing.tsx`, `shop-floor.tsx`, `ai-bi.tsx`, `ai-ask-board.tsx`, `app/[locale]/products/[slug]/page.tsx` (translated metadata). `products.ts` is unchanged.
+- **Kept English on purpose**: tour names (tours are looked up by title), the product name sent with the demo form, tour captions/audio (phase 4).
+- **Checks**: typecheck passes; `node tools/check-messages.mjs` passes (1,820 keys); lint has no errors in the changed files; all six pages in `/`, `/fr` and `/de` return 200 on the dev server with translated titles and no raw message keys or English sentences left in the French/German HTML. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 3 (part 4): the seven solution pages in French and German
+Commit subject: `i18n phase 3d: translate the solution pages and the module groups (en/fr/de)`
+- **What it does**: `/solutions/<slug>` follows the language (`/fr`, `/de`) for aerospace-defence, oil-gas-energy, precision-cnc-machining, it-services-staffing, industrial-machinery-equipment, plant-workforce-hcm and rubber-polymer-moulding: hero (all five compositions), the "at a glance" band, jump bar, challenges, flow, module groups, product cards, FAQ, other industries, closing band, and the browser title and description. English is unchanged. French and German are drafts that need native review.
+- **Messages**: new namespaces `SolutionPage` (template and hero words) and `ProductModules` (the three module groups of all seven products, reused later by the product pages); `Industries.<slug>` extended with the page text; one new module name (`Modules.itc-04-data-pack`). 1,328 messages per language.
+- **Changed**: new `app/erp/_data/localize.ts` (`localizeIndustry`, `localizeModules`); `industry-page-premium.tsx`, `industry-heroes.tsx`, `industries.ts` (optional `titleHead`/`titleTail`, `tourTitleOf()`), `app/[locale]/solutions/[slug]/page.tsx` (translated metadata). `products.ts` is unchanged.
+- **Kept English on purpose**: the tour name (tours are looked up by it), the demo form's product value, and tour captions/audio (phase 4).
+- **Checks**: typecheck passes; `node tools/check-messages.mjs` passes (1,328 keys); lint has no errors in the changed files; all 7 pages in `/`, `/fr` and `/de` return 200 on the dev server with translated titles, headings and section text, no raw message keys, English unchanged. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 3 (part 3): Why Synax and Security & Trust in French and German
+Commit subject: `i18n phase 3c: translate /why-synax, /security, the portal's own statements and the page titles (en/fr/de)`
+- **What it does**: `/why-synax` and `/security` now follow the language (`/fr`, `/de`): heroes, the three pillars, the flow, the five reasons, the animated "one part, two ways" scene, the comparison table, pricing, FAQ, heritage, the six controls, the posting checks, compliance, shared responsibility, privacy and terms, and the closing bands. Their browser titles and descriptions are translated. The four security cards on the home page and the footer tagline are translated too. 945 messages per language; French and German are drafts that need native review.
+- **Messages**: new namespaces `Live` (the portal's positioning line, the 3 pillars, the 6 flow steps, the 4 security statements, pricing and the 4 compliance statements), `Benefits` (the 5 platform benefits), `Why`, `WhyRace`, `ReasonTabs`, `Security`; `Meta.why` and `Meta.security`. `Live.flow` and `Live.pillars` will be reused by the solution pages.
+- **Changed**: `app/[locale]/why-synax/page.tsx` and `app/[locale]/security/page.tsx` (rewritten around messages), `why-hero.tsx`, `why-race.tsx`, `reason-tabs.tsx`, `security-hero.tsx`, `home-footer.tsx` (tagline), `landingpage.tsx` (security cards). The data files (`live.ts`, `content.ts`, `benchmark.ts`) are unchanged.
+- **Still English**: the six product pages, the eight solution pages, their titles, tours, legal pages.
+- **Checks**: typecheck passes; `node tools/check-messages.mjs` passes (945 keys); lint has no errors; `/why-synax`, `/security` and their `/fr` and `/de` versions return 200 on the dev server with the translated texts present, English unchanged. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 3 (part 2): the Products and Solutions pages in French and German
+Commit subject: `i18n phase 3b: translate the /products and /solutions pages, their shared words and their page titles (en/fr/de)`
+- **What it does**: `/products` and `/solutions` now follow the language (`/fr`, `/de`): heroes, the six product cards, the eight "where to start" paths, the animated scene, the coverage table, the module directory, the solution-page list, the shared workflow, the FAQ and the closing bands. Their browser titles and descriptions are translated too. 715 messages per language; French and German are drafts that need native review.
+- **Shared words, translated once** (the new namespaces `Modules`, `Areas`, `AreasShort`, `Workflow`, `Faq`, `SolutionPaths`, `Industries`, `ProductData`): 52 module names, the 8 module areas, the 4 workflow stages, the 7 FAQ questions and answers, the 7 solution pages' names and menu lines, and each product's badge, subtitle and highlights. The solution pages, `/why-synax` and the product pages will reuse them.
+- **New helper**: `i18n/slug.ts` (`slug("Gate entry, GRN & store inward")` gives `gate-entry-grn-store-inward`) so every page finds a shared phrase the same way.
+- **Changed**: `app/[locale]/products/page.tsx`, `app/[locale]/solutions/page.tsx` (rewritten around messages), `app/erp/_components/solutions-scene.tsx` (its labels, headings and the short solution names now come from messages; it takes a new `areaLabels` prop), `messages/*.json`. The data files are unchanged.
+- **Still English**: `/why-synax`, `/security`, the six product pages, the eight solution pages, their titles and descriptions, tours, legal pages.
+- **Checks**: typecheck passes; `node tools/check-messages.mjs` passes (715 keys); lint has no errors; `/products`, `/solutions` and their `/fr` and `/de` versions return 200 on the dev server with the translated texts present, English unchanged. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 3 (part 1): Solutions and product menu lines in French and German
+Commit subject: `i18n phase 3a: translate the Solutions data (header menu, footer, home block) and the product menu lines (en/fr/de)`
+- **What it does**: the 8 solutions (title, one-line summary, tag, description, challenge, solution, four capabilities, a shorter footer name for three) and the 3 group names ("Industries we serve", "How you manufacture", "Business needs") are translated into French and German. They now show in the header's Solutions menu (desktop and mobile), the footer's Solutions column and the home "Sector & Challenge Alignment" block. The six product one-line descriptions show translated in the header's Products menu and in the footer's product cards. 505 messages per language; the French and German are drafts that need native review.
+- **Messages**: new namespaces `SolutionGroups`, `Solutions` (keyed by the solution key), `Sectors` (the block's own labels). `Products.<key>.heroDesc` was renamed `Products.<key>.menu` (same text, now used by the hero, header and footer).
+- **Changed components**: `site-nav.tsx`, `home-footer.tsx`, `home-sectors.tsx`, `home-hero.tsx` (key rename). `_data/solutions.ts` is unchanged: it keeps the structure and the English text, which the `/solutions` page and the solution pages still read directly (they stay English until converted).
+- **Still English**: the `/solutions`, `/products`, `/why-synax`, `/security` pages, the product pages, the solution pages, page titles and descriptions, tours, legal pages; see the roadmap in [internationalisation.md](internationalisation.md).
+- **Checks**: typecheck passes; `node tools/check-messages.mjs` passes (505 keys); lint has no errors; `/`, `/fr`, `/de` return 200 on the dev server and the translated solution and group names are present in French and German, English unchanged. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 2 (part 2): the rest of the home page in French and German
+Commit subject: `i18n phase 2b: translate the home carousel, purpose, USP, comparison and rollout sections (en/fr/de)`
+- **What it does**: the home product carousel, the "purpose" section, the USP section (three story rows, the sample invoice and the flow band), the comparison section and the rollout blueprint now follow the language (`/fr`, `/de`). The messages grew from 147 to 401 per language; the French and German are drafts that need native review.
+- **Messages**: new namespaces `Carousel`, `Purpose`, `Usp`, `Benchmark` (the five comparison rows, to be reused by `/why-synax`), `Comparison`, `Rollout`. Product names in the carousel come from `Products.<key>.name`, the same as the hero and footer.
+- **Changed components**: `home-products.tsx`, `home-purpose.tsx`, `home-usp.tsx`, `home-comparison.tsx`, `rollout.tsx`. Data files (`benchmark.ts`, `content.ts`) are unchanged; the components now show the words from the message files and keep only structure (icons, order, ids) in code. Sample numbers (quantities, amounts) stay numbers (`{count} nos` becomes `{count} pcs` / `{count} Stk.`).
+- **Still English on the home page**: the "Sector & Challenge Alignment" block (`home-sectors.tsx`) and the four security cards. They read the solutions data, which also feeds the header menu, the footer and `/solutions`; it is the first step of phase 3 (a `Solutions` namespace).
+- **Checks**: typecheck passes; `node tools/check-messages.mjs` passes (401 keys); lint has 0 errors; `/`, `/fr`, `/de` return 200 on the dev server with the translated section titles present in French and German and the English unchanged. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 2 (part 1): footer, demo form, home hero and home body in French and German
+Commit subject: `i18n phase 2: translate footer, demo form, shared parts, home hero and home body (en/fr/de)`
+- **What it does**: the footer, the demo-request form and tour modal, the shared buttons / breadcrumb / theme toggle labels, the home hero and most of the home page body now follow the language (`/fr`, `/de`). 147 messages per language, drafted in French and German; they need native review before launch.
+- **Messages**: `messages/en.json`, `fr.json`, `de.json` gained the namespaces `Buttons`, `Theme`, `Shared`, `Footer`, `DemoForm`, `TourModal`, `Products`, `Hero`, `Home`. Product names and one-line descriptions live once under `Products.<key>` (used by the hero and the footer).
+- **Demo form / API** (`app/api/demo-request/route.ts`): every error now also returns a stable `code`; the form translates the code. The form sends the visitor's `locale` and the route forwards it as `language` (`en`/`fr`/`de`) in the webhook payload, so the sales team can answer in that language (**tell whoever owns the webhook: new `language` field**). Option values sent to the CRM stay English.
+- **Changed components**: `home-footer.tsx`, `demo-provider.tsx`, `demo-buttons.tsx`, `theme-toggle.tsx`, `site-page.tsx` (breadcrumb, CTA band), `jump-bar.tsx`, `home-hero.tsx`, `landingpage.tsx`.
+- **Tools** (new): `tools/check-messages.mjs` (same keys, placeholders and tags in the three files; run before a release) and `tools/add-messages.mjs` (merge new `[en, fr, de]` triples).
+- **Still English**: the home product carousel, "purpose" and "USP" sections (`home-products.tsx`, `home-purpose.tsx`, `home-usp.tsx`), the data-driven sections (solutions, comparison, rollout, security cards), all product/solution pages, legal pages and tours; see the roadmap in [internationalisation.md](internationalisation.md).
+- **Checks**: typecheck passes; message check passes (147 keys); lint clean for the new files; `/`, `/fr`, `/de` and sub-pages return 200 on the dev server with the translated text present; the API returns `{ code }` for a bad request. Not tried in a browser.
+- **Rollback**: revert the commit.
+
+### Pending (next commit) — Internationalisation, phase 1: English, French and German routing
+Commit subject: `i18n phase 1: /fr and /de routes, language switcher, hreflang, translated header`
+- **What it does**: the site now has three languages. English keeps its URLs (`/`, `/products`); French lives under `/fr/...` and German under `/de/...`. A first visit to `/` is sent to `/fr` or `/de` when the browser prefers them; the choice is remembered in a `NEXT_LOCALE` cookie. `<html lang>`, canonical and hreflang links are set per page.
+- **Library**: `next-intl` 4.15 (new dependency). Full explanation of every concept and technology: [internationalisation.md](internationalisation.md).
+- **New files**: `proxy.ts` (language detection/rewrite), `i18n/routing.ts`, `i18n/navigation.ts`, `i18n/request.ts`, `i18n/seo.ts`, `messages/en.json`, `fr.json`, `de.json`, `app/erp/_components/language-switcher.tsx`, `internationalisation.md`.
+- **Changed**:
+  - All pages moved from `app/` into `app/[locale]/` (home, products, solutions, security, why-synax, legal, cloud-erp-software); imports fixed. The root layout is now `app/[locale]/layout.tsx` (the old `app/layout.tsx` is gone); `app/api` and `app/erp/_components`/`_data` stay where they are.
+  - `next.config.ts` is wrapped with the next-intl plugin.
+  - All 21 `next/link` imports became `Link` from `@/i18n/navigation` (keeps the language in every link); the header's `usePathname` too.
+  - Every page's metadata now adds a canonical link and hreflang alternates (`generateMetadata`).
+  - Header (`site-nav.tsx`) and the skip link are translated; the language switcher sits next to the theme toggle.
+- **Not translated yet**: everything else (footer, home sections, product/solution pages, forms, legal, tours). It still shows English in all three languages; see the roadmap in the document.
+- **Setup needed**: set `NEXT_PUBLIC_SITE_URL` (for example `https://synax.senwellgroup.com`) in production so canonical/hreflang links are absolute and correct. **Restart `npm run dev`** after pulling (new `proxy.ts`, new config).
+- **Bug found on the way**: the proxy matcher lost a backslash and only matched `/`, so `/products` returned 404; fixed (see the troubleshooting table in the document).
+- **Checks**: typecheck and lint pass; probed `/`, `/fr`, `/de`, `/products`, `/fr/products`, `/de/solutions/...`, `/xx/products` (404) and `/erp` (redirect) on the dev server: all as expected. Not tried in a browser.
+- **Rollback**: revert the commit, then `npm uninstall next-intl`.
+
+### Pending (next commit) — Rubber & Polymer Moulding gets its own solution page
+Commit subject: `Solutions: add the Rubber & Polymer Moulding page (/solutions/rubber-polymer-moulding)`
+- **Problem**: in the Solutions menu, Rubber & Polymer Moulding was the only item without a page of its own; it jumped to a card on /solutions.
+- **Change**:
+  - `app/erp/_data/industries.ts`: a new entry, `rubber-polymer-moulding` (group "How you manufacture"), with its challenges, a six-step flow (Customer PO, Material receipt, Route card, Inspection, Job-work records, Dispatch & GST), FAQ and the "Manufacturing ERP" demo. It uses the existing page layout and the "Poster" hero; the tour scenes are generated from it, but each tour also needs narration (see below).
+  - Tour narration (needed, or **every page fails to render** with `tour rubber-polymer-moulding: 0 captions for 6 scenes`): six captions in `app/erp/_data/tour-lines.json`, six timings in `tour-durations.json`, and six clips in `public/audio/tours/rubber-polymer-moulding/scene-1.mp3` to `scene-6.mp3` (same Microsoft Edge voice, `en-IN-NeerjaNeural`, as the other tours; the text sent to it is the public caption copy, with "PO" and "GST" spelled out as letters for the voice).
+  - **Rule for any new solution page**: add its captions, durations and audio in the same commit.
+  - `app/erp/_data/solutions.ts`: the Rubber entry now links to the new page (menu, footer, /solutions cards); the unused `startHref` helper is removed.
+  - `public/images/industry-rubber.webp`: new blueprint-style hero illustration (an O-ring with a section detail, a two-plate mould and a lip-seal profile).
+- **Wording**: every statement comes from existing site copy (Manufacturing ERP flow, ITC-04 data pack, GST documents). Nothing about compound recipes or press cure parameters is claimed, as the data file's note requires; no customer proof is shown.
+- **Checks**: typecheck and lint pass. Not tried in a browser. A dev server restart may be needed to pick up the new static page.
+- **Rollback**: revert the commit.
 
 ### Pending (next commit) — Demo form: Full Name is focused when the modal opens
 Commit subject: `Demo modal: focus the Full Name field as soon as it opens`

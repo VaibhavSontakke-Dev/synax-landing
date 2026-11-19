@@ -1,4 +1,5 @@
 import { ShieldCheck } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Breadcrumb } from "./site-page";
 import { SectionTag } from "./section-tag";
 import { TourButton } from "./demo-buttons";
@@ -11,16 +12,20 @@ import { TourButton } from "./demo-buttons";
  * for reduced motion (`synax-sec-*` in globals.css).
  */
 
-const TICKS = ["Two-step sign-in", "Role-based access", "AI only proposes, you approve"];
+/** Message ids under "Security.hero.ticks". */
+const TICKS = ["signin", "roles", "ai"] as const;
 
-const CHIPS: { text: string; pos: string; accent?: boolean }[] = [
-  { text: "One tenant per company", pos: "top-[12%] left-0" },
-  { text: "Two-step sign-in", pos: "top-[2%] right-2" },
-  { text: "Checked on the server", pos: "right-0 bottom-[16%]" },
-  { text: "Audit history", pos: "bottom-[6%] left-3", accent: true },
+/** `id` is a message id under "Security.hero.chips". */
+const CHIPS: { id: "tenant" | "signin" | "server" | "audit"; pos: string; accent?: boolean }[] = [
+  { id: "tenant", pos: "top-[12%] left-0" },
+  { id: "signin", pos: "top-[2%] right-2" },
+  { id: "server", pos: "right-0 bottom-[16%]" },
+  { id: "audit", pos: "bottom-[6%] left-3", accent: true },
 ];
 
-export function SecurityHero({ gates }: { gates: { title: string; copy: string }[] }) {
+export function SecurityHero({ gates }: { gates: { id: string; title: string; copy: string }[] }) {
+  const t = useTranslations("Security.hero");
+  const nav = useTranslations("Nav");
   const last = gates.length - 1;
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page">
@@ -33,28 +38,27 @@ export function SecurityHero({ gates }: { gates: { title: string; copy: string }
       </div>
 
       <div className="mx-auto max-w-7xl px-4 pt-8 pb-10 sm:px-6 lg:px-8 lg:pt-10 lg:pb-12">
-        <Breadcrumb items={[{ label: "Security & Trust" }]} />
+        <Breadcrumb items={[{ label: nav("security") }]} />
 
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
-            <SectionTag lines="start">Security &amp; Trust</SectionTag>
+            <SectionTag lines="start">{t("tag")}</SectionTag>
             <h1 id="page-heading" className="mt-3 text-3xl leading-[1.12] font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              <span className="text-brand">Audit-ready by design, </span>not by report
+              {t.rich("title", { b: (chunks) => <span className="text-brand">{chunks}</span> })}
             </h1>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base">
-              Each company runs in its own workspace, every posting is checked on the server, and the system keeps a record of who changed what and
-              when. Here is how that works, and what stays your responsibility.
+              {t("lead")}
             </p>
             <div className="mt-7">
               <TourButton title="Synax Security Overview" />
             </div>
-            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] font-medium text-slate-700" aria-label="Highlights">
-              {TICKS.map((t) => (
-                <li key={t} className="flex items-center gap-1.5">
+            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] font-medium text-slate-700" aria-label={t("highlightsAria")}>
+              {TICKS.map((tick) => (
+                <li key={tick} className="flex items-center gap-1.5">
                   <span className="text-brand" aria-hidden="true">
                     ✓
                   </span>
-                  {t}
+                  {t(`ticks.${tick}`)}
                 </li>
               ))}
             </ul>
@@ -64,7 +68,7 @@ export function SecurityHero({ gates }: { gates: { title: string; copy: string }
           <div
             className="relative mx-auto aspect-square w-full max-w-[24rem]"
             role="img"
-            aria-label="A shield inside concentric rings: one tenant per company, two-step sign-in, checks on the server and an audit history"
+            aria-label={t("ringsAria")}
           >
             <span className="synax-sec-spin absolute inset-0 rounded-full border-2 border-dashed border-brand-line/30" aria-hidden="true" />
             <span className="absolute inset-[11%] rounded-full border border-slate-300 bg-surface/60" aria-hidden="true" />
@@ -74,12 +78,12 @@ export function SecurityHero({ gates }: { gates: { title: string; copy: string }
             </span>
             {CHIPS.map((c) => (
               <span
-                key={c.text}
+                key={c.id}
                 className={`absolute ${c.pos} rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap shadow-md ${
                   c.accent ? "bg-orange-300 text-blue-950" : "border border-slate-300 bg-surface text-brand"
                 }`}
               >
-                {c.text}
+                {t(`chips.${c.id}`)}
               </span>
             ))}
           </div>
@@ -87,12 +91,12 @@ export function SecurityHero({ gates }: { gates: { title: string; copy: string }
 
         {/* One posting through four checks */}
         <div className="mt-10">
-          <p className="mb-3 text-xs font-bold tracking-[0.14em] text-slate-500 uppercase">What happens to every posting</p>
+          <p className="mb-3 text-xs font-bold tracking-[0.14em] text-slate-500 uppercase">{t("gates")}</p>
           <ol className="grid gap-3 sm:grid-cols-2 lg:flex lg:items-stretch lg:gap-0">
             {gates.map((g, i) => {
               const end = i === last;
               return (
-                <li key={g.title} className="flex flex-1 items-stretch">
+                <li key={g.id} className="flex flex-1 items-stretch">
                   <div className={`w-full rounded-xl border bg-surface p-4 shadow-sm ${end ? "border-orange-300" : "border-slate-300"}`}>
                     <span
                       className={`flex size-6 items-center justify-center rounded-full font-mono text-xs font-semibold ${

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 /**
  * Sticky "on this page" chips. The chip for the section you are reading is navy with white text (the
@@ -8,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
  * active section is the last one whose top has passed just under the sticky header + this bar.
  */
 export function JumpBar({ items }: { items: { id: string; label: string }[] }) {
+  const t = useTranslations("Shared");
   const [active, setActive] = useState(items[0]?.id ?? "");
   const list = useRef<HTMLUListElement | null>(null);
   const chips = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -56,7 +58,7 @@ export function JumpBar({ items }: { items: { id: string; label: string }[] }) {
   }, [active]);
 
   return (
-    <nav aria-label="On this page" className="sticky top-16 z-30 border-b border-slate-200 bg-surface/90 backdrop-blur">
+    <nav aria-label={t("onThisPage")} className="sticky top-16 z-30 border-b border-slate-200 bg-surface/90 backdrop-blur">
       <ul ref={list} className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
         {items.map((j) => {
           const on = j.id === active;

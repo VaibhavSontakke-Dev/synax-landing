@@ -2,6 +2,8 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Play, X } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { SectionTag } from "./section-tag";
 import { PRODUCT_ROUTES } from "../_data/products";
 import { TourPlayer, VideoTour } from "./tour-player";
@@ -64,7 +66,13 @@ const EMPTY_FORM: FormState = {
 const FIELD =
   "w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-line focus:ring-1 focus:ring-brand-line bg-slate-50/50";
 
+/** Error codes the API route returns (app/api/demo-request/route.ts); each has a message under DemoForm.errors. */
+const API_ERRORS = new Set(["invalid_request", "too_many_requests", "name_company", "invalid_email", "consent_required", "delivery_failed"]);
+
 export function DemoProvider({ children }: { children: React.ReactNode }) {
+  const t = useTranslations("DemoForm");
+  const tTour = useTranslations("TourModal");
+  const locale = useLocale();
   const [demoOpen, setDemoOpen] = useState(false);
   const [tourOpen, setTourOpen] = useState(false);
   const [tourTitle, setTourTitle] = useState("Synax Platform Overview");
@@ -72,6 +80,10 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
+
+  /** The option value stays English (it goes to the sales team's CRM); only the label is translated. */
+  const optionLabel = (name: string) =>
+    name === DEFAULT_PRODUCT ? t("options.suite") : name === "Aerospace & Defence" ? t("options.aerospace") : name === "Security & Trust Review" ? t("options.securityReview") : name;
 
   const openDemo = useCallback((product = DEFAULT_PRODUCT) => {
     setForm((prev) => ({
@@ -121,15 +133,17 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
       const res = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, website }),
+        // `locale` tells the sales team which language the visitor was reading, so they can answer in it.
+        body: JSON.stringify({ ...form, website, locale }),
       });
       if (!res.ok) {
-        const data = (await res.json().catch(() => null)) as { error?: string } | null;
-        throw new Error(data?.error || "Something went wrong. Please try again.");
+        const data = (await res.json().catch(() => null)) as { code?: string } | null;
+        throw new Error(data?.code ?? "generic");
       }
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      const code = err instanceof Error && API_ERRORS.has(err.message) ? err.message : "generic";
+      setError(t(`errors.${code}`));
     } finally {
       setSubmitting(false);
     }
@@ -156,7 +170,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
               type="button"
               onClick={() => setDemoOpen(false)}
               className="absolute top-5 right-5 cursor-pointer rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
-              aria-label="Close modal"
+              aria-label={t("closeModal")}
             >
               <X className="size-5" />
             </button>
@@ -167,12 +181,15 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   <CheckCircle2 className="size-8" />
                 </div>
                 <h3 id="demo-modal-title" className="text-2xl font-bold text-slate-900">
-                  Request Received
+                  {t("successTitle")}
                 </h3>
                 <p className="mx-auto max-w-sm text-sm leading-relaxed text-slate-600" role="status">
-                  Thank you, <strong>{form.fullName}</strong>. Our team will contact you at{" "}
-                  <strong>{form.email}</strong> to arrange a tailored demonstration for{" "}
-                  <strong className="text-brand">{form.product}</strong>.
+                  {t.rich("successBody", {
+                    name: form.fullName,
+                    email: form.email,
+                    product: optionLabel(form.product),
+                    b: (chunks) => <strong>{chunks}</strong>,
+                  })}
                 </p>
                 <div className="pt-2">
                   <button
@@ -180,19 +197,19 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                     onClick={() => setDemoOpen(false)}
                     className="cursor-pointer rounded-xl bg-brand-solid px-6 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-brand-solid-hover"
                   >
-                    Return to Platform
+                    {t("returnToPlatform")}
                   </button>
                 </div>
               </div>
             ) : (
               <div>
                 <div className="mb-4 pr-8">
-                  <SectionTag lines="start">Senwell Group Architecture Consultation</SectionTag>
+                  <SectionTag lines="start">{t("eyebrow")}</SectionTag>
                   <h3 id="demo-modal-title" className="mt-2 text-xl font-extrabold text-slate-900 sm:text-2xl">
-                    Request Executive Demo
+                    {t("title")}
                   </h3>
                   <p className="mt-1 text-sm text-slate-600">
-                    Connect with an industrial systems engineer to evaluate workflows for your organization.
+                    {t("lead")}
                   </p>
                 </div>
 
@@ -200,7 +217,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div>
                       <label htmlFor="demo-fullName" className="mb-1 block text-xs font-semibold text-slate-700">
-                        Full Name *
+                        {t("fullName")} *
                       </label>
                       <input
                         id="demo-fullName"
@@ -211,13 +228,13 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                         name="fullName"
                         value={form.fullName}
                         onChange={onChange}
-                        placeholder="e.g. Marcus Vance"
+                        placeholder={t("fullNamePlaceholder")}
                         className={FIELD}
                       />
                     </div>
                     <div>
                       <label htmlFor="demo-email" className="mb-1 block text-xs font-semibold text-slate-700">
-                        Work Email *
+                        {t("email")} *
                       </label>
                       <input
                         id="demo-email"
@@ -227,7 +244,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                         name="email"
                         value={form.email}
                         onChange={onChange}
-                        placeholder="m.vance@company.com"
+                        placeholder={t("emailPlaceholder")}
                         className={FIELD}
                       />
                     </div>
@@ -236,7 +253,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div>
                       <label htmlFor="demo-company" className="mb-1 block text-xs font-semibold text-slate-700">
-                        Company Name *
+                        {t("company")} *
                       </label>
                       <input
                         id="demo-company"
@@ -246,13 +263,13 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                         name="company"
                         value={form.company}
                         onChange={onChange}
-                        placeholder="Aerospace Machining Ltd."
+                        placeholder={t("companyPlaceholder")}
                         className={FIELD}
                       />
                     </div>
                     <div>
                       <label htmlFor="demo-phone" className="mb-1 block text-xs font-semibold text-slate-700">
-                        Phone Number
+                        {t("phone")}
                       </label>
                       <input
                         id="demo-phone"
@@ -261,7 +278,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                         name="phone"
                         value={form.phone}
                         onChange={onChange}
-                        placeholder="+1 (555) 019-2834"
+                        placeholder={t("phonePlaceholder")}
                         className={FIELD}
                       />
                     </div>
@@ -270,7 +287,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
                     <label htmlFor="demo-product" className="mb-1 block text-xs font-semibold text-slate-700">
-                      Primary Product of Interest *
+                      {t("product")} *
                     </label>
                     <select
                       id="demo-product"
@@ -281,7 +298,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                     >
                       {PRODUCT_OPTIONS.map((name) => (
                         <option key={name} value={name}>
-                          {name}
+                          {optionLabel(name)}
                         </option>
                       ))}
                     </select>
@@ -289,7 +306,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
 
                   <div>
                     <label htmlFor="demo-floorSize" className="mb-1 block text-xs font-semibold text-slate-700">
-                      Facility / Headcount Scale
+                      {t("scale")}
                     </label>
                     <select
                       id="demo-floorSize"
@@ -298,19 +315,17 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       onChange={onChange}
                       className="w-full rounded-xl border border-slate-200 bg-surface px-3.5 py-2.5 text-xs focus:border-brand-line focus:outline-none"
                     >
-                      <option value="1 - 50 Employees (1 Plant)">1 - 50 Employees (1 Plant)</option>
-                      <option value="50 - 250 Employees (1-3 Plants)">50 - 250 Employees (1-3 Plants)</option>
-                      <option value="250 - 1,000 Employees (Multi-facility)">
-                        250 - 1,000 Employees (Multi-facility)
-                      </option>
-                      <option value="1,000+ Enterprise Tier">1,000+ Enterprise Tier</option>
+                      <option value="1 - 50 Employees (1 Plant)">{t("sizes.s1")}</option>
+                      <option value="50 - 250 Employees (1-3 Plants)">{t("sizes.s2")}</option>
+                      <option value="250 - 1,000 Employees (Multi-facility)">{t("sizes.s3")}</option>
+                      <option value="1,000+ Enterprise Tier">{t("sizes.s4")}</option>
                     </select>
                   </div>
                   </div>
 
                   <div>
                     <label htmlFor="demo-message" className="mb-1 block text-xs font-semibold text-slate-700">
-                      Operational Requirements & Timeline
+                      {t("message")}
                     </label>
                     <textarea
                       id="demo-message"
@@ -318,7 +333,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       name="message"
                       value={form.message}
                       onChange={onChange}
-                      placeholder="Notes on your current ERP or spreadsheets, audit targets, machines or teams..."
+                      placeholder={t("messagePlaceholder")}
                       className={FIELD}
                     />
                   </div>
@@ -340,16 +355,18 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       className="mt-0.5 size-4 shrink-0 cursor-pointer accent-brand-line"
                     />
                     <label htmlFor="demo-consent" className="text-xs leading-relaxed text-slate-600">
-                      I agree that Senwell Group may contact me about this demo and process the details I have entered, as described in the{" "}
-                      <a
-                        href="/privacy"
-                        target="_blank"
-                        rel="noopener"
-                        className="font-semibold text-brand underline hover:text-blue-800 dark:hover:text-accent"
-                      >
-                        Privacy Policy
-                      </a>
-                      . I can withdraw this at any time. *
+                      {t.rich("consent", {
+                        link: (chunks) => (
+                          <Link
+                            href="/privacy"
+                            target="_blank"
+                            rel="noopener"
+                            className="font-semibold text-brand underline hover:text-blue-800 dark:hover:text-accent"
+                          >
+                            {chunks}
+                          </Link>
+                        ),
+                      })}
                     </label>
                   </div>
 
@@ -367,9 +384,9 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                     disabled={submitting}
                     className="mt-1 w-full cursor-pointer rounded-xl bg-brand-solid py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-brand-solid-hover disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    {submitting ? "Sending…" : "Request Architecture Demo"}
+                    {submitting ? t("sending") : t("submit")}
                   </button>
-                  <p className="text-center text-xs text-slate-500">We use your details only to arrange your demo.</p>
+                  <p className="text-center text-xs text-slate-500">{t("note")}</p>
                 </form>
               </div>
             )}
@@ -399,14 +416,14 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                   <h3 id="tour-modal-title" className="text-sm font-bold tracking-wide text-white">
                     {tourTitle}
                   </h3>
-                  <p className="text-[11px] text-slate-400">Guided walkthrough of the platform</p>
+                  <p className="text-[11px] text-slate-400">{tTour("subtitle")}</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setTourOpen(false)}
                 className="cursor-pointer rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
-                aria-label="Close video tour modal"
+                aria-label={tTour("close")}
               >
                 <X className="size-5" />
               </button>
@@ -443,8 +460,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                 <div className="relative z-10 w-full max-w-xl space-y-4">
                   <h4 className="text-lg font-bold text-white sm:text-xl">{tourTitle}</h4>
                   <p className="mx-auto max-w-md text-xs leading-relaxed text-slate-400">
-                    The recorded tour is being prepared. Book a live walkthrough and we will show you the modules,
-                    workflows and reports for your own setup.
+                    {tTour("pending")}
                   </p>
                   <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
                     <button
@@ -455,7 +471,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       }}
                       className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-surface px-6 py-2.5 text-xs font-bold text-brand shadow-lg transition-colors hover:bg-slate-100 sm:w-auto"
                     >
-                      <span>Book a live walkthrough</span>
+                      <span>{tTour("bookLive")}</span>
                       <ArrowRight className="size-3.5" />
                     </button>
                     <button
@@ -463,7 +479,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       onClick={() => setTourOpen(false)}
                       className="w-full cursor-pointer rounded-xl border border-slate-700 bg-slate-800 px-5 py-2.5 text-xs font-semibold text-slate-300 transition-colors hover:bg-slate-700 sm:w-auto"
                     >
-                      Close
+                      {tTour("closeButton")}
                     </button>
                   </div>
                 </div>

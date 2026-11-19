@@ -1,0 +1,2870 @@
+{
+  "Common": {
+    "skipToContent": "Skip to content"
+  },
+  "Language": {
+    "label": "Language",
+    "switchTo": "Change language"
+  },
+  "Nav": {
+    "homeAria": "Synax by Senwell — home",
+    "overview": "Overview",
+    "products": "Products ({count})",
+    "solutions": "Solutions",
+    "whySynax": "Why Synax",
+    "security": "Security & Trust",
+    "scheduleDemo": "Schedule a Demo",
+    "toggleMenu": "Toggle mobile menu",
+    "coreProducts": "Core Business Products",
+    "addOnProducts": "Standalone & Add-On Products",
+    "compareProducts": "Compare all products",
+    "seeSolutions": "See all solutions"
+  },
+  "Buttons": {
+    "scheduleDemo": "Schedule a Demo",
+    "watchOverview": "Watch overview"
+  },
+  "Theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme",
+    "light": "Light theme",
+    "dark": "Dark theme"
+  },
+  "Shared": {
+    "breadcrumb": "Breadcrumb",
+    "getStarted": "Get started",
+    "onThisPage": "On this page",
+    "opensNewTab": "(opens in a new tab)"
+  },
+  "Footer": {
+    "intro": "Synax is a unified business suite by <link>Senwell Group</link>: manufacturing, work and delivery management, HRMS, staffing, shop-floor monitoring and AI in one connected, audit-ready platform.",
+    "complianceHeading": "Compliance alignment",
+    "compliance": {
+      "as9100d": "AS9100D QMS controls",
+      "gst": "GST e-invoice & e-way bill",
+      "tally": "Works with Tally",
+      "dpdp": "DPDP Act, 2023 privacy policy"
+    },
+    "productsAria": "Synax products",
+    "products": "Products",
+    "platform": "Platform",
+    "solutions": "Solutions",
+    "allSolutions": "All solutions",
+    "companyAria": "Company",
+    "aboutSenwell": "About Senwell",
+    "contactSales": "Contact Sales",
+    "copyright": "© {year} Synax by Senwell Group. All rights reserved.",
+    "legalAria": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms and Conditions",
+    "security": "Security",
+    "backToTop": "Back to top"
+  },
+  "DemoForm": {
+    "eyebrow": "Senwell Group Architecture Consultation",
+    "title": "Request Executive Demo",
+    "lead": "Connect with an industrial systems engineer to evaluate workflows for your organization.",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "e.g. Marcus Vance",
+    "email": "Work Email",
+    "emailPlaceholder": "m.vance@company.com",
+    "company": "Company Name",
+    "companyPlaceholder": "Aerospace Machining Ltd.",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+1 (555) 019-2834",
+    "product": "Primary Product of Interest",
+    "scale": "Facility / Headcount Scale",
+    "sizes": {
+      "s1": "1 - 50 Employees (1 Plant)",
+      "s2": "50 - 250 Employees (1-3 Plants)",
+      "s3": "250 - 1,000 Employees (Multi-facility)",
+      "s4": "1,000+ Enterprise Tier"
+    },
+    "message": "Operational Requirements & Timeline",
+    "messagePlaceholder": "Notes on your current ERP or spreadsheets, audit targets, machines or teams...",
+    "consent": "I agree that Senwell Group may contact me about this demo and process the details I have entered, as described in the <link>Privacy Policy</link>. I can withdraw this at any time. *",
+    "sending": "Sending…",
+    "submit": "Request Architecture Demo",
+    "note": "We use your details only to arrange your demo.",
+    "closeModal": "Close modal",
+    "successTitle": "Request Received",
+    "successBody": "Thank you, <b>{name}</b>. Our team will contact you at <b>{email}</b> to arrange a tailored demonstration for <b>{product}</b>.",
+    "returnToPlatform": "Return to Platform",
+    "options": {
+      "suite": "Full Synax Unified Enterprise Suite",
+      "aerospace": "Aerospace & Defence",
+      "securityReview": "Security & Trust Review"
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "invalid_request": "Invalid request.",
+      "too_many_requests": "Too many requests. Please try again in a few minutes.",
+      "name_company": "Please enter your name and company.",
+      "invalid_email": "Please enter a valid email address.",
+      "consent_required": "Please tick the box to agree to the privacy notice.",
+      "delivery_failed": "We couldn't submit your request right now. Please try again shortly."
+    }
+  },
+  "TourModal": {
+    "subtitle": "Guided walkthrough of the platform",
+    "close": "Close video tour modal",
+    "pending": "The recorded tour is being prepared. Book a live walkthrough and we will show you the modules, workflows and reports for your own setup.",
+    "bookLive": "Book a live walkthrough",
+    "closeButton": "Close"
+  },
+  "Products": {
+    "precision": {
+      "name": "Manufacturing ERP",
+      "menu": "Planning, procurement, shop-floor, quality & costing"
+    },
+    "it": {
+      "name": "Work & Delivery Management",
+      "menu": "Work tracker, projects, timesheets & billing"
+    },
+    "hrms": {
+      "name": "HRMS",
+      "menu": "Employee lifecycle, attendance, payroll & performance"
+    },
+    "staffing": {
+      "name": "Staffing & Resource Management",
+      "menu": "Customer needs, candidates, interviews & deployments"
+    },
+    "shopfloor": {
+      "name": "Shop Floor & Machine Monitoring",
+      "menu": "Scheduling, job cards, live machines & downtime"
+    },
+    "ai": {
+      "name": "AI & Business Intelligence",
+      "menu": "AI assistance, agents, analytics & reports"
+    }
+  },
+  "Hero": {
+    "headline": "One Platform for <em>Every Operation</em>",
+    "productsAria": "Synax products",
+    "dashboardAlt": "Synax Enterprise ERP Command Dashboard",
+    "dashboardAltDark": "Synax Enterprise ERP Command Dashboard in the dark theme",
+    "ticks": {
+      "ai": "AI that proposes, you approve",
+      "machines": "Live machine monitoring (OEM or FOCAS)",
+      "tally": "Tally and GST built in"
+    }
+  },
+  "Home": {
+    "ai": {
+      "tag": "Synax AI — Always On",
+      "title": "Your Enterprise, Answered <em>Instantly</em>",
+      "lead": "Synax AI is a built-in intelligent assistant that understands your entire enterprise — orders, HRMS records, live transactions, inventory, compliance status, and more. Just ask.",
+      "cards": {
+        "live": {
+          "title": "Live Transaction Queries",
+          "desc": "Ask “What are today's open purchase orders?” or “Show me all invoices pending approval” and get instant answers from live ERP data."
+        },
+        "hrms": {
+          "title": "HRMS & Workforce Intelligence",
+          "desc": "Query attendance records, payroll status, leave balances, skill certifications, and biometric punch logs in plain language."
+        },
+        "floor": {
+          "title": "Shop Floor & Production Data",
+          "desc": "Get real-time OEE, job traveler status, tool life remaining, scrap rates, and machine queue depth — all from a single chat prompt."
+        },
+        "compliance": {
+          "title": "Compliance & Audit Readiness",
+          "desc": "Surface FAIR register status, certificates of conformance, shop-floor quality exceptions and calibration expiry alerts on demand. Agents propose; an approver decides."
+        }
+      },
+      "connected": "Connected to your enterprise data",
+      "user1": "What are the current open transactions today?",
+      "reply1": "Here's a live summary of today's open transactions:",
+      "tiles": {
+        "poLabel": "Purchase Orders",
+        "poValue": "{count} Open",
+        "invLabel": "Sales Invoices",
+        "invValue": "{count} Pending",
+        "jobLabel": "Job Orders",
+        "jobValue": "{count} Active",
+        "grnLabel": "GRN Pending",
+        "grnValue": "{count} Awaiting"
+      },
+      "user2": "Show me attendance for Shift A today",
+      "reply2": "<g>Shift A — 428 punched in</g>, 12 on active break pass, 3 on approved leave. Payroll sync is up to date. No overstay alerts.",
+      "inputPlaceholder": "Ask anything about your enterprise data...",
+      "send": "Send message",
+      "note": "Synax AI is included in every enterprise plan — no extra setup, no third-party integrations.",
+      "explore": "Explore AI & Business Intelligence"
+    },
+    "clients": {
+      "tag": "Running on Synax",
+      "title": "Senwell Group & Ecosystem Companies",
+      "lead": "Companies across the Senwell ecosystem run their operations on Synax."
+    },
+    "security": {
+      "tag": "Security & control",
+      "title": "Audit-ready by design, not by report.",
+      "lead": "Each company runs in its own workspace, and every material change leaves a record.",
+      "more": "Read more about security & trust"
+    },
+    "heritage": {
+      "tag": "Manufacturing Pedigree",
+      "title": "Industrial Heritage. Purpose-Built Software.",
+      "body": "Synax was not engineered in a generic software incubator. It was born out of <b>Senwell Group’s</b> multi-decade heritage in precision aerospace manufacturing, global industrial export (Senwell Exports, Stacwell Rubber, Stacem France & Morocco), and high-volume engineering operations."
+    },
+    "cta": {
+      "tag": "Senwell Group Enterprise Software",
+      "title": "See your own shop floor in Synax.",
+      "lead": "A 30-minute walkthrough with your parts, your challans and your machines."
+    }
+  },
+  "Carousel": {
+    "tag": "Market-Ready Platforms",
+    "title": "Six connected products for manufacturing and IT operations",
+    "lead": "Two core ERPs anchor the portfolio, with HRMS, staffing, shop-floor monitoring, and AI available as standalone solutions or integrated capabilities, depending on packaging.",
+    "jumpAria": "Jump to a product",
+    "position": "{current} of {total}",
+    "progressAria": "Product carousel position",
+    "prev": "Previous products",
+    "next": "Next products",
+    "region": "Product offerings",
+    "slide": "{current} of {total}: {title}",
+    "explore": "Explore",
+    "exploreAria": "Explore {title}",
+    "items": {
+      "precision": {
+        "short": "Manufacturing ERP",
+        "tag": "Core ERP",
+        "tagline": "Customer material, route cards, and machine-to-invoice control.",
+        "statLabel": "Production Flow",
+        "statValue": "Machine to Invoice",
+        "b1": "POs, challans & material ID ranges",
+        "b2": "Material balances, use, returns & scrap",
+        "b3": "Machine counts & downtime on route cards",
+        "b4": "Inspection, COC, dispatch & Tally"
+      },
+      "hrms": {
+        "short": "HRMS",
+        "tag": "Standalone or Integrated Solution",
+        "tagline": "Employee operations and workforce administration.",
+        "statLabel": "Monthly Payroll Run Speed",
+        "statValue": "< 60 Sec",
+        "b1": "Employee lifecycle, recruitment, and offboarding",
+        "b2": "Attendance, leave, payroll, and compliance",
+        "b3": "Daily Work Management (DWM)",
+        "b4": "Performance management"
+      },
+      "shopfloor": {
+        "short": "Shop floor",
+        "tag": "Product Solution",
+        "tagline": "Production execution and machine operations management.",
+        "statLabel": "Product Focus",
+        "statValue": "Machine Execution",
+        "b1": "Machine scheduling and load charts",
+        "b2": "Operator job cards and live machine monitoring",
+        "b3": "Downtime and alarm visibility",
+        "b4": "Production tracking and machine utilization"
+      },
+      "it": {
+        "short": "Work & Delivery",
+        "tag": "Core Product",
+        "tagline": "Run service delivery from task to invoice in one workspace.",
+        "statLabel": "Business Lifecycle",
+        "statValue": "Work to Billing",
+        "b1": "Work Tracker with daily activity and meetings",
+        "b2": "Projects with customer requirements and SOWs",
+        "b3": "Timesheets, work logs, and development costs",
+        "b4": "Project billing and profitability"
+      },
+      "staffing": {
+        "short": "Staffing",
+        "tag": "Product Solution",
+        "tagline": "Source, deploy, and manage customer staffing requirements.",
+        "statLabel": "Product Focus",
+        "statValue": "Talent Deployment",
+        "b1": "Customer requirements and candidate management",
+        "b2": "Interviews, offers, and onboarding",
+        "b3": "Deployments and resource performance",
+        "b4": "Replacements and approvals"
+      },
+      "ai": {
+        "short": "AI and BI",
+        "tag": "Product Solution",
+        "tagline": "Intelligent assistance and insights for business operations.",
+        "statLabel": "Product Focus",
+        "statValue": "Insights & Assistance",
+        "b1": "AI-powered assistance and Synax Agents",
+        "b2": "Operational analytics and business dashboards",
+        "b3": "Reports across business workflows",
+        "b4": "Performance insights for informed decisions"
+      }
+    }
+  },
+  "Purpose": {
+    "tag": "The Ecosystem Purpose",
+    "title": "The Larger Purpose Behind the Synax Ecosystem",
+    "lead": "Traditional ERPs were built for finance departments, forcing shop floor engineers, quality leads, and workforce managers to survive on fragmented spreadsheets. Synax exists to unify high-precision execution, human capital, and regulatory compliance into one cohesive continuum.",
+    "from": "Fragmented spreadsheets",
+    "to": "One cohesive continuum",
+    "hub": "One<br></br>continuum",
+    "readMore": "Read more",
+    "showLess": "Show less",
+    "pillars": {
+      "industry": {
+        "tag": "Precision & Compliance",
+        "title": "Industry-Focused Solutions",
+        "subtitle": "Domain-native workflows instead of generic ERP workarounds",
+        "body": "We reject one-size-fits-all software. Synax is built around how a machine shop actually works: customer-supplied material tracked by challan and Material ID, route cards confirmed from the machine, AS9100D QMS controls at the quality checkpoints, and First Article Inspection records in the same flow.",
+        "c1": "AS9100D QMS Controls",
+        "c2": "FAIR Register & COC"
+      },
+      "operations": {
+        "tag": "Operational Velocity",
+        "title": "Smarter Business Operations",
+        "subtitle": "Single source of truth from material receipt to customer dispatch",
+        "body": "Synax connects the front office and the shop floor. Real machine counts, material lots and stage-by-stage records feed one view, so leadership sees OEE per job and the state of the floor without waiting for end-of-month reconciliation.",
+        "c1": "Material Lot Genealogy",
+        "c2": "Machine Scheduling"
+      },
+      "workforce": {
+        "tag": "Human Capital Intelligence",
+        "title": "Better Workforce Management",
+        "subtitle": "Unifying permanent floor staff with contingent technical talent",
+        "body": "High-precision delivery needs the right people on every shift. Synax brings biometric punch-ins, plant floor break-pass management and payroll with approvals into one workspace, and its staffing tools show who is available and where each person is deployed.",
+        "c1": "Biometric Device Sync",
+        "c2": "Staffing & Deployments"
+      },
+      "technology": {
+        "tag": "Modern Tech Architecture",
+        "title": "Technology-Driven Transformation",
+        "subtitle": "Cloud-native scale, machine connectivity & audit-ready security",
+        "body": "Replacing clunky legacy on-premise architectures with modern, cloud-native engineering. Synax connects CNC machines through the OEM connection or open FOCAS, runs every company in its own isolated workspace, checks postings on the server, and keeps an audit history of material changes.",
+        "c1": "Machine Data (OEM / FOCAS)",
+        "c2": "Audit History & Isolated Workspaces"
+      }
+    },
+    "banner": {
+      "tag": "Senwell Group Engineering Discipline",
+      "title": "One Unified Continuum. Zero Disconnected Tools.",
+      "lead": "Every tier of Synax works in synchrony: from hiring and biometric clock-in to machining and AS9100D-controlled release.",
+      "cta": "See why teams choose Synax"
+    }
+  },
+  "Usp": {
+    "tag": "What sets Synax apart (USP)",
+    "title": "Built in, not bolted on: <b>AI</b>, live machines, <b>Tally</b> and GST",
+    "lead": "Most plants stitch these together from separate tools. In Synax they share one record, from the machine to the GST invoice.",
+    "highlightsAria": "Highlights",
+    "highlights": {
+      "agents": "Agents only propose",
+      "focas": "OEM or open FOCAS",
+      "irn": "IRN on approval",
+      "tally": "Works with Tally",
+      "india": "Built in India",
+      "audit": "Audit trail on every posting"
+    },
+    "guaranteesAria": "Guarantees",
+    "band": {
+      "title": "One record from the machine to the ledger",
+      "sub": "With AI watching each step"
+    },
+    "flow": {
+      "machine": "Machine count",
+      "route": "Route card",
+      "inspection": "Inspection & COC",
+      "gst": "GST invoice · IRN",
+      "tally": "Tally voucher"
+    },
+    "ai": {
+      "label": "AI that acts",
+      "title": "Synax AI finds the exception and proposes the fix. You approve.",
+      "body": "Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes.",
+      "p1": "Challan reconciliation and overdue chasers",
+      "p2": "Dispatch readiness and receivables follow-up",
+      "p3": "Quality compliance and shop-floor watch",
+      "p4": "Maker-checker approval with a full event history",
+      "cta": "Explore AI & Business Intelligence",
+      "alt": "Synax home screen with the Overview card and Synax AI",
+      "altDark": "Synax home screen with the Overview card and Synax AI, in the dark theme",
+      "ask": "Ask anything about your ERP data",
+      "approvedTitle": "Approved by you",
+      "approvedBody": "2 reminders drafted. Recorded in the event history.",
+      "proposesTitle": "Synax AI proposes",
+      "proposesBody": "2 challans are past their return date. Draft reminders to the customer?",
+      "approve": "Approve",
+      "agentsOnly": "Agents only propose."
+    },
+    "machines": {
+      "label": "Live machine monitoring",
+      "title": "The machine reports the count.",
+      "body": "Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator.",
+      "p1": "OEM connection or open FOCAS",
+      "p2": "Live machine board with alarms and downtime reasons",
+      "p3": "Machines that cannot connect still work: operators confirm counts",
+      "p4": "Biometric devices sync attendance and overtime approvals",
+      "cta": "Explore Shop Floor & Machine Monitoring",
+      "alt": "Live machine board with six machines, their cycle counts and an alarm on M-03 (illustration)",
+      "altDark": "Live machine board with six machines, their cycle counts and an alarm on M-03, in the dark theme (illustration)",
+      "illustration": "Illustration",
+      "focas": "FOCAS connected",
+      "cycles": "Live cycle counts",
+      "board": "Machine board",
+      "live": "Live",
+      "running": "Running",
+      "alarm": "M-03 Alarm · tool life"
+    },
+    "billing": {
+      "label": "Tally and GST",
+      "title": "GST invoices carry their IRN. Your books stay in Tally.",
+      "body": "Run purchase, stores, production and dispatch in Synax. GST invoices, IRN and e-way bills come from the same flow, and vouchers go to Tally, so your accountant changes nothing.",
+      "p1": "GST tax invoice, IRN and e-way bill in one flow",
+      "p2": "IRN through ClearTax or Masters India, on approval",
+      "p3": "ITC-04 data pack for job work",
+      "p4": "Tally bridge for vouchers",
+      "cta": "Explore Manufacturing ERP",
+      "plug": "ClearTax or Masters India connected",
+      "voucher": "Voucher sent to Tally",
+      "accountant": "Your accountant changes nothing",
+      "invoice": "Tax invoice",
+      "sample": "Sample",
+      "billedTo": "Billed to <b>Sample customer</b>",
+      "gst": "GST",
+      "total": "Total",
+      "irn": "IRN",
+      "irnOn": "Generated on approval",
+      "irnOff": "Generated once approved",
+      "afterAria": "What happens after approval",
+      "chain": {
+        "approved": {
+          "title": "Invoice approved",
+          "note": "By an approver with the right role"
+        },
+        "irn": {
+          "title": "IRN generated",
+          "note": "Through your GST suvidha provider"
+        },
+        "eway": {
+          "title": "E-way bill",
+          "note": "In the same flow"
+        },
+        "tally": {
+          "title": "Voucher to Tally",
+          "note": "Your accountant changes nothing"
+        }
+      },
+      "lines": {
+        "housing": "Machined housing",
+        "shaft": "Shaft, ground",
+        "bracket": "Bracket, drilled",
+        "qty": "{count} nos"
+      }
+    }
+  },
+  "Benchmark": {
+    "cpu": {
+      "title": "Live Machine Monitoring (IoT)",
+      "synax": "OEM connection or open FOCAS, no separate MES",
+      "legacy": "Needs a separate MES or integrator",
+      "point": "Manual paper whiteboard logging"
+    },
+    "filecheck": {
+      "title": "FAIR Register & Certificate of Conformance",
+      "synax": "In the same flow as inspection and dispatch",
+      "legacy": "Manual paperwork entry & reassembly",
+      "point": "Vulnerable Excel spreadsheets"
+    },
+    "clock": {
+      "title": "Biometric Attendance & Shift Break Passes",
+      "synax": "Attendance logs and OT approvals sync from biometric devices",
+      "legacy": "Separate HCM module with sync lags",
+      "point": "Isolated punch cards / buddy punching"
+    },
+    "sparkles": {
+      "title": "AI Assistant That Acts",
+      "synax": "Agents propose, an approver decides",
+      "legacy": "Reports only; nothing proposes the fix",
+      "point": "Chasing challans and payments by email"
+    },
+    "receipt": {
+      "title": "Tally & GST (e-invoice, e-way bill)",
+      "synax": "Tally bridge, IRN and e-way bill in one flow",
+      "legacy": "Separate GST add-on or manual export",
+      "point": "Re-keying invoices into Tally"
+    }
+  },
+  "Comparison": {
+    "tag": "Market Benchmark",
+    "title": "Why Industry Leaders Migrate to Synax",
+    "lead": "Modern, purpose-built manufacturing software, backed by a technology team of 100+ IT professionals. See how it compares with legacy monoliths and disjointed point solutions.",
+    "timelineTitle": "Implementation Timeline",
+    "timelineNote": "Illustrative scale, based on typical deployments",
+    "timeline": {
+      "synax": {
+        "name": "Synax Unified Suite",
+        "value": "Live module by module, on a tailored plan"
+      },
+      "legacy": {
+        "name": "Legacy ERP suites",
+        "value": "A long, consultant-led project"
+      },
+      "point": {
+        "name": "Disconnected Point Tools",
+        "value": "Endless patchworks & API breaks"
+      }
+    },
+    "synaxSr": "Synax: ",
+    "ctaTitle": "Technology backed by 100+ IT professionals",
+    "ctaCopy": "More than a software vendor: an experienced in-house team that understands technology and business, helps with your technical needs, and supports you as you grow, well beyond go-live.",
+    "explore": "Explore the products",
+    "footnote": "Comparison reflects typical deployments and Synax's own assessment; results vary with scope and data readiness."
+  },
+  "Rollout": {
+    "tag": "Rollout blueprint",
+    "title": "A phased path from discovery to optimization",
+    "lead": "Every rollout follows the same four phases. How long each one takes depends on your organization, so the schedule is planned with you.",
+    "timing": "Phase {n}",
+    "goLive": "Go-live",
+    "ongoing": "Ongoing",
+    "phases": {
+      "p1": {
+        "title": "Discovery & Planning",
+        "copy": "Review departments, processes, current systems, data, and integrations, then agree the scope and a rollout plan for your organization."
+      },
+      "p2": {
+        "title": "Configuration & Data Setup",
+        "copy": "Configure modules, roles, and approvals, then clean, import, and check employee, customer, vendor, project, and inventory records."
+      },
+      "p3": {
+        "title": "Pilot Launch",
+        "copy": "Go live with one team, department, or site first, train its users, and resolve issues before the wider rollout."
+      },
+      "p4": {
+        "title": "Full Rollout & Optimization",
+        "copy": "Extend to more teams, modules, and locations in planned waves, track adoption, and refine workflows once stable."
+      }
+    },
+    "note": "Implementation timelines are tailored to your organization's size, operational complexity, and requirements. A detailed rollout plan will be established during the discovery phase.",
+    "checklistTitle": "Before onboarding",
+    "steps": "{count} steps",
+    "checklist": {
+      "c1": "Name a rollout owner, a leadership sponsor, and department champions",
+      "c2": "Prepare and check employee, customer, vendor, and project master data",
+      "c3": "Document current approval, attendance, and task-update procedures",
+      "c4": "Agree success measures, such as turnaround, SLA adherence, and throughput",
+      "c5": "Plan user training and a support period after each go-live"
+    },
+    "rolesTitle": "Rollout ownership",
+    "roles": "{count} roles",
+    "role": {
+      "r1": {
+        "title": "Rollout Owner",
+        "desc": "Owns the rollout plan, its milestones, and escalations."
+      },
+      "r2": {
+        "title": "Department Champion",
+        "desc": "Represents the team's processes and leads its training and adoption."
+      },
+      "r3": {
+        "title": "System Admin",
+        "desc": "Manages module settings, user access, and data checks."
+      },
+      "r4": {
+        "title": "Leadership Sponsor",
+        "desc": "Sets priorities, approves scope, and drives adoption across the organization."
+      }
+    }
+  },
+  "SolutionGroups": {
+    "industry": {
+      "label": "Industries we serve",
+      "lead": "The markets our customers supply.",
+      "short": "Industry"
+    },
+    "process": {
+      "label": "How you manufacture",
+      "lead": "The way the work is done on your floor.",
+      "short": "Manufacturing"
+    },
+    "need": {
+      "label": "Business needs",
+      "lead": "The problem in front of you, in any sector.",
+      "short": "Business need"
+    }
+  },
+  "Solutions": {
+    "aerospace": {
+      "title": "Aerospace & Defence",
+      "short": "AS9100D quality controls",
+      "tag": "AS9100D QMS controls",
+      "description": "Built for aerospace and defence suppliers who machine customer-supplied material.",
+      "challenge": "Audit evidence assembled by hand after the part has shipped, first-article reports and certificates kept in separate files, and customer-owned material that is hard to trace to a delivered part.",
+      "solution": "AS9100D QMS controls attached at critical workflow checkpoints, a FAIR register and certificate of conformance in the same flow, material genealogy from entry to dispatch, and role-based access to drawings and records.",
+      "c1": "FAIR Register & First Article Records",
+      "c2": "Certificate of Conformance with the Machining Record",
+      "c3": "Material Entry Audit & Genealogy Trace",
+      "c4": "NCR / CAPA Quality Gateways",
+      "chip": "Aerospace"
+    },
+    "energy": {
+      "title": "Oil, Gas & Energy",
+      "short": "Traceable parts for critical service",
+      "tag": "Traceability & quality records",
+      "description": "For suppliers of machined and moulded parts to oil, gas, power and energy customers, where every part has to trace back to its material and its inspection.",
+      "challenge": "Material lots, inspection results and certificates are kept apart from the job, so proving where a delivered part came from means searching files after it has shipped.",
+      "solution": "Customer material tracked by challan and Material ID, receiving and final inspection with stage buy-offs, NCR and CAPA when a check fails, and a certificate of conformance issued from the same record.",
+      "c1": "Material Genealogy from Receipt to Dispatch",
+      "c2": "Receiving, Stage & Final Inspection",
+      "c3": "NCR / CAPA Quality Gateways",
+      "c4": "Certificate of Conformance with the Record",
+      "chip": "Oil & Gas"
+    },
+    "machinery": {
+      "title": "Industrial Machinery & Equipment",
+      "short": "BOMs, routings & machine load",
+      "footer": "Industrial Machinery",
+      "tag": "Engineered equipment",
+      "description": "For makers of pumps, valves, compressors, gearboxes and other equipment, and for the suppliers who machine their parts.",
+      "challenge": "Bills of material, routings and machine load are planned in spreadsheets, production status reaches the office late, and stores, production and dispatch are re-keyed into the books.",
+      "solution": "Part masters and BOMs, operation routings and route cards released against them, machine scheduling with live counts and downtime, then packing, the GST invoice and the Tally bridge in one flow.",
+      "c1": "Part Master, BOM & Operation Routing",
+      "c2": "Machine Scheduling & Load Charts",
+      "c3": "Live Machine Board, Alarms & Downtime",
+      "c4": "GST Dispatch & Tally Voucher Bridge",
+      "chip": "Machinery"
+    },
+    "services": {
+      "title": "IT Services & Consulting",
+      "short": "Projects, timesheets & billing",
+      "tag": "Services delivery",
+      "description": "For IT services firms and technical consultancies that deliver projects and place people with clients.",
+      "challenge": "Hours, work logs and costs are not tied to the project they belong to, unbillable bench time shows up only at month end, and client communication happens outside the system of record.",
+      "solution": "The Work Tracker and projects, timesheets and work logs against each project, project billing with a view of profitability, and client requirements and deployments in the same workspace.",
+      "c1": "Work Tracker & Project Dashboards",
+      "c2": "Timesheets, Work Logs & Development Costs",
+      "c3": "Project Billing Tracker & Budget Planner",
+      "c4": "Support Tickets & Team Collaboration",
+      "chip": "IT services"
+    },
+    "precision": {
+      "title": "Precision CNC Machining & Job Work",
+      "short": "Customer material to invoice",
+      "footer": "Precision CNC & Job Work",
+      "tag": "Precision & job work",
+      "description": "Track customer-supplied material by challan, PO line, and material ID, then carry each job through route-card operations, machine-confirmed quantities, inspection, and dispatch.",
+      "challenge": "Customer-owned material, production status, inspection records, and dispatch paperwork often sit in separate sheets, making consumption and invoiced quantities difficult to reconcile.",
+      "solution": "Link customer POs and material challans to route cards, machine-reported counts with operator-approved variances, stage buy-offs, COC records, and GST dispatch, with vouchers bridged to Tally.",
+      "c1": "Customer Challans, PO Lines & Material IDs",
+      "c2": "Machine Counts, Alarms & Operator Variance Sign-Off",
+      "c3": "Route Cards, Stage Buy-Offs & COC Records",
+      "c4": "GST Dispatch Documents & Tally Voucher Bridge",
+      "chip": "Precision"
+    },
+    "rubber": {
+      "title": "Rubber & Polymer Moulding",
+      "short": "Job work, lots & inspection",
+      "footer": "Rubber Moulding",
+      "tag": "Moulded parts",
+      "description": "For moulders of seals, gaskets, hoses and other rubber and polymer parts who work to customer POs and, often, customer-supplied material.",
+      "challenge": "Customer POs, material received on challan, production lots, rejections and dispatch are kept in separate registers, so material balances and job-work returns are rebuilt by hand each period.",
+      "solution": "The same Manufacturing ERP flow: customer POs and challans, a route card for each job, receiving and final inspection, rejections recorded against the job, and ITC-04 job-work records with GST dispatch.",
+      "c1": "Customer POs, Challans & Material IDs",
+      "c2": "Route Cards & Production Tracking",
+      "c3": "Receiving & Final Inspection",
+      "c4": "ITC-04 Job-Work Records & GST Dispatch",
+      "chip": "Rubber"
+    },
+    "workforce": {
+      "title": "Plant Workforce & HR",
+      "short": "Attendance, shifts & payroll",
+      "tag": "Workforce & HCM",
+      "description": "Designed for high-intensity industrial plants, multi-facility manufacturing enterprises, and shift-based engineering teams.",
+      "challenge": "Buddy punching, unaccounted plant floor break passes leaving active machining lines unattended, and multi-day manual payroll calculations with complex shift differential and tax errors.",
+      "solution": "Attendance, leave and work-from-home with overtime approvals, biometric device sync, payroll with approvals, and department KPIs, in the same workspace as operations.",
+      "c1": "Employee Records & Lifecycle",
+      "c2": "Attendance, Leave & WFH",
+      "c3": "Biometric Attendance Sync & OT Approvals",
+      "c4": "Payroll with Approvals",
+      "chip": "Workforce"
+    },
+    "staffing": {
+      "title": "Staffing & Contract Talent",
+      "short": "Requirements to deployment",
+      "tag": "Staffing & resource management",
+      "description": "Built for staffing agencies, technical consulting networks, and contingent workforce providers managing customer requirements and deployments.",
+      "challenge": "Weeks-long recruiting cycles, consultants sitting idle on unbillable bench time, multi-vendor communication friction, and disputed timesheets and invoices.",
+      "solution": "Customer requirements, candidates, interviews, offers and onboarding in one flow, with deployments, replacements and approvals tracked against each requirement.",
+      "c1": "Customer Requirements & Candidate Management",
+      "c2": "Interviews, Offers & Onboarding",
+      "c3": "Deployments & Resource Performance",
+      "c4": "Replacements & Approvals",
+      "chip": "Staffing"
+    }
+  },
+  "Sectors": {
+    "tag": "Sector & Challenge Alignment",
+    "title": "Built for your industry, your process and your people",
+    "lead": "Pick the market you serve, the way you manufacture, or the problem you need solved. Each shows the challenge, how Synax handles it, and the products involved.",
+    "viewBy": "View solutions by",
+    "poweredBy": "Powered by <b>{name}</b>",
+    "challengeTitle": "The Business Challenge",
+    "solveTitle": "How Synax Solves It",
+    "capabilities": "Key capabilities",
+    "worksWith": "Works with",
+    "explore": "Explore this solution",
+    "notListed": "Your sector is not listed?",
+    "seeAll": "See every solution in detail"
+  },
+  "Meta": {
+    "products": {
+      "title": "Products | Synax by Senwell",
+      "description": "Six Synax products: Manufacturing ERP, Work & Delivery Management, HRMS, Staffing & Resource Management, Shop Floor & Machine Monitoring, and AI & Business Intelligence."
+    },
+    "solutions": {
+      "title": "Solutions by Industry & Business Need | Synax by Senwell",
+      "description": "Start with what hurts most and add the rest when you are ready: where to begin for aerospace and defence, oil, gas and energy, industrial machinery, IT services, precision machining, rubber moulding, plant workforce and staffing, how far each solution reaches, and the full module directory.",
+      "ogTitle": "Solutions by Industry & Business Need | Synax",
+      "ogDescription": "Where to start for each solution, what to add next, and the module directory."
+    },
+    "why": {
+      "title": "Why Synax | Synax by Senwell",
+      "description": "Why manufacturers and service businesses choose Synax: quality gates built into the workflow, audit-ready records, end-to-end traceability, tenant-isolated workspaces, and one connected data model.",
+      "ogTitle": "Why Synax",
+      "ogDescription": "Built-in quality, audit readiness, traceability and one connected data model."
+    },
+    "security": {
+      "title": "Security & Trust | Synax by Senwell",
+      "description": "Isolated workspaces per company, server-checked postings, an audit history of every material change, role-based access with two-step sign-in, and AI agents that only propose until an approver says yes.",
+      "ogTitle": "Security & Trust | Synax",
+      "ogDescription": "Audit-ready by design, not by report."
+    }
+  },
+  "Areas": {
+    "sales": "Sales",
+    "procurement-stores": "Procurement & Stores",
+    "production": "Production",
+    "quality": "Quality",
+    "dispatch-gst": "Dispatch & GST",
+    "people": "People",
+    "collaboration": "Collaboration",
+    "platform": "Platform"
+  },
+  "AreasShort": {
+    "procurement-stores": "Stores",
+    "collaboration": "Collab."
+  },
+  "Modules": {
+    "gate-entry-grn-store-inward": "Gate entry, GRN & store inward",
+    "route-card-production-order": "Route card production order",
+    "machine-monitoring-jobs": "Machine monitoring & jobs",
+    "receiving-final-inspection": "Receiving & final inspection",
+    "packing-customer-invoice": "Packing & customer invoice",
+    "e-invoice-irn-e-way-bill": "E-invoice (IRN) & e-way bill",
+    "tally-bridge": "Tally bridge",
+    "stage-buy-offs": "Stage buy-offs",
+    "fair-register": "FAIR register",
+    "certificate-of-conformance": "Certificate of conformance",
+    "delivery-challans": "Delivery challans",
+    "part-master-bom-suite": "Part master & BOM suite",
+    "operation-master-routing": "Operation master & routing",
+    "work-tracker": "Work Tracker",
+    "timesheets-work-logs": "Timesheets & work logs",
+    "project-billing-tracker": "Project billing tracker",
+    "customer-requirements": "Customer requirements",
+    "deployments-replacements": "Deployments & replacements",
+    "customer-po-amendments": "Customer PO & amendments",
+    "employee-records": "Employee records",
+    "attendance-leave-wfh": "Attendance, leave & WFH",
+    "payroll-with-approvals": "Payroll with approvals",
+    "department-kpis": "Department KPIs",
+    "candidate-management": "Candidate management",
+    "interviews": "Interviews",
+    "offers-onboarding": "Offers & onboarding",
+    "rfq-quotations": "RFQ & quotations",
+    "monthly-sales-plan": "Monthly sales plan",
+    "order-fulfilment": "Order fulfilment",
+    "purchase-requisition": "Purchase requisition",
+    "vendor-po-receipt-tolerance": "Vendor PO & receipt tolerance",
+    "stock-ledger-goods-issue": "Stock ledger & goods issue",
+    "chat-calls-meetings": "Chat, calls & meetings",
+    "meeting-calendar": "Meeting calendar",
+    "push-notifications": "Push notifications",
+    "support-help-desk": "Support help desk",
+    "microsoft-365-mail": "Microsoft 365 mail",
+    "customer-portal": "Customer portal",
+    "integration-center": "Integration center",
+    "synax-ai-assistant": "Synax AI assistant",
+    "project-list": "Project List",
+    "job-scheduling-calendar": "Job Scheduling Calendar",
+    "bill-of-materials": "Bill of Materials",
+    "machine-loading-plan-board": "Machine Loading Plan Board",
+    "operator-panel": "Operator Panel",
+    "dwm": "DWM",
+    "fair-manager": "FAIR Manager",
+    "ncr-capa": "NCR / CAPA",
+    "calibration-dashboard": "Calibration Dashboard",
+    "dispatch-release-controls": "Dispatch Release Controls",
+    "genealogy-trace": "Genealogy Trace",
+    "execution-reports": "Execution Reports",
+    "itc-04-data-pack": "ITC-04 data pack",
+    "recruitment-and-interviews": "Recruitment and interviews",
+    "employee-self-service": "Employee self-service",
+    "biometric-device-sync": "Biometric device sync",
+    "break-pass-management": "Break pass management",
+    "attendance-ot-approval": "Attendance & OT approval",
+    "performance-management": "Performance management",
+    "offboarding": "Offboarding",
+    "budget-planner": "Budget planner"
+  },
+  "Workflow": {
+    "plan": {
+      "title": "Plan",
+      "copy": "Capture part programs, timelines, owners and dependencies so every team starts from one source of truth."
+    },
+    "execute": {
+      "title": "Execute",
+      "copy": "Run operations, approvals and schedules with stage-level controls and no handoff blind spots."
+    },
+    "inspect": {
+      "title": "Inspect",
+      "copy": "Hold the part at the gate until the check is recorded, with AS9100D evidence attached where it applies."
+    },
+    "release": {
+      "title": "Release",
+      "copy": "Release against a complete record, then keep the trace linked for the audit that comes later."
+    }
+  },
+  "Faq": {
+    "who-is-synax-built-for": {
+      "q": "Who is Synax built for?",
+      "a": "Precision and job-work manufacturers, especially aerospace, defence and automotive suppliers who machine customer-supplied material. The same workspace also runs HR, attendance, payroll and projects."
+    },
+    "do-we-have-to-move-our-accounts-out-of-tally": {
+      "q": "Do we have to move our accounts out of Tally?",
+      "a": "No. Run operations in Synax and keep your books in Tally. The Tally bridge sends the vouchers across."
+    },
+    "which-machines-can-synax-connect-to": {
+      "q": "Which machines can Synax connect to?",
+      "a": "CNC machines through the OEM connection or open FOCAS. Machines that cannot connect still work: operators confirm counts on the shop-floor screen."
+    },
+    "does-synax-generate-e-invoices-and-e-way-bills": {
+      "q": "Does Synax generate e-invoices and e-way bills?",
+      "a": "Yes. Connect your GST suvidha provider (ClearTax or Masters India) and the IRN is generated when an invoice is approved."
+    },
+    "can-the-ai-change-our-data-on-its-own": {
+      "q": "Can the AI change our data on its own?",
+      "a": "No. Synax agents only propose. Every action waits for an approver with the right role, and the decision is recorded."
+    },
+    "is-synax-free-for-small-manufacturers": {
+      "q": "Is Synax free for small manufacturers?",
+      "a": "Yes. Synax is free for SMEs with fewer than 50 employees, to support small-scale industries and Atmanirbhar Bharat."
+    },
+    "how-long-does-onboarding-take": {
+      "q": "How long does onboarding take?",
+      "a": "It depends on your organization's size, the modules you start with, and how ready your masters and opening stock are. Plants go live module by module, on a rollout plan agreed with you during discovery. We import part, BOM and stock data from Excel."
+    }
+  },
+  "SolutionPaths": {
+    "precision": {
+      "pain": "Customer material and machine counts live in spreadsheets."
+    },
+    "aerospace": {
+      "pain": "Audit evidence is rebuilt by hand after the part has shipped."
+    },
+    "energy": {
+      "pain": "Proving where a delivered part came from means searching files."
+    },
+    "machinery": {
+      "pain": "BOMs, routings and machine load are planned in spreadsheets."
+    },
+    "services": {
+      "pain": "Hours and costs are not tied to the project they belong to."
+    },
+    "rubber": {
+      "pain": "Material balances and job-work returns are rebuilt by hand."
+    },
+    "workforce": {
+      "pain": "Attendance, overtime and payroll are chased on paper."
+    },
+    "staffing": {
+      "pain": "Requirements, candidates and deployments sit in different places."
+    }
+  },
+  "Industries": {
+    "aerospace-defence": {
+      "name": "Aerospace & Defence",
+      "menu": "AS9100D QMS controls, FAIR register & COC",
+      "tag": "Aerospace & Defence",
+      "titleHead": "ERP for ",
+      "titleTail": "aerospace and defence suppliers",
+      "lead": "Built for aerospace, defence and automotive suppliers who machine customer-supplied material: AS9100D QMS controls at the quality checkpoints, a FAIR register and certificates of conformance in the same flow, and a record behind every part.",
+      "whoFor": "Aerospace, defence and automotive suppliers who machine customer-supplied material.",
+      "seoTitle": "ERP for Aerospace & Defence",
+      "seoDescription": "AS9100D QMS controls at workflow checkpoints, FAIR register, certificates of conformance and traceability for aerospace, defence and automotive suppliers.",
+      "ch1": {
+        "title": "Audit evidence rebuilt after the fact",
+        "text": "Records are assembled by hand once the part has shipped, so every audit costs weeks of reassembly."
+      },
+      "ch2": {
+        "title": "Paperwork kept apart from the job",
+        "text": "First-article reports, certificates and inspection records sit in separate files, away from the job that produced them."
+      },
+      "ch3": {
+        "title": "Customer material that is hard to trace",
+        "text": "Customer-owned material has to be followed from challan to delivered part, by Material ID."
+      },
+      "ch4": {
+        "title": "Checks that depend on memory",
+        "text": "When a check can be skipped, the evidence is missing on the day an auditor asks for it."
+      },
+      "flowTitle": "Plan, execute, inspect, release",
+      "flowLead": "Hold the part at the gate until the check is recorded, then release against a complete record.",
+      "heroAlt": "A business jet, a fighter and an unmanned aircraft in flight"
+    },
+    "oil-gas-energy": {
+      "name": "Oil, Gas & Energy",
+      "menu": "Material trace, inspection, NCR/CAPA & COC",
+      "tag": "Oil, Gas & Energy",
+      "titleHead": "ERP for ",
+      "titleTail": "oil, gas and energy suppliers",
+      "lead": "Every part traced back to its material and its inspection, with NCR and CAPA when a check fails and the certificate of conformance issued from the same record.",
+      "whoFor": "Suppliers of machined and moulded parts, such as valve bodies, fittings, flanges and seals, to oil, gas, power and energy customers.",
+      "seoTitle": "ERP for Oil, Gas & Energy Suppliers",
+      "seoDescription": "Material genealogy, receiving and final inspection, stage buy-offs, NCR and CAPA, certificates of conformance, GST dispatch and Tally for suppliers to oil, gas and energy customers.",
+      "ch1": {
+        "title": "Material trace rebuilt after shipping",
+        "text": "Proving which material lot went into a delivered part means searching files after it has left."
+      },
+      "ch2": {
+        "title": "Inspection kept apart from the job",
+        "text": "Receiving, in-process and final inspection results sit in separate sheets, away from the route card."
+      },
+      "ch3": {
+        "title": "Failed checks handled by email",
+        "text": "When a check fails, the non-conformance and its corrective action are tracked outside the system."
+      },
+      "ch4": {
+        "title": "Certificates assembled at the end",
+        "text": "The certificate of conformance is compiled by hand once the job is done."
+      },
+      "flowTitle": "Material to certificate",
+      "flowLead": "Each step records its evidence as the work happens, so the certificate is issued from a complete record.",
+      "flow": {
+        "f1": {
+          "title": "Material receipt",
+          "copy": "Gate entry, GRN and store inward, with customer material tracked by challan and Material ID."
+        },
+        "f2": {
+          "title": "Route card",
+          "copy": "The job is released on a route card against its part and routing."
+        },
+        "f3": {
+          "title": "Machine-confirmed operations",
+          "copy": "Machines propose the counts and the operator confirms them, with a reason for any variance."
+        },
+        "f4": {
+          "title": "Inspection & buy-offs",
+          "copy": "Receiving, stage and final inspection, with the part held until the check is recorded."
+        },
+        "f5": {
+          "title": "NCR & CAPA",
+          "copy": "A failed check raises a non-conformance, with its corrective and preventive action recorded against it."
+        },
+        "f6": {
+          "title": "Certificate & dispatch",
+          "copy": "The certificate of conformance is issued from the record, then packing, the GST invoice and the e-way bill."
+        }
+      },
+      "heroAlt": "Illustration of a refinery at dusk, with wind turbines on the horizon and a pipeline valve in front"
+    },
+    "precision-cnc-machining": {
+      "name": "Precision CNC Machining & Job Work",
+      "menu": "Machine data, route cards & job-work material",
+      "tag": "Precision & Job-Work",
+      "titleHead": "ERP for ",
+      "titleTail": "precision and job-work manufacturers",
+      "lead": "Your customer's material accounted to the last piece, machines reporting counts straight to the route card, and the GST invoice following from the machine.",
+      "whoFor": "Precision and job-work manufacturers who machine customer-supplied material.",
+      "seoTitle": "ERP for Precision CNC Machining & Job-Work",
+      "seoDescription": "Customer material by challan and Material ID, route cards confirmed from the machine, inspection, COC, GST invoice and Tally in one flow.",
+      "ch1": {
+        "title": "Customer material tracked on the side",
+        "text": "Customer-supplied material lives in a spreadsheet instead of being tied to the customer who owns it."
+      },
+      "ch2": {
+        "title": "Quantities that do not reconcile",
+        "text": "Consumption, returns, scrap and invoiced quantities are hard to match against what came in."
+      },
+      "ch3": {
+        "title": "Counts keyed in by hand",
+        "text": "Production confirmation depends on someone re-typing what the machine already knew."
+      },
+      "ch4": {
+        "title": "Dispatch paperwork assembled at the end",
+        "text": "Packing, invoice, IRN and e-way bill are compiled separately, after the job is done."
+      },
+      "flowTitle": "Machine to invoice",
+      "flowLead": "Each document carries the one before it, so any part can be traced back to its PO, material lot, machine and operator.",
+      "callouts": {
+        "c1": "Counts from the machine",
+        "c2": "Material ID by challan",
+        "c3": "Route card to invoice",
+        "c4": "COC, GST invoice, e-way bill"
+      },
+      "heroAlt": "A CNC spindle machining a metal part"
+    },
+    "it-services-staffing": {
+      "name": "IT Services & Consulting",
+      "menu": "Projects, SOWs, candidates & deployments",
+      "tag": "IT Services & Consulting",
+      "titleHead": "ERP for ",
+      "titleTail": "IT services and staffing teams",
+      "lead": "Run project delivery, SOWs and billing next to candidates, interviews and deployments, in one workspace.",
+      "whoFor": "IT services teams, staffing agencies and technical consulting networks managing client requirements and deployments.",
+      "seoTitle": "ERP for IT Services & Consulting",
+      "seoDescription": "Projects, SOWs, timesheets and billing with client requirements, candidates, interviews, onboarding and deployments in one workspace.",
+      "ch1": {
+        "title": "Weeks-long recruiting cycles",
+        "text": "Requirements, candidates and interviews live in different places, so each placement takes longer than it should."
+      },
+      "ch2": {
+        "title": "Consultants idle on the bench",
+        "text": "Unbillable bench time is hard to see until the month is over."
+      },
+      "ch3": {
+        "title": "Multi-vendor friction",
+        "text": "Communication with several vendors and clients happens outside the system of record."
+      },
+      "ch4": {
+        "title": "Disputed timesheets and invoices",
+        "text": "Hours, work logs and costs are not tied to the project they belong to."
+      },
+      "flowTitle": "From the client's requirement to the invoice",
+      "flowLead": "One flow from the requirement to project billing, with approvals along the way.",
+      "flow": {
+        "f1": {
+          "title": "Client requirement",
+          "copy": "Capture what the client needs, with SOWs and requirements tracked against the project."
+        },
+        "f2": {
+          "title": "Candidates & interviews",
+          "copy": "Manage candidates and run interviews against each requirement."
+        },
+        "f3": {
+          "title": "Offer & onboarding",
+          "copy": "Offers, approvals and onboarding in one flow."
+        },
+        "f4": {
+          "title": "Deployment",
+          "copy": "Deploy people to projects, with resource allocation and replacements."
+        },
+        "f5": {
+          "title": "Timesheets & work logs",
+          "copy": "Timesheets, work logs and development costs recorded against the project."
+        },
+        "f6": {
+          "title": "Billing & profitability",
+          "copy": "Project billing and a view of profitability."
+        }
+      },
+      "samples": {
+        "s1": "Requirement logged",
+        "s2": "3 candidates matched",
+        "s3": "Offer sent",
+        "s4": "1 deployed",
+        "s5": "Hours recorded",
+        "s6": "Invoice ready"
+      }
+    },
+    "industrial-machinery-equipment": {
+      "name": "Industrial Machinery & Equipment",
+      "menu": "BOMs, routings, machine load & GST dispatch",
+      "tag": "Industrial Machinery & Equipment",
+      "titleHead": "ERP for ",
+      "titleTail": "industrial machinery and equipment makers",
+      "lead": "Part masters, BOMs and routings, machines that report their own counts, and the GST invoice following from the route card, by a group that runs industrial operations itself.",
+      "whoFor": "Makers of pumps, valves, compressors, gearboxes and other industrial equipment, and the suppliers who machine their parts.",
+      "seoTitle": "ERP for Industrial Machinery & Equipment Manufacturers",
+      "seoDescription": "Part masters, BOMs, operation routing, route cards, machine scheduling and monitoring, inspection, GST dispatch and Tally for industrial machinery and equipment makers.",
+      "ch1": {
+        "title": "BOMs and routings in spreadsheets",
+        "text": "Part masters, bills of material and operation routings are kept apart from the jobs that use them."
+      },
+      "ch2": {
+        "title": "Machine load planned on a whiteboard",
+        "text": "Which job runs on which machine, and when, is decided outside the system."
+      },
+      "ch3": {
+        "title": "Production status that lags the floor",
+        "text": "Counts, alarms and downtime reach the office late, or not at all."
+      },
+      "ch4": {
+        "title": "Accounts in one tool, operations in another",
+        "text": "Purchase, stores, production and dispatch are re-keyed into the books."
+      },
+      "flowTitle": "Machine to invoice",
+      "flowLead": "Each document carries the one before it, so any part can be traced back to its PO, material lot, machine and operator.",
+      "heroAlt": "Blueprint illustration of a centrifugal pump driving a pair of gears"
+    },
+    "plant-workforce-hcm": {
+      "name": "Plant Workforce & HR",
+      "menu": "Attendance, payroll & shift break passes",
+      "tag": "Workforce & HCM",
+      "titleHead": "HRMS for ",
+      "titleTail": "plant workforces",
+      "lead": "Employee records, attendance, leave and work-from-home, payroll with approvals and department KPIs, in the same workspace as operations.",
+      "whoFor": "High-intensity industrial plants, multi-facility manufacturers and shift-based engineering teams.",
+      "seoTitle": "HRMS for Plant Workforces",
+      "seoDescription": "Employee records, attendance and leave, biometric device sync, overtime approvals, payroll with approvals and department KPIs for plants and shift-based teams.",
+      "ch1": {
+        "title": "Buddy punching",
+        "text": "Attendance that depends on a card or a colleague cannot be trusted at payroll time."
+      },
+      "ch2": {
+        "title": "Unaccounted break passes",
+        "text": "Operators away from active machining lines leave machines unattended."
+      },
+      "ch3": {
+        "title": "Multi-day manual payroll",
+        "text": "Shift differentials, overtime and deductions are worked out by hand, then checked again."
+      },
+      "ch4": {
+        "title": "Approvals on paper",
+        "text": "Overtime and attendance exceptions are signed off outside the system."
+      },
+      "flowTitle": "From the first day to the payslip",
+      "flowLead": "One record per person, with attendance and approvals feeding payroll.",
+      "flow": {
+        "f1": {
+          "title": "Employee record",
+          "copy": "One record per person, from recruitment to offboarding."
+        },
+        "f2": {
+          "title": "Attendance, leave & WFH",
+          "copy": "Attendance logs sync from biometric devices into attendance and leave."
+        },
+        "f3": {
+          "title": "Overtime approval",
+          "copy": "Overtime and attendance exceptions are approved in the workflow."
+        },
+        "f4": {
+          "title": "Payroll with approvals",
+          "copy": "Payroll is prepared and approved in the same workspace."
+        },
+        "f5": {
+          "title": "Department KPIs",
+          "copy": "See how each department is performing."
+        }
+      },
+      "roster": {
+        "aria": "Sample attendance for the week",
+        "operator": "Operator {n}",
+        "absent": "Absent",
+        "present": "Present",
+        "leave": "Leave or half day",
+        "breakPass": "Break pass",
+        "pending": "{n} pending",
+        "ready": "Ready to review",
+        "alt": "Robotic arms working on a plant floor"
+      }
+    },
+    "rubber-polymer-moulding": {
+      "name": "Rubber & Polymer Moulding",
+      "menu": "Job work, lots & inspection",
+      "tag": "Rubber & Polymer Moulding",
+      "titleHead": "ERP for ",
+      "titleTail": "rubber and polymer moulders",
+      "lead": "Customer POs and material on challan, a route card for every job, receiving and final inspection with rejections recorded against the job, and ITC-04 job-work records with the GST invoice, so material balances stop being rebuilt by hand.",
+      "whoFor": "Moulders of seals, gaskets, hoses and other rubber and polymer parts who work to customer POs and, often, customer-supplied material.",
+      "seoTitle": "ERP for Rubber & Polymer Moulding",
+      "seoDescription": "Customer POs and material challans, route cards, receiving and final inspection, rejections, ITC-04 job-work records, GST dispatch and Tally for rubber and polymer moulders.",
+      "ch1": {
+        "title": "Material balances rebuilt by hand",
+        "text": "Material received on challan, used in production lots and returned as job work is reconciled by hand each period."
+      },
+      "ch2": {
+        "title": "Registers kept apart",
+        "text": "Customer POs, challans, production lots, rejections and dispatch sit in separate registers instead of one flow."
+      },
+      "ch3": {
+        "title": "Rejections not tied to the job",
+        "text": "Rejected pieces are counted on a sheet instead of being recorded against the job that produced them."
+      },
+      "ch4": {
+        "title": "Job-work returns compiled late",
+        "text": "ITC-04 job-work details are put together at the end of the period from separate records."
+      },
+      "flowTitle": "Order to dispatch",
+      "flowLead": "Each step records its evidence as the work happens, so material and job-work balances follow from the record.",
+      "flow": {
+        "f1": {
+          "title": "Customer PO",
+          "copy": "Record the customer's PO and its amendments, with the part and quantity ordered."
+        },
+        "f2": {
+          "title": "Material receipt",
+          "copy": "Gate entry, GRN and store inward, with customer-supplied material tracked by challan and Material ID."
+        },
+        "f3": {
+          "title": "Route card",
+          "copy": "Release each job on a route card against its part and routing, and follow it through production."
+        },
+        "f4": {
+          "title": "Inspection",
+          "copy": "Receiving and final inspection, with rejections recorded against the job that produced them."
+        },
+        "f5": {
+          "title": "Job-work records",
+          "copy": "Customer material balances, returns and scrap documents feed the ITC-04 data pack."
+        },
+        "f6": {
+          "title": "Dispatch & GST",
+          "copy": "Delivery challans, then the GST invoice, IRN and e-way bill from the same record."
+        }
+      },
+      "heroAlt": "Blueprint illustration of an O-ring, a lip seal profile and a two-plate mould"
+    }
+  },
+  "ProductData": {
+    "precision": {
+      "badge": "Precision & Job-Work ERP",
+      "subtitle": "Customer Material, Route Cards & Machine-to-Invoice Control",
+      "h1": "Link customer purchase orders, inward challans, and material ID ranges",
+      "h2": "Track customer material balances, consumption, returns, and scrap",
+      "h3": "Capture machine cycle counts, alarms, and downtime against route cards",
+      "h4": "Connect inspection, COC, dispatch, GST invoices, and Tally vouchers"
+    },
+    "it": {
+      "badge": "Delivery, people & billing",
+      "subtitle": "Plan the work, track the hours, bill what you deliver",
+      "h1": "Work Tracker with daily activity and meetings",
+      "h2": "Projects with customer requirements and SOWs",
+      "h3": "Timesheets, work logs, and development costs",
+      "h4": "Project billing and profitability"
+    },
+    "hrms": {
+      "badge": "Employee lifecycle, attendance & payroll",
+      "subtitle": "Employee operations and workforce administration",
+      "h1": "Employee lifecycle, recruitment, and offboarding",
+      "h2": "Attendance, leave and WFH, with overtime approvals",
+      "h3": "Payroll with approvals",
+      "h4": "Department KPIs and performance management"
+    },
+    "staffing": {
+      "badge": "Candidates, interviews & deployments",
+      "subtitle": "Source, deploy, and manage customer staffing requirements",
+      "h1": "Customer requirements and candidate management",
+      "h2": "Interviews, offers, and onboarding",
+      "h3": "Deployments and resource performance",
+      "h4": "Replacements and approvals"
+    },
+    "shopfloor": {
+      "badge": "Production execution",
+      "subtitle": "Production execution and machine operations management",
+      "h1": "Machine scheduling and load charts",
+      "h2": "Operator job cards and live machine monitoring",
+      "h3": "Downtime and alarm visibility",
+      "h4": "Production tracking and machine utilization"
+    },
+    "ai": {
+      "badge": "Assistance & insights",
+      "subtitle": "Intelligent assistance and insights for business operations",
+      "h1": "AI-powered assistance and Synax Agents",
+      "h2": "Operational analytics and business dashboards",
+      "h3": "Reports across business workflows",
+      "h4": "Performance insights for informed decisions"
+    }
+  },
+  "ProductsPage": {
+    "tag": "Market-Ready Platforms",
+    "title": "Six products. One platform.",
+    "lead": "Start with the product your business needs today. They are built to work together, so adding the next one does not mean starting over.",
+    "allAria": "All products",
+    "explore": "Explore {name}"
+  },
+  "SolutionsPage": {
+    "pickStart": "Pick your starting point",
+    "tag": "Solutions by industry & business need",
+    "title": "Start with what hurts most. Add the rest when you are ready.",
+    "lead": "Pick the problem in front of you. For each solution you will see the modules to switch on first, what to add next, how far it reaches across the platform, and the full module directory.",
+    "start": {
+      "tag": "Where to start",
+      "title": "Eight starting points",
+      "lead": "Plants go live module by module, at a pace set by their size and data readiness. Begin with the modules on the left of each path.",
+      "whatHurts": "What hurts",
+      "startWith": "Start with",
+      "thenAdd": "Then add",
+      "seeIndustry": "See the industry page",
+      "seeProduct": "See {name}"
+    },
+    "reach": {
+      "tag": "Coverage",
+      "title": "How far each solution reaches",
+      "lead": "Typical use across the platform's eight module areas. Everything is on one workspace, so you can extend any solution later.",
+      "caption": "Module areas used by each solution: core, optional or not typical",
+      "solution": "Solution",
+      "core": "Core",
+      "optional": "Optional",
+      "notTypical": "Not typical",
+      "legendAria": "Legend",
+      "legendCore": "Core to the solution",
+      "legendOptional": "Optional, add when ready",
+      "legendNot": "Not usually part of it"
+    },
+    "modules": {
+      "tag": "Module directory",
+      "title": "What you can switch on",
+      "lead": "The portal's own directory, by area. Start with what hurts most and add the rest when you are ready.",
+      "coreTo": "Core to: {list}",
+      "notListed": "Your sector is not listed? Start with the product that matches your problem — see <link>all six products</link>."
+    },
+    "pages": {
+      "tag": "Solution pages",
+      "title": "A dedicated page for your industry, process or need",
+      "lead": "Who it is for, the challenges, the flow that answers them, and the products behind it."
+    },
+    "workflow": {
+      "tag": "One workflow behind every solution",
+      "title": "Plan, execute, inspect, release",
+      "lead": "Whatever the sector, work moves through the same four stages and the record is built as it goes.",
+      "modulesAria": "{title} modules"
+    },
+    "faq": {
+      "tag": "Getting started",
+      "title": "Questions about going live",
+      "lead": "Answers from the portal: onboarding, Tally, GST, machines and pricing."
+    },
+    "cta": {
+      "title": "Tell us the problem. We will show you the solution.",
+      "text": "A short walkthrough with a Senwell Group systems engineer, focused on the solution that fits your business."
+    }
+  },
+  "Scene": {
+    "description": "Animated overview: for each solution, the modules to switch on first, what to add next, and how many of the eight module areas are core to it. The same information is in the sections below.",
+    "whatHurts": "WHAT HURTS",
+    "startWith": "START WITH",
+    "thenAdd": "THEN ADD",
+    "reach": "REACH",
+    "ofCount": "{core} of {total}",
+    "order": "SWITCH-ON ORDER",
+    "seePath": "See the full path for {title}"
+  },
+  "Live": {
+    "positioning": {
+      "headline": "The ERP for precision and job-work manufacturers.",
+      "sub": "From the machine to the GST invoice, in one workspace, with AI that chases your exceptions."
+    },
+    "pillars": {
+      "p1": {
+        "kicker": "Job-work native",
+        "title": "Your customer's material, accounted to the last piece.",
+        "copy": "Customer-supplied material is a first-class citizen, not a spreadsheet on the side. Every challan, Material ID range and rejection stays tied to the customer who owns it.",
+        "a": "Inward challans with Material ID ranges and PO line references",
+        "b": "Raw material consumed 1:1 against every invoiced part",
+        "c": "Customer material balance, return deliveries and scrap documents",
+        "d": "ITC-04 data pack and a read-only customer portal"
+      },
+      "p2": {
+        "kicker": "Machine to invoice",
+        "title": "The machine reports the count. The route card, COC and invoice follow.",
+        "copy": "Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator.",
+        "a": "Live machine board with alarms and downtime reasons",
+        "b": "Start jobs by route card number or barcode scan",
+        "c": "Cycle counts proposed, operator confirms with a variance reason",
+        "d": "OEE per job and the machining record on the COC"
+      },
+      "p3": {
+        "kicker": "AI that acts",
+        "title": "Synax AI finds the exception and proposes the fix. You approve.",
+        "copy": "Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes.",
+        "a": "Challan reconciliation and overdue chasers",
+        "b": "Dispatch readiness and receivables follow-up",
+        "c": "Quality compliance and shop-floor watch",
+        "d": "Maker-checker approval with a full event history"
+      }
+    },
+    "flow": {
+      "lead": "Each document carries the one before it, so any part can be traced back to its PO, material lot, machine and operator.",
+      "f1": {
+        "title": "RFQ & customer PO",
+        "copy": "Quotations per line, revisions and PO open-quantity control."
+      },
+      "f2": {
+        "title": "Gate entry & GRN",
+        "copy": "Inward against PO or challan, with receipt tolerance and inspection."
+      },
+      "f3": {
+        "title": "Route card",
+        "copy": "Released against the BOM, with material reserved by RI unit."
+      },
+      "f4": {
+        "title": "Machine-confirmed operations",
+        "copy": "Operations confirmed from the machine, with buy-offs per stage."
+      },
+      "f5": {
+        "title": "Inspection & COC",
+        "copy": "Final inspection, FAIR and certificate of conformance."
+      },
+      "f6": {
+        "title": "Invoice & dispatch",
+        "copy": "Packing, GST invoice, IRN and e-way bill in one flow."
+      }
+    },
+    "security": {
+      "tenant": {
+        "title": "Isolated workspaces",
+        "copy": "Every company runs in its own tenant. Data never crosses between them."
+      },
+      "server": {
+        "title": "Server-checked postings",
+        "copy": "Stock, quantities and status changes are validated on the server, not in the browser."
+      },
+      "audit": {
+        "title": "Audit history",
+        "copy": "Who changed what and when, kept for every material business change."
+      },
+      "roles": {
+        "title": "Role-based access",
+        "copy": "Menus, actions and sensitive values follow roles you configure, with two-step sign-in."
+      }
+    },
+    "pricing": {
+      "headline": "Free for SMEs with fewer than 50 employees.",
+      "copy": "The full platform at no cost for small plants, as our support for small-scale industries and Atmanirbhar Bharat. Plans for larger teams are priced per seat, with add-ons for the modules you need."
+    },
+    "compliance": {
+      "c1": {
+        "name": "AS9100D QMS controls",
+        "how": "Quality gates and AS9100D QMS controls are attached at critical workflow checkpoints, so the evidence is created by the work itself."
+      },
+      "c2": {
+        "name": "India GST: e-invoice and e-way bill",
+        "how": "Connect your GST suvidha provider (ClearTax or Masters India) and the IRN is generated when an invoice is approved. Packing, invoice and e-way bill sit in one flow."
+      },
+      "c3": {
+        "name": "ITC-04 for job work",
+        "how": "Customer material balances, returns and scrap documents feed an ITC-04 data pack."
+      },
+      "c4": {
+        "name": "DPDP Act, 2023 (privacy)",
+        "how": "Senwell Group Private Limited publishes a privacy policy describing how personal data in Synax is collected, used and protected under the Digital Personal Data Protection Act, 2023."
+      }
+    }
+  },
+  "Benefits": {
+    "quality": {
+      "tab": "Built-in quality",
+      "question": "Tired of chasing paperwork after the part has shipped?",
+      "answer": "Quality gates sit on the operations themselves. A part cannot move to the next step until its check is recorded, so the evidence exists before anyone asks for it.",
+      "p1": "Mandatory gate checks across machining, inspection, dispatch and release",
+      "p2": "NCR / CAPA and FAIR records raised in the same flow",
+      "p3": "Calibration status tracked against the equipment that measured the part"
+    },
+    "compliance": {
+      "tab": "Audit readiness",
+      "question": "Does an audit still mean weeks of reassembling records?",
+      "answer": "AS9100D clauses map to the workflow stages they govern. The audit reads the same records the floor already filled in, rather than a parallel binder maintained for the auditor.",
+      "p1": "AS9100D QMS requirements attached at critical process points",
+      "p2": "Evidence linked to the stage that produced it",
+      "p3": "Genealogy trace held from planning to final delivery"
+    },
+    "traceability": {
+      "tab": "Traceability",
+      "question": "Can you follow one part all the way back?",
+      "answer": "Part, process and quality history stay linked across the lifecycle, so a question about a shipped item resolves against records rather than recollection.",
+      "p1": "Material entry audit and material history end to end",
+      "p2": "Bill of materials tied to the jobs that consumed it",
+      "p3": "Dispatch release controls gated on a complete record"
+    },
+    "security": {
+      "tab": "Secure by tenant",
+      "question": "Worried about who can see which programme?",
+      "answer": "Multi-tenant architecture keeps each workspace isolated, with role-based permissions and route-level controls deciding what a given person reaches.",
+      "p1": "Tenant-isolated workspaces with dedicated subdomain hosting",
+      "p2": "Role-based permissions by department and function",
+      "p3": "Route-level access control, not just hidden menu items"
+    },
+    "connected": {
+      "tab": "One data spine",
+      "question": "How many systems does one job touch today?",
+      "answer": "Projects, manufacturing, QA, HR, payroll, approvals and finance sit in one traceable model, so status and cost stop being two separate conversations.",
+      "p1": "Shared records across operations, workforce and finance",
+      "p2": "Approval orchestration and alerts on the same spine",
+      "p3": "Execution reports read from the schedule that was published"
+    }
+  },
+  "Why": {
+    "hero": {
+      "tag": "Why Synax",
+      "title": "<b>Why industry leaders </b>choose Synax",
+      "highlightsAria": "Highlights",
+      "ticks": {
+        "india": "Built in India, for Indian shop floors",
+        "audit": "Audit trail on every posting",
+        "tally": "Works with Tally"
+      },
+      "free": "Free for SMEs under 50 employees",
+      "pillarsAria": "The three pillars",
+      "glance": "Synax at a glance",
+      "factsAria": "Key facts"
+    },
+    "proof": {
+      "free": {
+        "value": "Free",
+        "label": "for SMEs under 50 employees"
+      },
+      "tally": {
+        "value": "Tally",
+        "label": "vouchers bridge across"
+      },
+      "gst": {
+        "value": "GST",
+        "label": "e-invoice and e-way bill"
+      },
+      "qms": {
+        "value": "AS9100D",
+        "label": "QMS controls at checkpoints"
+      }
+    },
+    "jump": {
+      "difference": "The difference",
+      "pillars": "Pillars",
+      "flow": "Flow",
+      "reasons": "Reasons",
+      "compare": "Compare",
+      "pricing": "Pricing",
+      "faq": "FAQ"
+    },
+    "difference": {
+      "tag": "See the difference",
+      "title": "One part, two ways to run it",
+      "lead": "An illustration of the same part going through the same five stations."
+    },
+    "pillars": {
+      "tag": "Built around a machine shop",
+      "title": "Three things that set Synax apart",
+      "lead": "In the portal's own words.",
+      "whatYouGet": "What you get"
+    },
+    "flow": {
+      "tag": "Machine to invoice",
+      "title": "One connected flow, every step traceable"
+    },
+    "reasons": {
+      "tag": "Five reasons",
+      "title": "What changes when quality lives in the workflow",
+      "lead": "Pick a reason to see the question we hear most, and what Synax does about it."
+    },
+    "compare": {
+      "tag": "Market benchmark",
+      "title": "How Synax compares with the usual alternatives",
+      "lead": "Most businesses run either a heavy legacy ERP with add-ons, or a set of disconnected tools. Synax is purpose-built software backed by 100+ IT professionals. Here is how each handles the same jobs.",
+      "caption": "Synax compared with legacy ERP suites and disconnected point tools",
+      "capability": "Capability",
+      "note": "The alternatives column describes typical setups, not a specific product. Ask us to walk through your own current tools."
+    },
+    "pricing": {
+      "tag": "Pricing",
+      "cta": "See the six products"
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Questions we hear most",
+      "lead": "Answers from the portal, in its own words."
+    },
+    "heritage": {
+      "lead": "Born out of Senwell Group's multi-decade heritage in precision aerospace manufacturing, industrial export and high-volume engineering operations."
+    },
+    "cta": {
+      "title": "See why it works on your own process",
+      "text": "A short walkthrough with a Senwell Group systems engineer, using your workflows rather than a canned demo."
+    }
+  },
+  "WhyRace": {
+    "stations": {
+      "s1": "Material in",
+      "s2": "Route card and machine",
+      "s3": "Inspection and COC",
+      "s4": "Invoice and GST",
+      "s5": "Books"
+    },
+    "typical": "Typical alternatives",
+    "synax": "Synax",
+    "title": "ONE PART, TWO WAYS TO RUN IT",
+    "illustration": "ILLUSTRATION",
+    "aiTitle": "SYNAX AI PROPOSES",
+    "aiText": "2 challans are past their return date: draft reminders",
+    "approve": "Approve",
+    "approved": "Approved ✓",
+    "done": "Done ✓",
+    "waiting": "Still waiting…",
+    "tallyBadge": "Tally bridge, IRN and e-way bill",
+    "srDescription": "Illustration: the same part moves through five stations. In the typical-alternatives lane it stalls at {stalls}. In the Synax lane it flows end to end: {pillars}, and {tally}."
+  },
+  "ReasonTabs": {
+    "aria": "Five reasons"
+  },
+  "Security": {
+    "hero": {
+      "tag": "Security & Trust",
+      "highlightsAria": "Highlights",
+      "title": "<b>Audit-ready by design, </b>not by report",
+      "lead": "Each company runs in its own workspace, every posting is checked on the server, and the system keeps a record of who changed what and when. Here is how that works, and what stays your responsibility.",
+      "ticks": {
+        "signin": "Two-step sign-in",
+        "roles": "Role-based access",
+        "ai": "AI only proposes, you approve"
+      },
+      "ringsAria": "A shield inside concentric rings: one tenant per company, two-step sign-in, checks on the server and an audit history",
+      "chips": {
+        "tenant": "One tenant per company",
+        "signin": "Two-step sign-in",
+        "server": "Checked on the server",
+        "audit": "Audit history"
+      },
+      "gates": "What happens to every posting"
+    },
+    "jump": {
+      "controls": "Controls",
+      "process": "How it works",
+      "compliance": "Compliance",
+      "responsibility": "Responsibility",
+      "legal": "Privacy & terms"
+    },
+    "controls": {
+      "title": "Six controls, in plain language",
+      "lead": "What each one does, and what it means for you.",
+      "whatItDoes": "What it does",
+      "inPractice": "In practice"
+    },
+    "pillars": {
+      "tenant": {
+        "a": "Dedicated subdomain hosting for each tenant",
+        "b": "Business units can be kept apart in their own workspaces"
+      },
+      "server": {
+        "a": "Receipt tolerance and PO open-quantity control",
+        "b": "Material reserved by RI unit against the route card"
+      },
+      "audit": {
+        "a": "An audit trail on every posting",
+        "b": "Maker-checker approval with a full event history"
+      },
+      "roles": {
+        "a": "Two-step sign-in",
+        "b": "Sensitive values shown only to the roles you choose"
+      },
+      "ai": {
+        "title": "AI that proposes, you approve",
+        "summary": "Synax agents only propose. Every action waits for an approver with the right role, and the decision is recorded.",
+        "a": "The AI cannot change your data on its own",
+        "b": "Each approval is kept in the event history"
+      },
+      "material": {
+        "title": "Customer material stays with its owner",
+        "summary": "Every challan, Material ID range and rejection stays tied to the customer who owns it.",
+        "a": "Customer material balances, returns and scrap documents",
+        "b": "A read-only customer portal"
+      }
+    },
+    "process": {
+      "title": "What happens to every posting",
+      "lead": "Four checks sit between a request and the record.",
+      "role": {
+        "title": "Role check",
+        "copy": "Menus, actions and sensitive values follow the roles you configure.",
+        "short": "Menus, actions and values follow roles"
+      },
+      "server": {
+        "title": "Server check",
+        "short": "Validated on the server"
+      },
+      "approval": {
+        "title": "Approval",
+        "copy": "Where your process needs it, an approver with the right role decides.",
+        "short": "An approver decides"
+      },
+      "audit": {
+        "short": "Who changed what, and when"
+      }
+    },
+    "compliance": {
+      "title": "Supports your standards. Your audit stays yours.",
+      "lead": "Synax gives you the controls and the records these requirements ask for. Certification belongs to your organisation and its auditor, not to the software."
+    },
+    "responsibility": {
+      "tag": "Shared responsibility",
+      "title": "Who looks after what",
+      "lead": "Security works when both sides are clear about their part.",
+      "oursTitle": "Synax and Senwell Group",
+      "yoursTitle": "Your organisation",
+      "o1": "Running the platform and keeping each company's tenant isolated",
+      "o2": "Validating stock, quantities and status changes on the server",
+      "o3": "Recording an audit history of material business changes",
+      "o4": "Providing role-based access and two-step sign-in",
+      "y1": "Deciding who gets which role, and removing access when people leave",
+      "y2": "Setting your approval, attendance and task-update procedures",
+      "y3": "Choosing which records and checks are mandatory in your process",
+      "y4": "Holding your own certifications and passing your own audits"
+    },
+    "legal": {
+      "title": "Operated by Senwell Group Private Limited",
+      "lead": "The privacy policy explains how personal data in Synax is collected, used and protected under the DPDP Act, 2023. The terms govern use of the platform.",
+      "source": "Statements on this page follow the live portal at <link>synax.senwellgroup.com</link>."
+    },
+    "cta": {
+      "title": "Bring your security questionnaire",
+      "text": "Book a security and trust review with a Senwell Group systems engineer and bring your questions. We will go through them with you."
+    }
+  },
+  "ProductModules": {
+    "precision": {
+      "kicker": "Precision & Job-Work",
+      "subtitle": "Trace every order from customer material receipt through dispatch",
+      "g1": {
+        "title": "Route Cards & Production",
+        "desc": "Release production from customer orders and confirm each operation against its route card.",
+        "i1": "Customer PO Lines & Revisions",
+        "i2": "BOM and Operation Routing",
+        "i3": "Route Card or Barcode Job Start",
+        "i4": "Machine Counts, Alarms & Downtime",
+        "i5": "Operator-Confirmed Count Variances"
+      },
+      "g2": {
+        "title": "Customer Material & Stores",
+        "desc": "Keep customer-owned stock distinct and traceable from inward challan through consumption, return, or scrap.",
+        "i1": "Inward Challans & Material ID Ranges",
+        "i2": "Customer Material Balances",
+        "i3": "Material Issued to Production",
+        "i4": "Returns & Scrap Records",
+        "i5": "Purchase, Receipt & Stock Ledger"
+      },
+      "g3": {
+        "title": "Inspection & Dispatch",
+        "desc": "Carry machining and inspection history through certification, packing, and invoicing.",
+        "i1": "Receiving & Final Inspection",
+        "i2": "Stage Buy-Offs & FAIR Register",
+        "i3": "Certificate of Conformance",
+        "i4": "Packing & Delivery Challans",
+        "i5": "GST Invoice, E-Way Bill & Tally Bridge"
+      }
+    },
+    "aerospace": {
+      "kicker": "Aerospace & Defence",
+      "subtitle": "AS9100D quality gates, traceability and compliance workflows",
+      "g1": {
+        "title": "Planning & Execution",
+        "desc": "Plan jobs and execute production with live operator and machine coordination.",
+        "i1": "Machine Loading Plan Board",
+        "i2": "Operator Panel & Login",
+        "i3": "Job Scheduling Calendar",
+        "i4": "Job Schedule List",
+        "i5": "Execution Reports"
+      },
+      "g2": {
+        "title": "Material & Procurement",
+        "desc": "Control material flow from entry to stock-out with traceable procurement.",
+        "i1": "Material Entry Audit",
+        "i2": "Material History",
+        "i3": "Stock Out Management",
+        "i4": "Vendor PO & Internal PO",
+        "i5": "Bill of Materials"
+      },
+      "g3": {
+        "title": "Quality & Compliance",
+        "desc": "Structured quality workflows for audits, traceability, and corrective actions.",
+        "i1": "NCR / CAPA",
+        "i2": "FAIR Manager",
+        "i3": "Calibration Dashboard",
+        "i4": "Genealogy Trace",
+        "i5": "Dispatch Release Controls"
+      }
+    },
+    "hrms": {
+      "kicker": "HRMS",
+      "subtitle": "Employee operations and workforce administration, standalone or integrated",
+      "g1": {
+        "title": "Employee Lifecycle",
+        "desc": "From hiring to offboarding, one record per person.",
+        "i1": "Employee records",
+        "i2": "Recruitment and interviews",
+        "i3": "Offboarding",
+        "i4": "Employee self-service"
+      },
+      "g2": {
+        "title": "Attendance & Payroll",
+        "desc": "Attendance, leave and payroll in one flow, with approvals.",
+        "i1": "Attendance, leave & WFH",
+        "i2": "Attendance & OT approval",
+        "i3": "Biometric device sync",
+        "i4": "Payroll with approvals",
+        "i5": "Break pass management"
+      },
+      "g3": {
+        "title": "Work & Performance",
+        "desc": "Plan the day's work and see how teams are doing.",
+        "i1": "Daily Work Management (DWM)",
+        "i2": "Department KPIs",
+        "i3": "Performance management",
+        "i4": "Budget planner"
+      }
+    },
+    "staffing": {
+      "kicker": "Staffing",
+      "subtitle": "From the customer's requirement to the person on site",
+      "g1": {
+        "title": "Requirements & Candidates",
+        "desc": "Capture what the customer needs and who can fill it.",
+        "i1": "Customer requirements",
+        "i2": "Candidate management",
+        "i3": "Interviews"
+      },
+      "g2": {
+        "title": "Offers & Onboarding",
+        "desc": "Move a chosen candidate to day one.",
+        "i1": "Offers",
+        "i2": "Onboarding",
+        "i3": "Approvals"
+      },
+      "g3": {
+        "title": "Deployments & Performance",
+        "desc": "Keep track of who is where, and how they are doing.",
+        "i1": "Deployments",
+        "i2": "Resource performance",
+        "i3": "Replacements",
+        "i4": "Timesheets & project billing"
+      }
+    },
+    "it": {
+      "kicker": "Work & Delivery",
+      "subtitle": "From the day's work to the invoice, with the team and support around it",
+      "g1": {
+        "title": "Work & Projects",
+        "desc": "Plan work, track activity and keep delivery visible.",
+        "i1": "Work Tracker",
+        "i2": "Project List & Project Add",
+        "i3": "Daily Meetings",
+        "i4": "Activity Tracker",
+        "i5": "PM / PC Dashboards"
+      },
+      "g2": {
+        "title": "Time & Billing",
+        "desc": "Turn hours and costs into billing and a view of profitability.",
+        "i1": "Timesheets & Work Logs",
+        "i2": "Development Costs",
+        "i3": "Project Billing Tracker",
+        "i4": "Budget Planner"
+      },
+      "g3": {
+        "title": "Teams & Support",
+        "desc": "Collaboration, support and department performance in one place.",
+        "i1": "Team Chat & Video Calls",
+        "i2": "Public Meetings",
+        "i3": "Support Tickets",
+        "i4": "Company Visitor Management",
+        "i5": "Department Performance"
+      }
+    },
+    "shopfloor": {
+      "kicker": "Shop floor",
+      "subtitle": "From the schedule to the shop floor, with the machine's own counts",
+      "g1": {
+        "title": "Machine Scheduling",
+        "desc": "Plan machine load and release each job to the right machine.",
+        "i1": "Machine scheduling & load charts",
+        "i2": "BOM and Operation Routing",
+        "i3": "Route card released against the BOM",
+        "i4": "Start jobs by route card number or barcode scan"
+      },
+      "g2": {
+        "title": "Operator Job Cards",
+        "desc": "Give operators the job in front of them and capture what actually happened.",
+        "i1": "Operator job cards",
+        "i2": "Cycle counts proposed, operator confirms with a variance reason",
+        "i3": "Machines that cannot connect still work: operators confirm counts on the shop-floor screen",
+        "i4": "Production tracking"
+      },
+      "g3": {
+        "title": "Live Machine Monitoring",
+        "desc": "See what every machine is doing, and what it has been doing.",
+        "i1": "Live machine board with alarms and downtime reasons",
+        "i2": "CNC machines through the OEM connection or open FOCAS",
+        "i3": "OEE per job and the machining record on the COC",
+        "i4": "Machine utilization"
+      }
+    },
+    "ai": {
+      "kicker": "AI & BI",
+      "subtitle": "Ask a question, get an answer from your own data",
+      "g1": {
+        "title": "AI Assistance",
+        "desc": "Ask in plain language and get answers from live records.",
+        "i1": "Ask Synax anything about your ERP data",
+        "i2": "Challan reconciliation and overdue chasers",
+        "i3": "Dispatch readiness and receivables follow-up",
+        "i4": "Quality compliance and shop-floor watch"
+      },
+      "g2": {
+        "title": "Approval-First Control",
+        "desc": "Agents propose. A person with the right role decides.",
+        "i1": "Agents only propose; the AI cannot change your data on its own",
+        "i2": "Every action waits for an approver with the right role",
+        "i3": "Maker-checker approval",
+        "i4": "The decision is recorded in a full event history"
+      },
+      "g3": {
+        "title": "Analytics & Reports",
+        "desc": "Dashboards and reports across the workflows you already run.",
+        "i1": "Business dashboards",
+        "i2": "Operational analytics",
+        "i3": "Reports across business workflows",
+        "i4": "Performance insights"
+      }
+    }
+  },
+  "SolutionPage": {
+    "jump": {
+      "challenge": "The challenge",
+      "answer": "How it answers it",
+      "modules": "Modules",
+      "products": "Products",
+      "proof": "Proof",
+      "faq": "FAQ",
+      "industries": "Other industries"
+    },
+    "stats": {
+      "flowSteps": "Flow steps",
+      "moduleGroups": "Module groups",
+      "modules": "Modules",
+      "products": "Products"
+    },
+    "challenges": {
+      "tag": "The challenge",
+      "title": "What gets in the way today",
+      "lead": "The problems we hear most from this kind of business.",
+      "note": "Every one of these is a record that is created after the fact. Synax creates it while the work happens."
+    },
+    "flow": {
+      "tag": "How Synax answers it",
+      "chipsAria": "{title}: modules"
+    },
+    "modules": {
+      "title": "The modules behind it",
+      "count": "{n} modules"
+    },
+    "products": {
+      "tag": "Delivered by",
+      "title": "The products behind this solution",
+      "lead": "Start with the first and add the others when you are ready.",
+      "start": "Start here",
+      "explore": "Explore"
+    },
+    "proof": {
+      "tag": "Running on Synax",
+      "title": "Built by a group that runs industrial operations",
+      "lead": "These Senwell Group companies run on Synax."
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Questions we hear most"
+    },
+    "industries": {
+      "tag": "Explore",
+      "title": "Other industries"
+    },
+    "cta": {
+      "tag": "Get started",
+      "title": "See Synax on your own process",
+      "text": "A short walkthrough with a Senwell Group systems engineer, using your own parts, people and processes.",
+      "demo": "Schedule a Demo"
+    },
+    "hero": {
+      "crumbHome": "Synax",
+      "crumbSolutions": "Solutions",
+      "gatesAria": "Quality gates",
+      "flowAria": "The flow",
+      "stepsLine": "steps, {title}",
+      "sample": "Sample data, for illustration",
+      "inProgress": "In progress",
+      "glanceAria": "At a glance",
+      "builtFor": "Built for",
+      "deliveredBy": "Delivered by",
+      "countsAria": "Counts"
+    }
+  },
+  "ProductShared": {
+    "breadcrumbProducts": "Products",
+    "startPath": {
+      "tag": "Where to start",
+      "title": "Start with what hurts most",
+      "lead": "Switch on the first modules, then add the rest when you are ready.",
+      "whatHurts": "What hurts",
+      "startWith": "Start with",
+      "thenAdd": "Then add"
+    },
+    "rollout": {
+      "tag": "Getting live",
+      "title": "Phased, module by module",
+      "lead": "The portal's rollout guide. Start with your highest-impact team, then expand in planned waves. Timelines are tailored to your organization's size, complexity and requirements.",
+      "p1": {
+        "week": "Phase 1",
+        "title": "Discovery & mapping",
+        "a": "Map departments, process owners and current tools",
+        "b": "Define the must-have workflows for Day 1 go-live",
+        "c": "Finalize the role matrix and access boundaries"
+      },
+      "p2": {
+        "week": "Phase 2",
+        "title": "Configuration & data setup",
+        "a": "Configure modules by domain: IT, HR, finance, manufacturing",
+        "b": "Import core records: employees, projects, customers, vendors, inventory",
+        "c": "Set approval chains and notification rules"
+      },
+      "p3": {
+        "week": "Phase 3",
+        "title": "Pilot launch",
+        "a": "Run one controlled team or plant-cell pilot",
+        "b": "Track blockers daily and close priority process gaps",
+        "c": "Train managers and process champions using real workflows"
+      },
+      "p4": {
+        "week": "Phase 4",
+        "title": "Full rollout & optimization",
+        "a": "Expand to all target teams with phased onboarding batches",
+        "b": "Monitor adoption KPIs and compliance metrics weekly",
+        "c": "Automate repeat approvals and reporting after stabilization"
+      }
+    },
+    "worksWith": {
+      "tag": "One workspace",
+      "title": "Works with the rest of Synax",
+      "lead": "Every product shares the same people, records and approvals."
+    },
+    "faq": {
+      "tag": "Questions",
+      "title": "About {name}",
+      "lead": "Answers from the portal, and a few written for this product."
+    },
+    "cta": {
+      "title": "See {name} working with your data",
+      "text": "A short walkthrough with a Senwell Group systems engineer, focused on the modules that matter to you."
+    }
+  },
+  "ProductPage": {
+    "precision": {
+      "eyebrow": "Precision & job-work ERP",
+      "subtitle": "From the machine to the GST invoice",
+      "lead": "Built for precision and job-work machine shops. Customer orders and supplied-material challans connect to route cards, machine-confirmed production, inspection, dispatch and invoicing, so every part carries one traceable record.",
+      "second": "Watch overview 2",
+      "imgAlt": "CNC machines and workbenches in a machine shop",
+      "badge": "Count from the machine",
+      "passportCard": "Part passport",
+      "passportCardSub": "Material ID · Route card · COC",
+      "passportHead": "Part passport: one part, one record",
+      "passportTrace": "Traced back to its PO, material lot, machine and operator",
+      "passport": {
+        "p1": {
+          "title": "Customer PO line",
+          "note": "Quote and revision"
+        },
+        "p2": {
+          "title": "Material lot",
+          "note": "Material ID range"
+        },
+        "p3": {
+          "title": "Route card",
+          "note": "Released against the BOM"
+        },
+        "p4": {
+          "title": "Machine and operator",
+          "note": "Cycle count, buy-off"
+        },
+        "p5": {
+          "title": "COC",
+          "note": "Carries the machining record"
+        },
+        "p6": {
+          "title": "Invoice",
+          "note": "IRN and e-way bill"
+        }
+      },
+      "chain": {
+        "tag": "Machine to invoice",
+        "title": "Each document carries the one before it",
+        "lead": "Any part can be traced back to its PO, material lot, machine and operator.",
+        "s1": {
+          "title": "RFQ and customer PO",
+          "copy": "Quote every line, keep each revision, and watch the PO's open quantity so you always know what is still to ship against it."
+        },
+        "s2": {
+          "title": "Gate entry and GRN",
+          "copy": "Material arrives against a PO or a customer challan. Receipt tolerance is checked and inspection is recorded. Customer material is booked in with its Material ID range and PO line reference."
+        },
+        "s3": {
+          "title": "Route card",
+          "copy": "The route card is released against the BOM and the operation routing. Material is reserved by RI unit, so the same stock is not promised to two jobs."
+        },
+        "s4": {
+          "title": "Machine-confirmed operations",
+          "copy": "Start a job by route card number or barcode scan. The machine's cycle counts are proposed, the operator confirms them with a variance reason, and buy-offs are recorded per stage."
+        },
+        "s5": {
+          "title": "Inspection and COC",
+          "copy": "Receiving and final inspection, the FAIR register, and a certificate of conformance that carries the machining record, including OEE per job."
+        },
+        "s6": {
+          "title": "Invoice and dispatch",
+          "copy": "Packing, the GST invoice, the IRN and the e-way bill sit in one flow. Accounting vouchers go across to Tally."
+        }
+      },
+      "material": {
+        "tag": "Job-work native",
+        "title": "Your customer's material, accounted to the last piece",
+        "lead": "Customer-supplied material is a first-class record, not a spreadsheet on the side. Every challan, Material ID range and rejection stays tied to the customer who owns it.",
+        "step": "Step {n}",
+        "l1": {
+          "title": "Inward challan",
+          "copy": "Material ID ranges and PO line references."
+        },
+        "l2": {
+          "title": "Issued to production",
+          "copy": "Reserved and issued against the route card."
+        },
+        "l3": {
+          "title": "Consumed 1:1",
+          "copy": "Raw material consumed against every invoiced part."
+        },
+        "l4": {
+          "title": "Returned",
+          "copy": "Return deliveries with their documents."
+        },
+        "l5": {
+          "title": "Scrap",
+          "copy": "Scrap documents tied to the customer."
+        },
+        "n1": {
+          "title": "Customer material balance",
+          "copy": "A running balance per customer, with return deliveries and scrap documents."
+        },
+        "n2": {
+          "title": "ITC-04 data pack",
+          "copy": "Customer material balances, returns and scrap documents feed the ITC-04 data pack."
+        },
+        "n3": {
+          "title": "Read-only customer portal",
+          "copy": "Your customer can see their own material without being able to change it."
+        }
+      },
+      "accounts": {
+        "tag": "Accounts and GST",
+        "title": "GST invoices with IRN. Books stay in Tally.",
+        "lead": "Run purchase, stores, production and dispatch in Synax. GST invoices, IRN and e-way bills come from the same flow, and vouchers go to Tally, so your accountant changes nothing.",
+        "inSynax": {
+          "title": "In Synax",
+          "copy": "Purchase, stores, production, quality, dispatch and the GST invoice."
+        },
+        "inTally": {
+          "title": "In Tally",
+          "copy": "Your books and vouchers, as they are today. The Tally bridge sends the vouchers across."
+        },
+        "einv": {
+          "title": "E-invoice and e-way bill",
+          "copy": "Connect your GST suvidha provider (ClearTax or Masters India). The IRN is generated when an invoice is approved."
+        },
+        "aerospace": "Working with aerospace or defence customers? See the <link>Aerospace & Defence page</link>."
+      },
+      "related": {
+        "shopfloor": "Live machines, job cards and downtime.",
+        "ai": "Challan chasers, dispatch readiness and approvals.",
+        "hrms": "Plant attendance, overtime and payroll.",
+        "aerospace": "AS9100D controls, FAIR and certificates."
+      }
+    },
+    "hrms": {
+      "eyebrow": "Employee lifecycle, attendance & payroll",
+      "subtitle": "Employee operations and workforce administration",
+      "lead": "Run employee records, attendance, leave and work-from-home, and payroll with approvals in the same workspace as operations. Attendance logs and overtime approvals sync from biometric devices.",
+      "imgAlt": "A team seated around a long meeting-room table with laptops",
+      "monthTitle": "A month of attendance",
+      "sample": "Sample data",
+      "days": {
+        "d1": "Mon",
+        "d2": "Tue",
+        "d3": "Wed",
+        "d4": "Thu",
+        "d5": "Fri",
+        "d6": "Sat",
+        "d7": "Sun"
+      },
+      "monthAria": "Sample month of attendance: present, leave, work from home and overtime days",
+      "legendAria": "Legend",
+      "legend": {
+        "p": "Present",
+        "l": "Leave",
+        "w": "Work from home",
+        "o": "Overtime"
+      },
+      "pill": {
+        "a": "Biometric sync",
+        "b": "Overtime approval",
+        "c": "Payroll with approval"
+      },
+      "lifecycle": {
+        "tag": "Employee lifecycle",
+        "title": "One record per person, from hire to exit",
+        "lead": "Every stage reads from the same employee record, so nothing is typed twice.",
+        "stage": "Stage {n}",
+        "s1": {
+          "title": "Hire",
+          "copy": "Recruitment and interviews run in the same place, and the chosen candidate moves straight into an employee record."
+        },
+        "s2": {
+          "title": "Onboard",
+          "copy": "One record per person from day one, with employee self-service so staff can see and update their own details."
+        },
+        "s3": {
+          "title": "Attend",
+          "copy": "Attendance, leave and work-from-home in one flow. Biometric devices sync the logs, and break passes are managed alongside."
+        },
+        "s4": {
+          "title": "Approve",
+          "copy": "Attendance and overtime are approved before they reach payroll, so payroll starts from data that has been checked."
+        },
+        "s5": {
+          "title": "Pay",
+          "copy": "Payroll runs with approvals, in the same workspace as attendance and operations, with an audit trail on every posting."
+        },
+        "s6": {
+          "title": "Grow and exit",
+          "copy": "Department KPIs and performance management show how teams are doing, and offboarding closes the person's record."
+        }
+      },
+      "month": {
+        "tag": "Every month",
+        "title": "What a payroll month looks like in Synax",
+        "lead": "Attendance, leave and overtime are approved first, so payroll starts from checked data.",
+        "step": "Step {n}",
+        "m1": "Biometric logs sync",
+        "m2": "Leave and WFH approved",
+        "m3": "Overtime approved",
+        "m4": "Payroll run with approval",
+        "m5": "Department KPIs reviewed"
+      },
+      "plantOffice": {
+        "tag": "Standalone or integrated",
+        "title": "Use it alone, or alongside operations",
+        "lead": "HRMS runs on its own, or in the same workspace as Manufacturing ERP and Work & Delivery, so people data meets production and projects.",
+        "plantTitle": "On the shop floor",
+        "plantCopy": "Biometric attendance, overtime approval and break pass management for plant workers.",
+        "plantLink": "See the <link>Plant Workforce page</link>",
+        "officeTitle": "In the office",
+        "officeCopy": "Daily Work Management, the budget planner and department performance for teams.",
+        "officeNote": "Department KPIs and performance management"
+      },
+      "related": {
+        "precision": "Plant attendance meets production.",
+        "it": "Projects, timesheets and billing.",
+        "staffing": "Candidates, offers and deployments.",
+        "plant": "The solution page for plants."
+      },
+      "faq": {
+        "q1": "Does attendance connect to biometric devices?",
+        "a1": "Yes. Attendance logs and overtime approvals sync from biometric devices.",
+        "q2": "Is payroll approved before it is posted?",
+        "a2": "Payroll runs with approvals, and an audit trail is kept on every posting."
+      }
+    },
+    "staffing": {
+      "eyebrow": "Candidates, interviews & deployments",
+      "subtitle": "Source, deploy and manage customer staffing requirements",
+      "lead": "Manage customer requirements and candidates, run interviews, offers and onboarding, and track deployments, replacements and resource performance, with approvals along the way.",
+      "matchAria": "A requirement matched to candidates",
+      "imgAlt": "An interviewer taking notes while a candidate sits across the desk",
+      "orbit": {
+        "requirement": "Requirement",
+        "interviews": "Interviews",
+        "offer": "Offer",
+        "deployment": "Deployment"
+      },
+      "candidate": "Candidate {letter}",
+      "stageName": {
+        "interview": "Interview",
+        "offer": "Offer",
+        "deployed": "Deployed"
+      },
+      "illustration": "Illustration: sample candidates.",
+      "pipeline": {
+        "tag": "Hiring pipeline",
+        "title": "From the customer's requirement to the person on site",
+        "lead": "Every candidate stays linked to the requirement it is filling.",
+        "s1": {
+          "title": "Customer requirement",
+          "copy": "Capture what the customer needs: the role, the skills and how many people."
+        },
+        "s2": {
+          "title": "Candidates",
+          "copy": "Manage the people who can fill it, with each candidate linked to the requirement they are for."
+        },
+        "s3": {
+          "title": "Interviews",
+          "copy": "Schedule interview rounds and keep the feedback against the candidate and the requirement."
+        },
+        "s4": {
+          "title": "Offer",
+          "copy": "Prepare the offer and take it through approval before it goes out."
+        },
+        "s5": {
+          "title": "Onboarding",
+          "copy": "Move the chosen candidate from accepted offer to day one."
+        },
+        "s6": {
+          "title": "Deployment",
+          "copy": "Place the person with the customer and see who is where."
+        }
+      },
+      "after": {
+        "tag": "After day one",
+        "title": "Keep the placement healthy",
+        "lead": "Placing a person is the start. These modules cover what happens next.",
+        "a1": {
+          "title": "Resource performance",
+          "copy": "See how each deployed person is doing against what the customer expected."
+        },
+        "a2": {
+          "title": "Replacements",
+          "copy": "Replace a resource and keep the requirement's history, instead of starting again."
+        },
+        "a3": {
+          "title": "Timesheets and project billing",
+          "copy": "Record the hours delivered and bill the customer for them."
+        }
+      },
+      "sides": {
+        "tag": "Two sides, one record",
+        "title": "Nothing moves without the right sign-off",
+        "lead": "Offers, onboarding and deployments pass through approvals, and the history stays with the record.",
+        "customerTitle": "Customer side",
+        "customerCopy": "The requirement, the interview feedback and the deployment status in one place.",
+        "candidateTitle": "Candidate side",
+        "candidateCopy": "The profile, the interviews, the offer and the onboarding steps."
+      },
+      "related": {
+        "hrms": "Employee records, attendance and payroll.",
+        "it": "Timesheets, projects and billing.",
+        "ai": "Dashboards, reports and approvals.",
+        "precision": "The same workspace for manufacturing."
+      },
+      "faq": {
+        "q1": "Is staffing a separate system?",
+        "a1": "No. It runs in the same workspace as HRMS and Work & Delivery, so people, projects and approvals are shared.",
+        "q2": "Are timesheets billed to the customer?",
+        "a2": "Timesheets and project billing are part of Staffing & Resource Management."
+      }
+    },
+    "it": {
+      "eyebrow": "Delivery, people and billing",
+      "subtitle": "Plan the work, track the hours, bill what you deliver",
+      "lead": "Track the day's work, run projects against customer requirements and SOWs, record timesheets and costs, and bill with a clear view of profitability. People, attendance and approvals are shared with the rest of Synax, not re-entered.",
+      "imgAlt": "A team looking at a task board on a whiteboard",
+      "badge": "Hours to billing",
+      "cardsAria": "From a task to an invoice line",
+      "card": {
+        "c1": {
+          "t": "Work Tracker",
+          "n": "Task, owner, progress"
+        },
+        "c2": {
+          "t": "Timesheets",
+          "n": "Hours against the project"
+        },
+        "c3": {
+          "t": "Billing Tracker",
+          "n": "Invoice line and profitability"
+        }
+      },
+      "lanes": {
+        "tag": "Day to invoice",
+        "title": "One path from a task to a bill",
+        "lead": "Work, hours and billing sit in the same workspace, so the number on the invoice traces back to the work behind it.",
+        "l1": {
+          "title": "The day's work",
+          "copy": "Tasks, owners, progress and blockers stay in one tracker, so nobody has to ask what is happening.",
+          "i1": {
+            "name": "Work Tracker",
+            "note": "Tasks, owners, progress and blockers"
+          },
+          "i2": {
+            "name": "Daily Meetings",
+            "note": "The day's check-in, kept with the work"
+          },
+          "i3": {
+            "name": "Activity Tracker",
+            "note": "What was done, and when"
+          }
+        },
+        "l2": {
+          "title": "Projects",
+          "copy": "Run delivery against what the customer asked for: their requirements and the SOW behind each project.",
+          "i1": {
+            "name": "Project List and Project Add",
+            "note": "Create projects and see them all"
+          },
+          "i2": {
+            "name": "Customer requirements and SOWs",
+            "note": "What was agreed, next to the work"
+          },
+          "i3": {
+            "name": "PM and PC dashboards",
+            "note": "Status for project managers and coordinators"
+          }
+        },
+        "l3": {
+          "title": "Hours to billing",
+          "copy": "Turn time and cost into a bill, with a view of profitability while the project is still running.",
+          "i1": {
+            "name": "Timesheets and Work Logs",
+            "note": "Hours recorded against the project"
+          },
+          "i2": {
+            "name": "Development Costs",
+            "note": "What the delivery is costing"
+          },
+          "i3": {
+            "name": "Project Billing Tracker",
+            "note": "What is billed and what is due"
+          },
+          "i4": {
+            "name": "Budget Planner",
+            "note": "Plan against the budget"
+          }
+        }
+      },
+      "roles": {
+        "tag": "Who uses it",
+        "title": "A different first screen for each role",
+        "lead": "Everyone works from the same records; each role opens on what matters to them.",
+        "r1": {
+          "role": "Project manager",
+          "sees": "The PM dashboard: project status, hours and billing."
+        },
+        "r2": {
+          "role": "Project coordinator",
+          "sees": "The PC dashboard: the day-to-day follow-up."
+        },
+        "r3": {
+          "role": "Team member",
+          "sees": "The work tracker, timesheet and work log."
+        },
+        "r4": {
+          "role": "Finance",
+          "sees": "The project billing tracker and budget planner."
+        }
+      },
+      "around": {
+        "tag": "Around the work",
+        "title": "Collaboration and support in the same place",
+        "lead": "The team talks, meets and raises tickets without leaving the workspace.",
+        "a1": {
+          "title": "Team Chat",
+          "copy": "Fast team messaging across functions."
+        },
+        "a2": {
+          "title": "Audio and video calls",
+          "copy": "Instant 1:1 and team calling."
+        },
+        "a3": {
+          "title": "Public and private meetings",
+          "copy": "Open rooms and access-controlled meetings."
+        },
+        "a4": {
+          "title": "Support tickets",
+          "copy": "Create and resolve SLA-based tickets."
+        },
+        "a5": {
+          "title": "Company visitor management",
+          "copy": "Keep a record of who comes to the office."
+        },
+        "a6": {
+          "title": "Department performance",
+          "copy": "See how each department is doing."
+        },
+        "a7": {
+          "title": "Asset management",
+          "copy": "Manage company assets and employee assignments."
+        },
+        "assetsTour": "Watch the Assets tour"
+      },
+      "related": {
+        "hrms": "Attendance, leave and payroll for the same people.",
+        "staffing": "Requirements, candidates and deployments.",
+        "ai": "Dashboards, reports and approvals.",
+        "precision": "The same workspace on the shop floor."
+      },
+      "faq": {
+        "q1": "Do people and attendance have to be entered again?",
+        "a1": "No. Work & Delivery sits in the same workspace as Manufacturing ERP, HRMS and Staffing, so people, attendance and approvals are shared."
+      }
+    },
+    "shopfloor": {
+      "eyebrow": "Production execution",
+      "subtitle": "The machine reports the count",
+      "lead": "Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator. Schedule work onto machines, give operators the job in front of them, and see what every machine is doing.",
+      "imgAlt": "A blue industrial robot arm working on a production line",
+      "boardAria": "Live machine board (illustration)",
+      "machine": "Machine {n}",
+      "manualMachine": "Manual machine",
+      "state": {
+        "run": "Running",
+        "idle": "Idle: waiting for material",
+        "alarm": "Alarm: needs a person",
+        "manual": "Counts confirmed by the operator"
+      },
+      "layers": {
+        "tag": "Schedule to machine",
+        "title": "Plan, run, watch",
+        "lead": "The same job moves from the plan, to the operator, to the machine's own record.",
+        "l1": {
+          "title": "Plan",
+          "copy": "Load the machines and release each job against the BOM. Start a job by typing the route card number or scanning its barcode, so the right job reaches the right machine.",
+          "m1": "Machine scheduling & load charts",
+          "m2": "BOM and operation routing",
+          "m3": "Route card released against the BOM",
+          "m4": "Start by route card number or barcode scan"
+        },
+        "l2": {
+          "title": "Run",
+          "copy": "Give the operator the job in front of them and capture what actually happened. Cycle counts are proposed, and the operator confirms them with a variance reason.",
+          "m1": "Operator job cards",
+          "m2": "Cycle counts proposed, operator confirms",
+          "m3": "Production tracking"
+        },
+        "l3": {
+          "title": "Watch",
+          "copy": "See what every machine is doing and what it has been doing. Alarms and downtime reasons are on the board, and the machining record follows the part to the certificate.",
+          "m1": "Live machine board",
+          "m2": "Alarms and downtime reasons",
+          "m3": "Machine utilization",
+          "m4": "OEE per job",
+          "m5": "Machining record on the COC"
+        }
+      },
+      "connect": {
+        "tag": "Connect your machines",
+        "title": "Connected or not, the job still gets confirmed",
+        "lead": "No separate MES or integrator. Machines that can connect report for themselves; the rest are confirmed on the shop-floor screen.",
+        "c1": {
+          "title": "OEM connection",
+          "copy": "CNC machines can connect through the manufacturer's own connection."
+        },
+        "c2": {
+          "title": "Open FOCAS",
+          "copy": "Machines that speak open FOCAS report their counts, alarms and downtime."
+        },
+        "c3": {
+          "title": "No connection",
+          "copy": "Machines that cannot connect still work: operators confirm counts on the shop-floor screen."
+        }
+      },
+      "record": {
+        "tag": "One machine record",
+        "title": "The count comes from the machine, the record goes to the invoice",
+        "lead": "Production confirmation, the certificate and the invoice all read the same machine record.",
+        "withoutTitle": "Without it",
+        "withoutCopy": "Counts are written on paper, typed in later and corrected at dispatch.",
+        "withTitle": "With Synax",
+        "withCopy": "Counts are proposed by the machine, confirmed by the operator and carried to the certificate of conformance.",
+        "barcode": "Start jobs by route card number or barcode",
+        "oee": "OEE per job"
+      },
+      "related": {
+        "precision": "Route cards, inspection, dispatch and invoicing.",
+        "ai": "Shop-floor watch and quality compliance agents.",
+        "hrms": "Operator attendance and overtime.",
+        "machinery": "BOMs, routings and machine load."
+      },
+      "faq": {
+        "q1": "Can jobs be started by barcode?",
+        "a1": "Yes. Start jobs by route card number or barcode scan.",
+        "q2": "Do we need a separate MES?",
+        "a2": "No. Real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator."
+      }
+    },
+    "ai": {
+      "eyebrow": "AI & Business Intelligence",
+      "title": "Synax AI finds the exception and proposes the fix.",
+      "subtitle": "You approve.",
+      "lead": "Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes. Dashboards and reports across your workflows keep decisions on current data.",
+      "gateAria": "How a Synax AI action works",
+      "gate": {
+        "g1": "Ask",
+        "g2": "Agent finds",
+        "g3": "Agent proposes",
+        "g4": "You approve"
+      },
+      "gateNote": "Every decision is kept in the event history. Agents cannot change your data on their own.",
+      "approval": {
+        "tag": "Approval first",
+        "title": "The AI proposes. A person decides.",
+        "lead": "Agents cannot change your data on their own. Every action waits for an approver with the right role, and the decision is recorded.",
+        "l1": {
+          "title": "The agent finds the exception",
+          "copy": "Agents watch your records for the problems that cost money: an overdue return, a lot that is not ready, a payment that is late."
+        },
+        "l2": {
+          "title": "The agent proposes the fix",
+          "copy": "Instead of changing anything, it drafts the action: a reminder, a follow-up, a note for the right person."
+        },
+        "l3": {
+          "title": "An approver decides",
+          "copy": "Every action waits for an approver with the right role. This is the maker-checker model the rest of Synax already uses."
+        },
+        "l4": {
+          "title": "The decision is recorded",
+          "copy": "Who approved what, and when, is kept in a full event history, next to the record it changed."
+        },
+        "security": "Roles, two-step sign-in and the audit history are described on the <link>Security & Trust page</link>."
+      },
+      "agents": {
+        "tag": "Synax agents",
+        "title": "Six jobs the agents watch",
+        "lead": "Each agent looks for a specific problem and brings you a proposed fix.",
+        "a1": {
+          "title": "Challan reconciliation",
+          "copy": "Checks customer material challans against what came back, and flags the gaps."
+        },
+        "a2": {
+          "title": "Overdue chasers",
+          "copy": "Drafts the reminder when a challan passes its return date, ready for approval."
+        },
+        "a3": {
+          "title": "Dispatch readiness",
+          "copy": "Shows which lots are ready to dispatch and what is holding up the rest."
+        },
+        "a4": {
+          "title": "Receivables follow-up",
+          "copy": "Lines up who to chase for payment, with the follow-up drafted."
+        },
+        "a5": {
+          "title": "Quality compliance",
+          "copy": "Watches for open quality items against the checks your process requires."
+        },
+        "a6": {
+          "title": "Shop-floor watch",
+          "copy": "Brings alarms and downtime that need a person to your attention."
+        }
+      },
+      "ask": {
+        "tag": "Ask Synax",
+        "title": "Questions answered from your own data",
+        "lead": "Ask in plain language and get answers from live records.",
+        "youAsk": "You ask",
+        "q1": "Which challans are past their return date?",
+        "q2": "Which lots are ready to dispatch?",
+        "q3": "Which route cards are awaiting buy-off?",
+        "answers": "Synax answers",
+        "answer": "A list from your live records, with the next step proposed for approval.",
+        "approve": "Approve"
+      },
+      "bi": {
+        "tag": "Business intelligence",
+        "title": "Dashboards and reports on the workflows you already run",
+        "lead": "The same records, summarised for the people who decide.",
+        "b1": {
+          "title": "Business dashboards",
+          "copy": "The state of the business on one screen."
+        },
+        "b2": {
+          "title": "Operational analytics",
+          "copy": "How the operation is running, day by day."
+        },
+        "b3": {
+          "title": "Reports across workflows",
+          "copy": "Reports for sales, stores, production, quality, dispatch and people."
+        },
+        "b4": {
+          "title": "Performance insights",
+          "copy": "What to look at next, based on current data."
+        }
+      },
+      "related": {
+        "precision": "Challans, route cards, dispatch and invoices.",
+        "shopfloor": "Alarms, downtime and machine counts.",
+        "hrms": "Attendance, payroll and department KPIs.",
+        "security": "Roles, audit history and approvals."
+      }
+    }
+  },
+  "AiBoard": {
+    "name": "Synax AI",
+    "connected": "Connected to your enterprise data",
+    "srDescription": "Illustration: Synax AI answering questions such as who is on leave today, which challans are past their return date and which lots are ready to dispatch. Sample data.",
+    "placeholder": "Ask anything about your enterprise data...",
+    "proposes": "Synax AI proposes",
+    "approve": "Approve",
+    "reject": "Reject",
+    "caption": "Illustration: sample data.",
+    "s1": {
+      "q": "Who is on leave today?",
+      "lead": "3 people are on leave today:",
+      "r1": {
+        "title": "Emma Clarke",
+        "sub": "Casual leave",
+        "tag": "2 days"
+      },
+      "r2": {
+        "title": "Daniel Moreau",
+        "sub": "Sick leave",
+        "tag": "1 day"
+      },
+      "r3": {
+        "title": "Sofia Alvarez",
+        "sub": "Earned leave",
+        "tag": "5 days"
+      },
+      "note": "Leave is read from HRMS and approved requests."
+    },
+    "s2": {
+      "q": "When is Emma Clarke back in the office?",
+      "lead": "Emma Clarke is on casual leave for 2 days.",
+      "r1": {
+        "title": "On leave",
+        "sub": "Casual leave, approved",
+        "tag": "2 days"
+      },
+      "r2": {
+        "title": "Back in the office",
+        "sub": "The day after tomorrow",
+        "tag": "In 2 days"
+      },
+      "note": "Leave is read from HRMS and approved requests."
+    },
+    "s3": {
+      "q": "Which challans are past their return date?",
+      "lead": "2 challans are past their return date.",
+      "r1": {
+        "title": "Challan CH-1042",
+        "sub": "Customer material, not yet returned",
+        "tag": "5 days late"
+      },
+      "r2": {
+        "title": "Challan CH-1057",
+        "sub": "Customer material, not yet returned",
+        "tag": "2 days late"
+      },
+      "approval": "Draft reminders to the customer"
+    },
+    "s4": {
+      "q": "Which lots are ready to dispatch?",
+      "lead": "5 lots are ready to dispatch.",
+      "r1": {
+        "title": "Lot L-2208",
+        "sub": "Inspection and COC complete",
+        "tag": "Ready"
+      },
+      "r2": {
+        "title": "Lot L-2211",
+        "sub": "Inspection and COC complete",
+        "tag": "Ready"
+      },
+      "r3": {
+        "title": "Lot L-2214",
+        "sub": "Inspection and COC complete",
+        "tag": "Ready"
+      },
+      "note": "+ 2 more lots are ready."
+    }
+  },
+  "ProductMeta": {
+    "precision": {
+      "seoTitle": "Manufacturing ERP",
+      "seoDescription": "Customer material, route cards, inspection, dispatch and invoicing in one traceable machine-to-invoice workflow."
+    },
+    "it": {
+      "seoTitle": "Work & Delivery Management",
+      "seoDescription": "Work tracker, projects, timesheets and project billing for service teams, in the same workspace as Manufacturing ERP."
+    },
+    "hrms": {
+      "seoTitle": "HRMS",
+      "seoDescription": "Employee lifecycle, recruitment, attendance, leave, payroll, compliance and performance management, standalone or integrated."
+    },
+    "staffing": {
+      "seoTitle": "Staffing & Resource Management",
+      "seoDescription": "Source, deploy and manage customer staffing requirements: candidates, interviews, offers, onboarding and deployments."
+    },
+    "shopfloor": {
+      "seoTitle": "Shop Floor & Machine Monitoring",
+      "seoDescription": "Machine scheduling, operator job cards, live machine monitoring, downtime and utilization."
+    },
+    "ai": {
+      "seoTitle": "AI & Business Intelligence",
+      "seoDescription": "Synax AI assistance and agents, with operational analytics, dashboards and reports across business workflows."
+    }
+  },
+  "NotFound": {
+    "metaTitle": "Page not found",
+    "code": "Error 404",
+    "title": "This page could not be found",
+    "text": "The address may have a typo, or the page may have moved. These pages are a good place to start.",
+    "home": "Back to the home page",
+    "products": "Products",
+    "solutions": "Solutions",
+    "why": "Why Synax",
+    "security": "Security & Trust"
+  },
+  "Chat": {
+    "launcher": "Chat with us",
+    "close": "Close chat",
+    "panel": "Synax support chat",
+    "agentName": "Synax Support",
+    "agentNote": "Automated assistant. A person follows up by email.",
+    "expand": "Enlarge chat",
+    "reduce": "Reduce chat",
+    "messages": "Conversation",
+    "placeholder": "Type your message...",
+    "send": "Send message",
+    "typing": "Synax Support is typing",
+    "newMessage": "1 new message",
+    "you": "You",
+    "greet1": "Hi there! Welcome to Synax.",
+    "greet2": "I can answer common questions about our products, or pass you to the team. What would you like to know?",
+    "chip": {
+      "demo": "Book a demo",
+      "products": "Which product fits me?",
+      "pricing": "Pricing and free plan",
+      "person": "Talk to a person"
+    },
+    "reply": {
+      "demo": "Happy to set that up. It is a short walkthrough with a Senwell Group systems engineer, using your own parts, people and processes.",
+      "products": "Synax has six products in one workspace. Manufacturing ERP covers customer orders to the GST invoice, Shop Floor & Machine Monitoring covers live machines, HRMS covers attendance and payroll, and there are products for work and delivery, staffing, and AI. Tell me what you do and I will point you to the right one.",
+      "pricing": "Synax is free for small manufacturers (SMEs under 50 employees). For larger teams the plan depends on the modules and users, so the team will share the details with you.",
+      "tally": "No need to move your accounts. Run operations in Synax and keep your books in Tally: the Tally bridge sends the vouchers across.",
+      "gst": "GST invoices, the IRN and e-way bills come from the same flow as production and dispatch, using your GST suvidha provider.",
+      "machines": "CNC machines can connect through the manufacturer's own connection or open FOCAS. Machines that cannot connect still work: operators confirm the counts on the shop-floor screen.",
+      "hr": "HRMS covers employee records, attendance, leave and work from home, and payroll with approvals. Attendance logs and overtime approvals sync from biometric devices.",
+      "security": "Every company runs in its own tenant, stock and status changes are checked on the server, and an audit history is kept. The details are on the Security & Trust page.",
+      "person": "Don't have time to wait for a response? Leave your email address and we'll be in touch as soon as possible.",
+      "fallback": "Thanks for your message. I am an automated assistant, so I will pass this on to the team. Leave your email address and someone will reply."
+    },
+    "action": {
+      "demo": "Open the demo form",
+      "products": "See all products",
+      "security": "Security & Trust page"
+    },
+    "email": {
+      "placeholder": "Enter email address",
+      "label": "Your email address",
+      "send": "Send email address",
+      "invalid": "Please enter a valid email address.",
+      "note": "We use your email only to reply. <link>Privacy policy</link>",
+      "thanks": "Thanks! We have noted {email}. A member of the team will be in touch."
+    },
+    "ended": "Your chat has ended.",
+    "restart": "To start a new chat, click here.",
+    "keywords": {
+      "demo": "demo,walkthrough,trial,book",
+      "person": "person,human,agent,call me,phone,contact,sales",
+      "pricing": "price,pricing,cost,free,plan,quote,how much",
+      "tally": "tally,accounts,accounting,books",
+      "gst": "gst,e-invoice,einvoice,irn,e-way,eway,invoice",
+      "machines": "machine,cnc,focas,mes,shop floor,shopfloor,downtime",
+      "hr": "hr,hrms,payroll,attendance,leave,employee",
+      "security": "security,secure,privacy,audit,data,tenant",
+      "products": "product,products,modules,which,erp,staffing,ai"
+    }
+  }
+}

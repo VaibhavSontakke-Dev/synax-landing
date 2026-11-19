@@ -24,9 +24,6 @@ export type SolutionKey =
 
 export type SolutionGroup = "industry" | "process" | "need";
 
-/** An entry's starting-path card on /solutions, for entries without a page of their own. */
-const startHref = (key: SolutionKey) => `/solutions#start-${key}`;
-
 export const SOLUTION_GROUPS: { id: SolutionGroup; label: string; lead: string }[] = [
   { id: "industry", label: "Industries we serve", lead: "The markets our customers supply." },
   { id: "process", label: "How you manufacture", lead: "The way the work is done on your floor." },
@@ -50,7 +47,7 @@ export interface Solution {
   tone: RouteTone;
   /**
    * Where "Explore" and the Solutions menu go: the entry's own page (an industry page, or the product page for
-   * Staffing), otherwise its starting path on /solutions (`/solutions#start-<key>`).
+   * Staffing).
    */
   href: string;
   /** Other solutions that usually go with this one, across the three groups. */
@@ -201,7 +198,7 @@ export const SOLUTIONS: Solution[] = [
     ],
     product: "precision",
     tone: "emerald",
-    href: startHref("rubber"),
+    href: industryHref("rubber-polymer-moulding"),
     related: ["energy", "machinery", "aerospace"],
     demoName: "Manufacturing ERP",
   },

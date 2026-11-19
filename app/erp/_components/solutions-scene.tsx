@@ -2,7 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Factory } from "lucide-react";
-import { SOLUTION_ICON, SOLUTION_SHORT } from "./solution-icons";
+import { useTranslations } from "next-intl";
+import { SOLUTION_ICON } from "./solution-icons";
 
 /**
  * Animated hero scene for /solutions: a ring of the eight module areas around a hub. For each solution in turn
@@ -34,10 +35,14 @@ export interface SceneSolution {
 }
 
 const ICON = SOLUTION_ICON as Record<string, (typeof SOLUTION_ICON)[keyof typeof SOLUTION_ICON]>;
-const SHORT = SOLUTION_SHORT as Record<string, string>;
-const AREA_SHORT: Record<string, string> = { "Procurement & Stores": "Stores", Collaboration: "Collab." };
 
-export function SolutionsScene({ areas, solutions }: { areas: string[]; solutions: SceneSolution[] }) {
+/**
+ * `areas` are the English area names (the keys of `coverage`); `areaLabels` are the short names to show for them, in the visitor's language.
+ * The scene's own words come from messages/*.json ("Scene"; the short solution names from "Solutions.<key>.chip").
+ */
+export function SolutionsScene({ areas, areaLabels, solutions }: { areas: string[]; areaLabels: Record<string, string>; solutions: SceneSolution[] }) {
+  const tr = useTranslations("Scene");
+  const ts = useTranslations("Solutions");
   const [idx, setIdx] = useState(0);
   const [elapsed, setElapsed] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -120,8 +125,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
   return (
     <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <p className="sr-only">
-        Animated overview: for each solution, the modules to switch on first, what to add next, and how many of the eight module areas are core to it. The
-        same information is in the sections below.
+        {tr("description")}
       </p>
       <div
         ref={frame}
@@ -147,11 +151,11 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
 
             {/* What hurts, start with, then add */}
             <div className="absolute top-3.5 left-3.5 w-[176px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2.5">
-              <p className="text-[10px] tracking-[0.09em] text-slate-500">WHAT HURTS</p>
+              <p className="text-[10px] tracking-[0.09em] text-slate-500">{tr("whatHurts")}</p>
               <p className="mt-1 min-h-[48px] text-[12px] leading-snug">{s.pain}</p>
             </div>
             <div className="absolute top-[132px] left-3.5 w-[176px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2.5">
-              <p className="text-[10px] tracking-[0.09em] text-slate-500">START WITH</p>
+              <p className="text-[10px] tracking-[0.09em] text-slate-500">{tr("startWith")}</p>
               <ol className="mt-1">
                 {s.start.map((m, n) => {
                   const on = t >= 900 + n * STEP_MS;
@@ -169,7 +173,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                   );
                 })}
               </ol>
-              <p className="mt-2 text-[10px] tracking-[0.09em] text-slate-500">THEN ADD</p>
+              <p className="mt-2 text-[10px] tracking-[0.09em] text-slate-500">{tr("thenAdd")}</p>
               <div className="min-h-[34px]">
                 {s.then.map((m, n) => (
                   <span
@@ -186,7 +190,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
 
             {/* Reach */}
             <div className="absolute top-3.5 right-3.5 w-[128px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2 text-center">
-              <p className="text-[10px] tracking-[0.09em] text-slate-500">REACH</p>
+              <p className="text-[10px] tracking-[0.09em] text-slate-500">{tr("reach")}</p>
               <svg width="56" height="56" viewBox="0 0 64 64" className="mx-auto mt-0.5 block">
                 <circle cx="32" cy="32" r="26" fill="none" style={{ stroke: "var(--scene-track)" }} strokeWidth="7" />
                 <circle
@@ -203,13 +207,13 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                   style={{ transition: "stroke-dashoffset 1.2s" }}
                 />
               </svg>
-              <p className="text-[15px] font-medium text-brand">{reachOn ? core : 0} of {areas.length}</p>
+              <p className="text-[15px] font-medium text-brand">{tr("ofCount", { core: reachOn ? core : 0, total: areas.length })}</p>
               <p className="text-[10px] text-slate-500">areas core</p>
             </div>
 
             {/* Switch-on order */}
             <div className="absolute right-3.5 bottom-[50px] w-[128px] rounded-xl border border-slate-300 bg-surface/90 px-3 py-2">
-              <p className="text-[10px] tracking-[0.09em] text-slate-500">SWITCH-ON ORDER</p>
+              <p className="text-[10px] tracking-[0.09em] text-slate-500">{tr("order")}</p>
               <div className="mt-1.5 space-y-[5px]">
                 {[
                   { n: core, c: "bg-brand-solid" },
@@ -247,7 +251,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                   >
                     {kind === "core" ? <Check className="size-2.5" /> : null}
                   </span>
-                  {AREA_SHORT[n.area] ?? n.area}
+                  {areaLabels[n.area] ?? n.area}
                 </span>
               );
             })}
@@ -258,7 +262,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
               style={{ left: CX, top: CY }}
             >
               <Hub className="size-6" />
-              <span className="mt-0.5 text-[11px]">{SHORT[s.key] ?? s.title}</span>
+              <span className="mt-0.5 text-[11px]">{ts.has(`${s.key}.chip`) ? ts(`${s.key}.chip`) : s.title}</span>
             </div>
           </div>
 
@@ -274,7 +278,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
                   i === idx ? "border-brand-line bg-brand-solid text-white" : "border-brand-line/30 bg-surface/80 text-slate-600 hover:border-brand-line"
                 }`}
               >
-                {SHORT[x.key] ?? x.title}
+                {ts.has(`${x.key}.chip`) ? ts(`${x.key}.chip`) : x.title}
               </button>
             ))}
           </div>
@@ -284,7 +288,7 @@ export function SolutionsScene({ areas, solutions }: { areas: string[]; solution
         href={`#start-${s.key}`}
         className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
       >
-        See the full path for {s.title}
+        {tr("seePath", { title: s.title })}
         <ArrowRight className="size-4" aria-hidden="true" />
       </a>
     </div>

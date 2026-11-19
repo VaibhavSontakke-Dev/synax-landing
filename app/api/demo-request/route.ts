@@ -16,6 +16,10 @@
  *  - a per-IP rate limit kept in memory (per server instance, so it is best-effort on serverless hosts),
  *  - text cleaned before it is forwarded (control characters, spreadsheet-formula starts, chat mentions).
  * Personal data: the form carries an explicit consent tick, which is required here too.
+ *
+ * Languages: every error answer carries a stable `code` next to its English `error` text. The browser shows the visitor a
+ * translated message for the code (messages/*.json, DemoForm.errors); other clients can keep using `error`. The form also
+ * sends the language the visitor was reading (`locale`), which is passed on as `language` so the team can reply in it.
  */
 
 const MAX_LEN = {
@@ -29,6 +33,8 @@ const MAX_LEN = {
 } as const;
 
 type Field = keyof typeof MAX_LEN;
+
+const LANGUAGES = ["en", "fr", "de"] as const;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -90,17 +96,17 @@ function clean(value: unknown, field: Field): string {
 
 export async function POST(request: Request) {
   if (!sameOrigin(request)) {
-    return Response.json({ error: "Invalid request." }, { status: 403 });
+    return Response.json({ error: "Invalid request.", code: "invalid_request" }, { status: 403 });
   }
 
   const declared = Number(request.headers.get("content-length") ?? "0");
   if (declared > MAX_BODY_BYTES) {
-    return Response.json({ error: "Invalid request." }, { status: 413 });
+    return Response.json({ error: "Invalid request.", code: "invalid_request" }, { status: 413 });
   }
 
   if (rateLimited(clientIp(request))) {
     return Response.json(
-      { error: "Too many requests. Please try again in a few minutes." },
+      { error: "Too many requests. Please try again in a few minutes.", code: "too_many_requests" },
       { status: 429, headers: { "Retry-After": String(RATE_WINDOW_MS / 1000) } },
     );
   }
@@ -109,13 +115,13 @@ export async function POST(request: Request) {
   try {
     const text = await request.text();
     if (text.length > MAX_BODY_BYTES) {
-      return Response.json({ error: "Invalid request." }, { status: 413 });
+      return Response.json({ error: "Invalid request.", code: "invalid_request" }, { status: 413 });
     }
     const parsed: unknown = JSON.parse(text);
     if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) throw new Error("not an object");
     body = parsed as Record<string, unknown>;
   } catch {
-    return Response.json({ error: "Invalid request." }, { status: 400 });
+    return Response.json({ error: "Invalid request.", code: "invalid_request" }, { status: 400 });
   }
 
   // Honeypot: real users never see or fill this field. Pretend success.
@@ -132,22 +138,24 @@ export async function POST(request: Request) {
     floorSize: clean(body.floorSize, "floorSize"),
     message: clean(body.message, "message"),
   };
+  // Only a known language is accepted; anything else is treated as English.
+  const language = LANGUAGES.find((l) => l === body.locale) ?? "en";
 
   if (lead.fullName.length < 2 || lead.company.length < 2) {
     return Response.json(
-      { error: "Please enter your name and company." },
+      { error: "Please enter your name and company.", code: "name_company" },
       { status: 422 },
     );
   }
   if (!EMAIL_RE.test(lead.email)) {
     return Response.json(
-      { error: "Please enter a valid email address." },
+      { error: "Please enter a valid email address.", code: "invalid_email" },
       { status: 422 },
     );
   }
   if (body.consent !== true) {
     return Response.json(
-      { error: "Please tick the box to agree to the privacy notice." },
+      { error: "Please tick the box to agree to the privacy notice.", code: "consent_required" },
       { status: 422 },
     );
   }
@@ -156,7 +164,7 @@ export async function POST(request: Request) {
   if (!webhook) {
     console.error("DEMO_REQUEST_WEBHOOK_URL is not set; demo request not delivered.");
     return Response.json(
-      { error: "We couldn't submit your request right now. Please try again shortly." },
+      { error: "We couldn't submit your request right now. Please try again shortly.", code: "delivery_failed" },
       { status: 503 },
     );
   }
@@ -167,6 +175,7 @@ export async function POST(request: Request) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...lead,
+        language,
         source: "synax-landing",
         consent: true,
         submittedAt: new Date().toISOString(),
@@ -177,7 +186,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Demo request delivery failed:", error);
     return Response.json(
-      { error: "We couldn't submit your request right now. Please try again shortly." },
+      { error: "We couldn't submit your request right now. Please try again shortly.", code: "delivery_failed" },
       { status: 502 },
     );
   }

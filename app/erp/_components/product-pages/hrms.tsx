@@ -1,5 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { slug } from "@/i18n/slug";
 import { BarChart3, CalendarCheck, CircleCheck, Factory, Fingerprint, LogOut, UserPlus, UserRoundCheck, Wallet, Building2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SOLUTION_PATHS } from "../../_data/solution-paths";
@@ -8,7 +10,10 @@ import { Block } from "../site-page";
 import { Reveal } from "../reveal";
 import { HeroBand, HeroCopy, ModChips, ProductTail, StartPath, faqItems, relatedProduct } from "./shared";
 
-/** HRMS — a month of attendance in the hero, a six-stage lifecycle, a monthly cycle and a plant/office split. */
+/**
+ * HRMS — a month of attendance in the hero, a six-stage lifecycle, a monthly cycle and a plant/office split.
+ * The words come from messages/*.json ("ProductPage.hrms"); the arrays keep icons, keys and module names.
+ */
 
 type Day = "p" | "l" | "w" | "o" | "-";
 /** A sample month (Monday first). p present, l leave, w work from home, o overtime, - weekend. */
@@ -20,61 +25,42 @@ const DAY_STYLE: Record<Day, string> = {
   o: "bg-orange-300",
   "-": "bg-slate-200",
 };
-const LEGEND: { key: Day; label: string }[] = [
-  { key: "p", label: "Present" },
-  { key: "l", label: "Leave" },
-  { key: "w", label: "Work from home" },
-  { key: "o", label: "Overtime" },
-];
+const LEGEND: Day[] = ["p", "l", "w", "o"];
 
-const LIFECYCLE: { icon: LucideIcon; title: string; copy: string; modules: string[] }[] = [
+const LIFECYCLE: { icon: LucideIcon; modules: string[] }[] = [
   {
     icon: UserPlus,
-    title: "Hire",
-    copy: "Recruitment and interviews run in the same place, and the chosen candidate moves straight into an employee record.",
     modules: ["Recruitment and interviews"],
   },
   {
     icon: UserRoundCheck,
-    title: "Onboard",
-    copy: "One record per person from day one, with employee self-service so staff can see and update their own details.",
     modules: ["Employee records", "Employee self-service"],
   },
   {
     icon: CalendarCheck,
-    title: "Attend",
-    copy: "Attendance, leave and work-from-home in one flow. Biometric devices sync the logs, and break passes are managed alongside.",
     modules: ["Attendance, leave & WFH", "Biometric device sync", "Break pass management"],
   },
   {
     icon: CircleCheck,
-    title: "Approve",
-    copy: "Attendance and overtime are approved before they reach payroll, so payroll starts from data that has been checked.",
     modules: ["Attendance & OT approval"],
   },
   {
     icon: Wallet,
-    title: "Pay",
-    copy: "Payroll runs with approvals, in the same workspace as attendance and operations, with an audit trail on every posting.",
     modules: ["Payroll with approvals"],
   },
   {
     icon: LogOut,
-    title: "Grow and exit",
-    copy: "Department KPIs and performance management show how teams are doing, and offboarding closes the person's record.",
     modules: ["Department KPIs", "Performance management", "Offboarding", "Budget planner"],
   },
 ];
 
-const MONTHLY = [
-  "Biometric logs sync",
-  "Leave and WFH approved",
-  "Overtime approved",
-  "Payroll run with approval",
-  "Department KPIs reviewed",
-];
+const MONTHLY = ["m1", "m2", "m3", "m4", "m5"] as const;
 
 export function HrmsPage() {
+  const t = useTranslations("ProductPage.hrms");
+  const tm = useTranslations("Modules");
+  const ti = useTranslations("Industries");
+  const tf = useTranslations("ProductPage.hrms.faq");
   return (
     <main>
       {/* Hero: centred copy, a panoramic team photo, and a month of attendance overlapping its bottom edge */}
@@ -83,15 +69,15 @@ export function HrmsPage() {
         <HeroCopy
           productKey="hrms"
           centerBelowLg
-          eyebrow="Employee lifecycle, attendance & payroll"
-          subtitle="Employee operations and workforce administration"
-          lead="Run employee records, attendance, leave and work-from-home, and payroll with approvals in the same workspace as operations. Attendance logs and overtime approvals sync from biometric devices."
+          eyebrow={t("eyebrow")}
+          subtitle={t("subtitle")}
+          lead={t("lead")}
         />
         <div>
         <div className="relative mx-auto mt-8 h-56 max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-slate-200 shadow-md sm:h-72 lg:mt-0 lg:h-[clamp(13rem,34vh,22rem)]">
           <Image
             src="/images/products/hrms.webp"
-            alt="A team seated around a long meeting-room table with laptops"
+            alt={t("imgAlt")}
             fill
             priority
             sizes="(min-width: 1024px) 1024px, 100vw"
@@ -101,35 +87,35 @@ export function HrmsPage() {
         </div>
         <div className="relative mx-auto -mt-16 max-w-xl rounded-3xl border border-slate-200 bg-surface p-5 shadow-xl sm:-mt-20 lg:-mt-24 lg:max-w-sm">
           <div className="mb-3 flex items-center justify-between text-xs text-slate-500">
-            <p className="font-bold text-slate-900">A month of attendance</p>
-            <p>Sample data</p>
+            <p className="font-bold text-slate-900">{t("monthTitle")}</p>
+            <p>{t("sample")}</p>
           </div>
           <div className="grid grid-cols-7 gap-1.5 text-center text-[11px] font-semibold text-slate-500" aria-hidden="true">
-            {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
-              <span key={d}>{d}</span>
+            {(["d1", "d2", "d3", "d4", "d5", "d6", "d7"] as const).map((d) => (
+              <span key={d}>{t(`days.${d}`)}</span>
             ))}
           </div>
-          <div className="mt-1.5 grid grid-cols-7 gap-1.5" role="img" aria-label="Sample month of attendance: present, leave, work from home and overtime days">
+          <div className="mt-1.5 grid grid-cols-7 gap-1.5" role="img" aria-label={t("monthAria")}>
             {MONTH.map((d, i) => (
               <span key={i} className={`aspect-square rounded-md lg:aspect-auto lg:h-6 ${DAY_STYLE[d]}`} />
             ))}
           </div>
-          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-slate-600" aria-label="Legend">
+          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-slate-600" aria-label={t("legendAria")}>
             {LEGEND.map((l) => (
-              <li key={l.key} className="flex items-center gap-1.5">
-                <span className={`size-2.5 rounded-sm ${DAY_STYLE[l.key]}`} aria-hidden="true" />
-                {l.label}
+              <li key={l} className="flex items-center gap-1.5">
+                <span className={`size-2.5 rounded-sm ${DAY_STYLE[l]}`} aria-hidden="true" />
+                {t(`legend.${l}`)}
               </li>
             ))}
           </ul>
           <ul className="mt-4 flex flex-wrap gap-2">
             {[
-              { label: "Biometric sync", orange: false },
-              { label: "Overtime approval", orange: false },
-              { label: "Payroll with approval", orange: true },
+              { key: "a", orange: false },
+              { key: "b", orange: false },
+              { key: "c", orange: true },
             ].map((p) => (
-              <li key={p.label} className={`rounded-full px-3 py-1 text-xs font-semibold ${p.orange ? "bg-orange-300 text-orange-950" : "bg-brand-solid text-white"}`}>
-                {p.label}
+              <li key={p.key} className={`rounded-full px-3 py-1 text-xs font-semibold ${p.orange ? "bg-orange-300 text-orange-950" : "bg-brand-solid text-white"}`}>
+                {t(`pill.${p.key}`)}
               </li>
             ))}
           </ul>
@@ -141,27 +127,27 @@ export function HrmsPage() {
       {/* Lifecycle */}
       <Block
         id="lifecycle"
-        tag="Employee lifecycle"
-        title="One record per person, from hire to exit"
-        lead="Every stage reads from the same employee record, so nothing is typed twice."
+        tag={t("lifecycle.tag")}
+        title={t("lifecycle.title")}
+        lead={t("lifecycle.lead")}
       >
         <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {LIFECYCLE.map((s, i) => {
             const Icon = s.icon;
             return (
-              <Reveal key={s.title} as="li" delay={(i % 3) * 70} className="flex">
+              <Reveal key={i} as="li" delay={(i % 3) * 70} className="flex">
                 <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
                   <div className="flex items-center gap-3">
                     <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
                       <Icon className="size-5" aria-hidden="true" />
                     </span>
                     <div>
-                      <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">Stage {i + 1}</p>
-                      <h3 className="text-base font-bold text-slate-900">{s.title}</h3>
+                      <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">{t("lifecycle.stage", { n: i + 1 })}</p>
+                      <h3 className="text-base font-bold text-slate-900">{t(`lifecycle.s${i + 1}.title`)}</h3>
                     </div>
                   </div>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{s.copy}</p>
-                  <ModChips items={s.modules} className="mt-4" />
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{t(`lifecycle.s${i + 1}.copy`)}</p>
+                  <ModChips items={s.modules.map((m) => tm(slug(m)))} className="mt-4" />
                 </div>
               </Reveal>
             );
@@ -172,16 +158,16 @@ export function HrmsPage() {
       {/* Monthly cycle */}
       <Block
         id="month"
-        tag="Every month"
-        title="What a payroll month looks like in Synax"
-        lead="Attendance, leave and overtime are approved first, so payroll starts from checked data."
+        tag={t("month.tag")}
+        title={t("month.title")}
+        lead={t("month.lead")}
         tone="white"
       >
         <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {MONTHLY.map((m, i) => (
             <li key={m} className={`rounded-2xl border border-t-4 border-slate-200 bg-surface p-4 shadow-sm ${i === 3 ? "border-t-orange-600" : "border-t-blue-900"}`}>
-              <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">Step {i + 1}</p>
-              <p className="mt-1 text-sm font-bold text-slate-900">{m}</p>
+              <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">{t("month.step", { n: i + 1 })}</p>
+              <p className="mt-1 text-sm font-bold text-slate-900">{t(`month.${m}`)}</p>
             </li>
           ))}
         </ol>
@@ -190,52 +176,55 @@ export function HrmsPage() {
       {/* Plant and office */}
       <Block
         id="plant-office"
-        tag="Standalone or integrated"
-        title="Use it alone, or alongside operations"
-        lead="HRMS runs on its own, or in the same workspace as Manufacturing ERP and Work & Delivery, so people data meets production and projects."
+        tag={t("plantOffice.tag")}
+        title={t("plantOffice.title")}
+        lead={t("plantOffice.lead")}
       >
         <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
           <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
             <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
               <Factory className="size-5" aria-hidden="true" />
             </span>
-            <h3 className="mt-3 text-base font-bold text-slate-900">On the shop floor</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">Biometric attendance, overtime approval and break pass management for plant workers.</p>
+            <h3 className="mt-3 text-base font-bold text-slate-900">{t("plantOffice.plantTitle")}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{t("plantOffice.plantCopy")}</p>
             <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-brand">
               <Fingerprint className="size-4" aria-hidden="true" />
-              See the{" "}
-              <Link href={industryHref("plant-workforce-hcm")} className="underline">
-                Plant Workforce page
-              </Link>
+              {t.rich("plantOffice.plantLink", {
+                link: (chunks) => (
+                  <Link href={industryHref("plant-workforce-hcm")} className="underline">
+                    {chunks}
+                  </Link>
+                ),
+              })}
             </p>
           </div>
           <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
             <span className="flex size-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-accent-strong">
               <Building2 className="size-5" aria-hidden="true" />
             </span>
-            <h3 className="mt-3 text-base font-bold text-slate-900">In the office</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">Daily Work Management, the budget planner and department performance for teams.</p>
+            <h3 className="mt-3 text-base font-bold text-slate-900">{t("plantOffice.officeTitle")}</h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{t("plantOffice.officeCopy")}</p>
             <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-accent-strong">
               <BarChart3 className="size-4" aria-hidden="true" />
-              Department KPIs and performance management
+              {t("plantOffice.officeNote")}
             </p>
           </div>
         </div>
       </Block>
 
-      <StartPath path={SOLUTION_PATHS.workforce} />
+      <StartPath solution="workforce" path={SOLUTION_PATHS.workforce} />
 
       <ProductTail
         productKey="hrms"
         related={[
-          relatedProduct("precision", "Plant attendance meets production."),
-          relatedProduct("it", "Projects, timesheets and billing."),
-          relatedProduct("staffing", "Candidates, offers and deployments."),
-          { label: "Plant Workforce & HR", note: "The solution page for plants.", href: industryHref("plant-workforce-hcm") },
+          relatedProduct("precision", t("related.precision")),
+          relatedProduct("it", t("related.it")),
+          relatedProduct("staffing", t("related.staffing")),
+          { label: ti("plant-workforce-hcm.name"), note: t("related.plant"), href: industryHref("plant-workforce-hcm") },
         ]}
         faq={faqItems(["Is Synax free for small manufacturers?", "How long does onboarding take?"], [
-          { q: "Does attendance connect to biometric devices?", a: "Yes. Attendance logs and overtime approvals sync from biometric devices." },
-          { q: "Is payroll approved before it is posted?", a: "Payroll runs with approvals, and an audit trail is kept on every posting." },
+          { q: tf("q1"), a: tf("a1") },
+          { q: tf("q2"), a: tf("a2") },
         ])}
       />
     </main>

@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /**
  * Light / dark switch for the header. One button: it shows the theme you would switch TO (a moon in light mode,
@@ -62,6 +63,7 @@ const getSnapshot = () => document.documentElement.getAttribute("data-theme") ==
 const getServerSnapshot = () => false;
 
 export function ThemeToggle({ className = "", withLabel = false }: { className?: string; withLabel?: boolean }) {
+  const t = useTranslations("Theme");
   const dark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = () => {
@@ -75,7 +77,7 @@ export function ThemeToggle({ className = "", withLabel = false }: { className?:
     window.dispatchEvent(new Event(EVENT));
   };
 
-  const label = dark ? "Switch to light theme" : "Switch to dark theme";
+  const label = dark ? t("toLight") : t("toDark");
   return (
     <button
       type="button"
@@ -85,7 +87,7 @@ export function ThemeToggle({ className = "", withLabel = false }: { className?:
       className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-200 text-slate-700 transition-colors hover:border-orange-300 hover:bg-slate-100 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ${withLabel ? "px-3 py-2 text-sm font-semibold" : "size-9"} ${className}`}
     >
       {dark ? <Sun className="size-4" aria-hidden="true" /> : <Moon className="size-4" aria-hidden="true" />}
-      {withLabel ? <span>{dark ? "Light theme" : "Dark theme"}</span> : null}
+      {withLabel ? <span>{dark ? t("light") : t("dark")}</span> : null}
     </button>
   );
 }

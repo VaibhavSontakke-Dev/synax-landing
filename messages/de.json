@@ -1,0 +1,2870 @@
+{
+  "Common": {
+    "skipToContent": "Zum Inhalt springen"
+  },
+  "Language": {
+    "label": "Sprache",
+    "switchTo": "Sprache wechseln"
+  },
+  "Nav": {
+    "homeAria": "Synax by Senwell — Startseite",
+    "overview": "Überblick",
+    "products": "Produkte ({count})",
+    "solutions": "Lösungen",
+    "whySynax": "Warum Synax",
+    "security": "Sicherheit & Vertrauen",
+    "scheduleDemo": "Demo vereinbaren",
+    "toggleMenu": "Mobiles Menü ein- oder ausblenden",
+    "coreProducts": "Zentrale Geschäftsprodukte",
+    "addOnProducts": "Eigenständige Produkte & Erweiterungen",
+    "compareProducts": "Alle Produkte vergleichen",
+    "seeSolutions": "Alle Lösungen ansehen"
+  },
+  "Buttons": {
+    "scheduleDemo": "Demo vereinbaren",
+    "watchOverview": "Überblick ansehen"
+  },
+  "Theme": {
+    "toLight": "Zum hellen Design wechseln",
+    "toDark": "Zum dunklen Design wechseln",
+    "light": "Helles Design",
+    "dark": "Dunkles Design"
+  },
+  "Shared": {
+    "breadcrumb": "Brotkrumennavigation",
+    "getStarted": "Jetzt starten",
+    "onThisPage": "Auf dieser Seite",
+    "opensNewTab": "(öffnet in einem neuen Tab)"
+  },
+  "Footer": {
+    "intro": "Synax ist eine einheitliche Unternehmenssoftware von <link>Senwell Group</link>: Fertigung, Arbeits- und Lieferverwaltung, HR, Personalvermittlung, Shop-Floor-Überwachung und KI in einer vernetzten, auditfähigen Plattform.",
+    "complianceHeading": "Compliance-Ausrichtung",
+    "compliance": {
+      "as9100d": "AS9100D-QMS-Kontrollen",
+      "gst": "GST-E-Rechnung & E-Way-Bill",
+      "tally": "Funktioniert mit Tally",
+      "dpdp": "Datenschutzerklärung nach DPDP Act 2023"
+    },
+    "productsAria": "Synax-Produkte",
+    "products": "Produkte",
+    "platform": "Plattform",
+    "solutions": "Lösungen",
+    "allSolutions": "Alle Lösungen",
+    "companyAria": "Unternehmen",
+    "aboutSenwell": "Über Senwell",
+    "contactSales": "Vertrieb kontaktieren",
+    "copyright": "© {year} Synax by Senwell Group. Alle Rechte vorbehalten.",
+    "legalAria": "Rechtliches",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Allgemeine Geschäftsbedingungen",
+    "security": "Sicherheit",
+    "backToTop": "Nach oben"
+  },
+  "DemoForm": {
+    "eyebrow": "Architekturberatung der Senwell Group",
+    "title": "Executive-Demo anfordern",
+    "lead": "Sprechen Sie mit einem Ingenieur für Industriesysteme und bewerten Sie die Abläufe in Ihrem Unternehmen.",
+    "fullName": "Vollständiger Name",
+    "fullNamePlaceholder": "z. B. Markus Vogel",
+    "email": "Geschäftliche E-Mail",
+    "emailPlaceholder": "m.vogel@firma.de",
+    "company": "Firmenname",
+    "companyPlaceholder": "Aerospace Machining GmbH",
+    "phone": "Telefonnummer",
+    "phonePlaceholder": "+49 30 1234567",
+    "product": "Primär interessierendes Produkt",
+    "scale": "Standort- / Mitarbeitergröße",
+    "sizes": {
+      "s1": "1–50 Mitarbeitende (1 Werk)",
+      "s2": "50–250 Mitarbeitende (1–3 Werke)",
+      "s3": "250–1.000 Mitarbeitende (mehrere Standorte)",
+      "s4": "Über 1.000 (Großunternehmen)"
+    },
+    "message": "Betriebliche Anforderungen und Zeitplan",
+    "messagePlaceholder": "Hinweise zu Ihrem aktuellen ERP oder Ihren Tabellen, Audit-Zielen, Maschinen oder Teams …",
+    "consent": "Ich bin damit einverstanden, dass die Senwell Group mich zu dieser Demo kontaktiert und die von mir eingegebenen Daten verarbeitet, wie in der <link>Datenschutzerklärung</link> beschrieben. Ich kann dies jederzeit widerrufen. *",
+    "sending": "Wird gesendet …",
+    "submit": "Architektur-Demo anfordern",
+    "note": "Wir verwenden Ihre Angaben ausschließlich, um Ihre Demo zu organisieren.",
+    "closeModal": "Fenster schließen",
+    "successTitle": "Anfrage erhalten",
+    "successBody": "Vielen Dank, <b>{name}</b>. Unser Team meldet sich unter <b>{email}</b>, um eine maßgeschneiderte Demonstration für <b>{product}</b> zu vereinbaren.",
+    "returnToPlatform": "Zurück zur Plattform",
+    "options": {
+      "suite": "Komplette einheitliche Synax-Unternehmenssuite",
+      "aerospace": "Luft- und Raumfahrt & Verteidigung",
+      "securityReview": "Sicherheits- und Vertrauensprüfung"
+    },
+    "errors": {
+      "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+      "invalid_request": "Ungültige Anfrage.",
+      "too_many_requests": "Zu viele Anfragen. Bitte versuchen Sie es in einigen Minuten erneut.",
+      "name_company": "Bitte geben Sie Ihren Namen und Ihr Unternehmen ein.",
+      "invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "consent_required": "Bitte setzen Sie das Häkchen, um dem Datenschutzhinweis zuzustimmen.",
+      "delivery_failed": "Wir konnten Ihre Anfrage gerade nicht übermitteln. Bitte versuchen Sie es in Kürze erneut."
+    }
+  },
+  "TourModal": {
+    "subtitle": "Geführter Rundgang durch die Plattform",
+    "close": "Video-Rundgang schließen",
+    "pending": "Der aufgezeichnete Rundgang wird noch vorbereitet. Buchen Sie eine Live-Präsentation, und wir zeigen Ihnen die Module, Abläufe und Berichte für Ihre eigene Konstellation.",
+    "bookLive": "Live-Präsentation buchen",
+    "closeButton": "Schließen"
+  },
+  "Products": {
+    "precision": {
+      "name": "Fertigungs-ERP",
+      "menu": "Planung, Beschaffung, Fertigung, Qualität & Kalkulation"
+    },
+    "it": {
+      "name": "Arbeits- und Lieferverwaltung",
+      "menu": "Arbeitsverfolgung, Projekte, Zeiterfassung & Abrechnung"
+    },
+    "hrms": {
+      "name": "HRMS",
+      "menu": "Mitarbeiterlebenszyklus, Anwesenheit, Lohnabrechnung & Leistung"
+    },
+    "staffing": {
+      "name": "Personalvermittlung & Ressourcenmanagement",
+      "menu": "Kundenbedarf, Kandidaten, Interviews & Einsätze"
+    },
+    "shopfloor": {
+      "name": "Shop Floor & Maschinenüberwachung",
+      "menu": "Terminplanung, Auftragskarten, Live-Maschinen & Stillstände"
+    },
+    "ai": {
+      "name": "KI & Business Intelligence",
+      "menu": "KI-Assistenz, Agenten, Analysen & Berichte"
+    }
+  },
+  "Hero": {
+    "headline": "Eine Plattform für <em>alle Abläufe</em>",
+    "productsAria": "Synax-Produkte",
+    "dashboardAlt": "Synax Enterprise ERP Leitstand-Dashboard",
+    "dashboardAltDark": "Synax Enterprise ERP Leitstand-Dashboard im dunklen Design",
+    "ticks": {
+      "ai": "KI schlägt vor, Sie genehmigen",
+      "machines": "Maschinenüberwachung in Echtzeit (OEM oder FOCAS)",
+      "tally": "Tally und GST integriert"
+    }
+  },
+  "Home": {
+    "ai": {
+      "tag": "Synax AI — immer bereit",
+      "title": "Ihr Unternehmen, <em>sofort</em> beantwortet",
+      "lead": "Synax AI ist ein integrierter, intelligenter Assistent, der Ihr gesamtes Unternehmen versteht — Aufträge, HR-Daten, laufende Transaktionen, Bestände, Compliance-Status und mehr. Fragen Sie einfach.",
+      "cards": {
+        "live": {
+          "title": "Abfragen laufender Transaktionen",
+          "desc": "Fragen Sie „Welche Bestellungen sind heute offen?“ oder „Zeige mir alle Rechnungen, die auf Freigabe warten“ und erhalten Sie sofort Antworten aus Live-ERP-Daten."
+        },
+        "hrms": {
+          "title": "HRMS & Workforce Intelligence",
+          "desc": "Fragen Sie Anwesenheitsdaten, Lohnstatus, Urlaubssalden, Qualifikationszertifikate und biometrische Stempelungen in einfacher Sprache ab."
+        },
+        "floor": {
+          "title": "Shop-Floor- & Produktionsdaten",
+          "desc": "Erhalten Sie OEE in Echtzeit, den Status der Laufkarten, die verbleibende Werkzeugstandzeit, Ausschussquoten und die Maschinenwarteschlange — mit einer einzigen Chat-Anfrage."
+        },
+        "compliance": {
+          "title": "Compliance & Auditbereitschaft",
+          "desc": "Rufen Sie bei Bedarf den Status des FAIR-Registers, Konformitätszertifikate, Qualitätsabweichungen in der Fertigung und Kalibrierungsfristen ab. Agenten schlagen vor; ein Genehmiger entscheidet."
+        }
+      },
+      "connected": "Mit Ihren Unternehmensdaten verbunden",
+      "user1": "Welche Transaktionen sind heute offen?",
+      "reply1": "Hier ist eine Live-Übersicht der heute offenen Transaktionen:",
+      "tiles": {
+        "poLabel": "Bestellungen",
+        "poValue": "{count} offen",
+        "invLabel": "Verkaufsrechnungen",
+        "invValue": "{count} ausstehend",
+        "jobLabel": "Fertigungsaufträge",
+        "jobValue": "{count} aktiv",
+        "grnLabel": "Wareneingänge offen",
+        "grnValue": "{count} wartend"
+      },
+      "user2": "Zeige mir die Anwesenheit für Schicht A heute",
+      "reply2": "<g>Schicht A — 428 eingestempelt</g>, 12 mit aktivem Pausenschein, 3 im genehmigten Urlaub. Die Lohnsynchronisation ist aktuell. Keine Überschreitungswarnungen.",
+      "inputPlaceholder": "Fragen Sie alles zu Ihren Unternehmensdaten …",
+      "send": "Nachricht senden",
+      "note": "Synax AI ist in jedem Enterprise-Tarif enthalten — ohne zusätzliche Einrichtung, ohne Drittanbieter-Integrationen.",
+      "explore": "KI & Business Intelligence entdecken"
+    },
+    "clients": {
+      "tag": "Läuft mit Synax",
+      "title": "Senwell Group & Unternehmen des Ökosystems",
+      "lead": "Unternehmen im gesamten Senwell-Ökosystem steuern ihren Betrieb mit Synax."
+    },
+    "security": {
+      "tag": "Sicherheit & Kontrolle",
+      "title": "Auditbereit durch Konstruktion, nicht durch Berichte.",
+      "lead": "Jedes Unternehmen arbeitet in einem eigenen Arbeitsbereich, und jede wesentliche Änderung hinterlässt einen Nachweis.",
+      "more": "Mehr zu Sicherheit & Vertrauen"
+    },
+    "heritage": {
+      "tag": "Industrielle Erfahrung",
+      "title": "Industrielle Tradition. Gezielt entwickelte Software.",
+      "body": "Synax wurde nicht in einem beliebigen Software-Inkubator entwickelt. Es entstand aus der jahrzehntelangen Erfahrung der <b>Senwell Group</b> in der Präzisionsfertigung für die Luftfahrt, im weltweiten Industrieexport (Senwell Exports, Stacwell Rubber, Stacem Frankreich & Marokko) und im großvolumigen Maschinenbau."
+    },
+    "cta": {
+      "tag": "Unternehmenssoftware der Senwell Group",
+      "title": "Sehen Sie Ihre eigene Fertigung in Synax.",
+      "lead": "Ein 30-minütiger Rundgang mit Ihren Teilen, Ihren Lieferscheinen (Challans) und Ihren Maschinen."
+    }
+  },
+  "Carousel": {
+    "tag": "Marktreife Plattformen",
+    "title": "Sechs vernetzte Produkte für Fertigung und IT-Betrieb",
+    "lead": "Zwei zentrale ERP-Systeme bilden den Kern des Portfolios; HRMS, Personalvermittlung, Shop-Floor-Überwachung und KI sind je nach Paket als eigenständige Lösungen oder als integrierte Funktionen verfügbar.",
+    "jumpAria": "Zu einem Produkt springen",
+    "position": "{current} von {total}",
+    "progressAria": "Position im Produktkarussell",
+    "prev": "Vorherige Produkte",
+    "next": "Nächste Produkte",
+    "region": "Produktangebot",
+    "slide": "{current} von {total}: {title}",
+    "explore": "Entdecken",
+    "exploreAria": "{title} entdecken",
+    "items": {
+      "precision": {
+        "short": "Fertigungs-ERP",
+        "tag": "Kern-ERP",
+        "tagline": "Kundenmaterial, Laufkarten und Kontrolle von der Maschine bis zur Rechnung.",
+        "statLabel": "Produktionsfluss",
+        "statValue": "Von der Maschine zur Rechnung",
+        "b1": "Bestellungen, Lieferscheine (Challans) & Material-ID-Bereiche",
+        "b2": "Materialbilanzen, Verbrauch, Rückgaben & Ausschuss",
+        "b3": "Maschinenzählungen & Stillstände auf Laufkarten",
+        "b4": "Prüfung, Konformitätszertifikat, Versand & Tally"
+      },
+      "hrms": {
+        "short": "HRMS",
+        "tag": "Eigenständige oder integrierte Lösung",
+        "tagline": "Mitarbeiterprozesse und Personaladministration.",
+        "statLabel": "Dauer des monatlichen Lohnlaufs",
+        "statValue": "< 60 Sek.",
+        "b1": "Mitarbeiterlebenszyklus, Recruiting und Offboarding",
+        "b2": "Anwesenheit, Urlaub, Lohnabrechnung und Compliance",
+        "b3": "Tägliches Arbeitsmanagement (DWM)",
+        "b4": "Leistungsmanagement"
+      },
+      "shopfloor": {
+        "short": "Shop Floor",
+        "tag": "Produktlösung",
+        "tagline": "Produktionsausführung und Steuerung des Maschinenbetriebs.",
+        "statLabel": "Produktfokus",
+        "statValue": "Maschinenausführung",
+        "b1": "Maschinenplanung und Auslastungsdiagramme",
+        "b2": "Auftragskarten für Bediener und Live-Maschinenüberwachung",
+        "b3": "Transparenz bei Stillständen und Alarmen",
+        "b4": "Produktionsverfolgung und Maschinenauslastung"
+      },
+      "it": {
+        "short": "Arbeit & Lieferung",
+        "tag": "Kernprodukt",
+        "tagline": "Steuern Sie die Leistungserbringung von der Aufgabe bis zur Rechnung in einem Arbeitsbereich.",
+        "statLabel": "Geschäftszyklus",
+        "statValue": "Von der Arbeit zur Abrechnung",
+        "b1": "Work Tracker mit Tagesaktivitäten und Meetings",
+        "b2": "Projekte mit Kundenanforderungen und SOWs",
+        "b3": "Zeiterfassung, Arbeitsprotokolle und Entwicklungskosten",
+        "b4": "Projektabrechnung und Rentabilität"
+      },
+      "staffing": {
+        "short": "Personalvermittlung",
+        "tag": "Produktlösung",
+        "tagline": "Kundenanforderungen an Personal finden, einsetzen und verwalten.",
+        "statLabel": "Produktfokus",
+        "statValue": "Talenteinsatz",
+        "b1": "Kundenanforderungen und Kandidatenverwaltung",
+        "b2": "Interviews, Angebote und Onboarding",
+        "b3": "Einsätze und Ressourcenleistung",
+        "b4": "Ersatz und Freigaben"
+      },
+      "ai": {
+        "short": "KI und BI",
+        "tag": "Produktlösung",
+        "tagline": "Intelligente Unterstützung und Erkenntnisse für den Geschäftsbetrieb.",
+        "statLabel": "Produktfokus",
+        "statValue": "Erkenntnisse & Assistenz",
+        "b1": "KI-gestützte Assistenz und Synax Agents",
+        "b2": "Operative Analysen und Business-Dashboards",
+        "b3": "Berichte über alle Geschäftsabläufe",
+        "b4": "Leistungskennzahlen für fundierte Entscheidungen"
+      }
+    }
+  },
+  "Purpose": {
+    "tag": "Der Zweck des Ökosystems",
+    "title": "Der größere Zweck hinter dem Synax-Ökosystem",
+    "lead": "Herkömmliche ERP-Systeme wurden für Finanzabteilungen gebaut und zwingen Fertigungsingenieure, Qualitätsverantwortliche und Personalleiter, mit verstreuten Tabellen zu arbeiten. Synax vereint hochpräzise Ausführung, Personal und regulatorische Compliance in einem durchgängigen Ganzen.",
+    "from": "Verstreute Tabellen",
+    "to": "Ein durchgängiges Ganzes",
+    "hub": "Ein<br></br>Ganzes",
+    "readMore": "Mehr lesen",
+    "showLess": "Weniger anzeigen",
+    "pillars": {
+      "industry": {
+        "tag": "Präzision & Compliance",
+        "title": "Branchenspezifische Lösungen",
+        "subtitle": "Fachspezifische Abläufe statt generischer ERP-Behelfslösungen",
+        "body": "Wir lehnen Einheitssoftware ab. Synax ist darauf ausgerichtet, wie eine Zerspanungswerkstatt tatsächlich arbeitet: vom Kunden beigestelltes Material, verfolgt per Challan und Material-ID, Laufkarten, die von der Maschine bestätigt werden, AS9100D-QMS-Kontrollen an den Qualitätsprüfpunkten und Erstmusterprüfberichte im selben Ablauf.",
+        "c1": "AS9100D-QMS-Kontrollen",
+        "c2": "FAIR-Register & Konformitätszertifikat"
+      },
+      "operations": {
+        "tag": "Operative Geschwindigkeit",
+        "title": "Intelligenterer Geschäftsbetrieb",
+        "subtitle": "Eine einzige Datenquelle vom Materialeingang bis zum Versand an den Kunden",
+        "body": "Synax verbindet Büro und Fertigung. Echte Maschinenzählungen, Materialchargen und Aufzeichnungen Schritt für Schritt fließen in eine Ansicht, sodass die Leitung die OEE pro Auftrag und den Zustand der Fertigung sieht, ohne auf den Monatsabschluss zu warten.",
+        "c1": "Chargenrückverfolgung des Materials",
+        "c2": "Maschinenplanung"
+      },
+      "workforce": {
+        "tag": "Personal-Intelligenz",
+        "title": "Besseres Personalmanagement",
+        "subtitle": "Festangestellte Fertigungsmitarbeitende und externe Fachkräfte in einem System",
+        "body": "Hochpräzise Lieferung braucht in jeder Schicht die richtigen Leute. Synax bringt biometrische Stempelungen, die Verwaltung von Pausenscheinen in der Fertigung und die Lohnabrechnung mit Freigaben in einem Arbeitsbereich zusammen; die Personaltools zeigen, wer verfügbar ist und wo jede Person eingesetzt wird.",
+        "c1": "Biometrische Geräte-Synchronisation",
+        "c2": "Personalvermittlung & Einsätze"
+      },
+      "technology": {
+        "tag": "Moderne Technikarchitektur",
+        "title": "Technologiegetriebene Transformation",
+        "subtitle": "Cloud-native Skalierung, Maschinenanbindung & auditfähige Sicherheit",
+        "body": "Schwerfällige, veraltete On-Premise-Architekturen werden durch moderne, Cloud-native Technik ersetzt. Synax verbindet CNC-Maschinen über die Hersteller-Schnittstelle oder offenes FOCAS, betreibt jedes Unternehmen in einem eigenen, isolierten Arbeitsbereich, prüft Buchungen auf dem Server und führt eine Prüfhistorie wesentlicher Änderungen.",
+        "c1": "Maschinendaten (OEM / FOCAS)",
+        "c2": "Prüfhistorie & isolierte Arbeitsbereiche"
+      }
+    },
+    "banner": {
+      "tag": "Ingenieurskultur der Senwell Group",
+      "title": "Ein durchgängiges Ganzes. Keine getrennten Werkzeuge.",
+      "lead": "Jede Ebene von Synax arbeitet im Gleichklang: von der Einstellung und der biometrischen Zeiterfassung bis zur Zerspanung und AS9100D-kontrollierten Freigabe.",
+      "cta": "Sehen Sie, warum Teams Synax wählen"
+    }
+  },
+  "Usp": {
+    "tag": "Was Synax auszeichnet (USP)",
+    "title": "Eingebaut statt aufgesetzt: <b>KI</b>, Live-Maschinen, <b>Tally</b> und GST",
+    "lead": "Die meisten Werke setzen diese Funktionen aus getrennten Werkzeugen zusammen. In Synax teilen sie sich einen Datensatz, von der Maschine bis zur GST-Rechnung.",
+    "highlightsAria": "Highlights",
+    "highlights": {
+      "agents": "Agenten schlagen nur vor",
+      "focas": "OEM oder offenes FOCAS",
+      "irn": "IRN nach Freigabe",
+      "tally": "Funktioniert mit Tally",
+      "india": "In Indien entwickelt",
+      "audit": "Prüfpfad bei jeder Buchung"
+    },
+    "guaranteesAria": "Zusicherungen",
+    "band": {
+      "title": "Ein Datensatz von der Maschine bis zum Hauptbuch",
+      "sub": "Mit KI, die jeden Schritt überwacht"
+    },
+    "flow": {
+      "machine": "Maschinenzählung",
+      "route": "Laufkarte",
+      "inspection": "Prüfung & Konformitätszertifikat",
+      "gst": "GST-Rechnung · IRN",
+      "tally": "Tally-Beleg"
+    },
+    "ai": {
+      "label": "KI, die handelt",
+      "title": "Synax AI findet die Ausnahme und schlägt die Lösung vor. Sie genehmigen.",
+      "body": "Fragen Sie Synax alles zu Ihren ERP-Daten und lassen Sie die Agenten nach Problemen suchen, die Sie Geld kosten. Nichts ändert sich, bis ein Genehmiger zustimmt.",
+      "p1": "Challan-Abgleich und Mahnungen bei Überfälligkeit",
+      "p2": "Versandbereitschaft und Forderungsverfolgung",
+      "p3": "Qualitätskonformität und Fertigungsüberwachung",
+      "p4": "Vier-Augen-Freigabe mit vollständiger Ereignishistorie",
+      "cta": "KI & Business Intelligence entdecken",
+      "alt": "Synax-Startbildschirm mit der Überblick-Karte und Synax AI",
+      "altDark": "Synax-Startbildschirm mit der Überblick-Karte und Synax AI, im dunklen Design",
+      "ask": "Fragen Sie alles zu Ihren ERP-Daten",
+      "approvedTitle": "Von Ihnen genehmigt",
+      "approvedBody": "2 Mahnungen entworfen. In der Ereignishistorie erfasst.",
+      "proposesTitle": "Synax AI schlägt vor",
+      "proposesBody": "2 Challans haben ihr Rückgabedatum überschritten. Mahnungen an den Kunden entwerfen?",
+      "approve": "Genehmigen",
+      "agentsOnly": "Agenten schlagen nur vor."
+    },
+    "machines": {
+      "label": "Maschinenüberwachung in Echtzeit",
+      "title": "Die Maschine meldet die Stückzahl.",
+      "body": "Verbinden Sie Ihre Maschinen und lassen Sie echte Zykluszählungen, Alarme und Stillstände die Produktionsrückmeldung steuern – ohne separates MES oder Integrator.",
+      "p1": "OEM-Anbindung oder offenes FOCAS",
+      "p2": "Live-Maschinentafel mit Alarmen und Stillstandsgründen",
+      "p3": "Auch nicht anbindbare Maschinen funktionieren: Bediener bestätigen die Zählungen",
+      "p4": "Biometrische Geräte synchronisieren Anwesenheit und Überstundenfreigaben",
+      "cta": "Shop Floor & Maschinenüberwachung entdecken",
+      "alt": "Live-Maschinentafel mit sechs Maschinen, ihren Zykluszählungen und einem Alarm an M-03 (Illustration)",
+      "altDark": "Live-Maschinentafel mit sechs Maschinen, ihren Zykluszählungen und einem Alarm an M-03, im dunklen Design (Illustration)",
+      "illustration": "Illustration",
+      "focas": "FOCAS verbunden",
+      "cycles": "Live-Zykluszählungen",
+      "board": "Maschinentafel",
+      "live": "Live",
+      "running": "Läuft",
+      "alarm": "M-03 Alarm · Werkzeugstandzeit"
+    },
+    "billing": {
+      "label": "Tally und GST",
+      "title": "GST-Rechnungen tragen ihre IRN. Ihre Buchhaltung bleibt in Tally.",
+      "body": "Steuern Sie Einkauf, Lager, Produktion und Versand in Synax. GST-Rechnungen, IRN und E-Way-Bills kommen aus demselben Ablauf, und die Belege gehen an Tally – Ihr Buchhalter ändert nichts.",
+      "p1": "GST-Rechnung, IRN und E-Way-Bill in einem Ablauf",
+      "p2": "IRN über ClearTax oder Masters India, nach Freigabe",
+      "p3": "ITC-04-Datenpaket für Lohnfertigung",
+      "p4": "Tally-Brücke für Belege",
+      "cta": "Fertigungs-ERP entdecken",
+      "plug": "ClearTax oder Masters India verbunden",
+      "voucher": "Beleg an Tally gesendet",
+      "accountant": "Ihr Buchhalter ändert nichts",
+      "invoice": "Steuerrechnung",
+      "sample": "Beispiel",
+      "billedTo": "Rechnung an <b>Beispielkunde</b>",
+      "gst": "GST",
+      "total": "Gesamt",
+      "irn": "IRN",
+      "irnOn": "Bei Freigabe erzeugt",
+      "irnOff": "Wird nach der Freigabe erzeugt",
+      "afterAria": "Was nach der Freigabe passiert",
+      "chain": {
+        "approved": {
+          "title": "Rechnung freigegeben",
+          "note": "Durch einen Genehmiger mit der passenden Rolle"
+        },
+        "irn": {
+          "title": "IRN erzeugt",
+          "note": "Über Ihren GST-Suvidha-Anbieter"
+        },
+        "eway": {
+          "title": "E-Way-Bill",
+          "note": "Im selben Ablauf"
+        },
+        "tally": {
+          "title": "Beleg an Tally",
+          "note": "Ihr Buchhalter ändert nichts"
+        }
+      },
+      "lines": {
+        "housing": "Gefrästes Gehäuse",
+        "shaft": "Welle, geschliffen",
+        "bracket": "Halter, gebohrt",
+        "qty": "{count} Stk."
+      }
+    }
+  },
+  "Benchmark": {
+    "cpu": {
+      "title": "Maschinenüberwachung in Echtzeit (IoT)",
+      "synax": "OEM-Anbindung oder offenes FOCAS, kein separates MES",
+      "legacy": "Benötigt ein separates MES oder einen Integrator",
+      "point": "Manuelle Erfassung auf Papier oder Whiteboard"
+    },
+    "filecheck": {
+      "title": "FAIR-Register & Konformitätszertifikat",
+      "synax": "Im selben Ablauf wie Prüfung und Versand",
+      "legacy": "Manuelle Dokumentenerfassung und nachträgliches Zusammenstellen",
+      "point": "Fehleranfällige Excel-Tabellen"
+    },
+    "clock": {
+      "title": "Biometrische Anwesenheit & Pausenscheine pro Schicht",
+      "synax": "Anwesenheitsdaten und Überstundenfreigaben werden von biometrischen Geräten synchronisiert",
+      "legacy": "Separates HCM-Modul mit Synchronisationsverzögerungen",
+      "point": "Isolierte Stechkarten / Stempeln für Kollegen"
+    },
+    "sparkles": {
+      "title": "KI-Assistent, der handelt",
+      "synax": "Agenten schlagen vor, ein Genehmiger entscheidet",
+      "legacy": "Nur Berichte; nichts schlägt die Lösung vor",
+      "point": "Challans und Zahlungen per E-Mail nachverfolgen"
+    },
+    "receipt": {
+      "title": "Tally & GST (E-Rechnung, E-Way-Bill)",
+      "synax": "Tally-Brücke, IRN und E-Way-Bill in einem Ablauf",
+      "legacy": "Separates GST-Add-on oder manueller Export",
+      "point": "Rechnungen erneut in Tally eingeben"
+    }
+  },
+  "Comparison": {
+    "tag": "Marktvergleich",
+    "title": "Warum Branchenführer zu Synax wechseln",
+    "lead": "Moderne, gezielt entwickelte Fertigungssoftware, unterstützt von einem Technologieteam mit über 100 IT-Fachleuten. Sehen Sie, wie sie im Vergleich zu veralteten Monolithen und unverbundenen Einzellösungen abschneidet.",
+    "timelineTitle": "Implementierungszeitplan",
+    "timelineNote": "Illustrative Skala, basierend auf typischen Einführungen",
+    "timeline": {
+      "synax": {
+        "name": "Synax Unified Suite",
+        "value": "Live Modul für Modul, nach maßgeschneidertem Plan"
+      },
+      "legacy": {
+        "name": "Veraltete ERP-Suiten",
+        "value": "Ein langes, beratergeführtes Projekt"
+      },
+      "point": {
+        "name": "Unverbundene Einzelwerkzeuge",
+        "value": "Endlose Flickwerke & API-Brüche"
+      }
+    },
+    "synaxSr": "Synax: ",
+    "ctaTitle": "Technologie mit über 100 IT-Fachleuten im Rücken",
+    "ctaCopy": "Mehr als ein Softwareanbieter: ein erfahrenes internes Team, das Technologie und Geschäft versteht, bei technischen Anforderungen hilft und Sie beim Wachstum begleitet – weit über den Go-live hinaus.",
+    "explore": "Produkte entdecken",
+    "footnote": "Der Vergleich beruht auf typischen Einführungen und Synax' eigener Einschätzung; die Ergebnisse hängen von Umfang und Datenreife ab."
+  },
+  "Rollout": {
+    "tag": "Einführungsplan",
+    "title": "Ein stufenweiser Weg von der Analyse zur Optimierung",
+    "lead": "Jede Einführung folgt denselben vier Phasen. Wie lange jede dauert, hängt von Ihrem Unternehmen ab, daher wird der Zeitplan gemeinsam mit Ihnen erstellt.",
+    "timing": "Phase {n}",
+    "goLive": "Go-live",
+    "ongoing": "Fortlaufend",
+    "phases": {
+      "p1": {
+        "title": "Analyse & Planung",
+        "copy": "Abteilungen, Prozesse, bestehende Systeme, Daten und Integrationen werden geprüft; anschließend werden Umfang und Einführungsplan für Ihr Unternehmen vereinbart."
+      },
+      "p2": {
+        "title": "Konfiguration & Datenaufbau",
+        "copy": "Module, Rollen und Freigaben werden konfiguriert; Mitarbeiter-, Kunden-, Lieferanten-, Projekt- und Bestandsdaten werden bereinigt, importiert und geprüft."
+      },
+      "p3": {
+        "title": "Pilotstart",
+        "copy": "Zuerst geht ein Team, eine Abteilung oder ein Standort live; die Anwender werden geschult und Probleme gelöst, bevor die Einführung ausgeweitet wird."
+      },
+      "p4": {
+        "title": "Vollständige Einführung & Optimierung",
+        "copy": "In geplanten Wellen werden weitere Teams, Module und Standorte einbezogen, die Akzeptanz wird verfolgt und die Abläufe werden nach der Stabilisierung verfeinert."
+      }
+    },
+    "note": "Die Einführungszeitpläne richten sich nach Größe, betrieblicher Komplexität und Anforderungen Ihres Unternehmens. Ein detaillierter Einführungsplan wird in der Analysephase erstellt.",
+    "checklistTitle": "Vor dem Onboarding",
+    "steps": "{count} Schritte",
+    "checklist": {
+      "c1": "Benennen Sie einen Verantwortlichen für die Einführung, einen Förderer aus der Leitung und Abteilungsbotschafter",
+      "c2": "Bereiten Sie die Stammdaten zu Mitarbeitern, Kunden, Lieferanten und Projekten vor und prüfen Sie sie",
+      "c3": "Dokumentieren Sie die aktuellen Verfahren für Freigaben, Anwesenheit und Aufgabenaktualisierung",
+      "c4": "Vereinbaren Sie Erfolgskennzahlen wie Durchlaufzeit, SLA-Einhaltung und Durchsatz",
+      "c5": "Planen Sie Anwenderschulungen und eine Unterstützungsphase nach jedem Go-live"
+    },
+    "rolesTitle": "Verantwortung für die Einführung",
+    "roles": "{count} Rollen",
+    "role": {
+      "r1": {
+        "title": "Verantwortlicher für die Einführung",
+        "desc": "Verantwortet den Einführungsplan, die Meilensteine und Eskalationen."
+      },
+      "r2": {
+        "title": "Abteilungsbotschafter",
+        "desc": "Vertritt die Prozesse des Teams und leitet Schulung und Akzeptanz."
+      },
+      "r3": {
+        "title": "Systemadministrator",
+        "desc": "Verwaltet Moduleinstellungen, Benutzerzugriffe und Datenprüfungen."
+      },
+      "r4": {
+        "title": "Förderer aus der Leitung",
+        "desc": "Setzt Prioritäten, genehmigt den Umfang und fördert die Akzeptanz im gesamten Unternehmen."
+      }
+    }
+  },
+  "SolutionGroups": {
+    "industry": {
+      "label": "Branchen, die wir bedienen",
+      "lead": "Die Märkte, die unsere Kunden beliefern.",
+      "short": "Branche"
+    },
+    "process": {
+      "label": "Wie Sie fertigen",
+      "lead": "So wird in Ihrer Fertigung gearbeitet.",
+      "short": "Fertigung"
+    },
+    "need": {
+      "label": "Geschäftliche Anforderungen",
+      "lead": "Das Problem vor Ihnen, in jeder Branche.",
+      "short": "Geschäftsbedarf"
+    }
+  },
+  "Solutions": {
+    "aerospace": {
+      "title": "Luft- und Raumfahrt & Verteidigung",
+      "short": "AS9100D-Qualitätskontrollen",
+      "tag": "AS9100D-QMS-Kontrollen",
+      "description": "Entwickelt für Zulieferer der Luft- und Raumfahrt und Verteidigung, die kundenbeigestelltes Material zerspanen.",
+      "challenge": "Auditnachweise, die nach dem Versand des Teils von Hand zusammengestellt werden, Erstmusterberichte und Zertifikate in getrennten Dateien und Kundenmaterial, das sich nur schwer einem gelieferten Teil zuordnen lässt.",
+      "solution": "AS9100D-QMS-Kontrollen an kritischen Prüfpunkten des Ablaufs, FAIR-Register und Konformitätszertifikat im selben Ablauf, Materialrückverfolgung vom Eingang bis zum Versand und rollenbasierter Zugriff auf Zeichnungen und Aufzeichnungen.",
+      "c1": "FAIR-Register & Erstmusteraufzeichnungen",
+      "c2": "Konformitätszertifikat mit der Fertigungsaufzeichnung",
+      "c3": "Prüfung des Materialeingangs & Rückverfolgung",
+      "c4": "NCR- / CAPA-Qualitätsfreigaben",
+      "chip": "Luftfahrt"
+    },
+    "energy": {
+      "title": "Öl, Gas & Energie",
+      "short": "Rückverfolgbare Teile für kritische Einsätze",
+      "tag": "Rückverfolgbarkeit & Qualitätsaufzeichnungen",
+      "description": "Für Lieferanten gefräster und gespritzter Teile an Kunden aus Öl, Gas, Strom und Energie, bei denen jedes Teil auf sein Material und seine Prüfung zurückführbar sein muss.",
+      "challenge": "Materialchargen, Prüfergebnisse und Zertifikate liegen getrennt vom Auftrag, sodass der Nachweis, woher ein geliefertes Teil stammt, eine Dateisuche nach dem Versand bedeutet.",
+      "solution": "Kundenmaterial, verfolgt per Challan und Material-ID, Wareneingangs- und Endprüfung mit Stufenfreigaben, NCR und CAPA bei fehlgeschlagener Prüfung und ein Konformitätszertifikat aus demselben Datensatz.",
+      "c1": "Materialrückverfolgung vom Eingang bis zum Versand",
+      "c2": "Wareneingangs-, Zwischen- & Endprüfung",
+      "c3": "NCR- / CAPA-Qualitätsfreigaben",
+      "c4": "Konformitätszertifikat mit der Aufzeichnung",
+      "chip": "Öl & Gas"
+    },
+    "machinery": {
+      "title": "Industriemaschinen & Anlagen",
+      "short": "Stücklisten, Arbeitspläne & Maschinenauslastung",
+      "footer": "Industriemaschinen",
+      "tag": "Technische Anlagen",
+      "description": "Für Hersteller von Pumpen, Ventilen, Kompressoren, Getrieben und anderen Anlagen sowie für die Zulieferer, die deren Teile fertigen.",
+      "challenge": "Stücklisten, Arbeitspläne und Maschinenauslastung werden in Tabellen geplant, der Produktionsstand erreicht das Büro spät, und Lager, Produktion und Versand werden erneut in die Buchhaltung eingegeben.",
+      "solution": "Teilestamm und Stücklisten, Arbeitspläne und darauf freigegebene Laufkarten, Maschinenplanung mit Live-Zählungen und Stillständen, dann Verpackung, GST-Rechnung und Tally-Brücke in einem Ablauf.",
+      "c1": "Teilestamm, Stückliste & Arbeitsplan",
+      "c2": "Maschinenplanung & Auslastungsdiagramme",
+      "c3": "Live-Maschinentafel, Alarme & Stillstände",
+      "c4": "GST-Versand & Tally-Belegbrücke",
+      "chip": "Maschinen"
+    },
+    "services": {
+      "title": "IT-Services & Beratung",
+      "short": "Projekte, Zeiterfassung & Abrechnung",
+      "tag": "Leistungserbringung",
+      "description": "Für IT-Dienstleister und technische Beratungen, die Projekte liefern und Fachkräfte bei Kunden einsetzen.",
+      "challenge": "Stunden, Arbeitsprotokolle und Kosten sind nicht dem Projekt zugeordnet, zu dem sie gehören, nicht abrechenbare Wartezeiten zeigen sich erst am Monatsende, und die Kundenkommunikation findet außerhalb des führenden Systems statt.",
+      "solution": "Der Work Tracker und Projekte, Zeiterfassung und Arbeitsprotokolle je Projekt, Projektabrechnung mit Blick auf die Rentabilität sowie Kundenanforderungen und Einsätze im selben Arbeitsbereich.",
+      "c1": "Work Tracker & Projekt-Dashboards",
+      "c2": "Zeiterfassung, Arbeitsprotokolle & Entwicklungskosten",
+      "c3": "Projektabrechnung & Budgetplaner",
+      "c4": "Support-Tickets & Teamzusammenarbeit",
+      "chip": "IT-Services"
+    },
+    "precision": {
+      "title": "Präzisions-CNC-Bearbeitung & Lohnfertigung",
+      "short": "Vom Kundenmaterial zur Rechnung",
+      "footer": "Präzisions-CNC & Lohnfertigung",
+      "tag": "Präzision & Lohnfertigung",
+      "description": "Verfolgen Sie kundenbeigestelltes Material per Challan, Bestellposition und Material-ID und führen Sie jeden Auftrag durch die Laufkartenoperationen, maschinenbestätigte Mengen, Prüfung und Versand.",
+      "challenge": "Kundenmaterial, Produktionsstand, Prüfaufzeichnungen und Versandpapiere liegen oft in getrennten Tabellen, sodass sich Verbrauch und fakturierte Mengen nur schwer abgleichen lassen.",
+      "solution": "Verknüpfen Sie Kundenbestellungen und Material-Challans mit Laufkarten, von der Maschine gemeldeten Zählungen mit vom Bediener freigegebenen Abweichungen, Stufenfreigaben, COC-Aufzeichnungen und GST-Versand, mit Belegen, die an Tally übergeben werden.",
+      "c1": "Kunden-Challans, Bestellpositionen & Material-IDs",
+      "c2": "Maschinenzählungen, Alarme & Abweichungsfreigabe durch den Bediener",
+      "c3": "Laufkarten, Stufenfreigaben & COC-Aufzeichnungen",
+      "c4": "GST-Versanddokumente & Tally-Belegbrücke",
+      "chip": "Präzision"
+    },
+    "rubber": {
+      "title": "Gummi- & Polymerformung",
+      "short": "Lohnfertigung, Chargen & Prüfung",
+      "footer": "Gummiformung",
+      "tag": "Formteile",
+      "description": "Für Hersteller von Dichtungen, Schläuchen und anderen Gummi- und Polymerteilen, die nach Kundenbestellungen und oft mit kundenbeigestelltem Material arbeiten.",
+      "challenge": "Kundenbestellungen, per Challan erhaltenes Material, Produktionschargen, Ausschuss und Versand werden in getrennten Registern geführt, sodass Materialbilanzen und Lohnfertigungsrückgaben jede Periode von Hand neu erstellt werden.",
+      "solution": "Derselbe Fertigungs-ERP-Ablauf: Kundenbestellungen und Challans, eine Laufkarte je Auftrag, Wareneingangs- und Endprüfung, dem Auftrag zugeordneter Ausschuss und ITC-04-Lohnfertigungsaufzeichnungen mit GST-Versand.",
+      "c1": "Kundenbestellungen, Challans & Material-IDs",
+      "c2": "Laufkarten & Produktionsverfolgung",
+      "c3": "Wareneingangs- & Endprüfung",
+      "c4": "ITC-04-Lohnfertigungsaufzeichnungen & GST-Versand",
+      "chip": "Gummi"
+    },
+    "workforce": {
+      "title": "Werkspersonal & HR",
+      "short": "Anwesenheit, Schichten & Lohnabrechnung",
+      "tag": "Personal & HCM",
+      "description": "Entwickelt für hochausgelastete Industriewerke, Fertigungsunternehmen mit mehreren Standorten und Engineering-Teams im Schichtbetrieb.",
+      "challenge": "Stempeln für Kollegen, nicht erfasste Pausenscheine, durch die laufende Bearbeitungslinien unbeaufsichtigt bleiben, und tagelange manuelle Lohnberechnungen mit komplexen Schichtzuschlägen und Steuerfehlern.",
+      "solution": "Anwesenheit, Urlaub und Homeoffice mit Überstundenfreigaben, Synchronisation biometrischer Geräte, Lohnabrechnung mit Freigaben und Abteilungskennzahlen im selben Arbeitsbereich wie der Betrieb.",
+      "c1": "Mitarbeiterdaten & Lebenszyklus",
+      "c2": "Anwesenheit, Urlaub & Homeoffice",
+      "c3": "Biometrische Anwesenheitssynchronisation & Überstundenfreigaben",
+      "c4": "Lohnabrechnung mit Freigaben",
+      "chip": "Personal"
+    },
+    "staffing": {
+      "title": "Personalvermittlung & Zeitarbeitskräfte",
+      "short": "Von der Anforderung zum Einsatz",
+      "tag": "Personalvermittlung & Ressourcenmanagement",
+      "description": "Entwickelt für Personalagenturen, technische Beratungsnetzwerke und Anbieter flexibler Arbeitskräfte, die Kundenanforderungen und Einsätze verwalten.",
+      "challenge": "Wochenlange Rekrutierungszyklen, Berater in nicht abrechenbarer Wartezeit, Reibungsverluste in der Kommunikation mit mehreren Anbietern sowie strittige Zeiterfassungen und Rechnungen.",
+      "solution": "Kundenanforderungen, Kandidaten, Interviews, Angebote und Onboarding in einem Ablauf, mit Einsätzen, Ersatz und Freigaben je Anforderung.",
+      "c1": "Kundenanforderungen & Kandidatenverwaltung",
+      "c2": "Interviews, Angebote & Onboarding",
+      "c3": "Einsätze & Ressourcenleistung",
+      "c4": "Ersatz & Freigaben",
+      "chip": "Vermittlung"
+    }
+  },
+  "Sectors": {
+    "tag": "Branchen & Herausforderungen",
+    "title": "Gemacht für Ihre Branche, Ihre Prozesse und Ihre Mitarbeitenden",
+    "lead": "Wählen Sie den Markt, den Sie bedienen, Ihre Fertigungsweise oder das Problem, das Sie lösen müssen. Jeder Eintrag zeigt die Herausforderung, wie Synax sie angeht und welche Produkte beteiligt sind.",
+    "viewBy": "Lösungen anzeigen nach",
+    "poweredBy": "Angetrieben von <b>{name}</b>",
+    "challengeTitle": "Die geschäftliche Herausforderung",
+    "solveTitle": "Wie Synax es löst",
+    "capabilities": "Zentrale Funktionen",
+    "worksWith": "Funktioniert mit",
+    "explore": "Diese Lösung entdecken",
+    "notListed": "Ihre Branche ist nicht dabei?",
+    "seeAll": "Alle Lösungen im Detail ansehen"
+  },
+  "Meta": {
+    "products": {
+      "title": "Produkte | Synax by Senwell",
+      "description": "Sechs Synax-Produkte: Fertigungs-ERP, Arbeits- und Lieferverwaltung, HRMS, Personalvermittlung & Ressourcenmanagement, Shop Floor & Maschinenüberwachung sowie KI & Business Intelligence."
+    },
+    "solutions": {
+      "title": "Lösungen nach Branche & Geschäftsbedarf | Synax by Senwell",
+      "description": "Beginnen Sie mit dem, was am meisten schmerzt, und ergänzen Sie den Rest, wenn Sie bereit sind: wo Sie in Luft- und Raumfahrt und Verteidigung, Öl, Gas und Energie, Industriemaschinen, IT-Services, Präzisionsbearbeitung, Gummiformung, Werkspersonal und Personalvermittlung anfangen, wie weit jede Lösung reicht und das vollständige Modulverzeichnis.",
+      "ogTitle": "Lösungen nach Branche & Geschäftsbedarf | Synax",
+      "ogDescription": "Wo Sie bei jeder Lösung anfangen, was als Nächstes kommt, und das Modulverzeichnis."
+    },
+    "why": {
+      "title": "Warum Synax | Synax by Senwell",
+      "description": "Warum Hersteller und Dienstleister Synax wählen: im Ablauf eingebaute Qualitätsfreigaben, auditfähige Aufzeichnungen, durchgängige Rückverfolgbarkeit, mandantenisolierte Arbeitsbereiche und ein verbundenes Datenmodell.",
+      "ogTitle": "Warum Synax",
+      "ogDescription": "Eingebaute Qualität, Auditbereitschaft, Rückverfolgbarkeit und ein verbundenes Datenmodell."
+    },
+    "security": {
+      "title": "Sicherheit & Vertrauen | Synax by Senwell",
+      "description": "Isolierte Arbeitsbereiche je Unternehmen, serverseitig geprüfte Buchungen, eine Prüfhistorie jeder wesentlichen Änderung, rollenbasierter Zugriff mit zweistufiger Anmeldung und KI-Agenten, die nur vorschlagen, bis ein Genehmiger zustimmt.",
+      "ogTitle": "Sicherheit & Vertrauen | Synax",
+      "ogDescription": "Auditbereit durch Konstruktion, nicht durch Berichte."
+    }
+  },
+  "Areas": {
+    "sales": "Vertrieb",
+    "procurement-stores": "Einkauf & Lager",
+    "production": "Produktion",
+    "quality": "Qualität",
+    "dispatch-gst": "Versand & GST",
+    "people": "Personal",
+    "collaboration": "Zusammenarbeit",
+    "platform": "Plattform"
+  },
+  "AreasShort": {
+    "procurement-stores": "Lager",
+    "collaboration": "Team"
+  },
+  "Modules": {
+    "gate-entry-grn-store-inward": "Werkseingang, Wareneingangsschein (GRN) & Lagereingang",
+    "route-card-production-order": "Fertigungsauftrag per Laufkarte",
+    "machine-monitoring-jobs": "Maschinenüberwachung & Aufträge",
+    "receiving-final-inspection": "Wareneingangs- & Endprüfung",
+    "packing-customer-invoice": "Verpackung & Kundenrechnung",
+    "e-invoice-irn-e-way-bill": "E-Rechnung (IRN) & E-Way-Bill",
+    "tally-bridge": "Tally-Brücke",
+    "stage-buy-offs": "Stufenfreigaben",
+    "fair-register": "FAIR-Register",
+    "certificate-of-conformance": "Konformitätszertifikat",
+    "delivery-challans": "Lieferscheine (Challans)",
+    "part-master-bom-suite": "Teilestamm & Stücklisten-Suite",
+    "operation-master-routing": "Arbeitsgangstamm & Arbeitsplan",
+    "work-tracker": "Work Tracker",
+    "timesheets-work-logs": "Zeiterfassung & Arbeitsprotokolle",
+    "project-billing-tracker": "Projektabrechnungs-Tracker",
+    "customer-requirements": "Kundenanforderungen",
+    "deployments-replacements": "Einsätze & Ersatz",
+    "customer-po-amendments": "Kundenbestellungen & Änderungen",
+    "employee-records": "Mitarbeiterdaten",
+    "attendance-leave-wfh": "Anwesenheit, Urlaub & Homeoffice",
+    "payroll-with-approvals": "Lohnabrechnung mit Freigaben",
+    "department-kpis": "Abteilungskennzahlen",
+    "candidate-management": "Kandidatenverwaltung",
+    "interviews": "Interviews",
+    "offers-onboarding": "Angebote & Onboarding",
+    "rfq-quotations": "Anfragen & Angebote",
+    "monthly-sales-plan": "Monatlicher Verkaufsplan",
+    "order-fulfilment": "Auftragsabwicklung",
+    "purchase-requisition": "Bestellanforderung",
+    "vendor-po-receipt-tolerance": "Lieferantenbestellung & Wareneingangstoleranz",
+    "stock-ledger-goods-issue": "Bestandsbuch & Warenausgabe",
+    "chat-calls-meetings": "Chat, Anrufe & Meetings",
+    "meeting-calendar": "Meeting-Kalender",
+    "push-notifications": "Push-Benachrichtigungen",
+    "support-help-desk": "Support-Helpdesk",
+    "microsoft-365-mail": "Microsoft-365-E-Mail",
+    "customer-portal": "Kundenportal",
+    "integration-center": "Integrationscenter",
+    "synax-ai-assistant": "Synax-AI-Assistent",
+    "project-list": "Projektliste",
+    "job-scheduling-calendar": "Auftragsplanungskalender",
+    "bill-of-materials": "Stückliste",
+    "machine-loading-plan-board": "Maschinenbelegungsplan",
+    "operator-panel": "Bedienerpanel",
+    "dwm": "DWM",
+    "fair-manager": "FAIR-Manager",
+    "ncr-capa": "NCR / CAPA",
+    "calibration-dashboard": "Kalibrier-Dashboard",
+    "dispatch-release-controls": "Versandfreigabekontrollen",
+    "genealogy-trace": "Rückverfolgung der Herkunft",
+    "execution-reports": "Ausführungsberichte",
+    "itc-04-data-pack": "ITC-04-Datenpaket",
+    "recruitment-and-interviews": "Recruiting und Interviews",
+    "employee-self-service": "Mitarbeiter-Self-Service",
+    "biometric-device-sync": "Synchronisation biometrischer Geräte",
+    "break-pass-management": "Verwaltung von Pausenscheinen",
+    "attendance-ot-approval": "Freigabe von Anwesenheit & Überstunden",
+    "performance-management": "Leistungsmanagement",
+    "offboarding": "Offboarding",
+    "budget-planner": "Budgetplaner"
+  },
+  "Workflow": {
+    "plan": {
+      "title": "Planen",
+      "copy": "Erfassen Sie Teileprogramme, Termine, Verantwortliche und Abhängigkeiten, damit jedes Team von einer einzigen Datenquelle ausgeht."
+    },
+    "execute": {
+      "title": "Ausführen",
+      "copy": "Steuern Sie Abläufe, Freigaben und Pläne mit Kontrollen auf Stufenebene und ohne blinde Flecken bei Übergaben."
+    },
+    "inspect": {
+      "title": "Prüfen",
+      "copy": "Halten Sie das Teil am Prüfpunkt zurück, bis die Prüfung erfasst ist, mit angehängten AS9100D-Nachweisen, wo sie gelten."
+    },
+    "release": {
+      "title": "Freigeben",
+      "copy": "Geben Sie anhand einer vollständigen Aufzeichnung frei und halten Sie die Rückverfolgung für das spätere Audit verknüpft."
+    }
+  },
+  "Faq": {
+    "who-is-synax-built-for": {
+      "q": "Für wen ist Synax gemacht?",
+      "a": "Präzisions- und Lohnfertiger, insbesondere Zulieferer der Luft- und Raumfahrt, Verteidigung und Automobilindustrie, die kundenbeigestelltes Material zerspanen. Im selben Arbeitsbereich laufen auch HR, Anwesenheit, Lohnabrechnung und Projekte."
+    },
+    "do-we-have-to-move-our-accounts-out-of-tally": {
+      "q": "Müssen wir unsere Buchhaltung aus Tally herausnehmen?",
+      "a": "Nein. Steuern Sie den Betrieb in Synax und führen Sie Ihre Bücher weiter in Tally. Die Tally-Brücke überträgt die Belege."
+    },
+    "which-machines-can-synax-connect-to": {
+      "q": "Mit welchen Maschinen kann sich Synax verbinden?",
+      "a": "CNC-Maschinen über die OEM-Anbindung oder offenes FOCAS. Maschinen, die sich nicht verbinden lassen, funktionieren trotzdem: Bediener bestätigen die Zählungen am Shop-Floor-Bildschirm."
+    },
+    "does-synax-generate-e-invoices-and-e-way-bills": {
+      "q": "Erzeugt Synax E-Rechnungen und E-Way-Bills?",
+      "a": "Ja. Verbinden Sie Ihren GST-Suvidha-Anbieter (ClearTax oder Masters India), und die IRN wird bei der Freigabe einer Rechnung erzeugt."
+    },
+    "can-the-ai-change-our-data-on-its-own": {
+      "q": "Kann die KI unsere Daten eigenständig ändern?",
+      "a": "Nein. Synax-Agenten schlagen nur vor. Jede Aktion wartet auf einen Genehmiger mit der passenden Rolle, und die Entscheidung wird festgehalten."
+    },
+    "is-synax-free-for-small-manufacturers": {
+      "q": "Ist Synax für kleine Hersteller kostenlos?",
+      "a": "Ja. Synax ist für KMU mit weniger als 50 Mitarbeitenden kostenlos, um Kleinindustrien und die Initiative Atmanirbhar Bharat zu unterstützen."
+    },
+    "how-long-does-onboarding-take": {
+      "q": "Wie lange dauert das Onboarding?",
+      "a": "Das hängt von der Größe Ihres Unternehmens, den Modulen, mit denen Sie starten, und der Reife Ihrer Stammdaten und Anfangsbestände ab. Werke gehen Modul für Modul live, nach einem Einführungsplan, den wir in der Analysephase mit Ihnen vereinbaren. Wir importieren Teile-, Stücklisten- und Bestandsdaten aus Excel."
+    }
+  },
+  "SolutionPaths": {
+    "precision": {
+      "pain": "Kundenmaterial und Maschinenzählungen liegen in Tabellen."
+    },
+    "aerospace": {
+      "pain": "Auditnachweise werden nach dem Versand des Teils von Hand neu zusammengestellt."
+    },
+    "energy": {
+      "pain": "Der Nachweis, woher ein geliefertes Teil stammt, bedeutet Dateisuche."
+    },
+    "machinery": {
+      "pain": "Stücklisten, Arbeitspläne und Maschinenauslastung werden in Tabellen geplant."
+    },
+    "services": {
+      "pain": "Stunden und Kosten sind nicht dem Projekt zugeordnet, zu dem sie gehören."
+    },
+    "rubber": {
+      "pain": "Materialbilanzen und Lohnfertigungsrückgaben werden von Hand neu erstellt."
+    },
+    "workforce": {
+      "pain": "Anwesenheit, Überstunden und Lohnabrechnung werden auf Papier nachverfolgt."
+    },
+    "staffing": {
+      "pain": "Anforderungen, Kandidaten und Einsätze liegen an verschiedenen Orten."
+    }
+  },
+  "Industries": {
+    "aerospace-defence": {
+      "name": "Luft- und Raumfahrt & Verteidigung",
+      "menu": "AS9100D-QMS-Kontrollen, FAIR-Register & COC",
+      "tag": "Luft- und Raumfahrt & Verteidigung",
+      "titleHead": "ERP für ",
+      "titleTail": "Zulieferer der Luft- und Raumfahrt und Verteidigung",
+      "lead": "Entwickelt für Zulieferer der Luft- und Raumfahrt, Verteidigung und Automobilindustrie, die kundenbeigestelltes Material zerspanen: AS9100D-QMS-Kontrollen an den Qualitätsprüfpunkten, FAIR-Register und Konformitätszertifikate im selben Ablauf und ein Nachweis hinter jedem Teil.",
+      "whoFor": "Zulieferer der Luft- und Raumfahrt, Verteidigung und Automobilindustrie, die kundenbeigestelltes Material zerspanen.",
+      "seoTitle": "ERP für Luft- und Raumfahrt & Verteidigung",
+      "seoDescription": "AS9100D-QMS-Kontrollen an den Prüfpunkten des Ablaufs, FAIR-Register, Konformitätszertifikate und Rückverfolgbarkeit für Zulieferer der Luft- und Raumfahrt, Verteidigung und Automobilindustrie.",
+      "ch1": {
+        "title": "Auditnachweise, die nachträglich neu erstellt werden",
+        "text": "Aufzeichnungen werden erst nach dem Versand des Teils von Hand zusammengestellt, sodass jedes Audit Wochen an Nacharbeit kostet."
+      },
+      "ch2": {
+        "title": "Papiere, getrennt vom Auftrag",
+        "text": "Erstmusterberichte, Zertifikate und Prüfaufzeichnungen liegen in getrennten Dateien, fern vom Auftrag, der sie erzeugt hat."
+      },
+      "ch3": {
+        "title": "Kundenmaterial, das schwer zu verfolgen ist",
+        "text": "Kundenmaterial muss vom Challan bis zum gelieferten Teil über die Material-ID verfolgt werden."
+      },
+      "ch4": {
+        "title": "Prüfungen, die vom Gedächtnis abhängen",
+        "text": "Wenn eine Prüfung übersprungen werden kann, fehlt der Nachweis an dem Tag, an dem ein Auditor danach fragt."
+      },
+      "flowTitle": "Planen, ausführen, prüfen, freigeben",
+      "flowLead": "Halten Sie das Teil am Prüfpunkt zurück, bis die Prüfung erfasst ist, und geben Sie es dann anhand eines vollständigen Datensatzes frei.",
+      "heroAlt": "Ein Businessjet, ein Kampfflugzeug und ein unbemanntes Luftfahrzeug im Flug"
+    },
+    "oil-gas-energy": {
+      "name": "Öl, Gas & Energie",
+      "menu": "Materialrückverfolgung, Prüfung, NCR/CAPA & COC",
+      "tag": "Öl, Gas & Energie",
+      "titleHead": "ERP für ",
+      "titleTail": "Zulieferer für Öl, Gas und Energie",
+      "lead": "Jedes Teil lässt sich auf sein Material und seine Prüfung zurückführen, mit NCR und CAPA bei fehlgeschlagener Prüfung und dem Konformitätszertifikat aus demselben Datensatz.",
+      "whoFor": "Lieferanten gefräster und gespritzter Teile wie Ventilgehäuse, Armaturen, Flansche und Dichtungen für Kunden aus Öl, Gas, Strom und Energie.",
+      "seoTitle": "ERP für Zulieferer in Öl, Gas & Energie",
+      "seoDescription": "Materialrückverfolgung, Wareneingangs- und Endprüfung, Stufenfreigaben, NCR und CAPA, Konformitätszertifikate, GST-Versand und Tally für Zulieferer von Kunden aus Öl, Gas und Energie.",
+      "ch1": {
+        "title": "Materialrückverfolgung, die nach dem Versand neu erstellt wird",
+        "text": "Der Nachweis, welche Materialcharge in ein geliefertes Teil eingegangen ist, bedeutet Dateisuche, nachdem es das Haus verlassen hat."
+      },
+      "ch2": {
+        "title": "Prüfung, getrennt vom Auftrag",
+        "text": "Ergebnisse von Wareneingangs-, Zwischen- und Endprüfung liegen in getrennten Tabellen, fern von der Laufkarte."
+      },
+      "ch3": {
+        "title": "Fehlgeschlagene Prüfungen, per E-Mail bearbeitet",
+        "text": "Wenn eine Prüfung fehlschlägt, werden die Abweichung und ihre Korrekturmaßnahme außerhalb des Systems verfolgt."
+      },
+      "ch4": {
+        "title": "Zertifikate, die erst am Ende zusammengestellt werden",
+        "text": "Das Konformitätszertifikat wird von Hand zusammengestellt, sobald der Auftrag abgeschlossen ist."
+      },
+      "flowTitle": "Vom Material zum Zertifikat",
+      "flowLead": "Jeder Schritt hält seine Nachweise fest, während die Arbeit geschieht, sodass das Zertifikat aus einem vollständigen Datensatz ausgestellt wird.",
+      "flow": {
+        "f1": {
+          "title": "Materialeingang",
+          "copy": "Werkseingang, Wareneingangsschein (GRN) und Lagereingang, mit Kundenmaterial, das per Challan und Material-ID verfolgt wird."
+        },
+        "f2": {
+          "title": "Laufkarte",
+          "copy": "Der Auftrag wird auf einer Laufkarte gegen sein Teil und seinen Arbeitsplan freigegeben."
+        },
+        "f3": {
+          "title": "Maschinenbestätigte Arbeitsgänge",
+          "copy": "Maschinen schlagen die Zählungen vor, und der Bediener bestätigt sie, mit einem Grund für jede Abweichung."
+        },
+        "f4": {
+          "title": "Prüfung & Freigaben",
+          "copy": "Wareneingangs-, Zwischen- und Endprüfung, wobei das Teil zurückgehalten wird, bis die Prüfung erfasst ist."
+        },
+        "f5": {
+          "title": "NCR & CAPA",
+          "copy": "Eine fehlgeschlagene Prüfung löst eine Abweichung aus, mit der zugehörigen Korrektur- und Vorbeugemaßnahme."
+        },
+        "f6": {
+          "title": "Zertifikat & Versand",
+          "copy": "Das Konformitätszertifikat wird aus dem Datensatz ausgestellt, danach folgen Verpackung, GST-Rechnung und E-Way-Bill."
+        }
+      },
+      "heroAlt": "Illustration einer Raffinerie in der Dämmerung, mit Windrädern am Horizont und einem Pipeline-Ventil im Vordergrund"
+    },
+    "precision-cnc-machining": {
+      "name": "Präzisions-CNC-Bearbeitung & Lohnfertigung",
+      "menu": "Maschinendaten, Laufkarten & Lohnfertigungsmaterial",
+      "tag": "Präzision & Lohnfertigung",
+      "titleHead": "ERP für ",
+      "titleTail": "Präzisions- und Lohnfertiger",
+      "lead": "Das Material Ihres Kunden bis zum letzten Stück erfasst, Maschinen, die ihre Zählungen direkt an die Laufkarte melden, und die GST-Rechnung, die sich aus der Maschine ergibt.",
+      "whoFor": "Präzisions- und Lohnfertiger, die kundenbeigestelltes Material zerspanen.",
+      "seoTitle": "ERP für Präzisions-CNC-Bearbeitung & Lohnfertigung",
+      "seoDescription": "Kundenmaterial per Challan und Material-ID, von der Maschine bestätigte Laufkarten, Prüfung, COC, GST-Rechnung und Tally in einem Ablauf.",
+      "ch1": {
+        "title": "Kundenmaterial, nebenher verfolgt",
+        "text": "Kundenbeigestelltes Material liegt in einer Tabelle, statt dem Kunden zugeordnet zu sein, dem es gehört."
+      },
+      "ch2": {
+        "title": "Mengen, die nicht zusammenpassen",
+        "text": "Verbrauch, Rückgaben, Ausschuss und fakturierte Mengen lassen sich schwer mit dem abgleichen, was eingegangen ist."
+      },
+      "ch3": {
+        "title": "Zählungen, von Hand eingegeben",
+        "text": "Die Produktionsrückmeldung hängt davon ab, dass jemand eintippt, was die Maschine bereits wusste."
+      },
+      "ch4": {
+        "title": "Versandpapiere, die erst am Ende zusammengestellt werden",
+        "text": "Verpackung, Rechnung, IRN und E-Way-Bill werden getrennt zusammengestellt, nachdem der Auftrag abgeschlossen ist."
+      },
+      "flowTitle": "Von der Maschine zur Rechnung",
+      "flowLead": "Jedes Dokument übernimmt das vorherige, sodass sich jedes Teil bis zu Bestellung, Materialcharge, Maschine und Bediener zurückverfolgen lässt.",
+      "callouts": {
+        "c1": "Zählungen von der Maschine",
+        "c2": "Material-ID per Challan",
+        "c3": "Von der Laufkarte zur Rechnung",
+        "c4": "COC, GST-Rechnung, E-Way-Bill"
+      },
+      "heroAlt": "Eine CNC-Spindel bearbeitet ein Metallteil"
+    },
+    "it-services-staffing": {
+      "name": "IT-Services & Beratung",
+      "menu": "Projekte, SOWs, Kandidaten & Einsätze",
+      "tag": "IT-Services & Beratung",
+      "titleHead": "ERP für ",
+      "titleTail": "IT-Service- und Personalvermittlungsteams",
+      "lead": "Steuern Sie Projektlieferung, SOWs und Abrechnung neben Kandidaten, Interviews und Einsätzen, in einem Arbeitsbereich.",
+      "whoFor": "IT-Service-Teams, Personalagenturen und technische Beratungsnetzwerke, die Kundenanforderungen und Einsätze verwalten.",
+      "seoTitle": "ERP für IT-Services & Beratung",
+      "seoDescription": "Projekte, SOWs, Zeiterfassung und Abrechnung mit Kundenanforderungen, Kandidaten, Interviews, Onboarding und Einsätzen in einem Arbeitsbereich.",
+      "ch1": {
+        "title": "Wochenlange Rekrutierungszyklen",
+        "text": "Anforderungen, Kandidaten und Interviews liegen an verschiedenen Orten, sodass jede Vermittlung länger dauert als nötig."
+      },
+      "ch2": {
+        "title": "Berater ohne Einsatz auf der Bank",
+        "text": "Nicht abrechenbare Wartezeit ist erst nach Monatsende gut zu erkennen."
+      },
+      "ch3": {
+        "title": "Reibungsverluste mit mehreren Anbietern",
+        "text": "Die Kommunikation mit mehreren Anbietern und Kunden findet außerhalb des führenden Systems statt."
+      },
+      "ch4": {
+        "title": "Strittige Zeiterfassungen und Rechnungen",
+        "text": "Stunden, Arbeitsprotokolle und Kosten sind nicht dem Projekt zugeordnet, zu dem sie gehören."
+      },
+      "flowTitle": "Von der Kundenanforderung zur Rechnung",
+      "flowLead": "Ein Ablauf von der Anforderung bis zur Projektabrechnung, mit Freigaben unterwegs.",
+      "flow": {
+        "f1": {
+          "title": "Kundenanforderung",
+          "copy": "Erfassen Sie, was der Kunde braucht, mit SOWs und Anforderungen, die dem Projekt zugeordnet sind."
+        },
+        "f2": {
+          "title": "Kandidaten & Interviews",
+          "copy": "Verwalten Sie Kandidaten und führen Sie Interviews je Anforderung."
+        },
+        "f3": {
+          "title": "Angebot & Onboarding",
+          "copy": "Angebote, Freigaben und Onboarding in einem Ablauf."
+        },
+        "f4": {
+          "title": "Einsatz",
+          "copy": "Setzen Sie Personen in Projekten ein, mit Ressourcenzuteilung und Ersatz."
+        },
+        "f5": {
+          "title": "Zeiterfassung & Arbeitsprotokolle",
+          "copy": "Zeiterfassung, Arbeitsprotokolle und Entwicklungskosten, dem Projekt zugeordnet."
+        },
+        "f6": {
+          "title": "Abrechnung & Rentabilität",
+          "copy": "Projektabrechnung und ein Blick auf die Rentabilität."
+        }
+      },
+      "samples": {
+        "s1": "Anforderung erfasst",
+        "s2": "3 Kandidaten zugeordnet",
+        "s3": "Angebot gesendet",
+        "s4": "1 im Einsatz",
+        "s5": "Stunden erfasst",
+        "s6": "Rechnung bereit"
+      }
+    },
+    "industrial-machinery-equipment": {
+      "name": "Industriemaschinen & Anlagen",
+      "menu": "Stücklisten, Arbeitspläne, Maschinenauslastung & GST-Versand",
+      "tag": "Industriemaschinen & Anlagen",
+      "titleHead": "ERP für ",
+      "titleTail": "Hersteller von Industriemaschinen und Anlagen",
+      "lead": "Teilestamm, Stücklisten und Arbeitspläne, Maschinen, die ihre eigenen Zählungen melden, und die GST-Rechnung, die sich aus der Laufkarte ergibt – von einer Gruppe, die selbst Industriebetriebe führt.",
+      "whoFor": "Hersteller von Pumpen, Ventilen, Kompressoren, Getrieben und anderen Industrieanlagen sowie die Zulieferer, die deren Teile fertigen.",
+      "seoTitle": "ERP für Hersteller von Industriemaschinen & Anlagen",
+      "seoDescription": "Teilestamm, Stücklisten, Arbeitspläne, Laufkarten, Maschinenplanung und -überwachung, Prüfung, GST-Versand und Tally für Hersteller von Industriemaschinen und Anlagen.",
+      "ch1": {
+        "title": "Stücklisten und Arbeitspläne in Tabellen",
+        "text": "Teilestamm, Stücklisten und Arbeitspläne werden getrennt von den Aufträgen geführt, die sie nutzen."
+      },
+      "ch2": {
+        "title": "Maschinenauslastung auf dem Whiteboard geplant",
+        "text": "Welcher Auftrag wann auf welcher Maschine läuft, wird außerhalb des Systems entschieden."
+      },
+      "ch3": {
+        "title": "Produktionsstand, der der Fertigung hinterherhinkt",
+        "text": "Zählungen, Alarme und Stillstände erreichen das Büro spät oder gar nicht."
+      },
+      "ch4": {
+        "title": "Buchhaltung in einem Werkzeug, Betrieb in einem anderen",
+        "text": "Einkauf, Lager, Produktion und Versand werden erneut in die Buchhaltung eingegeben."
+      },
+      "flowTitle": "Von der Maschine zur Rechnung",
+      "flowLead": "Jedes Dokument übernimmt das vorherige, sodass sich jedes Teil bis zu Bestellung, Materialcharge, Maschine und Bediener zurückverfolgen lässt.",
+      "heroAlt": "Blaupausen-Illustration einer Kreiselpumpe, die zwei Zahnräder antreibt"
+    },
+    "plant-workforce-hcm": {
+      "name": "Werkspersonal & HR",
+      "menu": "Anwesenheit, Lohnabrechnung & Pausenscheine pro Schicht",
+      "tag": "Personal & HCM",
+      "titleHead": "HRMS für ",
+      "titleTail": "Werkspersonal",
+      "lead": "Mitarbeiterdaten, Anwesenheit, Urlaub und Homeoffice, Lohnabrechnung mit Freigaben und Abteilungskennzahlen, im selben Arbeitsbereich wie der Betrieb.",
+      "whoFor": "Hochausgelastete Industriewerke, Fertigungsunternehmen mit mehreren Standorten und Engineering-Teams im Schichtbetrieb.",
+      "seoTitle": "HRMS für Werkspersonal",
+      "seoDescription": "Mitarbeiterdaten, Anwesenheit und Urlaub, Synchronisation biometrischer Geräte, Überstundenfreigaben, Lohnabrechnung mit Freigaben und Abteilungskennzahlen für Werke und Schichtteams.",
+      "ch1": {
+        "title": "Stempeln für Kollegen",
+        "text": "Anwesenheit, die von einer Karte oder einem Kollegen abhängt, ist bei der Lohnabrechnung nicht verlässlich."
+      },
+      "ch2": {
+        "title": "Nicht erfasste Pausenscheine",
+        "text": "Bediener, die sich von laufenden Bearbeitungslinien entfernen, lassen Maschinen unbeaufsichtigt."
+      },
+      "ch3": {
+        "title": "Tagelange manuelle Lohnabrechnung",
+        "text": "Schichtzuschläge, Überstunden und Abzüge werden von Hand berechnet und dann erneut geprüft."
+      },
+      "ch4": {
+        "title": "Freigaben auf Papier",
+        "text": "Überstunden und Anwesenheitsausnahmen werden außerhalb des Systems abgezeichnet."
+      },
+      "flowTitle": "Vom ersten Tag bis zur Lohnabrechnung",
+      "flowLead": "Ein Datensatz pro Person, wobei Anwesenheit und Freigaben in die Lohnabrechnung einfließen.",
+      "flow": {
+        "f1": {
+          "title": "Mitarbeiterdatensatz",
+          "copy": "Ein Datensatz pro Person, vom Recruiting bis zum Offboarding."
+        },
+        "f2": {
+          "title": "Anwesenheit, Urlaub & Homeoffice",
+          "copy": "Anwesenheitsdaten werden von biometrischen Geräten in Anwesenheit und Urlaub synchronisiert."
+        },
+        "f3": {
+          "title": "Überstundenfreigabe",
+          "copy": "Überstunden und Anwesenheitsausnahmen werden im Ablauf freigegeben."
+        },
+        "f4": {
+          "title": "Lohnabrechnung mit Freigaben",
+          "copy": "Die Lohnabrechnung wird im selben Arbeitsbereich vorbereitet und freigegeben."
+        },
+        "f5": {
+          "title": "Abteilungskennzahlen",
+          "copy": "Sehen Sie, wie jede Abteilung abschneidet."
+        }
+      },
+      "roster": {
+        "aria": "Beispiel-Anwesenheit für die Woche",
+        "operator": "Bediener {n}",
+        "absent": "Abwesend",
+        "present": "Anwesend",
+        "leave": "Urlaub oder halber Tag",
+        "breakPass": "Pausenschein",
+        "pending": "{n} ausstehend",
+        "ready": "Bereit zur Prüfung",
+        "alt": "Roboterarme bei der Arbeit in einer Fertigungshalle"
+      }
+    },
+    "rubber-polymer-moulding": {
+      "name": "Gummi- & Polymerformung",
+      "menu": "Lohnfertigung, Chargen & Prüfung",
+      "tag": "Gummi- & Polymerformung",
+      "titleHead": "ERP für ",
+      "titleTail": "Gummi- und Polymerformer",
+      "lead": "Kundenbestellungen und Material per Challan, eine Laufkarte für jeden Auftrag, Wareneingangs- und Endprüfung mit dem Auftrag zugeordnetem Ausschuss und ITC-04-Lohnfertigungsaufzeichnungen mit GST-Rechnung, sodass Materialbilanzen nicht mehr von Hand neu erstellt werden.",
+      "whoFor": "Hersteller von Dichtungen, Schläuchen und anderen Gummi- und Polymerteilen, die nach Kundenbestellungen und oft mit kundenbeigestelltem Material arbeiten.",
+      "seoTitle": "ERP für Gummi- & Polymerformung",
+      "seoDescription": "Kundenbestellungen und Material-Challans, Laufkarten, Wareneingangs- und Endprüfung, Ausschuss, ITC-04-Lohnfertigungsaufzeichnungen, GST-Versand und Tally für Gummi- und Polymerformer.",
+      "ch1": {
+        "title": "Materialbilanzen, von Hand neu erstellt",
+        "text": "Per Challan erhaltenes Material, in Produktionschargen verbraucht und als Lohnfertigung zurückgegeben, wird jede Periode von Hand abgeglichen."
+      },
+      "ch2": {
+        "title": "Getrennte Register",
+        "text": "Kundenbestellungen, Challans, Produktionschargen, Ausschuss und Versand liegen in getrennten Registern statt in einem Ablauf."
+      },
+      "ch3": {
+        "title": "Ausschuss ohne Auftragsbezug",
+        "text": "Ausschussteile werden auf einem Blatt gezählt, statt dem Auftrag zugeordnet zu werden, der sie erzeugt hat."
+      },
+      "ch4": {
+        "title": "Lohnfertigungsrückgaben, spät zusammengestellt",
+        "text": "ITC-04-Lohnfertigungsangaben werden am Ende der Periode aus getrennten Aufzeichnungen zusammengestellt."
+      },
+      "flowTitle": "Von der Bestellung zum Versand",
+      "flowLead": "Jeder Schritt hält seine Nachweise fest, während die Arbeit geschieht, sodass Material- und Lohnfertigungsbilanzen aus dem Datensatz folgen.",
+      "flow": {
+        "f1": {
+          "title": "Kundenbestellung",
+          "copy": "Erfassen Sie die Bestellung des Kunden und ihre Änderungen, mit Teil und bestellter Menge."
+        },
+        "f2": {
+          "title": "Materialeingang",
+          "copy": "Werkseingang, Wareneingangsschein (GRN) und Lagereingang, mit kundenbeigestelltem Material, das per Challan und Material-ID verfolgt wird."
+        },
+        "f3": {
+          "title": "Laufkarte",
+          "copy": "Geben Sie jeden Auftrag auf einer Laufkarte gegen sein Teil und seinen Arbeitsplan frei und verfolgen Sie ihn durch die Produktion."
+        },
+        "f4": {
+          "title": "Prüfung",
+          "copy": "Wareneingangs- und Endprüfung, mit dem Auftrag zugeordnetem Ausschuss."
+        },
+        "f5": {
+          "title": "Lohnfertigungsaufzeichnungen",
+          "copy": "Kundenmaterialbestände, Rückgaben und Ausschussbelege speisen das ITC-04-Datenpaket."
+        },
+        "f6": {
+          "title": "Versand & GST",
+          "copy": "Lieferscheine (Challans), dann GST-Rechnung, IRN und E-Way-Bill aus demselben Datensatz."
+        }
+      },
+      "heroAlt": "Blaupausen-Illustration eines O-Rings, eines Lippendichtungsprofils und einer Zweiplatten-Form"
+    }
+  },
+  "ProductData": {
+    "precision": {
+      "badge": "ERP für Präzision & Lohnfertigung",
+      "subtitle": "Kundenmaterial, Laufkarten & Kontrolle von der Maschine bis zur Rechnung",
+      "h1": "Verknüpfen Sie Kundenbestellungen, Eingangs-Challans und Material-ID-Bereiche",
+      "h2": "Verfolgen Sie Kundenmaterialbestände, Verbrauch, Rückgaben und Ausschuss",
+      "h3": "Erfassen Sie Maschinenzykluszählungen, Alarme und Stillstände auf den Laufkarten",
+      "h4": "Verbinden Sie Prüfung, COC, Versand, GST-Rechnungen und Tally-Belege"
+    },
+    "it": {
+      "badge": "Lieferung, Personal & Abrechnung",
+      "subtitle": "Arbeit planen, Stunden erfassen, abrechnen, was Sie liefern",
+      "h1": "Work Tracker mit Tagesaktivitäten und Meetings",
+      "h2": "Projekte mit Kundenanforderungen und SOWs",
+      "h3": "Zeiterfassung, Arbeitsprotokolle und Entwicklungskosten",
+      "h4": "Projektabrechnung und Rentabilität"
+    },
+    "hrms": {
+      "badge": "Mitarbeiterlebenszyklus, Anwesenheit & Lohnabrechnung",
+      "subtitle": "Mitarbeiterprozesse und Personaladministration",
+      "h1": "Mitarbeiterlebenszyklus, Recruiting und Offboarding",
+      "h2": "Anwesenheit, Urlaub und Homeoffice, mit Überstundenfreigaben",
+      "h3": "Lohnabrechnung mit Freigaben",
+      "h4": "Abteilungskennzahlen und Leistungsmanagement"
+    },
+    "staffing": {
+      "badge": "Kandidaten, Interviews & Einsätze",
+      "subtitle": "Kundenanforderungen an Personal finden, einsetzen und verwalten",
+      "h1": "Kundenanforderungen und Kandidatenverwaltung",
+      "h2": "Interviews, Angebote und Onboarding",
+      "h3": "Einsätze und Ressourcenleistung",
+      "h4": "Ersatz und Freigaben"
+    },
+    "shopfloor": {
+      "badge": "Produktionsausführung",
+      "subtitle": "Produktionsausführung und Steuerung des Maschinenbetriebs",
+      "h1": "Maschinenplanung und Auslastungsdiagramme",
+      "h2": "Auftragskarten für Bediener und Live-Maschinenüberwachung",
+      "h3": "Transparenz bei Stillständen und Alarmen",
+      "h4": "Produktionsverfolgung und Maschinenauslastung"
+    },
+    "ai": {
+      "badge": "Unterstützung & Erkenntnisse",
+      "subtitle": "Intelligente Unterstützung und Erkenntnisse für den Geschäftsbetrieb",
+      "h1": "KI-gestützte Assistenz und Synax Agents",
+      "h2": "Operative Analysen und Business-Dashboards",
+      "h3": "Berichte über alle Geschäftsabläufe",
+      "h4": "Leistungskennzahlen für fundierte Entscheidungen"
+    }
+  },
+  "ProductsPage": {
+    "tag": "Marktreife Plattformen",
+    "title": "Sechs Produkte. Eine Plattform.",
+    "lead": "Beginnen Sie mit dem Produkt, das Ihr Unternehmen heute braucht. Die Produkte sind für das Zusammenspiel gebaut, sodass das nächste nicht bedeutet, von vorn zu beginnen.",
+    "allAria": "Alle Produkte",
+    "explore": "{name} entdecken"
+  },
+  "SolutionsPage": {
+    "pickStart": "Wählen Sie Ihren Einstiegspunkt",
+    "tag": "Lösungen nach Branche & Geschäftsbedarf",
+    "title": "Beginnen Sie mit dem, was am meisten schmerzt. Fügen Sie den Rest hinzu, wenn Sie bereit sind.",
+    "lead": "Wählen Sie das Problem, das vor Ihnen liegt. Für jede Lösung sehen Sie, welche Module Sie zuerst einschalten, was als Nächstes hinzukommt, wie weit sie über die Plattform reicht und das vollständige Modulverzeichnis.",
+    "start": {
+      "tag": "Wo Sie beginnen",
+      "title": "Acht Einstiegspunkte",
+      "lead": "Werke gehen Modul für Modul live, in einem Tempo, das von Größe und Datenreife bestimmt wird. Beginnen Sie mit den Modulen links in jedem Pfad.",
+      "whatHurts": "Was schmerzt",
+      "startWith": "Beginnen Sie mit",
+      "thenAdd": "Dann ergänzen Sie",
+      "seeIndustry": "Zur Branchenseite",
+      "seeProduct": "{name} ansehen"
+    },
+    "reach": {
+      "tag": "Abdeckung",
+      "title": "Wie weit jede Lösung reicht",
+      "lead": "Typische Nutzung über die acht Modulbereiche der Plattform. Alles liegt in einem Arbeitsbereich, sodass Sie jede Lösung später erweitern können.",
+      "caption": "Von jeder Lösung genutzte Modulbereiche: zentral, optional oder nicht üblich",
+      "solution": "Lösung",
+      "core": "Zentral",
+      "optional": "Optional",
+      "notTypical": "Nicht üblich",
+      "legendAria": "Legende",
+      "legendCore": "Zentral für die Lösung",
+      "legendOptional": "Optional, bei Bedarf ergänzen",
+      "legendNot": "Gehört üblicherweise nicht dazu"
+    },
+    "modules": {
+      "tag": "Modulverzeichnis",
+      "title": "Was Sie einschalten können",
+      "lead": "Das Verzeichnis des Portals, nach Bereich. Beginnen Sie mit dem, was am meisten schmerzt, und ergänzen Sie den Rest, wenn Sie bereit sind.",
+      "coreTo": "Zentral für: {list}",
+      "notListed": "Ihre Branche ist nicht dabei? Beginnen Sie mit dem Produkt, das zu Ihrem Problem passt – siehe <link>alle sechs Produkte</link>."
+    },
+    "pages": {
+      "tag": "Lösungsseiten",
+      "title": "Eine eigene Seite für Ihre Branche, Ihren Prozess oder Ihren Bedarf",
+      "lead": "Für wen sie ist, die Herausforderungen, der Ablauf, der sie löst, und die Produkte dahinter."
+    },
+    "workflow": {
+      "tag": "Ein Ablauf hinter jeder Lösung",
+      "title": "Planen, ausführen, prüfen, freigeben",
+      "lead": "Egal in welcher Branche: Die Arbeit durchläuft dieselben vier Stufen, und die Aufzeichnung entsteht dabei laufend.",
+      "modulesAria": "Module: {title}"
+    },
+    "faq": {
+      "tag": "Erste Schritte",
+      "title": "Fragen zum Go-live",
+      "lead": "Antworten aus dem Portal: Onboarding, Tally, GST, Maschinen und Preise."
+    },
+    "cta": {
+      "title": "Nennen Sie uns das Problem. Wir zeigen Ihnen die Lösung.",
+      "text": "Ein kurzer Rundgang mit einem Systemingenieur der Senwell Group, ausgerichtet auf die Lösung, die zu Ihrem Unternehmen passt."
+    }
+  },
+  "Scene": {
+    "description": "Animierte Übersicht: für jede Lösung die Module, die zuerst eingeschaltet werden, was als Nächstes hinzukommt und wie viele der acht Modulbereiche zentral sind. Dieselben Informationen stehen in den Abschnitten unten.",
+    "whatHurts": "WAS SCHMERZT",
+    "startWith": "BEGINNEN SIE MIT",
+    "thenAdd": "DANN ERGÄNZEN",
+    "reach": "REICHWEITE",
+    "ofCount": "{core} von {total}",
+    "order": "EINSCHALTREIHENFOLGE",
+    "seePath": "Den vollständigen Pfad ansehen: {title}"
+  },
+  "Live": {
+    "positioning": {
+      "headline": "Das ERP für Präzisions- und Lohnfertiger.",
+      "sub": "Von der Maschine bis zur GST-Rechnung, in einem Arbeitsbereich, mit KI, die Ihren Ausnahmen nachgeht."
+    },
+    "pillars": {
+      "p1": {
+        "kicker": "Lohnfertigung von Haus aus",
+        "title": "Das Material Ihres Kunden, bis zum letzten Stück erfasst.",
+        "copy": "Kundenbeigestelltes Material ist ein gleichwertiger Bestandteil, keine Tabelle nebenher. Jeder Challan, jeder Material-ID-Bereich und jeder Ausschuss bleibt dem Kunden zugeordnet, dem er gehört.",
+        "a": "Eingangs-Challans mit Material-ID-Bereichen und Bestellpositionsbezügen",
+        "b": "Rohmaterial wird 1:1 gegen jedes fakturierte Teil verbraucht",
+        "c": "Kundenmaterialbestand, Rücklieferungen und Ausschussbelege",
+        "d": "ITC-04-Datenpaket und ein schreibgeschütztes Kundenportal"
+      },
+      "p2": {
+        "kicker": "Von der Maschine zur Rechnung",
+        "title": "Die Maschine meldet die Stückzahl. Laufkarte, COC und Rechnung folgen.",
+        "copy": "Verbinden Sie Ihre Maschinen und lassen Sie echte Zykluszählungen, Alarme und Stillstände die Produktionsrückmeldung steuern – ohne separates MES oder Integrator.",
+        "a": "Live-Maschinentafel mit Alarmen und Stillstandsgründen",
+        "b": "Starten Sie Aufträge per Laufkartennummer oder Barcode-Scan",
+        "c": "Zykluszählungen werden vorgeschlagen, der Bediener bestätigt mit einem Abweichungsgrund",
+        "d": "OEE pro Auftrag und die Fertigungsaufzeichnung auf dem COC"
+      },
+      "p3": {
+        "kicker": "KI, die handelt",
+        "title": "Synax AI findet die Ausnahme und schlägt die Lösung vor. Sie genehmigen.",
+        "copy": "Fragen Sie Synax alles zu Ihren ERP-Daten und lassen Sie die Agenten nach Problemen suchen, die Sie Geld kosten. Nichts ändert sich, bis ein Genehmiger zustimmt.",
+        "a": "Challan-Abgleich und Mahnungen bei Überfälligkeit",
+        "b": "Versandbereitschaft und Forderungsverfolgung",
+        "c": "Qualitätskonformität und Fertigungsüberwachung",
+        "d": "Vier-Augen-Freigabe mit vollständiger Ereignishistorie"
+      }
+    },
+    "flow": {
+      "lead": "Jedes Dokument übernimmt das vorherige, sodass sich jedes Teil bis zu Bestellung, Materialcharge, Maschine und Bediener zurückverfolgen lässt.",
+      "f1": {
+        "title": "Anfrage & Kundenbestellung",
+        "copy": "Angebote je Position, Revisionen und Kontrolle der offenen Bestellmenge."
+      },
+      "f2": {
+        "title": "Werkseingang & Wareneingang (GRN)",
+        "copy": "Eingang gegen Bestellung oder Challan, mit Wareneingangstoleranz und Prüfung."
+      },
+      "f3": {
+        "title": "Laufkarte",
+        "copy": "Freigegeben gegen die Stückliste, mit Material, das je RI-Einheit reserviert ist."
+      },
+      "f4": {
+        "title": "Maschinenbestätigte Arbeitsgänge",
+        "copy": "Arbeitsgänge, von der Maschine bestätigt, mit Freigaben je Stufe."
+      },
+      "f5": {
+        "title": "Prüfung & COC",
+        "copy": "Endprüfung, FAIR und Konformitätszertifikat."
+      },
+      "f6": {
+        "title": "Rechnung & Versand",
+        "copy": "Verpackung, GST-Rechnung, IRN und E-Way-Bill in einem Ablauf."
+      }
+    },
+    "security": {
+      "tenant": {
+        "title": "Isolierte Arbeitsbereiche",
+        "copy": "Jedes Unternehmen läuft in einem eigenen Mandanten. Daten wechseln nie zwischen ihnen."
+      },
+      "server": {
+        "title": "Serverseitig geprüfte Buchungen",
+        "copy": "Bestände, Mengen und Statusänderungen werden auf dem Server geprüft, nicht im Browser."
+      },
+      "audit": {
+        "title": "Prüfhistorie",
+        "copy": "Wer was wann geändert hat, festgehalten für jede wesentliche geschäftliche Änderung."
+      },
+      "roles": {
+        "title": "Rollenbasierter Zugriff",
+        "copy": "Menüs, Aktionen und sensible Werte folgen den Rollen, die Sie konfigurieren, mit zweistufiger Anmeldung."
+      }
+    },
+    "pricing": {
+      "headline": "Kostenlos für KMU mit weniger als 50 Mitarbeitenden.",
+      "copy": "Die vollständige Plattform ohne Kosten für kleine Werke, als unser Beitrag zur Unterstützung von Kleinindustrien und der Initiative Atmanirbhar Bharat. Tarife für größere Teams werden pro Arbeitsplatz berechnet, mit Zusatzmodulen nach Bedarf."
+    },
+    "compliance": {
+      "c1": {
+        "name": "AS9100D-QMS-Kontrollen",
+        "how": "Qualitätsfreigaben und AS9100D-QMS-Kontrollen sind an kritischen Prüfpunkten des Ablaufs angebracht, sodass die Nachweise durch die Arbeit selbst entstehen."
+      },
+      "c2": {
+        "name": "GST in Indien: E-Rechnung und E-Way-Bill",
+        "how": "Verbinden Sie Ihren GST-Suvidha-Anbieter (ClearTax oder Masters India), und die IRN wird bei der Freigabe einer Rechnung erzeugt. Verpackung, Rechnung und E-Way-Bill liegen in einem Ablauf."
+      },
+      "c3": {
+        "name": "ITC-04 für Lohnfertigung",
+        "how": "Kundenmaterialbestände, Rückgaben und Ausschussbelege speisen ein ITC-04-Datenpaket."
+      },
+      "c4": {
+        "name": "DPDP Act 2023 (Datenschutz)",
+        "how": "Die Senwell Group Private Limited veröffentlicht eine Datenschutzerklärung, die beschreibt, wie personenbezogene Daten in Synax nach dem Digital Personal Data Protection Act 2023 erhoben, genutzt und geschützt werden."
+      }
+    }
+  },
+  "Benefits": {
+    "quality": {
+      "tab": "Eingebaute Qualität",
+      "question": "Müde, Papieren hinterherzulaufen, wenn das Teil schon versendet ist?",
+      "answer": "Qualitätsfreigaben sitzen direkt an den Arbeitsgängen. Ein Teil kann erst zum nächsten Schritt, wenn seine Prüfung erfasst ist, sodass der Nachweis existiert, bevor jemand danach fragt.",
+      "p1": "Verbindliche Prüfpunkte über Zerspanung, Prüfung, Versand und Freigabe",
+      "p2": "NCR / CAPA und FAIR-Aufzeichnungen im selben Ablauf",
+      "p3": "Kalibrierstatus, verfolgt für das Gerät, das das Teil gemessen hat"
+    },
+    "compliance": {
+      "tab": "Auditbereitschaft",
+      "question": "Bedeutet ein Audit noch immer wochenlanges Zusammensuchen von Unterlagen?",
+      "answer": "AS9100D-Anforderungen sind den Ablaufstufen zugeordnet, die sie betreffen. Das Audit liest dieselben Aufzeichnungen, die die Fertigung bereits ausgefüllt hat, statt eines parallelen Ordners für den Auditor.",
+      "p1": "AS9100D-QMS-Anforderungen an kritischen Prozesspunkten",
+      "p2": "Nachweise, verknüpft mit der Stufe, die sie erzeugt hat",
+      "p3": "Rückverfolgung der Herkunft von der Planung bis zur Endlieferung"
+    },
+    "traceability": {
+      "tab": "Rückverfolgbarkeit",
+      "question": "Können Sie ein Teil bis zum Ursprung zurückverfolgen?",
+      "answer": "Teile-, Prozess- und Qualitätshistorie bleiben über den gesamten Lebenszyklus verknüpft, sodass eine Frage zu einem versendeten Teil anhand von Aufzeichnungen statt Erinnerungen geklärt wird.",
+      "p1": "Prüfung des Materialeingangs und Materialhistorie von Anfang bis Ende",
+      "p2": "Stückliste, verknüpft mit den Aufträgen, die sie verbraucht haben",
+      "p3": "Versandfreigabekontrollen, die einen vollständigen Datensatz voraussetzen"
+    },
+    "security": {
+      "tab": "Sicher durch Mandanten",
+      "question": "Sorge, wer welches Programm sehen kann?",
+      "answer": "Die Multi-Mandanten-Architektur hält jeden Arbeitsbereich getrennt; rollenbasierte Berechtigungen und Kontrollen auf Routenebene bestimmen, worauf eine Person zugreifen kann.",
+      "p1": "Mandantenisolierte Arbeitsbereiche mit eigener Subdomain",
+      "p2": "Rollenbasierte Berechtigungen nach Abteilung und Funktion",
+      "p3": "Zugriffskontrolle auf Routenebene, nicht nur ausgeblendete Menüeinträge"
+    },
+    "connected": {
+      "tab": "Ein Datenrückgrat",
+      "question": "Wie viele Systeme berührt ein Auftrag heute?",
+      "answer": "Projekte, Fertigung, Qualitätssicherung, HR, Lohnabrechnung, Freigaben und Finanzen liegen in einem nachvollziehbaren Modell, sodass Status und Kosten nicht mehr zwei getrennte Gespräche sind.",
+      "p1": "Gemeinsame Datensätze über Betrieb, Personal und Finanzen",
+      "p2": "Freigabesteuerung und Warnungen auf demselben Rückgrat",
+      "p3": "Ausführungsberichte, gelesen aus dem veröffentlichten Plan"
+    }
+  },
+  "Why": {
+    "hero": {
+      "tag": "Warum Synax",
+      "title": "<b>Warum Branchenführer </b>Synax wählen",
+      "highlightsAria": "Highlights",
+      "ticks": {
+        "india": "In Indien entwickelt, für indische Fertigungen",
+        "audit": "Prüfpfad bei jeder Buchung",
+        "tally": "Funktioniert mit Tally"
+      },
+      "free": "Kostenlos für KMU mit weniger als 50 Mitarbeitenden",
+      "pillarsAria": "Die drei Säulen",
+      "glance": "Synax auf einen Blick",
+      "factsAria": "Wichtige Fakten"
+    },
+    "proof": {
+      "free": {
+        "value": "Kostenlos",
+        "label": "für KMU mit weniger als 50 Mitarbeitenden"
+      },
+      "tally": {
+        "value": "Tally",
+        "label": "Belege werden übertragen"
+      },
+      "gst": {
+        "value": "GST",
+        "label": "E-Rechnung und E-Way-Bill"
+      },
+      "qms": {
+        "value": "AS9100D",
+        "label": "QMS-Kontrollen an Prüfpunkten"
+      }
+    },
+    "jump": {
+      "difference": "Der Unterschied",
+      "pillars": "Säulen",
+      "flow": "Ablauf",
+      "reasons": "Gründe",
+      "compare": "Vergleich",
+      "pricing": "Preise",
+      "faq": "FAQ"
+    },
+    "difference": {
+      "tag": "Den Unterschied sehen",
+      "title": "Ein Teil, zwei Wege, es zu steuern",
+      "lead": "Eine Illustration desselben Teils, das dieselben fünf Stationen durchläuft."
+    },
+    "pillars": {
+      "tag": "Gebaut um eine Zerspanungswerkstatt",
+      "title": "Drei Dinge, die Synax auszeichnen",
+      "lead": "In den eigenen Worten des Portals.",
+      "whatYouGet": "Was Sie bekommen"
+    },
+    "flow": {
+      "tag": "Von der Maschine zur Rechnung",
+      "title": "Ein verbundener Ablauf, jeder Schritt nachvollziehbar"
+    },
+    "reasons": {
+      "tag": "Fünf Gründe",
+      "title": "Was sich ändert, wenn Qualität im Ablauf lebt",
+      "lead": "Wählen Sie einen Grund, um die Frage zu sehen, die wir am häufigsten hören, und was Synax dagegen tut."
+    },
+    "compare": {
+      "tag": "Marktvergleich",
+      "title": "Wie sich Synax gegenüber den üblichen Alternativen schlägt",
+      "lead": "Die meisten Unternehmen betreiben entweder ein schwerfälliges, veraltetes ERP mit Zusatzmodulen oder eine Reihe unverbundener Werkzeuge. Synax ist gezielt entwickelte Software, unterstützt von über 100 IT-Fachleuten. So gehen sie jeweils mit denselben Aufgaben um.",
+      "caption": "Synax im Vergleich zu veralteten ERP-Suiten und unverbundenen Einzelwerkzeugen",
+      "capability": "Funktion",
+      "note": "Die Spalte der Alternativen beschreibt typische Konstellationen, kein bestimmtes Produkt. Bitten Sie uns, Ihre eigenen aktuellen Werkzeuge mit Ihnen durchzugehen."
+    },
+    "pricing": {
+      "tag": "Preise",
+      "cta": "Die sechs Produkte ansehen"
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Die Fragen, die wir am häufigsten hören",
+      "lead": "Antworten aus dem Portal, in seinen eigenen Worten."
+    },
+    "heritage": {
+      "lead": "Entstanden aus der jahrzehntelangen Erfahrung der Senwell Group in der Präzisionsfertigung für die Luftfahrt, im Industrieexport und im großvolumigen Maschinenbau."
+    },
+    "cta": {
+      "title": "Sehen Sie, warum es in Ihrem eigenen Prozess funktioniert",
+      "text": "Ein kurzer Rundgang mit einem Systemingenieur der Senwell Group, mit Ihren Abläufen statt einer Standarddemo."
+    }
+  },
+  "WhyRace": {
+    "stations": {
+      "s1": "Materialeingang",
+      "s2": "Laufkarte und Maschine",
+      "s3": "Prüfung und COC",
+      "s4": "Rechnung und GST",
+      "s5": "Buchhaltung"
+    },
+    "typical": "Übliche Alternativen",
+    "synax": "Synax",
+    "title": "EIN TEIL, ZWEI WEGE",
+    "illustration": "ILLUSTRATION",
+    "aiTitle": "SYNAX AI SCHLÄGT VOR",
+    "aiText": "2 Challans haben ihr Rückgabedatum überschritten: Mahnungen entwerfen",
+    "approve": "Genehmigen",
+    "approved": "Genehmigt ✓",
+    "done": "Fertig ✓",
+    "waiting": "Wartet noch …",
+    "tallyBadge": "Tally-Brücke, IRN und E-Way-Bill",
+    "srDescription": "Illustration: dasselbe Teil durchläuft fünf Stationen. In der Spur der üblichen Alternativen bleibt es hängen bei {stalls}. In der Synax-Spur läuft es durchgängig: {pillars} und {tally}."
+  },
+  "ReasonTabs": {
+    "aria": "Fünf Gründe"
+  },
+  "Security": {
+    "hero": {
+      "tag": "Sicherheit & Vertrauen",
+      "highlightsAria": "Highlights",
+      "title": "<b>Auditbereit durch Konstruktion, </b>nicht durch Berichte",
+      "lead": "Jedes Unternehmen arbeitet in einem eigenen Arbeitsbereich, jede Buchung wird auf dem Server geprüft, und das System hält fest, wer was wann geändert hat. So funktioniert das, und das bleibt in Ihrer Verantwortung.",
+      "ticks": {
+        "signin": "Zweistufige Anmeldung",
+        "roles": "Rollenbasierter Zugriff",
+        "ai": "KI schlägt nur vor, Sie genehmigen"
+      },
+      "ringsAria": "Ein Schild in konzentrischen Ringen: ein Mandant pro Unternehmen, zweistufige Anmeldung, Prüfungen auf dem Server und eine Prüfhistorie",
+      "chips": {
+        "tenant": "Ein Mandant pro Unternehmen",
+        "signin": "Zweistufige Anmeldung",
+        "server": "Auf dem Server geprüft",
+        "audit": "Prüfhistorie"
+      },
+      "gates": "Was mit jeder Buchung geschieht"
+    },
+    "jump": {
+      "controls": "Kontrollen",
+      "process": "So funktioniert es",
+      "compliance": "Compliance",
+      "responsibility": "Verantwortung",
+      "legal": "Datenschutz & Bedingungen"
+    },
+    "controls": {
+      "title": "Sechs Kontrollen in klarer Sprache",
+      "lead": "Was jede einzelne tut und was sie für Sie bedeutet.",
+      "whatItDoes": "Was sie tut",
+      "inPractice": "In der Praxis"
+    },
+    "pillars": {
+      "tenant": {
+        "a": "Eigene Subdomain für jeden Mandanten",
+        "b": "Geschäftsbereiche können in eigenen Arbeitsbereichen getrennt gehalten werden"
+      },
+      "server": {
+        "a": "Wareneingangstoleranz und Kontrolle der offenen Bestellmenge",
+        "b": "Material, je RI-Einheit gegen die Laufkarte reserviert"
+      },
+      "audit": {
+        "a": "Ein Prüfpfad bei jeder Buchung",
+        "b": "Vier-Augen-Freigabe mit vollständiger Ereignishistorie"
+      },
+      "roles": {
+        "a": "Zweistufige Anmeldung",
+        "b": "Sensible Werte nur für die Rollen, die Sie festlegen"
+      },
+      "ai": {
+        "title": "KI schlägt vor, Sie genehmigen",
+        "summary": "Synax-Agenten schlagen nur vor. Jede Aktion wartet auf einen Genehmiger mit der passenden Rolle, und die Entscheidung wird festgehalten.",
+        "a": "Die KI kann Ihre Daten nicht eigenständig ändern",
+        "b": "Jede Freigabe wird in der Ereignishistorie festgehalten"
+      },
+      "material": {
+        "title": "Kundenmaterial bleibt bei seinem Eigentümer",
+        "summary": "Jeder Challan, jeder Material-ID-Bereich und jeder Ausschuss bleibt dem Kunden zugeordnet, dem er gehört.",
+        "a": "Kundenmaterialbestände, Rückgaben und Ausschussbelege",
+        "b": "Ein schreibgeschütztes Kundenportal"
+      }
+    },
+    "process": {
+      "title": "Was mit jeder Buchung geschieht",
+      "lead": "Vier Prüfungen liegen zwischen einer Anfrage und dem Datensatz.",
+      "role": {
+        "title": "Rollenprüfung",
+        "copy": "Menüs, Aktionen und sensible Werte folgen den Rollen, die Sie konfigurieren.",
+        "short": "Menüs, Aktionen und Werte folgen Rollen"
+      },
+      "server": {
+        "title": "Serverprüfung",
+        "short": "Auf dem Server geprüft"
+      },
+      "approval": {
+        "title": "Freigabe",
+        "copy": "Wo Ihr Prozess es verlangt, entscheidet ein Genehmiger mit der passenden Rolle.",
+        "short": "Ein Genehmiger entscheidet"
+      },
+      "audit": {
+        "short": "Wer was wann geändert hat"
+      }
+    },
+    "compliance": {
+      "title": "Unterstützt Ihre Standards. Ihr Audit bleibt Ihres.",
+      "lead": "Synax liefert Ihnen die Kontrollen und Aufzeichnungen, die diese Anforderungen verlangen. Die Zertifizierung gehört Ihrer Organisation und deren Auditor, nicht der Software."
+    },
+    "responsibility": {
+      "tag": "Geteilte Verantwortung",
+      "title": "Wer sich um was kümmert",
+      "lead": "Sicherheit funktioniert, wenn beide Seiten ihren Teil klar kennen.",
+      "oursTitle": "Synax und Senwell Group",
+      "yoursTitle": "Ihre Organisation",
+      "o1": "Die Plattform betreiben und den Mandanten jedes Unternehmens getrennt halten",
+      "o2": "Bestände, Mengen und Statusänderungen auf dem Server prüfen",
+      "o3": "Eine Prüfhistorie wesentlicher geschäftlicher Änderungen führen",
+      "o4": "Rollenbasierten Zugriff und zweistufige Anmeldung bereitstellen",
+      "y1": "Entscheiden, wer welche Rolle erhält, und Zugriffe entziehen, wenn Personen ausscheiden",
+      "y2": "Ihre Verfahren für Freigaben, Anwesenheit und Aufgabenaktualisierung festlegen",
+      "y3": "Festlegen, welche Aufzeichnungen und Prüfungen in Ihrem Prozess verbindlich sind",
+      "y4": "Eigene Zertifizierungen halten und eigene Audits bestehen"
+    },
+    "legal": {
+      "title": "Betrieben von der Senwell Group Private Limited",
+      "lead": "Die Datenschutzerklärung erklärt, wie personenbezogene Daten in Synax nach dem DPDP Act 2023 erhoben, genutzt und geschützt werden. Die Bedingungen regeln die Nutzung der Plattform.",
+      "source": "Die Aussagen auf dieser Seite folgen dem Live-Portal unter <link>synax.senwellgroup.com</link>."
+    },
+    "cta": {
+      "title": "Bringen Sie Ihren Sicherheitsfragebogen mit",
+      "text": "Buchen Sie eine Sicherheits- und Vertrauensprüfung mit einem Systemingenieur der Senwell Group und bringen Sie Ihre Fragen mit. Wir gehen sie gemeinsam mit Ihnen durch."
+    }
+  },
+  "ProductModules": {
+    "precision": {
+      "kicker": "Präzision & Lohnfertigung",
+      "subtitle": "Verfolgen Sie jeden Auftrag vom Eingang des Kundenmaterials bis zum Versand",
+      "g1": {
+        "title": "Laufkarten & Produktion",
+        "desc": "Geben Sie die Produktion aus Kundenaufträgen frei und bestätigen Sie jeden Arbeitsgang gegen seine Laufkarte.",
+        "i1": "Kundenbestellpositionen & Revisionen",
+        "i2": "Stückliste und Arbeitsplan",
+        "i3": "Auftragsstart per Laufkarte oder Barcode",
+        "i4": "Maschinenzählungen, Alarme & Stillstände",
+        "i5": "Vom Bediener bestätigte Zählabweichungen"
+      },
+      "g2": {
+        "title": "Kundenmaterial & Lager",
+        "desc": "Halten Sie Kundenbestand getrennt und nachverfolgbar, vom Eingangs-Challan bis zu Verbrauch, Rückgabe oder Ausschuss.",
+        "i1": "Eingangs-Challans & Material-ID-Bereiche",
+        "i2": "Kundenmaterialbestände",
+        "i3": "An die Produktion ausgegebenes Material",
+        "i4": "Rückgaben & Ausschussaufzeichnungen",
+        "i5": "Einkauf, Wareneingang & Bestandsbuch"
+      },
+      "g3": {
+        "title": "Prüfung & Versand",
+        "desc": "Führen Sie die Bearbeitungs- und Prüfhistorie durch Zertifizierung, Verpackung und Fakturierung weiter.",
+        "i1": "Wareneingangs- & Endprüfung",
+        "i2": "Stufenfreigaben & FAIR-Register",
+        "i3": "Konformitätszertifikat",
+        "i4": "Verpackung & Lieferscheine",
+        "i5": "GST-Rechnung, E-Way-Bill & Tally-Brücke"
+      }
+    },
+    "aerospace": {
+      "kicker": "Luft- und Raumfahrt & Verteidigung",
+      "subtitle": "AS9100D-Qualitätsprüfpunkte, Rückverfolgbarkeit und Compliance-Abläufe",
+      "g1": {
+        "title": "Planung & Ausführung",
+        "desc": "Planen Sie Aufträge und führen Sie die Produktion mit Live-Abstimmung von Bedienern und Maschinen aus.",
+        "i1": "Maschinenbelegungsplan",
+        "i2": "Bedienerpanel & Anmeldung",
+        "i3": "Auftragsplanungskalender",
+        "i4": "Auftragsplanliste",
+        "i5": "Ausführungsberichte"
+      },
+      "g2": {
+        "title": "Material & Beschaffung",
+        "desc": "Steuern Sie den Materialfluss vom Eingang bis zur Entnahme mit nachvollziehbarer Beschaffung.",
+        "i1": "Prüfung des Materialeingangs",
+        "i2": "Materialhistorie",
+        "i3": "Lagerentnahme-Verwaltung",
+        "i4": "Lieferantenbestellung & interne Bestellung",
+        "i5": "Stückliste"
+      },
+      "g3": {
+        "title": "Qualität & Compliance",
+        "desc": "Strukturierte Qualitätsabläufe für Audits, Rückverfolgbarkeit und Korrekturmaßnahmen.",
+        "i1": "NCR / CAPA",
+        "i2": "FAIR-Manager",
+        "i3": "Kalibrier-Dashboard",
+        "i4": "Genealogie-Rückverfolgung",
+        "i5": "Versandfreigabe-Kontrollen"
+      }
+    },
+    "hrms": {
+      "kicker": "HRMS",
+      "subtitle": "Mitarbeiterprozesse und Personalverwaltung, eigenständig oder integriert",
+      "g1": {
+        "title": "Mitarbeiter-Lebenszyklus",
+        "desc": "Von der Einstellung bis zum Offboarding, ein Datensatz pro Person.",
+        "i1": "Mitarbeiterdaten",
+        "i2": "Recruiting und Interviews",
+        "i3": "Offboarding",
+        "i4": "Mitarbeiter-Self-Service"
+      },
+      "g2": {
+        "title": "Anwesenheit & Lohnabrechnung",
+        "desc": "Anwesenheit, Urlaub und Lohnabrechnung in einem Ablauf, mit Freigaben.",
+        "i1": "Anwesenheit, Urlaub & Homeoffice",
+        "i2": "Freigabe von Anwesenheit & Überstunden",
+        "i3": "Synchronisation biometrischer Geräte",
+        "i4": "Lohnabrechnung mit Freigaben",
+        "i5": "Verwaltung von Pausenscheinen"
+      },
+      "g3": {
+        "title": "Arbeit & Leistung",
+        "desc": "Planen Sie die Tagesarbeit und sehen Sie, wie die Teams abschneiden.",
+        "i1": "Tägliches Arbeitsmanagement (DWM)",
+        "i2": "Abteilungskennzahlen",
+        "i3": "Leistungsmanagement",
+        "i4": "Budgetplaner"
+      }
+    },
+    "staffing": {
+      "kicker": "Personalvermittlung",
+      "subtitle": "Von der Kundenanforderung bis zur Person vor Ort",
+      "g1": {
+        "title": "Anforderungen & Kandidaten",
+        "desc": "Erfassen Sie, was der Kunde braucht und wer es erfüllen kann.",
+        "i1": "Kundenanforderungen",
+        "i2": "Kandidatenverwaltung",
+        "i3": "Interviews"
+      },
+      "g2": {
+        "title": "Angebote & Onboarding",
+        "desc": "Führen Sie einen ausgewählten Kandidaten bis zum ersten Tag.",
+        "i1": "Angebote",
+        "i2": "Onboarding",
+        "i3": "Freigaben"
+      },
+      "g3": {
+        "title": "Einsätze & Leistung",
+        "desc": "Behalten Sie im Blick, wer wo ist und wie es läuft.",
+        "i1": "Einsätze",
+        "i2": "Ressourcenleistung",
+        "i3": "Ersatz",
+        "i4": "Zeiterfassung & Projektabrechnung"
+      }
+    },
+    "it": {
+      "kicker": "Arbeit & Lieferung",
+      "subtitle": "Von der Tagesarbeit bis zur Rechnung, mit Team und Support drumherum",
+      "g1": {
+        "title": "Arbeit & Projekte",
+        "desc": "Planen Sie Arbeit, verfolgen Sie Aktivitäten und halten Sie die Lieferung sichtbar.",
+        "i1": "Arbeitsverfolgung",
+        "i2": "Projektliste & Projekt hinzufügen",
+        "i3": "Tägliche Meetings",
+        "i4": "Aktivitätsverfolgung",
+        "i5": "PM-/PC-Dashboards"
+      },
+      "g2": {
+        "title": "Zeit & Abrechnung",
+        "desc": "Verwandeln Sie Stunden und Kosten in Abrechnung und einen Blick auf die Rentabilität.",
+        "i1": "Zeiterfassung & Arbeitsprotokolle",
+        "i2": "Entwicklungskosten",
+        "i3": "Projektabrechnungsverfolgung",
+        "i4": "Budgetplaner"
+      },
+      "g3": {
+        "title": "Teams & Support",
+        "desc": "Zusammenarbeit, Support und Abteilungsleistung an einem Ort.",
+        "i1": "Team-Chat & Videoanrufe",
+        "i2": "Öffentliche Meetings",
+        "i3": "Support-Tickets",
+        "i4": "Besucherverwaltung des Unternehmens",
+        "i5": "Abteilungsleistung"
+      }
+    },
+    "shopfloor": {
+      "kicker": "Fertigung",
+      "subtitle": "Vom Plan bis in die Fertigung, mit den eigenen Zählungen der Maschine",
+      "g1": {
+        "title": "Maschinenplanung",
+        "desc": "Planen Sie die Maschinenauslastung und geben Sie jeden Auftrag für die richtige Maschine frei.",
+        "i1": "Maschinenplanung & Auslastungsdiagramme",
+        "i2": "Stückliste und Arbeitsplan",
+        "i3": "Laufkarte, gegen die Stückliste freigegeben",
+        "i4": "Aufträge per Laufkartennummer oder Barcode-Scan starten"
+      },
+      "g2": {
+        "title": "Bediener-Auftragskarten",
+        "desc": "Geben Sie den Bedienern den Auftrag vor die Nase und erfassen Sie, was tatsächlich geschehen ist.",
+        "i1": "Bediener-Auftragskarten",
+        "i2": "Zykluszählungen werden vorgeschlagen, der Bediener bestätigt mit Abweichungsgrund",
+        "i3": "Maschinen ohne Verbindung funktionieren trotzdem: Bediener bestätigen Zählungen am Fertigungsbildschirm",
+        "i4": "Produktionsverfolgung"
+      },
+      "g3": {
+        "title": "Live-Maschinenüberwachung",
+        "desc": "Sehen Sie, was jede Maschine gerade tut und was sie getan hat.",
+        "i1": "Live-Maschinentafel mit Alarmen und Stillstandsgründen",
+        "i2": "CNC-Maschinen über die OEM-Verbindung oder offenes FOCAS",
+        "i3": "OEE je Auftrag und der Bearbeitungsnachweis auf dem COC",
+        "i4": "Maschinenauslastung"
+      }
+    },
+    "ai": {
+      "kicker": "KI & BI",
+      "subtitle": "Stellen Sie eine Frage und erhalten Sie eine Antwort aus Ihren eigenen Daten",
+      "g1": {
+        "title": "KI-Unterstützung",
+        "desc": "Fragen Sie in einfacher Sprache und erhalten Sie Antworten aus Live-Datensätzen.",
+        "i1": "Fragen Sie Synax alles zu Ihren ERP-Daten",
+        "i2": "Challan-Abgleich und Erinnerungen bei Überfälligkeit",
+        "i3": "Versandbereitschaft und Forderungsnachverfolgung",
+        "i4": "Qualitäts-Compliance und Fertigungsüberwachung"
+      },
+      "g2": {
+        "title": "Kontrolle mit Freigabe zuerst",
+        "desc": "Agenten schlagen vor. Eine Person mit der richtigen Rolle entscheidet.",
+        "i1": "Agenten schlagen nur vor; die KI kann Ihre Daten nicht selbstständig ändern",
+        "i2": "Jede Aktion wartet auf einen Freigeber mit der richtigen Rolle",
+        "i3": "Vier-Augen-Freigabe (Maker-Checker)",
+        "i4": "Die Entscheidung wird in einem vollständigen Ereignisverlauf festgehalten"
+      },
+      "g3": {
+        "title": "Analysen & Berichte",
+        "desc": "Dashboards und Berichte über die Abläufe, die Sie bereits betreiben.",
+        "i1": "Business-Dashboards",
+        "i2": "Betriebsanalysen",
+        "i3": "Berichte über alle Geschäftsabläufe",
+        "i4": "Leistungseinblicke"
+      }
+    }
+  },
+  "SolutionPage": {
+    "jump": {
+      "challenge": "Die Herausforderung",
+      "answer": "Wie Synax es löst",
+      "modules": "Module",
+      "products": "Produkte",
+      "proof": "Belege",
+      "faq": "FAQ",
+      "industries": "Weitere Branchen"
+    },
+    "stats": {
+      "flowSteps": "Ablaufschritte",
+      "moduleGroups": "Modulgruppen",
+      "modules": "Module",
+      "products": "Produkte"
+    },
+    "challenges": {
+      "tag": "Die Herausforderung",
+      "title": "Was heute im Weg steht",
+      "lead": "Die Probleme, die wir bei dieser Art von Unternehmen am häufigsten hören.",
+      "note": "Jeder dieser Punkte ist ein Datensatz, der nachträglich erstellt wird. Synax erstellt ihn, während die Arbeit geschieht."
+    },
+    "flow": {
+      "tag": "Wie Synax es löst",
+      "chipsAria": "{title}: Module"
+    },
+    "modules": {
+      "title": "Die Module dahinter",
+      "count": "{n} Module"
+    },
+    "products": {
+      "tag": "Geliefert von",
+      "title": "Die Produkte hinter dieser Lösung",
+      "lead": "Beginnen Sie mit dem ersten und ergänzen Sie die anderen, wenn Sie so weit sind.",
+      "start": "Hier starten",
+      "explore": "Entdecken"
+    },
+    "proof": {
+      "tag": "Läuft auf Synax",
+      "title": "Entwickelt von einer Gruppe, die Industriebetriebe führt",
+      "lead": "Diese Unternehmen der Senwell Group laufen auf Synax."
+    },
+    "faq": {
+      "tag": "FAQ",
+      "title": "Fragen, die wir am häufigsten hören"
+    },
+    "industries": {
+      "tag": "Entdecken",
+      "title": "Weitere Branchen"
+    },
+    "cta": {
+      "tag": "Loslegen",
+      "title": "Erleben Sie Synax an Ihrem eigenen Prozess",
+      "text": "Eine kurze Vorführung mit einem Systemingenieur der Senwell Group, anhand Ihrer eigenen Teile, Mitarbeiter und Prozesse.",
+      "demo": "Demo vereinbaren"
+    },
+    "hero": {
+      "crumbHome": "Synax",
+      "crumbSolutions": "Lösungen",
+      "gatesAria": "Qualitätsprüfpunkte",
+      "flowAria": "Der Ablauf",
+      "stepsLine": "Schritte, {title}",
+      "sample": "Beispieldaten zur Veranschaulichung",
+      "inProgress": "In Bearbeitung",
+      "glanceAria": "Auf einen Blick",
+      "builtFor": "Gemacht für",
+      "deliveredBy": "Geliefert von",
+      "countsAria": "Kennzahlen"
+    }
+  },
+  "ProductShared": {
+    "breadcrumbProducts": "Produkte",
+    "startPath": {
+      "tag": "Wo Sie anfangen",
+      "title": "Beginnen Sie mit dem, was am meisten schmerzt",
+      "lead": "Schalten Sie die ersten Module ein und ergänzen Sie die übrigen, wenn Sie so weit sind.",
+      "whatHurts": "Was schmerzt",
+      "startWith": "Beginnen mit",
+      "thenAdd": "Dann ergänzen"
+    },
+    "rollout": {
+      "tag": "Inbetriebnahme",
+      "title": "Schrittweise, Modul für Modul",
+      "lead": "Der Einführungsleitfaden des Portals. Beginnen Sie mit dem Team mit der größten Wirkung und erweitern Sie dann in geplanten Wellen. Die Zeitpläne richten sich nach Größe, Komplexität und Anforderungen Ihrer Organisation.",
+      "p1": {
+        "week": "Phase 1",
+        "title": "Analyse & Bestandsaufnahme",
+        "a": "Abteilungen, Prozessverantwortliche und aktuelle Werkzeuge erfassen",
+        "b": "Die unverzichtbaren Abläufe für den Start am ersten Tag festlegen",
+        "c": "Rollenmatrix und Zugriffsgrenzen abschließen"
+      },
+      "p2": {
+        "week": "Phase 2",
+        "title": "Konfiguration & Datenaufbau",
+        "a": "Module nach Bereich konfigurieren: IT, Personal, Finanzen, Fertigung",
+        "b": "Stammdaten importieren: Mitarbeiter, Projekte, Kunden, Lieferanten, Bestände",
+        "c": "Freigabeketten und Benachrichtigungsregeln festlegen"
+      },
+      "p3": {
+        "week": "Phase 3",
+        "title": "Pilotstart",
+        "a": "Einen kontrollierten Pilotbetrieb mit einem Team oder einer Fertigungszelle durchführen",
+        "b": "Hindernisse täglich verfolgen und vorrangige Prozesslücken schließen",
+        "c": "Führungskräfte und Prozessverantwortliche an echten Abläufen schulen"
+      },
+      "p4": {
+        "week": "Phase 4",
+        "title": "Vollständige Einführung & Optimierung",
+        "a": "Auf alle Zielteams in gestaffelten Onboarding-Wellen ausweiten",
+        "b": "Akzeptanzkennzahlen und Compliance-Werte wöchentlich überwachen",
+        "c": "Wiederkehrende Freigaben und Berichte nach der Stabilisierung automatisieren"
+      }
+    },
+    "worksWith": {
+      "tag": "Ein Arbeitsbereich",
+      "title": "Funktioniert mit dem Rest von Synax",
+      "lead": "Alle Produkte teilen dieselben Personen, Datensätze und Freigaben."
+    },
+    "faq": {
+      "tag": "Fragen",
+      "title": "Über {name}",
+      "lead": "Antworten aus dem Portal und einige, die für dieses Produkt geschrieben wurden."
+    },
+    "cta": {
+      "title": "Erleben Sie {name} mit Ihren Daten",
+      "text": "Eine kurze Vorführung mit einem Systemingenieur der Senwell Group, konzentriert auf die Module, die für Sie wichtig sind."
+    }
+  },
+  "ProductPage": {
+    "precision": {
+      "eyebrow": "ERP für Präzision & Lohnfertigung",
+      "subtitle": "Von der Maschine bis zur GST-Rechnung",
+      "lead": "Entwickelt für Präzisions- und Lohnfertigungsbetriebe. Kundenaufträge und Challans für beigestelltes Material werden mit Laufkarten, maschinenbestätigter Produktion, Prüfung, Versand und Fakturierung verbunden, sodass jedes Teil einen durchgängig nachvollziehbaren Datensatz trägt.",
+      "second": "Überblick 2 ansehen",
+      "imgAlt": "CNC-Maschinen und Werkbänke in einer Zerspanungswerkstatt",
+      "badge": "Zählung von der Maschine",
+      "passportCard": "Bauteilpass",
+      "passportCardSub": "Material-ID · Laufkarte · COC",
+      "passportHead": "Bauteilpass: ein Teil, ein Datensatz",
+      "passportTrace": "Rückverfolgt bis zu Bestellung, Materialcharge, Maschine und Bediener",
+      "passport": {
+        "p1": {
+          "title": "Kundenbestellposition",
+          "note": "Angebot und Revision"
+        },
+        "p2": {
+          "title": "Materialcharge",
+          "note": "Material-ID-Bereich"
+        },
+        "p3": {
+          "title": "Laufkarte",
+          "note": "Gegen die Stückliste freigegeben"
+        },
+        "p4": {
+          "title": "Maschine und Bediener",
+          "note": "Zykluszählung, Freigabe"
+        },
+        "p5": {
+          "title": "COC",
+          "note": "Trägt den Bearbeitungsnachweis"
+        },
+        "p6": {
+          "title": "Rechnung",
+          "note": "IRN und E-Way-Bill"
+        }
+      },
+      "chain": {
+        "tag": "Von der Maschine zur Rechnung",
+        "title": "Jedes Dokument übernimmt das vorherige",
+        "lead": "Jedes Teil lässt sich bis zu Bestellung, Materialcharge, Maschine und Bediener zurückverfolgen.",
+        "s1": {
+          "title": "Anfrage und Kundenbestellung",
+          "copy": "Bepreisen Sie jede Position, behalten Sie jede Revision und beobachten Sie die offene Menge der Bestellung, damit Sie stets wissen, was noch zu liefern ist."
+        },
+        "s2": {
+          "title": "Werkseingang und Wareneingangsschein",
+          "copy": "Material trifft gegen eine Bestellung oder einen Kunden-Challan ein. Die Annahmetoleranz wird geprüft und die Prüfung festgehalten. Kundenmaterial wird mit seinem Material-ID-Bereich und der Bestellpositionsreferenz eingebucht."
+        },
+        "s3": {
+          "title": "Laufkarte",
+          "copy": "Die Laufkarte wird gegen Stückliste und Arbeitsplan freigegeben. Material wird je RI-Einheit reserviert, sodass derselbe Bestand nicht zwei Aufträgen zugesagt wird."
+        },
+        "s4": {
+          "title": "Maschinenbestätigte Arbeitsgänge",
+          "copy": "Starten Sie einen Auftrag per Laufkartennummer oder Barcode-Scan. Die Zykluszählungen der Maschine werden vorgeschlagen, der Bediener bestätigt sie mit einem Abweichungsgrund, und Freigaben werden je Stufe festgehalten."
+        },
+        "s5": {
+          "title": "Prüfung und COC",
+          "copy": "Wareneingangs- und Endprüfung, das FAIR-Register und ein Konformitätszertifikat, das den Bearbeitungsnachweis einschließlich OEE je Auftrag enthält."
+        },
+        "s6": {
+          "title": "Rechnung und Versand",
+          "copy": "Verpackung, GST-Rechnung, IRN und E-Way-Bill liegen in einem Ablauf. Buchungsbelege gehen an Tally."
+        }
+      },
+      "material": {
+        "tag": "Für Lohnfertigung gemacht",
+        "title": "Das Material Ihres Kunden, bis zum letzten Stück erfasst",
+        "lead": "Kundenbeigestelltes Material ist ein vollwertiger Datensatz und keine Tabelle nebenher. Jeder Challan, jeder Material-ID-Bereich und jeder Ausschuss bleibt dem Kunden zugeordnet, dem er gehört.",
+        "step": "Schritt {n}",
+        "l1": {
+          "title": "Eingangs-Challan",
+          "copy": "Material-ID-Bereiche und Bestellpositionsreferenzen."
+        },
+        "l2": {
+          "title": "An die Produktion ausgegeben",
+          "copy": "Reserviert und gegen die Laufkarte ausgegeben."
+        },
+        "l3": {
+          "title": "1:1 verbraucht",
+          "copy": "Rohmaterial, das für jedes fakturierte Teil verbraucht wird."
+        },
+        "l4": {
+          "title": "Zurückgegeben",
+          "copy": "Rücklieferungen mit ihren Belegen."
+        },
+        "l5": {
+          "title": "Ausschuss",
+          "copy": "Ausschussbelege, dem Kunden zugeordnet."
+        },
+        "n1": {
+          "title": "Kundenmaterialbestand",
+          "copy": "Ein laufender Bestand je Kunde, mit Rücklieferungen und Ausschussbelegen."
+        },
+        "n2": {
+          "title": "ITC-04-Datenpaket",
+          "copy": "Kundenmaterialbestände, Rückgaben und Ausschussbelege speisen das ITC-04-Datenpaket."
+        },
+        "n3": {
+          "title": "Kundenportal mit Lesezugriff",
+          "copy": "Ihr Kunde sieht sein eigenes Material, ohne es ändern zu können."
+        }
+      },
+      "accounts": {
+        "tag": "Buchhaltung und GST",
+        "title": "GST-Rechnungen mit IRN. Die Buchhaltung bleibt in Tally.",
+        "lead": "Steuern Sie Einkauf, Lager, Produktion und Versand in Synax. GST-Rechnungen, IRN und E-Way-Bills kommen aus demselben Ablauf, und die Belege gehen an Tally, sodass Ihr Buchhalter nichts umstellen muss.",
+        "inSynax": {
+          "title": "In Synax",
+          "copy": "Einkauf, Lager, Produktion, Qualität, Versand und die GST-Rechnung."
+        },
+        "inTally": {
+          "title": "In Tally",
+          "copy": "Ihre Bücher und Belege, so wie heute. Die Tally-Brücke überträgt die Belege."
+        },
+        "einv": {
+          "title": "E-Rechnung und E-Way-Bill",
+          "copy": "Verbinden Sie Ihren GST-Suvidha-Anbieter (ClearTax oder Masters India). Die IRN wird erzeugt, sobald eine Rechnung freigegeben wird."
+        },
+        "aerospace": "Arbeiten Sie mit Kunden aus Luft- und Raumfahrt oder Verteidigung? Sehen Sie sich die <link>Seite Luft- und Raumfahrt & Verteidigung</link> an."
+      },
+      "related": {
+        "shopfloor": "Live-Maschinen, Auftragskarten und Stillstände.",
+        "ai": "Challan-Erinnerungen, Versandbereitschaft und Freigaben.",
+        "hrms": "Werksanwesenheit, Überstunden und Lohnabrechnung.",
+        "aerospace": "AS9100D-Kontrollen, FAIR und Zertifikate."
+      }
+    },
+    "hrms": {
+      "eyebrow": "Mitarbeiter-Lebenszyklus, Anwesenheit & Lohnabrechnung",
+      "subtitle": "Mitarbeiterprozesse und Personalverwaltung",
+      "lead": "Führen Sie Mitarbeiterdaten, Anwesenheit, Urlaub und Homeoffice sowie die Lohnabrechnung mit Freigaben im selben Arbeitsbereich wie den Betrieb. Anwesenheitsdaten und Überstundenfreigaben werden von biometrischen Geräten synchronisiert.",
+      "imgAlt": "Ein Team sitzt mit Laptops um einen langen Besprechungstisch",
+      "monthTitle": "Ein Monat Anwesenheit",
+      "sample": "Beispieldaten",
+      "days": {
+        "d1": "Mo",
+        "d2": "Di",
+        "d3": "Mi",
+        "d4": "Do",
+        "d5": "Fr",
+        "d6": "Sa",
+        "d7": "So"
+      },
+      "monthAria": "Beispielmonat Anwesenheit: Tage mit Anwesenheit, Urlaub, Homeoffice und Überstunden",
+      "legendAria": "Legende",
+      "legend": {
+        "p": "Anwesend",
+        "l": "Urlaub",
+        "w": "Homeoffice",
+        "o": "Überstunden"
+      },
+      "pill": {
+        "a": "Biometrie-Sync",
+        "b": "Überstundenfreigabe",
+        "c": "Lohnabrechnung mit Freigabe"
+      },
+      "lifecycle": {
+        "tag": "Mitarbeiter-Lebenszyklus",
+        "title": "Ein Datensatz pro Person, von der Einstellung bis zum Austritt",
+        "lead": "Jede Phase liest aus demselben Mitarbeiterdatensatz, sodass nichts doppelt eingegeben wird.",
+        "stage": "Phase {n}",
+        "s1": {
+          "title": "Einstellen",
+          "copy": "Recruiting und Interviews laufen am selben Ort, und der gewählte Kandidat geht direkt in einen Mitarbeiterdatensatz über."
+        },
+        "s2": {
+          "title": "Einarbeiten",
+          "copy": "Ein Datensatz pro Person ab dem ersten Tag, mit Self-Service, damit Mitarbeiter ihre eigenen Angaben sehen und aktualisieren können."
+        },
+        "s3": {
+          "title": "Anwesenheit",
+          "copy": "Anwesenheit, Urlaub und Homeoffice in einem Ablauf. Biometrische Geräte synchronisieren die Daten, und Pausenscheine werden nebenbei verwaltet."
+        },
+        "s4": {
+          "title": "Freigeben",
+          "copy": "Anwesenheit und Überstunden werden freigegeben, bevor sie die Lohnabrechnung erreichen, sodass diese mit geprüften Daten beginnt."
+        },
+        "s5": {
+          "title": "Bezahlen",
+          "copy": "Die Lohnabrechnung läuft mit Freigaben, im selben Arbeitsbereich wie Anwesenheit und Betrieb, mit Prüfpfad bei jeder Buchung."
+        },
+        "s6": {
+          "title": "Entwickeln und Austritt",
+          "copy": "Abteilungskennzahlen und Leistungsmanagement zeigen, wie die Teams abschneiden, und das Offboarding schließt den Datensatz der Person ab."
+        }
+      },
+      "month": {
+        "tag": "Jeden Monat",
+        "title": "So sieht ein Abrechnungsmonat in Synax aus",
+        "lead": "Anwesenheit, Urlaub und Überstunden werden zuerst freigegeben, sodass die Lohnabrechnung mit geprüften Daten beginnt.",
+        "step": "Schritt {n}",
+        "m1": "Biometrie-Daten werden synchronisiert",
+        "m2": "Urlaub und Homeoffice freigegeben",
+        "m3": "Überstunden freigegeben",
+        "m4": "Lohnabrechnung mit Freigabe",
+        "m5": "Abteilungskennzahlen geprüft"
+      },
+      "plantOffice": {
+        "tag": "Eigenständig oder integriert",
+        "title": "Allein nutzen oder zusammen mit dem Betrieb",
+        "lead": "HRMS läuft eigenständig oder im selben Arbeitsbereich wie Manufacturing ERP und Work & Delivery, sodass Personaldaten auf Produktion und Projekte treffen.",
+        "plantTitle": "In der Fertigung",
+        "plantCopy": "Biometrische Anwesenheit, Überstundenfreigabe und Verwaltung von Pausenscheinen für Werkspersonal.",
+        "plantLink": "Siehe die <link>Seite Werkspersonal</link>",
+        "officeTitle": "Im Büro",
+        "officeCopy": "Tägliches Arbeitsmanagement, Budgetplaner und Abteilungsleistung für Teams.",
+        "officeNote": "Abteilungskennzahlen und Leistungsmanagement"
+      },
+      "related": {
+        "precision": "Werksanwesenheit trifft auf Produktion.",
+        "it": "Projekte, Zeiterfassung und Abrechnung.",
+        "staffing": "Kandidaten, Angebote und Einsätze.",
+        "plant": "Die Lösungsseite für Werke."
+      },
+      "faq": {
+        "q1": "Lässt sich die Anwesenheit mit biometrischen Geräten verbinden?",
+        "a1": "Ja. Anwesenheitsdaten und Überstundenfreigaben werden von biometrischen Geräten synchronisiert.",
+        "q2": "Wird die Lohnabrechnung freigegeben, bevor sie gebucht wird?",
+        "a2": "Die Lohnabrechnung läuft mit Freigaben, und bei jeder Buchung wird ein Prüfpfad geführt."
+      }
+    },
+    "staffing": {
+      "eyebrow": "Kandidaten, Interviews & Einsätze",
+      "subtitle": "Kundenbedarf an Personal finden, einsetzen und verwalten",
+      "lead": "Verwalten Sie Kundenanforderungen und Kandidaten, führen Sie Interviews, Angebote und Onboarding durch und verfolgen Sie Einsätze, Ersatz und Ressourcenleistung, mit Freigaben unterwegs.",
+      "matchAria": "Eine Anforderung, Kandidaten zugeordnet",
+      "imgAlt": "Eine Interviewerin macht sich Notizen, während ihr ein Kandidat gegenübersitzt",
+      "orbit": {
+        "requirement": "Anforderung",
+        "interviews": "Interviews",
+        "offer": "Angebot",
+        "deployment": "Einsatz"
+      },
+      "candidate": "Kandidat {letter}",
+      "stageName": {
+        "interview": "Interview",
+        "offer": "Angebot",
+        "deployed": "Im Einsatz"
+      },
+      "illustration": "Illustration: Beispielkandidaten.",
+      "pipeline": {
+        "tag": "Recruiting-Pipeline",
+        "title": "Von der Kundenanforderung bis zur Person vor Ort",
+        "lead": "Jeder Kandidat bleibt mit der Anforderung verknüpft, die er erfüllt.",
+        "s1": {
+          "title": "Kundenanforderung",
+          "copy": "Erfassen Sie, was der Kunde braucht: die Rolle, die Fähigkeiten und die Anzahl der Personen."
+        },
+        "s2": {
+          "title": "Kandidaten",
+          "copy": "Verwalten Sie die Personen, die es erfüllen können, wobei jeder Kandidat mit seiner Anforderung verknüpft ist."
+        },
+        "s3": {
+          "title": "Interviews",
+          "copy": "Planen Sie Interviewrunden und halten Sie das Feedback beim Kandidaten und bei der Anforderung fest."
+        },
+        "s4": {
+          "title": "Angebot",
+          "copy": "Bereiten Sie das Angebot vor und lassen Sie es freigeben, bevor es hinausgeht."
+        },
+        "s5": {
+          "title": "Onboarding",
+          "copy": "Führen Sie den gewählten Kandidaten vom angenommenen Angebot bis zum ersten Tag."
+        },
+        "s6": {
+          "title": "Einsatz",
+          "copy": "Setzen Sie die Person beim Kunden ein und sehen Sie, wer wo ist."
+        }
+      },
+      "after": {
+        "tag": "Nach dem ersten Tag",
+        "title": "Den Einsatz gesund halten",
+        "lead": "Eine Person einzusetzen ist erst der Anfang. Diese Module decken ab, was danach geschieht.",
+        "a1": {
+          "title": "Ressourcenleistung",
+          "copy": "Sehen Sie, wie jede eingesetzte Person im Vergleich zu den Erwartungen des Kunden abschneidet."
+        },
+        "a2": {
+          "title": "Ersatz",
+          "copy": "Ersetzen Sie eine Ressource und behalten Sie die Historie der Anforderung, statt von vorn zu beginnen."
+        },
+        "a3": {
+          "title": "Zeiterfassung und Projektabrechnung",
+          "copy": "Erfassen Sie die geleisteten Stunden und stellen Sie sie dem Kunden in Rechnung."
+        }
+      },
+      "sides": {
+        "tag": "Zwei Seiten, ein Datensatz",
+        "title": "Nichts bewegt sich ohne die richtige Freigabe",
+        "lead": "Angebote, Onboarding und Einsätze durchlaufen Freigaben, und die Historie bleibt beim Datensatz.",
+        "customerTitle": "Kundenseite",
+        "customerCopy": "Die Anforderung, das Interview-Feedback und der Einsatzstatus an einem Ort.",
+        "candidateTitle": "Kandidatenseite",
+        "candidateCopy": "Das Profil, die Interviews, das Angebot und die Onboarding-Schritte."
+      },
+      "related": {
+        "hrms": "Mitarbeiterdaten, Anwesenheit und Lohnabrechnung.",
+        "it": "Zeiterfassung, Projekte und Abrechnung.",
+        "ai": "Dashboards, Berichte und Freigaben.",
+        "precision": "Derselbe Arbeitsbereich für die Fertigung."
+      },
+      "faq": {
+        "q1": "Ist Personalvermittlung ein separates System?",
+        "a1": "Nein. Es läuft im selben Arbeitsbereich wie HRMS und Work & Delivery, sodass Personen, Projekte und Freigaben gemeinsam genutzt werden.",
+        "q2": "Werden Zeiterfassungen dem Kunden in Rechnung gestellt?",
+        "a2": "Zeiterfassung und Projektabrechnung sind Teil von Staffing & Resource Management."
+      }
+    },
+    "it": {
+      "eyebrow": "Lieferung, Menschen und Abrechnung",
+      "subtitle": "Arbeit planen, Stunden erfassen, Geliefertes abrechnen",
+      "lead": "Verfolgen Sie die Tagesarbeit, steuern Sie Projekte anhand von Kundenanforderungen und SOWs, erfassen Sie Zeiten und Kosten und rechnen Sie mit klarem Blick auf die Rentabilität ab. Personen, Anwesenheit und Freigaben werden mit dem Rest von Synax geteilt und nicht erneut eingegeben.",
+      "imgAlt": "Ein Team betrachtet ein Aufgabenboard an einem Whiteboard",
+      "badge": "Von Stunden zur Abrechnung",
+      "cardsAria": "Von einer Aufgabe zu einer Rechnungsposition",
+      "card": {
+        "c1": {
+          "t": "Arbeitsverfolgung",
+          "n": "Aufgabe, Verantwortlicher, Fortschritt"
+        },
+        "c2": {
+          "t": "Zeiterfassung",
+          "n": "Stunden auf das Projekt gebucht"
+        },
+        "c3": {
+          "t": "Abrechnungsverfolgung",
+          "n": "Rechnungsposition und Rentabilität"
+        }
+      },
+      "lanes": {
+        "tag": "Vom Tag zur Rechnung",
+        "title": "Ein Weg von der Aufgabe zur Rechnung",
+        "lead": "Arbeit, Stunden und Abrechnung liegen im selben Arbeitsbereich, sodass die Zahl auf der Rechnung auf die dahinterliegende Arbeit zurückgeht.",
+        "l1": {
+          "title": "Die Tagesarbeit",
+          "copy": "Aufgaben, Verantwortliche, Fortschritt und Hindernisse bleiben in einer Verfolgung, sodass niemand nachfragen muss, was gerade passiert.",
+          "i1": {
+            "name": "Arbeitsverfolgung",
+            "note": "Aufgaben, Verantwortliche, Fortschritt und Hindernisse"
+          },
+          "i2": {
+            "name": "Tägliche Meetings",
+            "note": "Der tägliche Abgleich, beim Arbeitsstand festgehalten"
+          },
+          "i3": {
+            "name": "Aktivitätsverfolgung",
+            "note": "Was getan wurde und wann"
+          }
+        },
+        "l2": {
+          "title": "Projekte",
+          "copy": "Steuern Sie die Lieferung anhand dessen, was der Kunde verlangt hat: seine Anforderungen und das SOW hinter jedem Projekt.",
+          "i1": {
+            "name": "Projektliste und Projekt hinzufügen",
+            "note": "Projekte anlegen und alle sehen"
+          },
+          "i2": {
+            "name": "Kundenanforderungen und SOWs",
+            "note": "Was vereinbart wurde, neben der Arbeit"
+          },
+          "i3": {
+            "name": "PM- und PC-Dashboards",
+            "note": "Status für Projektleiter und Koordinatoren"
+          }
+        },
+        "l3": {
+          "title": "Von Stunden zur Abrechnung",
+          "copy": "Machen Sie aus Zeit und Kosten eine Rechnung, mit Blick auf die Rentabilität, solange das Projekt noch läuft.",
+          "i1": {
+            "name": "Zeiterfassung und Arbeitsprotokolle",
+            "note": "Auf das Projekt gebuchte Stunden"
+          },
+          "i2": {
+            "name": "Entwicklungskosten",
+            "note": "Was die Lieferung kostet"
+          },
+          "i3": {
+            "name": "Projektabrechnungsverfolgung",
+            "note": "Was abgerechnet ist und was aussteht"
+          },
+          "i4": {
+            "name": "Budgetplaner",
+            "note": "Gegen das Budget planen"
+          }
+        }
+      },
+      "roles": {
+        "tag": "Wer es nutzt",
+        "title": "Für jede Rolle ein anderer Startbildschirm",
+        "lead": "Alle arbeiten mit denselben Datensätzen; jede Rolle öffnet mit dem, was für sie wichtig ist.",
+        "r1": {
+          "role": "Projektleiter",
+          "sees": "Das PM-Dashboard: Projektstatus, Stunden und Abrechnung."
+        },
+        "r2": {
+          "role": "Projektkoordinator",
+          "sees": "Das PC-Dashboard: die tägliche Nachverfolgung."
+        },
+        "r3": {
+          "role": "Teammitglied",
+          "sees": "Die Arbeitsverfolgung, die Zeiterfassung und das Arbeitsprotokoll."
+        },
+        "r4": {
+          "role": "Finanzen",
+          "sees": "Die Projektabrechnungsverfolgung und der Budgetplaner."
+        }
+      },
+      "around": {
+        "tag": "Rund um die Arbeit",
+        "title": "Zusammenarbeit und Support an einem Ort",
+        "lead": "Das Team spricht, trifft sich und erstellt Tickets, ohne den Arbeitsbereich zu verlassen.",
+        "a1": {
+          "title": "Team-Chat",
+          "copy": "Schnelle Teamnachrichten über Funktionen hinweg."
+        },
+        "a2": {
+          "title": "Audio- und Videoanrufe",
+          "copy": "Sofortige Einzel- und Teamanrufe."
+        },
+        "a3": {
+          "title": "Öffentliche und private Meetings",
+          "copy": "Offene Räume und zugangsgesteuerte Meetings."
+        },
+        "a4": {
+          "title": "Support-Tickets",
+          "copy": "Erstellen und lösen Sie SLA-basierte Tickets."
+        },
+        "a5": {
+          "title": "Besucherverwaltung des Unternehmens",
+          "copy": "Führen Sie Buch darüber, wer ins Büro kommt."
+        },
+        "a6": {
+          "title": "Abteilungsleistung",
+          "copy": "Sehen Sie, wie jede Abteilung abschneidet."
+        },
+        "a7": {
+          "title": "Anlagenverwaltung",
+          "copy": "Verwalten Sie Unternehmensanlagen und ihre Zuordnung zu Mitarbeitern."
+        },
+        "assetsTour": "Rundgang durch die Anlagenverwaltung ansehen"
+      },
+      "related": {
+        "hrms": "Anwesenheit, Urlaub und Lohnabrechnung für dieselben Personen.",
+        "staffing": "Anforderungen, Kandidaten und Einsätze.",
+        "ai": "Dashboards, Berichte und Freigaben.",
+        "precision": "Derselbe Arbeitsbereich in der Fertigung."
+      },
+      "faq": {
+        "q1": "Müssen Personen und Anwesenheit erneut eingegeben werden?",
+        "a1": "Nein. Work & Delivery liegt im selben Arbeitsbereich wie Manufacturing ERP, HRMS und Staffing, sodass Personen, Anwesenheit und Freigaben gemeinsam genutzt werden."
+      }
+    },
+    "shopfloor": {
+      "eyebrow": "Produktionsausführung",
+      "subtitle": "Die Maschine meldet die Zählung",
+      "lead": "Verbinden Sie Ihre Maschinen und lassen Sie echte Zykluszählungen, Alarme und Stillstände die Produktionsrückmeldung steuern, ohne separates MES und ohne Integrator. Planen Sie Arbeit auf Maschinen, geben Sie den Bedienern den Auftrag vor die Nase und sehen Sie, was jede Maschine gerade tut.",
+      "imgAlt": "Ein blauer Industrieroboterarm arbeitet an einer Produktionslinie",
+      "boardAria": "Live-Maschinentafel (Illustration)",
+      "machine": "Maschine {n}",
+      "manualMachine": "Manuelle Maschine",
+      "state": {
+        "run": "Läuft",
+        "idle": "Leerlauf: wartet auf Material",
+        "alarm": "Alarm: Eingreifen erforderlich",
+        "manual": "Zählungen vom Bediener bestätigt"
+      },
+      "layers": {
+        "tag": "Vom Plan zur Maschine",
+        "title": "Planen, ausführen, überwachen",
+        "lead": "Derselbe Auftrag wandert vom Plan zum Bediener und weiter zum eigenen Datensatz der Maschine.",
+        "l1": {
+          "title": "Planen",
+          "copy": "Belegen Sie die Maschinen und geben Sie jeden Auftrag gegen die Stückliste frei. Starten Sie einen Auftrag per Eingabe der Laufkartennummer oder Barcode-Scan, damit der richtige Auftrag an der richtigen Maschine ankommt.",
+          "m1": "Maschinenplanung & Auslastungsdiagramme",
+          "m2": "Stückliste und Arbeitsplan",
+          "m3": "Laufkarte, gegen die Stückliste freigegeben",
+          "m4": "Start per Laufkartennummer oder Barcode-Scan"
+        },
+        "l2": {
+          "title": "Ausführen",
+          "copy": "Geben Sie dem Bediener den Auftrag vor die Nase und erfassen Sie, was tatsächlich geschehen ist. Zykluszählungen werden vorgeschlagen, und der Bediener bestätigt sie mit einem Abweichungsgrund.",
+          "m1": "Bediener-Auftragskarten",
+          "m2": "Zykluszählungen vorgeschlagen, Bediener bestätigt",
+          "m3": "Produktionsverfolgung"
+        },
+        "l3": {
+          "title": "Überwachen",
+          "copy": "Sehen Sie, was jede Maschine tut und getan hat. Alarme und Stillstandsgründe stehen auf der Tafel, und der Bearbeitungsnachweis begleitet das Teil bis zum Zertifikat.",
+          "m1": "Live-Maschinentafel",
+          "m2": "Alarme und Stillstandsgründe",
+          "m3": "Maschinenauslastung",
+          "m4": "OEE je Auftrag",
+          "m5": "Bearbeitungsnachweis auf dem COC"
+        }
+      },
+      "connect": {
+        "tag": "Verbinden Sie Ihre Maschinen",
+        "title": "Verbunden oder nicht, der Auftrag wird trotzdem bestätigt",
+        "lead": "Kein separates MES und kein Integrator. Maschinen, die sich verbinden können, melden selbst; alle anderen werden am Fertigungsbildschirm bestätigt.",
+        "c1": {
+          "title": "OEM-Verbindung",
+          "copy": "CNC-Maschinen können sich über die eigene Verbindung des Herstellers anbinden."
+        },
+        "c2": {
+          "title": "Offenes FOCAS",
+          "copy": "Maschinen mit offenem FOCAS melden ihre Zählungen, Alarme und Stillstände."
+        },
+        "c3": {
+          "title": "Keine Verbindung",
+          "copy": "Maschinen ohne Verbindung funktionieren trotzdem: Bediener bestätigen Zählungen am Fertigungsbildschirm."
+        }
+      },
+      "record": {
+        "tag": "Ein Maschinendatensatz",
+        "title": "Die Zählung kommt von der Maschine, der Datensatz geht bis zur Rechnung",
+        "lead": "Produktionsrückmeldung, Zertifikat und Rechnung lesen denselben Maschinendatensatz.",
+        "withoutTitle": "Ohne das",
+        "withoutCopy": "Zählungen werden auf Papier notiert, später eingetippt und beim Versand korrigiert.",
+        "withTitle": "Mit Synax",
+        "withCopy": "Zählungen werden von der Maschine vorgeschlagen, vom Bediener bestätigt und in das Konformitätszertifikat übernommen.",
+        "barcode": "Aufträge per Laufkartennummer oder Barcode starten",
+        "oee": "OEE je Auftrag"
+      },
+      "related": {
+        "precision": "Laufkarten, Prüfung, Versand und Fakturierung.",
+        "ai": "Fertigungsüberwachung und Agenten für Qualitäts-Compliance.",
+        "hrms": "Anwesenheit und Überstunden der Bediener.",
+        "machinery": "Stücklisten, Arbeitspläne und Maschinenauslastung."
+      },
+      "faq": {
+        "q1": "Können Aufträge per Barcode gestartet werden?",
+        "a1": "Ja. Starten Sie Aufträge per Laufkartennummer oder Barcode-Scan.",
+        "q2": "Brauchen wir ein separates MES?",
+        "a2": "Nein. Echte Zykluszählungen, Alarme und Stillstände steuern die Produktionsrückmeldung, ohne separates MES und ohne Integrator."
+      }
+    },
+    "ai": {
+      "eyebrow": "KI & Business Intelligence",
+      "title": "Synax AI findet die Ausnahme und schlägt die Lösung vor.",
+      "subtitle": "Sie geben frei.",
+      "lead": "Fragen Sie Synax alles zu Ihren ERP-Daten und lassen Sie seine Agenten nach den Problemen suchen, die Sie Geld kosten. Nichts ändert sich, bevor ein Freigeber zustimmt. Dashboards und Berichte über Ihre Abläufe halten Entscheidungen auf aktuellen Daten.",
+      "gateAria": "So funktioniert eine Synax-AI-Aktion",
+      "gate": {
+        "g1": "Fragen",
+        "g2": "Agent findet",
+        "g3": "Agent schlägt vor",
+        "g4": "Sie geben frei"
+      },
+      "gateNote": "Jede Entscheidung wird im Ereignisverlauf festgehalten. Agenten können Ihre Daten nicht selbstständig ändern.",
+      "approval": {
+        "tag": "Freigabe zuerst",
+        "title": "Die KI schlägt vor. Ein Mensch entscheidet.",
+        "lead": "Agenten können Ihre Daten nicht selbstständig ändern. Jede Aktion wartet auf einen Freigeber mit der richtigen Rolle, und die Entscheidung wird festgehalten.",
+        "l1": {
+          "title": "Der Agent findet die Ausnahme",
+          "copy": "Agenten beobachten Ihre Datensätze auf Probleme, die Geld kosten: eine überfällige Rückgabe, eine Charge, die nicht bereit ist, eine verspätete Zahlung."
+        },
+        "l2": {
+          "title": "Der Agent schlägt die Lösung vor",
+          "copy": "Statt etwas zu ändern, entwirft er die Aktion: eine Erinnerung, eine Nachfrage, einen Hinweis an die richtige Person."
+        },
+        "l3": {
+          "title": "Ein Freigeber entscheidet",
+          "copy": "Jede Aktion wartet auf einen Freigeber mit der richtigen Rolle. Das ist das Maker-Checker-Modell, das der Rest von Synax bereits nutzt."
+        },
+        "l4": {
+          "title": "Die Entscheidung wird festgehalten",
+          "copy": "Wer was wann freigegeben hat, wird in einem vollständigen Ereignisverlauf festgehalten, neben dem geänderten Datensatz."
+        },
+        "security": "Rollen, Anmeldung in zwei Schritten und der Prüfverlauf sind auf der Seite <link>Sicherheit & Vertrauen</link> beschrieben."
+      },
+      "agents": {
+        "tag": "Synax-Agenten",
+        "title": "Sechs Aufgaben, die die Agenten überwachen",
+        "lead": "Jeder Agent sucht ein bestimmtes Problem und bringt Ihnen einen Lösungsvorschlag.",
+        "a1": {
+          "title": "Challan-Abgleich",
+          "copy": "Gleicht Kundenmaterial-Challans mit dem ab, was zurückgekommen ist, und markiert die Lücken."
+        },
+        "a2": {
+          "title": "Erinnerungen bei Überfälligkeit",
+          "copy": "Entwirft die Erinnerung, wenn ein Challan sein Rückgabedatum überschreitet, bereit zur Freigabe."
+        },
+        "a3": {
+          "title": "Versandbereitschaft",
+          "copy": "Zeigt, welche Chargen versandbereit sind und was die übrigen aufhält."
+        },
+        "a4": {
+          "title": "Forderungsnachverfolgung",
+          "copy": "Stellt zusammen, wen Sie zur Zahlung mahnen sollten, mit entworfener Nachfrage."
+        },
+        "a5": {
+          "title": "Qualitäts-Compliance",
+          "copy": "Beobachtet offene Qualitätspunkte gegen die Prüfungen, die Ihr Prozess verlangt."
+        },
+        "a6": {
+          "title": "Fertigungsüberwachung",
+          "copy": "Bringt Alarme und Stillstände, die eine Person brauchen, zu Ihrer Aufmerksamkeit."
+        }
+      },
+      "ask": {
+        "tag": "Fragen Sie Synax",
+        "title": "Fragen, beantwortet aus Ihren eigenen Daten",
+        "lead": "Fragen Sie in einfacher Sprache und erhalten Sie Antworten aus Live-Datensätzen.",
+        "youAsk": "Sie fragen",
+        "q1": "Welche Challans haben ihr Rückgabedatum überschritten?",
+        "q2": "Welche Chargen sind versandbereit?",
+        "q3": "Welche Laufkarten warten auf Freigabe?",
+        "answers": "Synax antwortet",
+        "answer": "Eine Liste aus Ihren Live-Datensätzen, mit dem nächsten Schritt zur Freigabe vorgeschlagen.",
+        "approve": "Freigeben"
+      },
+      "bi": {
+        "tag": "Business Intelligence",
+        "title": "Dashboards und Berichte zu den Abläufen, die Sie bereits betreiben",
+        "lead": "Dieselben Datensätze, zusammengefasst für die, die entscheiden.",
+        "b1": {
+          "title": "Business-Dashboards",
+          "copy": "Der Zustand des Unternehmens auf einem Bildschirm."
+        },
+        "b2": {
+          "title": "Betriebsanalysen",
+          "copy": "Wie der Betrieb läuft, Tag für Tag."
+        },
+        "b3": {
+          "title": "Berichte über alle Abläufe",
+          "copy": "Berichte für Vertrieb, Lager, Produktion, Qualität, Versand und Personal."
+        },
+        "b4": {
+          "title": "Leistungseinblicke",
+          "copy": "Worauf Sie als Nächstes schauen sollten, basierend auf aktuellen Daten."
+        }
+      },
+      "related": {
+        "precision": "Challans, Laufkarten, Versand und Rechnungen.",
+        "shopfloor": "Alarme, Stillstände und Maschinenzählungen.",
+        "hrms": "Anwesenheit, Lohnabrechnung und Abteilungskennzahlen.",
+        "security": "Rollen, Prüfverlauf und Freigaben."
+      }
+    }
+  },
+  "AiBoard": {
+    "name": "Synax AI",
+    "connected": "Mit Ihren Unternehmensdaten verbunden",
+    "srDescription": "Illustration: Synax AI beantwortet Fragen wie wer heute im Urlaub ist, welche Challans ihr Rückgabedatum überschritten haben und welche Chargen versandbereit sind. Beispieldaten.",
+    "placeholder": "Fragen Sie alles zu Ihren Unternehmensdaten...",
+    "proposes": "Synax AI schlägt vor",
+    "approve": "Freigeben",
+    "reject": "Ablehnen",
+    "caption": "Illustration: Beispieldaten.",
+    "s1": {
+      "q": "Wer ist heute im Urlaub?",
+      "lead": "3 Personen sind heute im Urlaub:",
+      "r1": {
+        "title": "Emma Clarke",
+        "sub": "Kurzurlaub",
+        "tag": "2 Tage"
+      },
+      "r2": {
+        "title": "Daniel Moreau",
+        "sub": "Krankheitsurlaub",
+        "tag": "1 Tag"
+      },
+      "r3": {
+        "title": "Sofia Alvarez",
+        "sub": "Erholungsurlaub",
+        "tag": "5 Tage"
+      },
+      "note": "Urlaub wird aus HRMS und genehmigten Anträgen gelesen."
+    },
+    "s2": {
+      "q": "Wann ist Emma Clarke wieder im Büro?",
+      "lead": "Emma Clarke ist für 2 Tage im Kurzurlaub.",
+      "r1": {
+        "title": "Im Urlaub",
+        "sub": "Kurzurlaub, genehmigt",
+        "tag": "2 Tage"
+      },
+      "r2": {
+        "title": "Zurück im Büro",
+        "sub": "Übermorgen",
+        "tag": "In 2 Tagen"
+      },
+      "note": "Urlaub wird aus HRMS und genehmigten Anträgen gelesen."
+    },
+    "s3": {
+      "q": "Welche Challans haben ihr Rückgabedatum überschritten?",
+      "lead": "2 Challans haben ihr Rückgabedatum überschritten.",
+      "r1": {
+        "title": "Challan CH-1042",
+        "sub": "Kundenmaterial, noch nicht zurückgegeben",
+        "tag": "5 Tage überfällig"
+      },
+      "r2": {
+        "title": "Challan CH-1057",
+        "sub": "Kundenmaterial, noch nicht zurückgegeben",
+        "tag": "2 Tage überfällig"
+      },
+      "approval": "Erinnerungen an den Kunden entwerfen"
+    },
+    "s4": {
+      "q": "Welche Chargen sind versandbereit?",
+      "lead": "5 Chargen sind versandbereit.",
+      "r1": {
+        "title": "Charge L-2208",
+        "sub": "Prüfung und COC abgeschlossen",
+        "tag": "Bereit"
+      },
+      "r2": {
+        "title": "Charge L-2211",
+        "sub": "Prüfung und COC abgeschlossen",
+        "tag": "Bereit"
+      },
+      "r3": {
+        "title": "Charge L-2214",
+        "sub": "Prüfung und COC abgeschlossen",
+        "tag": "Bereit"
+      },
+      "note": "+ 2 weitere Chargen sind bereit."
+    }
+  },
+  "ProductMeta": {
+    "precision": {
+      "seoTitle": "Manufacturing ERP",
+      "seoDescription": "Kundenmaterial, Laufkarten, Prüfung, Versand und Fakturierung in einem durchgängig nachvollziehbaren Ablauf von der Maschine bis zur Rechnung."
+    },
+    "it": {
+      "seoTitle": "Work & Delivery Management",
+      "seoDescription": "Arbeitsverfolgung, Projekte, Zeiterfassung und Projektabrechnung für Service-Teams, im selben Arbeitsbereich wie Manufacturing ERP."
+    },
+    "hrms": {
+      "seoTitle": "HRMS",
+      "seoDescription": "Mitarbeiter-Lebenszyklus, Recruiting, Anwesenheit, Urlaub, Lohnabrechnung, Compliance und Leistungsmanagement, eigenständig oder integriert."
+    },
+    "staffing": {
+      "seoTitle": "Staffing & Resource Management",
+      "seoDescription": "Kundenbedarf an Personal finden, einsetzen und verwalten: Kandidaten, Interviews, Angebote, Onboarding und Einsätze."
+    },
+    "shopfloor": {
+      "seoTitle": "Fertigung & Maschinenüberwachung",
+      "seoDescription": "Maschinenplanung, Bediener-Auftragskarten, Live-Maschinenüberwachung, Stillstände und Auslastung."
+    },
+    "ai": {
+      "seoTitle": "KI & Business Intelligence",
+      "seoDescription": "Synax-AI-Unterstützung und Agenten, mit Betriebsanalysen, Dashboards und Berichten über alle Geschäftsabläufe."
+    }
+  },
+  "NotFound": {
+    "metaTitle": "Seite nicht gefunden",
+    "code": "Fehler 404",
+    "title": "Diese Seite wurde nicht gefunden",
+    "text": "Die Adresse enthält vielleicht einen Tippfehler, oder die Seite wurde verschoben. Mit diesen Seiten können Sie neu starten.",
+    "home": "Zur Startseite",
+    "products": "Produkte",
+    "solutions": "Lösungen",
+    "why": "Warum Synax",
+    "security": "Sicherheit & Vertrauen"
+  },
+  "Chat": {
+    "launcher": "Chat mit uns",
+    "close": "Chat schließen",
+    "panel": "Synax-Support-Chat",
+    "agentName": "Synax Support",
+    "agentNote": "Automatischer Assistent. Eine Person meldet sich per E-Mail.",
+    "expand": "Chat vergrößern",
+    "reduce": "Chat verkleinern",
+    "messages": "Unterhaltung",
+    "placeholder": "Nachricht eingeben...",
+    "send": "Nachricht senden",
+    "typing": "Synax Support schreibt",
+    "newMessage": "1 neue Nachricht",
+    "you": "Sie",
+    "greet1": "Hallo! Willkommen bei Synax.",
+    "greet2": "Ich kann häufige Fragen zu unseren Produkten beantworten oder Sie an das Team weitergeben. Was möchten Sie wissen?",
+    "chip": {
+      "demo": "Demo vereinbaren",
+      "products": "Welches Produkt passt zu mir?",
+      "pricing": "Preise und kostenloser Tarif",
+      "person": "Mit einer Person sprechen"
+    },
+    "reply": {
+      "demo": "Gern. Es ist eine kurze Vorführung mit einem Systemingenieur der Senwell Group, anhand Ihrer eigenen Teile, Mitarbeiter und Prozesse.",
+      "products": "Synax bietet sechs Produkte in einem Arbeitsbereich. Manufacturing ERP deckt Kundenaufträge bis zur GST-Rechnung ab, Shop Floor & Maschinenüberwachung die Live-Maschinen, HRMS Anwesenheit und Lohnabrechnung, dazu kommen Produkte für Arbeit und Lieferung, Personalvermittlung und KI. Sagen Sie mir, was Sie tun, und ich nenne Ihnen das passende.",
+      "pricing": "Synax ist für kleine Fertigungsbetriebe kostenlos (KMU mit weniger als 50 Mitarbeitern). Für größere Teams hängt der Tarif von Modulen und Benutzern ab, das Team teilt Ihnen die Details mit.",
+      "tally": "Sie müssen Ihre Buchhaltung nicht umziehen. Steuern Sie den Betrieb in Synax und führen Sie die Bücher in Tally weiter: Die Tally-Brücke überträgt die Belege.",
+      "gst": "GST-Rechnungen, IRN und E-Way-Bills kommen aus demselben Ablauf wie Produktion und Versand, über Ihren GST-Suvidha-Anbieter.",
+      "machines": "CNC-Maschinen können sich über die Herstellerverbindung oder offenes FOCAS anbinden. Maschinen ohne Verbindung funktionieren trotzdem: Bediener bestätigen die Zählungen am Fertigungsbildschirm.",
+      "hr": "HRMS deckt Mitarbeiterdaten, Anwesenheit, Urlaub und Homeoffice sowie die Lohnabrechnung mit Freigaben ab. Anwesenheitsdaten und Überstundenfreigaben werden von biometrischen Geräten synchronisiert.",
+      "security": "Jedes Unternehmen läuft in einem eigenen Mandanten, Bestands- und Statusänderungen werden auf dem Server geprüft, und ein Prüfverlauf wird geführt. Die Details stehen auf der Seite Sicherheit & Vertrauen.",
+      "person": "Keine Zeit, auf eine Antwort zu warten? Hinterlassen Sie Ihre E-Mail-Adresse, und wir melden uns so bald wie möglich.",
+      "fallback": "Danke für Ihre Nachricht. Ich bin ein automatischer Assistent und gebe sie an das Team weiter. Hinterlassen Sie Ihre E-Mail-Adresse, dann antwortet Ihnen jemand."
+    },
+    "action": {
+      "demo": "Demo-Formular öffnen",
+      "products": "Alle Produkte ansehen",
+      "security": "Seite Sicherheit & Vertrauen"
+    },
+    "email": {
+      "placeholder": "E-Mail-Adresse eingeben",
+      "label": "Ihre E-Mail-Adresse",
+      "send": "E-Mail-Adresse senden",
+      "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "note": "Wir verwenden Ihre E-Mail nur, um Ihnen zu antworten. <link>Datenschutzerklärung</link>",
+      "thanks": "Danke! Wir haben {email} notiert. Ein Teammitglied meldet sich bei Ihnen."
+    },
+    "ended": "Ihr Chat ist beendet.",
+    "restart": "Um einen neuen Chat zu starten, klicken Sie hier.",
+    "keywords": {
+      "demo": "demo,vorführung,testen,test,vereinbaren,termin",
+      "person": "person,mensch,berater,anrufen,telefon,kontakt,vertrieb",
+      "pricing": "preis,preise,kosten,kostet,kostenlos,tarif,angebot,wie viel",
+      "tally": "tally,buchhaltung,bücher,buchführung",
+      "gst": "gst,e-rechnung,irn,e-way,rechnung",
+      "machines": "maschine,cnc,focas,mes,fertigung,stillstand",
+      "hr": "hr,hrms,lohn,anwesenheit,urlaub,mitarbeiter,personal",
+      "security": "sicherheit,datenschutz,audit,daten,mandant",
+      "products": "produkt,produkte,module,welches,erp,personalvermittlung,ki"
+    }
+  }
+}

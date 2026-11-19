@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { AlertCircle, ArrowRight, Check } from "lucide-react";
 import { PRODUCT_DATA, hrefFor, routeFor } from "../_data/products";
 import { INDUSTRY_PAGES, industryHref, type IndustryPage } from "../_data/industries";

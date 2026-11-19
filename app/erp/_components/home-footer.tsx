@@ -18,11 +18,11 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useDemo } from "./demo-provider";
-import { hrefFor, routeFor, type ProductKey } from "../_data/products";
-import { SOLUTIONS, SOLUTION_GROUPS, type SolutionGroup, type SolutionKey } from "../_data/solutions";
-import { LIVE_POSITIONING } from "../_data/live";
+import { hrefFor, type ProductKey } from "../_data/products";
+import { SOLUTIONS, type SolutionGroup } from "../_data/solutions";
 
 /**
  * Site footer (dark navy), the same on every page. It is as tall as the screen under the header, so the space is
@@ -38,33 +38,27 @@ import { LIVE_POSITIONING } from "../_data/live";
  */
 
 interface FooterProduct {
-  label: string;
   Icon: LucideIcon;
   key: ProductKey;
 }
 
 // Same destinations as the header's Products menu; the one-line description is the menu's own (`route.menu`).
+// The names come from messages/*.json ("Products.<key>.name"), the same ones the home hero uses.
 const PRODUCTS: FooterProduct[] = [
-  { label: "Manufacturing ERP", Icon: Factory, key: "precision" },
-  { label: "Work & Delivery Management", Icon: Briefcase, key: "it" },
-  { label: "HRMS", Icon: Building2, key: "hrms" },
-  { label: "Staffing & Resource Management", Icon: Users, key: "staffing" },
-  { label: "Shop Floor & Machine Monitoring", Icon: Activity, key: "shopfloor" },
-  { label: "AI & Business Intelligence", Icon: Bot, key: "ai" },
+  { Icon: Factory, key: "precision" },
+  { Icon: Briefcase, key: "it" },
+  { Icon: Building2, key: "hrms" },
+  { Icon: Users, key: "staffing" },
+  { Icon: Activity, key: "shopfloor" },
+  { Icon: Bot, key: "ai" },
 ];
 
-const PLATFORM_LINKS = [
-  { label: "Why Synax", href: "/why-synax" },
-  { label: "Synax AI", href: hrefFor("ai") },
-  { label: "Security & Trust", href: "/security" },
+/** `nav` is a message key under "Nav" (a name that is the same in every language, like "Synax AI", uses `name`). */
+const PLATFORM_LINKS: { nav?: "whySynax" | "security"; name?: string; href: string }[] = [
+  { nav: "whySynax", href: "/why-synax" },
+  { name: "Synax AI", href: hrefFor("ai") },
+  { nav: "security", href: "/security" },
 ];
-
-/** Shorter footer names, so the solutions fit their half-columns on one line on most screens. */
-const FOOTER_NAME: Partial<Record<SolutionKey, string>> = {
-  machinery: "Industrial Machinery",
-  precision: "Precision CNC & Job Work",
-  rubber: "Rubber Moulding",
-};
 
 /** The Solutions column is split like the header menu: industries on the left, the other two lenses on the right. */
 const SOLUTION_COLUMNS: SolutionGroup[][] = [["industry"], ["process", "need"]];
@@ -75,12 +69,13 @@ const GROUP_LINKS = [
   { label: "Stacem", href: "https://www.stacem.com/" },
 ];
 
+/** `key` is a message key under "Footer.compliance". */
 const COMPLIANCE = [
-  { Icon: ShieldCheck, label: "AS9100D QMS controls" },
-  { Icon: CheckCircle2, label: "GST e-invoice & e-way bill" },
-  { Icon: Award, label: "Works with Tally" },
-  { Icon: Lock, label: "DPDP Act, 2023 privacy policy" },
-];
+  { Icon: ShieldCheck, key: "as9100d" },
+  { Icon: CheckCircle2, key: "gst" },
+  { Icon: Award, key: "tally" },
+  { Icon: Lock, key: "dpdp" },
+] as const;
 
 /** A fixed year: new Date() cannot be read while prerendering a client component. Update each January. */
 const COPYRIGHT_YEAR = 2026;
@@ -99,6 +94,13 @@ function ColumnHeading({ children }: { children: React.ReactNode }) {
 }
 
 export function Footer() {
+  const t = useTranslations("Footer");
+  const nav = useTranslations("Nav");
+  const tp = useTranslations("Products");
+  const ts = useTranslations("Solutions");
+  const tg = useTranslations("SolutionGroups");
+  const live = useTranslations("Live");
+  const shared = useTranslations("Shared");
   const { openDemo } = useDemo();
   const onScheduleDemo = () => openDemo();
 
@@ -120,15 +122,26 @@ export function Footer() {
         <div className="my-auto grid gap-10 py-2 lg:grid-cols-12 lg:gap-x-12">
           {/* Brand, contact, demo, compliance */}
           <div className="lg:col-span-4">
-            <Link href="/" aria-label="Synax by Senwell — home" className={`relative inline-block rounded-lg ${FOCUS}`}>
+            <Link href="/" aria-label={nav("homeAria")} className={`relative inline-block rounded-lg ${FOCUS}`}>
               <span className="absolute -inset-x-6 -inset-y-4 -z-10 rounded-full bg-blue-500/20 blur-2xl" aria-hidden="true" />
               <Image src="/images/synax-pro-light.webp" alt="" width={480} height={132} sizes="117px" className="h-8 w-auto object-contain" />
             </Link>
-            <p className="mt-4 text-sm font-semibold text-orange-300">{LIVE_POSITIONING.headline}</p>
+            <p className="mt-4 text-sm font-semibold text-orange-300">{live("positioning.headline")}</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-300">
-              Synax is a unified business suite by <strong className="text-white">Senwell Group</strong>: manufacturing,
-              work and delivery management, HRMS, staffing, shop-floor monitoring and AI in one connected,
-              audit-ready platform.
+              {t.rich("intro", {
+                // "Senwell Group" opens the group company's site (the same address as the "Senwell Exports" link in the Senwell Group column).
+                link: (chunks) => (
+                  <a
+                    href="https://senwellexports.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`rounded-sm font-semibold text-white underline decoration-white/30 underline-offset-2 transition-colors hover:text-orange-300 hover:decoration-orange-300 ${FOCUS}`}
+                  >
+                    {chunks}
+                    <span className="sr-only">{shared("opensNewTab")}</span>
+                  </a>
+                ),
+              })}
             </p>
 
             <ul className="mt-4 space-y-2 text-sm">
@@ -138,7 +151,7 @@ export function Footer() {
                 </span>
                 <a href="https://synax.senwellgroup.com" target="_blank" rel="noopener noreferrer" className={`${linkClass} hover:translate-x-0`}>
                   synax.senwellgroup.com
-                  <span className="sr-only">(opens in a new tab)</span>
+                  <span className="sr-only">{shared("opensNewTab")}</span>
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -154,15 +167,15 @@ export function Footer() {
             </ul>
 
             <div className="mt-5">
-              <p className="mb-2.5 text-xs font-bold tracking-[0.14em] text-slate-400 uppercase">Compliance alignment</p>
+              <p className="mb-2.5 text-xs font-bold tracking-[0.14em] text-slate-400 uppercase">{t("complianceHeading")}</p>
               <ul className="flex flex-wrap gap-2">
-                {COMPLIANCE.map(({ Icon, label }) => (
+                {COMPLIANCE.map(({ Icon, key }) => (
                   <li
-                    key={label}
+                    key={key}
                     className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-sm"
                   >
                     <Icon className="size-3.5 text-orange-300" aria-hidden="true" />
-                    {label}
+                    {t(`compliance.${key}`)}
                   </li>
                 ))}
               </ul>
@@ -171,11 +184,11 @@ export function Footer() {
 
           {/* Products as cards, then the link columns */}
           <div className="lg:col-span-8">
-            <nav aria-label="Synax products">
-              <ColumnHeading>Products</ColumnHeading>
+            <nav aria-label={t("productsAria")}>
+              <ColumnHeading>{t("products")}</ColumnHeading>
               <ul className="grid gap-2.5 sm:grid-cols-2">
                 {PRODUCTS.map((p) => (
-                  <li key={p.label}>
+                  <li key={p.key}>
                     <Link
                       href={hrefFor(p.key)}
                       className={`group flex h-full items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2.5 transition-colors hover:border-orange-300/50 hover:bg-white/[0.08] ${FOCUS}`}
@@ -184,8 +197,8 @@ export function Footer() {
                         <p.Icon className="size-4" aria-hidden="true" />
                       </span>
                       <span className="min-w-0">
-                        <span className="block text-sm leading-snug font-semibold text-white transition-colors group-hover:text-orange-300">{p.label}</span>
-                        <span className="mt-0.5 block truncate text-xs leading-snug text-slate-400" title={routeFor(p.key).menu}>{routeFor(p.key).menu}</span>
+                        <span className="block text-sm leading-snug font-semibold text-white transition-colors group-hover:text-orange-300">{tp(`${p.key}.name`)}</span>
+                        <span className="mt-0.5 block truncate text-xs leading-snug text-slate-400" title={tp(`${p.key}.menu`)}>{tp(`${p.key}.menu`)}</span>
                       </span>
                     </Link>
                   </li>
@@ -194,27 +207,27 @@ export function Footer() {
             </nav>
 
             <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,2.2fr)_minmax(0,1fr)]">
-              <nav aria-label="Platform">
-                <ColumnHeading>Platform</ColumnHeading>
+              <nav aria-label={t("platform")}>
+                <ColumnHeading>{t("platform")}</ColumnHeading>
                 <ul className="space-y-2.5">
                   {PLATFORM_LINKS.map((l) => (
-                    <li key={l.label}>
+                    <li key={l.href}>
                       <Link href={l.href} className={linkClass}>
-                        {l.label}
+                        {l.nav ? nav(l.nav) : l.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </nav>
 
-              <nav aria-label="Solutions" className="sm:order-last sm:col-span-2 lg:order-none lg:col-span-1">
+              <nav aria-label={t("solutions")} className="sm:order-last sm:col-span-2 lg:order-none lg:col-span-1">
                 <div className="flex items-start justify-between gap-4">
-                  <ColumnHeading>Solutions</ColumnHeading>
+                  <ColumnHeading>{t("solutions")}</ColumnHeading>
                   <Link
                     href="/solutions"
                     className={`rounded-sm text-xs font-semibold whitespace-nowrap text-orange-300 transition-colors hover:text-orange-200 ${FOCUS}`}
                   >
-                    All solutions &rarr;
+                    {t("allSolutions")} &rarr;
                   </Link>
                 </div>
                 <div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
@@ -223,13 +236,14 @@ export function Footer() {
                       {groups.map((id) => (
                         <div key={id}>
                           <p className="mb-1.5 text-[10px] font-bold tracking-[0.12em] text-slate-500 uppercase">
-                            {SOLUTION_GROUPS.find((g) => g.id === id)?.label}
+                            {tg(`${id}.label`)}
                           </p>
                           <ul className="space-y-2">
                             {SOLUTIONS.filter((s) => s.group === id).map((s) => (
                               <li key={s.key}>
                                 <Link href={s.href} className={linkClass}>
-                                  {FOOTER_NAME[s.key] ?? s.title}
+                                  {/* A shorter name where one exists, so the solutions fit their half-columns on one line. */}
+                                  {ts.has(`${s.key}.footer`) ? ts(`${s.key}.footer`) : ts(`${s.key}.title`)}
                                 </Link>
                               </li>
                             ))}
@@ -241,12 +255,12 @@ export function Footer() {
                 </div>
               </nav>
 
-              <nav aria-label="Company">
+              <nav aria-label={t("companyAria")}>
                 <ColumnHeading>Senwell Group</ColumnHeading>
                 <ul className="space-y-2.5">
                   <li>
                     <Link href="/#senwell" className={linkClass}>
-                      About Senwell
+                      {t("aboutSenwell")}
                     </Link>
                   </li>
                   {GROUP_LINKS.map((l) => (
@@ -254,13 +268,13 @@ export function Footer() {
                       <a href={l.href} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-1`}>
                         {l.label}
                         <ArrowUpRight className="size-3.5 text-slate-500" aria-hidden="true" />
-                        <span className="sr-only">(opens in a new tab)</span>
+                        <span className="sr-only">{shared("opensNewTab")}</span>
                       </a>
                     </li>
                   ))}
                   <li>
                     <button type="button" onClick={onScheduleDemo} className={`${linkClass} cursor-pointer text-left font-semibold text-white`}>
-                      Contact Sales
+                      {t("contactSales")}
                     </button>
                   </li>
                 </ul>
@@ -271,16 +285,16 @@ export function Footer() {
 
         {/* Legal bar */}
         <div className="mt-4 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-4 text-xs text-slate-400 sm:flex-row">
-          <p>© {COPYRIGHT_YEAR} Synax by Senwell Group. All rights reserved.</p>
-          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <p>{t("copyright", { year: COPYRIGHT_YEAR })}</p>
+          <nav aria-label={t("legalAria")} className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <Link href="/privacy" className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}>
-              Privacy Policy
+              {t("privacy")}
             </Link>
             <Link href="/terms" className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}>
-              Terms and Conditions
+              {t("terms")}
             </Link>
             <Link href="/security" className={`rounded-sm transition-colors hover:text-orange-300 ${FOCUS}`}>
-              Security
+              {t("security")}
             </Link>
             <button
               type="button"
@@ -288,7 +302,7 @@ export function Footer() {
               className={`flex cursor-pointer items-center gap-1.5 rounded-full border border-orange-300/40 bg-white/5 px-3 py-1.5 font-semibold text-slate-100 transition-colors hover:border-orange-300 hover:bg-orange-300/10 hover:text-orange-300 ${FOCUS}`}
             >
               <ArrowUp className="size-3.5" aria-hidden="true" />
-              Back to top
+              {t("backToTop")}
             </button>
           </nav>
         </div>

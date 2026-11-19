@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -26,55 +27,21 @@ import { SectionTag } from "./section-tag";
 
 interface Pillar {
   Icon: LucideIcon;
-  tag: string;
-  title: string;
-  subtitle: string;
-  body: string;
-  chips: [string, string];
+  /** Message id: the texts live in messages/*.json under "Purpose.pillars.<id>". */
+  id: "industry" | "operations" | "workforce" | "technology";
   /** navy = filled tile with light text, light = white tile. */
   tone: "navy" | "light";
 }
 
 const PILLARS: Pillar[] = [
-  {
-    Icon: ShieldCheck,
-    tag: "Precision & Compliance",
-    title: "Industry-Focused Solutions",
-    subtitle: "Domain-native workflows instead of generic ERP workarounds",
-    body: "We reject one-size-fits-all software. Synax is built around how a machine shop actually works: customer-supplied material tracked by challan and Material ID, route cards confirmed from the machine, AS9100D QMS controls at the quality checkpoints, and First Article Inspection records in the same flow.",
-    chips: ["AS9100D QMS Controls", "FAIR Register & COC"],
-    tone: "navy",
-  },
-  {
-    Icon: TrendingUp,
-    tag: "Operational Velocity",
-    title: "Smarter Business Operations",
-    subtitle: "Single source of truth from material receipt to customer dispatch",
-    body: "Synax connects the front office and the shop floor. Real machine counts, material lots and stage-by-stage records feed one view, so leadership sees OEE per job and the state of the floor without waiting for end-of-month reconciliation.",
-    chips: ["Material Lot Genealogy", "Machine Scheduling"],
-    tone: "light",
-  },
-  {
-    Icon: Users,
-    tag: "Human Capital Intelligence",
-    title: "Better Workforce Management",
-    subtitle: "Unifying permanent floor staff with contingent technical talent",
-    body: "High-precision delivery needs the right people on every shift. Synax brings biometric punch-ins, plant floor break-pass management and payroll with approvals into one workspace, and its staffing tools show who is available and where each person is deployed.",
-    chips: ["Biometric Device Sync", "Staffing & Deployments"],
-    tone: "light",
-  },
-  {
-    Icon: Cpu,
-    tag: "Modern Tech Architecture",
-    title: "Technology-Driven Transformation",
-    subtitle: "Cloud-native scale, machine connectivity & audit-ready security",
-    body: "Replacing clunky legacy on-premise architectures with modern, cloud-native engineering. Synax connects CNC machines through the OEM connection or open FOCAS, runs every company in its own isolated workspace, checks postings on the server, and keeps an audit history of material changes.",
-    chips: ["Machine Data (OEM / FOCAS)", "Audit History & Isolated Workspaces"],
-    tone: "navy",
-  },
+  { Icon: ShieldCheck, id: "industry", tone: "navy" },
+  { Icon: TrendingUp, id: "operations", tone: "light" },
+  { Icon: Users, id: "workforce", tone: "light" },
+  { Icon: Cpu, id: "technology", tone: "navy" },
 ];
 
 function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
+  const t = useTranslations("Purpose");
   const [open, setOpen] = useState(false);
   const navy = pillar.tone === "navy";
   const { Icon } = pillar;
@@ -111,12 +78,12 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
           navy ? "bg-white/15 text-orange-300" : "bg-orange-50 text-accent-strong"
         }`}
       >
-        {pillar.tag}
+        {t(`pillars.${pillar.id}.tag`)}
       </span>
 
-      <h3 className="mt-2 text-lg leading-snug font-bold">{pillar.title}</h3>
+      <h3 className="mt-2 text-lg leading-snug font-bold">{t(`pillars.${pillar.id}.title`)}</h3>
       <p className={`mt-0.5 text-xs font-medium ${navy ? "text-slate-300" : "text-slate-500"}`}>
-        {pillar.subtitle}
+        {t(`pillars.${pillar.id}.subtitle`)}
       </p>
 
       <p
@@ -125,7 +92,7 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
           open ? "" : "line-clamp-3"
         }`}
       >
-        {pillar.body}
+        {t(`pillars.${pillar.id}.body`)}
       </p>
       <button
         type="button"
@@ -136,12 +103,12 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
           navy ? "text-orange-300 hover:text-orange-200" : "text-accent-strong hover:text-accent-strong"
         }`}
       >
-        {open ? "Show less" : "Read more"}
+        {open ? t("showLess") : t("readMore")}
         <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
       </button>
 
       <ul className="mt-auto flex flex-wrap gap-2 pt-4">
-        {pillar.chips.map((chip) => (
+        {(["c1", "c2"] as const).map((chip) => (
           <li
             key={chip}
             className={`flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[11px] font-medium ${
@@ -152,7 +119,7 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
               className={`size-3.5 shrink-0 ${navy ? "text-orange-300" : "text-accent"}`}
               aria-hidden="true"
             />
-            {chip}
+            {t(`pillars.${pillar.id}.${chip}`)}
           </li>
         ))}
       </ul>
@@ -161,6 +128,7 @@ function PillarTile({ pillar, index }: { pillar: Pillar; index: number }) {
 }
 
 export function Purpose() {
+  const t = useTranslations("Purpose");
   return (
     <section
       id="purpose"
@@ -169,34 +137,31 @@ export function Purpose() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto mb-8 max-w-3xl text-center">
-          <SectionTag>The Ecosystem Purpose</SectionTag>
+        <div data-anim-stagger="rise" className="mx-auto mb-8 max-w-3xl text-center">
+          <SectionTag>{t("tag")}</SectionTag>
           <h2
             id="purpose-heading"
             className="mt-3 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-4xl"
           >
-            The Larger Purpose Behind the Synax Ecosystem
+            {t("title")}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-xs leading-relaxed font-normal text-slate-600 sm:text-sm md:text-base">
-            Traditional ERPs were built for finance departments, forcing shop floor engineers, quality
-            leads, and workforce managers to survive on fragmented spreadsheets. Synax exists to unify
-            high-precision execution, human capital, and regulatory compliance into one cohesive
-            continuum.
+            {t("lead")}
           </p>
           <p className="mt-5 inline-flex flex-wrap items-center justify-center gap-3 text-xs font-medium">
             <span className="rounded-full bg-slate-100 px-3 py-1.5 text-slate-500 line-through">
-              Fragmented spreadsheets
+              {t("from")}
             </span>
             <ArrowRight className="size-4 text-accent" aria-hidden="true" />
-            <span className="rounded-full bg-brand-solid px-3 py-1.5 text-white">One cohesive continuum</span>
+            <span className="rounded-full bg-brand-solid px-3 py-1.5 text-white">{t("to")}</span>
           </p>
         </div>
 
         {/* Four pillars joined by a hub */}
         <div className="relative">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+          <div data-anim-stagger="scale" className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
             {PILLARS.map((pillar, index) => (
-              <PillarTile key={pillar.title} pillar={pillar} index={index} />
+              <PillarTile key={pillar.id} pillar={pillar} index={index} />
             ))}
           </div>
 
@@ -206,30 +171,27 @@ export function Purpose() {
           >
             <InfinityIcon className="size-5" />
             <span className="mt-0.5 text-[11px] leading-tight font-semibold">
-              One
-              <br />
-              continuum
+              {t.rich("hub", { br: () => <br /> })}
             </span>
           </div>
         </div>
 
         {/* Closing banner */}
-        <div className="mt-10 flex flex-col items-start justify-between gap-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-7 md:flex-row md:items-center">
+        <div data-anim="rise" className="mt-10 flex flex-col items-start justify-between gap-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-7 md:flex-row md:items-center">
           <div className="max-w-xl space-y-1">
-            <SectionTag lines="start">Senwell Group Engineering Discipline</SectionTag>
+            <SectionTag lines="start">{t("banner.tag")}</SectionTag>
             <h3 className="text-lg font-extrabold text-slate-900 sm:text-xl">
-              One Unified Continuum. Zero Disconnected Tools.
+              {t("banner.title")}
             </h3>
             <p className="text-sm leading-relaxed text-slate-600">
-              Every tier of Synax works in synchrony: from hiring and biometric clock-in to
-              machining and AS9100D-controlled release.
+              {t("banner.lead")}
             </p>
           </div>
           <Link
             href="/why-synax"
             className="flex shrink-0 items-center gap-2 rounded-lg border-2 border-orange-500 bg-surface px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:bg-orange-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
           >
-            <span>See why teams choose Synax</span>
+            <span>{t("banner.cta")}</span>
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </div>

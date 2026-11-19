@@ -475,7 +475,7 @@ body {
 
 /* The hero hub (dashboard + product cards) rises in once. */
 .synax-hero-visual {
-  animation: synax-hero-enter-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  animation: synax-hero-enter-up 1s var(--synax-ease-expo, cubic-bezier(0.16, 1, 0.3, 1)) 0.05s both;
 }
 
 /* Hero product cards (lg+): `--sp` is how far a card may drift into the empty space beside the stage.
@@ -1248,4 +1248,154 @@ body {
 :root[data-theme="dark"] :is(.shadow, .shadow-xs, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl, [class*=" shadow-[0_"], [class^="shadow-[0_"], [class*=" shadow-erp-"]) {
   --tw-shadow: 0 6px 18px -10px rgb(0 0 0 / 0.45);
   --tw-shadow-colored: 0 6px 18px -10px var(--tw-shadow-color);
+}
+
+/* ==========================================================================
+   Home page motion (see app/erp/_components/home-motion.tsx)
+
+   Modelled on the long, soft "expo out" entrances of keka.com, built without a library:
+     - .synax-enter          load-time entrance (hero): a CSS animation, so it needs no JavaScript.
+     - data-anim="rise|rise-lg|scale|fade"   one element reveals when it scrolls into view.
+     - data-anim-stagger="..."               its direct children reveal one after another (nth-child delay).
+     - data-parallax="0.12"                  decorative layer drifts with the scroll (--py is set by the hook).
+
+   The reveal is a keyframe animation that only has a `from` state and `backwards` fill, so once it has played the
+   element goes back to its own styles and its hover transitions are untouched. Before the hook marks an element as
+   `data-in` it is simply transparent; <noscript> (erp-shell.tsx), reduced motion and a missing IntersectionObserver
+   all leave it visible. Only opacity and transform are animated.
+   ========================================================================== */
+
+:root {
+  --synax-ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  /* The knobs for the home page motion. Change a number here and every section follows. */
+  --synax-enter-dur: 1s; /* hero text on load */
+  --synax-reveal-dur: 0.9s; /* one scroll reveal */
+  --synax-stagger: 70ms; /* gap between siblings in a group */
+}
+
+@keyframes synax-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--enter-y, 18px), 0) scale(var(--enter-s, 0.985));
+  }
+}
+
+.synax-enter {
+  animation: synax-enter var(--synax-enter-dur) var(--synax-ease-expo) var(--enter-d, 0ms) backwards;
+}
+
+@keyframes synax-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--anim-y, 28px), 0) scale(var(--anim-s, 1));
+  }
+}
+
+.erp-root [data-anim]:not([data-in]),
+.erp-root [data-anim-stagger] > *:not([data-in]) {
+  opacity: 0;
+}
+
+.erp-root [data-anim][data-in],
+.erp-root [data-anim-stagger] > [data-in] {
+  animation: synax-reveal var(--synax-reveal-dur) var(--synax-ease-expo) calc(var(--anim-i, 0) * var(--synax-stagger) + var(--anim-d, 0ms)) backwards;
+}
+
+.erp-root [data-anim="rise-lg"],
+.erp-root [data-anim-stagger="rise-lg"] > * {
+  --anim-y: 44px;
+}
+
+.erp-root [data-anim="scale"],
+.erp-root [data-anim-stagger="scale"] > * {
+  --anim-y: 14px;
+  --anim-s: 0.94;
+}
+
+.erp-root [data-anim="fade"],
+.erp-root [data-anim-stagger="fade"] > * {
+  --anim-y: 0px;
+}
+
+.erp-root [data-anim-stagger] > :nth-child(2) { --anim-i: 1; }
+.erp-root [data-anim-stagger] > :nth-child(3) { --anim-i: 2; }
+.erp-root [data-anim-stagger] > :nth-child(4) { --anim-i: 3; }
+.erp-root [data-anim-stagger] > :nth-child(5) { --anim-i: 4; }
+.erp-root [data-anim-stagger] > :nth-child(6) { --anim-i: 5; }
+.erp-root [data-anim-stagger] > :nth-child(7) { --anim-i: 6; }
+.erp-root [data-anim-stagger] > :nth-child(n + 8) { --anim-i: 7; }
+
+/* Scroll-linked drift of decorative layers: `transform` composes with Tailwind's separate `translate` property. */
+.erp-root [data-parallax] {
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .synax-enter {
+    animation: none;
+  }
+
+  .erp-root [data-anim]:not([data-in]),
+  .erp-root [data-anim-stagger] > *:not([data-in]) {
+    opacity: 1;
+  }
+
+  .erp-root [data-anim][data-in],
+  .erp-root [data-anim-stagger] > [data-in] {
+    animation: none;
+  }
+
+  .erp-root [data-parallax] {
+    transform: none;
+    will-change: auto;
+  }
+}
+
+/* ==========================================================================
+   German hyphenation
+   German compounds ("Maschinenüberwachung", "Mitarbeiterlebenszyklus") are longer than most cards and buttons are wide. On
+   pages in German (`<html lang="de">`) text may break inside a long word with a hyphen instead of overflowing its box.
+   Words are only split when they would not fit (never in `whitespace-nowrap` or truncated text), and not shorter than 7 letters.
+   ========================================================================== */
+@layer base {
+  :lang(de) :is(h1, h2, h3, h4, h5, h6, p, li, dt, dd, th, td, a, button, label, summary, figcaption, blockquote) {
+    hyphens: auto;
+    hyphenate-limit-chars: 7 3 3;
+    overflow-wrap: break-word;
+  }
+}
+
+/* ==========================================================================
+   Chat support widget (app/erp/_components/chat-support/chat-widget.tsx)
+   The panel grows out of the launcher; each message rises in. Compositor-only, off for reduced motion.
+   ========================================================================== */
+@keyframes synax-chat-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.96);
+  }
+}
+
+@keyframes synax-chat-msg {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+}
+
+.synax-chat-in {
+  transform-origin: bottom right;
+  animation: synax-chat-in 0.35s var(--synax-ease-expo, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+}
+
+.synax-chat-msg {
+  animation: synax-chat-msg 0.35s var(--synax-ease-expo, cubic-bezier(0.16, 1, 0.3, 1)) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .synax-chat-in,
+  .synax-chat-msg {
+    animation: none;
+  }
 }

@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { DemoButton, TourButton } from "./demo-buttons";
 import { SectionTag } from "./section-tag";
 
@@ -14,8 +15,9 @@ export interface Crumb {
 }
 
 export function Breadcrumb({ items }: { items: Crumb[] }) {
+  const t = useTranslations("Shared");
   return (
-    <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
+    <nav aria-label={t("breadcrumb")} className="mb-5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
       <Link href="/" className="hover:text-brand hover:underline">
         Synax
       </Link>
@@ -185,6 +187,7 @@ export function CtaBand({
   /** "light" is the sky-blue band (used on /why-synax); "dark" is the navy band used elsewhere. */
   tone?: "dark" | "light";
 }) {
+  const t = useTranslations("Shared");
   const light = tone === "light";
   return (
     <section aria-labelledby="cta-heading" className="mx-auto max-w-7xl px-4 pt-10 pb-6 sm:px-6 lg:px-8">
@@ -197,7 +200,7 @@ export function CtaBand({
       >
         <div className="max-w-xl">
           <SectionTag tone={light ? "light" : "dark"} lines="start">
-            Get started
+            {t("getStarted")}
           </SectionTag>
           <h2 id="cta-heading" className={`mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl ${light ? "text-brand" : "text-white"}`}>
             {title}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Bot, MessageSquare, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /**
  * Hero visual of the AI & Business Intelligence page: an animated "Ask Synax AI" board in the same dark chat
@@ -11,66 +12,32 @@ import { Bot, MessageSquare, Send } from "lucide-react";
  * then the board clears and the next question is asked, and so on. With reduced motion it shows the first
  * answer, still. Everything here is an illustration with sample data (labelled as such); the board is hidden
  * from assistive tech and described by a short text instead.
+ *
+ * The words come from messages/*.json ("AiBoard"); `SCENARIOS` keeps the structure (which rows have initials, which are warnings,
+ * whether a scenario ends with a note or with the approval buttons).
  */
 
 interface Row {
   initials?: string;
-  title: string;
-  sub: string;
-  tag: string;
   warn?: boolean;
 }
 
 interface Scenario {
-  q: string;
-  lead: string;
+  /** Message group under "AiBoard" ("s1".."s4"). */
+  id: "s1" | "s2" | "s3" | "s4";
   rows: Row[];
-  /** Small line under the card. */
-  note?: string;
-  /** Show the approval buttons (the agent proposes, a person decides). */
-  approval?: string;
+  /** Small line under the card ("note"). */
+  note?: boolean;
+  /** Show the approval buttons (the agent proposes, a person decides): "approval". */
+  approval?: boolean;
 }
 
 const SCENARIOS: Scenario[] = [
-  {
-    q: "Who is on leave today?",
-    lead: "3 people are on leave today:",
-    rows: [
-      { initials: "EC", title: "Emma Clarke", sub: "Casual leave", tag: "2 days" },
-      { initials: "DM", title: "Daniel Moreau", sub: "Sick leave", tag: "1 day" },
-      { initials: "SA", title: "Sofia Alvarez", sub: "Earned leave", tag: "5 days" },
-    ],
-    note: "Leave is read from HRMS and approved requests.",
-  },
-  {
-    // Follow-up: takes a name from the answer above.
-    q: "When is Emma Clarke back in the office?",
-    lead: "Emma Clarke is on casual leave for 2 days.",
-    rows: [
-      { initials: "EC", title: "On leave", sub: "Casual leave, approved", tag: "2 days" },
-      { title: "Back in the office", sub: "The day after tomorrow", tag: "In 2 days" },
-    ],
-    note: "Leave is read from HRMS and approved requests.",
-  },
-  {
-    q: "Which challans are past their return date?",
-    lead: "2 challans are past their return date.",
-    rows: [
-      { title: "Challan CH-1042", sub: "Customer material, not yet returned", tag: "5 days late", warn: true },
-      { title: "Challan CH-1057", sub: "Customer material, not yet returned", tag: "2 days late", warn: true },
-    ],
-    approval: "Draft reminders to the customer",
-  },
-  {
-    q: "Which lots are ready to dispatch?",
-    lead: "5 lots are ready to dispatch.",
-    rows: [
-      { title: "Lot L-2208", sub: "Inspection and COC complete", tag: "Ready" },
-      { title: "Lot L-2211", sub: "Inspection and COC complete", tag: "Ready" },
-      { title: "Lot L-2214", sub: "Inspection and COC complete", tag: "Ready" },
-    ],
-    note: "+ 2 more lots are ready.",
-  },
+  { id: "s1", rows: [{ initials: "EC" }, { initials: "DM" }, { initials: "SA" }], note: true },
+  // Follow-up: takes a name from the answer above.
+  { id: "s2", rows: [{ initials: "EC" }, {}], note: true },
+  { id: "s3", rows: [{ warn: true }, { warn: true }], approval: true },
+  { id: "s4", rows: [{}, {}, {}], note: true },
 ];
 
 const TYPE_MS = 38;
@@ -90,10 +57,14 @@ function AiAvatar({ small = false }: { small?: boolean }) {
 }
 
 export function AiAskBoard() {
+  const t = useTranslations("AiBoard");
   const [idx, setIdx] = useState(0);
   const [typed, setTyped] = useState("");
   const [phase, setPhase] = useState<Phase>("typing");
   const [still, setStill] = useState(false);
+
+  // The questions in the visitor's language (read once per language, so the typing loop below does not restart).
+  const questionsKey = SCENARIOS.map((sc) => t(`${sc.id}.q`)).join("|");
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -107,7 +78,7 @@ export function AiAskBoard() {
     (async () => {
       let i = 0;
       while (!cancelled) {
-        const q = SCENARIOS[i].q;
+        const q = questionsKey.split("|")[i];
         setIdx(i);
         setPhase("typing");
         setTyped("");
@@ -136,9 +107,10 @@ export function AiAskBoard() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [questionsKey]);
 
   const s = SCENARIOS[idx];
+  const question = t(`${s.id}.q`);
   const showQuestion = phase !== "typing";
   const showThinking = phase === "thinking";
   const showAnswer = phase === "answered" || phase === "leaving";
@@ -147,18 +119,17 @@ export function AiAskBoard() {
   return (
     <figure className="m-0">
       <p className="sr-only">
-        Illustration: Synax AI answering questions such as who is on leave today, which challans are past their return
-        date and which lots are ready to dispatch. Sample data.
+        {t("srDescription")}
       </p>
       <div aria-hidden="true" className="keep-light-palette overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/90 shadow-2xl">
         {/* Header */}
         <div className="flex items-center gap-3 border-b border-slate-800 bg-slate-900/60 px-5 py-3.5">
           <AiAvatar />
           <div>
-            <div className="text-sm font-bold text-white">Synax AI</div>
+            <div className="text-sm font-bold text-white">{t("name")}</div>
             <div className="flex items-center gap-1 text-[11px] text-emerald-400">
               <span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
-              Connected to your enterprise data
+              {t("connected")}
             </div>
           </div>
         </div>
@@ -167,7 +138,7 @@ export function AiAskBoard() {
         <div className={`h-[19.5rem] space-y-3.5 overflow-hidden p-5 text-xs transition-opacity duration-300 ${leaving ? "opacity-0" : "opacity-100"}`}>
           {showQuestion ? (
             <div key={`q-${idx}`} className="synax-ask-in flex justify-end">
-              <div className="max-w-[80%] rounded-2xl rounded-tr-sm border border-orange-300/25 bg-orange-400/15 px-4 py-2.5 text-orange-50">{s.q}</div>
+              <div className="max-w-[80%] rounded-2xl rounded-tr-sm border border-orange-300/25 bg-orange-400/15 px-4 py-2.5 text-orange-50">{question}</div>
             </div>
           ) : null}
 
@@ -186,11 +157,11 @@ export function AiAskBoard() {
             <div key={`a-${idx}`} className="synax-ask-in flex items-start gap-2.5">
               <AiAvatar small />
               <div className="min-w-0 max-w-[92%] space-y-2 rounded-2xl rounded-tl-sm bg-slate-800 px-4 py-3 text-slate-200">
-                <p>{s.lead}</p>
+                <p>{t(`${s.id}.lead`)}</p>
                 <ul className="space-y-1.5 pt-0.5">
                   {s.rows.map((r, i) => (
                     <li
-                      key={r.title}
+                      key={i}
                       className={`flex items-center gap-2.5 rounded-lg bg-slate-700/60 px-2.5 py-1.5 ${still ? "" : "synax-ask-in"}`}
                       style={still ? undefined : { animationDelay: `${180 + i * 140}ms` }}
                     >
@@ -198,28 +169,28 @@ export function AiAskBoard() {
                         <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-slate-600 text-[10px] font-bold text-white">{r.initials}</span>
                       ) : null}
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate font-bold text-white">{r.title}</span>
-                        <span className="block truncate text-[10px] text-slate-400">{r.sub}</span>
+                        <span className="block truncate font-bold text-white">{t(`${s.id}.r${i + 1}.title`)}</span>
+                        <span className="block truncate text-[10px] text-slate-400">{t(`${s.id}.r${i + 1}.sub`)}</span>
                       </span>
                       <span
                         className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${r.warn ? "bg-orange-400/20 text-orange-200" : "bg-emerald-400/15 text-emerald-300"}`}
                       >
-                        {r.tag}
+                        {t(`${s.id}.r${i + 1}.tag`)}
                       </span>
                     </li>
                   ))}
                 </ul>
                 {s.approval ? (
                   <div className={`rounded-lg border border-dashed border-orange-300/40 px-2.5 py-2 ${still ? "" : "synax-ask-in"}`} style={still ? undefined : { animationDelay: "700ms" }}>
-                    <p className="text-[10px] font-bold tracking-wider text-orange-300 uppercase">Synax AI proposes</p>
-                    <p className="mt-0.5 font-semibold text-white">{s.approval}</p>
+                    <p className="text-[10px] font-bold tracking-wider text-orange-300 uppercase">{t("proposes")}</p>
+                    <p className="mt-0.5 font-semibold text-white">{t(`${s.id}.approval`)}</p>
                     <div className="mt-2 flex items-center gap-2">
-                      <span className="rounded-md bg-orange-300 px-3 py-1 text-[11px] font-semibold text-orange-950">Approve</span>
-                      <span className="rounded-md border border-slate-600 px-3 py-1 text-[11px] font-semibold text-slate-300">Reject</span>
+                      <span className="rounded-md bg-orange-300 px-3 py-1 text-[11px] font-semibold text-orange-950">{t("approve")}</span>
+                      <span className="rounded-md border border-slate-600 px-3 py-1 text-[11px] font-semibold text-slate-300">{t("reject")}</span>
                     </div>
                   </div>
                 ) : s.note ? (
-                  <p className="text-[10px] text-slate-400">{s.note}</p>
+                  <p className="text-[10px] text-slate-400">{t(`${s.id}.note`)}</p>
                 ) : null}
               </div>
             </div>
@@ -237,16 +208,16 @@ export function AiAskBoard() {
                   <span className="ml-px inline-block h-3 w-px translate-y-0.5 animate-pulse bg-orange-300" />
                 </span>
               ) : (
-                <span className="text-slate-500">Ask anything about your enterprise data...</span>
+                <span className="text-slate-500">{t("placeholder")}</span>
               )}
             </span>
-            <span className={`rounded-lg border p-1.5 transition-colors ${phase === "typing" && typed.length === s.q.length ? "border-orange-300/60 bg-orange-400/30" : "border-orange-300/25 bg-orange-400/15"}`}>
+            <span className={`rounded-lg border p-1.5 transition-colors ${phase === "typing" && typed.length === question.length ? "border-orange-300/60 bg-orange-400/30" : "border-orange-300/25 bg-orange-400/15"}`}>
               <Send className="size-3 text-orange-200" />
             </span>
           </div>
         </div>
       </div>
-      <figcaption className="mt-2 text-center text-[11px] text-slate-500 lg:text-right">Illustration: sample data.</figcaption>
+      <figcaption className="mt-2 text-center text-[11px] text-slate-500 lg:text-right">{t("caption")}</figcaption>
     </figure>
   );
 }

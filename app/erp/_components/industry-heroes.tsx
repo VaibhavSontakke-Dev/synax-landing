@@ -1,8 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { ChevronRight, Users } from "lucide-react";
-import { PRODUCT_DATA, hrefFor, routeFor } from "../_data/products";
-import type { IndustryPage } from "../_data/industries";
+import { PRODUCT_DATA, hrefFor } from "../_data/products";
+import { WORKFLOW_STAGES } from "../_data/content";
+import { industryBySlug, tourTitleOf, type IndustryPage } from "../_data/industries";
 import { Breadcrumb } from "./site-page";
 import { SectionTag } from "./section-tag";
 import { TourButton } from "./demo-buttons";
@@ -23,20 +25,24 @@ import { Reveal } from "./reveal";
 
 const FOCUS = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500";
 
-function splitTitle(title: string) {
-  const cut = title.indexOf(" for ");
-  return cut > 0 ? { head: title.slice(0, cut + 5), tail: title.slice(cut + 5) } : { head: title, tail: "" };
+/** Where the coloured part of the headline starts. A translated page carries the two parts itself. */
+function splitTitle(page: IndustryPage) {
+  if (page.titleHead !== undefined) return { head: page.titleHead, tail: page.titleTail ?? "" };
+  const cut = page.title.indexOf(" for ");
+  return cut > 0 ? { head: page.title.slice(0, cut + 5), tail: page.title.slice(cut + 5) } : { head: page.title, tail: "" };
 }
 
 function DarkCrumbs({ page }: { page: IndustryPage }) {
+  const t = useTranslations("SolutionPage.hero");
+  const ts = useTranslations("Shared");
   return (
-    <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-1.5 text-xs text-slate-300">
+    <nav aria-label={ts("breadcrumb")} className="mb-8 flex flex-wrap items-center gap-1.5 text-xs text-slate-300">
       <Link href="/" className="hover:text-white hover:underline">
-        Synax
+        {t("crumbHome")}
       </Link>
       <ChevronRight className="size-3.5" aria-hidden="true" />
       <Link href="/solutions" className="hover:text-white hover:underline">
-        Solutions
+        {t("crumbSolutions")}
       </Link>
       <ChevronRight className="size-3.5" aria-hidden="true" />
       <span aria-current="page" className="font-semibold text-white">
@@ -47,7 +53,8 @@ function DarkCrumbs({ page }: { page: IndustryPage }) {
 }
 
 function LightCrumbs({ page }: { page: IndustryPage }) {
-  return <Breadcrumb items={[{ label: "Solutions", href: "/solutions" }, { label: page.name }]} />;
+  const t = useTranslations("SolutionPage.hero");
+  return <Breadcrumb items={[{ label: t("crumbSolutions"), href: "/solutions" }, { label: page.name }]} />;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -55,15 +62,18 @@ function LightCrumbs({ page }: { page: IndustryPage }) {
 /* -------------------------------------------------------------------------- */
 
 function FlightDeckHero({ page }: { page: IndustryPage }) {
-  const { head, tail } = splitTitle(page.title);
-  const found = page.flow.findIndex((s) => s.title === "Inspect");
+  const t = useTranslations("SolutionPage.hero");
+  const ta = useTranslations("Industries.aerospace-defence");
+  const { head, tail } = splitTitle(page);
+  // The quality gate is the "inspect" step, found by id so it works in every language.
+  const found = WORKFLOW_STAGES.findIndex((s) => s.id === "inspect");
   const gate = found >= 0 ? found : 0;
   const bracket = "absolute hidden size-6 border-orange-300 sm:block";
   return (
     <section aria-labelledby="page-heading" className="keep-light-palette relative isolate overflow-hidden bg-blue-950 text-white">
       <Image
         src="/images/aerospace.webp"
-        alt="A business jet, a fighter and an unmanned aircraft in flight"
+        alt={ta("heroAlt")}
         fill
         priority
         sizes="100vw"
@@ -93,12 +103,12 @@ function FlightDeckHero({ page }: { page: IndustryPage }) {
             </h1>
             <p className="mt-5 text-sm leading-relaxed text-slate-200 sm:text-base">{page.lead}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <TourButton title={`${page.name} Tour`} onDark />
+              <TourButton title={tourTitleOf(page.slug)} onDark />
             </div>
           </div>
         </div>
 
-        <ol aria-label="Quality gates" className="grid grid-cols-2 gap-2 rounded-2xl border border-white/25 bg-white/10 p-2.5 backdrop-blur-md sm:grid-cols-4">
+        <ol aria-label={t("gatesAria")} className="grid grid-cols-2 gap-2 rounded-2xl border border-white/25 bg-white/10 p-2.5 backdrop-blur-md sm:grid-cols-4">
           {page.flow.map((s, i) => {
             const on = i === gate;
             return (
@@ -122,15 +132,18 @@ function FlightDeckHero({ page }: { page: IndustryPage }) {
 /* 2 · Precision CNC — "Drawing"                                              */
 /* -------------------------------------------------------------------------- */
 
+/** `id` is the message key under "Industries.precision-cnc-machining.callouts". */
 const DRAWING_CALLOUTS = [
-  { text: "Counts from the machine", x: 70, y: 14, tone: "white" },
-  { text: "Material ID by challan", x: 66, y: 86, tone: "white" },
-  { text: "Route card to invoice", x: 24, y: 80, tone: "white" },
-  { text: "COC, GST invoice, e-way bill", x: 30, y: 8, tone: "orange" },
+  { id: "c1", x: 70, y: 14, tone: "white" },
+  { id: "c2", x: 66, y: 86, tone: "white" },
+  { id: "c3", x: 24, y: 80, tone: "white" },
+  { id: "c4", x: 30, y: 8, tone: "orange" },
 ] as const;
 
 function DrawingHero({ page }: { page: IndustryPage }) {
-  const { head, tail } = splitTitle(page.title);
+  const tc = useTranslations("Industries.precision-cnc-machining.callouts");
+  const ta = useTranslations("Industries.precision-cnc-machining");
+  const { head, tail } = splitTitle(page);
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-slate-200 bg-slate-50">
       <div className="pointer-events-none absolute inset-0 -z-10 [background-image:linear-gradient(var(--grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--grid-line)_1px,transparent_1px)] [background-size:32px_32px] [mask-image:linear-gradient(to_right,#000,transparent_60%)]" aria-hidden="true" />
@@ -152,19 +165,19 @@ function DrawingHero({ page }: { page: IndustryPage }) {
         <div className="absolute inset-0 bg-blue-950/35" />
         <svg className="absolute inset-0 size-full" aria-hidden="true">
           {DRAWING_CALLOUTS.map((c) => (
-            <line key={c.text} x1={`${c.x}%`} y1={`${c.y}%`} x2="52%" y2="56%" stroke="rgba(255,255,255,0.7)" strokeWidth="1" />
+            <line key={c.id} x1={`${c.x}%`} y1={`${c.y}%`} x2="52%" y2="56%" stroke="rgba(255,255,255,0.7)" strokeWidth="1" />
           ))}
           <circle cx="52%" cy="56%" r="6" fill="#fdba74" stroke="#fff" strokeWidth="2" />
         </svg>
         {DRAWING_CALLOUTS.map((c) => (
           <span
-            key={c.text}
+            key={c.id}
             className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-md px-2.5 py-1 text-xs font-semibold whitespace-nowrap shadow-md ${
               c.tone === "orange" ? "bg-orange-300 text-blue-950" : "bg-surface text-brand"
             }`}
             style={{ left: `${c.x}%`, top: `${c.y}%` }}
           >
-            {c.text}
+            {tc(c.id)}
           </span>
         ))}
       </div>
@@ -179,19 +192,19 @@ function DrawingHero({ page }: { page: IndustryPage }) {
           </h1>
           <p className="mt-5 text-sm leading-relaxed text-slate-700 sm:text-base">{page.lead}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <TourButton title={`${page.name} Tour`} />
+            <TourButton title={tourTitleOf(page.slug)} />
           </div>
         </div>
 
         {/* Small screens: the photo sits below the copy with the callouts as chips */}
         <div className="mt-6 lg:hidden">
           <div className="relative h-48 overflow-hidden rounded-2xl border border-slate-200 bg-brand-solid">
-            <Image src="/images/precision.webp" alt="A CNC spindle machining a metal part" fill sizes="100vw" quality={70} className="object-cover" />
+            <Image src="/images/precision.webp" alt={ta("heroAlt")} fill sizes="100vw" quality={70} className="object-cover" />
           </div>
           <ul className="mt-3 flex flex-wrap gap-2">
             {DRAWING_CALLOUTS.map((c) => (
-              <li key={c.text} className="rounded-md border border-slate-200 bg-surface px-2.5 py-1 text-xs font-semibold text-brand">
-                {c.text}
+              <li key={c.id} className="rounded-md border border-slate-200 bg-surface px-2.5 py-1 text-xs font-semibold text-brand">
+                {tc(c.id)}
               </li>
             ))}
           </ul>
@@ -205,10 +218,10 @@ function DrawingHero({ page }: { page: IndustryPage }) {
 /* 3 · IT Services & Staffing — "Pipeline"                                    */
 /* -------------------------------------------------------------------------- */
 
-const PIPELINE_SAMPLES = ["Requirement logged", "3 candidates matched", "Offer sent", "1 deployed", "Hours recorded", "Invoice ready"];
-
 function PipelineHero({ page }: { page: IndustryPage }) {
-  const { head, tail } = splitTitle(page.title);
+  const t = useTranslations("SolutionPage.hero");
+  const ts = useTranslations("Industries.it-services-staffing.samples");
+  const { head, tail } = splitTitle(page);
   const last = page.flow.length - 1;
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page">
@@ -231,7 +244,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-700 sm:text-base">{page.lead}</p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <TourButton title={`${page.name} Tour`} />
+            <TourButton title={tourTitleOf(page.slug)} />
           </div>
         </div>
 
@@ -250,7 +263,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
                     <p className={`font-mono text-[11px] font-semibold ${end ? "text-sky-200" : "text-brand/60"}`}>{String(i + 1).padStart(2, "0")}</p>
                     <p className="mt-1 text-sm leading-snug font-bold">{s.title}</p>
                     <p className={`mt-2.5 rounded-md px-2 py-1 text-[11px] font-medium ${end ? "bg-white/15 text-white" : "bg-slate-100 text-slate-700"}`}>
-                      {PIPELINE_SAMPLES[i] ?? "In progress"}
+                      {i < 6 ? ts(`s${i + 1}`) : t("inProgress")}
                     </p>
                     {i < last ? (
                       <ChevronRight className="absolute top-1/2 -right-2.5 z-10 hidden size-4 -translate-y-1/2 rounded-full bg-surface text-brand shadow lg:block" aria-hidden="true" />
@@ -260,7 +273,7 @@ function PipelineHero({ page }: { page: IndustryPage }) {
               );
             })}
           </ol>
-          <p className="mt-2 text-center text-[11px] text-slate-500">Sample data, for illustration</p>
+          <p className="mt-2 text-center text-[11px] text-slate-500">{t("sample")}</p>
         </div>
       </div>
     </section>
@@ -272,7 +285,9 @@ function PipelineHero({ page }: { page: IndustryPage }) {
 /* -------------------------------------------------------------------------- */
 
 function PosterHero({ page }: { page: IndustryPage }) {
-  const { head, tail } = splitTitle(page.title);
+  const t = useTranslations("SolutionPage.hero");
+  const locale = useLocale();
+  const { head, tail } = splitTitle(page);
   const active = Math.min(3, page.flow.length - 1);
   return (
     <section aria-labelledby="page-heading" className="keep-light-palette relative isolate overflow-hidden bg-blue-950 text-white">
@@ -305,18 +320,18 @@ function PosterHero({ page }: { page: IndustryPage }) {
             </h1>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-200 sm:text-base">{page.lead}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <TourButton title={`${page.name} Tour`} onDark />
+              <TourButton title={tourTitleOf(page.slug)} onDark />
             </div>
           </div>
 
           <div className="hidden text-right lg:block">
             <p className="text-7xl leading-none font-black tracking-tight text-white">{page.flow.length}</p>
-            <p className="mt-1 text-sm text-slate-300">steps, {page.flowTitle.toLowerCase()}</p>
+            <p className="mt-1 text-sm text-slate-300">{t("stepsLine", { title: locale === "de" ? page.flowTitle : page.flowTitle.toLowerCase() })}</p>
           </div>
         </div>
 
         {/* The production line */}
-        <ol className="relative mt-12 grid grid-cols-3 gap-x-2 gap-y-6 sm:grid-cols-6" aria-label="The flow">
+        <ol className="relative mt-12 grid grid-cols-3 gap-x-2 gap-y-6 sm:grid-cols-6" aria-label={t("flowAria")}>
           <span className="absolute top-[0.4375rem] right-[8.3%] left-[8.3%] hidden h-0.5 bg-white/25 sm:block" aria-hidden="true" />
           <span className="synax-prod-dash-x absolute top-[0.4375rem] right-[8.3%] left-[8.3%] hidden h-0.5 text-orange-300/70 sm:block" aria-hidden="true" />
           {page.flow.map((s, i) => {
@@ -343,17 +358,22 @@ function PosterHero({ page }: { page: IndustryPage }) {
 
 /** 0 = absent, 1 = present, 2 = on approved leave or half day (a lighter navy). */
 const ROSTER = [
-  { name: "Operator 1", days: [1, 1, 1, 2, 0] },
-  { name: "Operator 2", days: [1, 2, 1, 1, 0] },
-  { name: "Operator 3", days: [1, 1, 2, 1, 1] },
+  { n: 1, days: [1, 1, 1, 2, 0] },
+  { n: 2, days: [1, 2, 1, 1, 0] },
+  { n: 3, days: [1, 1, 2, 1, 1] },
 ];
 const DAY_STYLE = ["bg-slate-200", "bg-brand-solid", "bg-blue-900/35"];
-const DAY_LABEL = ["Absent", "Present", "Leave or half day"];
+/** Message keys under "Industries.plant-workforce-hcm.roster". */
+const DAY_LABEL = ["absent", "present", "leave"] as const;
 
 function RosterHero({ page }: { page: IndustryPage }) {
-  const { head, tail } = splitTitle(page.title);
-  const overtime = page.flow.find((s) => /overtime/i.test(s.title));
-  const payroll = page.flow.find((s) => /payroll/i.test(s.title));
+  const t = useTranslations("SolutionPage.hero");
+  const tr = useTranslations("Industries.plant-workforce-hcm.roster");
+  const { head, tail } = splitTitle(page);
+  // Found in the English flow (by its words), then taken from the translated one at the same position.
+  const english = industryBySlug(page.slug)?.flow ?? [];
+  const overtime = page.flow[english.findIndex((s) => /overtime/i.test(s.title))];
+  const payroll = page.flow[english.findIndex((s) => /payroll/i.test(s.title))];
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-slate-200 bg-slate-100">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
@@ -371,7 +391,7 @@ function RosterHero({ page }: { page: IndustryPage }) {
             </h1>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base">{page.lead}</p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <TourButton title={`${page.name} Tour`} />
+              <TourButton title={tourTitleOf(page.slug)} />
             </div>
           </div>
 
@@ -379,7 +399,7 @@ function RosterHero({ page }: { page: IndustryPage }) {
             <div className="relative h-36 bg-brand-solid sm:h-40">
               <Image
                 src="/images/robot-floor.webp"
-                alt="Robotic arms working on a plant floor"
+                alt={tr("alt")}
                 fill
                 priority
                 sizes="(min-width: 1024px) 45vw, 100vw"
@@ -388,17 +408,17 @@ function RosterHero({ page }: { page: IndustryPage }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/30 to-transparent" />
               <p className="absolute bottom-3 left-4 text-sm font-bold text-white">{page.flowTitle}</p>
-              <span className="absolute right-4 bottom-3 rounded-full bg-orange-300 px-2.5 py-0.5 text-[11px] font-bold text-blue-950">Break pass</span>
+              <span className="absolute right-4 bottom-3 rounded-full bg-orange-300 px-2.5 py-0.5 text-[11px] font-bold text-blue-950">{tr("breakPass")}</span>
             </div>
             <div className="p-4 sm:p-5">
-              <ul className="space-y-2" aria-label="Sample attendance for the week">
+              <ul className="space-y-2" aria-label={tr("aria")}>
                 {ROSTER.map((r) => (
-                  <li key={r.name} className="flex items-center gap-3 text-sm">
-                    <span className="w-24 shrink-0 text-slate-700">{r.name}</span>
+                  <li key={r.n} className="flex items-center gap-3 text-sm">
+                    <span className="w-24 shrink-0 text-slate-700">{tr("operator", { n: r.n })}</span>
                     <span className="grid flex-1 grid-cols-5 gap-1.5">
                       {r.days.map((d, i) => (
-                        <span key={i} className={`h-5 rounded ${DAY_STYLE[d]}`} title={DAY_LABEL[d]}>
-                          <span className="sr-only">{DAY_LABEL[d]}</span>
+                        <span key={i} className={`h-5 rounded ${DAY_STYLE[d]}`} title={tr(DAY_LABEL[d])}>
+                          <span className="sr-only">{tr(DAY_LABEL[d])}</span>
                         </span>
                       ))}
                     </span>
@@ -409,17 +429,17 @@ function RosterHero({ page }: { page: IndustryPage }) {
                 {overtime ? (
                   <p className="flex items-center justify-between gap-3 text-slate-700">
                     <span>{overtime.title}</span>
-                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-brand">2 pending</span>
+                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-brand">{tr("pending", { n: 2 })}</span>
                   </p>
                 ) : null}
                 {payroll ? (
                   <p className="flex items-center justify-between gap-3 text-slate-700">
                     <span>{payroll.title}</span>
-                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-brand">Ready to review</span>
+                    <span className="rounded-full bg-sky-100 px-2.5 py-0.5 text-xs font-semibold text-brand">{tr("ready")}</span>
                   </p>
                 ) : null}
               </div>
-              <p className="mt-3 text-[11px] text-slate-500">Sample data, for illustration</p>
+              <p className="mt-3 text-[11px] text-slate-500">{t("sample")}</p>
             </div>
           </div>
         </div>
@@ -447,8 +467,10 @@ export function IndustryHero({ page }: { page: IndustryPage }) {
 
 /** Band under every hero: who it is for, the products that deliver it (each with its icon), and four counts. */
 export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: number; label: string }[] }) {
+  const t = useTranslations("SolutionPage.hero");
+  const tpr = useTranslations("Products");
   return (
-    <section aria-label="At a glance" className="border-b border-slate-200 bg-gradient-to-b from-page to-slate-50">
+    <section aria-label={t("glanceAria")} className="border-b border-slate-200 bg-gradient-to-b from-page to-slate-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-0 divide-y divide-slate-200 lg:grid-cols-[1fr_1.15fr_auto] lg:divide-x lg:divide-y-0">
           {/* Built for */}
@@ -457,14 +479,14 @@ export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: 
               <Users className="size-5" aria-hidden="true" />
             </span>
             <div>
-              <p className="text-[11px] font-bold tracking-[0.14em] text-accent uppercase">Built for</p>
+              <p className="text-[11px] font-bold tracking-[0.14em] text-accent uppercase">{t("builtFor")}</p>
               <p className="mt-1 text-sm leading-relaxed font-medium text-slate-800">{page.whoFor}</p>
             </div>
           </div>
 
           {/* Delivered by */}
           <div className="py-6 lg:px-8">
-            <p className="text-[11px] font-bold tracking-[0.14em] text-accent uppercase">Delivered by</p>
+            <p className="text-[11px] font-bold tracking-[0.14em] text-accent uppercase">{t("deliveredBy")}</p>
             <ul className="mt-2.5 flex flex-wrap gap-2">
               {page.products.map((key, i) => {
                 const PIcon = PRODUCT_DATA[key].icon;
@@ -479,7 +501,7 @@ export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: 
                       <span className="flex size-7 items-center justify-center rounded-lg bg-slate-100 text-brand transition-colors group-hover:bg-brand-solid group-hover:text-white">
                         <PIcon className="size-4" aria-hidden="true" />
                       </span>
-                      {routeFor(key).name}
+                      {tpr(`${key}.name`)}
                     </Link>
                   </li>
                 );
@@ -488,7 +510,7 @@ export function HeroFoot({ page, stats }: { page: IndustryPage; stats: { value: 
           </div>
 
           {/* Counts */}
-          <ul className="grid grid-cols-4 gap-2 py-6 lg:gap-0 lg:pl-8" aria-label="Counts">
+          <ul className="grid grid-cols-4 gap-2 py-6 lg:gap-0 lg:pl-8" aria-label={t("countsAria")}>
             {stats.map((s, i) => (
               <Reveal key={s.label} as="li" delay={i * 60}>
                 <div className="px-1 text-center lg:min-w-24 lg:border-l lg:border-slate-200 lg:first:border-l-0">

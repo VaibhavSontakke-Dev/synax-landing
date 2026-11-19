@@ -2,8 +2,9 @@
 
 import { useState, type MouseEvent } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { usePathname } from "@/i18n/navigation";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PRODUCT_DATA, PRODUCT_ROUTES, type ProductRoute } from "../_data/products";
@@ -12,6 +13,7 @@ import { SOLUTION_ICON } from "./solution-icons";
 import { useDemo } from "./demo-provider";
 import { TONE } from "./route-tone";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageSwitcher } from "./language-switcher";
 
 /**
  * Sticky header, shared by every page (landing, product, industry and content routes).
@@ -28,10 +30,11 @@ import { ThemeToggle } from "./theme-toggle";
 
 const HOME = "/";
 
+/** `key` is the message key in messages/*.json under "Nav". */
 const SECTION_LINKS = [
-  { label: "Why Synax", href: "/why-synax" },
-  { label: "Security & Trust", href: "/security" },
-];
+  { key: "whySynax", href: "/why-synax" },
+  { key: "security", href: "/security" },
+] as const;
 
 /** The Solutions panel is wider, so it is centred under its trigger instead of hanging off its left edge. */
 const SOLUTIONS_PANEL_OFFSET = "left-1/2 -translate-x-1/2";
@@ -91,6 +94,10 @@ export function SiteNav() {
   const rawPath = usePathname();
   const pathname = rawPath.length > 1 ? rawPath.replace(/\/$/, "") : rawPath;
   const { openDemo } = useDemo();
+  const t = useTranslations("Nav");
+  const tp = useTranslations("Products");
+  const ts = useTranslations("Solutions");
+  const tg = useTranslations("SolutionGroups");
   const [mobileOpen, setMobileOpen] = useState(false);
   const close = () => setMobileOpen(false);
 
@@ -117,7 +124,7 @@ export function SiteNav() {
           <Link
             href={HOME}
             onClick={homeClick}
-            aria-label="Synax by Senwell — home"
+            aria-label={t("homeAria")}
             className="group flex items-center rounded-md py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-line"
           >
             {/* Colour logo on the light theme, the white knockout on the dark theme. */}
@@ -143,7 +150,7 @@ export function SiteNav() {
 
           <nav aria-label="Primary" className="hidden items-center gap-7 text-xs font-semibold text-slate-600 lg:flex">
             <Link href={HOME} onClick={homeClick} aria-current={isHome ? "page" : undefined} className={barClass(isHome)}>
-              Overview
+              {t("overview")}
             </Link>
 
             <div className="group relative py-4">
@@ -153,11 +160,11 @@ export function SiteNav() {
                 aria-current={onProducts ? "true" : undefined}
                 className={`flex items-center gap-1 py-1 ${barClass(onProducts)}`}
               >
-                Products ({PRODUCT_ROUTES.length})
+                {t("products", { count: PRODUCT_ROUTES.length })}
                 <ChevronDown className="size-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true" />
               </button>
               <div className={`${MENU_PANEL} w-96`}>
-                <MenuLabel>Core Business Products</MenuLabel>
+                <MenuLabel>{t("coreProducts")}</MenuLabel>
                 {PRODUCT_ROUTES.slice(0, 2).map((r) => (
                   <MenuItem
                     key={r.key}
@@ -165,11 +172,11 @@ export function SiteNav() {
                     active={isActive(productHref(r))}
                     tone={r.tone}
                     Icon={PRODUCT_DATA[r.key].icon}
-                    name={r.name}
-                    menu={r.menu}
+                    name={tp(`${r.key}.name`)}
+                    menu={tp(`${r.key}.menu`)}
                   />
                 ))}
-                <MenuLabel className="mt-1 border-t border-slate-100 pt-2">Standalone & Add-On Products</MenuLabel>
+                <MenuLabel className="mt-1 border-t border-slate-100 pt-2">{t("addOnProducts")}</MenuLabel>
                 {PRODUCT_ROUTES.slice(2).map((r) => (
                   <MenuItem
                     key={r.key}
@@ -177,8 +184,8 @@ export function SiteNav() {
                     active={isActive(productHref(r))}
                     tone={r.tone}
                     Icon={PRODUCT_DATA[r.key].icon}
-                    name={r.name}
-                    menu={r.menu}
+                    name={tp(`${r.key}.name`)}
+                    menu={tp(`${r.key}.menu`)}
                   />
                 ))}
                 <Link
@@ -186,7 +193,7 @@ export function SiteNav() {
                   aria-current={pathname === "/products" ? "page" : undefined}
                   className={`mt-1 flex items-center justify-between rounded-xl border-t border-slate-100 px-3 pt-3 pb-1.5 text-xs font-bold text-brand hover:underline ${pathname === "/products" ? "underline" : ""}`}
                 >
-                  Compare all products <ArrowRight className="size-3.5" aria-hidden="true" />
+                  {t("compareProducts")} <ArrowRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </div>
             </div>
@@ -198,7 +205,7 @@ export function SiteNav() {
                 aria-current={onSolutions ? "true" : undefined}
                 className={`flex items-center gap-1 py-1 ${barClass(onSolutions)}`}
               >
-                Solutions
+                {t("solutions")}
                 <ChevronDown className="size-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true" />
               </button>
               <div className={`${SOLUTIONS_PANEL} w-[640px]`}>
@@ -208,7 +215,7 @@ export function SiteNav() {
                     <div key={c}>
                       {col.map((g, gi) => (
                         <div key={g.id}>
-                          <MenuLabel className={gi > 0 ? "mt-2" : ""}>{g.label}</MenuLabel>
+                          <MenuLabel className={gi > 0 ? "mt-2" : ""}>{tg(`${g.id}.label`)}</MenuLabel>
                           {SOLUTIONS.filter((s) => s.group === g.id).map((s) => (
                             <MenuItem
                               key={s.key}
@@ -216,8 +223,8 @@ export function SiteNav() {
                               active={solutionActive(s.href)}
                               tone={s.tone}
                               Icon={SOLUTION_ICON[s.key]}
-                              name={s.title}
-                              menu={s.short}
+                              name={ts(`${s.key}.title`)}
+                              menu={ts(`${s.key}.short`)}
                             />
                           ))}
                         </div>
@@ -230,7 +237,7 @@ export function SiteNav() {
                   aria-current={pathname === "/solutions" ? "page" : undefined}
                   className={`mt-1 flex items-center justify-between rounded-xl border-t border-slate-100 px-3 pt-3 pb-1.5 text-xs font-bold text-brand hover:underline ${pathname === "/solutions" ? "underline" : ""}`}
                 >
-                  See all solutions <ArrowRight className="size-3.5" aria-hidden="true" />
+                  {t("seeSolutions")} <ArrowRight className="size-3.5" aria-hidden="true" />
                 </Link>
               </div>
             </div>
@@ -238,32 +245,34 @@ export function SiteNav() {
             {SECTION_LINKS.map((l) => {
               const active = isActive(l.href);
               return (
-                <Link key={l.label} href={l.href} aria-current={active ? "page" : undefined} className={barClass(active)}>
-                  {l.label}
+                <Link key={l.key} href={l.href} aria-current={active ? "page" : undefined} className={barClass(active)}>
+                  {t(l.key)}
                 </Link>
               );
             })}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               type="button"
               onClick={() => openDemo()}
               className="flex cursor-pointer items-center gap-1.5 rounded-xl bg-brand-solid px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-brand-solid-hover hover:shadow-md"
             >
-              <span>Schedule a Demo</span>
+              <span>{t("scheduleDemo")}</span>
               <ArrowRight className="size-3.5" aria-hidden="true" />
             </button>
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
               type="button"
               onClick={() => setMobileOpen((v) => !v)}
               className="cursor-pointer rounded-xl border border-slate-200 p-2 text-slate-700 transition-colors hover:bg-slate-100"
-              aria-label="Toggle mobile menu"
+              aria-label={t("toggleMenu")}
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
             >
@@ -278,39 +287,39 @@ export function SiteNav() {
             className="max-h-[calc(100svh-6rem)] space-y-3 overflow-y-auto border-b border-slate-200 bg-surface px-4 py-4 shadow-xl lg:hidden"
           >
             <MobileLink href={HOME} active={isHome} onClick={close} className="py-1 text-sm font-bold text-slate-900">
-              Overview
+              {t("overview")}
             </MobileLink>
 
             <div className="space-y-1 border-l-2 border-brand-line py-1 pl-3">
-              <div className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">Core Business Products</div>
+              <div className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">{t("coreProducts")}</div>
               {PRODUCT_ROUTES.slice(0, 2).map((r) => (
                 <MobileLink key={r.key} href={productHref(r)} active={isActive(productHref(r))} onClick={close} className="py-1">
-                  <span className={`block text-xs font-semibold ${TONE[r.tone].text}`}>Synax {r.name}</span>
-                  <span className="block text-[10px] text-slate-500">{r.menu}</span>
+                  <span className={`block text-xs font-semibold ${TONE[r.tone].text}`}>Synax {tp(`${r.key}.name`)}</span>
+                  <span className="block text-[10px] text-slate-500">{tp(`${r.key}.menu`)}</span>
                 </MobileLink>
               ))}
             </div>
 
             <div className="space-y-1 border-l-2 border-orange-500 py-1 pl-3">
               <div className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">
-                Standalone & Add-On Products
+                {t("addOnProducts")}
               </div>
               {PRODUCT_ROUTES.slice(2).map((r) => (
                 <MobileLink key={r.key} href={productHref(r)} active={isActive(productHref(r))} onClick={close} className="py-1">
-                  <span className={`block text-xs font-semibold ${TONE[r.tone].text}`}>Synax {r.name}</span>
-                  <span className="block text-[10px] text-slate-500">{r.menu}</span>
+                  <span className={`block text-xs font-semibold ${TONE[r.tone].text}`}>Synax {tp(`${r.key}.name`)}</span>
+                  <span className="block text-[10px] text-slate-500">{tp(`${r.key}.menu`)}</span>
                 </MobileLink>
               ))}
               <MobileLink href="/products" active={pathname === "/products"} onClick={close} className="py-1 text-xs font-bold text-brand">
-                Compare all products &rarr;
+                {t("compareProducts")} &rarr;
               </MobileLink>
             </div>
 
             <div className="space-y-1 border-l-2 border-emerald-500 py-1 pl-3">
-              <div className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">Solutions</div>
+              <div className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">{t("solutions")}</div>
               {SOLUTION_GROUPS.map((g) => (
                 <div key={g.id} className="space-y-1 pt-1">
-                  <div className="pl-3 text-[10px] font-semibold tracking-wide text-slate-400 uppercase">{g.label}</div>
+                  <div className="pl-3 text-[10px] font-semibold tracking-wide text-slate-400 uppercase">{tg(`${g.id}.label`)}</div>
                   {SOLUTIONS.filter((s) => s.group === g.id).map((s) => (
                     <MobileLink
                       key={s.key}
@@ -319,20 +328,20 @@ export function SiteNav() {
                       onClick={close}
                       className="py-1 text-xs font-semibold text-slate-700"
                     >
-                      {s.title}
+                      {ts(`${s.key}.title`)}
                     </MobileLink>
                   ))}
                 </div>
               ))}
               <MobileLink href="/solutions" active={pathname === "/solutions"} onClick={close} className="py-1 text-xs font-bold text-brand">
-                See all solutions &rarr;
+                {t("seeSolutions")} &rarr;
               </MobileLink>
             </div>
 
             <div className="space-y-1 border-t border-slate-100 pt-2 text-xs font-medium text-slate-700">
               {SECTION_LINKS.map((l) => (
-                <MobileLink key={l.label} href={l.href} active={isActive(l.href)} onClick={close} className="py-1 text-slate-600">
-                  {l.label}
+                <MobileLink key={l.key} href={l.href} active={isActive(l.href)} onClick={close} className="py-1 text-slate-600">
+                  {t(l.key)}
                 </MobileLink>
               ))}
             </div>
@@ -345,7 +354,7 @@ export function SiteNav() {
               }}
               className="mt-2 w-full cursor-pointer rounded-xl bg-brand-solid py-3 text-xs font-semibold text-white shadow-md"
             >
-              Schedule a Demo
+              {t("scheduleDemo")}
             </button>
           </div>
         )}

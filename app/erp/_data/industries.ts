@@ -33,6 +33,9 @@ export interface IndustryPage {
   icon: ProductKey | "layers" | "energy";
   tag: string;
   title: string;
+  /** Set when the page is translated: the headline split where the coloured part starts (see `_data/localize.ts`). */
+  titleHead?: string;
+  titleTail?: string;
   lead: string;
   whoFor: string;
   seoTitle: string;
@@ -155,6 +158,42 @@ export const INDUSTRY_PAGES: IndustryPage[] = [
     demoName: "Manufacturing ERP",
   },
   {
+    slug: "rubber-polymer-moulding",
+    group: "process",
+    name: "Rubber & Polymer Moulding",
+    menu: "Job work, lots & inspection",
+    tone: "emerald",
+    icon: "layers",
+    tag: "Rubber & Polymer Moulding",
+    title: "ERP for rubber and polymer moulders",
+    lead: "Customer POs and material on challan, a route card for every job, receiving and final inspection with rejections recorded against the job, and ITC-04 job-work records with the GST invoice, so material balances stop being rebuilt by hand.",
+    whoFor: "Moulders of seals, gaskets, hoses and other rubber and polymer parts who work to customer POs and, often, customer-supplied material.",
+    seoTitle: "ERP for Rubber & Polymer Moulding",
+    seoDescription:
+      "Customer POs and material challans, route cards, receiving and final inspection, rejections, ITC-04 job-work records, GST dispatch and Tally for rubber and polymer moulders.",
+    challenges: [
+      { title: "Material balances rebuilt by hand", text: "Material received on challan, used in production lots and returned as job work is reconciled by hand each period." },
+      { title: "Registers kept apart", text: "Customer POs, challans, production lots, rejections and dispatch sit in separate registers instead of one flow." },
+      { title: "Rejections not tied to the job", text: "Rejected pieces are counted on a sheet instead of being recorded against the job that produced them." },
+      { title: "Job-work returns compiled late", text: "ITC-04 job-work details are put together at the end of the period from separate records." },
+    ],
+    flowTitle: "Order to dispatch",
+    flowLead: "Each step records its evidence as the work happens, so material and job-work balances follow from the record.",
+    flow: [
+      { title: "Customer PO", copy: "Record the customer's PO and its amendments, with the part and quantity ordered.", chips: ["Customer PO & amendments"] },
+      { title: "Material receipt", copy: "Gate entry, GRN and store inward, with customer-supplied material tracked by challan and Material ID.", chips: ["Gate entry, GRN & store inward"] },
+      { title: "Route card", copy: "Release each job on a route card against its part and routing, and follow it through production.", chips: ["Route card production order"] },
+      { title: "Inspection", copy: "Receiving and final inspection, with rejections recorded against the job that produced them.", chips: ["Receiving & final inspection"] },
+      { title: "Job-work records", copy: "Customer material balances, returns and scrap documents feed the ITC-04 data pack.", chips: ["ITC-04 data pack"] },
+      { title: "Dispatch & GST", copy: "Delivery challans, then the GST invoice, IRN and e-way bill from the same record.", chips: ["Delivery challans", "E-invoice (IRN) & e-way bill"] },
+    ],
+    products: ["precision", "shopfloor", "ai"],
+    modulesFrom: "precision",
+    faq: [Q_WHO, Q_GST, Q_TALLY, Q_ONBOARD],
+    demoName: "Manufacturing ERP",
+    heroImage: { src: "/images/industry-rubber.webp", alt: "Blueprint illustration of an O-ring, a lip seal profile and a two-plate mould" },
+  },
+  {
     slug: "it-services-staffing",
     group: "industry",
     name: "IT Services & Consulting",
@@ -260,3 +299,6 @@ export function industryBySlug(slug: string): IndustryPage | undefined {
 }
 
 export const industryHref = (slug: string) => `/solutions/${slug}`;
+
+/** The tour's name. Tours are looked up by this English title (`_data/tours.ts`), so it never changes with the language. */
+export const tourTitleOf = (slug: string) => `${industryBySlug(slug)?.name ?? ""} Tour`;

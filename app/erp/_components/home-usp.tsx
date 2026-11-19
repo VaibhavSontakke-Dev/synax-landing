@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Activity, AlertTriangle, ArrowRight, BookOpen, Check, CircleCheck, Plug, Receipt, Sparkles, ZoomIn } from "lucide-react";
 import { SectionTag } from "./section-tag";
@@ -93,6 +94,7 @@ function Row({
 }) {
   return (
     <article
+      data-anim="rise-lg"
       className={`relative mb-14 grid items-center gap-8 last:mb-12 lg:mb-20 lg:gap-12 lg:last:mb-14 ${
         reverse ? "lg:grid-cols-[7fr_5fr]" : "lg:grid-cols-[5fr_7fr]"
       }`}
@@ -179,6 +181,7 @@ function AiLens() {
   );
 }
 function AiRow() {
+  const t = useTranslations("Usp.ai");
   const [approved, setApproved] = useState(false);
   return (
     <Row
@@ -190,17 +193,12 @@ function AiRow() {
               <Sparkles className="size-5" aria-hidden="true" />
             </span>
           }
-          label="AI that acts"
-          title="Synax AI finds the exception and proposes the fix. You approve."
-          body="Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes."
-          points={[
-            "Challan reconciliation and overdue chasers",
-            "Dispatch readiness and receivables follow-up",
-            "Quality compliance and shop-floor watch",
-            "Maker-checker approval with a full event history",
-          ]}
+          label={t("label")}
+          title={t("title")}
+          body={t("body")}
+          points={[t("p1"), t("p2"), t("p3"), t("p4")]}
           href={hrefFor("ai")}
-          cta="Explore AI & Business Intelligence"
+          cta={t("cta")}
         />
       }
       visual={
@@ -209,7 +207,7 @@ function AiRow() {
             <div className="relative overflow-hidden rounded-b-2xl leading-[0]">
               <Image
                 src="/images/usp-ai-dashboard.webp"
-                alt="Synax home screen with the Overview card and Synax AI"
+                alt={t("alt")}
                 width={1748}
                 height={1045}
                 sizes="(min-width: 1024px) 700px, 100vw"
@@ -217,7 +215,7 @@ function AiRow() {
               />
               <Image
                 src="/images/usp-ai-dashboard-dark.webp"
-                alt="Synax home screen with the Overview card and Synax AI, in the dark theme"
+                alt={t("altDark")}
                 width={1748}
                 height={1045}
                 sizes="(min-width: 1024px) 700px, 100vw"
@@ -234,31 +232,31 @@ function AiRow() {
           </Frame>
           <div className={`${FLOAT} lg:top-[18%] lg:-left-5`} style={{ animationDelay: "0.4s" }}>
             <LiveDot>Synax AI</LiveDot>
-            <p className="mt-0.5 font-bold text-slate-900">Ask anything about your ERP data</p>
+            <p className="mt-0.5 font-bold text-slate-900">{t("ask")}</p>
           </div>
           <div className={`${FLOAT} lg:-right-6 lg:-bottom-7 lg:w-[19rem]`} aria-live="polite">
             {approved ? (
               <>
                 <p className="flex items-center gap-1.5 font-bold text-brand">
-                  <CircleCheck className="size-4" aria-hidden="true" /> Approved by you
+                  <CircleCheck className="size-4" aria-hidden="true" /> {t("approvedTitle")}
                 </p>
-                <p className="mt-1 text-xs text-slate-600">2 reminders drafted. Recorded in the event history.</p>
+                <p className="mt-1 text-xs text-slate-600">{t("approvedBody")}</p>
               </>
             ) : (
               <>
                 <p className="flex items-center gap-1.5 font-bold text-brand">
-                  <Sparkles className="size-4" aria-hidden="true" /> Synax AI proposes
+                  <Sparkles className="size-4" aria-hidden="true" /> {t("proposesTitle")}
                 </p>
-                <p className="mt-1.5 mb-2.5 text-slate-800">2 challans are past their return date. Draft reminders to the customer?</p>
+                <p className="mt-1.5 mb-2.5 text-slate-800">{t("proposesBody")}</p>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => setApproved(true)}
                     className="cursor-pointer rounded-lg bg-brand-solid px-4 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-solid-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
                   >
-                    Approve
+                    {t("approve")}
                   </button>
-                  <span className="text-[11px] text-slate-500">Agents only propose.</span>
+                  <span className="text-[11px] text-slate-500">{t("agentsOnly")}</span>
                 </div>
               </>
             )}
@@ -271,6 +269,7 @@ function AiRow() {
 
 /* ---- 2. Live machines ---- */
 function MachineBoard() {
+  const t = useTranslations("Usp.machines");
   const reduced = useReducedMotion();
   const [tick, setTick] = useState(0);
   useEffect(() => {
@@ -286,8 +285,8 @@ function MachineBoard() {
       style={{ animationDelay: "1s" }}
     >
       <div className="flex items-center justify-between font-bold text-white">
-        <span>Machine board</span>
-        <LiveDot dark>Live</LiveDot>
+        <span>{t("board")}</span>
+        <LiveDot dark>{t("live")}</LiveDot>
       </div>
       {[
         { id: "M-01", count: m1, max: 50 },
@@ -296,7 +295,7 @@ function MachineBoard() {
         <div key={m.id} className="mt-2 rounded-lg border border-blue-700/70 bg-blue-800/60 px-2.5 py-1.5">
           <div className="flex items-center justify-between text-xs">
             <span>
-              {m.id} <span className="text-sky-200">Running</span>
+              {m.id} <span className="text-sky-200">{t("running")}</span>
             </span>
             <b>
               {m.count} / {m.max}
@@ -308,13 +307,14 @@ function MachineBoard() {
         </div>
       ))}
       <p className="mt-2 flex items-center gap-1.5 rounded-lg border border-orange-300/40 bg-orange-400/15 px-2.5 py-1.5 text-xs text-orange-50">
-        <AlertTriangle className="size-3.5 text-orange-300" aria-hidden="true" /> M-03 Alarm · tool life
+        <AlertTriangle className="size-3.5 text-orange-300" aria-hidden="true" /> {t("alarm")}
       </p>
     </div>
   );
 }
 
 function MachinesRow() {
+  const t = useTranslations("Usp.machines");
   return (
     <Row
       n={2}
@@ -326,17 +326,12 @@ function MachinesRow() {
               <Activity className="size-5" aria-hidden="true" />
             </span>
           }
-          label="Live machine monitoring"
-          title="The machine reports the count."
-          body="Connect your machines and let real cycle counts, alarms and downtime drive production confirmation, with no separate MES or integrator."
-          points={[
-            "OEM connection or open FOCAS",
-            "Live machine board with alarms and downtime reasons",
-            "Machines that cannot connect still work: operators confirm counts",
-            "Biometric devices sync attendance and overtime approvals",
-          ]}
+          label={t("label")}
+          title={t("title")}
+          body={t("body")}
+          points={[t("p1"), t("p2"), t("p3"), t("p4")]}
           href={hrefFor("shopfloor")}
-          cta="Explore Shop Floor & Machine Monitoring"
+          cta={t("cta")}
         />
       }
       visual={
@@ -349,7 +344,7 @@ function MachinesRow() {
               />
               <Image
                 src="/images/usp-machines-v4.webp"
-                alt="Live machine board with six machines, their cycle counts and an alarm on M-03 (illustration)"
+                alt={t("alt")}
                 width={1748}
                 height={1045}
                 sizes="(min-width: 1024px) 700px, 100vw"
@@ -357,7 +352,7 @@ function MachinesRow() {
               />
               <Image
                 src="/images/usp-machines-v4-dark.webp"
-                alt="Live machine board with six machines, their cycle counts and an alarm on M-03, in the dark theme (illustration)"
+                alt={t("altDark")}
                 width={1748}
                 height={1045}
                 sizes="(min-width: 1024px) 700px, 100vw"
@@ -369,12 +364,12 @@ function MachinesRow() {
                 style={MACHINES_ALARM}
                 aria-hidden="true"
               />
-              <span className="absolute top-2 right-2 rounded bg-surface/90 px-2 py-0.5 text-[10px] leading-none font-semibold text-slate-600 shadow-xs">Illustration</span>
+              <span className="absolute top-2 right-2 rounded bg-surface/90 px-2 py-0.5 text-[10px] leading-none font-semibold text-slate-600 shadow-xs">{t("illustration")}</span>
             </div>
           </Frame>
           <div className={`${FLOAT} lg:top-[12%] lg:-right-4`} style={{ animationDelay: "0.2s" }}>
-            <LiveDot>FOCAS connected</LiveDot>
-            <p className="text-xs text-slate-500">Live cycle counts</p>
+            <LiveDot>{t("focas")}</LiveDot>
+            <p className="text-xs text-slate-500">{t("cycles")}</p>
           </div>
           <MachineBoard />
         </>
@@ -384,17 +379,14 @@ function MachinesRow() {
 }
 
 /* ---- 3. Tally and GST ---- */
-const CHAIN = [
-  { title: "Invoice approved", note: "By an approver with the right role" },
-  { title: "IRN generated", note: "Through your GST suvidha provider" },
-  { title: "E-way bill", note: "In the same flow" },
-  { title: "Voucher to Tally", note: "Your accountant changes nothing" },
-];
+/** Message ids under "Usp.billing.chain.<id>". */
+const CHAIN = ["approved", "irn", "eway", "tally"] as const;
+/** [message id under "Usp.billing.lines", quantity, amount]: the figures are sample data and are not translated. */
 const LINES = [
-  ["Machined housing", "120 nos", "84,000"],
-  ["Shaft, ground", "200 nos", "52,000"],
-  ["Bracket, drilled", "80 nos", "18,400"],
-];
+  ["housing", 120, "84,000"],
+  ["shaft", 200, "52,000"],
+  ["bracket", 80, "18,400"],
+] as const;
 /** A small QR-style block (decorative). */
 const QR = ["1110101", "1000110", "1011011", "0101101", "1101001", "0011110", "1010111"];
 
@@ -404,6 +396,7 @@ const QR = ["1110101", "1000110", "1011011", "0101101", "1101001", "0011110", "1
  * all show as done for reduced motion.
  */
 function InvoiceMock() {
+  const t = useTranslations("Usp.billing");
   const reduced = useReducedMotion();
   const [step, setStep] = useState(0);
   useEffect(() => {
@@ -419,30 +412,30 @@ function InvoiceMock() {
       <div className="rounded-xl border border-slate-200 bg-surface p-4 shadow-[0_12px_28px_-18px_rgba(30,58,138,0.55)]">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className="text-[11px] font-bold tracking-wider text-brand uppercase">Tax invoice</p>
+            <p className="text-[11px] font-bold tracking-wider text-brand uppercase">{t("invoice")}</p>
             <p className="text-base font-extrabold text-slate-900">INV-2201</p>
           </div>
-          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold text-slate-500">Sample</span>
+          <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold text-slate-500">{t("sample")}</span>
         </div>
         <p className="mt-2 text-xs text-slate-500">
-          Billed to <span className="font-semibold text-slate-700">Sample customer</span>
+          {t.rich("billedTo", { b: (chunks) => <span className="font-semibold text-slate-700">{chunks}</span> })}
         </p>
 
         <div className="mt-3 divide-y divide-slate-100 border-y border-slate-100 text-xs">
-          {LINES.map(([name, qty, amount]) => (
-            <div key={name} className="grid grid-cols-[1fr_auto_auto] items-center gap-3 py-1.5">
-              <span className="truncate font-medium text-slate-800">{name}</span>
-              <span className="text-slate-500">{qty}</span>
+          {LINES.map(([id, qty, amount]) => (
+            <div key={id} className="grid grid-cols-[1fr_auto_auto] items-center gap-3 py-1.5">
+              <span className="truncate font-medium text-slate-800">{t(`lines.${id}`)}</span>
+              <span className="text-slate-500">{t("lines.qty", { count: qty })}</span>
               <span className="w-14 text-right font-semibold text-slate-800">{amount}</span>
             </div>
           ))}
         </div>
         <div className="mt-2 flex items-center justify-between text-xs text-slate-500">
-          <span>GST</span>
+          <span>{t("gst")}</span>
           <span className="font-semibold text-slate-700">27,792</span>
         </div>
         <div className="mt-1 flex items-center justify-between rounded-lg bg-brand-solid px-3 py-1.5 text-xs font-bold text-white">
-          <span>Total</span>
+          <span>{t("total")}</span>
           <span>1,82,192</span>
         </div>
 
@@ -453,17 +446,17 @@ function InvoiceMock() {
             ))}
           </div>
           <p className="text-[11px] leading-snug text-slate-500">
-            <span className="block font-bold text-slate-700">IRN</span>
-            {irn ? "Generated on approval" : "Generated once approved"}
+            <span className="block font-bold text-slate-700">{t("irn")}</span>
+            {irn ? t("irnOn") : t("irnOff")}
           </p>
         </div>
       </div>
 
-      <ol className="relative flex flex-col justify-center gap-5" aria-label="What happens after approval">
+      <ol className="relative flex flex-col justify-center gap-5" aria-label={t("afterAria")}>
         {CHAIN.map((c, i) => {
           const on = i < done;
           return (
-            <li key={c.title} className="relative flex gap-3">
+            <li key={c} className="relative flex gap-3">
               {i < CHAIN.length - 1 ? (
                 <span
                   aria-hidden="true"
@@ -478,8 +471,8 @@ function InvoiceMock() {
                 {on ? <Check className="size-3.5" aria-hidden="true" /> : i + 1}
               </span>
               <div className="min-w-0">
-                <p className={`text-[13px] font-bold ${on ? "text-slate-900" : "text-slate-500"}`}>{c.title}</p>
-                <p className="text-[11px] leading-snug text-slate-500">{c.note}</p>
+                <p className={`text-[13px] font-bold ${on ? "text-slate-900" : "text-slate-500"}`}>{t(`chain.${c}.title`)}</p>
+                <p className="text-[11px] leading-snug text-slate-500">{t(`chain.${c}.note`)}</p>
               </div>
             </li>
           );
@@ -490,6 +483,7 @@ function InvoiceMock() {
 }
 
 function BillingRow() {
+  const t = useTranslations("Usp.billing");
   return (
     <Row
       n={3}
@@ -500,17 +494,12 @@ function BillingRow() {
               <Receipt className="size-5" aria-hidden="true" />
             </span>
           }
-          label="Tally and GST"
-          title="GST invoices carry their IRN. Your books stay in Tally."
-          body="Run purchase, stores, production and dispatch in Synax. GST invoices, IRN and e-way bills come from the same flow, and vouchers go to Tally, so your accountant changes nothing."
-          points={[
-            "GST tax invoice, IRN and e-way bill in one flow",
-            "IRN through ClearTax or Masters India, on approval",
-            "ITC-04 data pack for job work",
-            "Tally bridge for vouchers",
-          ]}
+          label={t("label")}
+          title={t("title")}
+          body={t("body")}
+          points={[t("p1"), t("p2"), t("p3"), t("p4")]}
           href={hrefFor("precision")}
-          cta="Explore Manufacturing ERP"
+          cta={t("cta")}
         />
       }
       visual={
@@ -520,14 +509,14 @@ function BillingRow() {
           </Frame>
           <div className={`${FLOAT} lg:-top-5 lg:-right-5`} style={{ animationDelay: "0.3s" }}>
             <p className="flex items-center gap-1.5 text-xs font-bold text-brand">
-              <Plug className="size-3.5" aria-hidden="true" /> ClearTax or Masters India connected
+              <Plug className="size-3.5" aria-hidden="true" /> {t("plug")}
             </p>
           </div>
           <div className={`${FLOAT} lg:-bottom-6 lg:-left-5`} style={{ animationDelay: "0.8s" }}>
             <p className="flex items-center gap-1.5 font-bold text-brand">
-              <BookOpen className="size-4" aria-hidden="true" /> Voucher sent to Tally
+              <BookOpen className="size-4" aria-hidden="true" /> {t("voucher")}
             </p>
-            <p className="text-xs text-slate-500">Your accountant changes nothing</p>
+            <p className="text-xs text-slate-500">{t("accountant")}</p>
           </div>
         </>
       }
@@ -536,9 +525,11 @@ function BillingRow() {
 }
 
 /* ---- Flow band ---- */
-const FLOW = ["Machine count", "Route card", "Inspection & COC", "GST invoice · IRN", "Tally voucher"];
+/** Message ids under "Usp.flow". */
+const FLOW = ["machine", "route", "inspection", "gst", "tally"] as const;
 
 export function Usp() {
+  const t = useTranslations("Usp");
   return (
     <section
       id="usp"
@@ -548,18 +539,18 @@ export function Usp() {
       <HeroBackdrop />
 
       <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionTag>What sets Synax apart (USP)</SectionTag>
+        <div data-anim-stagger="rise" className="mx-auto max-w-3xl text-center">
+          <SectionTag>{t("tag")}</SectionTag>
           <h2 id="usp-heading" className="mt-3 text-2xl leading-[1.15] font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
-            Built in, not bolted on: <span className="text-brand">AI</span>, live machines, <span className="text-brand">Tally</span> and GST
+            {t.rich("title", { b: (chunks) => <span className="text-brand">{chunks}</span> })}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-            Most plants stitch these together from separate tools. In Synax they share one record, from the machine to the GST invoice.
+            {t("lead")}
           </p>
-          <ul className="mt-5 flex flex-wrap justify-center gap-2" aria-label="Highlights">
-            {["Agents only propose", "OEM or open FOCAS", "IRN on approval", "Works with Tally", "Built in India"].map((c) => (
+          <ul className="mt-5 flex flex-wrap justify-center gap-2" aria-label={t("highlightsAria")}>
+            {(["agents", "focas", "irn", "tally", "india"] as const).map((c) => (
               <li key={c} className="rounded-full border border-sky-200 bg-surface px-3 py-1 text-xs font-semibold text-slate-700">
-                {c}
+                {t(`highlights.${c}`)}
               </li>
             ))}
           </ul>
@@ -572,10 +563,10 @@ export function Usp() {
           <BillingRow />
         </div>
 
-        <div className="keep-light-palette rounded-3xl bg-brand-solid p-6 text-white shadow-xl sm:p-8">
+        <div data-anim="rise-lg" className="keep-light-palette rounded-3xl bg-brand-solid p-6 text-white shadow-xl sm:p-8">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <p className="text-xs font-bold tracking-[0.14em] text-orange-300 uppercase">One record from the machine to the ledger</p>
-            <p className="text-sm text-blue-100">With AI watching each step</p>
+            <p className="text-xs font-bold tracking-[0.14em] text-orange-300 uppercase">{t("band.title")}</p>
+            <p className="text-sm text-blue-100">{t("band.sub")}</p>
           </div>
           <div className="relative mt-8">
             <div className="absolute top-4 right-[10%] left-[10%] hidden h-0.5 bg-surface/35 sm:block" aria-hidden="true" />
@@ -586,15 +577,15 @@ export function Usp() {
               {FLOW.map((f, i) => (
                 <li key={f} className="text-center text-[13px] font-semibold">
                   <span className="mx-auto mb-2 flex size-8 items-center justify-center rounded-full bg-surface text-sm font-bold text-brand">{i + 1}</span>
-                  {f}
+                  {t(`flow.${f}`)}
                 </li>
               ))}
             </ol>
           </div>
-          <ul className="mt-7 flex flex-wrap justify-center gap-2" aria-label="Guarantees">
-            {["Agents only propose", "IRN on approval", "Works with Tally", "Audit trail on every posting"].map((c) => (
+          <ul className="mt-7 flex flex-wrap justify-center gap-2" aria-label={t("guaranteesAria")}>
+            {(["agents", "irn", "tally", "audit"] as const).map((c) => (
               <li key={c} className="rounded-full border border-surface/35 bg-white/10 px-3 py-1 text-xs font-semibold">
-                {c}
+                {t(`highlights.${c}`)}
               </li>
             ))}
           </ul>

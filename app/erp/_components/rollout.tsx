@@ -14,6 +14,7 @@ import {
   TrendingUp,
   UsersRound,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { ROLLOUT, ROLLOUT_CHECKLIST, ROLLOUT_ROLES } from "../_data/content";
 import { Reveal } from "./reveal";
 import { Container, Section, SectionHeading } from "./ui";
@@ -36,24 +37,26 @@ const ROLE_ICONS: LucideIcon[] = [Flag, UsersRound, Settings, Award];
 const GO_LIVE_INDEX = 2;
 const ONGOING_INDEX = 3;
 
-function timingLabel(timing: string, index: number) {
-  if (index === GO_LIVE_INDEX) return `${timing} · Go-live`;
-  if (index === ONGOING_INDEX) return `${timing} · Ongoing`;
-  return timing;
-}
-
 export function Rollout() {
+  const t = useTranslations("Rollout");
+  /** "Phase 3 · Go-live", "Phase 4 · Ongoing"; the texts of the phases are in messages/*.json (the data file only keeps their order). */
+  const timingLabel = (index: number) => {
+    const timing = t("timing", { n: index + 1 });
+    if (index === GO_LIVE_INDEX) return `${timing} · ${t("goLive")}`;
+    if (index === ONGOING_INDEX) return `${timing} · ${t("ongoing")}`;
+    return timing;
+  };
   return (
     <Section id="rollout" tone="tint" compact>
       <Container>
         <Reveal>
           <div className="text-center">
-            <SectionTag>Rollout blueprint</SectionTag>
+            <SectionTag>{t("tag")}</SectionTag>
           </div>
           <SectionHeading
             align="center"
-            title="A phased path from discovery to optimization"
-            lead="Every rollout follows the same four phases. How long each one takes depends on your organization, so the schedule is planned with you."
+            title={t("title")}
+            lead={t("lead")}
           />
         </Reveal>
 
@@ -103,13 +106,13 @@ export function Rollout() {
                         goLive ? "bg-orange-600 text-white" : "bg-erp-surface-3 text-erp-body"
                       }`}
                     >
-                      {timingLabel(phase.timing, index)}
+                      {timingLabel(index)}
                     </span>
                     <div className="mt-3 flex items-start gap-2">
                       <Icon className="mt-0.5 size-[18px] shrink-0 text-accent" aria-hidden />
-                      <h3 className="text-[0.9375rem] leading-snug font-semibold text-erp-ink">{phase.title}</h3>
+                      <h3 className="text-[0.9375rem] leading-snug font-semibold text-erp-ink">{t(`phases.p${index + 1}.title`)}</h3>
                     </div>
-                    <p className="mt-2 text-[0.8125rem] leading-relaxed text-erp-body">{phase.copy}</p>
+                    <p className="mt-2 text-[0.8125rem] leading-relaxed text-erp-body">{t(`phases.p${index + 1}.copy`)}</p>
                   </div>
                 </Reveal>
               );
@@ -122,10 +125,7 @@ export function Rollout() {
           <div className="mt-8 flex flex-col items-start gap-4 rounded-2xl border border-erp-line bg-surface p-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="flex max-w-2xl items-start gap-3 text-[0.9375rem] text-erp-body">
               <Repeat className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden />
-              <span>
-                Implementation timelines are tailored to your organization&apos;s size, operational complexity,
-                and requirements. A detailed rollout plan will be established during the discovery phase.
-              </span>
+              <span>{t("note")}</span>
             </p>
           </div>
         </Reveal>
@@ -134,14 +134,14 @@ export function Rollout() {
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
           <Reveal className="rounded-2xl border border-erp-line bg-surface p-5 sm:p-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-semibold text-erp-ink">Before onboarding</h3>
-              <span className="text-xs text-erp-soft">{ROLLOUT_CHECKLIST.length} steps</span>
+              <h3 className="text-base font-semibold text-erp-ink">{t("checklistTitle")}</h3>
+              <span className="text-xs text-erp-soft">{t("steps", { count: ROLLOUT_CHECKLIST.length })}</span>
             </div>
             <ul className="mt-4 space-y-3">
-              {ROLLOUT_CHECKLIST.map((item) => (
+              {ROLLOUT_CHECKLIST.map((item, index) => (
                 <li key={item} className="flex gap-3 text-[0.875rem] leading-relaxed text-erp-body">
                   <CircleCheck className="mt-0.5 size-[18px] shrink-0 text-accent" aria-hidden />
-                  {item}
+                  {t(`checklist.c${index + 1}`)}
                 </li>
               ))}
             </ul>
@@ -149,8 +149,8 @@ export function Rollout() {
 
           <Reveal delay={90} className="rounded-2xl border border-erp-line bg-surface p-5 sm:p-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-semibold text-erp-ink">Rollout ownership</h3>
-              <span className="text-xs text-erp-soft">{ROLLOUT_ROLES.length} roles</span>
+              <h3 className="text-base font-semibold text-erp-ink">{t("rolesTitle")}</h3>
+              <span className="text-xs text-erp-soft">{t("roles", { count: ROLLOUT_ROLES.length })}</span>
             </div>
             <dl className="mt-4 grid gap-3 sm:grid-cols-2">
               {ROLLOUT_ROLES.map((role, index) => {
@@ -160,8 +160,8 @@ export function Rollout() {
                     <span className="flex size-8 items-center justify-center rounded-lg bg-erp-brand text-white">
                       <Icon className="size-4" aria-hidden />
                     </span>
-                    <dt className="mt-2.5 text-sm font-semibold text-erp-ink">{role.title}</dt>
-                    <dd className="mt-1 text-[0.8125rem] leading-relaxed text-erp-body">{role.description}</dd>
+                    <dt className="mt-2.5 text-sm font-semibold text-erp-ink">{t(`role.r${index + 1}.title`)}</dt>
+                    <dd className="mt-1 text-[0.8125rem] leading-relaxed text-erp-body">{t(`role.r${index + 1}.desc`)}</dd>
                   </div>
                 );
               })}

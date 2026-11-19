@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { IconName } from "../_data/content";
 import { ModuleIcon } from "./icons";
 
@@ -19,6 +20,7 @@ export interface Reason {
  * the selected one on the right. Arrow keys move between tabs.
  */
 export function ReasonTabs({ items }: { items: Reason[] }) {
+  const t = useTranslations("ReasonTabs");
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const item = items[active];
@@ -49,7 +51,7 @@ export function ReasonTabs({ items }: { items: Reason[] }) {
     <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-surface shadow-sm lg:grid-cols-[270px_minmax(0,1fr)]">
       <div
         role="tablist"
-        aria-label="Five reasons"
+        aria-label={t("aria")}
         aria-orientation="vertical"
         onKeyDown={onKeyDown}
         className="flex gap-1 overflow-x-auto border-b border-slate-200 bg-sky-50 p-2 lg:flex-col lg:overflow-visible lg:border-r lg:border-b-0 lg:p-3"

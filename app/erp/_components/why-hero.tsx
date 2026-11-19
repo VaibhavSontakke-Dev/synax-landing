@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { LIVE_PILLARS, LIVE_POSITIONING } from "../_data/live";
+import { useTranslations } from "next-intl";
 import { Breadcrumb } from "./site-page";
 import { SectionTag } from "./section-tag";
 import { TourButton } from "./demo-buttons";
@@ -12,7 +12,10 @@ import { TourButton } from "./demo-buttons";
  * existing wording (see `_data/live.ts`). Server component, no motion.
  */
 
-const TICKS = ["Built in India, for Indian shop floors", "Audit trail on every posting", "Works with Tally"];
+/** Message ids: "Why.hero.ticks.<id>". */
+const TICKS = ["india", "audit", "tally"] as const;
+/** The three pillars, in order (messages "Live.pillars.<id>"). */
+const PILLARS = ["p1", "p2", "p3"] as const;
 
 /** Position and tilt of each pillar card on large screens (index = pillar order: 1, 2, 3). */
 const FAN = [
@@ -29,6 +32,9 @@ export interface WhyProof {
 }
 
 export function WhyHero({ proof }: { proof: WhyProof[] }) {
+  const t = useTranslations("Why.hero");
+  const live = useTranslations("Live");
+  const nav = useTranslations("Nav");
   return (
     <section aria-labelledby="page-heading" className="relative isolate overflow-hidden border-b border-sky-200 bg-gradient-to-b from-sky-100 via-sky-50 to-page">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
@@ -40,27 +46,27 @@ export function WhyHero({ proof }: { proof: WhyProof[] }) {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 pt-8 pb-10 sm:px-6 lg:px-8 lg:pt-10 lg:pb-12">
-        <Breadcrumb items={[{ label: "Why Synax" }]} />
+        <Breadcrumb items={[{ label: nav("whySynax") }]} />
 
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="lg:pt-6">
-            <SectionTag lines="start">Why Synax</SectionTag>
+            <SectionTag lines="start">{t("tag")}</SectionTag>
             <h1 id="page-heading" className="mt-3 text-3xl leading-[1.12] font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-              <span className="text-brand">Why industry leaders </span>choose Synax
+              {t.rich("title", { b: (chunks) => <span className="text-brand">{chunks}</span> })}
             </h1>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-slate-700 sm:text-base">
-              {LIVE_POSITIONING.headline} {LIVE_POSITIONING.sub}
+              {live("positioning.headline")} {live("positioning.sub")}
             </p>
             <div className="mt-7">
               <TourButton title="Why Synax" />
             </div>
-            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] font-medium text-slate-700" aria-label="Highlights">
-              {TICKS.map((t) => (
-                <li key={t} className="flex items-center gap-1.5">
+            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-[13px] font-medium text-slate-700" aria-label={t("highlightsAria")}>
+              {TICKS.map((tick) => (
+                <li key={tick} className="flex items-center gap-1.5">
                   <span className="text-brand" aria-hidden="true">
                     ✓
                   </span>
-                  {t}
+                  {t(`ticks.${tick}`)}
                 </li>
               ))}
             </ul>
@@ -69,20 +75,20 @@ export function WhyHero({ proof }: { proof: WhyProof[] }) {
           {/* The three pillars, fanned out (stacked on small screens) */}
           <div className="relative lg:h-[26rem]">
             <span className="mb-3 inline-block rounded-full bg-orange-300 px-3 py-1 text-xs font-bold text-blue-950 shadow-md lg:absolute lg:top-0 lg:left-0 lg:z-10 lg:mb-0">
-              Free for SMEs under 50 employees
+              {t("free")}
             </span>
-            <ol className="space-y-3 lg:space-y-0" aria-label="The three pillars">
-              {LIVE_PILLARS.map((p, i) => (
+            <ol className="space-y-3 lg:space-y-0" aria-label={t("pillarsAria")}>
+              {PILLARS.map((p, i) => (
                 <li
-                  key={p.kicker}
+                  key={p}
                   className={`rounded-xl border border-slate-300 bg-surface p-4 shadow-lg shadow-brand-line/10 lg:absolute lg:w-[19.5rem] ${FAN[i] ?? ""}`}
                 >
                   <div className="flex items-center gap-2.5">
                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-solid font-mono text-xs font-semibold text-white">{i + 1}</span>
-                    <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">{p.kicker}</p>
+                    <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">{live(`pillars.${p}.kicker`)}</p>
                   </div>
-                  <p className="mt-2 text-sm leading-snug font-bold text-slate-900">{p.title}</p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{p.points[0]}</p>
+                  <p className="mt-2 text-sm leading-snug font-bold text-slate-900">{live(`pillars.${p}.title`)}</p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{live(`pillars.${p}.a`)}</p>
                 </li>
               ))}
             </ol>
@@ -91,8 +97,8 @@ export function WhyHero({ proof }: { proof: WhyProof[] }) {
 
         {/* Synax at a glance */}
         <div className="mt-10">
-          <p className="mb-3 text-xs font-bold tracking-[0.14em] text-slate-500 uppercase">Synax at a glance</p>
-          <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label="Key facts">
+          <p className="mb-3 text-xs font-bold tracking-[0.14em] text-slate-500 uppercase">{t("glance")}</p>
+          <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label={t("factsAria")}>
             {proof.map((p) => {
               const Icon = p.icon;
               return (

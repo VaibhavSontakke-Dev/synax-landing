@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+/** Tells next-intl where the per-request language settings live (see i18n/request.ts). */
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -57,6 +61,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // Legacy address of the Manufacturing ERP page (it used to be a copy of another vendor's page). Redirects run before the
+        // language proxy, so each language prefix needs its own rule to keep the visitor in their language.
+        source: "/cloud-erp-software/manufacturing-management",
+        destination: "/products/manufacturing-erp",
+        permanent: true,
+      },
+      {
+        source: "/:locale(fr|de)/cloud-erp-software/manufacturing-management",
+        destination: "/:locale/products/manufacturing-erp",
+        permanent: true,
+      },
+      {
         // Automotive & Heavy Industrial became Industrial Machinery & Equipment (solutions restructure).
         source: "/solutions/automotive-heavy-industrial",
         destination: "/solutions/industrial-machinery-equipment",
@@ -75,4 +91,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

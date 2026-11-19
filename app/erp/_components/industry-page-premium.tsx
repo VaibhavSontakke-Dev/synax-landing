@@ -1,9 +1,12 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { slug } from "@/i18n/slug";
 import type { LucideIcon } from "lucide-react";
 import { AlertCircle, ArrowRight, Boxes, Check, ClipboardList, ShieldCheck } from "lucide-react";
-import { PRODUCT_DATA, hrefFor, routeFor } from "../_data/products";
-import { INDUSTRY_PAGES, industryHref, type IndustryPage } from "../_data/industries";
+import { PRODUCT_DATA, hrefFor } from "../_data/products";
+import { INDUSTRY_PAGES, industryHref, tourTitleOf, type IndustryPage } from "../_data/industries";
 import { LIVE_FAQ } from "../_data/live";
+import { localizeIndustry, localizeModules } from "../_data/localize";
 import { INDUSTRY_ICON } from "./industry-icons";
 import { HeroFoot, IndustryHero } from "./industry-heroes";
 import { Faq } from "./site-page";
@@ -61,27 +64,43 @@ function SectionHead({
   );
 }
 
-export function IndustryPagePremium({ page }: { page: IndustryPage }) {
+/**
+ * `english` is the data from `_data/industries.ts`; every word shown comes from messages/*.json (namespaces "SolutionPage" for the
+ * template, "Industries" for the page's own text, "ProductModules", "Products", "ProductData", "Faq", "Modules", see
+ * `_data/localize.ts`). Sorting, counts and links keep using the English data (slugs, ids, order).
+ */
+export function IndustryPagePremium({ page: english }: { page: IndustryPage }) {
+  const t = useTranslations("SolutionPage");
+  const ti = useTranslations("Industries");
+  const tm = useTranslations("Modules");
+  const tw = useTranslations("Workflow");
+  const tl = useTranslations("Live");
+  const tp = useTranslations("ProductModules");
+  const tpr = useTranslations("Products");
+  const tpd = useTranslations("ProductData");
+  const tf = useTranslations("Faq");
+
+  const page = localizeIndustry(english, ti, tm, tw, tl);
   const meta = PRODUCT_DATA[page.modulesFrom];
-  const modules = meta.moduleSection;
-  const faq = LIVE_FAQ.filter((f) => page.faq.includes(f.q));
+  const modules = meta.moduleSection ? localizeModules(meta.moduleSection, page.modulesFrom, tp) : undefined;
+  const faq = LIVE_FAQ.filter((f) => page.faq.includes(f.q)).map((f) => ({ q: tf(`${slug(f.q)}.q`), a: tf(`${slug(f.q)}.a`) }));
   const others = INDUSTRY_PAGES.filter((i) => i.slug !== page.slug);
   const moduleCount = modules?.groups.reduce((n, g) => n + g.items.length, 0) ?? 0;
 
   const jump = [
-    { id: "challenges", label: "The challenge" },
-    { id: "flow", label: "How it answers it" },
-    ...(modules ? [{ id: "modules", label: "Modules" }] : []),
-    { id: "products", label: "Products" },
-    ...(page.proof ? [{ id: "proof", label: "Proof" }] : []),
-    ...(faq.length > 0 ? [{ id: "faq", label: "FAQ" }] : []),
-    { id: "industries", label: "Other industries" },
+    { id: "challenges", label: t("jump.challenge") },
+    { id: "flow", label: t("jump.answer") },
+    ...(modules ? [{ id: "modules", label: t("jump.modules") }] : []),
+    { id: "products", label: t("jump.products") },
+    ...(page.proof ? [{ id: "proof", label: t("jump.proof") }] : []),
+    ...(faq.length > 0 ? [{ id: "faq", label: t("jump.faq") }] : []),
+    { id: "industries", label: t("jump.industries") },
   ];
 
   const stats = [
-    { value: page.flow.length, label: "Flow steps" },
-    ...(modules ? [{ value: modules.groups.length, label: "Module groups" }, { value: moduleCount, label: "Modules" }] : []),
-    { value: page.products.length, label: "Products" },
+    { value: page.flow.length, label: t("stats.flowSteps") },
+    ...(modules ? [{ value: modules.groups.length, label: t("stats.moduleGroups") }, { value: moduleCount, label: t("stats.modules") }] : []),
+    { value: page.products.length, label: t("stats.products") },
   ];
 
   return (
@@ -98,12 +117,12 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
             <SectionHead
               id="challenges-heading"
               align="start"
-              tag="The challenge"
-              title="What gets in the way today"
-              lead="The problems we hear most from this kind of business."
+              tag={t("challenges.tag")}
+              title={t("challenges.title")}
+              lead={t("challenges.lead")}
             />
             <p className="mt-6 hidden border-l-2 border-orange-300 pl-4 text-sm leading-relaxed text-slate-600 lg:block">
-              Every one of these is a record that is created after the fact. Synax creates it while the work happens.
+              {t("challenges.note")}
             </p>
           </div>
           <ul className="grid gap-4 sm:grid-cols-2">
@@ -129,7 +148,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
       {/* Flow */}
       <section id="flow" aria-labelledby="flow-heading" className="scroll-mt-32 border-y border-slate-200 bg-surface">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <SectionHead id="flow-heading" tag="How Synax answers it" title={page.flowTitle} lead={page.flowLead} />
+          <SectionHead id="flow-heading" tag={t("flow.tag")} title={page.flowTitle} lead={page.flowLead} />
           <ol className={`grid gap-x-5 gap-y-10 pt-5 sm:grid-cols-2 ${LG_COLS[page.flow.length] ?? "lg:grid-cols-3"}`}>
             {page.flow.map((step, i) => (
               <Reveal key={step.title} as="li" delay={(i % 4) * 70} className="relative flex">
@@ -147,7 +166,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                   <h3 className="text-lg font-bold text-slate-900">{step.title}</h3>
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{step.copy}</p>
                   {step.chips ? (
-                    <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-slate-200 pt-4" aria-label={`${step.title} modules`}>
+                    <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-slate-200 pt-4" aria-label={t("flow.chipsAria", { title: step.title })}>
                       {step.chips.map((c) => (
                         <li key={c} className="rounded-md border border-slate-200 bg-surface px-2 py-1 text-[11px] font-medium text-slate-700 transition-colors group-hover:border-sky-300 group-hover:bg-sky-50">
                           {c}
@@ -166,7 +185,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
       {modules ? (
         <section id="modules" aria-labelledby="modules-heading" className="scroll-mt-32 border-b border-sky-200 bg-sky-50">
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-            <SectionHead id="modules-heading" tag={modules.kicker} title="The modules behind it" lead={modules.subtitle} />
+            <SectionHead id="modules-heading" tag={modules.kicker} title={t("modules.title")} lead={modules.subtitle} />
             <ul className="grid gap-5 md:grid-cols-3">
               {modules.groups.map((g, i) => {
                 const GIcon = GROUP_ICON[i % GROUP_ICON.length];
@@ -178,7 +197,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                         <span className={`flex size-11 items-center justify-center rounded-xl border ${TILE} transition-colors group-hover:border-brand-line group-hover:bg-brand-solid group-hover:text-white`}>
                           <GIcon className="size-5" aria-hidden="true" />
                         </span>
-                        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{g.items.length} modules</span>
+                        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{t("modules.count", { n: g.items.length })}</span>
                       </div>
                       <h3 className="mt-5 text-lg font-bold text-slate-900">{g.title}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-slate-600">{g.description}</p>
@@ -204,13 +223,12 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <SectionHead
             id="products-heading"
-            tag="Delivered by"
-            title="The products behind this solution"
-            lead="Start with the first and add the others when you are ready."
+            tag={t("products.tag")}
+            title={t("products.title")}
+            lead={t("products.lead")}
           />
           <ul className="grid gap-5 md:grid-cols-3">
             {page.products.map((key, i) => {
-              const r = routeFor(key);
               const PIcon = PRODUCT_DATA[key].icon;
               const first = i === 0;
               return (
@@ -226,12 +244,12 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                       <span className={`flex size-11 items-center justify-center rounded-xl border ${first ? "border-white/20 bg-white/10 text-white" : TILE}`}>
                         <PIcon className="size-5" aria-hidden="true" />
                       </span>
-                      {first ? <span className="rounded-full bg-orange-300 px-2.5 py-0.5 text-[11px] font-bold text-blue-950">Start here</span> : null}
+                      {first ? <span className="rounded-full bg-orange-300 px-2.5 py-0.5 text-[11px] font-bold text-blue-950">{t("products.start")}</span> : null}
                     </div>
-                    <h3 className={`relative mt-5 text-lg font-bold ${first ? "text-white" : "text-slate-900"}`}>{r.name}</h3>
-                    <p className={`relative mt-2 flex-1 text-sm leading-relaxed ${first ? "text-slate-200" : "text-slate-600"}`}>{PRODUCT_DATA[key].subtitle}</p>
+                    <h3 className={`relative mt-5 text-lg font-bold ${first ? "text-white" : "text-slate-900"}`}>{tpr(`${key}.name`)}</h3>
+                    <p className={`relative mt-2 flex-1 text-sm leading-relaxed ${first ? "text-slate-200" : "text-slate-600"}`}>{tpd(`${key}.subtitle`)}</p>
                     <span className={`relative mt-5 inline-flex items-center gap-1.5 text-sm font-semibold ${first ? "text-orange-300" : "text-brand"}`}>
-                      Explore <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                      {t("products.explore")} <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                     </span>
                   </Link>
                 </Reveal>
@@ -247,9 +265,9 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
             <SectionHead
               id="proof-heading"
-              tag="Running on Synax"
-              title="Built by a group that runs industrial operations"
-              lead="These Senwell Group companies run on Synax."
+              tag={t("proof.tag")}
+              title={t("proof.title")}
+              lead={t("proof.lead")}
             />
             <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               {page.proof.map((name) => (
@@ -266,7 +284,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
       {faq.length > 0 ? (
         <section id="faq" aria-labelledby="faq-heading" className={`scroll-mt-32 ${page.proof ? "" : "border-y border-slate-200 bg-surface"}`}>
           <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-            <SectionHead id="faq-heading" tag="FAQ" title="Questions we hear most" />
+            <SectionHead id="faq-heading" tag={t("faq.tag")} title={t("faq.title")} />
             <Faq items={faq} />
           </div>
         </section>
@@ -275,7 +293,7 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
       {/* Other industries */}
       <section id="industries" aria-labelledby="industries-heading" className="scroll-mt-32">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
-          <SectionHead id="industries-heading" tag="Explore" title="Other industries" />
+          <SectionHead id="industries-heading" tag={t("industries.tag")} title={t("industries.title")} />
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {others.map((o, i) => {
               const OIcon = INDUSTRY_ICON[o.icon];
@@ -289,8 +307,8 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
                       <OIcon className="size-5" aria-hidden="true" />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-bold text-slate-900">{o.name}</span>
-                      <span className="block text-xs text-slate-500">{o.menu}</span>
+                      <span className="block text-sm font-bold text-slate-900">{ti(`${o.slug}.name`)}</span>
+                      <span className="block text-xs text-slate-500">{ti(`${o.slug}.menu`)}</span>
                     </span>
                     <ArrowRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-brand" aria-hidden="true" />
                   </Link>
@@ -312,20 +330,20 @@ export function IndustryPagePremium({ page }: { page: IndustryPage }) {
           <div className="flex flex-col items-start justify-between gap-7 md:flex-row md:items-center">
             <div className="max-w-xl">
               <SectionTag tone="dark" lines="start">
-                Get started
+                {t("cta.tag")}
               </SectionTag>
               <h2 id="cta-heading" className="mt-3 text-2xl font-extrabold tracking-tight text-white sm:text-3xl lg:text-4xl">
-                See Synax on your own process
+                {t("cta.title")}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base">
-                A short walkthrough with a Senwell Group systems engineer, using your own parts, people and processes.
+                {t("cta.text")}
               </p>
             </div>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <DemoButton product={page.demoName} onDark>
-                Schedule a Demo
+                {t("cta.demo")}
               </DemoButton>
-              <TourButton title={`${page.name} Tour`} onDark />
+              <TourButton title={tourTitleOf(page.slug)} onDark />
             </div>
           </div>
         </div>

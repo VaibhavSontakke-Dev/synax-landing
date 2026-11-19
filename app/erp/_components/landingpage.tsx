@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import {
   ShieldCheck,
   Users,
@@ -12,12 +13,13 @@ import {
   Send,
 } from "lucide-react";
 import { Rollout } from "./rollout";
+import { HomeMotion } from "./home-motion";
 import { Hero } from "./home-hero";
 import { Purpose } from "./home-purpose";
 import { Products } from "./home-products";
 import { Sectors } from "./home-sectors";
 import { Comparison } from "./home-comparison";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Usp } from "./home-usp";
 import { DemoButton, TourButton } from "./demo-buttons";
 import { hrefFor } from "../_data/products";
@@ -39,6 +41,7 @@ import { ModuleIcon } from "./icons";
  * <ErpShell> (shared with the product routes); each product has its own route under /products.
  */
 export default function Landingpage() {
+  const tb = useTranslations("Buttons");
   const { openDemo, openTour, modalOpen } = useDemo();
   // The mobile sticky CTA only appears once the hero's own buttons have scrolled away,
   // so it never covers them.
@@ -63,7 +66,7 @@ export default function Landingpage() {
             onClick={() => openDemo()}
             className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-brand-solid py-3 text-sm font-semibold text-white hover:bg-brand-solid-hover"
           >
-            <span>Schedule a Demo</span>
+            <span>{tb("scheduleDemo")}</span>
             <ArrowRight className="size-4" />
           </button>
         </div>
@@ -82,8 +85,13 @@ interface HomeViewProps {
 }
 
 function HomeView({ openModal, openTourModal }: HomeViewProps) {
+  const t = useTranslations("Home");
+  const live = useTranslations("Live");
   return (
     <main>
+      {/* Scroll reveals and parallax for the whole page: see home-motion.tsx and "Home page motion" in globals.css */}
+      <HomeMotion />
+
       {/* HERO: see home-hero.tsx */}
       <Hero
         onScheduleDemo={() => openModal()}
@@ -118,51 +126,48 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
          ========================================================================= */}
       <section id="synax-ai" className="keep-light-palette scroll-mt-20 py-10 sm:py-12 bg-slate-900 border-t border-slate-800 relative overflow-hidden">
         {/* Ambient glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+        <div data-parallax="0.14" className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+        <div data-parallax="0.22" className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-            <SectionTag tone="dark">Synax AI — Always On</SectionTag>
+          <div data-anim-stagger="rise" className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+            <SectionTag tone="dark">{t("ai.tag")}</SectionTag>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Your Enterprise, Answered{" "}
-              <span className="bg-gradient-to-r from-orange-300 via-amber-300 to-orange-400 bg-clip-text text-transparent">
-                Instantly
-              </span>
+              {t.rich("ai.title", {
+                em: (chunks) => (
+                  <span className="bg-gradient-to-r from-orange-300 via-amber-300 to-orange-400 bg-clip-text text-transparent">{chunks}</span>
+                ),
+              })}
             </h2>
             <p className="text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto">
-              Synax AI is a built-in intelligent assistant that understands your entire enterprise — orders, HRMS records, live transactions, inventory, compliance status, and more. Just ask.
+              {t("ai.lead")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             {/* Left: Capability Cards */}
-            <div className="space-y-4">
+            <div data-anim-stagger="rise" className="space-y-4">
               {[
                 {
                   icon: <BarChart3 className="w-4 h-4" />,
                   color: "text-orange-300 bg-orange-500/10 border-orange-500/20",
-                  title: "Live Transaction Queries",
-                  desc: "Ask \"What are today's open purchase orders?\" or \"Show me all invoices pending approval\" and get instant answers from live ERP data.",
+                  key: "live",
                 },
                 {
                   icon: <Users className="w-4 h-4" />,
                   color: "text-slate-300 bg-slate-500/10 border-slate-500/20",
-                  title: "HRMS & Workforce Intelligence",
-                  desc: "Query attendance records, payroll status, leave balances, skill certifications, and biometric punch logs in plain language.",
+                  key: "hrms",
                 },
                 {
                   icon: <Factory className="w-4 h-4" />,
                   color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-                  title: "Shop Floor & Production Data",
-                  desc: "Get real-time OEE, job traveler status, tool life remaining, scrap rates, and machine queue depth — all from a single chat prompt.",
+                  key: "floor",
                 },
                 {
                   icon: <ShieldCheck className="w-4 h-4" />,
                   color: "text-orange-200 bg-orange-400/10 border-orange-400/20",
-                  title: "Compliance & Audit Readiness",
-                  desc: "Surface FAIR register status, certificates of conformance, shop-floor quality exceptions and calibration expiry alerts on demand. Agents propose; an approver decides.",
+                  key: "compliance",
                 },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.07] transition-colors">
@@ -170,15 +175,15 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                     {item.icon}
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-white">{item.title}</div>
-                    <div className="text-xs text-slate-400 mt-1 leading-relaxed">{item.desc}</div>
+                    <div className="text-sm font-bold text-white">{t(`ai.cards.${item.key}.title`)}</div>
+                    <div className="text-xs text-slate-400 mt-1 leading-relaxed">{t(`ai.cards.${item.key}.desc`)}</div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Right: Chat UI Mock */}
-            <div className="bg-slate-950/80 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden">
+            <div data-anim="rise-lg" className="bg-slate-950/80 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden">
               {/* Chat header */}
               <div className="flex items-center gap-3 px-5 py-4 border-b border-slate-800 bg-slate-900/60">
                 <div className="w-8 h-8 rounded-xl bg-orange-400/15 border border-orange-300/25 flex items-center justify-center shrink-0">
@@ -188,7 +193,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                   <div className="text-sm font-bold text-white">Synax AI</div>
                   <div className="text-[11px] text-emerald-400 flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Connected to your enterprise data
+                    {t("ai.connected")}
                   </div>
                 </div>
               </div>
@@ -198,7 +203,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                 {/* User message 1 */}
                 <div className="flex justify-end">
                   <div className="bg-orange-400/15 text-orange-50 border border-orange-300/25 px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-[80%]">
-                    What are the current open transactions today?
+                    {t("ai.user1")}
                   </div>
                 </div>
                 {/* AI reply 1 */}
@@ -207,23 +212,23 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                     <Bot className="w-3 h-3 text-orange-300" />
                   </div>
                   <div className="bg-slate-800 text-slate-200 px-4 py-3 rounded-2xl rounded-tl-sm max-w-[85%] space-y-2">
-                    <p>Here&apos;s a live summary of today&apos;s open transactions:</p>
+                    <p>{t("ai.reply1")}</p>
                     <div className="grid grid-cols-2 gap-1.5 pt-1">
                       <div className="bg-slate-700/60 rounded-lg px-2.5 py-1.5">
-                        <div className="text-[10px] text-slate-400">Purchase Orders</div>
-                        <div className="font-bold text-white">14 Open</div>
+                        <div className="text-[10px] text-slate-400">{t("ai.tiles.poLabel")}</div>
+                        <div className="font-bold text-white">{t("ai.tiles.poValue", { count: 14 })}</div>
                       </div>
                       <div className="bg-slate-700/60 rounded-lg px-2.5 py-1.5">
-                        <div className="text-[10px] text-slate-400">Sales Invoices</div>
-                        <div className="font-bold text-white">7 Pending</div>
+                        <div className="text-[10px] text-slate-400">{t("ai.tiles.invLabel")}</div>
+                        <div className="font-bold text-white">{t("ai.tiles.invValue", { count: 7 })}</div>
                       </div>
                       <div className="bg-slate-700/60 rounded-lg px-2.5 py-1.5">
-                        <div className="text-[10px] text-slate-400">Job Orders</div>
-                        <div className="font-bold text-white">23 Active</div>
+                        <div className="text-[10px] text-slate-400">{t("ai.tiles.jobLabel")}</div>
+                        <div className="font-bold text-white">{t("ai.tiles.jobValue", { count: 23 })}</div>
                       </div>
                       <div className="bg-slate-700/60 rounded-lg px-2.5 py-1.5">
-                        <div className="text-[10px] text-slate-400">GRN Pending</div>
-                        <div className="font-bold text-white">5 Awaiting</div>
+                        <div className="text-[10px] text-slate-400">{t("ai.tiles.grnLabel")}</div>
+                        <div className="font-bold text-white">{t("ai.tiles.grnValue", { count: 5 })}</div>
                       </div>
                     </div>
                   </div>
@@ -232,7 +237,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                 {/* User message 2 */}
                 <div className="flex justify-end">
                   <div className="bg-orange-400/15 text-orange-50 border border-orange-300/25 px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-[80%]">
-                    Show me attendance for Shift A today
+                    {t("ai.user2")}
                   </div>
                 </div>
                 {/* AI reply 2 */}
@@ -241,7 +246,7 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
                     <Bot className="w-3 h-3 text-orange-300" />
                   </div>
                   <div className="bg-slate-800 text-slate-200 px-4 py-3 rounded-2xl rounded-tl-sm max-w-[85%]">
-                    <span className="text-emerald-400 font-semibold">Shift A — 428 punched in</span>, 12 on active break pass, 3 on approved leave. Payroll sync is up to date. No overstay alerts.
+                    {t.rich("ai.reply2", { g: (chunks) => <span className="text-emerald-400 font-semibold">{chunks}</span> })}
                   </div>
                 </div>
 
@@ -262,8 +267,8 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
               <div className="px-5 pb-5">
                 <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3">
                   <MessageSquare className="w-4 h-4 text-slate-500 shrink-0" />
-                  <span className="text-xs text-slate-500 flex-1">Ask anything about your enterprise data...</span>
-                  <button className="p-1.5 rounded-lg bg-orange-400/15 hover:bg-orange-400/25 border border-orange-300/25 transition-colors cursor-pointer" aria-label="Send message">
+                  <span className="text-xs text-slate-500 flex-1">{t("ai.inputPlaceholder")}</span>
+                  <button className="p-1.5 rounded-lg bg-orange-400/15 hover:bg-orange-400/25 border border-orange-300/25 transition-colors cursor-pointer" aria-label={t("ai.send")}>
                     <Send className="w-3 h-3 text-orange-200" />
                   </button>
                 </div>
@@ -273,13 +278,13 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
 
           {/* Bottom CTA */}
           <div className="mt-14 text-center space-y-4">
-            <p className="text-xs text-slate-500">Synax AI is included in every enterprise plan — no extra setup, no third-party integrations.</p>
+            <p className="text-xs text-slate-500">{t("ai.note")}</p>
             <Link
               href={hrefFor("ai")}
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-surface hover:bg-orange-50 text-brand font-semibold text-xs transition-all shadow-lg"
             >
               <Bot className="w-4 h-4" />
-              <span>Explore AI &amp; Business Intelligence</span>
+              <span>{t("ai.explore")}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -297,18 +302,14 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
          ========================================================================= */}
       <section className="py-10 sm:py-12 bg-surface border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-10 space-y-2">
-            <SectionTag>Running on Synax</SectionTag>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-              Senwell Group & Ecosystem Companies
-            </h2>
-            <p className="text-sm text-slate-600">
-              Companies across the Senwell ecosystem run their operations on Synax.
-            </p>
+          <div data-anim-stagger="rise" className="text-center max-w-xl mx-auto mb-10 space-y-2">
+            <SectionTag>{t("clients.tag")}</SectionTag>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">{t("clients.title")}</h2>
+            <p className="text-sm text-slate-600">{t("clients.lead")}</p>
           </div>
 
           {/* The four logos are made for light backgrounds (dark lettering), so in dark mode each sits on a white plate. */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
+          <div data-anim-stagger="scale" className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
             {/* Client 1: Senwell Exports */}
             <a
               href="https://senwellexports.com/"
@@ -400,27 +401,25 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
          ========================================================================= */}
       <section id="security" className="scroll-mt-20 py-10 bg-surface border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
-            <SectionTag>Security &amp; control</SectionTag>
-            <h2 className="text-2xl font-extrabold text-slate-900">Audit-ready by design, not by report.</h2>
-            <p className="text-xs text-slate-600">
-              Each company runs in its own workspace, and every material change leaves a record.
-            </p>
+          <div data-anim-stagger="rise" className="text-center max-w-xl mx-auto mb-12 space-y-2">
+            <SectionTag>{t("security.tag")}</SectionTag>
+            <h2 className="text-2xl font-extrabold text-slate-900">{t("security.title")}</h2>
+            <p className="text-xs text-slate-600">{t("security.lead")}</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {LIVE_SECURITY.map((item) => (
-              <div key={item.title} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
+          <div data-anim-stagger="scale" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {LIVE_SECURITY.map((item, i) => (
+              <div key={item.icon} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
                 <ModuleIcon name={item.icon} className="w-6 h-6 text-brand" />
-                <h3 className="text-sm font-bold text-slate-900">{item.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{item.copy}</p>
+                <h3 className="text-sm font-bold text-slate-900">{live(`security.${(["tenant", "server", "audit", "roles"] as const)[i]}.title`)}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{live(`security.${(["tenant", "server", "audit", "roles"] as const)[i]}.copy`)}</p>
               </div>
             ))}
           </div>
 
           <p className="mt-8 text-center">
             <Link href="/security" className="text-xs font-bold text-brand hover:underline">
-              Read more about security &amp; trust &rarr;
+              {t("security.more")} &rarr;
             </Link>
           </p>
         </div>
@@ -432,24 +431,19 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
       <section id="senwell" className="scroll-mt-20 py-10 bg-surface border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-            <div className="space-y-3 text-center lg:text-left max-w-xl">
-              <SectionTag>Manufacturing Pedigree</SectionTag>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                Industrial Heritage. Purpose-Built Software.
-              </h2>
+            <div data-anim-stagger="rise" className="space-y-3 text-center lg:text-left max-w-xl">
+              <SectionTag>{t("heritage.tag")}</SectionTag>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">{t("heritage.title")}</h2>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Synax was not engineered in a generic software incubator. It was born out of{" "}
-                <strong className="text-slate-800">Senwell Group’s</strong> multi-decade heritage in
-                precision aerospace manufacturing, global industrial export (Senwell Exports,
-                Stacwell Rubber, Stacem France & Morocco), and high-volume engineering operations.
+                {t.rich("heritage.body", { b: (chunks) => <strong className="text-slate-800">{chunks}</strong> })}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 w-full lg:w-auto">
+            <div data-anim-stagger="scale" className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 w-full lg:w-auto">
               {LIVE_CLIENTS.slice(1).map((name) => (
                 <div key={name} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-center">
                   <div className="text-sm sm:text-base font-extrabold text-slate-900">{name}</div>
-                  <div className="text-[10px] text-slate-500 font-medium mt-1">Running on Synax</div>
+                  <div className="text-[10px] text-slate-500 font-medium mt-1">{t("clients.tag")}</div>
                 </div>
               ))}
             </div>
@@ -461,14 +455,10 @@ function HomeView({ openModal, openTourModal }: HomeViewProps) {
          BOTTOM EXECUTIVE CTA SECTION
          ========================================================================= */}
       <section className="relative overflow-hidden border-y border-slate-200 bg-surface py-10 text-slate-900 sm:py-12">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
-          <SectionTag>Senwell Group Enterprise Software</SectionTag>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            See your own shop floor in Synax.
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            A 30-minute walkthrough with your parts, your challans and your machines.
-          </p>
+        <div data-anim-stagger="rise" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+          <SectionTag>{t("cta.tag")}</SectionTag>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">{t("cta.title")}</h2>
+          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">{t("cta.lead")}</p>
 
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
             <DemoButton />

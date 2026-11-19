@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight, BarChart3, ClipboardList, FileBarChart, LayoutDashboard, LineChart, Lock, ShieldCheck, Sparkles, Truck, Wallet, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Block } from "../site-page";
@@ -6,41 +7,20 @@ import { Reveal } from "../reveal";
 import { AiAskBoard } from "../ai-ask-board";
 import { HeroBand, HeroCopy, ProductTail, faqItems, relatedProduct } from "./shared";
 
-/** AI & Business Intelligence — the approval gate first, then the agents, the questions and the analytics. */
+/**
+ * AI & Business Intelligence — the approval gate first, then the agents, the questions and the analytics.
+ * The words come from messages/*.json ("ProductPage.ai"); the arrays keep icons, accents and keys.
+ */
 
-const GATE: { title: string; text: string; accent: "navy" | "orange" }[] = [
-  { title: "Ask", text: "Which challans are past their return date?", accent: "navy" },
-  { title: "Agent finds", text: "2 challans are past their return date.", accent: "navy" },
-  { title: "Agent proposes", text: "Draft reminders to the customer.", accent: "orange" },
-  { title: "You approve", text: "Only then does anything change.", accent: "orange" },
-];
+const GATE: { accent: "navy" | "orange" }[] = [{ accent: "navy" }, { accent: "navy" }, { accent: "orange" }, { accent: "orange" }];
 
-const LADDER: { title: string; copy: string }[] = [
-  { title: "The agent finds the exception", copy: "Agents watch your records for the problems that cost money: an overdue return, a lot that is not ready, a payment that is late." },
-  { title: "The agent proposes the fix", copy: "Instead of changing anything, it drafts the action: a reminder, a follow-up, a note for the right person." },
-  { title: "An approver decides", copy: "Every action waits for an approver with the right role. This is the maker-checker model the rest of Synax already uses." },
-  { title: "The decision is recorded", copy: "Who approved what, and when, is kept in a full event history, next to the record it changed." },
-];
+const AGENTS: { icon: LucideIcon }[] = [{ icon: ClipboardList }, { icon: Sparkles }, { icon: Truck }, { icon: Wallet }, { icon: ShieldCheck }, { icon: Wrench }];
 
-const AGENTS: { icon: LucideIcon; title: string; copy: string }[] = [
-  { icon: ClipboardList, title: "Challan reconciliation", copy: "Checks customer material challans against what came back, and flags the gaps." },
-  { icon: Sparkles, title: "Overdue chasers", copy: "Drafts the reminder when a challan passes its return date, ready for approval." },
-  { icon: Truck, title: "Dispatch readiness", copy: "Shows which lots are ready to dispatch and what is holding up the rest." },
-  { icon: Wallet, title: "Receivables follow-up", copy: "Lines up who to chase for payment, with the follow-up drafted." },
-  { icon: ShieldCheck, title: "Quality compliance", copy: "Watches for open quality items against the checks your process requires." },
-  { icon: Wrench, title: "Shop-floor watch", copy: "Brings alarms and downtime that need a person to your attention." },
-];
-
-const QUESTIONS = ["Which challans are past their return date?", "Which lots are ready to dispatch?", "Which route cards are awaiting buy-off?"];
-
-const BI: { icon: LucideIcon; title: string; copy: string }[] = [
-  { icon: LayoutDashboard, title: "Business dashboards", copy: "The state of the business on one screen." },
-  { icon: LineChart, title: "Operational analytics", copy: "How the operation is running, day by day." },
-  { icon: FileBarChart, title: "Reports across workflows", copy: "Reports for sales, stores, production, quality, dispatch and people." },
-  { icon: BarChart3, title: "Performance insights", copy: "What to look at next, based on current data." },
-];
+const BI: { icon: LucideIcon }[] = [{ icon: LayoutDashboard }, { icon: LineChart }, { icon: FileBarChart }, { icon: BarChart3 }];
 
 export function AiBiPage() {
+  const t = useTranslations("ProductPage.ai");
+  const tn = useTranslations("Nav");
   return (
     <main>
       {/* Hero: copy left, an animated "Ask Synax AI" chat board right (same style as the home page's "Answered Instantly" section) */}
@@ -51,27 +31,27 @@ export function AiBiPage() {
             productKey="ai"
             centerBelowLg
             compact
-            eyebrow="AI & Business Intelligence"
-            title="Synax AI finds the exception and proposes the fix."
-            subtitle="You approve."
-            lead="Ask Synax anything about your ERP data, and let its agents watch for the problems that cost you money. Nothing changes until an approver says yes. Dashboards and reports across your workflows keep decisions on current data."
+            eyebrow={t("eyebrow")}
+            title={t("title")}
+            subtitle={t("subtitle")}
+            lead={t("lead")}
           />
         </div>
         <div className="mx-auto mt-8 w-full max-w-xl lg:col-start-2 lg:row-span-4 lg:row-start-1 lg:mt-0 lg:max-w-none lg:self-start">
           <AiAskBoard />
         </div>
-        <ol className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-semibold lg:col-start-1 lg:row-start-2 lg:mx-0 lg:mt-6 lg:justify-start" aria-label="How a Synax AI action works">
+        <ol className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs font-semibold lg:col-start-1 lg:row-start-2 lg:mx-0 lg:mt-6 lg:justify-start" aria-label={t("gateAria")}>
           {GATE.map((g, i) => (
-            <li key={g.title} className="flex items-center gap-2">
+            <li key={i} className="flex items-center gap-2">
               <span className={`rounded-full px-3 py-1 ${g.accent === "orange" ? "bg-orange-300 text-orange-950" : "bg-brand-solid text-white"}`}>
-                {i + 1}. {g.title}
+                {i + 1}. {t(`gate.g${i + 1}`)}
               </span>
               {i < GATE.length - 1 ? <span className="text-slate-400" aria-hidden="true">→</span> : null}
             </li>
           ))}
         </ol>
         <p className="mx-auto mt-4 max-w-md rounded-xl border border-dashed border-orange-300 bg-surface/70 px-4 py-2.5 text-center text-xs text-slate-600 lg:col-start-1 lg:row-start-3 lg:mx-0 lg:text-left">
-          Every decision is kept in the event history. Agents cannot change your data on their own.
+          {t("gateNote")}
         </p>
         </div>
       </HeroBand>
@@ -79,43 +59,47 @@ export function AiBiPage() {
       {/* Why approval first */}
       <Block
         id="approval"
-        tag="Approval first"
-        title="The AI proposes. A person decides."
-        lead="Agents cannot change your data on their own. Every action waits for an approver with the right role, and the decision is recorded."
+        tag={t("approval.tag")}
+        title={t("approval.title")}
+        lead={t("approval.lead")}
       >
         <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {LADDER.map((l, i) => (
-            <Reveal key={l.title} as="li" delay={i * 70} className="flex">
+          {[1, 2, 3, 4].map((n, i) => (
+            <Reveal key={n} as="li" delay={i * 70} className="flex">
               <div className="flex w-full flex-col rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
                 <span className="flex size-8 items-center justify-center rounded-full bg-orange-300 font-mono text-sm font-semibold text-orange-950">{i + 1}</span>
-                <h3 className="mt-3 text-[15px] font-bold text-slate-900">{l.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{l.copy}</p>
+                <h3 className="mt-3 text-[15px] font-bold text-slate-900">{t(`approval.l${n}.title`)}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{t(`approval.l${n}.copy`)}</p>
               </div>
             </Reveal>
           ))}
         </ol>
         <p className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-600">
           <Lock className="size-4 text-accent" aria-hidden="true" />
-          Roles, two-step sign-in and the audit history are described on the{" "}
-          <Link href="/security" className="font-semibold text-brand hover:underline">
-            Security &amp; Trust page
-          </Link>
-          .
+          <span>
+            {t.rich("approval.security", {
+              link: (chunks) => (
+                <Link href="/security" className="font-semibold text-brand hover:underline">
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </span>
         </p>
       </Block>
 
       {/* Agents */}
-      <Block id="agents" tag="Synax agents" title="Six jobs the agents watch" lead="Each agent looks for a specific problem and brings you a proposed fix." tone="white">
+      <Block id="agents" tag={t("agents.tag")} title={t("agents.title")} lead={t("agents.lead")} tone="white">
         <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {AGENTS.map((a) => {
+          {AGENTS.map((a, i) => {
             const Icon = a.icon;
             return (
-              <li key={a.title} className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
+              <li key={i} className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
                 <span className="flex size-10 items-center justify-center rounded-xl border border-orange-200 bg-orange-50 text-accent-strong">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-3 text-base font-bold text-slate-900">{a.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{a.copy}</p>
+                <h3 className="mt-3 text-base font-bold text-slate-900">{t(`agents.a${i + 1}.title`)}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{t(`agents.a${i + 1}.copy`)}</p>
               </li>
             );
           })}
@@ -123,42 +107,42 @@ export function AiBiPage() {
       </Block>
 
       {/* Ask Synax */}
-      <Block id="ask" tag="Ask Synax" title="Questions answered from your own data" lead="Ask in plain language and get answers from live records.">
+      <Block id="ask" tag={t("ask.tag")} title={t("ask.title")} lead={t("ask.lead")}>
         <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
           <div className="rounded-2xl border border-t-4 border-slate-200 border-t-blue-900 bg-surface p-5 shadow-sm">
-            <p className="text-[11px] font-bold tracking-wider text-brand uppercase">You ask</p>
+            <p className="text-[11px] font-bold tracking-wider text-brand uppercase">{t("ask.youAsk")}</p>
             <ul className="mt-3 space-y-2">
-              {QUESTIONS.map((q) => (
+              {(["q1", "q2", "q3"] as const).map((q) => (
                 <li key={q} className="rounded-xl rounded-bl-sm border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-800">
-                  {q}
+                  {t(`ask.${q}`)}
                 </li>
               ))}
             </ul>
           </div>
           <div className="rounded-2xl border border-t-4 border-slate-200 border-t-orange-600 bg-surface p-5 shadow-sm">
-            <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">Synax answers</p>
+            <p className="text-[11px] font-bold tracking-wider text-accent-strong uppercase">{t("ask.answers")}</p>
             <p className="mt-3 rounded-xl rounded-bl-sm border border-orange-200 bg-orange-50/70 px-3 py-2 text-sm text-slate-800">
-              A list from your live records, with the next step proposed for approval.
+              {t("ask.answer")}
             </p>
             <span className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-orange-500 px-3 py-1 text-xs font-semibold text-white">
-              Approve <ArrowRight className="size-3.5" aria-hidden="true" />
+              {t("ask.approve")} <ArrowRight className="size-3.5" aria-hidden="true" />
             </span>
           </div>
         </div>
       </Block>
 
       {/* Business intelligence */}
-      <Block id="bi" tag="Business intelligence" title="Dashboards and reports on the workflows you already run" lead="The same records, summarised for the people who decide." tone="white">
+      <Block id="bi" tag={t("bi.tag")} title={t("bi.title")} lead={t("bi.lead")} tone="white">
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {BI.map((b) => {
+          {BI.map((b, i) => {
             const Icon = b.icon;
             return (
-              <li key={b.title} className="rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
+              <li key={i} className="rounded-2xl border border-slate-200 bg-surface p-5 shadow-sm">
                 <span className="flex size-10 items-center justify-center rounded-xl border border-sky-200 bg-sky-100 text-brand">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-3 text-[15px] font-bold text-slate-900">{b.title}</h3>
-                <p className="mt-1 text-sm text-slate-600">{b.copy}</p>
+                <h3 className="mt-3 text-[15px] font-bold text-slate-900">{t(`bi.b${i + 1}.title`)}</h3>
+                <p className="mt-1 text-sm text-slate-600">{t(`bi.b${i + 1}.copy`)}</p>
               </li>
             );
           })}
@@ -168,10 +152,10 @@ export function AiBiPage() {
       <ProductTail
         productKey="ai"
         related={[
-          relatedProduct("precision", "Challans, route cards, dispatch and invoices."),
-          relatedProduct("shopfloor", "Alarms, downtime and machine counts."),
-          relatedProduct("hrms", "Attendance, payroll and department KPIs."),
-          { label: "Security & Trust", note: "Roles, audit history and approvals.", href: "/security" },
+          relatedProduct("precision", t("related.precision")),
+          relatedProduct("shopfloor", t("related.shopfloor")),
+          relatedProduct("hrms", t("related.hrms")),
+          { label: tn("security"), note: t("related.security"), href: "/security" },
         ]}
         faq={faqItems(["Can the AI change our data on its own?", "Who is Synax built for?", "How long does onboarding take?"])}
       />
