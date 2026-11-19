@@ -2,7 +2,6 @@ import { Sora, Space_Grotesk } from "next/font/google";
 import { DemoProvider } from "./demo-provider";
 import { SiteNav } from "./site-nav";
 import { Footer } from "./home-footer";
-
 /**
  * The page frame shared by every Synax marketing route (/, /erp, /products/*, /solutions/*, …):
  * the `.erp-root` design-system scope with its fonts, the skip link, the announcement banner and

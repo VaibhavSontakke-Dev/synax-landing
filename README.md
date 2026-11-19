@@ -22,6 +22,13 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — Demo form: Full Name is focused when the modal opens
+Commit subject: `Demo modal: focus the Full Name field as soon as it opens`
+- **Change** (`app/erp/_components/demo-provider.tsx`): the Full Name input has `autoFocus`, so the cursor is already in it with the "e.g. Marcus Vance" hint showing, and the visitor can start typing straight away. The form is only rendered while the modal is open, so it happens on every open (not after the "Request Received" screen).
+- **Note**: the browser's own saved-details dropdown (Chrome's autofill) may appear under the field; that is the browser's, not ours.
+- **Checks**: typecheck and lint pass. Not tried in a browser.
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — Home page lives at / (no more /erp)
 Commit subject: `Home page at / only: /erp redirects to /`
 - **Problem**: the logo, the Overview link, the footer and the breadcrumbs all pointed at `/erp`, so the address bar showed `/erp` instead of the bare site address.

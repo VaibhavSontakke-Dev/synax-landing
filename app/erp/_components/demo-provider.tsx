@@ -204,6 +204,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
                       </label>
                       <input
                         id="demo-fullName"
+                        autoFocus
                         autoComplete="name"
                         type="text"
                         required
