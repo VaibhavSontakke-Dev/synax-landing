@@ -1402,41 +1402,60 @@ body {
 
 /* ==========================================================================
    Header tint (app/erp/_components/site-nav.tsx, `headerTone`)
-   The header copies the hero's own shading: a little deeper behind the menu in the middle, very light at both sides, and no
-   bottom line while the page is at the top, so header and hero read as one surface. After a scroll it gets a hairline, a faint
-   shadow and slightly more transparency (the blur behind it stays). Pages with a dark photo hero keep the plain white header
-   (data-tone="none" uses ordinary utilities). Dark mode keeps the usual dark header.
+   The header is painted with the SAME colours as the hero right under it, so the seam disappears: the hero's own base colour
+   (the same theme tokens) plus, where the hero has one, the same soft glow continued upward. The Security, Why Synax and
+   Solutions heroes have a sky glow whose centre sits at 30% of the width + 192 px and 96 px below the hero's top edge
+   (`absolute -top-24 left-[30%] size-96 bg-sky-300/40 blur-3xl`; the colours below use the same `--color-sky-300` token), so the "skyglow" header repeats that glow, a little paler
+   because it is further from its centre. No bottom line while the page is at the top. After a scroll the header gets a hairline,
+   a faint shadow and a little more transparency (the blur behind it stays). Pages with a dark photo hero keep the plain white
+   header (data-tone="none" uses ordinary utilities). Dark mode keeps the usual dark header.
    ========================================================================== */
 .erp-root .synax-header-tint {
-  --hdr-mid: #ffffff;
-  --hdr-edge: #ffffff;
+  --hdr-base: #ffffff;
+  --hdr-glow: none;
   --hdr-a: 100%;
-  background-color: color-mix(in srgb, var(--hdr-edge) var(--hdr-a), transparent);
-  background-image: radial-gradient(
-    ellipse 55% 230% at 50% 100%,
-    color-mix(in srgb, var(--hdr-mid) var(--hdr-a), transparent) 0%,
-    color-mix(in srgb, color-mix(in srgb, var(--hdr-mid) 50%, var(--hdr-edge)) var(--hdr-a), transparent) 45%,
-    color-mix(in srgb, var(--hdr-edge) var(--hdr-a), transparent) 80%
-  );
+  background-color: color-mix(in srgb, var(--hdr-base) var(--hdr-a), transparent);
+  background-image: var(--hdr-glow);
+  /* Paint under the 1px border too and do not repeat, or a light line of the gradient's other edge shows at the bottom. */
+  background-origin: border-box;
+  background-repeat: no-repeat;
   border-bottom: 1px solid transparent;
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
 
+/* Home and the six product pages: the page colour with the hero's faint orange glow (`bg-orange-200/25`, centred). */
 .erp-root .synax-header-tint[data-tone="cream"] {
-  --hdr-mid: #ffeacf;
-  --hdr-edge: #fffcf8;
+  --hdr-base: color-mix(in srgb, var(--color-slate-50) 70%, #ffffff);
+  --hdr-glow: radial-gradient(ellipse 45% 240% at 50% 100%, color-mix(in srgb, var(--color-orange-200) 30%, transparent) 0%, color-mix(in srgb, var(--color-orange-200) 12%, transparent) 55%, color-mix(in srgb, var(--color-orange-200) 0%, transparent) 100%);
 }
 
+/* Heroes with a plain `from-sky-100` gradient: /products, the legal pages, the IT Services page. */
 .erp-root .synax-header-tint[data-tone="sky"] {
-  --hdr-mid: #cde6fa;
-  --hdr-edge: #f5fbff;
+  --hdr-base: var(--color-sky-100);
+}
+
+/* Heroes with the sky glow: /security, /why-synax, /solutions. The glow is `sky-300` at 40% with a 64 px blur, drawn here as a soft circle. */
+.erp-root .synax-header-tint[data-tone="skyglow"] {
+  --hdr-base: var(--color-sky-100);
+  --hdr-glow: radial-gradient(
+    circle 330px at calc(30% + 192px) calc(100% + 96px),
+    color-mix(in srgb, var(--color-sky-300) 40%, transparent) 0%,
+    color-mix(in srgb, var(--color-sky-300) 38%, transparent) 39%,
+    color-mix(in srgb, var(--color-sky-300) 20%, transparent) 58%,
+    color-mix(in srgb, var(--color-sky-300) 6.5%, transparent) 78%,
+    color-mix(in srgb, var(--color-sky-300) 0%, transparent) 100%
+  );
+}
+
+/* Flat light-grey heroes: Precision (`slate-50`) and Workforce (`slate-100`). */
+.erp-root .synax-header-tint[data-tone="paper"] {
+  --hdr-base: var(--color-slate-50);
 }
 
 .erp-root .synax-header-tint[data-tone="grey"] {
-  --hdr-mid: #e5eaf1;
-  --hdr-edge: #f8fafc;
+  --hdr-base: var(--color-slate-100);
 }
 
 .erp-root .synax-header-tint[data-scrolled="true"] {

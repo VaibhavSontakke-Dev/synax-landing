@@ -91,17 +91,21 @@ function MenuItem({
 }
 
 /**
- * Which tint the header takes, to match the hero right under it (the colours are in globals.css, "Header tint"):
- *   cream  home and the six product pages (the hero's warm glow)
- *   sky    /products, /solutions, /why-synax, /security, the legal pages and the IT Services page (the sky-blue hero)
- *   grey   the Precision and Workforce solution pages (light grey heroes)
- *   none   plain white, as before: the four solution pages with a dark photo hero, and every page without a tinted hero (404)
+ * Which tint the header takes: the colours of the hero right under it (defined in globals.css, "Header tint").
+ *   cream    home and the six product pages (page colour with the hero's faint orange glow)
+ *   skyglow  /security, /why-synax, /solutions (sky hero with a glow)
+ *   sky      /products, the legal pages and the IT Services page (plain sky gradient)
+ *   paper    the Precision solution page (slate-50 hero)
+ *   grey     the Workforce solution page (slate-100 hero)
+ *   none     plain white, as before: the four solution pages with a dark photo hero, and the 404 page
  */
-type HeaderTone = "cream" | "sky" | "grey" | "none";
+type HeaderTone = "cream" | "skyglow" | "sky" | "paper" | "grey" | "none";
 function headerTone(path: string): HeaderTone {
   if (path === "/" || /^\/products\/[^/]+$/.test(path)) return "cream";
-  if (["/products", "/solutions", "/why-synax", "/security", "/privacy", "/terms", "/solutions/it-services-staffing"].includes(path)) return "sky";
-  if (path === "/solutions/precision-cnc-machining" || path === "/solutions/plant-workforce-hcm") return "grey";
+  if (path === "/security" || path === "/why-synax" || path === "/solutions") return "skyglow";
+  if (path === "/products" || path === "/privacy" || path === "/terms" || path === "/solutions/it-services-staffing") return "sky";
+  if (path === "/solutions/precision-cnc-machining") return "paper";
+  if (path === "/solutions/plant-workforce-hcm") return "grey";
   return "none";
 }
 
