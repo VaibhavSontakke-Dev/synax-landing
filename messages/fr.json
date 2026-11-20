@@ -39,6 +39,14 @@
   "Footer": {
     "intro": "Synax est une suite d'entreprise unifiée de <link>Senwell Group</link> : fabrication, gestion des travaux et des livraisons, RH, recrutement, suivi de l'atelier et IA, au sein d'une même plateforme connectée et prête pour les audits.",
     "complianceHeading": "Alignement réglementaire",
+    "ctaTitle": "Découvrez Synax sur votre propre activité",
+    "ctaBody": "Une démonstration de 30 minutes avec vos produits, vos équipes et vos sites.",
+    "tagline": "Une seule plateforme pour toutes vos opérations.",
+    "introShort": "Production, delivery, RH et IA dans un seul système connecté et prêt pour l'audit, par Senwell Group.",
+    "industries": "Secteurs",
+    "operations": "Opérations",
+    "company": "Entreprise",
+    "compareProducts": "Comparer les produits",
     "compliance": {
       "as9100d": "Contrôles qualité AS9100D",
       "gst": "Facture électronique GST et e-way bill",

@@ -39,6 +39,14 @@
   "Footer": {
     "intro": "Synax ist eine einheitliche Unternehmenssoftware von <link>Senwell Group</link>: Fertigung, Arbeits- und Lieferverwaltung, HR, Personalvermittlung, Shop-Floor-Überwachung und KI in einer vernetzten, auditfähigen Plattform.",
     "complianceHeading": "Compliance-Ausrichtung",
+    "ctaTitle": "Erleben Sie Synax in Ihrem eigenen Betrieb",
+    "ctaBody": "Eine 30-minütige Vorführung mit Ihren Produkten, Mitarbeitenden und Werken.",
+    "tagline": "Eine Plattform für jeden Betriebsablauf.",
+    "introShort": "Fertigung, Projektabwicklung, Personal und KI in einem vernetzten, prüfungssicheren System, von der Senwell Group.",
+    "industries": "Branchen",
+    "operations": "Betrieb",
+    "company": "Unternehmen",
+    "compareProducts": "Produkte vergleichen",
     "compliance": {
       "as9100d": "AS9100D-QMS-Kontrollen",
       "gst": "GST-E-Rechnung & E-Way-Bill",

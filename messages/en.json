@@ -39,6 +39,14 @@
   "Footer": {
     "intro": "Synax is a unified business suite by <link>Senwell Group</link>: manufacturing, work and delivery management, HRMS, staffing, shop-floor monitoring and AI in one connected, audit-ready platform.",
     "complianceHeading": "Compliance alignment",
+    "ctaTitle": "See Synax on your own operation",
+    "ctaBody": "A 30-minute walkthrough with your products, people and plants.",
+    "tagline": "One platform for every operation.",
+    "introShort": "Manufacturing, delivery, people and AI in one connected, audit-ready system, by Senwell Group.",
+    "industries": "Industries",
+    "operations": "Operations",
+    "company": "Company",
+    "compareProducts": "Compare products",
     "compliance": {
       "as9100d": "AS9100D QMS controls",
       "gst": "GST e-invoice & e-way bill",
