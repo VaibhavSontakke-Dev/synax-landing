@@ -534,6 +534,33 @@ Commit subject: `Watch overview: animated platform overview with two Synax birds
 - **Licence note**: the voices use the unofficial Edge speech client; regenerate them with licensed or recorded voices before launch (the animation re-times itself to the new word timings). Music and effects are synthesised, no third-party licence.
 - **Rollback**: revert the commit (the Watch overview goes back to the animated scenes).
 
+### Pending (next commit) — Link previews show the Synax logo (Teams, WhatsApp, LinkedIn)
+Commit subject: `SEO: Open Graph share image and Vercel site-URL fallback`
+- **Problem**: a link shared in Teams showed a grey placeholder instead of an image. No page had an `og:image`, and without `NEXT_PUBLIC_SITE_URL` the absolute URLs pointed at `http://localhost:3000`.
+- **Change**:
+  - `app/[locale]/opengraph-image.png` (new, 1200×630): the Synax Pro logo with the headline on white, orange and navy edge bars. File-based, so it applies to every page in every language, including pages that set their own `openGraph`. Alt text in `opengraph-image.alt.txt`. Built from the logo inside `public/images/SYNAX_PRO.svg` with sharp.
+  - `i18n/site.ts`: when `NEXT_PUBLIC_SITE_URL` is unset, a Vercel build falls back to `https://$VERCEL_PROJECT_PRODUCTION_URL` instead of localhost.
+- **Checks**: not built or viewed. Teams caches previews, so test with a fresh URL (for example add `?v=2`). Setting `NEXT_PUBLIC_SITE_URL` on Vercel is still the recommended setup.
+- **Rollback**: delete the two `opengraph-image.*` files and revert `i18n/site.ts`.
+
+### Pending (next commit) — Footer: professional redesign
+Commit subject: `Footer: redesign with demo band, four link columns and compliance strip`
+- **What**: the footer is reorganised like a standard B2B software footer, keeping the navy background, orange accents and the faint "SYNAX" watermark:
+  - a **demo band** at the top ("See Synax on your own operation", Schedule a demo, Contact sales);
+  - a **brand column** (logo, the tagline "One platform for every operation.", a short intro, address, website);
+  - **four even link columns**: Products (the six products as plain links, not cards), Industries (the four industry solutions and "All solutions"), Operations (precision CNC, rubber moulding, plant workforce, staffing) and Company (Why Synax, Security & Trust, Compare products, Contact sales). The thin "Senwell Group" column is gone;
+  - the four **compliance badges** in one row above the legal bar; the legal bar is unchanged.
+  The footer now sizes to its content instead of filling the whole screen, and the dot-grid background is dropped.
+- **Text**: new `Footer` messages in English, German and French: `ctaTitle`, `ctaBody`, `tagline`, `introShort`, `industries`, `operations`, `company`, `compareProducts`. `Footer.intro` (still used by the Security page) and the other existing messages are unchanged.
+- **Files**: `app/erp/_components/home-footer.tsx` (rewritten), `messages/en.json`, `messages/de.json`, `messages/fr.json`.
+- **Rollback**: revert the commit (the previous footer with product cards comes back).
+
+### Pending (next commit) — Footer: Senwell links removed
+Commit subject: `Footer: remove the About Senwell, Senwell Exports, Stacwell and Stacem links`
+- **What**: the footer's Senwell Group column no longer lists "About Senwell", "Senwell Exports", "Stacwell" or "Stacem"; only "Contact sales" stays under the heading. The "Senwell Group" link in the footer's positioning line, the home page's Senwell section and the client logo strip are unchanged. The `Footer.aboutSenwell` message is left in `messages/*.json`, unused.
+- **Files**: `app/erp/_components/home-footer.tsx` (links, `GROUP_LINKS` and the unused `ArrowUpRight` import removed).
+- **Rollback**: revert the commit (the four links come back).
+
 ### Pending (next commit) — Ecosystem Purpose: "Scattered spreadsheets → One connected system"
 Commit subject: `Ecosystem Purpose: "Scattered spreadsheets → One connected system"`
 - **What**: in the home page's Ecosystem Purpose section, the before/after pills now read "Scattered spreadsheets" → "One connected system" (was "Fragmented spreadsheets" → "One cohesive continuum"), and the paragraph above them ends the same way ("…survive on scattered spreadsheets … into one connected system."). German: "Ein vernetztes System" (the "Verstreute Tabellen" pill already fitted); French: "Tableurs éparpillés" → "Un seul système connecté". The hero's tick lines are unchanged.
