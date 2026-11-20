@@ -36,7 +36,7 @@ const SECTION_LINKS = [
   { key: "security", href: "/security" },
 ] as const;
 
-/** The Solutions panel is wider, so it is centred under its trigger instead of hanging off its left edge. */
+/** The Products and Solutions panels are wide (two columns), so they are centred under their trigger instead of hanging off its left edge. */
 const SOLUTIONS_PANEL_OFFSET = "left-1/2 -translate-x-1/2";
 
 const MENU_PANEL =
@@ -195,31 +195,29 @@ export function SiteNav() {
                 {t("products", { count: PRODUCT_ROUTES.length })}
                 <ChevronDown className="size-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true" />
               </button>
-              <div className={`${MENU_PANEL} w-96`}>
-                <MenuLabel>{t("coreProducts")}</MenuLabel>
-                {PRODUCT_ROUTES.slice(0, 2).map((r) => (
-                  <MenuItem
-                    key={r.key}
-                    href={productHref(r)}
-                    active={isActive(productHref(r))}
-                    tone={r.tone}
-                    Icon={PRODUCT_DATA[r.key].icon}
-                    name={tp(`${r.key}.name`)}
-                    menu={tp(`${r.key}.menu`)}
-                  />
-                ))}
-                <MenuLabel className="mt-1 border-t border-slate-100 pt-2">{t("addOnProducts")}</MenuLabel>
-                {PRODUCT_ROUTES.slice(2).map((r) => (
-                  <MenuItem
-                    key={r.key}
-                    href={productHref(r)}
-                    active={isActive(productHref(r))}
-                    tone={r.tone}
-                    Icon={PRODUCT_DATA[r.key].icon}
-                    name={tp(`${r.key}.name`)}
-                    menu={tp(`${r.key}.menu`)}
-                  />
-                ))}
+              <div className={`${SOLUTIONS_PANEL} w-[640px]`}>
+                {/* Same two-column layout as Solutions. Left: core products. Right: add-on products. */}
+                <div className="grid grid-cols-2 gap-x-2">
+                  {[
+                    { label: t("coreProducts"), routes: PRODUCT_ROUTES.slice(0, 2) },
+                    { label: t("addOnProducts"), routes: PRODUCT_ROUTES.slice(2) },
+                  ].map((col) => (
+                    <div key={col.label}>
+                      <MenuLabel>{col.label}</MenuLabel>
+                      {col.routes.map((r) => (
+                        <MenuItem
+                          key={r.key}
+                          href={productHref(r)}
+                          active={isActive(productHref(r))}
+                          tone={r.tone}
+                          Icon={PRODUCT_DATA[r.key].icon}
+                          name={tp(`${r.key}.name`)}
+                          menu={tp(`${r.key}.menu`)}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
                 <Link
                   href="/products"
                   aria-current={pathname === "/products" ? "page" : undefined}

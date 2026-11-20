@@ -23,6 +23,13 @@ Rule: **every commit updates this section** (newest first) so any change can be 
 and rolled back. Entries are identified by the commit subject — find the commit with
 `git log --grep "<subject>"`. Roll back one with `git revert <hash>`.
 
+### Pending (next commit) — /why-synax: the three pillar cards bob gently in place
+Commit subject: `why-synax hero: slow in-place bob on the three pillar cards`
+- **What**: the three cards on the right of the /why-synax hero (Job-work native, Machine to invoice, AI that acts) now float slowly up and down on the spot, like something resting on water. Each card has its own speed, start offset and height (6.5 s / 6 px, 7.5 s / 8 px, 5.5 s / 5 px, plus a 1 px sideways drift), so they never move together. Hovering a card pauses it so the text can be read, and brings that card forward above the other two: it is raised a layer (`hover:z-20`) and, with a 0.5 s soft ease, lifts 8 px, grows 4%, straightens its tilt and gets a deeper shadow and border (the `translate`, `scale` and `rotate` properties, which add to the bob); when the pointer leaves it eases back to its own place and layer and keeps bobbing. (A layer change itself cannot be animated, so the lift and growth are what make it feel smooth.) The same happens on keyboard focus inside a card. It is off for `prefers-reduced-motion`.
+- **How**: a `synax-why-bob` keyframe in `app/globals.css` that animates `transform` (so it adds to the cards' own tilt, which uses the separate `rotate` property); the per-card numbers are the `BOB` constant in `app/erp/_components/why-hero.tsx` (`--bob-t` duration, `--bob-d` offset, `--bob-y` height, `--bob-x` drift).
+- **Checks**: typecheck and lint pass; the CSS parses; /why-synax in `/`, `/fr` and `/de` returns 200 and carries the class. Not seen in a browser, so the amplitude and speed are a first guess.
+- **Rollback**: revert the commit.
+
 ### Pending (next commit) — Header colours now match the hero exactly
 Commit subject: `header tint: paint the header with the hero's own colours and glow`
 - **Why**: in a screenshot of /security the header (a paler, greyer blue with its own middle dip) did not match the hero below it (`#B9E8FF` at the glow, `#DFF2FE` to the sides): a visible step at the seam, plus a 1 px light line along the header's bottom edge (the header gradient repeated into its transparent border).
@@ -526,6 +533,24 @@ Commit subject: `Watch overview: animated platform overview with two Synax birds
 - **Files**: `public/videos/synax-overview.mp4` (720p) and `synax-overview-poster.webp` (the module ring); the 1080p master is `video-exports/synax-overview-birds-1080p.mp4` (git-ignored). `app/erp/_data/tours.ts`: new `overviewVideoTour` (the old animated `overview` scenes and their audio stay in place, unused while the `video` field is set). Source, script, storyboard, coverage matrix and character notes: `tools/video-kit/videos/overview/README.md`.
 - **Licence note**: the voices use the unofficial Edge speech client; regenerate them with licensed or recorded voices before launch (the animation re-times itself to the new word timings). Music and effects are synthesised, no third-party licence.
 - **Rollback**: revert the commit (the Watch overview goes back to the animated scenes).
+
+### Pending (next commit) — Ecosystem Purpose: "Scattered spreadsheets → One connected system"
+Commit subject: `Ecosystem Purpose: "Scattered spreadsheets → One connected system"`
+- **What**: in the home page's Ecosystem Purpose section, the before/after pills now read "Scattered spreadsheets" → "One connected system" (was "Fragmented spreadsheets" → "One cohesive continuum"), and the paragraph above them ends the same way ("…survive on scattered spreadsheets … into one connected system."). German: "Ein vernetztes System" (the "Verstreute Tabellen" pill already fitted); French: "Tableurs éparpillés" → "Un seul système connecté". The hero's tick lines are unchanged.
+- **Files**: `messages/en.json`, `messages/de.json`, `messages/fr.json` (`Purpose.lead`, `Purpose.from`, `Purpose.to`).
+- **Rollback**: revert the commit (the old wording comes back).
+
+### Pending (next commit) — Navbar: Products menu in two columns like Solutions
+Commit subject: `Navbar: Products menu in two columns like Solutions`
+- **What**: the desktop Products dropdown now uses the same layout as the Solutions dropdown: a 640px panel centred under its trigger, with two columns side by side (Core products on the left, Add-on products on the right) and "Compare products" across the bottom. It was a single narrow column. The mobile menu is unchanged.
+- **Files**: `app/erp/_components/site-nav.tsx` (Products panel markup and width).
+- **Rollback**: revert the commit (the Products menu goes back to one column).
+
+### Pending (next commit) — Landing pages: page scrollbar hidden
+Commit subject: `Landing pages: hide the page scrollbar`
+- **What**: the browser's page scrollbar is no longer drawn on the landing pages (every route that renders `.erp-root`). Scrolling still works with the mouse wheel, trackpad, touch and keyboard; inner scrolling panels (such as the demo-request modal's thin scrollbar) are unchanged.
+- **Files**: `app/globals.css` (`scrollbar-width: none` and `::-webkit-scrollbar { display: none }` on `:root:has(.erp-root)`).
+- **Rollback**: revert the commit (the page scrollbar comes back).
 
 ### Pending (next commit) — Overview hero: product cards scattered into the side space
 Commit subject: `Overview hero: scatter the product cards into the empty side space`

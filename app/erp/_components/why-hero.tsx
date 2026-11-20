@@ -24,6 +24,19 @@ const FAN = [
   "lg:top-[0.5rem] lg:right-0 lg:rotate-3",
 ];
 
+/**
+ * A slow bob in place for each pillar card, like something floating on water: each card has its own duration, start offset and
+ * height so they never move together. The look is the `synax-why-bob` rule in globals.css (vertical bob plus a 1 px drift, on
+ * `transform`, so it adds to the tilt in FAN); here only the per-card numbers live. Pauses on hover, and the hovered card comes forward: it is raised above
+ * the others (`hover:z-20`) and, over 0.5 s, lifts 8 px, grows 4%, straightens its tilt and deepens its shadow (these use the separate
+ * `translate`, `scale` and `rotate` properties, so they add to the bob), then eases back when the pointer leaves; reduced motion: no animation.
+ */
+const BOB = [
+  "[--bob-t:6.5s] [--bob-d:-1.5s] [--bob-y:-6px] [--bob-x:1px]",
+  "[--bob-t:7.5s] [--bob-d:-4s] [--bob-y:-8px] [--bob-x:-1px]",
+  "[--bob-t:5.5s] [--bob-d:-2.5s] [--bob-y:-5px] [--bob-x:1px]",
+];
+
 export interface WhyProof {
   icon: LucideIcon;
   value: string;
@@ -81,7 +94,7 @@ export function WhyHero({ proof }: { proof: WhyProof[] }) {
               {PILLARS.map((p, i) => (
                 <li
                   key={p}
-                  className={`rounded-xl border border-slate-300 bg-surface p-4 shadow-lg shadow-brand-line/10 lg:absolute lg:w-[19.5rem] ${FAN[i] ?? ""}`}
+                  className={`synax-why-bob rounded-xl border border-slate-300 bg-surface p-4 shadow-lg shadow-brand-line/10 transition-[box-shadow,border-color,scale,translate,rotate] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-20 hover:-translate-y-2 hover:scale-[1.04] hover:border-brand-line/50 hover:shadow-2xl focus-within:z-20 motion-reduce:transition-none lg:hover:rotate-0 lg:absolute lg:w-[19.5rem] ${FAN[i] ?? ""} ${BOB[i] ?? ""}`}
                 >
                   <div className="flex items-center gap-2.5">
                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-solid font-mono text-xs font-semibold text-white">{i + 1}</span>

@@ -164,6 +164,12 @@ body {
    every other route on the browser default. */
 :root:has(.erp-root) {
   scroll-behavior: smooth;
+  /* The page still scrolls (wheel, touch, keyboard), but its scrollbar is not drawn. */
+  scrollbar-width: none;
+}
+
+:root:has(.erp-root)::-webkit-scrollbar {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1468,4 +1474,35 @@ body {
   background-image: none;
   background-color: color-mix(in srgb, var(--color-surface) 90%, transparent);
   border-bottom-color: color-mix(in srgb, var(--color-slate-200) 80%, transparent);
+}
+
+/* ==========================================================================
+   /why-synax hero: the three pillar cards bob in place (app/erp/_components/why-hero.tsx, `BOB`)
+   `transform` is used (not `translate` / `rotate`) so it adds to the cards' own tilt. Per-card numbers come from
+   --bob-t (duration), --bob-d (start offset), --bob-y (height) and --bob-x (sideways drift).
+   ========================================================================== */
+@keyframes synax-why-bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--bob-x, 1px), var(--bob-y, -7px), 0);
+  }
+}
+
+.erp-root .synax-why-bob {
+  animation: synax-why-bob var(--bob-t, 6s) ease-in-out var(--bob-d, 0s) infinite;
+  will-change: transform;
+}
+
+.erp-root .synax-why-bob:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-root .synax-why-bob {
+    animation: none;
+    will-change: auto;
+  }
 }
